@@ -107,6 +107,9 @@ namespace MissionPlanner.GCSViews.ConfigurationView
                 case motor_frame_class.MOTOR_FRAME_TRI:
                     radioButtonTri.Checked = true;
                     break;
+                case motor_frame_class.MOTOR_FRAME_TILTHEXA:
+                    radioButtonTiltHexa.Checked = true;
+                    break;
             }
 
             // disable all options
@@ -317,6 +320,8 @@ namespace MissionPlanner.GCSViews.ConfigurationView
 
         private void radioButtonClass_CheckedChanged(object sender, EventArgs e)
         {
+            if (sender == radioButtonTiltHexa)
+                DoClass(motor_frame_class.MOTOR_FRAME_TILTHEXA);
             if (sender == radioButtonUndef)
                 DoClass(motor_frame_class.MOTOR_FRAME_UNDEFINED);
             if (sender == radioButtonQuad)

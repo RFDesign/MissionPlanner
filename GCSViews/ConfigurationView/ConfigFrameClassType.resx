@@ -130,7 +130,7 @@
     <value>62, 38</value>
   </data>
   <data name="radioButton_Plus.Size" type="System.Drawing.Size, System.Drawing">
-    <value>14, 13</value>
+    <value>17, 16</value>
   </data>
   <data name="radioButton_Plus.TabIndex" type="System.Int32, mscorlib">
     <value>23</value>
@@ -157,7 +157,7 @@
     <value>62, 118</value>
   </data>
   <data name="radioButton_X.Size" type="System.Drawing.Size, System.Drawing">
-    <value>14, 13</value>
+    <value>17, 16</value>
   </data>
   <data name="radioButton_X.TabIndex" type="System.Int32, mscorlib">
     <value>24</value>
@@ -184,7 +184,7 @@
     <value>25, 38</value>
   </data>
   <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>31, 13</value>
+    <value>41, 17</value>
   </data>
   <data name="label2.TabIndex" type="System.Int32, mscorlib">
     <value>68</value>
@@ -214,7 +214,7 @@
     <value>8, 118</value>
   </data>
   <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>51, 13</value>
+    <value>67, 17</value>
   </data>
   <data name="label3.TabIndex" type="System.Int32, mscorlib">
     <value>69</value>
@@ -253,7 +253,7 @@
     <value>pictureBoxPlus</value>
   </data>
   <data name="&gt;&gt;pictureBoxPlus.Type" xml:space="preserve">
-    <value>MissionPlanner.Controls.PictureBoxWithPseudoOpacity, MissionPlanner.Controls, Version=1.0.6215.11320, Culture=neutral, PublicKeyToken=null</value>
+    <value>MissionPlanner.Controls.PictureBoxWithPseudoOpacity, MissionPlanner.Controls, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;pictureBoxPlus.Parent" xml:space="preserve">
     <value>groupBox2</value>
@@ -280,7 +280,7 @@
     <value>pictureBoxX</value>
   </data>
   <data name="&gt;&gt;pictureBoxX.Type" xml:space="preserve">
-    <value>MissionPlanner.Controls.PictureBoxWithPseudoOpacity, MissionPlanner.Controls, Version=1.0.6215.11320, Culture=neutral, PublicKeyToken=null</value>
+    <value>MissionPlanner.Controls.PictureBoxWithPseudoOpacity, MissionPlanner.Controls, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;pictureBoxX.Parent" xml:space="preserve">
     <value>groupBox2</value>
@@ -298,7 +298,7 @@
     <value>38, 203</value>
   </data>
   <data name="label6.Size" type="System.Drawing.Size, System.Drawing">
-    <value>18, 13</value>
+    <value>23, 17</value>
   </data>
   <data name="label6.TabIndex" type="System.Int32, mscorlib">
     <value>86</value>
@@ -328,7 +328,7 @@
     <value>62, 203</value>
   </data>
   <data name="radioButton_V.Size" type="System.Drawing.Size, System.Drawing">
-    <value>14, 13</value>
+    <value>17, 16</value>
   </data>
   <data name="radioButton_V.TabIndex" type="System.Int32, mscorlib">
     <value>85</value>
@@ -364,7 +364,7 @@
     <value>pictureBoxV</value>
   </data>
   <data name="&gt;&gt;pictureBoxV.Type" xml:space="preserve">
-    <value>MissionPlanner.Controls.PictureBoxWithPseudoOpacity, MissionPlanner.Controls, Version=1.0.6215.11320, Culture=neutral, PublicKeyToken=null</value>
+    <value>MissionPlanner.Controls.PictureBoxWithPseudoOpacity, MissionPlanner.Controls, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;pictureBoxV.Parent" xml:space="preserve">
     <value>groupBox2</value>
@@ -382,7 +382,7 @@
     <value>38, 287</value>
   </data>
   <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>19, 13</value>
+    <value>24, 17</value>
   </data>
   <data name="label1.TabIndex" type="System.Int32, mscorlib">
     <value>89</value>
@@ -412,7 +412,7 @@
     <value>62, 287</value>
   </data>
   <data name="radioButton_H.Size" type="System.Drawing.Size, System.Drawing">
-    <value>14, 13</value>
+    <value>17, 16</value>
   </data>
   <data name="radioButton_H.TabIndex" type="System.Int32, mscorlib">
     <value>88</value>
@@ -448,7 +448,7 @@
     <value>pictureBoxH</value>
   </data>
   <data name="&gt;&gt;pictureBoxH.Type" xml:space="preserve">
-    <value>MissionPlanner.Controls.PictureBoxWithPseudoOpacity, MissionPlanner.Controls, Version=1.0.6215.11320, Culture=neutral, PublicKeyToken=null</value>
+    <value>MissionPlanner.Controls.PictureBoxWithPseudoOpacity, MissionPlanner.Controls, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;pictureBoxH.Parent" xml:space="preserve">
     <value>groupBox2</value>
@@ -490,7 +490,7 @@
     <value>19, 371</value>
   </data>
   <data name="label5.Size" type="System.Drawing.Size, System.Drawing">
-    <value>31, 13</value>
+    <value>40, 17</value>
   </data>
   <data name="label5.TabIndex" type="System.Int32, mscorlib">
     <value>93</value>
@@ -520,7 +520,7 @@
     <value>62, 371</value>
   </data>
   <data name="radioButton_Y.Size" type="System.Drawing.Size, System.Drawing">
-    <value>14, 13</value>
+    <value>17, 16</value>
   </data>
   <data name="radioButton_Y.TabIndex" type="System.Int32, mscorlib">
     <value>92</value>
@@ -556,7 +556,7 @@
     <value>pictureBoxY</value>
   </data>
   <data name="&gt;&gt;pictureBoxY.Type" xml:space="preserve">
-    <value>MissionPlanner.Controls.PictureBoxWithPseudoOpacity, MissionPlanner.Controls, Version=1.0.6215.11320, Culture=neutral, PublicKeyToken=null</value>
+    <value>MissionPlanner.Controls.PictureBoxWithPseudoOpacity, MissionPlanner.Controls, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;pictureBoxY.Parent" xml:space="preserve">
     <value>groupBox2</value>
@@ -601,7 +601,7 @@
     <value>313, 203</value>
   </data>
   <data name="label9.Size" type="System.Drawing.Size, System.Drawing">
-    <value>38, 13</value>
+    <value>50, 17</value>
   </data>
   <data name="label9.TabIndex" type="System.Int32, mscorlib">
     <value>97</value>
@@ -631,7 +631,7 @@
     <value>357, 203</value>
   </data>
   <data name="radioButton_VTail.Size" type="System.Drawing.Size, System.Drawing">
-    <value>14, 13</value>
+    <value>17, 16</value>
   </data>
   <data name="radioButton_VTail.TabIndex" type="System.Int32, mscorlib">
     <value>96</value>
@@ -667,7 +667,7 @@
     <value>pictureBoxVTail</value>
   </data>
   <data name="&gt;&gt;pictureBoxVTail.Type" xml:space="preserve">
-    <value>MissionPlanner.Controls.PictureBoxWithPseudoOpacity, MissionPlanner.Controls, Version=1.0.6215.11320, Culture=neutral, PublicKeyToken=null</value>
+    <value>MissionPlanner.Controls.PictureBoxWithPseudoOpacity, MissionPlanner.Controls, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;pictureBoxVTail.Parent" xml:space="preserve">
     <value>groupBox2</value>
@@ -698,6 +698,39 @@
   </data>
   <data name="&gt;&gt;groupBox2.ZOrder" xml:space="preserve">
     <value>1</value>
+  </data>
+  <data name="radioButtonTiltHexa.Appearance" type="System.Windows.Forms.Appearance, System.Windows.Forms">
+    <value>Button</value>
+  </data>
+  <data name="radioButtonTiltHexa.CheckAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>BottomLeft</value>
+  </data>
+  <data name="radioButtonTiltHexa.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="radioButtonTiltHexa.Location" type="System.Drawing.Point, System.Drawing">
+    <value>646, 18</value>
+  </data>
+  <data name="radioButtonTiltHexa.Size" type="System.Drawing.Size, System.Drawing">
+    <value>74, 74</value>
+  </data>
+  <data name="radioButtonTiltHexa.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="radioButtonTiltHexa.Text" xml:space="preserve">
+    <value>Tilt Hexa</value>
+  </data>
+  <data name="&gt;&gt;radioButtonTiltHexa.Name" xml:space="preserve">
+    <value>radioButtonTiltHexa</value>
+  </data>
+  <data name="&gt;&gt;radioButtonTiltHexa.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;radioButtonTiltHexa.Parent" xml:space="preserve">
+    <value>groupBox3</value>
+  </data>
+  <data name="&gt;&gt;radioButtonTiltHexa.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
   <data name="radioButtonOctaQuad.Appearance" type="System.Windows.Forms.Appearance, System.Windows.Forms">
     <value>Button</value>
@@ -739,7 +772,7 @@
     <value>groupBox3</value>
   </data>
   <data name="&gt;&gt;radioButtonOctaQuad.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <data name="radioButtonTri.Appearance" type="System.Windows.Forms.Appearance, System.Windows.Forms">
     <value>Button</value>
@@ -781,7 +814,7 @@
     <value>groupBox3</value>
   </data>
   <data name="&gt;&gt;radioButtonTri.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="radioButtonHeli.Appearance" type="System.Windows.Forms.Appearance, System.Windows.Forms">
     <value>Button</value>
@@ -823,7 +856,7 @@
     <value>groupBox3</value>
   </data>
   <data name="&gt;&gt;radioButtonHeli.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="radioButtonY6.Appearance" type="System.Windows.Forms.Appearance, System.Windows.Forms">
     <value>Button</value>
@@ -865,7 +898,7 @@
     <value>groupBox3</value>
   </data>
   <data name="&gt;&gt;radioButtonY6.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="radioButtonOcta.Appearance" type="System.Windows.Forms.Appearance, System.Windows.Forms">
     <value>Button</value>
@@ -907,7 +940,7 @@
     <value>groupBox3</value>
   </data>
   <data name="&gt;&gt;radioButtonOcta.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>5</value>
   </data>
   <data name="radioButtonHexa.Appearance" type="System.Windows.Forms.Appearance, System.Windows.Forms">
     <value>Button</value>
@@ -949,7 +982,7 @@
     <value>groupBox3</value>
   </data>
   <data name="&gt;&gt;radioButtonHexa.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>6</value>
   </data>
   <data name="radioButtonQuad.Appearance" type="System.Windows.Forms.Appearance, System.Windows.Forms">
     <value>Button</value>
@@ -991,7 +1024,7 @@
     <value>groupBox3</value>
   </data>
   <data name="&gt;&gt;radioButtonQuad.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>7</value>
   </data>
   <data name="radioButtonUndef.Appearance" type="System.Windows.Forms.Appearance, System.Windows.Forms">
     <value>Button</value>
@@ -1030,13 +1063,13 @@
     <value>groupBox3</value>
   </data>
   <data name="&gt;&gt;radioButtonUndef.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>8</value>
   </data>
   <data name="groupBox3.Location" type="System.Drawing.Point, System.Drawing">
     <value>3, 3</value>
   </data>
   <data name="groupBox3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>652, 100</value>
+    <value>738, 100</value>
   </data>
   <data name="groupBox3.TabIndex" type="System.Int32, mscorlib">
     <value>98</value>
@@ -1066,6 +1099,6 @@
     <value>ConfigFrameClassType</value>
   </data>
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>System.Windows.Forms.MyUserControl, MissionPlanner.Controls, Version=1.0.6215.11320, Culture=neutral, PublicKeyToken=null</value>
+    <value>System.Windows.Forms.MyUserControl, MissionPlanner.Controls, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
 </root>
