@@ -4634,5 +4634,54 @@
       <field type="uint8_t" name="count">Number of wheels reported.</field>
       <field type="double[16]" name="distance" units="m">Distance reported by individual wheel encoders. Forward rotations increase values, reverse rotations decrease them. Not all wheels will necessarily have wheel encoders; the mapping of encoders to wheel positions must be agreed/understood by the endpoints.</field>
     </message>
+    <message id="12000" name="ICE_ENGINE_DATA">
+      <description>For reporting short-term internal combustion engine status</description>
+      <field type="uint8_t" name="EngineNumber">The engine number</field>
+      <field type="uint16_t" name="ICEMotServoUS">Output. Pulse Width Ch0. Petrol Engine Throttle</field>
+      <field type="uint16_t" name="DCMotServoUS">Output ? Pulse Width Ch1 ? Electric Engine Throttle</field>
+      <field type="float" name="ICERPM">Input ? Rate  (Freq) Ch0 ? Engine RPM</field>
+      <field type="uint16_t" name="ThrustReqUS">Input ? Rate (Width) Ch1 ? Thrust Input (Will use CAN later)</field>
+      <field type="uint16_t" name="IgnCutReqUS">Input ? Rate(Width) Ch2 ? Ignition Cut (Will use CAN later)  (also will be Pulse counter in Copter Monitor)</field>
+      <field type="float" name="Duty8BitCh0">Output ? PWM Duty Ch0 ? LED1 (or other) - % float</field>
+      <field type="float" name="Duty8BitCh1">Output ? PWM Duty Ch1 ? LED2 (or other) - % float</field>
+      <field type="float" name="Duty8BitCh2">Output ? PWM Duty Ch2 ? LED3 (or other) - % float</field>
+      <field type="uint16_t[16]" name="ICEVibX">Input ? Noise/Vibration Ch0 ? Engine X Vibration ? uint16[16]</field>
+      <field type="uint16_t[16]" name="ICEVibY">Input ? Noise/Vibration Ch1 ? Engine Y Vibration ? uint16[16]</field>
+      <field type="float" name="ICEEngDegC">Input ? ADC Ch0 ? Engine Temp ? degC  float</field>
+      <field type="float" name="ICEExhDegC">Input ? ADC Ch1 ? Exhaust Temp ? degC  float</field>
+      <field type="float" name="Health">Inferred - Engine Health - 0-65535</field>
+      <field type="uint64_t" name="FaultBits">Fault Bits ? 64 bit fields uint64</field>
+      <field type="uint32_t" name="ServiceSecs">Inferred ? Service seconds ? seconds uint32</field>
+      <field type="uint8_t" name="ICEIgnCut">Output ? P Chan FET Ch0 ? Ignition Cut ? bool</field>
+    </message>
+    <message id="12001" name="ICE_ENGINE_STATUS">
+      <description>For reporting long-term internal combustion engine status/statistics</description>
+      <field type="uint8_t" name="EngineNumber">The engine number</field>
+      <field type="uint8_t" name="Numof_Engines">Total Number of Engines</field>
+      <field type="uint32_t[10]" name="ICE1000RPM">Engine RPM Bins ? mins in RPM bins(1000RPM) ? minutes uint32[10]</field>
+      <field type="uint32_t[32]" name="ICEEng10degC">Temp Ch0 Bins ENGT ? seconds in 10 deg bins uint32[32]</field>
+	  </message>
+	  <message id="12002" name="ICE_ENGINE_EXH_TEMP_1">
+      <description>For reporting long-term internal combustion engine exhaust temperature status/statistics</description>
+      <field type="uint8_t" name="EngineNumber">The engine number</field>
+      <field type="uint32_t[50]" name="ICEExh10degC">Temp Ch0 Bins EXHT ? seconds in 10 deg bins, 0-500deg C</field>
+	  </message>
+	  <message id="12003" name="ICE_ENGINE_EXH_TEMP_2">
+      <description>For reporting long-term internal combustion engine exhaust temperature status/statistics</description>
+      <field type="uint8_t" name="EngineNumber">The engine number</field>
+      <field type="uint32_t[50]" name="ICEExh10degC">Temp Ch0 Bins EXHT ? seconds in 10 deg bins, 500-990deg C</field>
+	  </message>
+	  <message id="12004" name="ICE_ENGINE_FAULT_STATS_1">
+      <description>For reporting long-term internal combustion engine fault status/statistics</description>
+      <field type="uint8_t" name="EngineNumber">The engine number</field>
+      <field type="uint32_t" name="FaultBits">Fault Bits 1? 32 bit</field>
+      <field type="uint32_t[32]" name="FaultStartSec"></field>
+	  </message>
+	  <message id="12005" name="ICE_ENGINE_FAULT_STATS_2">
+      <description>For reporting long-term internal combustion engine fault status/statistics</description>
+      <field type="uint8_t" name="EngineNumber">The engine number</field>
+      <field type="uint32_t" name="FaultBits">Fault Bits 2? 32 bit</field>
+      <field type="uint32_t[32]" name="FaultStartSec"></field>
+	  </message>
   </messages>
 </mavlink>

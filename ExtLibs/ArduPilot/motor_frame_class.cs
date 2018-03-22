@@ -16,6 +16,7 @@
         MOTOR_FRAME_HELI_DUAL = 11,
         MOTOR_FRAME_DODECAHEXA = 12,
         MOTOR_FRAME_HELI_QUAD = 13,
+        MOTOR_FRAME_TILTHEXA = 14,
     };
 
     //from ap_hal\boards\chibios.h

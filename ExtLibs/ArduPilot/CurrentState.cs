@@ -1443,6 +1443,13 @@ namespace MissionPlanner
 
         public byte vtol_state { get; private set; }
         public byte landed_state { get; private set; }
+        public RFD.EngineMonitor.TVehicleStatus EngineStatus
+        {
+            get
+            {
+                return _EngineStatus;
+            }
+        }
 
         // HIL
         public int hilch1;// { get; set; }
@@ -1488,6 +1495,8 @@ namespace MissionPlanner
         internal double imutime = 0;
 
         internal bool MONO = false;
+
+        RFD.EngineMonitor.TVehicleStatus _EngineStatus = new RFD.EngineMonitor.TVehicleStatus();
 
         static CurrentState()
         {
@@ -2870,6 +2879,8 @@ namespace MissionPlanner
                         AOA = aoa_ssa.AOA;
                         SSA = aoa_ssa.SSA;
                     }
+
+                    _EngineStatus.CheckPackets(MAV);
                 }
 
                 try

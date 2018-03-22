@@ -257,6 +257,12 @@ public partial class MAVLink
         new message_info(11030, "ESC_TELEMETRY_1_TO_4", 144, 44, 44, typeof( mavlink_esc_telemetry_1_to_4_t )),
         new message_info(11031, "ESC_TELEMETRY_5_TO_8", 133, 44, 44, typeof( mavlink_esc_telemetry_5_to_8_t )),
         new message_info(11032, "ESC_TELEMETRY_9_TO_12", 85, 44, 44, typeof( mavlink_esc_telemetry_9_to_12_t )),
+		new message_info(12000, "ICE_ENGINE_DATA", 105, 114, 114, typeof( mavlink_ice_engine_data_t )),
+		new message_info(12001, "ICE_ENGINE_STATUS", 248, 170, 170, typeof( mavlink_ice_engine_status_t )),
+		new message_info(12002, "ICE_ENGINE_EXH_TEMP_1", 145, 201, 201, typeof( mavlink_ice_engine_exh_temp_1_t )),
+		new message_info(12003, "ICE_ENGINE_EXH_TEMP_2", 179, 201, 201, typeof( mavlink_ice_engine_exh_temp_2_t )),
+		new message_info(12004, "ICE_ENGINE_FAULT_STATS_1", 77, 133, 133, typeof( mavlink_ice_engine_fault_stats_1_t )),
+		new message_info(12005, "ICE_ENGINE_FAULT_STATS_2", 80, 133, 133, typeof( mavlink_ice_engine_fault_stats_2_t )),
         new message_info(42000, "ICAROUS_HEARTBEAT", 227, 1, 1, typeof( mavlink_icarous_heartbeat_t )),
         new message_info(42001, "ICAROUS_KINEMATIC_BANDS", 239, 46, 46, typeof( mavlink_icarous_kinematic_bands_t )),
 
@@ -515,11 +521,16 @@ public partial class MAVLink
         ESC_TELEMETRY_1_TO_4 = 11030,
         ESC_TELEMETRY_5_TO_8 = 11031,
         ESC_TELEMETRY_9_TO_12 = 11032,
+		ICE_ENGINE_DATA = 12000,
+		ICE_ENGINE_STATUS = 12001,
+		ICE_ENGINE_EXH_TEMP_1 = 12002,
+		ICE_ENGINE_EXH_TEMP_2 = 12003,
+		ICE_ENGINE_FAULT_STATS_1 = 12004,
+		ICE_ENGINE_FAULT_STATS_2 = 12005,
         ICAROUS_HEARTBEAT = 42000,
         ICAROUS_KINEMATIC_BANDS = 42001,
     }
-    
-    
+        
     ///<summary>  </summary>
     public enum ACCELCAL_VEHICLE_POS: int /*default*/
     {
@@ -14803,6 +14814,124 @@ public partial class MAVLink
         [Units("")]
         [Description("Number of wheels reported.")]
         public  byte count;
+    
+    };
+
+
+    [StructLayout(LayoutKind.Sequential,Pack=1,Size=114)]
+    ///<summary> For reporting short-term internal combustion engine status </summary>
+    public struct mavlink_ice_engine_data_t
+    {
+        /// <summary> Fault Bits ? 64 bit fields uint64 </summary>
+        public  ulong FaultBits;
+            /// <summary> Input ? Rate  (Freq) Ch0 ? Engine RPM </summary>
+        public  float ICERPM;
+            /// <summary> Output ? PWM Duty Ch0 ? LED1 (or other) - % float </summary>
+        public  float Duty8BitCh0;
+            /// <summary> Output ? PWM Duty Ch1 ? LED2 (or other) - % float </summary>
+        public  float Duty8BitCh1;
+            /// <summary> Output ? PWM Duty Ch2 ? LED3 (or other) - % float </summary>
+        public  float Duty8BitCh2;
+            /// <summary> Input ? ADC Ch0 ? Engine Temp ? degC  float </summary>
+        public  float ICEEngDegC;
+            /// <summary> Input ? ADC Ch1 ? Exhaust Temp ? degC  float </summary>
+        public  float ICEExhDegC;
+            /// <summary> Inferred - Engine Health - 0-65535 </summary>
+        public  float Health;
+            /// <summary> Inferred ? Service seconds ? seconds uint32 </summary>
+        public  uint ServiceSecs;
+            /// <summary> Output. Pulse Width Ch0. Petrol Engine Throttle </summary>
+        public  ushort ICEMotServoUS;
+            /// <summary> Output ? Pulse Width Ch1 ? Electric Engine Throttle </summary>
+        public  ushort DCMotServoUS;
+            /// <summary> Input ? Rate (Width) Ch1 ? Thrust Input (Will use CAN later) </summary>
+        public  ushort ThrustReqUS;
+            /// <summary> Input ? Rate(Width) Ch2 ? Ignition Cut (Will use CAN later)  (also will be Pulse counter in Copter Monitor) </summary>
+        public  ushort IgnCutReqUS;
+            /// <summary> Input ? Noise/Vibration Ch0 ? Engine X Vibration ? uint16[16] </summary>
+        [MarshalAs(UnmanagedType.ByValArray,SizeConst=16)]
+		public UInt16[] ICEVibX;
+            /// <summary> Input ? Noise/Vibration Ch1 ? Engine Y Vibration ? uint16[16] </summary>
+        [MarshalAs(UnmanagedType.ByValArray,SizeConst=16)]
+		public UInt16[] ICEVibY;
+            /// <summary> The engine number </summary>
+        public  byte EngineNumber;
+            /// <summary> Output ? P Chan FET Ch0 ? Ignition Cut ? bool </summary>
+        public  byte ICEIgnCut;
+    
+    };
+
+
+    [StructLayout(LayoutKind.Sequential,Pack=1,Size=170)]
+    ///<summary> For reporting long-term internal combustion engine status/statistics </summary>
+    public struct mavlink_ice_engine_status_t
+    {
+        /// <summary> Engine RPM Bins ? mins in RPM bins(1000RPM) ? minutes uint32[10] </summary>
+        [MarshalAs(UnmanagedType.ByValArray,SizeConst=10)]
+		public UInt32[] ICE1000RPM;
+            /// <summary> Temp Ch0 Bins ENGT ? seconds in 10 deg bins uint32[32] </summary>
+        [MarshalAs(UnmanagedType.ByValArray,SizeConst=32)]
+		public UInt32[] ICEEng10degC;
+            /// <summary> The engine number </summary>
+        public  byte EngineNumber;
+            /// <summary> Total Number of Engines </summary>
+        public  byte Numof_Engines;
+    
+    };
+
+
+    [StructLayout(LayoutKind.Sequential,Pack=1,Size=201)]
+    ///<summary> For reporting long-term internal combustion engine exhaust temperature status/statistics </summary>
+    public struct mavlink_ice_engine_exh_temp_1_t
+    {
+        /// <summary> Temp Ch0 Bins EXHT ? seconds in 10 deg bins, 0-500deg C </summary>
+        [MarshalAs(UnmanagedType.ByValArray,SizeConst=50)]
+		public UInt32[] ICEExh10degC;
+            /// <summary> The engine number </summary>
+        public  byte EngineNumber;
+    
+    };
+
+
+    [StructLayout(LayoutKind.Sequential,Pack=1,Size=201)]
+    ///<summary> For reporting long-term internal combustion engine exhaust temperature status/statistics </summary>
+    public struct mavlink_ice_engine_exh_temp_2_t
+    {
+        /// <summary> Temp Ch0 Bins EXHT ? seconds in 10 deg bins, 500-990deg C </summary>
+        [MarshalAs(UnmanagedType.ByValArray,SizeConst=50)]
+		public UInt32[] ICEExh10degC;
+            /// <summary> The engine number </summary>
+        public  byte EngineNumber;
+    
+    };
+
+
+    [StructLayout(LayoutKind.Sequential,Pack=1,Size=133)]
+    ///<summary> For reporting long-term internal combustion engine fault status/statistics </summary>
+    public struct mavlink_ice_engine_fault_stats_1_t
+    {
+        /// <summary> Fault Bits 1? 32 bit </summary>
+        public  uint FaultBits;
+            /// <summary>  </summary>
+        [MarshalAs(UnmanagedType.ByValArray,SizeConst=32)]
+		public UInt32[] FaultStartSec;
+            /// <summary> The engine number </summary>
+        public  byte EngineNumber;
+    
+    };
+
+
+    [StructLayout(LayoutKind.Sequential,Pack=1,Size=133)]
+    ///<summary> For reporting long-term internal combustion engine fault status/statistics </summary>
+    public struct mavlink_ice_engine_fault_stats_2_t
+    {
+        /// <summary> Fault Bits 2? 32 bit </summary>
+        public  uint FaultBits;
+            /// <summary>  </summary>
+        [MarshalAs(UnmanagedType.ByValArray,SizeConst=32)]
+		public UInt32[] FaultStartSec;
+            /// <summary> The engine number </summary>
+        public  byte EngineNumber;
     
     };
 
