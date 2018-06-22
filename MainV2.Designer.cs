@@ -42,6 +42,7 @@ namespace MissionPlanner
             this.connectionOptionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.connectionListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuFlightData = new System.Windows.Forms.ToolStripButton();
+            this.MenuVehicleStatus = new System.Windows.Forms.ToolStripButton();
             this.MenuFlightPlanner = new System.Windows.Forms.ToolStripButton();
             this.MenuInitConfig = new System.Windows.Forms.ToolStripButton();
             this.MenuConfigTune = new System.Windows.Forms.ToolStripButton();
@@ -68,6 +69,7 @@ namespace MissionPlanner
             this.MainMenu.ImageScalingSize = new System.Drawing.Size(0, 0);
             this.MainMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.MenuFlightData,
+            this.MenuVehicleStatus,
             this.MenuFlightPlanner,
             this.MenuInitConfig,
             this.MenuConfigTune,
@@ -86,6 +88,7 @@ namespace MissionPlanner
             // 
             // CTX_mainmenu
             // 
+            this.CTX_mainmenu.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.CTX_mainmenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.autoHideToolStripMenuItem,
             this.fullScreenToolStripMenuItem,
@@ -136,6 +139,15 @@ namespace MissionPlanner
             this.MenuFlightData.Name = "MenuFlightData";
             this.MenuFlightData.Padding = new System.Windows.Forms.Padding(0, 0, 0, 10);
             this.MenuFlightData.Click += new System.EventHandler(this.MenuFlightData_Click);
+            // 
+            // MenuVehicleStatus
+            // 
+            resources.ApplyResources(this.MenuVehicleStatus, "MenuVehicleStatus");
+            this.MenuVehicleStatus.ForeColor = System.Drawing.Color.White;
+            this.MenuVehicleStatus.Margin = new System.Windows.Forms.Padding(0);
+            this.MenuVehicleStatus.Name = "MenuVehicleStatus";
+            this.MenuVehicleStatus.Padding = new System.Windows.Forms.Padding(0, 0, 0, 10);
+            this.MenuVehicleStatus.Click += new System.EventHandler(this.MenuVehicleStatus_Click);
             // 
             // MenuFlightPlanner
             // 
@@ -278,6 +290,7 @@ namespace MissionPlanner
         public System.Windows.Forms.ToolStripButton MenuConfigTune;
         public System.Windows.Forms.ToolStripButton MenuTerminal;
         public System.Windows.Forms.ToolStripButton MenuConnect;
+        public System.Windows.Forms.ToolStripButton MenuVehicleStatus;
 
         private System.Windows.Forms.ToolStripButton MenuHelp;
         private Controls.ToolStripConnectionControl toolStripConnectionControl;

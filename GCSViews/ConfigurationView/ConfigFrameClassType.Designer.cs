@@ -53,6 +53,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             this.radioButton_VTail = new System.Windows.Forms.RadioButton();
             this.pictureBoxVTail = new MissionPlanner.Controls.PictureBoxWithPseudoOpacity();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.radioButtonTiltHexa = new System.Windows.Forms.RadioButton();
             this.radioButtonOctaQuad = new System.Windows.Forms.RadioButton();
             this.radioButtonTri = new System.Windows.Forms.RadioButton();
             this.radioButtonHeli = new System.Windows.Forms.RadioButton();
@@ -239,6 +240,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.radioButtonTiltHexa);
             this.groupBox3.Controls.Add(this.radioButtonOctaQuad);
             this.groupBox3.Controls.Add(this.radioButtonTri);
             this.groupBox3.Controls.Add(this.radioButtonHeli);
@@ -250,6 +252,17 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             resources.ApplyResources(this.groupBox3, "groupBox3");
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.TabStop = false;
+            // 
+            // radioButtonTiltHexa
+            // 
+            resources.ApplyResources(this.radioButtonTiltHexa, "radioButtonTiltHexa");
+            this.radioButtonTiltHexa.BackColor = System.Drawing.Color.Black;
+            this.radioButtonTiltHexa.FlatAppearance.BorderSize = 2;
+            this.radioButtonTiltHexa.ForeColor = System.Drawing.Color.White;
+            this.radioButtonTiltHexa.Image = global::MissionPlanner.Properties.Resources.FW_icons_2013_logos_08;
+            this.radioButtonTiltHexa.Name = "radioButtonTiltHexa";
+            this.radioButtonTiltHexa.UseVisualStyleBackColor = false;
+            this.radioButtonTiltHexa.CheckedChanged += new System.EventHandler(this.radioButtonClass_CheckedChanged);
             // 
             // radioButtonOctaQuad
             // 
@@ -392,5 +405,6 @@ namespace MissionPlanner.GCSViews.ConfigurationView
         private System.Windows.Forms.RadioButton radioButtonQuad;
         private System.Windows.Forms.RadioButton radioButtonUndef;
         private System.Windows.Forms.RadioButton radioButtonOctaQuad;
+        private System.Windows.Forms.RadioButton radioButtonTiltHexa;
     }
 }

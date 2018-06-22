@@ -2807,6 +2807,7 @@ namespace MissionPlanner
             MyView.AddScreen(new MainSwitcher.Screen("Simulation", Simulation, true));
             MyView.AddScreen(new MainSwitcher.Screen("Terminal", typeof(GCSViews.Terminal), false));
             MyView.AddScreen(new MainSwitcher.Screen("Help", typeof(GCSViews.Help), false));
+            MyView.AddScreen(new MainSwitcher.Screen("VehicleStatus", typeof(GCSViews.VehicleStatus), true));
 
             try
             {
@@ -4003,6 +4004,11 @@ namespace MissionPlanner
                 }
                 //);
             }
+        }
+
+        private void MenuVehicleStatus_Click(object sender, EventArgs e)
+        {
+            MyView.ShowScreen("VehicleStatus");
         }
     }
 }

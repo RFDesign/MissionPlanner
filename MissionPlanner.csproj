@@ -77,10 +77,12 @@
     <Reference Include="System.Speech" />
 
     <Reference Include="System.Web, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+    <Reference Include="System.Web.DataVisualization" />
 
     <Reference Include="System.Web.Extensions" />
 
     <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
 
     <Reference Include="Transitions">
       <SpecificVersion>False</SpecificVersion>
@@ -250,6 +252,22 @@
     </Compile>
     <Compile Include="ElevationProfile.cs"> <SubType>Control</SubType> </Compile>
     <Compile Include="FollowMe.cs"> <SubType>Control</SubType> </Compile>
+    <Compile Include="GCSViews\VehicleStatus.cs" />
+    <Compile Include="GCSViews\VehicleStatus.Designer.cs" />
+    <Compile Include="GCSViews\VehicleStatusView\ComponentLife.cs" />
+    <Compile Include="GCSViews\VehicleStatusView\ComponentLife.Designer.cs" />
+    <Compile Include="GCSViews\VehicleStatusView\ElectricalStatus.cs" />
+    <Compile Include="GCSViews\VehicleStatusView\ElectricalStatus.Designer.cs" />
+    <Compile Include="GCSViews\VehicleStatusView\EngineStatus.cs" />
+    <Compile Include="GCSViews\VehicleStatusView\EngineStatus.Designer.cs" />
+    <Compile Include="GCSViews\VehicleStatusView\ServiceInfo.cs" />
+    <Compile Include="GCSViews\VehicleStatusView\ServiceInfo.Designer.cs" />
+    <Compile Include="GCSViews\VehicleStatusView\VehicleOverview.cs" />
+    <Compile Include="GCSViews\VehicleStatusView\VehicleOverview.Designer.cs" />
+    <Compile Include="GCSViews\VehicleStatusView\VehicleOverview\EngineHealth.cs" />
+    <Compile Include="GCSViews\VehicleStatusView\VehicleOverview\EngineHealth.Designer.cs" />
+    <Compile Include="GCSViews\VehicleStatusView\VehicleOverview\VehicleDiagram.cs" />
+    <Compile Include="GCSViews\VehicleStatusView\VehicleOverview\VehicleDiagram.Designer.cs" />
     <Compile Include="Swarm\TD\UI.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -313,6 +331,27 @@
 	<EmbeddedResource Include="Controls\PropagationSettings.resx">
 	  <DependentUpon>PropagationSettings.cs</DependentUpon>
 	</EmbeddedResource>
+	<EmbeddedResource Include="GCSViews\VehicleStatus.ar.resx" />
+	<EmbeddedResource Include="GCSViews\VehicleStatus.de-DE.resx" />
+	<EmbeddedResource Include="GCSViews\VehicleStatus.es-ES.resx" />
+	<EmbeddedResource Include="GCSViews\VehicleStatus.fr.resx" />
+	<EmbeddedResource Include="GCSViews\VehicleStatus.id-ID.resx" />
+	<EmbeddedResource Include="GCSViews\VehicleStatus.it-IT.resx" />
+	<EmbeddedResource Include="GCSViews\VehicleStatus.ja-JP.resx" />
+	<EmbeddedResource Include="GCSViews\VehicleStatus.ko-KR.resx" />
+	<EmbeddedResource Include="GCSViews\VehicleStatus.pl.resx" />
+	<EmbeddedResource Include="GCSViews\VehicleStatus.pt.resx" />
+	<EmbeddedResource Include="GCSViews\VehicleStatus.resx" />
+	<EmbeddedResource Include="GCSViews\VehicleStatus.ru-RU.resx" />
+	<EmbeddedResource Include="GCSViews\VehicleStatus.zh-Hans.resx" />
+	<EmbeddedResource Include="GCSViews\VehicleStatus.zh-Hant.resx" />
+	<EmbeddedResource Include="GCSViews\VehicleStatus.zh-TW.resx" />
+	<EmbeddedResource Include="GCSViews\VehicleStatusView\ComponentLife.resx" />
+	<EmbeddedResource Include="GCSViews\VehicleStatusView\ElectricalStatus.resx" />
+	<EmbeddedResource Include="GCSViews\VehicleStatusView\EngineStatus.resx" />
+	<EmbeddedResource Include="GCSViews\VehicleStatusView\VehicleOverview.resx" />
+	<EmbeddedResource Include="GCSViews\VehicleStatusView\VehicleOverview\EngineHealth.resx" />
+	<EmbeddedResource Include="GCSViews\VehicleStatusView\VehicleOverview\VehicleDiagram.resx" />
 	<EmbeddedResource Include="Controls\ProximityControl.resx">
     <DependentUpon>ProximityControl.cs</DependentUpon>
   </EmbeddedResource>

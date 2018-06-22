@@ -3446,6 +3446,11 @@ Please check the following
 
             uint msgid = message.msgid;
 
+            if (msgid >= 12000 && msgid <= 12005)
+            {
+                Console.WriteLine("Got msg");
+            }
+
             message_info msginfo = MAVLINK_MESSAGE_INFOS.GetMessageInfo(msgid);
 
             // calc crc
