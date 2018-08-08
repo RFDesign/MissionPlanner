@@ -17,6 +17,7 @@ namespace SikRadio
         private readonly object thisLock = new object();
         bool _RunRxThread = false;
         Thread _RxThread;
+        public GUISession GUISession;
 
         public Terminal()
         {
@@ -28,7 +29,7 @@ namespace SikRadio
 
         private void comPort_DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
-            var comPort = SikRadio.Config.comPort;
+            var comPort = GUISession.comPort;
 
             if ((comPort == null) || !comPort.IsOpen)
             {
@@ -79,7 +80,7 @@ namespace SikRadio
         {
             if (!_RunRxThread)
             {
-                var Session = new RFD.RFD900.TSession(SikRadio.Config.comPort);
+                var Session = new RFD.RFD900.TSession(GUISession.comPort);
                 Session.PutIntoATCommandMode();
                 Session.Dispose();
 
@@ -108,7 +109,7 @@ namespace SikRadio
                     try
                     {
                         Thread.Sleep(10);
-                        if (SikRadio.Config.comPort.BytesToRead > 0)
+                        if (GUISession.comPort.BytesToRead > 0)
                         {
                             comPort_DataReceived(null, null);
                         }
@@ -251,7 +252,7 @@ namespace SikRadio
         {
             if (e.KeyChar == '\r')
             {
-                var comPort = SikRadio.Config.comPort;
+                var comPort = GUISession.comPort;
 
                 if ((comPort != null) && comPort.IsOpen)
                 {

@@ -5,54 +5,29 @@ using MissionPlanner;
 using MissionPlanner.Comms;
 using MissionPlanner.Radio;
 using MissionPlanner.Utilities;
-using Microsoft.VisualBasic;
 
 namespace SikRadio
 {
     public partial class Config : Form
     {
-        bool _Connected = false;
         ISikRadioForm _CurrentForm;
-        static ICommsSerial _comPort;
+        static GUISession _GUISession;
 
         public Config()
         {
             InitializeComponent();
 
+            _GUISession = new GUISession(btnConnect, CMB_SerialPort, CMB_Baudrate);
 
-            CMB_SerialPort.Items.AddRange(SerialPort.GetPortNames());
-            CMB_SerialPort.Items.Add("TCP");
-
-            if (CMB_SerialPort.Items.Count > 0)
-                CMB_SerialPort.SelectedIndex = 0;
-
-            // default
-            CMB_Baudrate.SelectedIndex = CMB_Baudrate.Items.IndexOf("57600");
-
-            MissionPlanner.Comms.CommsBase.InputBoxShow += CommsBaseOnInputBoxShow;
 
             settingsToolStripMenuItem_Click(null, null);
-        }
-
-        /// <summary>
-        /// Shows a dialog box in which to enter comms information.
-        /// </summary>
-        /// <param name="title">The title of the dialog box.</param>
-        /// <param name="prompttext">The text to display in the dialog box.</param>
-        /// <param name="text">The text to return.</param>
-        /// <returns></returns>
-        public static inputboxreturn CommsBaseOnInputBoxShow(string title, string prompttext, ref string text)
-        {
-            text = Interaction.InputBox(prompttext, title, "");
-
-            return inputboxreturn.OK;
         }
 
         public static ICommsSerial comPort
         {
             get
             {
-                return _comPort;
+                return _GUISession.comPort;
             }
         }
 
@@ -63,6 +38,7 @@ namespace SikRadio
             //panel1.Controls.Clear();
 
             var form = new Sikradio();
+            form.GUISession = _GUISession;
             form.Enabled = false;
 
             panel1.Controls.Add(form);
@@ -80,6 +56,7 @@ namespace SikRadio
 
             var form = new Terminal();
             form.Enabled = false;
+            form.GUISession = _GUISession;
 
             form.Dock = DockStyle.Fill;
 
@@ -99,6 +76,7 @@ namespace SikRadio
             //panel1.Controls.Clear();
 
             var form = new Rssi();
+            form.GUISession = _GUISession;
             form.Enabled = false;
 
             form.Dock = DockStyle.Fill;
@@ -110,26 +88,6 @@ namespace SikRadio
             ThemeManager.ApplyThemeTo(this);
 
             return form;
-        }
-
-        private void CMB_SerialPort_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            MainV2.comPort.BaseStream.PortName = CMB_SerialPort.Text;
-            MainV2.comPortName = CMB_SerialPort.Text;
-        }
-
-        private void CMB_Baudrate_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            MainV2.comPort.BaseStream.BaudRate = int.Parse(CMB_Baudrate.Text);
-            MainV2.comPortBaud = int.Parse(CMB_Baudrate.Text);
-        }
-
-        private void CMB_SerialPort_Click(object sender, EventArgs e)
-        {
-            CMB_SerialPort.Items.Clear();
-            CMB_SerialPort.Items.AddRange(SerialPort.GetPortNames());
-            CMB_SerialPort.Items.Add("TCP");
-       
         }
 
         private void helpToolStripMenuItem_Click(object sender, EventArgs e)
@@ -150,9 +108,9 @@ namespace SikRadio
                 _CurrentForm.Dispose();
             }
             _CurrentForm = Constructor();
-            _CurrentForm.Enabled = _Connected;
+            _CurrentForm.Enabled = _GUISession.IsConnected;
             _CurrentForm.Show();
-            if (_Connected)
+            if (_GUISession.IsConnected)
             {
                 _CurrentForm.Connect();
             }
@@ -173,97 +131,19 @@ namespace SikRadio
             ShowForm(loadRssi);
         }
 
-        void getTelemPortWithRadio(ref ICommsSerial comPort)
+        void ConnectedEvtHdlr(bool Connected)
         {
-            // try telem1
-
-            comPort = new MAVLinkSerialPort(MainV2.comPort, (int)MAVLink.SERIAL_CONTROL_DEV.TELEM1);
-
-            comPort.ReadTimeout = 4000;
-
-            comPort.Open();
-        }
-
-        bool Connect()
-        {
-            try
+            if (_CurrentForm != null)
             {
-                if (MainV2.comPort.BaseStream.PortName.Contains("TCP"))
+                if (Connected)
                 {
-                    _comPort = new TcpSerial();
-                    _comPort.BaudRate = MainV2.comPort.BaseStream.BaudRate;
-                    _comPort.ReadTimeout = 4000;
-                    _comPort.Open();
+                    _CurrentForm.Connect();
                 }
                 else
                 {
-                    _comPort = new SerialPort();
-
-                    if (MainV2.comPort.BaseStream.IsOpen)
-                    {
-                        getTelemPortWithRadio(ref _comPort);
-                    }
-                    else
-                    {
-                        _comPort.PortName = MainV2.comPort.BaseStream.PortName;
-                        _comPort.BaudRate = MainV2.comPort.BaseStream.BaudRate;
-                    }
-
-                    _comPort.ReadTimeout = 4000;
-
-                    _comPort.Open();
-                }
-
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
-        }
-
-        bool Disconnect()
-        {
-            _comPort.Close();
-            _comPort = null;
-            return true;
-        }
-
-        private void btnConnect_Click(object sender, EventArgs e)
-        {
-            if (_Connected)
-            {
-                if (_CurrentForm != null)
-                {
                     _CurrentForm.Disconnect();
                 }
-                Disconnect();
-                _Connected = false;
-                btnConnect.Text = "Connect";
-                if (_CurrentForm != null)
-                {
-                    _CurrentForm.Enabled = false;
-                }
-                CMB_Baudrate.Enabled = true;
-                CMB_SerialPort.Enabled = true;
-            }
-            else
-            {
-                if (Connect())
-                {
-                    if (_CurrentForm != null)
-                    {
-                        _CurrentForm.Connect();
-                    }
-                    _Connected = true;
-                    btnConnect.Text = "Disconnect";
-                    if (_CurrentForm != null)
-                    {
-                        _CurrentForm.Enabled = true;
-                    }
-                    CMB_Baudrate.Enabled = false;
-                    CMB_SerialPort.Enabled = false;
-                }
+                _CurrentForm.Enabled = Connected;
             }
         }
 
@@ -274,13 +154,5 @@ namespace SikRadio
                 _CurrentForm.Disconnect();
             }
         }
-    }
-
-    public interface ISikRadioForm : IDisposable
-    {
-        void Connect();
-        void Disconnect();
-        void Show();
-        bool Enabled { get; set; }
     }
 }

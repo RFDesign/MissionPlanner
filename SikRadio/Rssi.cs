@@ -20,6 +20,7 @@ namespace SikRadio
         private readonly RollingPointPairList plotdatarssir = new RollingPointPairList(1200);
         private int tickStart;
         RFD.RFD900.TSession _Session;
+        public GUISession GUISession;
 
         public Rssi()
         {
@@ -40,10 +41,10 @@ namespace SikRadio
         {
             if (_Session == null)
             {
-                _Session = new RFD.RFD900.TSession(SikRadio.Config.comPort);
+                _Session = new RFD.RFD900.TSession(GUISession.comPort);
                 if (_Session.PutIntoATCommandMode() == RFD.RFD900.TSession.TMode.AT_COMMAND)
                 {
-                    inter.doCommand(Config.comPort, "AT&T=RSSI");
+                    inter.doCommand(GUISession.comPort, "AT&T=RSSI");
 
                     _Session.AssumeMode(RFD.RFD900.TSession.TMode.TRANSPARENT);
 
@@ -64,7 +65,7 @@ namespace SikRadio
                 if (_Session.PutIntoATCommandMode() == RFD.RFD900.TSession.TMode.AT_COMMAND)
                 {
                     System.Diagnostics.Debug.WriteLine("Doing AT&T command");
-                    inter.doCommand(Config.comPort, "AT&T");
+                    inter.doCommand(GUISession.comPort, "AT&T");
                     System.Diagnostics.Debug.WriteLine("Putting into transparent mode");
                     _Session.PutIntoTransparentMode();
 
@@ -128,7 +129,7 @@ namespace SikRadio
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            var comPort = SikRadio.Config.comPort;
+            var comPort = GUISession.comPort;
 
             if ((comPort != null) && comPort.IsOpen)
             {

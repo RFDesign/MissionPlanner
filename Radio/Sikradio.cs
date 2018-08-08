@@ -25,6 +25,8 @@ namespace MissionPlanner.Radio
 
         public delegate void ProgressEventHandler(double completed);
 
+        public SikRadio.GUISession GUISession;
+
         private static readonly ILog log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 
         private bool beta;
@@ -1845,9 +1847,9 @@ red LED solid - in firmware update mode");
             {
                 try
                 {
-                    if (SikRadio.Config.comPort != null)
+                    if (GUISession.comPort != null)
                     {
-                        _Session = new RFD.RFD900.TSession(SikRadio.Config.comPort);
+                        _Session = new RFD.RFD900.TSession(GUISession.comPort);
                     }
                 }
                 catch
