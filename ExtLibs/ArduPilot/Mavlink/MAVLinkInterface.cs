@@ -2213,9 +2213,9 @@ Please check the following
         }
 
         /// <summary>
-        /// Gets specfied WP
+        /// Gets specfied WP (Waypoint)
         /// </summary>
-        /// <param name="index"></param>
+        /// <param name="index">The waypoint index</param>
         /// <returns>WP</returns>
         public Locationwp getWP(ushort index)
         {
@@ -2263,6 +2263,7 @@ Please check the following
 
             while (true)
             {
+                //If it's been more than 3.5s since the last retry...
                 if (!(start.AddMilliseconds(3500) > DateTime.Now)) // apm times out after 5000ms
                 {
                     if (retrys > 0)
@@ -2293,7 +2294,7 @@ Please check the following
                         // received a packet, but not what we requested
                         if (index != wp.seq)
                         {
-                            generatePacket((byte) MAVLINK_MSG_ID.MISSION_REQUEST, req);
+                            //generatePacket((byte) MAVLINK_MSG_ID.MISSION_REQUEST, req);
                             continue;
                         }
 
@@ -2322,7 +2323,7 @@ Please check the following
                         // received a packet, but not what we requested
                         if (index != wp.seq)
                         {
-                            generatePacket((byte)MAVLINK_MSG_ID.MISSION_REQUEST_INT, req);
+                            //generatePacket((byte)MAVLINK_MSG_ID.MISSION_REQUEST_INT, req);
                             continue;
                         }
 
@@ -2745,7 +2746,7 @@ Please check the following
 
             while (true)
             {
-                if (!(start.AddMilliseconds(400) > DateTime.Now))
+                if (!(start.AddMilliseconds(1000) > DateTime.Now))
                 {
                     if (retrys > 0)
                     {
@@ -2849,7 +2850,7 @@ Please check the following
 
             while (true)
             {
-                if (!(start.AddMilliseconds(400) > DateTime.Now))
+                if (!(start.AddMilliseconds(1000) > DateTime.Now))
                 {
                     if (retrys > 0)
                     {

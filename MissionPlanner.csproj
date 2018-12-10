@@ -5,10 +5,10 @@
     <ApplicationIcon>mpdesktop.ico</ApplicationIcon>
     <OutputType>Exe</OutputType>
     <StartupObject></StartupObject>
-    <Authors>Michael Oborne</Authors>
-    <Version>1.3.58</Version>
+    <Authors>Case of Pineapples</Authors>
+    <Version>21.3.59</Version>
     <DebugType>full</DebugType>
-    <Company>Michael Oborne</Company>
+    <Company>Case of Pineapples</Company>
     <Product>Mission Planner</Product>
     <Description>Mission Planner ground control station for ardupilot</Description>
     <Copyright>Copyright © Michael Oborne 2010-2018</Copyright>
