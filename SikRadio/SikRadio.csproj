@@ -203,7 +203,19 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RFD900.cs" />
+    <Compile Include="RFD900\Config.cs" />
+    <Compile Include="RFD900\ConfigMap.cs" />
     <Compile Include="RFDLib\Array.cs" />
+    <Compile Include="RFDLib\Config\Config.cs" />
+    <Compile Include="RFDLib\Config\GUI.cs" />
+    <Compile Include="RFDLib\GUI\ConfigArray.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="RFDLib\GUI\ConfigArray.Designer.cs">
+      <DependentUpon>ConfigArray.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RFDLib\IO\ATCommand.cs" />
+    <Compile Include="RFDLib\IO\SerialPort\SerialPort.cs" />
     <Compile Include="RFDLib\Text.cs" />
     <Compile Include="Rssi.cs">
       <SubType>UserControl</SubType>
@@ -272,6 +284,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="RFDLib\GUI\ConfigArray.resx">
+      <DependentUpon>ConfigArray.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Rssi.resx">
       <DependentUpon>Rssi.cs</DependentUpon>
     </EmbeddedResource>

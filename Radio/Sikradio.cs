@@ -507,6 +507,24 @@ S15: MAX_WINDOW=131
 
                                             if (cmdanswer.Contains("OK"))
                                             {
+                                                if (Controls[0].Name.Contains("GPO1_1R_COUT") ||
+                                                    Controls[0].Name.Contains("GPO1_3SBUSOUT"))
+                                                {
+                                                    //Also need to set RTPO.
+                                                    cmdanswer = doCommand(Session.Port,
+                                                        "RTPO=1");
+                                                }
+                                                else if (Controls[0].Name.Contains("GPI1_1R_CIN") ||
+                                                    Controls[0].Name.Contains("GPO1_3SBUSIN"))
+                                                {
+                                                    //Also need to set RTPI.
+                                                    cmdanswer = doCommand(Session.Port,
+                                                        "RTPI=1");
+                                                }
+                                                if (!cmdanswer.Contains("OK"))
+                                                {
+                                                    MsgBox.CustomMessageBox.Show("Set Command error");
+                                                }
                                             }
                                             else
                                             {
@@ -620,6 +638,25 @@ S15: MAX_WINDOW=131
 
                                             if (cmdanswer.Contains("OK"))
                                             {
+                                                if (Controls[0].Name.Contains("GPO1_1R_COUT") ||
+                                                    Controls[0].Name.Contains("GPO1_3SBUSOUT"))
+                                                {
+                                                    //Also need to set RTPO.
+                                                    cmdanswer = doCommand(Session.Port,
+                                                        "ATPO=1");
+                                                }
+                                                else if (Controls[0].Name.Contains("GPI1_1R_CIN") ||
+                                                    Controls[0].Name.Contains("GPO1_3SBUSIN"))
+                                                {
+                                                    //Also need to set RTPI.
+                                                    cmdanswer = doCommand(Session.Port,
+                                                        "ATPI=1");
+                                                }
+                                                if (!cmdanswer.Contains("OK"))
+                                                {
+                                                    MsgBox.CustomMessageBox.Show("Set Command error");
+                                                }
+
                                             }
                                             else
                                             {
@@ -813,32 +850,38 @@ S15: MAX_WINDOW=131
             {
                 SettingName = CB.Name;
             }
-            if (Settings.ContainsKey(SettingName))
+
+            foreach (var kvp in Settings)
             {
-                var Setting = Settings[SettingName];
-                if (Setting.Options != null)
+                string CBName = kvp.Value.Name.Replace('/', '_');
+
+                if (CBName == CB.Name)
                 {
-                    //Use options.
-                    string[] OptionNames = Setting.GetOptionNames();
-                    string OptionName = Setting.GetOptionNameForValue(Value);
-                    if (OptionName == null)
+                    var Setting = kvp.Value;
+                    if (Setting.Options != null)
                     {
-                        Array.Resize(ref OptionNames, OptionNames.Length + 1);
-                        OptionNames[OptionNames.Length - 1] = Value;
-                        OptionName = Value;
+                        //Use options.
+                        string[] OptionNames = Setting.GetOptionNames();
+                        string OptionName = Setting.GetOptionNameForValue(Value);
+                        if (OptionName == null)
+                        {
+                            Array.Resize(ref OptionNames, OptionNames.Length + 1);
+                            OptionNames[OptionNames.Length - 1] = Value;
+                            OptionName = Value;
+                        }
+
+                        CB.DataSource = OptionNames;
+                        CB.Text = OptionName;
+                        CB.Tag = Setting;
+                        return true;
                     }
-                    
-                    CB.DataSource = OptionNames;
-                    CB.Text = OptionName;
-                    CB.Tag = Setting;
-                    return true;
-                }
-                if (Setting.Range != null)
-                {
-                    CB.DataSource = Range(Setting.Range.Min, Setting.Increment, Setting.Range.Max);
-                    CB.Text = Value;
-                    CB.Tag = null;
-                    return true;
+                    if (Setting.Range != null)
+                    {
+                        CB.DataSource = Range(Setting.Range.Min, Setting.Increment, Setting.Range.Max);
+                        CB.Text = Value;
+                        CB.Tag = null;
+                        return true;
+                    }
                 }
             }
             
@@ -908,6 +951,8 @@ S15: MAX_WINDOW=131
             {
                 if (Session.PutIntoATCommandMode() == RFD.RFD900.TSession.TMode.AT_COMMAND)
                 {
+                    var ModemObject = Session.GetModemObject();
+
                     bool SomeSettingsInvalid = false;
                     // cleanup
                     doCommand(Session.Port, "AT&T", false, 1);
@@ -960,7 +1005,14 @@ S15: MAX_WINDOW=131
                             Enum.Parse(typeof (Uploader.Board),
                                 int.Parse(boardstring.ToLower().Replace("x", ""), style).ToString());
 
-                    ATI2.Text = Session.Board.ToString();
+                    if (ModemObject == null)
+                    {
+                        ATI2.Text = Session.Board.ToString();
+                    }
+                    else
+                    {
+                        ATI2.Text = ModemObject.GetBoardString();
+                    }
 
                     if (Session.Board == Uploader.Board.DEVICE_ID_RFD900X)
                     {
