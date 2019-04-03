@@ -15,10 +15,10 @@ namespace RFD.RFD900.Config
             this.ATNumber = ATNumber;
         }
 
-        public string GenerateSetCommand(IParam Param)
+        /*public string GenerateSetCommand(IParam Param)
         {
             return "AT" + ATNumber + "=" + Param.ToString();
-        }
+        }*/
 
         public static ISetting GenerateSettingFromRFD900Setting(RFD.RFD900.TSetting Setting,
             uploader.Uploader.Board Board, uploader.Uploader.Frequency Freq, bool Async)
@@ -26,14 +26,24 @@ namespace RFD.RFD900.Config
             TSettingDescription Desc = TDesignatorLookupTable.TABLE.GetDescription(Setting.Name);
             if (Desc == null)
             {
-                Desc = new TSettingDescription(Setting.Name, Setting.Name);
+                Desc = new TSettingDescription(Setting.Name, Setting.Name, Setting.Name);
             }
 
+            //If there's no range or options...
             if ((Setting.Options == null) && (Setting.Range == null))
             {
-                //This has to be referred back to a lookup table for this modem model in order to generate its setting.
-                var TheMap = Map.TModemSettingMap.GetMapForModem(Board, Freq, Async);
-                return TheMap.GenerateSetting(Desc.ID, Setting);
+                if (Desc is TSettingDescWithID)
+                {
+                    //This has to be referred back to a lookup table for this modem model in order to generate its setting.
+                    var TheMap = Map.TModemSettingMap.GetMapForModem(Board, Freq, Async);
+                    return TheMap.GenerateSetting(((TSettingDescWithID)Desc).ID, Setting);
+                }
+                else
+                {
+                    TIntegerSettingFromSettingDescriptor ISFSD =
+                        new TIntegerSettingFromSettingDescriptor(Desc.Name, Desc.Description, Setting);
+                    return ISFSD.CreateNewSetting();
+                }
             }
             else
             {
@@ -78,18 +88,25 @@ namespace RFD.RFD900.Config
         RATE_FREQBAND,
     }
 
-    
-
     class TSettingDescription : RFDLib.Config.TSettingDescription
     {
-        public readonly TSettingID ID;
         public readonly string ATName;
 
-        public TSettingDescription(TSettingID ID, string ATName, string Name, string Description)
+        public TSettingDescription(string ATName, string Name, string Description)
             : base(Name, Description)
         {
-            this.ID = ID;
             this.ATName = ATName;
+        }
+    }
+
+    class TSettingDescWithID : TSettingDescription
+    {
+        public readonly TSettingID ID;
+
+        public TSettingDescWithID(TSettingID ID, string ATName, string Name, string Description)
+            : base(ATName, Name, Description)
+        {
+            this.ID = ID;
         }
     }
 
@@ -126,7 +143,7 @@ namespace RFD.RFD900.Config
 
         void AddDesc(TSettingID ID, string ATName, string Name, string Description)
         {
-            _Table[ID] = new TSettingDescription(ID, ATName, Name, Description);
+            _Table[ID] = new TSettingDescWithID(ID, ATName, Name, Description);
         }
 
         public TSettingDescription GetDescription(string ATName)
@@ -266,6 +283,41 @@ namespace RFD.RFD900.Config
     public class TBoolSetting : TSetting<bool>
     {
         public TBoolSetting(TBoolSettingFromSettingDescriptor Descriptor, bool Default)
+            : base(Descriptor, Default)
+        {
+        }
+    }
+
+    public abstract class TIntegerSettingDescriptor : RFDLib.Config.TIntegerSettingDescriptor
+    {
+        public readonly TATDescriptor ATDescriptor;
+
+        public TIntegerSettingDescriptor(string Name, string Descriptor, TATDescriptor ATDescriptor)
+            : base(Name, Descriptor)
+        {
+            this.ATDescriptor = ATDescriptor;
+        }
+    }
+
+    public class TIntegerSettingFromSettingDescriptor : TIntegerSettingDescriptor
+    {
+        RFD.RFD900.TSetting _RFD900Setting;
+
+        public TIntegerSettingFromSettingDescriptor(string Name, string Descriptor, RFD.RFD900.TSetting Setting)
+            : base(Name, Descriptor, new TATDescriptor(Setting.Name, Setting.Designator))
+        {
+            _RFD900Setting = Setting;
+        }
+
+        public override ISetting CreateNewSetting()
+        {
+            return new TIntegerSetting(this, _RFD900Setting.Value);
+        }
+    }
+
+    public class TIntegerSetting : TSetting<int>
+    {
+        public TIntegerSetting(TIntegerSettingFromSettingDescriptor Descriptor, int Default)
             : base(Descriptor, Default)
         {
         }

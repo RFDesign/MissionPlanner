@@ -13,12 +13,27 @@ namespace RFDLib.Config.GUI
         
         public void AddSetting(RFDLib.Config.ISetting Setting)
         {
-            
+            if (Setting is RFDLib.Config.TSetting<int>)
+            {
+                AddIntSetting((RFDLib.Config.TSetting<int>)Setting);
+            }
+            else if (Setting is RFDLib.Config.TSetting<bool>)
+            {
+                AddBoolSetting((RFDLib.Config.TSetting<bool>)Setting);
+            }
         }
 
         void AddButtonStringSetting(RFDLib.Config.TSetting<string> Setting)
         {
             //var TextBoxItem = _Array.AddTextItem
+        }
+
+        void AddIntSetting(RFDLib.Config.TSetting<int> Setting)
+        {
+            var TextItem = _Array.AddTextItem();
+
+            TextItem.Text.Text = Setting.Value.ToString();
+            TextItem.Tag = Setting;
         }
 
         void AddBoolSetting(RFDLib.Config.TSetting<bool> Setting)

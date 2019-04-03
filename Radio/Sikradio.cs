@@ -68,15 +68,13 @@ S15: MAX_WINDOW=131
                 lblDESTID, DESTID, lblTX_ENCAP_METHOD, TX_ENCAP_METHOD, lblRX_ENCAP_METHOD, RX_ENCAP_METHOD,
                 lblMAX_DATA, MAX_DATA,
                 new Control[] {lblMAX_RETRIES, MAX_RETRIES,
-                lblGLOBAL_RETRIES, GLOBAL_RETRIES, lblSER_BRK_DETMS, SER_BRK_DETMS,
-                lblANT_MODE, ANT_MODE}, false);
+                lblGLOBAL_RETRIES, GLOBAL_RETRIES, lblSER_BRK_DETMS, SER_BRK_DETMS}, false);
 
             _RemoteExtraParams = new ExtraParamControlsSet(lblRNODEID, RNODEID,
                 lblRDESTID, RDESTID, lblRTX_ENCAP_METHOD, RTX_ENCAP_METHOD, lblRRX_ENCAP_METHOD, RRX_ENCAP_METHOD,
                 lblRMAX_DATA, RMAX_DATA,
                 new Control[] {lblRMAX_RETRIES, RMAX_RETRIES,
-                lblRGLOBAL_RETRIES, RGLOBAL_RETRIES, lblRSER_BRK_DETMS, RSER_BRK_DETMS,
-                lblRANT_MODE, RANT_MODE}, true);
+                lblRGLOBAL_RETRIES, RGLOBAL_RETRIES, lblRSER_BRK_DETMS, RSER_BRK_DETMS}, true);
 
             // setup netid
             NETID.DataSource = Enumerable.Range(0, 500).ToArray();
@@ -127,7 +125,7 @@ S15: MAX_WINDOW=131
         public void Disconnect()
         {
             var S = _Session;
-            if (S != null)
+            if ((S != null) && S.Port.IsOpen)
             {
                 S.PutIntoTransparentMode();
             }
@@ -1011,7 +1009,7 @@ S15: MAX_WINDOW=131
                     }
                     else
                     {
-                        ATI2.Text = ModemObject.GetBoardString();
+                        ATI2.Text = ModemObject.Board.ToString();
                     }
 
                     if (Session.Board == Uploader.Board.DEVICE_ID_RFD900X)
@@ -1665,6 +1663,18 @@ red LED solid - in firmware update mode");
             Application.DoEvents();
         }
 
+        void UpdateStatusCallback(string Status, double Progress)
+        {
+            if (Status != null)
+            {
+                UpdateStatus(Status);
+            }
+            if (!double.IsNaN(Progress))
+            {
+                ProgressEvtHdlr(Progress);
+            }
+        }
+
         void EnableConfigControls(bool Enable)
         {
             groupBoxLocal.Enabled = Enable;
@@ -1742,23 +1752,11 @@ red LED solid - in firmware update mode");
                 //Console.WriteLine("Mode is " + Mode.ToString());
                 //port.Close();
 
-                RFD.RFD900.RFD900 RFD900 = null;
-                UpdateStatus("Putting in to bootloader mode");
-                switch (Session.PutIntoBootloaderMode())
-                {
-                    case RFD.RFD900.TSession.TMode.BOOTLOADER:
-                        RFD900 = RFD.RFD900.RFD900APU.GetObjectForModem(Session);
-                        break;
-                    case RFD.RFD900.TSession.TMode.BOOTLOADER_X:
-                        RFD900 = RFD.RFD900.RFD900xux.GetObjectForModem(Session);
-                        break;
-                    default:
-                        break;
-                }
+                RFD.RFD900.RFD900 RFD900 = _Session.GetModemObject();
 
                 if (RFD900 == null)
                 {
-                    UpdateStatus("Could not put in to bootloader mode");
+                    UpdateStatus("Unknown modem");
                 }
                 else
                 {
@@ -1773,7 +1771,7 @@ red LED solid - in firmware update mode");
                     if (getFirmware(RFD900.Board, Custom))
                     {
                         UpdateStatus("Programming firmware into device");
-                        if (RFD900.ProgramFirmware(firmwarefile, ProgressEvtHdlr))
+                        if (RFD900.ProgramFirmware(firmwarefile, UpdateStatusCallback))
                         {
                             UpdateStatus("Programmed firmware into device");
                         }
@@ -1915,7 +1913,7 @@ red LED solid - in firmware update mode");
                 {
                     if (SikRadio.Config.comPort != null)
                     {
-                        _Session = new RFD.RFD900.TSession(SikRadio.Config.comPort);
+                        _Session = new RFD.RFD900.TSession(SikRadio.Config.comPort, MainV2.comPort.BaseStream.BaudRate);
                     }
                 }
                 catch

@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading;
+using System.IO;
+using System.Reflection;
 using uploader;
 
 namespace RFD.RFD900
@@ -15,15 +17,17 @@ namespace RFD.RFD900
         RFDLib.IO.ATCommand.TClient _ATCClient;
         RFD900 _ModemObject;
         public uploader.Uploader.Board Board = uploader.Uploader.Board.FAILED;
+        int _MainFirmwareBaud;
         const int BOOTLOADER_BAUD = 115200;
 
-        public TSession(MissionPlanner.Comms.ICommsSerial Port)
+        public TSession(MissionPlanner.Comms.ICommsSerial Port, int MainFirmwareBaud)
         {
             _Port = Port;
             _ATCClient = new RFDLib.IO.ATCommand.TClient(new TMissionPlannerSerialPort(Port));
             _ATCClient.Echoes = true;
             _ATCClient.Terminator = "\r\n";
             _ATCClient.Timeout = 1000;
+            _MainFirmwareBaud = MainFirmwareBaud;
         }
 
         public enum TMode
@@ -64,20 +68,34 @@ namespace RFD.RFD900
 
             while (SW.ElapsedMilliseconds < MaxWait)
             {
-                string x = _Port.ReadExisting();
-                Temp += x;
-
-                for (int n = 0; n < Tokens.Length; n++)
+                try
                 {
-                    if (Temp.Contains(Tokens[n]))
+                    int Byte;
+                    while ((Byte = _Port.ReadByte()) != -1)
                     {
-                        _Port.ReadTimeout = Timeout;
-                        return n;
-                    }
-                }
+                        //string x = _Port.ReadExisting();
+                        Temp += ((char)Byte);
 
-                Thread.Sleep(50);
+                        for (int n = 0; n < Tokens.Length; n++)
+                        {
+                            if (Temp.Contains(Tokens[n]))
+                            {
+                                _Port.ReadTimeout = Timeout;
+                                return n;
+                            }
+                        }
+                    }
+
+                    Thread.Sleep(50);
+                }
+                catch
+                {
+                    return -1;
+                }
             }
+
+            //Console.WriteLine("Failed to get token, got this instead:  " + Temp);
+
             _Port.ReadTimeout = Timeout;
             return -1;
         }
@@ -90,7 +108,6 @@ namespace RFD.RFD900
 
         bool IsInBootloaderMode()
         {
-            int PrevBaud = _Port.BaudRate;
             _Port.BaudRate = BOOTLOADER_BAUD;
             Thread.Sleep(100);
             WriteBootloaderCode(uploader.Uploader.Code.EOC);
@@ -109,7 +126,7 @@ namespace RFD.RFD900
             }
             if (!Result)
             {
-                _Port.BaudRate = PrevBaud;
+                _Port.BaudRate = _MainFirmwareBaud;
             }
             return Result;
         }
@@ -188,6 +205,20 @@ namespace RFD.RFD900
             }
         }
 
+        uploader.Uploader.Board GetBoard()
+        {
+            if (PutIntoATCommandMode() == TMode.AT_COMMAND)
+            {
+                var Reply = _ATCClient.DoQuery("ATI2", true);
+                int Temp;
+                if (int.TryParse(Reply, out Temp))
+                {
+                    return (Uploader.Board)Temp;
+                }
+            }
+            return Uploader.Board.FAILED;
+        }
+
         public RFDLib.IO.ATCommand.TClient ATCClient
         {
             get
@@ -213,36 +244,50 @@ namespace RFD.RFD900
         {
             if (_ModemObject == null)
             {
-                if (PutIntoATCommandMode() == TMode.AT_COMMAND)
+                switch (GetMode())
                 {
-                    string Result = _ATCClient.DoQuery("ATI2", true);
-                    try
-                    {
-                        int Code = int.Parse(Result);
-                        uploader.Uploader.Board Board = (uploader.Uploader.Board)Code;
-                        switch (Board)
+                    case TMode.TRANSPARENT:
+                        if (PutIntoATCommandMode() != TMode.AT_COMMAND)
                         {
-                            case Uploader.Board.DEVICE_ID_RFD900A:
-                                _ModemObject = new RFD900a(this);
-                                break;
-                            case Uploader.Board.DEVICE_ID_RFD900P:
-                                _ModemObject = new RFD900p(this);
-                                break;
-                            case Uploader.Board.DEVICE_ID_RFD900U:
-                                _ModemObject = new RFD900u(this);
-                                break;
-                            case Uploader.Board.DEVICE_ID_RFD900UX:
-                                _ModemObject = new RFD900ux(this);
-                                break;
-                            case Uploader.Board.DEVICE_ID_RFD900X:
-                                _ModemObject = new RFD900x(this);
-                                break;
+                            return null;
                         }
-                    }
-                    catch
-                    {
-
-                    }
+                        goto case TMode.AT_COMMAND;
+                    case TMode.AT_COMMAND:
+                        string Result = _ATCClient.DoQuery("ATI2", true);
+                        try
+                        {
+                            int Code = int.Parse(Result);
+                            uploader.Uploader.Board Board = (uploader.Uploader.Board)Code;
+                            switch (Board)
+                            {
+                                case Uploader.Board.DEVICE_ID_RFD900A:
+                                    _ModemObject = new RFD900a(this);
+                                    break;
+                                case Uploader.Board.DEVICE_ID_RFD900P:
+                                    _ModemObject = new RFD900p(this);
+                                    break;
+                                case Uploader.Board.DEVICE_ID_RFD900U:
+                                    _ModemObject = new RFD900u(this);
+                                    break;
+                                case Uploader.Board.DEVICE_ID_RFD900UX:
+                                    _ModemObject = new RFD900ux(this);
+                                    break;
+                                case Uploader.Board.DEVICE_ID_RFD900X:
+                                    _ModemObject = new RFD900x(this);
+                                    break;
+                            }
+                        }
+                        catch
+                        {
+                            
+                        }
+                        break;
+                    case TMode.BOOTLOADER:
+                        _ModemObject = RFD900APU.GetObjectForModem(this);
+                        break;
+                    case TMode.BOOTLOADER_X:
+                        _ModemObject = RFD900xux.GetObjectForModem(this);
+                        break;
                 }
             }
             return _ModemObject;
@@ -289,10 +334,9 @@ namespace RFD.RFD900
                 case TMode.TRANSPARENT:
                     return PutIntoATCommandModeAssumingInTransparentMode();
                 case TMode.BOOTLOADER:
-                    int PrevBaud = _Port.BaudRate;
                     _Port.BaudRate = BOOTLOADER_BAUD;
                     WriteBootloaderCode(uploader.Uploader.Code.REBOOT);
-                    _Port.BaudRate = PrevBaud;
+                    _Port.BaudRate = _MainFirmwareBaud;
                     _Mode = TMode.INIT;
                     break;
                 case TMode.BOOTLOADER_X:
@@ -300,7 +344,7 @@ namespace RFD.RFD900
                     Thread.Sleep(100);
                     _Port.Write("\r\n");
                     Thread.Sleep(100);
-                    _Port.Write("BOOTNEW\r\n");
+                    _Port.Write("RESET\r\n");
                     Thread.Sleep(100);
                     _Mode = TMode.INIT;
                     break;
@@ -371,6 +415,14 @@ namespace RFD.RFD900
 
         public void AssumeMode(TMode Mode)
         {
+            if (Mode == TMode.BOOTLOADER_X)
+            {
+                _Port.BaudRate = BOOTLOADER_BAUD;
+            }
+            else
+            {
+                _Port.BaudRate = _MainFirmwareBaud;
+            }
             _Mode = Mode;
         }
 
@@ -565,6 +617,45 @@ namespace RFD.RFD900
             return 1;
         }
 
+        bool IsCapitalLetter(char Letter)
+        {
+            return (Letter >= 'A') && (Letter <= 'Z');
+        }
+
+        /*
+         * A new word starts when it goes from a lower case to upper case,
+         * or the character before the transition from upper case to lower.
+         */
+        string[] SplitOptionName(string OptionName)
+        {
+            int LastStart = 0;
+            List<string> Result = new List<string>();
+
+            for (int n = 1; n < OptionName.Length; n++)
+            {
+                if (IsCapitalLetter(OptionName[n]) && !IsCapitalLetter(OptionName[n-1]))
+                {
+                    Result.Add(OptionName.Substring(LastStart, n - LastStart));
+                    LastStart = n;
+                }
+                else if (IsCapitalLetter(OptionName[n-1]) && !IsCapitalLetter(OptionName[n]))
+                {
+                    if (LastStart != (n-1))
+                    {
+                        Result.Add(OptionName.Substring(LastStart, n - LastStart-1));
+                        LastStart = n-1;
+                    }
+                }
+            }
+
+            if (LastStart < OptionName.Length)
+            {
+                Result.Add(OptionName.Substring(LastStart, OptionName.Length - LastStart));
+            }
+
+            return Result.ToArray();
+        }
+
         TSetting.TOption[] CreateOptions(TSetting.TRange Range, string[] Options,
             string Name)
         {
@@ -585,11 +676,6 @@ namespace RFD.RFD900
                 return Result;
             }
 
-            //Not all integers.
-            if (Range == null)
-            {
-                return null;
-            }
             if (Options.Length == 2)
             {
                 //Match up with min and max.
@@ -597,6 +683,74 @@ namespace RFD.RFD900
                 Result[0] = new TSetting.TOption(Range.Min, Options[0]);
                 Result[1] = new TSetting.TOption(Range.Max, Options[1]);
                 return Result;
+            }
+            else if ((Range.Max - Range.Min + 1) == Options.Length)
+            {
+                TSetting.TOption[] Result = new TSetting.TOption[Range.Max - Range.Min + 1];
+                for (int n = 0; n < (Range.Max - Range.Min + 1); n++)
+                {
+                    Result[n] = new TSetting.TOption(Range.Min + n, Options[n]);
+                }
+                return Result;
+            }
+            else if ((Range.Max - Range.Min + 1) < Options.Length)
+            {
+                //Account for the freq/band setting.
+                string[] ResultOptionStrings = new string[Range.Max - Range.Min + 1];
+                string CountryCode = null;
+                int OptionIndex = 0;
+                bool GotToMax = false;
+                
+                //For each option...
+                foreach (var O in Options)
+                {
+                    string[] Temp = SplitOptionName(O);
+                    if (Temp.Length != 0)
+                    {
+                        //Extract country code from option name
+                        string CCTemp = Temp[Temp.Length - 1];
+                        //If we're still on the same contry code...
+                        if (CCTemp == CountryCode)
+                        {
+                            OptionIndex++;
+                            if (OptionIndex >= (ResultOptionStrings.Length - 1))
+                            {
+                                GotToMax = true;
+                            }
+                        }
+                        else
+                        {
+                            OptionIndex = 0;
+                            CountryCode = CCTemp;
+                        }
+                        if (ResultOptionStrings[OptionIndex] == null)
+                        {
+                            ResultOptionStrings[OptionIndex] = "";
+                        }
+                        if (OptionIndex < ResultOptionStrings.Length)
+                        {
+                            if (ResultOptionStrings[OptionIndex].Length != 0)
+                            {
+                                ResultOptionStrings[OptionIndex] += "/";
+                            }
+                            ResultOptionStrings[OptionIndex] += O;
+                        }
+                    }
+                }
+
+                if (GotToMax)
+                {
+                    TSetting.TOption[] Result = new TSetting.TOption[Range.Max - Range.Min + 1];
+                    for (int n = 0; n < (Range.Max - Range.Min + 1); n++)
+                    {
+                        Result[n] = new TSetting.TOption(Range.Min + n, ResultOptionStrings[n]);
+                    }
+                    return Result;
+                }
+                else
+                {
+                    return null;
+                }
             }
             else
             {
@@ -842,14 +996,32 @@ namespace RFD.RFD900
             _Session = Session;
         }
 
-        public virtual bool ProgramFirmware(string FilePath, Action<double> Progress)
+        /// <summary>
+        /// Program firmware into modem, firstly doing necessary checks.
+        /// </summary>
+        /// <param name="FilePath">The path of the firmware.  Must not be null.</param>
+        /// <param name="Progress">A callback to report progress.</param>
+        /// <returns>true if succeeded, false if failed.</returns>
+        public virtual bool ProgramFirmware(string FilePath, Action<string, double> Progress)
         {
             if (CheckFirmwareOK(FilePath))
             {
-                return DoFirmwareProgramming(FilePath, Progress);
+                Progress("Putting into bootloader mode.", double.NaN);
+                var Mode = _Session.PutIntoBootloaderMode();
+                switch (Mode)
+                {
+                    case TSession.TMode.BOOTLOADER:
+                    case TSession.TMode.BOOTLOADER_X:
+                        Progress("Programming selected firmware into modem.", double.NaN);
+                        return DoFirmwareProgramming(FilePath, Progress);
+                    default:
+                        Progress("Failed to put into bootloader mode.", double.NaN);
+                        return false;
+                }
             }
             else
             {
+                Progress("Incorrect firmware selected.", double.NaN);
                 return false;
             }
         }
@@ -860,7 +1032,7 @@ namespace RFD.RFD900
         /// <param name="FilePath">The firmware file path.  Must not be null.</param>
         /// <param name="Progress">The programming progress callback.  Must not be null.</param>
         /// <returns>true if successful, false if failed.</returns>
-        protected abstract bool DoFirmwareProgramming(string FilePath, Action<double> Progress);
+        protected abstract bool DoFirmwareProgramming(string FilePath, Action<string, double> Progress);
         protected abstract bool CheckFirmwareOK(string FilePath);
 
         static bool SearchTokenUpdate(byte[] Token, ref int TokenIndex, byte NextByte)
@@ -964,11 +1136,6 @@ namespace RFD.RFD900
         }
 
         public abstract uploader.Uploader.Board Board { get; }
-
-        public virtual string GetBoardString()
-        {
-            return Board.ToString();
-        }
     }
 
     public abstract class RFD900APU : RFD900
@@ -979,6 +1146,11 @@ namespace RFD.RFD900
 
         }
 
+        /// <summary>
+        /// Check whether the firmware in the given path is suitable for this modem.
+        /// </summary>
+        /// <param name="FilePath">The path to the firmware.  Must not be null.</param>
+        /// <returns>true if OK, false if not.</returns>
         protected override bool CheckFirmwareOK(string FilePath)
         {
             try
@@ -1002,7 +1174,13 @@ namespace RFD.RFD900
             }
         }
 
-        protected override bool DoFirmwareProgramming(string FilePath, Action<double> Progress)
+        /// <summary>
+        /// Do the firmware programming without doing any checks.
+        /// </summary>
+        /// <param name="FilePath">The path of the firmware file to program.  Must not be null.</param>
+        /// <param name="Progress">A callback for progress.</param>
+        /// <returns>true if succeeded, false if failed.</returns>
+        protected override bool DoFirmwareProgramming(string FilePath, Action<string, double> Progress)
         {
             try
             {
@@ -1010,16 +1188,15 @@ namespace RFD.RFD900
                 Hex.load(FilePath);
 
                 uploader.Uploader UL = new uploader.Uploader();
-                UL.ProgressEvent += (d) => Progress(d);
+                UL.ProgressEvent += (d) => Progress(null, d);
                 UL.upload(_Session.Port, Hex);
-                _Session.AssumeMode(TSession.TMode.INIT);
+                _Session.AssumeMode(TSession.TMode.TRANSPARENT);
                 return true;
             }
             catch
             {
                 return false;
             }
-
         }
 
         /// <summary>
@@ -1146,23 +1323,130 @@ namespace RFD.RFD900
             }
         }
 
-        bool IsFirmwareCertified(string FilePath);
-        string GetRefFirmwarePath();
-
-        void DummyCallback(double Temp)
+        /// <summary>
+        /// Returns whether the file of the given path is "certified".  i.e. Whether it
+        /// will return whether it is locked to a country using the ATI command.
+        /// </summary>
+        /// <param name="FilePath">The file path.  Must not be null.</param>
+        /// <returns>true if certified, false if not.</returns>
+        bool IsFirmwareCertified(string FilePath)
         {
+            return SearchBinary(FilePath, new string[] { "HastaLaVistaBaby" });
         }
 
-        public override bool ProgramFirmware(string FilePath, Action<double> Progress)
+        /// <summary>
+        /// Unpack the reference firmware embedded into this exe into a temp file and return
+        /// the path to that file.
+        /// </summary>
+        /// <returns>The path to the temp file containing the ref file.  Never null.</returns>
+        string GetRefFirmwarePath()
         {
-            if (_Session.PutIntoATCommandMode() != TSession.TMode.AT_COMMAND)
+            string Temp = System.IO.Path.GetTempFileName();
+            var assembly = Assembly.GetExecutingAssembly();
+            //var resourceName = "RFD900Tools.Properties.Resources.resources.RFDSiK_V3.00_rfd900x.bin";
+            var resourceName = "RFD900Tools.Resources.RFDSiK V3.00 rfd900x.bin";
+
+            var Names = assembly.GetManifestResourceNames();
+            Console.WriteLine(Names.ToString());
+
+            using (Stream stream = assembly.GetManifestResourceStream(resourceName))
+            using (Stream FileStream = System.IO.File.OpenWrite(Temp))
+            using (StreamReader reader = new StreamReader(stream))
+            using (StreamWriter writer = new StreamWriter(FileStream))
             {
-                if (_Session.PutIntoBootloaderMode() == TSession.TMode.BOOTLOADER_X)
+                stream.Seek(0, SeekOrigin.Begin);
+                stream.CopyTo(FileStream);
+            }
+
+            return Temp;
+        }
+
+        /// <summary>
+        /// Assumes in AT command mode.
+        /// </summary>
+        /// <returns></returns>
+        bool GetIsThisLockedToCountry()
+        {
+            string Reply = _Session.ATCClient.DoQuery("ATI", true);
+            foreach (var ST in this.GetFirmwareSearchTokens())
+            {
+                if (Reply.Contains(ST+"-"))
                 {
-                    string RefFirmwarePath = GetRefFirmwarePath();
-                    if (!DoFirmwareProgramming(RefFirmwarePath, DummyCallback))
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// Program the given firmware.  Do necesary checks first.
+        /// </summary>
+        /// <param name="FilePath">The path to the firmware file.  Must not be null.</param>
+        /// <param name="Progress">The function to call back to provide progress updates.</param>
+        /// <returns>true if successful, false if failed.</returns>
+        public override bool ProgramFirmware(string FilePath, Action<string, double> Progress)
+        {
+            if (IsFirmwareCertified(FilePath))
+            {
+                return base.ProgramFirmware(FilePath, Progress);
+            }
+            else
+            {
+                Progress("Trying to put into AT command mode.", double.NaN);
+                if (_Session.PutIntoATCommandMode() != TSession.TMode.AT_COMMAND)
+                {
+                    Progress("Trying to put into bootloader mode.", double.NaN);
+                    if (_Session.PutIntoBootloaderMode() == TSession.TMode.BOOTLOADER_X)
+                    {
+                        Progress("Programming temporary firmware into modem to check certified.", double.NaN);
+                        string RefFirmwarePath = GetRefFirmwarePath();
+                        try
+                        {
+                            if (!DoFirmwareProgramming(RefFirmwarePath, Progress))
+                            {
+                                return false;
+                            }
+                        }
+                        finally
+                        {
+                            try
+                            {
+                                System.IO.File.Delete(RefFirmwarePath);
+                            }
+                            catch
+                            {
+
+                            }
+                        }
+                    }
+                    else
                     {
                         return false;
+                    }
+                }
+
+                //Can it go into AT command mode?
+                Progress("Trying to put into AT command mode.", double.NaN);
+                if (_Session.PutIntoATCommandMode() == TSession.TMode.AT_COMMAND)
+                {
+                    Progress("Checking if modem certified.", double.NaN);
+                    if (!GetIsThisLockedToCountry())
+                    {
+                        //They can program whatever they want into it.
+                        return base.ProgramFirmware(FilePath, Progress);
+                    }
+                    else
+                    {
+                        //They can only program certified firmware into it.
+                        if (IsFirmwareCertified(FilePath))
+                        {
+                            return base.ProgramFirmware(FilePath, Progress);
+                        }
+                        else
+                        {
+                            System.Windows.Forms.MessageBox.Show("The selected firmware is not certified to run on this modem.  Aborting.");
+                            return false;
+                        }
                     }
                 }
                 else
@@ -1170,38 +1454,16 @@ namespace RFD.RFD900
                     return false;
                 }
             }
-
-            //Can it go into AT command mode?
-            if (_Session.PutIntoATCommandMode() == TSession.TMode.AT_COMMAND)
-            {
-                //Check whether the country code is set.
-                var CC = GetCountryCode();
-                if ((CC == TCountryCode.NOT_SET) || (CC == TCountryCode.UNRESTRICT))
-                {
-                    //They can program whatever they want into it.
-                    return base.ProgramFirmware(FilePath, Progress);
-                }
-                else
-                {
-                    //They can only program certified firmware into it.
-                    if (IsFirmwareCertified(FilePath))
-                    {
-                        return base.ProgramFirmware(FilePath, Progress);
-                    }
-                    else
-                    {
-                        System.Windows.Forms.MessageBox.Show("The selected firmware is not certified to run on this modem.  Aborting.");
-                        return false;
-                    }
-                }
-            }
-            else
-            {
-                return false;
-            }
         }
 
-        protected override bool DoFirmwareProgramming(string FilePath, Action<double> Progress)
+        /// <summary>
+        /// Program the given firmware without doing any checks.
+        /// </summary>
+        /// <param name="FilePath">The path of the firmware file.  Must not be null.</param>
+        /// <param name="Progress">A function to use to provide real-time feedback about the
+        /// programming progress.</param>
+        /// <returns>true if successful, false if failed.</returns>
+        protected override bool DoFirmwareProgramming(string FilePath, Action<string, double> Progress)
         {
             _Session.Port.Write("\r");
             Thread.Sleep(100);
@@ -1211,7 +1473,7 @@ namespace RFD.RFD900
             {
                 try
                 {
-                    MissionPlanner.Radio.XModem.ProgressEvent += (d) => Progress(d);
+                    MissionPlanner.Radio.XModem.ProgressEvent += (d) => Progress(null, d);
                     MissionPlanner.Radio.XModem.Upload(FilePath, _Session.Port);
                     _Session.AssumeMode(TSession.TMode.INIT);
                     return true;
@@ -1227,6 +1489,11 @@ namespace RFD.RFD900
             }
         }
 
+        /// <summary>
+        /// Check that the firmware is the right type for this modem.
+        /// </summary>
+        /// <param name="FilePath">The path to the firmware.  Must not be null.</param>
+        /// <returns>true if correct, false if not.</returns>
         protected override bool CheckFirmwareOK(string FilePath)
         {
             if (SearchBinary(FilePath, GetFirmwareSearchTokens()))
@@ -1239,83 +1506,6 @@ namespace RFD.RFD900
                 return false;
             }
         }
-
-        TCountryCode GetCountryCode()
-        {
-            _Session.PutIntoATCommandMode();
-
-            string Result = _Session.ATCClient.DoQuery("AT+C32?", true);
-
-            try
-            {
-                int Code = int.Parse(Result);
-                return (TCountryCode)Code;
-            }
-            catch
-            {
-                return TCountryCode.NOT_SET;
-            }
-        }
-
-        public override string GetBoardString()
-        {
-            TCountryCode CC = GetCountryCode();
-            if (CC == TCountryCode.NOT_SET)
-            {
-                return base.GetBoardString();
-            }
-            else
-            {
-                return base.GetBoardString() + "-" + GetCCString(CC);
-            }
-        }
-
-        string GetCCString(TCountryCode CC)
-        {
-            switch (CC)
-            {
-                case TCountryCode.AUSTRALIA:
-                    return "AU";
-                case TCountryCode.EUROPE:
-                    return "EU";
-                case TCountryCode.INS:
-                    return "INS";
-                case TCountryCode.JAPAN:
-                    return "JAP";
-                case TCountryCode.NEW_ZEALAND:
-                    return "NZ";
-                default:
-                case TCountryCode.NOT_SET:
-                    return "";
-                case TCountryCode.PRC:
-                    return "PRC";
-                case TCountryCode.UNRESTRICT:
-                    return "UNRESTRICTED";
-                case TCountryCode.USA:
-                    return "USA";
-            }
-        }
-
-        public enum TCountryCode
-        {
-            UNRESTRICT = 0, // any channel or frequency band
-            AUSTRALIA = 1,      // predefined channels and frequency band
-            NEW_ZEALAND = 2,    // restrict AT commands for channel number and
-            USA = 3,
-            EUROPE = 4,
-            PRC = 5,            // China
-            INS = 6,            // Insitu custom for licensed band
-            JAPAN = 7,
-            NOT_SET = 255,
-        }
-
-        public enum TBandCode
-        {
-            FREQ_842 = 0x84, // China 840.5-844.5
-            FREQ_868 = 0x86,
-            FREQ_915 = 0x91,
-            FREQ_933 = 0x93, // Insitu
-        }
     }
 
     public class RFD900x : RFD900xux
@@ -1323,6 +1513,7 @@ namespace RFD.RFD900
         public RFD900x(TSession Session)
             : base(Session)
         {
+
         }
 
         protected override string[] GetFirmwareSearchTokens()
@@ -1361,6 +1552,9 @@ namespace RFD.RFD900
         }
     }
 
+    /// <summary>
+    /// A RFDLib.IO.TSerialPort wrapper for TMissionPlannerSerialPort
+    /// </summary>
     public class TMissionPlannerSerialPort : RFDLib.IO.TSerialPort
     {
         MissionPlanner.Comms.ICommsSerial _Port;

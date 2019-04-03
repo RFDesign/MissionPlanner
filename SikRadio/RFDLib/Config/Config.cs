@@ -95,6 +95,15 @@ namespace RFDLib.Config
         }
     }
 
+    public abstract class TIntegerSettingDescriptor : TSettingDescriptor
+    {
+        public TIntegerSettingDescriptor(string Name, string Description)
+            : base(Name, Description)
+        {
+        }
+    }
+
+
     /*public abstract class TTextSettingDescriptor : TSettingDescriptor
     {
 
