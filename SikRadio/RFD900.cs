@@ -23,7 +23,7 @@ namespace RFD.RFD900
         public TSession(MissionPlanner.Comms.ICommsSerial Port, int MainFirmwareBaud)
         {
             _Port = Port;
-            _ATCClient = new RFDLib.IO.ATCommand.TClient(new TMissionPlannerSerialPort(Port));
+            _ATCClient = new TATCClient(new TMissionPlannerSerialPort(Port));
             _ATCClient.Echoes = true;
             _ATCClient.Terminator = "\r\n";
             _ATCClient.Timeout = 1000;
@@ -1297,7 +1297,6 @@ namespace RFD.RFD900
         public RFD900xux(TSession Session)
             : base(Session)
         {
-
         }
 
         /// <summary>
@@ -1344,7 +1343,8 @@ namespace RFD.RFD900
             string Temp = System.IO.Path.GetTempFileName();
             var assembly = Assembly.GetExecutingAssembly();
             //var resourceName = "RFD900Tools.Properties.Resources.resources.RFDSiK_V3.00_rfd900x.bin";
-            var resourceName = "RFD900Tools.Resources.RFDSiK V3.00 rfd900x.bin";
+            //var resourceName = "RFD900Tools.Resources.RFDSiK V3.00 rfd900x.bin";
+            var resourceName = "RFD900Tools.Resources.RFDSiK V3.01 rfd900x.bin";
 
             var Names = assembly.GetManifestResourceNames();
             Console.WriteLine(Names.ToString());
@@ -1361,21 +1361,48 @@ namespace RFD.RFD900
             return Temp;
         }
 
+        static bool GetIsLetter(char x)
+        {
+            return (((x >= 'a') && (x <= 'z')) || ((x >= 'A') && (x <= 'Z')));
+        }
+
+        public static string GetCountryCodeFromATIResponse(string ATIResponse)
+        {
+            //It's locked to a country if the string has a dash and letters tacked onto the end of it.
+            if (ATIResponse.Contains("-"))
+            {
+                string[] ByDash = ATIResponse.Split('-');
+                string CountryCode = ByDash[ByDash.Length - 1];
+                if (CountryCode.Length >= 2)
+                {
+                    if (GetIsLetter(CountryCode[0]) && GetIsLetter(CountryCode[1]))
+                    {
+                        return CountryCode;
+                    }
+                }
+            }
+
+            return null;
+        }
+
+        /// <summary>
+        /// Assumes in AT command mode already.  Returns null if no country code detected.
+        /// </summary>
+        /// <returns></returns>
+        public string GetCountryCode()
+        {
+            string Reply = _Session.ATCClient.DoQuery("ATI", true);
+
+            return GetCountryCodeFromATIResponse(Reply);
+        }
+
         /// <summary>
         /// Assumes in AT command mode.
         /// </summary>
         /// <returns></returns>
         bool GetIsThisLockedToCountry()
         {
-            string Reply = _Session.ATCClient.DoQuery("ATI", true);
-            foreach (var ST in this.GetFirmwareSearchTokens())
-            {
-                if (Reply.Contains(ST+"-"))
-                {
-                    return true;
-                }
-            }
-            return false;
+            return GetCountryCode() != null;
         }
 
         /// <summary>
@@ -1599,6 +1626,30 @@ namespace RFD.RFD900
             {
                 _Port.ReadTimeout = value;
             }
+        }
+    }
+
+    public class TATCClient : RFDLib.IO.ATCommand.TClient
+    {
+        public TATCClient(RFDLib.IO.TSerialPort Port)
+            : base(Port)
+        {
+        }
+
+        public override string DoQuery(string Command, bool WaitForTerminator)
+        {
+            string Raw = base.DoQuery(Command, WaitForTerminator);
+
+            if (Raw.StartsWith("[") && Raw.Contains("]"))
+            {
+                string[] Parts = Raw.Split(']');
+                if (Parts.Length >= 2)
+                {
+                    return Parts[1];
+                }
+            }
+
+            return Raw;
         }
     }
 }

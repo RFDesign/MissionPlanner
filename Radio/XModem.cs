@@ -57,30 +57,17 @@ namespace MissionPlanner.Radio
 
             var bytesRead = fs.Read(bits, 0, bits.Length);
 
-            if (bytesRead == bits.Length)
-            {
-                CRC = CRC_calc(bits, 128);
-                System.Buffer.BlockCopy(bits, 0, packet, 3, 128);
-                packet[131] = (byte)(CRC >> 8);
-                packet[132] = (byte)(CRC);
-                Serial.Write(packet, 0, packet.Length);
-                //Console.WriteLine("CRC is " + CRC.ToString());
-            }
-            else if (bytesRead > 0)
-            {
-                CRC = CRC_calc(bits, 128);
-                System.Buffer.BlockCopy(bits, 0, packet, 3, 128);
-                packet[131] = (byte)(CRC >> 8);
-                packet[132] = (byte)(CRC);
-                Serial.Write(packet, 0, packet.Length);
-                Serial.Write(new byte[] { EOT }, 0, 1);
-                ProgressEvent?.Invoke(100);
-            }
-            else if (bytesRead == 0)
-            {
-                Serial.Write(new byte[] { EOT }, 0, 1);
-                ProgressEvent?.Invoke(100);
-            }
+            CRC = CRC_calc(bits, 128);
+            System.Buffer.BlockCopy(bits, 0, packet, 3, 128);
+            packet[131] = (byte)(CRC >> 8);
+            packet[132] = (byte)(CRC);
+            Serial.Write(packet, 0, packet.Length);
+        }
+
+        static void SendEOT(ICommsSerial Serial)
+        {
+            Serial.Write(new byte[] { EOT }, 0, 1);
+            ProgressEvent?.Invoke(100);
         }
 
         public static void Upload(string firmwarebin, ICommsSerial comPort)
@@ -128,6 +115,39 @@ namespace MissionPlanner.Radio
                         if (NoAckCount >= 10)
                         {
                             //Console.WriteLine("Something is wrong");
+                        }
+                    }
+                }
+
+                NoAckCount = 0;
+
+                while (true)
+                {
+                    SendEOT(comPort);
+
+                    var ack = comPort.ReadByte();
+                    while (ack == 'C')
+                        ack = comPort.ReadByte();
+
+                    if (ack == ACK)
+                    {
+                        break;
+                    }
+                    else if (ack == NAK)
+                    {
+                        MsgBox.CustomMessageBox.Show("Corrupted packet. Please power cycle and try again.\r\n", "Warning",
+                            MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        len = 0;
+                    }
+                    else
+                    {
+                        NoAckCount++;
+
+                        if (NoAckCount >= 10)
+                        {
+                            MsgBox.CustomMessageBox.Show("Corrupted packet. Please power cycle and try again.\r\n", "Warning",
+                                MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            break;
                         }
                     }
                 }

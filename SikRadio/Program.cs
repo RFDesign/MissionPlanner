@@ -20,6 +20,16 @@
  * 2.14 - Resolved issue in which modem firmware could not be reprogrammed immediately after programming.
  * 2.15 - Added firmware programming certified check for RFD900X/UX.  Added SBUS, freq/band and antenna parameters
  *          for RFD900x.  
+ * 2.16 - Resolved issue in which it was looking for the country string in the wrong part of the ATI command response.
+ * 2.17 - Resolved issue in which pin wasn't being set to output/input when RC out / SBUS out checked / unchecked.
+ * 2.18 - Added text boxes to settings view for local and remote modems to display country code if locked to a country,
+ *          as requested by Moreton.
+ * 2.19 - Fixed bug in which programming RFD900x firmware whose file size was a multiple of 128 bytes failed.  
+ * 2.20 - Made changes so that it could update firmware and load settings from a modem with multipoint firmware. 
+ * 2.21 - Now for modems which use the xmodem protocol for firmware updates (RFD900x and RFD900ux), it waits for
+ *          and acknowledgement of the EOT packet before sending the BOOTNEW command.  This may or may not
+ *          resolve the intermittent issue in which firmware update results in the modem staying in bootloader mode.
+ *          Now programs version 3.01 as the reference firmware for RFD900x to check certified (instead of 3.00).
  */
 
 using System;
