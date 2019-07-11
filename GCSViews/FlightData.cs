@@ -1471,26 +1471,9 @@ namespace MissionPlanner.GCSViews
             Console.WriteLine("FD Main loop exit");
         }
 
-        void SetRSSILabel(System.Windows.Forms.Label L, float RSSI)
-        {
-            if (float.IsNaN(RSSI))
-            {
-                L.Text = "--";
-            }
-            else
-            {
-                L.Text = RSSI.ToString("F0") + "dBm";
-            }
-        }
-
         void UpdateFTS()
         {
-            btnFTSManualTerminate.BackColor = Color.Red;
-            lblFTSLinkStatus.Text = FTS.Manager.GetLinkStatus().ToString("F0") + "%";
-            SetRSSILabel(lblFTSRxRSSI, FTS.Manager.GetRxRSSI());
-            SetRSSILabel(lblFTSTxRSSI, FTS.Manager.GetTxRSSI());
-            lblFTSTermHealth.Text = FTS.Manager.GetFTSHealth() ? "OK" : "Failure";
-            lblFTSTermState.Text = FTS.Manager.GetRemoteStateDescription(FTS.Manager.GetRemoteState());
+            FTSArray.Update();
         }
 
         private double ConvertToDouble(object input)
@@ -4960,15 +4943,6 @@ namespace MissionPlanner.GCSViews
             catch
             {
                 CustomMessageBox.Show(Strings.CommandFailed, Strings.ERROR);
-            }
-        }
-
-        private void btnFTSManualTerminate_Click(object sender, EventArgs e)
-        {
-            if (System.Windows.Forms.MessageBox.Show(
-                "Do you really want to DESTROY this aircraft by manually terminating the flight?", "Destory aircraft?", MessageBoxButtons.YesNoCancel) == DialogResult.Yes)
-            {
-                FTS.Manager.TerminateFlight();
             }
         }
     }

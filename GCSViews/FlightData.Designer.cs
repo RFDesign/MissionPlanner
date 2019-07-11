@@ -165,18 +165,6 @@
             this.trackBarPitch = new System.Windows.Forms.TrackBar();
             this.TXT_gimbalPitchPos = new System.Windows.Forms.TextBox();
             this.tabFTS = new System.Windows.Forms.TabPage();
-            this.lblFTSTermState = new System.Windows.Forms.Label();
-            this.label19 = new System.Windows.Forms.Label();
-            this.btnFTSManualTerminate = new System.Windows.Forms.Button();
-            this.lblFTSTermHealth = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
-            this.lblFTSRxRSSI = new System.Windows.Forms.Label();
-            this.label18 = new System.Windows.Forms.Label();
-            this.lblFTSTxRSSI = new System.Windows.Forms.Label();
-            this.label16 = new System.Windows.Forms.Label();
-            this.lblFTSLinkStatus = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
             this.tableMap = new System.Windows.Forms.TableLayoutPanel();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.zg1 = new ZedGraph.ZedGraphControl();
@@ -223,6 +211,7 @@
             this.dataGridViewImageColumn2 = new System.Windows.Forms.DataGridViewImageColumn();
             this.Messagetabtimer = new System.Windows.Forms.Timer(this.components);
             this.bindingSourceStatusTab = new System.Windows.Forms.BindingSource(this.components);
+            this.FTSArray = new MissionPlanner.GCSViews.ucFTSArray();
             ((System.ComponentModel.ISupportInitialize)(this.MainH)).BeginInit();
             this.MainH.Panel1.SuspendLayout();
             this.MainH.Panel2.SuspendLayout();
@@ -2448,84 +2437,10 @@
             // 
             // tabFTS
             // 
-            this.tabFTS.Controls.Add(this.lblFTSTermState);
-            this.tabFTS.Controls.Add(this.label19);
-            this.tabFTS.Controls.Add(this.btnFTSManualTerminate);
-            this.tabFTS.Controls.Add(this.lblFTSTermHealth);
-            this.tabFTS.Controls.Add(this.label15);
-            this.tabFTS.Controls.Add(this.lblFTSRxRSSI);
-            this.tabFTS.Controls.Add(this.label18);
-            this.tabFTS.Controls.Add(this.lblFTSTxRSSI);
-            this.tabFTS.Controls.Add(this.label16);
-            this.tabFTS.Controls.Add(this.lblFTSLinkStatus);
-            this.tabFTS.Controls.Add(this.label13);
-            this.tabFTS.Controls.Add(this.label12);
+            this.tabFTS.Controls.Add(this.FTSArray);
             resources.ApplyResources(this.tabFTS, "tabFTS");
             this.tabFTS.Name = "tabFTS";
             this.tabFTS.UseVisualStyleBackColor = true;
-            // 
-            // lblFTSTermState
-            // 
-            resources.ApplyResources(this.lblFTSTermState, "lblFTSTermState");
-            this.lblFTSTermState.Name = "lblFTSTermState";
-            // 
-            // label19
-            // 
-            resources.ApplyResources(this.label19, "label19");
-            this.label19.Name = "label19";
-            // 
-            // btnFTSManualTerminate
-            // 
-            this.btnFTSManualTerminate.BackColor = System.Drawing.Color.Red;
-            resources.ApplyResources(this.btnFTSManualTerminate, "btnFTSManualTerminate");
-            this.btnFTSManualTerminate.Name = "btnFTSManualTerminate";
-            this.btnFTSManualTerminate.UseVisualStyleBackColor = false;
-            this.btnFTSManualTerminate.Click += new System.EventHandler(this.btnFTSManualTerminate_Click);
-            // 
-            // lblFTSTermHealth
-            // 
-            resources.ApplyResources(this.lblFTSTermHealth, "lblFTSTermHealth");
-            this.lblFTSTermHealth.Name = "lblFTSTermHealth";
-            // 
-            // label15
-            // 
-            resources.ApplyResources(this.label15, "label15");
-            this.label15.Name = "label15";
-            // 
-            // lblFTSRxRSSI
-            // 
-            resources.ApplyResources(this.lblFTSRxRSSI, "lblFTSRxRSSI");
-            this.lblFTSRxRSSI.Name = "lblFTSRxRSSI";
-            // 
-            // label18
-            // 
-            resources.ApplyResources(this.label18, "label18");
-            this.label18.Name = "label18";
-            // 
-            // lblFTSTxRSSI
-            // 
-            resources.ApplyResources(this.lblFTSTxRSSI, "lblFTSTxRSSI");
-            this.lblFTSTxRSSI.Name = "lblFTSTxRSSI";
-            // 
-            // label16
-            // 
-            resources.ApplyResources(this.label16, "label16");
-            this.label16.Name = "label16";
-            // 
-            // lblFTSLinkStatus
-            // 
-            resources.ApplyResources(this.lblFTSLinkStatus, "lblFTSLinkStatus");
-            this.lblFTSLinkStatus.Name = "lblFTSLinkStatus";
-            // 
-            // label13
-            // 
-            resources.ApplyResources(this.label13, "label13");
-            this.label13.Name = "label13";
-            // 
-            // label12
-            // 
-            resources.ApplyResources(this.label12, "label12");
-            this.label12.Name = "label12";
             // 
             // tableMap
             // 
@@ -2717,7 +2632,7 @@
             this.windDir1.BackColor = System.Drawing.Color.Transparent;
             this.windDir1.DataBindings.Add(new System.Windows.Forms.Binding("Direction", this.bindingSource1, "wind_dir", true, System.Windows.Forms.DataSourceUpdateMode.Never));
             this.windDir1.DataBindings.Add(new System.Windows.Forms.Binding("Speed", this.bindingSource1, "wind_vel", true, System.Windows.Forms.DataSourceUpdateMode.Never));
-            this.windDir1.Direction = 0D;
+            this.windDir1.Direction = 360D;
             resources.ApplyResources(this.windDir1, "windDir1");
             this.windDir1.Name = "windDir1";
             this.windDir1.Speed = 0D;
@@ -2934,6 +2849,11 @@
             // 
             this.bindingSourceStatusTab.DataSource = typeof(MissionPlanner.CurrentState);
             // 
+            // FTSArray
+            // 
+            resources.ApplyResources(this.FTSArray, "FTSArray");
+            this.FTSArray.Name = "FTSArray";
+            // 
             // FlightData
             // 
             this.Controls.Add(this.MainH);
@@ -2990,7 +2910,6 @@
             this.groupBoxPitch.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarPitch)).EndInit();
             this.tabFTS.ResumeLayout(false);
-            this.tabFTS.PerformLayout();
             this.tableMap.ResumeLayout(false);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
@@ -3214,17 +3133,6 @@
         private Controls.ServoOptions servoOptions1a;
         private Controls.MyButton ResetFuel;
         private System.Windows.Forms.TabPage tabFTS;
-        private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.Label lblFTSRxRSSI;
-        private System.Windows.Forms.Label label18;
-        private System.Windows.Forms.Label lblFTSTxRSSI;
-        private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.Label lblFTSLinkStatus;
-        private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.Label lblFTSTermHealth;
-        private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.Button btnFTSManualTerminate;
-        private System.Windows.Forms.Label lblFTSTermState;
-        private System.Windows.Forms.Label label19;
+        private ucFTSArray FTSArray;
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 /// <summary>
 /// Flight termination system.
@@ -8,23 +9,55 @@ namespace FTS
 {
     public static class Manager
     {
-        const string TERM_PARAM_NAME = "AFS_TERMINATE";
-
-        static double GetParamValue(string ParamName)
+        public static List<MissionPlanner.MAVState> GetMavStates()
         {
-            return (double)MissionPlanner.MainV2.comPort.MAV.param[ParamName].Value;
+            return new List<MissionPlanner.MAVState>(MissionPlanner.MainV2.comPort.MAVlist);
+        }
+
+        public static bool AreMavStatesTheSame(MissionPlanner.MAVState MS1, MissionPlanner.MAVState MS2)
+        {
+            return (MS1.sysid == MS2.sysid) && (MS1.compid == MS2.compid);
+        }
+    }
+
+    public class TSingleFTSManager
+    {
+        const string TERM_PARAM_NAME = "AFS_TERMINATE";
+        const string GEOFENCE_PARAM_NAME = "AFS_GEOFENCE";
+        MissionPlanner.MAVState _MS;
+        System.Diagnostics.Stopwatch _Start;
+        Int64 _LastParamRequest = 0;
+
+        public TSingleFTSManager(MissionPlanner.MAVState MS)
+        {
+            _MS = MS;
+            _Start = new System.Diagnostics.Stopwatch();
+            _Start.Start();
+        }
+
+        public MissionPlanner.MAVState MS
+        {
+            get
+            {
+                return _MS;
+            }
+        }
+
+        double GetParamValue(string ParamName)
+        {
+            return (double)_MS.param[ParamName].Value;
         }
 
         /// <summary>
         /// 0 represents dead link, 100 represents perfect link.
         /// </summary>
         /// <returns></returns>
-        public static float GetLinkStatus()
+        public float GetLinkStatus()
         {
-            return MissionPlanner.MainV2.comPort.MAV.cs.linkqualitygcs;
+            return _MS.cs.linkqualitygcs;
         }
 
-        static float GetRSSIAsdBm(float CSValue)
+        float GetRSSIAsdBm(float CSValue)
         {
             if (CSValue == 0)
             {
@@ -40,51 +73,81 @@ namespace FTS
         /// Get rx RSSI.
         /// </summary>
         /// <returns></returns>
-        public static float GetRxRSSI()
+        public float GetRxRSSI()
         {
-            return GetRSSIAsdBm(MissionPlanner.MainV2.comPort.MAV.cs.rssi);
+            return GetRSSIAsdBm(_MS.cs.rssi);
         }
 
         /// <summary>
         /// Get Tx RSSI
         /// </summary>
         /// <returns></returns>
-        public static float GetTxRSSI()
+        public float GetTxRSSI()
         {
-            return GetRSSIAsdBm(MissionPlanner.MainV2.comPort.MAV.cs.remrssi);
+            return GetRSSIAsdBm(_MS.cs.remrssi);
         }
 
-        public static bool GetFTSHealth()
+        public bool GetFTSHealth()
         {
-            return MissionPlanner.MainV2.comPort.MAV.cs.hasHeartBeat;
+            return _MS.cs.hasHeartBeat;
         }
 
         /// <summary>
         /// Get the remote flight termination state.
         /// </summary>
         /// <returns></returns>
-        public static TRemoteState GetRemoteState()
+        public TRemoteState GetRemoteState()
         {
-            var P = MissionPlanner.MainV2.comPort.MAV.param[TERM_PARAM_NAME];
-            if (P == null)
+            if ((_Start.ElapsedMilliseconds - _LastParamRequest) > 2000)
+            {
+                MissionPlanner.MainV2.comPort.GetParam(_MS.sysid, _MS.compid, TERM_PARAM_NAME, -1, false);
+                MissionPlanner.MainV2.comPort.GetParam(_MS.sysid, _MS.compid, GEOFENCE_PARAM_NAME, -1, false);
+                _LastParamRequest = _Start.ElapsedMilliseconds;
+            }
+
+            try
+            {
+                var P = _MS.param[TERM_PARAM_NAME];
+                if (P == null)
+                {
+                    return TRemoteState.ERROR;
+                }
+                else
+                {
+                    if (P.Value == 0)
+                    {
+                        return TRemoteState.NORMAL;
+                    }
+                    else
+                    {
+                        var GP = _MS.param[GEOFENCE_PARAM_NAME];
+
+                        if (GP == null)
+                        {
+                            return TRemoteState.ERROR;
+                        }
+                        else
+                        {
+                            return ((GP.Value == 1) && !_MS.cs.sensors_health.geofence) ? TRemoteState.TERMINATING_GEOFENCE : TRemoteState.TERMINATING_MANUAL;
+                        }
+                    }
+                }
+            }
+            catch
             {
                 return TRemoteState.ERROR;
-            }
-            else
-            {
-                return (P.Value != 0) ? TRemoteState.TERMINATING : TRemoteState.NORMAL;
             }
         }
 
         /// <summary>
         /// Manually terminate the flight
         /// </summary>
-        public static void TerminateFlight()
+        public void TerminateFlight()
         {
-            MissionPlanner.MainV2.comPort.setParam(TERM_PARAM_NAME, 1);
+            MissionPlanner.MainV2.comPort.setParam(_MS.sysid, _MS.compid, TERM_PARAM_NAME, 1);
         }
 
-        public static string GetRemoteStateDescription(TRemoteState RS)
+        public string GetRemoteStateDescription(TRemoteState RS)
         {
             switch (RS)
             {
@@ -93,8 +156,10 @@ namespace FTS
                     return "Error";
                 case TRemoteState.NORMAL:
                     return "Normal";
-                case TRemoteState.TERMINATING:
-                    return "Terminating";
+                case TRemoteState.TERMINATING_MANUAL:
+                    return "Manual Term.";
+                case TRemoteState.TERMINATING_GEOFENCE:
+                    return "Geofence Term.";
             }
         }
 
@@ -102,7 +167,8 @@ namespace FTS
         {
             ERROR,
             NORMAL,
-            TERMINATING,
+            TERMINATING_MANUAL,
+            TERMINATING_GEOFENCE,
         }
     }
 }

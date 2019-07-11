@@ -363,6 +363,18 @@
     <Compile Include="GCSViews\ConfigurationView\ConfigUAVCAN.Designer.cs">
       <DependentUpon>ConfigUAVCAN.cs</DependentUpon>
     </Compile>
+    <Compile Include="GCSViews\ucFTS.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GCSViews\ucFTS.Designer.cs">
+      <DependentUpon>ucFTS.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GCSViews\ucFTSArray.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GCSViews\ucFTSArray.Designer.cs">
+      <DependentUpon>ucFTSArray.cs</DependentUpon>
+    </Compile>
     <Compile Include="Joystick\JoystickAxis.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -536,6 +548,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GCSViews\ConfigurationView\ConfigUAVCAN.resx">
       <DependentUpon>ConfigUAVCAN.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GCSViews\ucFTS.resx">
+      <DependentUpon>ucFTS.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GCSViews\ucFTSArray.resx">
+      <DependentUpon>ucFTSArray.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Joystick\JoystickAxis.resx" />
     <EmbeddedResource Include="Log\LogStrings.resx">
