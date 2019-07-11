@@ -42,6 +42,7 @@
             this.quickView2 = new MissionPlanner.Controls.QuickView();
             this.quickView1 = new MissionPlanner.Controls.QuickView();
             this.tabActions = new System.Windows.Forms.TabPage();
+            this.ResetFuel = new MissionPlanner.Controls.MyButton();
             this.servo5label2 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
@@ -163,6 +164,19 @@
             this.groupBoxPitch = new System.Windows.Forms.GroupBox();
             this.trackBarPitch = new System.Windows.Forms.TrackBar();
             this.TXT_gimbalPitchPos = new System.Windows.Forms.TextBox();
+            this.tabFTS = new System.Windows.Forms.TabPage();
+            this.lblFTSTermState = new System.Windows.Forms.Label();
+            this.label19 = new System.Windows.Forms.Label();
+            this.btnFTSManualTerminate = new System.Windows.Forms.Button();
+            this.lblFTSTermHealth = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.lblFTSRxRSSI = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
+            this.lblFTSTxRSSI = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.lblFTSLinkStatus = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
             this.tableMap = new System.Windows.Forms.TableLayoutPanel();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.zg1 = new ZedGraph.ZedGraphControl();
@@ -209,7 +223,6 @@
             this.dataGridViewImageColumn2 = new System.Windows.Forms.DataGridViewImageColumn();
             this.Messagetabtimer = new System.Windows.Forms.Timer(this.components);
             this.bindingSourceStatusTab = new System.Windows.Forms.BindingSource(this.components);
-            this.ResetFuel = new MissionPlanner.Controls.MyButton();
             ((System.ComponentModel.ISupportInitialize)(this.MainH)).BeginInit();
             this.MainH.Panel1.SuspendLayout();
             this.MainH.Panel2.SuspendLayout();
@@ -248,6 +261,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.trackBarYaw)).BeginInit();
             this.groupBoxPitch.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarPitch)).BeginInit();
+            this.tabFTS.SuspendLayout();
             this.tableMap.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -398,6 +412,7 @@
             // 
             // contextMenuStripHud
             // 
+            this.contextMenuStripHud.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.contextMenuStripHud.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.videoToolStripMenuItem,
             this.setAspectRatioToolStripMenuItem,
@@ -485,7 +500,6 @@
             this.groundColorToolStripMenuItem.CheckOnClick = true;
             this.groundColorToolStripMenuItem.Name = "groundColorToolStripMenuItem";
             resources.ApplyResources(this.groundColorToolStripMenuItem, "groundColorToolStripMenuItem");
-           // this.groundColorToolStripMenuItem.Click += new System.EventHandler(this.groundColorToolStripMenuItem_Click);
             // 
             // bindingSourceHud
             // 
@@ -506,6 +520,7 @@
             this.tabControlactions.Controls.Add(this.tabScripts);
             this.tabControlactions.Controls.Add(this.tabPagemessages);
             this.tabControlactions.Controls.Add(this.tabPayload);
+            this.tabControlactions.Controls.Add(this.tabFTS);
             resources.ApplyResources(this.tabControlactions, "tabControlactions");
             this.tabControlactions.Multiline = true;
             this.tabControlactions.Name = "tabControlactions";
@@ -516,6 +531,7 @@
             // 
             // contextMenuStripactionstab
             // 
+            this.contextMenuStripactionstab.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.contextMenuStripactionstab.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.customizeToolStripMenuItem});
             this.contextMenuStripactionstab.Name = "contextMenuStripactionstab";
@@ -560,6 +576,7 @@
             // 
             // contextMenuStripQuickView
             // 
+            this.contextMenuStripQuickView.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.contextMenuStripQuickView.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.setViewCountToolStripMenuItem});
             this.contextMenuStripQuickView.Name = "contextMenuStripQuickView";
@@ -691,6 +708,17 @@
             resources.ApplyResources(this.tabActions, "tabActions");
             this.tabActions.Name = "tabActions";
             this.tabActions.UseVisualStyleBackColor = true;
+            // 
+            // ResetFuel
+            // 
+            this.ResetFuel.ColorMouseDown = System.Drawing.Color.Empty;
+            this.ResetFuel.ColorMouseOver = System.Drawing.Color.Empty;
+            this.ResetFuel.ColorNotEnabled = System.Drawing.Color.Empty;
+            resources.ApplyResources(this.ResetFuel, "ResetFuel");
+            this.ResetFuel.Name = "ResetFuel";
+            this.toolTip1.SetToolTip(this.ResetFuel, resources.GetString("ResetFuel.ToolTip"));
+            this.ResetFuel.UseVisualStyleBackColor = true;
+            this.ResetFuel.Click += new System.EventHandler(this.ResetFuel_Click);
             // 
             // servo5label2
             // 
@@ -1000,7 +1028,7 @@
             // modifyandSet_HR_BreakDelay
             // 
             this.modifyandSet_HR_BreakDelay.ButtonText = "Break Delay";
-            this.modifyandSet_HR_BreakDelay.ButtonVisible = true;
+            this.modifyandSet_HR_BreakDelay.ButtonVisible = false;
             resources.ApplyResources(this.modifyandSet_HR_BreakDelay, "modifyandSet_HR_BreakDelay");
             this.modifyandSet_HR_BreakDelay.Maximum = new decimal(new int[] {
             30,
@@ -1023,7 +1051,7 @@
             // modifyandSet_HR_BreakRadius
             // 
             this.modifyandSet_HR_BreakRadius.ButtonText = "Break Radius";
-            this.modifyandSet_HR_BreakRadius.ButtonVisible = true;
+            this.modifyandSet_HR_BreakRadius.ButtonVisible = false;
             resources.ApplyResources(this.modifyandSet_HR_BreakRadius, "modifyandSet_HR_BreakRadius");
             this.modifyandSet_HR_BreakRadius.Maximum = new decimal(new int[] {
             200,
@@ -1046,7 +1074,7 @@
             // modifyandSet_SR_BreakDelay
             // 
             this.modifyandSet_SR_BreakDelay.ButtonText = "Break Delay";
-            this.modifyandSet_SR_BreakDelay.ButtonVisible = true;
+            this.modifyandSet_SR_BreakDelay.ButtonVisible = false;
             resources.ApplyResources(this.modifyandSet_SR_BreakDelay, "modifyandSet_SR_BreakDelay");
             this.modifyandSet_SR_BreakDelay.Maximum = new decimal(new int[] {
             30,
@@ -1069,7 +1097,7 @@
             // modifyandSet_SR_BreakRadius
             // 
             this.modifyandSet_SR_BreakRadius.ButtonText = "Break Radius";
-            this.modifyandSet_SR_BreakRadius.ButtonVisible = true;
+            this.modifyandSet_SR_BreakRadius.ButtonVisible = false;
             resources.ApplyResources(this.modifyandSet_SR_BreakRadius, "modifyandSet_SR_BreakRadius");
             this.modifyandSet_SR_BreakRadius.Maximum = new decimal(new int[] {
             200,
@@ -1092,7 +1120,7 @@
             // modifyandSet_HL_BreakDelay
             // 
             this.modifyandSet_HL_BreakDelay.ButtonText = "Break Delay";
-            this.modifyandSet_HL_BreakDelay.ButtonVisible = true;
+            this.modifyandSet_HL_BreakDelay.ButtonVisible = false;
             resources.ApplyResources(this.modifyandSet_HL_BreakDelay, "modifyandSet_HL_BreakDelay");
             this.modifyandSet_HL_BreakDelay.Maximum = new decimal(new int[] {
             30,
@@ -1115,7 +1143,7 @@
             // modifyandSet_HL_BreakRadius
             // 
             this.modifyandSet_HL_BreakRadius.ButtonText = "Break Radius";
-            this.modifyandSet_HL_BreakRadius.ButtonVisible = true;
+            this.modifyandSet_HL_BreakRadius.ButtonVisible = false;
             resources.ApplyResources(this.modifyandSet_HL_BreakRadius, "modifyandSet_HL_BreakRadius");
             this.modifyandSet_HL_BreakRadius.Maximum = new decimal(new int[] {
             200,
@@ -1138,7 +1166,7 @@
             // modifyandSet_SL_BreakDelay
             // 
             this.modifyandSet_SL_BreakDelay.ButtonText = "Break Delay";
-            this.modifyandSet_SL_BreakDelay.ButtonVisible = true;
+            this.modifyandSet_SL_BreakDelay.ButtonVisible = false;
             resources.ApplyResources(this.modifyandSet_SL_BreakDelay, "modifyandSet_SL_BreakDelay");
             this.modifyandSet_SL_BreakDelay.Maximum = new decimal(new int[] {
             30,
@@ -1161,7 +1189,7 @@
             // modifyandSet_SL_BreakRadius
             // 
             this.modifyandSet_SL_BreakRadius.ButtonText = "Break Radius";
-            this.modifyandSet_SL_BreakRadius.ButtonVisible = true;
+            this.modifyandSet_SL_BreakRadius.ButtonVisible = false;
             resources.ApplyResources(this.modifyandSet_SL_BreakRadius, "modifyandSet_SL_BreakRadius");
             this.modifyandSet_SL_BreakRadius.Maximum = new decimal(new int[] {
             200,
@@ -1250,7 +1278,7 @@
             // modifyandSetSpeed
             // 
             this.modifyandSetSpeed.ButtonText = "Change Speed";
-            this.modifyandSetSpeed.ButtonVisible = true;
+            this.modifyandSetSpeed.ButtonVisible = false;
             resources.ApplyResources(this.modifyandSetSpeed, "modifyandSetSpeed");
             this.modifyandSetSpeed.Maximum = new decimal(new int[] {
             1000,
@@ -1274,7 +1302,7 @@
             // modifyandSetSlewHeading
             // 
             this.modifyandSetSlewHeading.ButtonText = "Slew to Heading";
-            this.modifyandSetSlewHeading.ButtonVisible = true;
+            this.modifyandSetSlewHeading.ButtonVisible = false;
             resources.ApplyResources(this.modifyandSetSlewHeading, "modifyandSetSlewHeading");
             this.modifyandSetSlewHeading.Maximum = new decimal(new int[] {
             360,
@@ -1298,7 +1326,7 @@
             // modifyandSetSlewAlt
             // 
             this.modifyandSetSlewAlt.ButtonText = "Slew to Alt";
-            this.modifyandSetSlewAlt.ButtonVisible = true;
+            this.modifyandSetSlewAlt.ButtonVisible = false;
             resources.ApplyResources(this.modifyandSetSlewAlt, "modifyandSetSlewAlt");
             this.modifyandSetSlewAlt.Maximum = new decimal(new int[] {
             1000,
@@ -1322,7 +1350,7 @@
             // modifyandSetSlewSpeed
             // 
             this.modifyandSetSlewSpeed.ButtonText = "Slew to Speed";
-            this.modifyandSetSlewSpeed.ButtonVisible = true;
+            this.modifyandSetSlewSpeed.ButtonVisible = false;
             resources.ApplyResources(this.modifyandSetSlewSpeed, "modifyandSetSlewSpeed");
             this.modifyandSetSlewSpeed.Maximum = new decimal(new int[] {
             1000,
@@ -1346,7 +1374,7 @@
             // modifyandSetLoiterRad
             // 
             this.modifyandSetLoiterRad.ButtonText = "Set Loiter Rad";
-            this.modifyandSetLoiterRad.ButtonVisible = true;
+            this.modifyandSetLoiterRad.ButtonVisible = false;
             resources.ApplyResources(this.modifyandSetLoiterRad, "modifyandSetLoiterRad");
             this.modifyandSetLoiterRad.Maximum = new decimal(new int[] {
             10000,
@@ -1369,7 +1397,7 @@
             // modifyandSetAlt
             // 
             this.modifyandSetAlt.ButtonText = "Change Alt";
-            this.modifyandSetAlt.ButtonVisible = true;
+            this.modifyandSetAlt.ButtonVisible = false;
             resources.ApplyResources(this.modifyandSetAlt, "modifyandSetAlt");
             this.modifyandSetAlt.Maximum = new decimal(new int[] {
             1000,
@@ -2418,6 +2446,87 @@
             resources.ApplyResources(this.TXT_gimbalPitchPos, "TXT_gimbalPitchPos");
             this.TXT_gimbalPitchPos.Name = "TXT_gimbalPitchPos";
             // 
+            // tabFTS
+            // 
+            this.tabFTS.Controls.Add(this.lblFTSTermState);
+            this.tabFTS.Controls.Add(this.label19);
+            this.tabFTS.Controls.Add(this.btnFTSManualTerminate);
+            this.tabFTS.Controls.Add(this.lblFTSTermHealth);
+            this.tabFTS.Controls.Add(this.label15);
+            this.tabFTS.Controls.Add(this.lblFTSRxRSSI);
+            this.tabFTS.Controls.Add(this.label18);
+            this.tabFTS.Controls.Add(this.lblFTSTxRSSI);
+            this.tabFTS.Controls.Add(this.label16);
+            this.tabFTS.Controls.Add(this.lblFTSLinkStatus);
+            this.tabFTS.Controls.Add(this.label13);
+            this.tabFTS.Controls.Add(this.label12);
+            resources.ApplyResources(this.tabFTS, "tabFTS");
+            this.tabFTS.Name = "tabFTS";
+            this.tabFTS.UseVisualStyleBackColor = true;
+            // 
+            // lblFTSTermState
+            // 
+            resources.ApplyResources(this.lblFTSTermState, "lblFTSTermState");
+            this.lblFTSTermState.Name = "lblFTSTermState";
+            // 
+            // label19
+            // 
+            resources.ApplyResources(this.label19, "label19");
+            this.label19.Name = "label19";
+            // 
+            // btnFTSManualTerminate
+            // 
+            this.btnFTSManualTerminate.BackColor = System.Drawing.Color.Red;
+            resources.ApplyResources(this.btnFTSManualTerminate, "btnFTSManualTerminate");
+            this.btnFTSManualTerminate.Name = "btnFTSManualTerminate";
+            this.btnFTSManualTerminate.UseVisualStyleBackColor = false;
+            this.btnFTSManualTerminate.Click += new System.EventHandler(this.btnFTSManualTerminate_Click);
+            // 
+            // lblFTSTermHealth
+            // 
+            resources.ApplyResources(this.lblFTSTermHealth, "lblFTSTermHealth");
+            this.lblFTSTermHealth.Name = "lblFTSTermHealth";
+            // 
+            // label15
+            // 
+            resources.ApplyResources(this.label15, "label15");
+            this.label15.Name = "label15";
+            // 
+            // lblFTSRxRSSI
+            // 
+            resources.ApplyResources(this.lblFTSRxRSSI, "lblFTSRxRSSI");
+            this.lblFTSRxRSSI.Name = "lblFTSRxRSSI";
+            // 
+            // label18
+            // 
+            resources.ApplyResources(this.label18, "label18");
+            this.label18.Name = "label18";
+            // 
+            // lblFTSTxRSSI
+            // 
+            resources.ApplyResources(this.lblFTSTxRSSI, "lblFTSTxRSSI");
+            this.lblFTSTxRSSI.Name = "lblFTSTxRSSI";
+            // 
+            // label16
+            // 
+            resources.ApplyResources(this.label16, "label16");
+            this.label16.Name = "label16";
+            // 
+            // lblFTSLinkStatus
+            // 
+            resources.ApplyResources(this.lblFTSLinkStatus, "lblFTSLinkStatus");
+            this.lblFTSLinkStatus.Name = "lblFTSLinkStatus";
+            // 
+            // label13
+            // 
+            resources.ApplyResources(this.label13, "label13");
+            this.label13.Name = "label13";
+            // 
+            // label12
+            // 
+            resources.ApplyResources(this.label12, "label12");
+            this.label12.Name = "label12";
+            // 
             // tableMap
             // 
             resources.ApplyResources(this.tableMap, "tableMap");
@@ -2452,7 +2561,6 @@
             // 
             // zg1
             // 
-            // 
             resources.ApplyResources(this.zg1, "zg1");
             this.zg1.Name = "zg1";
             this.zg1.ScrollGrace = 0D;
@@ -2466,6 +2574,7 @@
             // 
             // contextMenuStripMap
             // 
+            this.contextMenuStripMap.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.contextMenuStripMap.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.goHereToolStripMenuItem,
             this.flyToHereAltToolStripMenuItem,
@@ -2608,7 +2717,7 @@
             this.windDir1.BackColor = System.Drawing.Color.Transparent;
             this.windDir1.DataBindings.Add(new System.Windows.Forms.Binding("Direction", this.bindingSource1, "wind_dir", true, System.Windows.Forms.DataSourceUpdateMode.Never));
             this.windDir1.DataBindings.Add(new System.Windows.Forms.Binding("Speed", this.bindingSource1, "wind_vel", true, System.Windows.Forms.DataSourceUpdateMode.Never));
-            this.windDir1.Direction = 180D;
+            this.windDir1.Direction = 0D;
             resources.ApplyResources(this.windDir1, "windDir1");
             this.windDir1.Name = "windDir1";
             this.windDir1.Speed = 0D;
@@ -2825,17 +2934,6 @@
             // 
             this.bindingSourceStatusTab.DataSource = typeof(MissionPlanner.CurrentState);
             // 
-            // ResetFuel
-            // 
-            this.ResetFuel.ColorMouseDown = System.Drawing.Color.Empty;
-            this.ResetFuel.ColorMouseOver = System.Drawing.Color.Empty;
-            this.ResetFuel.ColorNotEnabled = System.Drawing.Color.Empty;
-            resources.ApplyResources(this.ResetFuel, "ResetFuel");
-            this.ResetFuel.Name = "ResetFuel";
-            this.toolTip1.SetToolTip(this.ResetFuel, resources.GetString("ResetFuel.ToolTip"));
-            this.ResetFuel.UseVisualStyleBackColor = true;
-            this.ResetFuel.Click += new System.EventHandler(this.ResetFuel_Click);
-            // 
             // FlightData
             // 
             this.Controls.Add(this.MainH);
@@ -2891,6 +2989,8 @@
             this.groupBoxPitch.ResumeLayout(false);
             this.groupBoxPitch.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarPitch)).EndInit();
+            this.tabFTS.ResumeLayout(false);
+            this.tabFTS.PerformLayout();
             this.tableMap.ResumeLayout(false);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
@@ -3113,5 +3213,18 @@
         private System.Windows.Forms.Label servo5label2;
         private Controls.ServoOptions servoOptions1a;
         private Controls.MyButton ResetFuel;
+        private System.Windows.Forms.TabPage tabFTS;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label lblFTSRxRSSI;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.Label lblFTSTxRSSI;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Label lblFTSLinkStatus;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label lblFTSTermHealth;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Button btnFTSManualTerminate;
+        private System.Windows.Forms.Label lblFTSTermState;
+        private System.Windows.Forms.Label label19;
     }
 }

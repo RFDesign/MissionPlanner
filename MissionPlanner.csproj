@@ -338,6 +338,7 @@
     <Compile Include="FollowMe.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FTS.cs" />
     <Compile Include="GCSViews\ConfigurationView\ConfigHWIDs.cs">
       <SubType>UserControl</SubType>
     </Compile>
