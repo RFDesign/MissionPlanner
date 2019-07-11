@@ -24,13 +24,25 @@ namespace FTS
             return MissionPlanner.MainV2.comPort.MAV.cs.linkqualitygcs;
         }
 
+        static float GetRSSIAsdBm(float CSValue)
+        {
+            if (CSValue == 0)
+            {
+                return float.NaN;
+            }
+            else
+            {
+                return (CSValue / 2) - 152;
+            }
+        }
+
         /// <summary>
         /// Get rx RSSI.
         /// </summary>
         /// <returns></returns>
         public static float GetRxRSSI()
         {
-            return MissionPlanner.MainV2.comPort.MAV.cs.rssi;
+            return GetRSSIAsdBm(MissionPlanner.MainV2.comPort.MAV.cs.rssi);
         }
 
         /// <summary>
@@ -39,7 +51,7 @@ namespace FTS
         /// <returns></returns>
         public static float GetTxRSSI()
         {
-            return MissionPlanner.MainV2.comPort.MAV.cs.remrssi;
+            return GetRSSIAsdBm(MissionPlanner.MainV2.comPort.MAV.cs.remrssi);
         }
 
         public static bool GetFTSHealth()

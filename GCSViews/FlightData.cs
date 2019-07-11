@@ -1471,12 +1471,24 @@ namespace MissionPlanner.GCSViews
             Console.WriteLine("FD Main loop exit");
         }
 
+        void SetRSSILabel(System.Windows.Forms.Label L, float RSSI)
+        {
+            if (float.IsNaN(RSSI))
+            {
+                L.Text = "--";
+            }
+            else
+            {
+                L.Text = RSSI.ToString("F0") + "dBm";
+            }
+        }
+
         void UpdateFTS()
         {
             btnFTSManualTerminate.BackColor = Color.Red;
             lblFTSLinkStatus.Text = FTS.Manager.GetLinkStatus().ToString("F0") + "%";
-            lblFTSRxRSSI.Text = FTS.Manager.GetRxRSSI().ToString("F") + "dBm";
-            lblFTSTxRSSI.Text = FTS.Manager.GetTxRSSI().ToString("F") + "dBm";
+            SetRSSILabel(lblFTSRxRSSI, FTS.Manager.GetRxRSSI());
+            SetRSSILabel(lblFTSTxRSSI, FTS.Manager.GetTxRSSI());
             lblFTSTermHealth.Text = FTS.Manager.GetFTSHealth() ? "OK" : "Failure";
             lblFTSTermState.Text = FTS.Manager.GetRemoteStateDescription(FTS.Manager.GetRemoteState());
         }

@@ -3822,7 +3822,10 @@ Please check the following
                             && (message.compid == 68) && (message.sysid != 63))
                         {
                             // update the current mav - this will make the rssi jump around if using a newer firmware with multiple rssi packets
-                            //MAVlist[sysidcurrent, compidcurrent].addPacket(message);
+                            if (RadioStatusAccept.GetShouldAcceptRadioStatusAsSysIDCurrent(message.sysid))
+                            {
+                                MAVlist[sysidcurrent, compidcurrent].addPacket(message);
+                            }
                             // update the target mav
                             MAVlist[message.sysid, compidcurrent].addPacket(message);
                         }
@@ -5160,6 +5163,59 @@ Please check the following
 
             logreadmode = false;
             logplaybackfile = null;
+        }
+
+        static class RadioStatusAccept
+        {
+            static byte _LastRadioStatusSysID = 0;
+            static System.Diagnostics.Stopwatch _LastRadioStatusSysIDChange = new System.Diagnostics.Stopwatch();
+            static bool _EverGotRadioStatus = false;
+            const int TIMEOUT = 10000;
+
+            /// <summary>
+            /// Determines whether we should accept a radio status message as being from sysidcurrent.  Basically, this deals with the
+            /// possibility that we're receiving radio status data from multiple radios.  If we are receiving radio status data from multiple
+            /// radios, we should only accept them as being from the sys ID given in the radio status message.  If we're only receiving radio
+            /// status data from one sys ID, we can use the kludge of also assuming it's from sysidcurrent.  
+            /// </summary>
+            /// <param name="MsgSysID">The sys ID given in the received message.</param>
+            /// <returns>true if can also assume it is from sysidcurrent, false if not.</returns>
+            public static bool GetShouldAcceptRadioStatusAsSysIDCurrent(byte MsgSysID)
+            {
+                //If this function has ever been called before...
+                if (_EverGotRadioStatus)
+                {
+                    //If the message sys ID is different to the last one received...
+                    if (MsgSysID != _LastRadioStatusSysID)
+                    {
+                        //Remember this new message sys ID.
+                        _LastRadioStatusSysID = MsgSysID;
+                        //Restart the stopwatch.
+                        _LastRadioStatusSysIDChange.Restart();
+                    }
+
+                    //If the stopwatch is running...
+                    if (_LastRadioStatusSysIDChange.IsRunning)
+                    {
+                        //We should only start accepting radio status data once the stopwatch has timed out.
+                        return _LastRadioStatusSysIDChange.ElapsedMilliseconds > TIMEOUT;
+                    }
+                    else
+                    {
+                        //The stop watch isn't running, so we've only ever got radio status from one radio, so we can accept this.  
+                        return true;
+                    }
+                }
+                else
+                {
+                    //First time function has been called.
+                    _EverGotRadioStatus = true;
+                    _LastRadioStatusSysID = MsgSysID;
+                    return true;
+                }
+            }
+
+
         }
     }
 
