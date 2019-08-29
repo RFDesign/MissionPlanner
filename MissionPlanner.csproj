@@ -1348,14 +1348,6 @@
     <Compile Include="Warnings\WarningsManager.Designer.cs">
       <DependentUpon>WarningsManager.cs</DependentUpon>
     </Compile>
-    <Compile Include="GCSViews\VehicleStatus.Designer.cs"><DependentUpon>VehicleStatus.cs</DependentUpon> </Compile>
-    <Compile Include="GCSViews\VehicleStatusView\ComponentLife.Designer.cs"><DependentUpon>ComponentLife.cs</DependentUpon> </Compile>
-    <Compile Include="GCSViews\VehicleStatusView\ElectricalStatus.Designer.cs"><DependentUpon>ElectricalStatus.cs</DependentUpon> </Compile>
-    <Compile Include="GCSViews\VehicleStatusView\EngineStatus.Designer.cs"><DependentUpon>EngineStatus.cs</DependentUpon> </Compile>
-    <Compile Include="GCSViews\VehicleStatusView\ServiceInfo.Designer.cs"><DependentUpon>ServiceInfo.cs</DependentUpon> </Compile>
-    <Compile Include="GCSViews\VehicleStatusView\VehicleOverview.Designer.cs"><DependentUpon>VehicleOverview.cs</DependentUpon> </Compile>
-    <Compile Include="GCSViews\VehicleStatusView\VehicleOverview\EngineHealth.Designer.cs"><DependentUpon>EngineHealth.cs</DependentUpon> </Compile>
-    <Compile Include="GCSViews\VehicleStatusView\VehicleOverview\VehicleDiagram.Designer.cs"><DependentUpon>VehicleDiagram.cs</DependentUpon> </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Controls\ConnectionOptions.resx">
