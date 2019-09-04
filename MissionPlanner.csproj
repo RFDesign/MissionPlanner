@@ -422,6 +422,13 @@
     <Compile Include="GCSViews\ConfigurationView\ConfigUserDefined.Designer.cs">
       <DependentUpon>ConfigUserDefined.cs</DependentUpon>
     </Compile>
+    <Compile Include="GCSViews\VehicleStatusView\Arbitration.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GCSViews\VehicleStatusView\Arbitration.Designer.cs">
+      <DependentUpon>Arbitration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GCSViews\VehicleStatusView\CANDiagram.cs" />
     <Compile Include="Joystick\JoystickAxis.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -445,22 +452,54 @@
     <Compile Include="Utilities\AltitudeAngel\MissionPlannerStateAdapter.cs" />
     <Compile Include="Utilities\NativeLibrary.cs" />
     <Compile Include="Utilities\Speech.cs" />
-    <Compile Include="GCSViews\VehicleStatus.cs" />
-    <Compile Include="GCSViews\VehicleStatus.Designer.cs" />
-    <Compile Include="GCSViews\VehicleStatusView\ComponentLife.cs" />
-    <Compile Include="GCSViews\VehicleStatusView\ComponentLife.Designer.cs" />
-    <Compile Include="GCSViews\VehicleStatusView\ElectricalStatus.cs" />
-    <Compile Include="GCSViews\VehicleStatusView\ElectricalStatus.Designer.cs" />
-    <Compile Include="GCSViews\VehicleStatusView\EngineStatus.cs" />
-    <Compile Include="GCSViews\VehicleStatusView\EngineStatus.Designer.cs" />
-    <Compile Include="GCSViews\VehicleStatusView\ServiceInfo.cs" />
-    <Compile Include="GCSViews\VehicleStatusView\ServiceInfo.Designer.cs" />
-    <Compile Include="GCSViews\VehicleStatusView\VehicleOverview.cs" />
-    <Compile Include="GCSViews\VehicleStatusView\VehicleOverview.Designer.cs" />
-    <Compile Include="GCSViews\VehicleStatusView\VehicleOverview\EngineHealth.cs" />
-    <Compile Include="GCSViews\VehicleStatusView\VehicleOverview\EngineHealth.Designer.cs" />
-    <Compile Include="GCSViews\VehicleStatusView\VehicleOverview\VehicleDiagram.cs" />
-    <Compile Include="GCSViews\VehicleStatusView\VehicleOverview\VehicleDiagram.Designer.cs" />
+    <Compile Include="GCSViews\VehicleStatus.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GCSViews\VehicleStatus.Designer.cs">
+      <DependentUpon>VehicleStatus.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GCSViews\VehicleStatusView\ComponentLife.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GCSViews\VehicleStatusView\ComponentLife.Designer.cs">
+      <DependentUpon>ComponentLife.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GCSViews\VehicleStatusView\ElectricalStatus.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GCSViews\VehicleStatusView\ElectricalStatus.Designer.cs">
+      <DependentUpon>ElectricalStatus.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GCSViews\VehicleStatusView\EngineStatus.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GCSViews\VehicleStatusView\EngineStatus.Designer.cs">
+      <DependentUpon>EngineStatus.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GCSViews\VehicleStatusView\ServiceInfo.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GCSViews\VehicleStatusView\ServiceInfo.Designer.cs">
+      <DependentUpon>ServiceInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GCSViews\VehicleStatusView\VehicleOverview.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GCSViews\VehicleStatusView\VehicleOverview.Designer.cs">
+      <DependentUpon>VehicleOverview.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GCSViews\VehicleStatusView\VehicleOverview\EngineHealth.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GCSViews\VehicleStatusView\VehicleOverview\EngineHealth.Designer.cs">
+      <DependentUpon>EngineHealth.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GCSViews\VehicleStatusView\VehicleOverview\VehicleDiagram.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GCSViews\VehicleStatusView\VehicleOverview\VehicleDiagram.Designer.cs">
+      <DependentUpon>VehicleDiagram.cs</DependentUpon>
+    </Compile>
     <Compile Include="Utilities\SSHTerminal.cs" />
     <Compile Include="Utilities\XTermRBGColors.cs" />
     <Compile Include="Controls\GenOTP.cs">
@@ -673,6 +712,9 @@
     <EmbeddedResource Include="GCSViews\ConfigurationView\ConfigUserDefined.resx">
       <DependentUpon>ConfigUserDefined.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="GCSViews\VehicleStatusView\Arbitration.resx">
+      <DependentUpon>Arbitration.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Joystick\JoystickAxis.resx" />
     <EmbeddedResource Include="Log\LogStrings.resx">
       <DependentUpon>LogStrings.cs</DependentUpon>
@@ -692,27 +734,69 @@
     <Compile Include="Controls\MavlinkNumericUpDown.cs">
       <SubType>Component</SubType>
     </Compile>
-	<EmbeddedResource Include="GCSViews\VehicleStatus.ar.resx" />
-	<EmbeddedResource Include="GCSViews\VehicleStatus.de-DE.resx" />
-	<EmbeddedResource Include="GCSViews\VehicleStatus.es-ES.resx" />
-	<EmbeddedResource Include="GCSViews\VehicleStatus.fr.resx" />
-	<EmbeddedResource Include="GCSViews\VehicleStatus.id-ID.resx" />
-	<EmbeddedResource Include="GCSViews\VehicleStatus.it-IT.resx" />
-	<EmbeddedResource Include="GCSViews\VehicleStatus.ja-JP.resx" />
-	<EmbeddedResource Include="GCSViews\VehicleStatus.ko-KR.resx" />
-	<EmbeddedResource Include="GCSViews\VehicleStatus.pl.resx" />
-	<EmbeddedResource Include="GCSViews\VehicleStatus.pt.resx" />
-	<EmbeddedResource Include="GCSViews\VehicleStatus.resx" />
-	<EmbeddedResource Include="GCSViews\VehicleStatus.ru-RU.resx" />
-	<EmbeddedResource Include="GCSViews\VehicleStatus.zh-Hans.resx" />
-	<EmbeddedResource Include="GCSViews\VehicleStatus.zh-Hant.resx" />
-	<EmbeddedResource Include="GCSViews\VehicleStatus.zh-TW.resx" />
-	<EmbeddedResource Include="GCSViews\VehicleStatusView\ComponentLife.resx" />
-	<EmbeddedResource Include="GCSViews\VehicleStatusView\ElectricalStatus.resx" />
-	<EmbeddedResource Include="GCSViews\VehicleStatusView\EngineStatus.resx" />
-	<EmbeddedResource Include="GCSViews\VehicleStatusView\VehicleOverview.resx" />
-	<EmbeddedResource Include="GCSViews\VehicleStatusView\VehicleOverview\EngineHealth.resx" />
-	<EmbeddedResource Include="GCSViews\VehicleStatusView\VehicleOverview\VehicleDiagram.resx" />
+    <EmbeddedResource Include="GCSViews\VehicleStatus.ar.resx">
+      <DependentUpon>VehicleStatus.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GCSViews\VehicleStatus.de-DE.resx">
+      <DependentUpon>VehicleStatus.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GCSViews\VehicleStatus.es-ES.resx">
+      <DependentUpon>VehicleStatus.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GCSViews\VehicleStatus.fr.resx">
+      <DependentUpon>VehicleStatus.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GCSViews\VehicleStatus.id-ID.resx">
+      <DependentUpon>VehicleStatus.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GCSViews\VehicleStatus.it-IT.resx">
+      <DependentUpon>VehicleStatus.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GCSViews\VehicleStatus.ja-JP.resx">
+      <DependentUpon>VehicleStatus.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GCSViews\VehicleStatus.ko-KR.resx">
+      <DependentUpon>VehicleStatus.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GCSViews\VehicleStatus.pl.resx">
+      <DependentUpon>VehicleStatus.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GCSViews\VehicleStatus.pt.resx">
+      <DependentUpon>VehicleStatus.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GCSViews\VehicleStatus.resx">
+      <DependentUpon>VehicleStatus.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GCSViews\VehicleStatus.ru-RU.resx">
+      <DependentUpon>VehicleStatus.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GCSViews\VehicleStatus.zh-Hans.resx">
+      <DependentUpon>VehicleStatus.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GCSViews\VehicleStatus.zh-Hant.resx">
+      <DependentUpon>VehicleStatus.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GCSViews\VehicleStatus.zh-TW.resx">
+      <DependentUpon>VehicleStatus.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GCSViews\VehicleStatusView\ComponentLife.resx">
+      <DependentUpon>ComponentLife.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GCSViews\VehicleStatusView\ElectricalStatus.resx">
+      <DependentUpon>ElectricalStatus.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GCSViews\VehicleStatusView\EngineStatus.resx">
+      <DependentUpon>EngineStatus.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GCSViews\VehicleStatusView\VehicleOverview.resx">
+      <DependentUpon>VehicleOverview.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GCSViews\VehicleStatusView\VehicleOverview\EngineHealth.resx">
+      <DependentUpon>EngineHealth.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GCSViews\VehicleStatusView\VehicleOverview\VehicleDiagram.resx">
+      <DependentUpon>VehicleDiagram.cs</DependentUpon>
+    </EmbeddedResource>
     <Compile Include="Controls\MAVLinkParamChanged.cs" />
     <Compile Include="Controls\ModifyandSet.cs">
       <SubType>UserControl</SubType>

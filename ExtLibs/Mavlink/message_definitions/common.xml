@@ -2917,6 +2917,18 @@
         <description>Release parachute.</description>
       </entry>
     </enum>
+    <enum name="ARB_FUNCTIONAL_STATE">
+      <description>Enumeration of the arbitration functional state</description>
+      <entry value="0" name="ARB_FUNCTIONAL_STATE_STANDBY">
+        <description>Standby</description>
+      </entry>
+      <entry value="1" name="ARB_FUNCTIONAL_STATE_ACTIVE">
+        <description>Active</description>
+      </entry>
+      <entry value="2" name="ARB_FUNCTIONAL_STATE_UNKNOWN">
+        <description>Unknown</description>
+      </entry>
+    </enum>
   </enums>
   <messages>
     <message id="0" name="HEARTBEAT">
@@ -4683,5 +4695,18 @@
       <field type="uint32_t" name="FaultBits">Fault Bits 2? 32 bit</field>
       <field type="uint32_t[32]" name="FaultStartSec"></field>
 	  </message>
+    <message id="12100" name="ARB_USE_FC">
+      <description>For passing on a use flight controller message received by a flight controller.</description>
+      <field type="uint8_t" name="BusID">The bus ID</field>
+      <field type="uint8_t" name="BusIDToUse">The bus ID to use</field>
+      <field type="uint64_t" name="UniqueID">The unqiue ID of the arbiter</field>
+    </message>
+    <message id="12101" name="ARB_FC_STATUS">
+      <description>For passing on flight controller arbitration status.</description>
+      <field type="uint8_t" name="FunctionalState" enum="MAV_ARB_FUNCTIONAL_STATE">The functional state</field>
+      <field type="uint64_t" name="UpTime">The uptime in milliseconds</field>
+      <field type="uint64_t" name="TimeInState">The time in state in milliseconds</field>
+      <field type="float" name="EKFErrorScore">The EKF error score 0 to 1</field>
+    </message>
   </messages>
 </mavlink>

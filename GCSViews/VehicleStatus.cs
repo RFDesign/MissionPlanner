@@ -43,6 +43,7 @@ namespace MissionPlanner.GCSViews
             AddBackstageViewPage(typeof(VehicleStatusView.EngineStatus), "Engine Status");
             AddBackstageViewPage(typeof(MissionPlanner.GCSViews.VehicleStatusView.ComponentLife), "Component Life");
             AddBackstageViewPage(typeof(MissionPlanner.GCSViews.VehicleStatusView.ServiceInfo), "Service Info");
+            AddBackstageViewPage(typeof(MissionPlanner.GCSViews.VehicleStatusView.Arbitration), "Arbitration");
             backstageView.ActivatePage(start);
         }
 

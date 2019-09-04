@@ -1450,6 +1450,13 @@ namespace MissionPlanner
                 return _EngineStatus;
             }
         }
+        public RFD.Arbitration.TArbitrationState Arbitration
+        {
+            get
+            {
+                return _ArbitrationStatus.State;
+            }
+        }
 
         // HIL
         public int hilch1;// { get; set; }
@@ -1497,6 +1504,7 @@ namespace MissionPlanner
         internal bool MONO = false;
 
         RFD.EngineMonitor.TVehicleStatus _EngineStatus = new RFD.EngineMonitor.TVehicleStatus();
+        RFD.Arbitration.TMAVLinkParser _ArbitrationStatus = new RFD.Arbitration.TMAVLinkParser();
 
         static CurrentState()
         {
@@ -2881,6 +2889,7 @@ namespace MissionPlanner
                     }
 
                     _EngineStatus.CheckPackets(MAV);
+                    _ArbitrationStatus.CheckPackets(MAV, MAV.sysid, MAV.compid);
                 }
 
                 try

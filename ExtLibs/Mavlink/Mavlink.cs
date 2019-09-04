@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 
 public partial class MAVLink
 {
-    public const string MAVLINK_BUILD_DATE = "Fri Aug 23 2019";
+    public const string MAVLINK_BUILD_DATE = "Thu Aug 29 2019";
     public const string MAVLINK_WIRE_PROTOCOL_VERSION = "2.0";
     public const int MAVLINK_MAX_PAYLOAD_LEN = 255;
 
@@ -257,12 +257,14 @@ public partial class MAVLink
         new message_info(11030, "ESC_TELEMETRY_1_TO_4", 144, 44, 44, typeof( mavlink_esc_telemetry_1_to_4_t )),
         new message_info(11031, "ESC_TELEMETRY_5_TO_8", 133, 44, 44, typeof( mavlink_esc_telemetry_5_to_8_t )),
         new message_info(11032, "ESC_TELEMETRY_9_TO_12", 85, 44, 44, typeof( mavlink_esc_telemetry_9_to_12_t )),
-		new message_info(12000, "ICE_ENGINE_DATA", 105, 114, 114, typeof( mavlink_ice_engine_data_t )),
-		new message_info(12001, "ICE_ENGINE_STATUS", 248, 170, 170, typeof( mavlink_ice_engine_status_t )),
-		new message_info(12002, "ICE_ENGINE_EXH_TEMP_1", 145, 201, 201, typeof( mavlink_ice_engine_exh_temp_1_t )),
-		new message_info(12003, "ICE_ENGINE_EXH_TEMP_2", 179, 201, 201, typeof( mavlink_ice_engine_exh_temp_2_t )),
-		new message_info(12004, "ICE_ENGINE_FAULT_STATS_1", 77, 133, 133, typeof( mavlink_ice_engine_fault_stats_1_t )),
-		new message_info(12005, "ICE_ENGINE_FAULT_STATS_2", 80, 133, 133, typeof( mavlink_ice_engine_fault_stats_2_t )),
+        new message_info(12000, "ICE_ENGINE_DATA", 105, 114, 114, typeof( mavlink_ice_engine_data_t )),
+        new message_info(12001, "ICE_ENGINE_STATUS", 248, 170, 170, typeof( mavlink_ice_engine_status_t )),
+        new message_info(12002, "ICE_ENGINE_EXH_TEMP_1", 145, 201, 201, typeof( mavlink_ice_engine_exh_temp_1_t )),
+        new message_info(12003, "ICE_ENGINE_EXH_TEMP_2", 179, 201, 201, typeof( mavlink_ice_engine_exh_temp_2_t )),
+        new message_info(12004, "ICE_ENGINE_FAULT_STATS_1", 77, 133, 133, typeof( mavlink_ice_engine_fault_stats_1_t )),
+        new message_info(12005, "ICE_ENGINE_FAULT_STATS_2", 80, 133, 133, typeof( mavlink_ice_engine_fault_stats_2_t )),
+        new message_info(12100, "ARB_USE_FC", 200, 10, 10, typeof( mavlink_arb_use_fc_t )),
+        new message_info(12101, "ARB_FC_STATUS", 74, 21, 21, typeof( mavlink_arb_fc_status_t )),
         new message_info(42000, "ICAROUS_HEARTBEAT", 227, 1, 1, typeof( mavlink_icarous_heartbeat_t )),
         new message_info(42001, "ICAROUS_KINEMATIC_BANDS", 239, 46, 46, typeof( mavlink_icarous_kinematic_bands_t )),
 
@@ -521,16 +523,19 @@ public partial class MAVLink
         ESC_TELEMETRY_1_TO_4 = 11030,
         ESC_TELEMETRY_5_TO_8 = 11031,
         ESC_TELEMETRY_9_TO_12 = 11032,
-		ICE_ENGINE_DATA = 12000,
-		ICE_ENGINE_STATUS = 12001,
-		ICE_ENGINE_EXH_TEMP_1 = 12002,
-		ICE_ENGINE_EXH_TEMP_2 = 12003,
-		ICE_ENGINE_FAULT_STATS_1 = 12004,
-		ICE_ENGINE_FAULT_STATS_2 = 12005,
+        ICE_ENGINE_DATA = 12000,
+        ICE_ENGINE_STATUS = 12001,
+        ICE_ENGINE_EXH_TEMP_1 = 12002,
+        ICE_ENGINE_EXH_TEMP_2 = 12003,
+        ICE_ENGINE_FAULT_STATS_1 = 12004,
+        ICE_ENGINE_FAULT_STATS_2 = 12005,
+        ARB_USE_FC = 12100,
+        ARB_FC_STATUS = 12101,
         ICAROUS_HEARTBEAT = 42000,
         ICAROUS_KINEMATIC_BANDS = 42001,
     }
-        
+    
+    
     ///<summary>  </summary>
     public enum ACCELCAL_VEHICLE_POS: int /*default*/
     {
@@ -966,7 +971,7 @@ public partial class MAVLink
         ///<summary> FLY button has been clicked. |Empty.| Empty.| Empty.| Empty.| Empty.| Empty.| Empty.|  </summary>
         [Description("FLY button has been clicked.")]
         SOLO_BTN_FLY_CLICK=42001, 
-        ///<summary> FLY button has been held for 1.5 seconds. |Takeoff altitude.| Empty.| Empty.| Empty.| Empty.| Empty.| Empty.|  </summary>
+        ///<summary> FLY button has been held for 1.5 seconds. |altitude.| Empty.| Empty.| Empty.| Empty.| Empty.| Empty.|  </summary>
         [Description("FLY button has been held for 1.5 seconds.")]
         SOLO_BTN_FLY_HOLD=42002, 
         ///<summary> PAUSE button has been clicked. |1 if Solo is in a shot mode, 0 otherwise.| Empty.| Empty.| Empty.| Empty.| Empty.| Empty.|  </summary>
@@ -978,7 +983,7 @@ public partial class MAVLink
         ///<summary> Magnetometer calibration based on fixed expected field values in milliGauss. |FieldX.| FieldY.| FieldZ.| Empty.| Empty.| Empty.| Empty.|  </summary>
         [Description("Magnetometer calibration based on fixed expected field values in milliGauss.")]
         FIXED_MAG_CAL_FIELD=42005, 
-        ///<summary> Initiate a magnetometer calibration. |uint8_t bitmask of magnetometers (0 means all).| Automatically retry on failure (0=no retry, 1=retry).| quire input, 1=autosave).| Delay (seconds).| Autoreboot (0=user reboot, 1=autoreboot).| Empty.| Empty.|  </summary>
+        ///<summary> Initiate a magnetometer calibration. |uint8_t bitmask of magnetometers (0 means all).| Automatically retry on failure (0=no retry, 1=retry).| Save without user input (0=require input, 1=autosave).| Delay (seconds).| Autoreboot (0=user reboot, 1=autoreboot).| Empty.| Empty.|  </summary>
         [Description("Initiate a magnetometer calibration.")]
         DO_START_MAG_CAL=42424, 
         ///<summary> Initiate a magnetometer calibration. |uint8_t bitmask of magnetometers (0 means all).| Empty.| Empty.| Empty.| Empty.| Empty.| Empty.|  </summary>
@@ -1014,7 +1019,7 @@ public partial class MAVLink
         ///<summary> Update the bootloader |Empty| Empty| Empty| Empty| Magic number - set to 290876 to actually flash| Empty| Empty|  </summary>
         [Description("Update the bootloader")]
         FLASH_BOOTLOADER=42650, 
-        ///<summary> Reset battery capacity for batteries that accumulate consumed battery via integration. |to reset. Least significant bit is for the first battery.| Battery percentage remaining to set.| Reserved, send 0| Reserved, send 0| Reserved, send 0| Reserved, send 0| Reserved, send 0|  </summary>
+        ///<summary> Reset battery capacity for batteries that accumulate consumed battery via integration. |Bitmask of batteries to reset. Least significant bit is for the first battery.| Battery percentage remaining to set.| Reserved, send 0| Reserved, send 0| Reserved, send 0| Reserved, send 0| Reserved, send 0|  </summary>
         [Description("Reset battery capacity for batteries that accumulate consumed battery via integration.")]
         BATTERY_RESET=42651, 
     
@@ -4015,6 +4020,21 @@ public partial class MAVLink
         ///<summary> Release parachute. | </summary>
         [Description("Release parachute.")]
         PARACHUTE_RELEASE=2, 
+    
+    };
+    
+    ///<summary> Enumeration of the arbitration functional state </summary>
+    public enum ARB_FUNCTIONAL_STATE: int /*default*/
+    {
+            ///<summary> Standby | </summary>
+        [Description("Standby")]
+        STANDBY=0, 
+        ///<summary> Active | </summary>
+        [Description("Active")]
+        ACTIVE=1, 
+        ///<summary> Unknown | </summary>
+        [Description("Unknown")]
+        UNKNOWN=2, 
     
     };
     
@@ -14822,41 +14842,96 @@ public partial class MAVLink
     ///<summary> For reporting short-term internal combustion engine status </summary>
     public struct mavlink_ice_engine_data_t
     {
-        /// <summary> Fault Bits ? 64 bit fields uint64 </summary>
+        public mavlink_ice_engine_data_t(ulong FaultBits,float ICERPM,float Duty8BitCh0,float Duty8BitCh1,float Duty8BitCh2,float ICEEngDegC,float ICEExhDegC,float Health,uint ServiceSecs,ushort ICEMotServoUS,ushort DCMotServoUS,ushort ThrustReqUS,ushort IgnCutReqUS,ushort[] ICEVibX,ushort[] ICEVibY,byte EngineNumber,byte ICEIgnCut) 
+        {
+              this.FaultBits = FaultBits;
+              this.ICERPM = ICERPM;
+              this.Duty8BitCh0 = Duty8BitCh0;
+              this.Duty8BitCh1 = Duty8BitCh1;
+              this.Duty8BitCh2 = Duty8BitCh2;
+              this.ICEEngDegC = ICEEngDegC;
+              this.ICEExhDegC = ICEExhDegC;
+              this.Health = Health;
+              this.ServiceSecs = ServiceSecs;
+              this.ICEMotServoUS = ICEMotServoUS;
+              this.DCMotServoUS = DCMotServoUS;
+              this.ThrustReqUS = ThrustReqUS;
+              this.IgnCutReqUS = IgnCutReqUS;
+              this.ICEVibX = ICEVibX;
+              this.ICEVibY = ICEVibY;
+              this.EngineNumber = EngineNumber;
+              this.ICEIgnCut = ICEIgnCut;
+            
+        }
+        /// <summary>Fault Bits ? 64 bit fields uint64   </summary>
+        [Units("")]
+        [Description("Fault Bits ? 64 bit fields uint64")]
         public  ulong FaultBits;
-            /// <summary> Input ? Rate  (Freq) Ch0 ? Engine RPM </summary>
+            /// <summary>Input ? Rate  (Freq) Ch0 ? Engine RPM   </summary>
+        [Units("")]
+        [Description("Input ? Rate  (Freq) Ch0 ? Engine RPM")]
         public  float ICERPM;
-            /// <summary> Output ? PWM Duty Ch0 ? LED1 (or other) - % float </summary>
+            /// <summary>Output ? PWM Duty Ch0 ? LED1 (or other) - % float   </summary>
+        [Units("")]
+        [Description("Output ? PWM Duty Ch0 ? LED1 (or other) - % float")]
         public  float Duty8BitCh0;
-            /// <summary> Output ? PWM Duty Ch1 ? LED2 (or other) - % float </summary>
+            /// <summary>Output ? PWM Duty Ch1 ? LED2 (or other) - % float   </summary>
+        [Units("")]
+        [Description("Output ? PWM Duty Ch1 ? LED2 (or other) - % float")]
         public  float Duty8BitCh1;
-            /// <summary> Output ? PWM Duty Ch2 ? LED3 (or other) - % float </summary>
+            /// <summary>Output ? PWM Duty Ch2 ? LED3 (or other) - % float   </summary>
+        [Units("")]
+        [Description("Output ? PWM Duty Ch2 ? LED3 (or other) - % float")]
         public  float Duty8BitCh2;
-            /// <summary> Input ? ADC Ch0 ? Engine Temp ? degC  float </summary>
+            /// <summary>Input ? ADC Ch0 ? Engine Temp ? degC  float   </summary>
+        [Units("")]
+        [Description("Input ? ADC Ch0 ? Engine Temp ? degC  float")]
         public  float ICEEngDegC;
-            /// <summary> Input ? ADC Ch1 ? Exhaust Temp ? degC  float </summary>
+            /// <summary>Input ? ADC Ch1 ? Exhaust Temp ? degC  float   </summary>
+        [Units("")]
+        [Description("Input ? ADC Ch1 ? Exhaust Temp ? degC  float")]
         public  float ICEExhDegC;
-            /// <summary> Inferred - Engine Health - 0-65535 </summary>
+            /// <summary>Inferred - Engine Health - 0-65535   </summary>
+        [Units("")]
+        [Description("Inferred - Engine Health - 0-65535")]
         public  float Health;
-            /// <summary> Inferred ? Service seconds ? seconds uint32 </summary>
+            /// <summary>Inferred ? Service seconds ? seconds uint32   </summary>
+        [Units("")]
+        [Description("Inferred ? Service seconds ? seconds uint32")]
         public  uint ServiceSecs;
-            /// <summary> Output. Pulse Width Ch0. Petrol Engine Throttle </summary>
+            /// <summary>Output. Pulse Width Ch0. Petrol Engine Throttle   </summary>
+        [Units("")]
+        [Description("Output. Pulse Width Ch0. Petrol Engine Throttle")]
         public  ushort ICEMotServoUS;
-            /// <summary> Output ? Pulse Width Ch1 ? Electric Engine Throttle </summary>
+            /// <summary>Output ? Pulse Width Ch1 ? Electric Engine Throttle   </summary>
+        [Units("")]
+        [Description("Output ? Pulse Width Ch1 ? Electric Engine Throttle")]
         public  ushort DCMotServoUS;
-            /// <summary> Input ? Rate (Width) Ch1 ? Thrust Input (Will use CAN later) </summary>
+            /// <summary>Input ? Rate (Width) Ch1 ? Thrust Input (Will use CAN later)   </summary>
+        [Units("")]
+        [Description("Input ? Rate (Width) Ch1 ? Thrust Input (Will use CAN later)")]
         public  ushort ThrustReqUS;
-            /// <summary> Input ? Rate(Width) Ch2 ? Ignition Cut (Will use CAN later)  (also will be Pulse counter in Copter Monitor) </summary>
+            /// <summary>Input ? Rate(Width) Ch2 ? Ignition Cut (Will use CAN later)  (also will be Pulse counter in Copter Monitor)   </summary>
+        [Units("")]
+        [Description("Input ? Rate(Width) Ch2 ? Ignition Cut (Will use CAN later)  (also will be Pulse counter in Copter Monitor)")]
         public  ushort IgnCutReqUS;
-            /// <summary> Input ? Noise/Vibration Ch0 ? Engine X Vibration ? uint16[16] </summary>
+            /// <summary>Input ? Noise/Vibration Ch0 ? Engine X Vibration ? uint16[16]   </summary>
+        [Units("")]
+        [Description("Input ? Noise/Vibration Ch0 ? Engine X Vibration ? uint16[16]")]
         [MarshalAs(UnmanagedType.ByValArray,SizeConst=16)]
-		public UInt16[] ICEVibX;
-            /// <summary> Input ? Noise/Vibration Ch1 ? Engine Y Vibration ? uint16[16] </summary>
+		public ushort[] ICEVibX;
+            /// <summary>Input ? Noise/Vibration Ch1 ? Engine Y Vibration ? uint16[16]   </summary>
+        [Units("")]
+        [Description("Input ? Noise/Vibration Ch1 ? Engine Y Vibration ? uint16[16]")]
         [MarshalAs(UnmanagedType.ByValArray,SizeConst=16)]
-		public UInt16[] ICEVibY;
-            /// <summary> The engine number </summary>
+		public ushort[] ICEVibY;
+            /// <summary>The engine number   </summary>
+        [Units("")]
+        [Description("The engine number")]
         public  byte EngineNumber;
-            /// <summary> Output ? P Chan FET Ch0 ? Ignition Cut ? bool </summary>
+            /// <summary>Output ? P Chan FET Ch0 ? Ignition Cut ? bool   </summary>
+        [Units("")]
+        [Description("Output ? P Chan FET Ch0 ? Ignition Cut ? bool")]
         public  byte ICEIgnCut;
     
     };
@@ -14866,15 +14941,31 @@ public partial class MAVLink
     ///<summary> For reporting long-term internal combustion engine status/statistics </summary>
     public struct mavlink_ice_engine_status_t
     {
-        /// <summary> Engine RPM Bins ? mins in RPM bins(1000RPM) ? minutes uint32[10] </summary>
+        public mavlink_ice_engine_status_t(uint[] ICE1000RPM,uint[] ICEEng10degC,byte EngineNumber,byte Numof_Engines) 
+        {
+              this.ICE1000RPM = ICE1000RPM;
+              this.ICEEng10degC = ICEEng10degC;
+              this.EngineNumber = EngineNumber;
+              this.Numof_Engines = Numof_Engines;
+            
+        }
+        /// <summary>Engine RPM Bins ? mins in RPM bins(1000RPM) ? minutes uint32[10]   </summary>
+        [Units("")]
+        [Description("Engine RPM Bins ? mins in RPM bins(1000RPM) ? minutes uint32[10]")]
         [MarshalAs(UnmanagedType.ByValArray,SizeConst=10)]
-		public UInt32[] ICE1000RPM;
-            /// <summary> Temp Ch0 Bins ENGT ? seconds in 10 deg bins uint32[32] </summary>
+		public uint[] ICE1000RPM;
+            /// <summary>Temp Ch0 Bins ENGT ? seconds in 10 deg bins uint32[32]   </summary>
+        [Units("")]
+        [Description("Temp Ch0 Bins ENGT ? seconds in 10 deg bins uint32[32]")]
         [MarshalAs(UnmanagedType.ByValArray,SizeConst=32)]
-		public UInt32[] ICEEng10degC;
-            /// <summary> The engine number </summary>
+		public uint[] ICEEng10degC;
+            /// <summary>The engine number   </summary>
+        [Units("")]
+        [Description("The engine number")]
         public  byte EngineNumber;
-            /// <summary> Total Number of Engines </summary>
+            /// <summary>Total Number of Engines   </summary>
+        [Units("")]
+        [Description("Total Number of Engines")]
         public  byte Numof_Engines;
     
     };
@@ -14884,10 +14975,20 @@ public partial class MAVLink
     ///<summary> For reporting long-term internal combustion engine exhaust temperature status/statistics </summary>
     public struct mavlink_ice_engine_exh_temp_1_t
     {
-        /// <summary> Temp Ch0 Bins EXHT ? seconds in 10 deg bins, 0-500deg C </summary>
+        public mavlink_ice_engine_exh_temp_1_t(uint[] ICEExh10degC,byte EngineNumber) 
+        {
+              this.ICEExh10degC = ICEExh10degC;
+              this.EngineNumber = EngineNumber;
+            
+        }
+        /// <summary>Temp Ch0 Bins EXHT ? seconds in 10 deg bins, 0-500deg C   </summary>
+        [Units("")]
+        [Description("Temp Ch0 Bins EXHT ? seconds in 10 deg bins, 0-500deg C")]
         [MarshalAs(UnmanagedType.ByValArray,SizeConst=50)]
-		public UInt32[] ICEExh10degC;
-            /// <summary> The engine number </summary>
+		public uint[] ICEExh10degC;
+            /// <summary>The engine number   </summary>
+        [Units("")]
+        [Description("The engine number")]
         public  byte EngineNumber;
     
     };
@@ -14897,10 +14998,20 @@ public partial class MAVLink
     ///<summary> For reporting long-term internal combustion engine exhaust temperature status/statistics </summary>
     public struct mavlink_ice_engine_exh_temp_2_t
     {
-        /// <summary> Temp Ch0 Bins EXHT ? seconds in 10 deg bins, 500-990deg C </summary>
+        public mavlink_ice_engine_exh_temp_2_t(uint[] ICEExh10degC,byte EngineNumber) 
+        {
+              this.ICEExh10degC = ICEExh10degC;
+              this.EngineNumber = EngineNumber;
+            
+        }
+        /// <summary>Temp Ch0 Bins EXHT ? seconds in 10 deg bins, 500-990deg C   </summary>
+        [Units("")]
+        [Description("Temp Ch0 Bins EXHT ? seconds in 10 deg bins, 500-990deg C")]
         [MarshalAs(UnmanagedType.ByValArray,SizeConst=50)]
-		public UInt32[] ICEExh10degC;
-            /// <summary> The engine number </summary>
+		public uint[] ICEExh10degC;
+            /// <summary>The engine number   </summary>
+        [Units("")]
+        [Description("The engine number")]
         public  byte EngineNumber;
     
     };
@@ -14910,12 +15021,25 @@ public partial class MAVLink
     ///<summary> For reporting long-term internal combustion engine fault status/statistics </summary>
     public struct mavlink_ice_engine_fault_stats_1_t
     {
-        /// <summary> Fault Bits 1? 32 bit </summary>
+        public mavlink_ice_engine_fault_stats_1_t(uint FaultBits,uint[] FaultStartSec,byte EngineNumber) 
+        {
+              this.FaultBits = FaultBits;
+              this.FaultStartSec = FaultStartSec;
+              this.EngineNumber = EngineNumber;
+            
+        }
+        /// <summary>Fault Bits 1? 32 bit   </summary>
+        [Units("")]
+        [Description("Fault Bits 1? 32 bit")]
         public  uint FaultBits;
-            /// <summary>  </summary>
+            /// <summary>   </summary>
+        [Units("")]
+        [Description("")]
         [MarshalAs(UnmanagedType.ByValArray,SizeConst=32)]
-		public UInt32[] FaultStartSec;
-            /// <summary> The engine number </summary>
+		public uint[] FaultStartSec;
+            /// <summary>The engine number   </summary>
+        [Units("")]
+        [Description("The engine number")]
         public  byte EngineNumber;
     
     };
@@ -14925,13 +15049,85 @@ public partial class MAVLink
     ///<summary> For reporting long-term internal combustion engine fault status/statistics </summary>
     public struct mavlink_ice_engine_fault_stats_2_t
     {
-        /// <summary> Fault Bits 2? 32 bit </summary>
+        public mavlink_ice_engine_fault_stats_2_t(uint FaultBits,uint[] FaultStartSec,byte EngineNumber) 
+        {
+              this.FaultBits = FaultBits;
+              this.FaultStartSec = FaultStartSec;
+              this.EngineNumber = EngineNumber;
+            
+        }
+        /// <summary>Fault Bits 2? 32 bit   </summary>
+        [Units("")]
+        [Description("Fault Bits 2? 32 bit")]
         public  uint FaultBits;
-            /// <summary>  </summary>
+            /// <summary>   </summary>
+        [Units("")]
+        [Description("")]
         [MarshalAs(UnmanagedType.ByValArray,SizeConst=32)]
-		public UInt32[] FaultStartSec;
-            /// <summary> The engine number </summary>
+		public uint[] FaultStartSec;
+            /// <summary>The engine number   </summary>
+        [Units("")]
+        [Description("The engine number")]
         public  byte EngineNumber;
+    
+    };
+
+
+    [StructLayout(LayoutKind.Sequential,Pack=1,Size=10)]
+    ///<summary> For passing on a use flight controller message received by a flight controller. </summary>
+    public struct mavlink_arb_use_fc_t
+    {
+        public mavlink_arb_use_fc_t(ulong UniqueID,byte BusID,byte BusIDToUse) 
+        {
+              this.UniqueID = UniqueID;
+              this.BusID = BusID;
+              this.BusIDToUse = BusIDToUse;
+            
+        }
+        /// <summary>The unqiue ID of the arbiter   </summary>
+        [Units("")]
+        [Description("The unqiue ID of the arbiter")]
+        public  ulong UniqueID;
+            /// <summary>The bus ID   </summary>
+        [Units("")]
+        [Description("The bus ID")]
+        public  byte BusID;
+            /// <summary>The bus ID to use   </summary>
+        [Units("")]
+        [Description("The bus ID to use")]
+        public  byte BusIDToUse;
+    
+    };
+
+
+    [StructLayout(LayoutKind.Sequential,Pack=1,Size=21)]
+    ///<summary> For passing on flight controller arbitration status. </summary>
+    public struct mavlink_arb_fc_status_t
+    {
+        public mavlink_arb_fc_status_t(ulong UpTime,ulong TimeInState,float EKFErrorScore,/*MAV_ARB_FUNCTIONAL_STATE*/byte FunctionalState) 
+        {
+              this.UpTime = UpTime;
+              this.TimeInState = TimeInState;
+              this.EKFErrorScore = EKFErrorScore;
+              this.FunctionalState = FunctionalState;
+            
+        }
+        /// <summary>The uptime in milliseconds   </summary>
+        [Units("")]
+        [Description("The uptime in milliseconds")]
+        public  ulong UpTime;
+            /// <summary>The time in state in milliseconds   </summary>
+        [Units("")]
+        [Description("The time in state in milliseconds")]
+        public  ulong TimeInState;
+            /// <summary>The EKF error score 0 to 1   </summary>
+        [Units("")]
+        [Description("The EKF error score 0 to 1")]
+        public  float EKFErrorScore;
+            /// <summary>The functional state MAV_ARB_FUNCTIONAL_STATE  </summary>
+        [Units("")]
+        [Description("The functional state")]
+        public  /*MAV_ARB_FUNCTIONAL_STATE*/byte FunctionalState;
     
     };
 
