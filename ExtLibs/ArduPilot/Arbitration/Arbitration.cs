@@ -47,6 +47,7 @@ namespace RFD.Arbitration
         public readonly UInt64 TimeInState;
         public readonly UInt64 UpTime;
         public readonly float EKFErrorScore;
+        readonly UInt64 _TickStamp;
 
         public TRxDataFromFlightController(TFunctionalState FS,
             UInt64 TimeInState, UInt64 UpTime, float EKFErrorScore)
@@ -55,6 +56,23 @@ namespace RFD.Arbitration
             this.TimeInState = TimeInState;
             this.UpTime = UpTime;
             this.EKFErrorScore = EKFErrorScore;
+            _TickStamp = RFDLib.Time.Time.GetTicks();
+        }
+
+        public UInt64 TimeInStateUpdated
+        {
+            get
+            {
+                return TimeInState + RFDLib.Time.Time.GetTicksSince(_TickStamp);
+            }
+        }
+
+        public UInt64 UpTimeUpdated
+        {
+            get
+            {
+                return UpTime + RFDLib.Time.Time.GetTicksSince(_TickStamp);
+            }
         }
     }
 
@@ -125,8 +143,8 @@ namespace RFD.Arbitration
 
             foreach (var kvp in _FCData)
             {
-                TStatus.TFlightController FC = new TStatus.TFlightController(kvp.Value.FS, kvp.Value.TimeInState, 
-                    kvp.Value.EKFErrorScore, kvp.Value.UpTime, GetBusIDForFC(kvp.Key));
+                TStatus.TFlightController FC = new TStatus.TFlightController(kvp.Value.FS, kvp.Value.TimeInStateUpdated, 
+                    kvp.Value.EKFErrorScore, kvp.Value.UpTimeUpdated, GetBusIDForFC(kvp.Key));
                 FCs.Add(FC);
                 FCIDs.Add(kvp.Key);
             }
