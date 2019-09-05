@@ -13,6 +13,7 @@ namespace RFD.MonsterCopter.GUI.CANDiagram
         /// orange
         /// </summary>
         static readonly Color STANDBY_COLOUR = Color.FromArgb(255, 100, 0);
+        static readonly Color UNKNOWN_COLOUR = Color.Gray;
         static readonly Color ARBITER_COLOUR = Color.LightBlue;
         static readonly Color CAN_BUS_COLOUR = Color.White;
         static readonly Color BOX_TEXT_COLOUR = Color.Black;
@@ -98,6 +99,8 @@ namespace RFD.MonsterCopter.GUI.CANDiagram
                     return "ACTIVE";
                 case RFD.Arbitration.TFunctionalState.STANDBY:
                     return "STANDBY";
+                case Arbitration.TFunctionalState.UNKNOWN:
+                    return "UNKNOWN";
                 default:
                     return "ERROR";
             }
@@ -113,12 +116,20 @@ namespace RFD.MonsterCopter.GUI.CANDiagram
             {
                 return (Milliseconds / 1000).ToString() + "s";
             }
-            else
+            else if (Milliseconds < 3600000)
             {
                 UInt64 Minutes = Milliseconds / 60000;
                 UInt64 Seconds = (Milliseconds - (Minutes * 60000)) / 1000;
 
                 return Minutes.ToString() + "m" + Seconds.ToString() + "s";
+            }
+            else
+            {
+                UInt64 Hours = Milliseconds / 3600000;
+                UInt64 Minutes = (Milliseconds  - (Hours * 3600000)) / 60000;
+                UInt64 Seconds = (Milliseconds - (Hours * 3600000) - (Minutes * 60000)) / 1000;
+
+                return Hours.ToString() + "h" + Minutes.ToString() + "m" + Seconds.ToString() + "s";
             }
         }
 
@@ -130,6 +141,8 @@ namespace RFD.MonsterCopter.GUI.CANDiagram
                     return ACTIVE_COLOUR;
                 case RFD.Arbitration.TFunctionalState.STANDBY:
                     return STANDBY_COLOUR;
+                case Arbitration.TFunctionalState.UNKNOWN:
+                    return UNKNOWN_COLOUR;
                 default:
                     return Color.Black;
             }

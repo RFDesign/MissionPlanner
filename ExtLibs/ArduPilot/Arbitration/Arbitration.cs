@@ -22,12 +22,14 @@ namespace RFD.Arbitration
         /// The unqiue arbiter ID of the message.
         /// </summary>
         public readonly UInt64 UniqueID;
+        public readonly UInt64 TickStamp;
 
         public TRxDataFromArbiter(byte BusID, byte ActiveBusID, UInt64 UniqueID)
         {
             this.BusID = BusID;
             this.ActiveBusID = ActiveBusID;
             this.UniqueID = UniqueID;
+            this.TickStamp = RFDLib.Time.Time.GetTicks();
         }
     }
 
@@ -204,14 +206,52 @@ namespace RFD.Arbitration
             return new TStatus(FCs.ToArray(), ArbList.ToArray());
         }
 
+        int GetBusVotedFor(int QTYBuses)
+        {
+            Dictionary<TArbID, TRxDataFromArbiter> LatestArbData = new Dictionary<TArbID, TRxDataFromArbiter>();
+
+            foreach (var kvpFC in _ArbData)
+            {
+                foreach (var kvpArb in kvpFC.Value)
+                {
+                    if (!LatestArbData.ContainsKey(kvpArb.Key) || (LatestArbData[kvpArb.Key].TickStamp < kvpArb.Value.TickStamp))
+                    {
+                        LatestArbData[kvpArb.Key] = kvpArb.Value;
+                    }
+                }
+            }
+
+            int[] Votes = new int[QTYBuses];
+
+            foreach (var kvp in LatestArbData)
+            {
+                if (kvp.Value.ActiveBusID < QTYBuses)
+                {
+                    Votes[kvp.Value.ActiveBusID]++;
+                }
+            }
+
+            int Winner = -1;
+
+            for (int n = QTYBuses - 1; n > 0; n--)
+            {
+                if (Votes[n] != 0 && (Winner < 0 || Votes[n] > Votes[Winner]))
+                {
+                    Winner = n;
+                }
+            }
+
+            return Winner;
+        }
+
         /// <summary>
         /// Returns a flight controller for building status
         /// </summary>
         /// <param name="BusID">The flight controller bus ID.</param>
         /// <returns>The flight controller object for building status.</returns>
-        TStatus.TFlightController GetFCForStatus(int BusID)
+        TStatus.TFlightController GetFCForStatus(int BusID, int BusVotedFor)
         {
-            TFunctionalState AssumedFS = TFunctionalState.ACTIVE;
+            TFunctionalState AssumedFS = (BusID == BusVotedFor) ? TFunctionalState.ACTIVE : ((BusVotedFor < 0) ? TFunctionalState.UNKNOWN : TFunctionalState.STANDBY);
             float AssumedEKFErrorScore = float.NaN;
             UInt64 AssumedUpTime = TStatus.TFlightController.TIME_UNKNOWN;
 
@@ -225,10 +265,19 @@ namespace RFD.Arbitration
                         {
                             AssumedEKFErrorScore = _FCData[kvpFC.Key].EKFErrorScore;
                             AssumedUpTime = _FCData[kvpFC.Key].UpTimeUpdated;
+                            if (AssumedFS == TFunctionalState.UNKNOWN)
+                            {
+                                AssumedFS = _FCData[kvpFC.Key].FS;
+                            }
                         }
                     }
-
-                    AssumedFS = (kvpArb.Value.ActiveBusID == BusID) ? TFunctionalState.ACTIVE : TFunctionalState.STANDBY;
+                    else
+                    {
+                        if (_FCData.ContainsKey(kvpFC.Key) && (AssumedFS == TFunctionalState.UNKNOWN) && (_FCData[kvpFC.Key].FS == TFunctionalState.ACTIVE))
+                        {
+                            AssumedFS = TFunctionalState.STANDBY;
+                        }
+                    }
                 }
             }
 
@@ -244,10 +293,11 @@ namespace RFD.Arbitration
         public TStatus GetStatusAssumingNFlightControllers(int QTYFlightControllers)
         {
             List<TStatus.TFlightController> FlightControllers = new List<TStatus.TFlightController>();
+            int BusVotedFor = GetBusVotedFor(QTYFlightControllers);
 
             for (int n = 0; n < QTYFlightControllers; n++)
             {
-                FlightControllers.Add(GetFCForStatus(n));
+                FlightControllers.Add(GetFCForStatus(n, BusVotedFor));
             }
 
             return GetStatusAssumingFlightControllers(FlightControllers);
