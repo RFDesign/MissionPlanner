@@ -5,10 +5,22 @@ namespace RFD.Arbitration
 {
     using TArbID = UInt64;
 
+    /// <summary>
+    /// Data forwarded by a flight controller from an arbiter.
+    /// </summary>
     public class TRxDataFromArbiter
     {
+        /// <summary>
+        /// The bus ID of the message.
+        /// </summary>
         public readonly byte BusID;
+        /// <summary>
+        /// The active bus ID of the message.
+        /// </summary>
         public readonly byte ActiveBusID;
+        /// <summary>
+        /// The unqiue arbiter ID of the message.
+        /// </summary>
         public readonly UInt64 UniqueID;
 
         public TRxDataFromArbiter(byte BusID, byte ActiveBusID, UInt64 UniqueID)
@@ -19,6 +31,9 @@ namespace RFD.Arbitration
         }
     }
 
+    /// <summary>
+    /// A unqie flight controller ID.  Used as a key for some of the dictionaries in TArbitrationState
+    /// </summary>
     public struct TFCID
     {
         public readonly byte SysID;
@@ -41,12 +56,30 @@ namespace RFD.Arbitration
         }
     }
 
+    /// <summary>
+    /// Data received from a flight controller.
+    /// </summary>
     public class TRxDataFromFlightController
     {
+        /// <summary>
+        /// The functional state the flight controller is operating in.
+        /// </summary>
         public readonly TFunctionalState FS;
+        /// <summary>
+        /// The time the flight controller has been in the functional state for, in milliseconds.
+        /// </summary>
         public readonly UInt64 TimeInState;
+        /// <summary>
+        /// The amount of time the flight controller has been running for, in milliseconds.
+        /// </summary>
         public readonly UInt64 UpTime;
+        /// <summary>
+        /// The EKF error score of the flight controller.
+        /// </summary>
         public readonly float EKFErrorScore;
+        /// <summary>
+        /// The tick stamp the message was received.
+        /// </summary>
         readonly UInt64 _TickStamp;
 
         public TRxDataFromFlightController(TFunctionalState FS,
@@ -83,18 +116,19 @@ namespace RFD.Arbitration
         UNKNOWN,
     }
 
+    /// <summary>
+    /// The current state of the redundant flight controller / arbitration system.  
+    /// </summary>
     public class TArbitrationState
     {
         Dictionary<TFCID, TArbDataCollection> _ArbData = new Dictionary<TFCID, TArbDataCollection>();
         Dictionary<TFCID, TRxDataFromFlightController> _FCData = new Dictionary<TFCID, TRxDataFromFlightController>();
-        int _ChangeCount = 0;
 
         public void ProcessDataFromArb(TFCID FCID, TRxDataFromArbiter Data)
         {
             if (!_ArbData.ContainsKey(FCID))
             {
                 _ArbData[FCID] = new TArbDataCollection();
-                _ChangeCount++;
             }
             _ArbData[FCID][Data.UniqueID] = Data;
         }
@@ -102,11 +136,6 @@ namespace RFD.Arbitration
         public void ProcessDataFromFC(TFCID FCID, TRxDataFromFlightController Data)
         {
             _FCData[FCID] = Data;
-        }
-
-        public void GotMsg(MAVLink.mavlink_arb_use_fc_t msg)
-        {
-            
         }
 
         byte GetBusIDForFC(TFCID FCID)
@@ -175,11 +204,133 @@ namespace RFD.Arbitration
             return new TStatus(FCs.ToArray(), ArbList.ToArray());
         }
 
+        /// <summary>
+        /// Returns a flight controller for building status
+        /// </summary>
+        /// <param name="BusID">The flight controller bus ID.</param>
+        /// <returns>The flight controller object for building status.</returns>
+        TStatus.TFlightController GetFCForStatus(int BusID)
+        {
+            TFunctionalState AssumedFS = TFunctionalState.ACTIVE;
+            float AssumedEKFErrorScore = float.NaN;
+            UInt64 AssumedUpTime = TStatus.TFlightController.TIME_UNKNOWN;
+
+            foreach (var kvpFC in _ArbData)
+            {
+                foreach (var kvpArb in kvpFC.Value)
+                {
+                    if (kvpArb.Value.BusID == BusID)
+                    {
+                        if (_FCData.ContainsKey(kvpFC.Key))
+                        {
+                            AssumedEKFErrorScore = _FCData[kvpFC.Key].EKFErrorScore;
+                            AssumedUpTime = _FCData[kvpFC.Key].UpTimeUpdated;
+                        }
+                    }
+
+                    AssumedFS = (kvpArb.Value.ActiveBusID == BusID) ? TFunctionalState.ACTIVE : TFunctionalState.STANDBY;
+                }
+            }
+
+            return new TStatus.TFlightController(AssumedFS, TStatus.TFlightController.TIME_UNKNOWN, AssumedEKFErrorScore, 
+                AssumedUpTime, BusID);
+        }
+
+        /// <summary>
+        /// Get the current status assuming there are the given quantity of flight controllers.
+        /// </summary>
+        /// <param name="QTYFlightControllers">The assumed quantity of flight controllers.</param>
+        /// <returns>The current status.  Never null.</returns>
+        public TStatus GetStatusAssumingNFlightControllers(int QTYFlightControllers)
+        {
+            List<TStatus.TFlightController> FlightControllers = new List<TStatus.TFlightController>();
+
+            for (int n = 0; n < QTYFlightControllers; n++)
+            {
+                FlightControllers.Add(GetFCForStatus(n));
+            }
+
+            return GetStatusAssumingFlightControllers(FlightControllers);
+        }
+
+        /// <summary>
+        /// Get the function status deemed to the given bus by the given arbiter.
+        /// </summary>
+        /// <param name="BusID">The bus ID.</param>
+        /// <param name="Arbiter">The arbiter ID.</param>
+        /// <returns>The functional state deemed by the arbiter.</returns>
+        TFunctionalState GetDeeming(int BusID, TArbID Arbiter)
+        {
+            foreach (var kvpFC in _ArbData)
+            {
+                if (kvpFC.Value.ContainsKey(Arbiter))
+                {
+                    return (kvpFC.Value[Arbiter].ActiveBusID == BusID) ? TFunctionalState.ACTIVE : TFunctionalState.STANDBY;
+                }
+            }
+
+            return TFunctionalState.UNKNOWN;
+        }
+
+        /// <summary>
+        /// Get the current system status assuming the given list of flight controllers.
+        /// </summary>
+        /// <param name="FlightControllersIn">The flight controllers.  Must not be null.</param>
+        /// <returns>The current system status.  Never null.</returns>
+        TStatus GetStatusAssumingFlightControllers(List<TStatus.TFlightController> FCs)
+        {
+            Dictionary<TArbID, TStatus.TArbiter> Arbs = new Dictionary<TArbID, TStatus.TArbiter>();
+
+            foreach (var kvp in _ArbData)
+            {
+                foreach (var kvpArb in kvp.Value)
+                {
+                    if (!Arbs.ContainsKey(kvpArb.Key))
+                    {
+                        Arbs[kvpArb.Key] = new TStatus.TArbiter(new TFunctionalState[FCs.Count], kvpArb.Key);
+                    }
+                }
+            }
+
+            foreach (var kvp in Arbs)
+            {
+                for (int n = 0; n < FCs.Count; n++)
+                {
+                    kvp.Value.Deeming[n] = GetDeeming(n, kvp.Key);
+                }
+            }
+
+            List<TStatus.TArbiter> ArbList = new List<TStatus.TArbiter>(Arbs.Values);
+
+            return new TStatus(FCs.ToArray(), ArbList.ToArray());
+        }
+
+        class TFCForStatus
+        {
+            public readonly TFunctionalState FS;
+            public readonly UInt64 TimeInState;
+            public readonly float EKFErrorScore;
+            public readonly UInt64 UpTime;
+            public readonly int BusID;
+
+            public TFCForStatus(TFunctionalState FS, UInt64 TimeInState, float EKFErrorScore, UInt64 UpTime, int BusID)
+            {
+                this.FS = FS;
+                this.TimeInState = TimeInState;
+                this.EKFErrorScore = EKFErrorScore;
+                this.UpTime = UpTime;
+                this.BusID = BusID;
+            }
+        }
+
         class TArbDataCollection : Dictionary<TArbID, TRxDataFromArbiter>
         {
         }
     }
 
+    /// <summary>
+    /// For representing a snapshot of the status of the redundant flight controller/arbitration system.
+    /// </summary>
     public class TStatus
     {
         public readonly TFlightController[] FlightControllers;
@@ -204,6 +355,7 @@ namespace RFD.Arbitration
             /// </summary>
             public readonly UInt64 UpTime;
             public readonly int BusID;
+            public const UInt64 TIME_UNKNOWN = 0xFFFFFFFFFFFFFFFF;
 
             public TFlightController(TFunctionalState FunctionalState, UInt64 TimeInState, float ErrorScore, UInt64 UpTime, int BusID)
             {

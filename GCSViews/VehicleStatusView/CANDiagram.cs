@@ -135,16 +135,27 @@ namespace RFD.MonsterCopter.GUI.CANDiagram
             }
         }
 
+        void AddStringIfTimeKnown(List<string> Strings, UInt64 Time, Func<UInt64, string> TimeToStringFn)
+        {
+            if (Time != RFD.Arbitration.TStatus.TFlightController.TIME_UNKNOWN)
+            {
+                Strings.Add(TimeToStringFn(Time));
+            }
+        }
+
         void DrawFlightController(Graphics G, Point TopLeft, RFD.Arbitration.TStatus.TFlightController FC)
         {
-            string[] Text = new string[5];
-            Text[0] = "Flight Controller";
-            Text[1] = FunctionalStateToString(FC.FunctionalState);
-            Text[2] = "for " + MillisecondsToHumanReadable(FC.TimeInState);
-            Text[3] = "EKF Error score: " + FC.ErrorScore.ToString();
-            Text[4] = "Up time: " + MillisecondsToHumanReadable(FC.UpTime);
+            List<string> Strings = new List<string>();
+            Strings.Add("Flight Controller");
+            Strings.Add(FunctionalStateToString(FC.FunctionalState));
+            AddStringIfTimeKnown(Strings, FC.TimeInState, (t) => "for " + MillisecondsToHumanReadable(t));
+            if (!float.IsNaN(FC.ErrorScore))
+            {
+                Strings.Add("EKF Error score: " + FC.ErrorScore.ToString());
+            }
+            AddStringIfTimeKnown(Strings, FC.UpTime, (t) => "Up time: " + MillisecondsToHumanReadable(t));
 
-            DrawBox(G, TopLeft, FunctionalStateToColour(FC.FunctionalState), Text, FC_SIZE);
+            DrawBox(G, TopLeft, FunctionalStateToColour(FC.FunctionalState), Strings.ToArray(), FC_SIZE);
         }
 
         void DrawArbiter(Graphics G, Point TopLeft, RFD.Arbitration.TStatus.TArbiter Arb)

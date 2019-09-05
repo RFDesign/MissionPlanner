@@ -41,7 +41,7 @@ namespace MissionPlanner.GCSViews.VehicleStatusView
             {
                 System.Drawing.Bitmap BMP = new Bitmap(this.Width, this.Height);
                 var G = System.Drawing.Graphics.FromImage(BMP);
-                _Diagram.Draw(G, comPort.MAV.cs.Arbitration.GetStatus());
+                _Diagram.Draw(G, comPort.MAV.cs.Arbitration.GetStatusAssumingNFlightControllers(3));
                 this.CreateGraphics().DrawImage(BMP, 0, 0);
             }
             catch
