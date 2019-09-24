@@ -239,7 +239,17 @@
         <param index="6">Empty</param>
         <param index="7">Empty</param>
       </entry>
-      <entry value="43000" name="MAV_CMD_GUIDED_CHANGE_SPEED">
+      <entry value="42651" name="MAV_CMD_BATTERY_RESET" hasLocation="false" isDestination="false">
+        <description>Reset battery capacity for batteries that accumulate consumed battery via integration.</description>
+        <param index="1" label="battery mask">Bitmask of batteries to reset. Least significant bit is for the first battery.</param>
+        <param index="2" label="percentage" minValue="0" maxValue="100" increment="1">Battery percentage remaining to set.</param>
+        <param index="3">Reserved, send 0</param>
+        <param index="4">Reserved, send 0</param>
+        <param index="5">Reserved, send 0</param>
+        <param index="6">Reserved, send 0</param>
+        <param index="7">Reserved, send 0</param>
+      </entry>
+	  <entry value="43000" name="MAV_CMD_GUIDED_CHANGE_SPEED">
         <description>Change flight speed (affects guided only)</description>
         <param index="1">Type (see SPEED_TYPE enum)</param>
         <param index="2">Target Speed (m/s)</param>
@@ -321,18 +331,6 @@
       </entry>
       <entry value="2" name="LAND_IMMEDIATELY">
         <description>Flag set when plane is to immediately descend to break altitude and land without GCS intervention. Flag not set when plane is to loiter at Rally point until commanded to land.</description>
-      </entry>
-    </enum>
-    <!-- parachute action enum -->
-    <enum name="PARACHUTE_ACTION">
-      <entry value="0" name="PARACHUTE_DISABLE">
-        <description>Disable parachute release.</description>
-      </entry>
-      <entry value="1" name="PARACHUTE_ENABLE">
-        <description>Enable parachute release.</description>
-      </entry>
-      <entry value="2" name="PARACHUTE_RELEASE">
-        <description>Release parachute.</description>
       </entry>
     </enum>
     <!-- gripper action enum -->
@@ -1000,6 +998,7 @@
       <entry value="19" name="PLANE_MODE_QLOITER"/>
       <entry value="20" name="PLANE_MODE_QLAND"/>
       <entry value="21" name="PLANE_MODE_QRTL"/>
+      <entry value="22" name="PLANE_MODE_QAUTOTUNE"/>
     </enum>
     <enum name="COPTER_MODE">
       <description>A mapping of copter flight modes for custom_mode field of heartbeat.</description>
@@ -1347,8 +1346,8 @@
       <!-- per camera image index, should be unique+sequential within a mission, preferably non-wrapping -->
       <field type="int32_t" name="lat" units="degE7">Latitude.</field>
       <field type="int32_t" name="lng" units="degE7">Longitude.</field>
-      <field type="float" name="alt_msl" units="m">Altitude Absolute (AMSL).</field>
-      <field type="float" name="alt_rel" units="m">Altitude Relative (above HOME location).</field>
+      <field type="float" name="alt_msl" units="m">Altitude (MSL).</field>
+      <field type="float" name="alt_rel" units="m">Altitude (Relative to HOME location).</field>
       <field type="float" name="roll" units="deg">Camera Roll angle (earth frame, +-180).</field>
       <!-- initially only supporting fixed cameras, in future we'll need feedback messages from the gimbal so we can include that offset here -->
       <field type="float" name="pitch" units="deg">Camera Pitch angle (earth frame, +-180).</field>

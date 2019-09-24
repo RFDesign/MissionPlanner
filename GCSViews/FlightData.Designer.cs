@@ -42,6 +42,8 @@
             this.quickView2 = new MissionPlanner.Controls.QuickView();
             this.quickView1 = new MissionPlanner.Controls.QuickView();
             this.tabActions = new System.Windows.Forms.TabPage();
+            this.reset_fuel_new = new MissionPlanner.Controls.MyButton();
+            this.ResetFuel = new MissionPlanner.Controls.MyButton();
             this.servo5label2 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
@@ -209,7 +211,6 @@
             this.dataGridViewImageColumn2 = new System.Windows.Forms.DataGridViewImageColumn();
             this.Messagetabtimer = new System.Windows.Forms.Timer(this.components);
             this.bindingSourceStatusTab = new System.Windows.Forms.BindingSource(this.components);
-            this.ResetFuel = new MissionPlanner.Controls.MyButton();
             ((System.ComponentModel.ISupportInitialize)(this.MainH)).BeginInit();
             this.MainH.Panel1.SuspendLayout();
             this.MainH.Panel2.SuspendLayout();
@@ -485,7 +486,6 @@
             this.groundColorToolStripMenuItem.CheckOnClick = true;
             this.groundColorToolStripMenuItem.Name = "groundColorToolStripMenuItem";
             resources.ApplyResources(this.groundColorToolStripMenuItem, "groundColorToolStripMenuItem");
-           // this.groundColorToolStripMenuItem.Click += new System.EventHandler(this.groundColorToolStripMenuItem_Click);
             // 
             // bindingSourceHud
             // 
@@ -639,6 +639,7 @@
             // 
             // tabActions
             // 
+            this.tabActions.Controls.Add(this.reset_fuel_new);
             this.tabActions.Controls.Add(this.ResetFuel);
             this.tabActions.Controls.Add(this.servo5label2);
             this.tabActions.Controls.Add(this.label10);
@@ -691,6 +692,28 @@
             resources.ApplyResources(this.tabActions, "tabActions");
             this.tabActions.Name = "tabActions";
             this.tabActions.UseVisualStyleBackColor = true;
+            // 
+            // reset_fuel_new
+            // 
+            this.reset_fuel_new.ColorMouseDown = System.Drawing.Color.Empty;
+            this.reset_fuel_new.ColorMouseOver = System.Drawing.Color.Empty;
+            this.reset_fuel_new.ColorNotEnabled = System.Drawing.Color.Empty;
+            resources.ApplyResources(this.reset_fuel_new, "reset_fuel_new");
+            this.reset_fuel_new.Name = "reset_fuel_new";
+            this.toolTip1.SetToolTip(this.reset_fuel_new, resources.GetString("reset_fuel_new.ToolTip"));
+            this.reset_fuel_new.UseVisualStyleBackColor = true;
+            this.reset_fuel_new.Click += new System.EventHandler(this.reset_fuel_new_Click);
+            // 
+            // ResetFuel
+            // 
+            this.ResetFuel.ColorMouseDown = System.Drawing.Color.Empty;
+            this.ResetFuel.ColorMouseOver = System.Drawing.Color.Empty;
+            this.ResetFuel.ColorNotEnabled = System.Drawing.Color.Empty;
+            resources.ApplyResources(this.ResetFuel, "ResetFuel");
+            this.ResetFuel.Name = "ResetFuel";
+            this.toolTip1.SetToolTip(this.ResetFuel, resources.GetString("ResetFuel.ToolTip"));
+            this.ResetFuel.UseVisualStyleBackColor = true;
+            this.ResetFuel.Click += new System.EventHandler(this.ResetFuel_Click);
             // 
             // servo5label2
             // 
@@ -2452,7 +2475,6 @@
             // 
             // zg1
             // 
-            // 
             resources.ApplyResources(this.zg1, "zg1");
             this.zg1.Name = "zg1";
             this.zg1.ScrollGrace = 0D;
@@ -2825,17 +2847,6 @@
             // 
             this.bindingSourceStatusTab.DataSource = typeof(MissionPlanner.CurrentState);
             // 
-            // ResetFuel
-            // 
-            this.ResetFuel.ColorMouseDown = System.Drawing.Color.Empty;
-            this.ResetFuel.ColorMouseOver = System.Drawing.Color.Empty;
-            this.ResetFuel.ColorNotEnabled = System.Drawing.Color.Empty;
-            resources.ApplyResources(this.ResetFuel, "ResetFuel");
-            this.ResetFuel.Name = "ResetFuel";
-            this.toolTip1.SetToolTip(this.ResetFuel, resources.GetString("ResetFuel.ToolTip"));
-            this.ResetFuel.UseVisualStyleBackColor = true;
-            this.ResetFuel.Click += new System.EventHandler(this.ResetFuel_Click);
-            // 
             // FlightData
             // 
             this.Controls.Add(this.MainH);
@@ -3113,5 +3124,6 @@
         private System.Windows.Forms.Label servo5label2;
         private Controls.ServoOptions servoOptions1a;
         private Controls.MyButton ResetFuel;
+        private Controls.MyButton reset_fuel_new;
     }
 }

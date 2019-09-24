@@ -4914,6 +4914,7 @@ namespace MissionPlanner.GCSViews
 
         }
 
+        // old/orig fuel usage button
         private void ResetFuel_Click(object sender, EventArgs e)
         {
 
@@ -4934,14 +4935,29 @@ namespace MissionPlanner.GCSViews
                         );
 
 
+            }
+            catch
+            {
+                CustomMessageBox.Show(Strings.CommandFailed, Strings.ERROR);
+            }
+        }
+
+        // new fuel usage button
+        private void reset_fuel_new_Click(object sender, EventArgs e)
+        {
+            //CustomMessageBox.Show("ResetFuel_Click not imple yet TODO: " + e.ToString());
+            try
+            {
+            
+
                 //const uint16_t battery_mask = packet.param1;
                 //const float percentage = packet.param2;
                 // new battery/fuel reset command
                 Int16 do_battery_num = 3;
-                float reset_to_percentage = 0;
+                float reset_to_percentage = 100; // 100% = full battery.
                 MainV2.comPort.doCommand(
-                        MAV_CMD_BATTERY_RESET,  // 
-                        1 << (do_battery_num-1)  //p1
+                        MAVLink.MAV_CMD.BATTERY_RESET,  // this is the MAV_CMD_BATTERY_RESET packet.
+                        1 << (do_battery_num - 1),  //p1, this sets the least significant bit to 1 for the first/zeroth battery, etc.
                         reset_to_percentage, //p2
                         0, //p3
                         0, //p4
