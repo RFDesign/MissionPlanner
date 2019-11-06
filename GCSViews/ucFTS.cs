@@ -13,6 +13,7 @@ namespace MissionPlanner.GCSViews
     public partial class ucFTS : UserControl
     {
         public readonly FTS.TSingleFTSManager Manager;
+        bool _HasShownTermWindowBefore = false;
 
         public ucFTS(FTS.TSingleFTSManager Manager)
         {
@@ -32,6 +33,36 @@ namespace MissionPlanner.GCSViews
             }
         }
 
+        bool GetIsStateTerminating(FTS.TSingleFTSManager.TRemoteState RS)
+        {
+            switch (RS)
+            {
+                default:
+                case FTS.TSingleFTSManager.TRemoteState.ERROR:
+                case FTS.TSingleFTSManager.TRemoteState.NORMAL:
+                    return false;
+                case FTS.TSingleFTSManager.TRemoteState.TERMINATING_GEOFENCE:
+                case FTS.TSingleFTSManager.TRemoteState.TERMINATING_MANUAL:
+                    return true;
+            }
+        }
+
+        FTS.TSingleFTSManager.TRemoteState GetRemoteState()
+        {
+            var NewState = Manager.GetRemoteState();
+
+            if (GetIsStateTerminating(NewState))
+            {
+                if (!_HasShownTermWindowBefore)
+                {
+                    _HasShownTermWindowBefore = true;
+                    System.Windows.Forms.MessageBox.Show(GetNonNullName() + " has been terminated!");
+                }
+            }
+
+            return NewState;
+        }
+
         public void Update()
         {
             btnFTSManualTerminate.BackColor = Color.Red;
@@ -39,7 +70,20 @@ namespace MissionPlanner.GCSViews
             SetRSSILabel(lblFTSRxRSSI, Manager.GetRxRSSI());
             SetRSSILabel(lblFTSTxRSSI, Manager.GetTxRSSI());
             lblFTSTermHealth.Text = Manager.GetFTSHealth() ? "OK" : "Failure";
-            lblFTSTermState.Text = Manager.GetRemoteStateDescription(Manager.GetRemoteState());
+            lblFTSTermState.Text = Manager.GetRemoteStateDescription(GetRemoteState());
+            switch (GetRemoteState())
+            {
+                case FTS.TSingleFTSManager.TRemoteState.ERROR:
+                case FTS.TSingleFTSManager.TRemoteState.NORMAL:
+                    lblFTSTermState.Font = lblFTSTermHealth.Font;
+                    lblFTSTermState.ForeColor = this.ForeColor;
+                    break;
+                case FTS.TSingleFTSManager.TRemoteState.TERMINATING_GEOFENCE:
+                case FTS.TSingleFTSManager.TRemoteState.TERMINATING_MANUAL:
+                    lblFTSTermState.Font = new Font(lblFTSTermHealth.Font, FontStyle.Bold);
+                    lblFTSTermState.ForeColor = Color.Red;
+                    break;
+            }
 
             string Name = GetName();
             if (Name != null)
@@ -58,13 +102,19 @@ namespace MissionPlanner.GCSViews
             return MissionPlanner.Controls.ConnectionControl.GetConnectionDescription(PSI);
         }
 
-        private void BtnFTSManualTerminate_Click(object sender, EventArgs e)
+        string GetNonNullName()
         {
             var Name = GetName();
             if (Name == null)
             {
                 Name = "this aircraft";
             }
+            return Name;
+        }
+
+        private void BtnFTSManualTerminate_Click(object sender, EventArgs e)
+        {
+            var Name = GetNonNullName();
 
             if (System.Windows.Forms.MessageBox.Show(
                 "Do you really want to DESTROY " + Name + " by manually terminating the flight?", "Destory aircraft?", MessageBoxButtons.YesNoCancel) == DialogResult.Yes)
