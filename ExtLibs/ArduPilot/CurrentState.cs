@@ -843,6 +843,8 @@ namespace MissionPlanner
 
         private double _current2;
 
+        private bool _geofence_breached = false;
+
         [DisplayText("Bat2 Current (Amps)")] public double current3 { get; set; }
         [DisplayText("Bat2 Current (Amps)")] public double current4 { get; set; }
         [DisplayText("Bat2 Current (Amps)")] public double current5 { get; set; }
@@ -947,6 +949,14 @@ namespace MissionPlanner
         }
 
         public PointLatLngAlt TargetLocation { get; set; } = PointLatLngAlt.Zero;
+
+        public bool GeoFenceBreached
+        {
+            get
+            {
+                return _geofence_breached;
+            }
+        }
 
         public float GeoFenceDist
         {
@@ -1771,6 +1781,11 @@ namespace MissionPlanner
                             // fence breached
                             messageHigh = "Fence Breach";
                             messageHighTime = DateTime.Now;
+                            _geofence_breached = true;
+                        }
+                        else
+                        {
+                            _geofence_breached = false;
                         }
 
                         MAV.clearPacket((uint)MAVLink.MAVLINK_MSG_ID.FENCE_STATUS);

@@ -27,6 +27,7 @@ namespace FTS
         MissionPlanner.MAVState _MS;
         System.Diagnostics.Stopwatch _Start;
         Int64 _LastParamRequest = 0;
+        bool _GeofenceTerm = false;
 
         public TSingleFTSManager(MissionPlanner.MAVState MS)
         {
@@ -116,6 +117,7 @@ namespace FTS
                 {
                     if (P.Value == 0)
                     {
+                        _GeofenceTerm = false;
                         return TRemoteState.NORMAL;
                     }
                     else
@@ -128,7 +130,22 @@ namespace FTS
                         }
                         else
                         {
-                            return ((GP.Value == 1) && !_MS.cs.sensors_health.geofence) ? TRemoteState.TERMINATING_GEOFENCE : TRemoteState.TERMINATING_MANUAL;
+                            if (_GeofenceTerm)
+                            {
+                                return TRemoteState.TERMINATING_GEOFENCE;
+                            }
+                            else
+                            {
+                                if ((GP.Value == 1) && _MS.cs.GeoFenceBreached)
+                                {
+                                    _GeofenceTerm = true;
+                                    return TRemoteState.TERMINATING_GEOFENCE;
+                                }
+                                else
+                                {
+                                    return TRemoteState.TERMINATING_MANUAL;
+                                }
+                            }
                         }
                     }
                 }

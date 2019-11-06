@@ -1473,7 +1473,7 @@ namespace MissionPlanner.GCSViews
 
         void UpdateFTS()
         {
-            FTSArray.Update();
+            FTSArray.UpdateGUI();
         }
 
         private double ConvertToDouble(object input)

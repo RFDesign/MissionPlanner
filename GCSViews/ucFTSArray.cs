@@ -46,7 +46,7 @@ namespace MissionPlanner.GCSViews
             return false;
         }
 
-        public void Update()
+        public void UpdateGUI()
         {
             var MavStates = FTS.Manager.GetMavStates();
 
@@ -65,7 +65,7 @@ namespace MissionPlanner.GCSViews
             {
                 if (DoesListContain(MavStates, C.Manager.MS))
                 {
-                    C.Update();
+                    C.UpdateGUI();
                 }
                 else
                 {

@@ -59,11 +59,15 @@ namespace MissionPlanner.GCSViews
                     System.Windows.Forms.MessageBox.Show(GetNonNullName() + " has been terminated!");
                 }
             }
+            else if (NewState == FTS.TSingleFTSManager.TRemoteState.NORMAL)
+            {
+                _HasShownTermWindowBefore = false;
+            }
 
             return NewState;
         }
 
-        public void Update()
+        public void UpdateGUI()
         {
             btnFTSManualTerminate.BackColor = Color.Red;
             lblFTSLinkStatus.Text = Manager.GetLinkStatus().ToString("F0") + "%";
