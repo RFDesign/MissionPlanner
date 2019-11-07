@@ -69,6 +69,8 @@ namespace MissionPlanner
 
         public event EventHandler CommsClose;
 
+        public event Action<string> RxConsoleText;
+
         public static byte gcssysid { get; set; } = 255;
 
         /// <summary>
@@ -3935,6 +3937,29 @@ Please check the following
                         log.Info(DateTime.Now + " " + sev + " " + logdata);
 
                         MAVlist[sysid, compid].cs.messages.Add(logdata);
+
+                        if (logdata.Contains("Fence enabled (autoenabled)"))
+                        {
+                            MAVlist[sysid, compid].cs.RxFenceEnabledMessage();
+                        }
+                        if (logdata.Contains("Geofence loaded"))
+                        {
+                            MAVlist[sysid, compid].cs.RxFenceLoadeMessage();
+                        }
+                        if (logdata.Contains("GPS 1: detected as u-blox at"))
+                        {
+                            MAVlist[sysid, compid].cs.RxGPS1DetectedMessage();
+                        }
+                        if (logdata.Contains("GPS 2: detected as u-blox at"))
+                        {
+                            MAVlist[sysid, compid].cs.RxGPS2DetectedMessage();
+                        }
+
+
+                        if (RxConsoleText != null)
+                        {
+                            RxConsoleText(logdata);
+                        }
 
                         // gymbals etc are a child/slave to the main sysid, this displays the children messages under the current displayed vehicle
                         if (sysid == sysidcurrent && compid != compidcurrent)

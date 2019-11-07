@@ -159,6 +159,63 @@ namespace MissionPlanner
         float _altasl = 0;
         float oldalt = 0;
 
+        bool _GotFenceEnabledMessage = false;
+        bool _GotFenceLoadedMessage = false;
+        bool _GotGPS1DetectedMessage = false;
+        bool _GotGPS2DetectedMessage = false;
+
+        public bool GotFenceEnabledMessage
+        {
+            get
+            {
+                return _GotFenceEnabledMessage;
+            }
+        }
+
+        public bool GotFenceLoadedMessage
+        {
+            get
+            {
+                return _GotFenceLoadedMessage;
+            }
+        }
+
+        public bool GotGPS1DetectedMessage
+        {
+            get
+            {
+                return _GotGPS1DetectedMessage;
+            }
+        }
+
+        public bool GotGPS2DetectedMessage
+        {
+            get
+            {
+                return _GotGPS2DetectedMessage;
+            }
+        }
+
+        public void RxFenceEnabledMessage()
+        {
+            _GotFenceEnabledMessage = true;
+        }
+
+        public void RxFenceLoadeMessage()
+        {
+            _GotFenceLoadedMessage = true;
+        }
+
+        public void RxGPS1DetectedMessage()
+        {
+            _GotGPS1DetectedMessage = true;
+        }
+
+        public void RxGPS2DetectedMessage()
+        {
+            _GotGPS2DetectedMessage = true;
+        }
+
         [DisplayText("Velocity X (ms)")]
         public double vx { get; set; }
         [DisplayText("Velocity Y (ms)")]

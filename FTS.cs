@@ -24,6 +24,7 @@ namespace FTS
     {
         const string TERM_PARAM_NAME = "AFS_TERMINATE";
         const string GEOFENCE_PARAM_NAME = "AFS_GEOFENCE";
+        const string GEOFENCE_PARAM_QTY_POINTS_NAME = "FENCE_TOTAL";
         MissionPlanner.MAVState _MS;
         System.Diagnostics.Stopwatch _Start;
         Int64 _LastParamRequest = 0;
@@ -93,6 +94,26 @@ namespace FTS
             return _MS.cs.hasHeartBeat;
         }
 
+        public bool GetGeofenceLoaded()
+        {
+            /*var P = _MS.param[GEOFENCE_PARAM_QTY_POINTS_NAME];
+
+            if (P == null)
+            {
+                return false;
+            }
+            else
+            {
+                return P.Value >= 3;
+            }*/
+            return _MS.cs.GotFenceLoadedMessage;
+        }
+
+        public bool GetGeofenceEnabled()
+        {
+            return _MS.cs.GotFenceEnabledMessage;
+        }
+
         /// <summary>
         /// Get the remote flight termination state.
         /// </summary>
@@ -156,6 +177,16 @@ namespace FTS
             }
         }
 
+        public TGPSStatus GetGPS1Status()
+        {
+            return new TGPSStatus(_MS.cs.GotGPS1DetectedMessage, (int)_MS.cs.satcount, _MS.cs.gpshdop);
+        }
+
+        public TGPSStatus GetGPS2Status()
+        {
+            return new TGPSStatus(_MS.cs.GotGPS2DetectedMessage, (int)_MS.cs.satcount2, _MS.cs.gpshdop2);
+        }
+
         /// <summary>
         /// Manually terminate the flight
         /// </summary>
@@ -186,6 +217,26 @@ namespace FTS
             NORMAL,
             TERMINATING_MANUAL,
             TERMINATING_GEOFENCE,
+        }
+
+        public class TGPSStatus
+        {
+            public readonly bool IsDetected;
+            /// <summary>
+            /// -1 if unknown.
+            /// </summary>
+            public readonly int QTYSats;
+            /// <summary>
+            /// Nan if unknown.
+            /// </summary>
+            public readonly float HDOP;
+
+            public TGPSStatus(bool IsDetected, int QTYSats, float HDOP)
+            {
+                this.IsDetected = IsDetected;
+                this.QTYSats = QTYSats;
+                this.HDOP = HDOP;
+            }
         }
     }
 }

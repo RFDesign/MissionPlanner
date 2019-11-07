@@ -14,10 +14,16 @@ namespace MissionPlanner.GCSViews
     {
         public readonly FTS.TSingleFTSManager Manager;
         bool _HasShownTermWindowBefore = false;
+        TGPSGroup _GPSGroup1;
+        TGPSGroup _GPSGroup2;
 
         public ucFTS(FTS.TSingleFTSManager Manager)
         {
             InitializeComponent();
+
+            _GPSGroup1 = new TGPSGroup(lblGPS1Detected, lblGPS1SatsHDOP);
+            _GPSGroup2 = new TGPSGroup(lblGPS2Detected, lblGPS2SatsHDOP);
+
             this.Manager = Manager;
         }
 
@@ -25,11 +31,12 @@ namespace MissionPlanner.GCSViews
         {
             if (float.IsNaN(RSSI))
             {
-                L.Text = "--";
+                SetLabelText(L, "--", false);
             }
             else
             {
-                L.Text = RSSI.ToString("F0") + "dBm";
+                bool IsOK = RSSI >= -100;
+                SetLabelText(L, RSSI.ToString("F0") + "dBm", IsOK);
             }
         }
 
@@ -67,25 +74,88 @@ namespace MissionPlanner.GCSViews
             return NewState;
         }
 
+        void SetLabelText(Label L, string Text, bool IsOK)
+        {
+            L.Text = Text;
+            L.ForeColor = IsOK ? Color.Green : Color.Red;
+        }
+
+        void UpdateLinkStatus()
+        {
+            float LinkStatus = Manager.GetLinkStatus();
+            bool IsOK = LinkStatus >= 50;
+
+            SetLabelText(lblFTSLinkStatus, LinkStatus.ToString("F0") + "%", IsOK);
+        }
+
+        void UpdateFTSHealth()
+        {
+            bool Health = Manager.GetFTSHealth();
+            SetLabelText(lblFTSTermHealth, Health ? "OK" : "Failure", Health);
+        }
+
+        void UpdateFenceLoadState()
+        {
+            bool Loaded = Manager.GetGeofenceLoaded();
+            SetLabelText(lblFTSFenceLoadState, Loaded ? "Loaded" : "None", Loaded);
+        }
+
+        void UpdateFenceEnabledState()
+        {
+            bool Enabled = Manager.GetGeofenceEnabled();
+            SetLabelText(lblFTSFenceEnabled, Enabled ? "Enabled" : "Disabled", Enabled);
+        }
+
+        void UpdateFTSTermState()
+        {
+            var State = GetRemoteState();
+            bool IsOK = false;
+            switch (State)
+            {
+                default:
+                case FTS.TSingleFTSManager.TRemoteState.ERROR:
+                case FTS.TSingleFTSManager.TRemoteState.TERMINATING_GEOFENCE:
+                case FTS.TSingleFTSManager.TRemoteState.TERMINATING_MANUAL:
+                    IsOK = false;
+                    break;
+                case FTS.TSingleFTSManager.TRemoteState.NORMAL:
+                    IsOK =  true;
+                    break;
+            }
+
+            SetLabelText(lblFTSTermState, Manager.GetRemoteStateDescription(State), IsOK);
+        }
+
+        void UpdateGPSGroup(TGPSGroup Group, FTS.TSingleFTSManager.TGPSStatus Status)
+        {
+            SetLabelText(Group.lblDetected, Status.IsDetected ? "Yes" : "No", Status.IsDetected);
+            bool IsOK = (Status.QTYSats >= 4) && (Status.HDOP <= 10);
+            string HDOPString;
+            if (Status.QTYSats <= 0)
+            {
+                HDOPString = "--";
+            }
+            else
+            {
+                HDOPString = Status.HDOP.ToString("F2");
+            }
+            SetLabelText(Group.lblSatCountAndHDOP,
+                Status.QTYSats.ToString() + " / " + HDOPString, 
+                IsOK);
+        }
+
         public void UpdateGUI()
         {
             btnFTSManualTerminate.BackColor = Color.Red;
-            lblFTSLinkStatus.Text = Manager.GetLinkStatus().ToString("F0") + "%";
+            UpdateLinkStatus();
             SetRSSILabel(lblFTSRxRSSI, Manager.GetRxRSSI());
             SetRSSILabel(lblFTSTxRSSI, Manager.GetTxRSSI());
-            lblFTSTermHealth.Text = Manager.GetFTSHealth() ? "OK" : "Failure";
-            lblFTSTermState.Text = Manager.GetRemoteStateDescription(GetRemoteState());
-            switch (GetRemoteState())
-            {
-                case FTS.TSingleFTSManager.TRemoteState.ERROR:
-                case FTS.TSingleFTSManager.TRemoteState.NORMAL:
-                    lblFTSTermState.ForeColor = this.ForeColor;
-                    break;
-                case FTS.TSingleFTSManager.TRemoteState.TERMINATING_GEOFENCE:
-                case FTS.TSingleFTSManager.TRemoteState.TERMINATING_MANUAL:
-                    lblFTSTermState.ForeColor = Color.Red;
-                    break;
-            }
+            UpdateFTSHealth();
+            UpdateFTSTermState();
+            UpdateFenceLoadState();
+            UpdateFenceEnabledState();
+            UpdateGPSGroup(_GPSGroup1, Manager.GetGPS1Status());
+            UpdateGPSGroup(_GPSGroup2, Manager.GetGPS2Status());
 
             string Name = GetName();
             if (Name != null)
@@ -128,6 +198,18 @@ namespace MissionPlanner.GCSViews
         private void LblFTSTermState_Click(object sender, EventArgs e)
         {
 
+        }
+
+        public class TGPSGroup
+        {
+            public readonly Label lblDetected;
+            public readonly Label lblSatCountAndHDOP;
+
+            public TGPSGroup(Label lblDetected, Label lblSatCountAndHDOP)
+            {
+                this.lblDetected = lblDetected;
+                this.lblSatCountAndHDOP = lblSatCountAndHDOP;
+            }
         }
     }
 }
