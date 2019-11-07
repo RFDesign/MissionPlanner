@@ -3954,7 +3954,10 @@ Please check the following
                         {
                             MAVlist[sysid, compid].cs.RxGPS2DetectedMessage();
                         }
-
+                        if (logdata.Contains("AFS State:"))
+                        {
+                            MAVlist[sysid, compid].cs.RxAFSState(logdata.Substring(logdata.IndexOf(":", StringComparison.CurrentCulture) + 1).Trim());
+                        }
 
                         if (RxConsoleText != null)
                         {

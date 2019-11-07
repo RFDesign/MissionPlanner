@@ -52,11 +52,15 @@
             this.label16 = new System.Windows.Forms.Label();
             this.lblFTSLinkStatus = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
+            this.lblFTSAFSState = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
             this.GB.SuspendLayout();
             this.SuspendLayout();
             // 
             // GB
             // 
+            this.GB.Controls.Add(this.lblFTSAFSState);
+            this.GB.Controls.Add(this.label6);
             this.GB.Controls.Add(this.lblGPS2SatsHDOP);
             this.GB.Controls.Add(this.label9);
             this.GB.Controls.Add(this.lblGPS2Detected);
@@ -243,9 +247,9 @@
             this.btnFTSManualTerminate.BackColor = System.Drawing.Color.Red;
             this.btnFTSManualTerminate.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold);
             this.btnFTSManualTerminate.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnFTSManualTerminate.Location = new System.Drawing.Point(188, 44);
+            this.btnFTSManualTerminate.Location = new System.Drawing.Point(188, 38);
             this.btnFTSManualTerminate.Name = "btnFTSManualTerminate";
-            this.btnFTSManualTerminate.Size = new System.Drawing.Size(189, 71);
+            this.btnFTSManualTerminate.Size = new System.Drawing.Size(189, 65);
             this.btnFTSManualTerminate.TabIndex = 20;
             this.btnFTSManualTerminate.Text = "Terminate\r\nFlight";
             this.btnFTSManualTerminate.UseVisualStyleBackColor = false;
@@ -335,6 +339,27 @@
             this.label13.TabIndex = 12;
             this.label13.Text = "Link Status:";
             // 
+            // lblFTSAFSState
+            // 
+            this.lblFTSAFSState.AutoSize = true;
+            this.lblFTSAFSState.ForeColor = System.Drawing.Color.Green;
+            this.lblFTSAFSState.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.lblFTSAFSState.Location = new System.Drawing.Point(249, 106);
+            this.lblFTSAFSState.Name = "lblFTSAFSState";
+            this.lblFTSAFSState.Size = new System.Drawing.Size(46, 13);
+            this.lblFTSAFSState.TabIndex = 43;
+            this.lblFTSAFSState.Text = "Enabled";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label6.Location = new System.Drawing.Point(185, 106);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(58, 13);
+            this.label6.TabIndex = 42;
+            this.label6.Text = "AFS State:";
+            // 
             // ucFTS
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -374,5 +399,7 @@
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.Label lblGPS2SatsHDOP;
         private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label lblFTSAFSState;
+        private System.Windows.Forms.Label label6;
     }
 }

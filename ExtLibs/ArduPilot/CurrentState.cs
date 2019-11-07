@@ -163,6 +163,7 @@ namespace MissionPlanner
         bool _GotFenceLoadedMessage = false;
         bool _GotGPS1DetectedMessage = false;
         bool _GotGPS2DetectedMessage = false;
+        string _AFSState = null;
 
         public bool GotFenceEnabledMessage
         {
@@ -196,6 +197,21 @@ namespace MissionPlanner
             }
         }
 
+        public string AFSState
+        {
+            get
+            {
+                if (_AFSState == null)
+                {
+                    return "--";
+                }
+                else
+                {
+                    return _AFSState;
+                }
+            }
+        }
+
         public void RxFenceEnabledMessage()
         {
             _GotFenceEnabledMessage = true;
@@ -214,6 +230,14 @@ namespace MissionPlanner
         public void RxGPS2DetectedMessage()
         {
             _GotGPS2DetectedMessage = true;
+        }
+
+        public void RxAFSState(string State)
+        {
+            if (!State.Contains("COM_LOSS"))
+            {
+                _AFSState = State;
+            }
         }
 
         [DisplayText("Velocity X (ms)")]

@@ -187,6 +187,31 @@ namespace FTS
             return new TGPSStatus(_MS.cs.GotGPS2DetectedMessage, (int)_MS.cs.satcount2, _MS.cs.gpshdop2);
         }
 
+        public string GetAFSStateText()
+        {
+            return _MS.cs.AFSState;
+        }
+
+        public static THealthLevel AFSStateTextToHealthLevel(string Text)
+        {
+            if (Text.Contains("GPS_LOSS permanent"))
+            {
+                return THealthLevel.BAD;
+            }
+            else if (Text.Contains("GPS_LOSS transitional"))
+            {
+                return THealthLevel.WARNING;
+            }
+            else if (Text.Contains("AFS_AUTO"))
+            {
+                return THealthLevel.GOOD;
+            }
+            else
+            {
+                return THealthLevel.WARNING;
+            }
+        }
+
         /// <summary>
         /// Manually terminate the flight
         /// </summary>
@@ -237,6 +262,13 @@ namespace FTS
                 this.QTYSats = QTYSats;
                 this.HDOP = HDOP;
             }
+        }
+
+        public enum THealthLevel
+        {
+            GOOD,
+            WARNING,
+            BAD
         }
     }
 }

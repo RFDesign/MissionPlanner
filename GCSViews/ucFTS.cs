@@ -74,10 +74,27 @@ namespace MissionPlanner.GCSViews
             return NewState;
         }
 
-        void SetLabelText(Label L, string Text, bool IsOK)
+        void SetLabelText(Label L, string Text, FTS.TSingleFTSManager.THealthLevel HL)
         {
             L.Text = Text;
-            L.ForeColor = IsOK ? Color.Green : Color.Red;
+            switch (HL)
+            {
+                case FTS.TSingleFTSManager.THealthLevel.BAD:
+                    L.ForeColor = Color.Red;
+                    break;
+                default:
+                case FTS.TSingleFTSManager.THealthLevel.WARNING:
+                    L.ForeColor = Color.Orange;
+                    break;
+                case FTS.TSingleFTSManager.THealthLevel.GOOD:
+                    L.ForeColor = Color.Green;
+                    break;
+            }
+        }
+
+        void SetLabelText(Label L, string Text, bool IsOK)
+        {
+            SetLabelText(L, Text, IsOK ? FTS.TSingleFTSManager.THealthLevel.GOOD : FTS.TSingleFTSManager.THealthLevel.BAD);
         }
 
         void UpdateLinkStatus()
@@ -144,6 +161,12 @@ namespace MissionPlanner.GCSViews
                 IsOK);
         }
 
+        void UpdateAFSState()
+        {
+            string Text = Manager.GetAFSStateText();
+            SetLabelText(lblFTSAFSState, Text, FTS.TSingleFTSManager.AFSStateTextToHealthLevel(Text));
+        }
+
         public void UpdateGUI()
         {
             btnFTSManualTerminate.BackColor = Color.Red;
@@ -156,6 +179,7 @@ namespace MissionPlanner.GCSViews
             UpdateFenceEnabledState();
             UpdateGPSGroup(_GPSGroup1, Manager.GetGPS1Status());
             UpdateGPSGroup(_GPSGroup2, Manager.GetGPS2Status());
+            UpdateAFSState();
 
             string Name = GetName();
             if (Name != null)
@@ -211,5 +235,6 @@ namespace MissionPlanner.GCSViews
                 this.lblSatCountAndHDOP = lblSatCountAndHDOP;
             }
         }
+
     }
 }
