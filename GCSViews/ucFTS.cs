@@ -235,6 +235,5 @@ namespace MissionPlanner.GCSViews
                 this.lblSatCountAndHDOP = lblSatCountAndHDOP;
             }
         }
-
     }
 }

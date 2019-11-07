@@ -87,7 +87,7 @@
             this.GB.Dock = System.Windows.Forms.DockStyle.Fill;
             this.GB.Location = new System.Drawing.Point(0, 0);
             this.GB.Name = "GB";
-            this.GB.Size = new System.Drawing.Size(395, 134);
+            this.GB.Size = new System.Drawing.Size(395, 144);
             this.GB.TabIndex = 0;
             this.GB.TabStop = false;
             this.GB.Text = "groupBox1";
@@ -97,7 +97,7 @@
             this.lblGPS2SatsHDOP.AutoSize = true;
             this.lblGPS2SatsHDOP.ForeColor = System.Drawing.Color.Green;
             this.lblGPS2SatsHDOP.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblGPS2SatsHDOP.Location = new System.Drawing.Point(289, 114);
+            this.lblGPS2SatsHDOP.Location = new System.Drawing.Point(289, 120);
             this.lblGPS2SatsHDOP.Name = "lblGPS2SatsHDOP";
             this.lblGPS2SatsHDOP.Size = new System.Drawing.Size(39, 13);
             this.lblGPS2SatsHDOP.TabIndex = 41;
@@ -107,7 +107,7 @@
             // 
             this.label9.AutoSize = true;
             this.label9.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label9.Location = new System.Drawing.Point(185, 114);
+            this.label9.Location = new System.Drawing.Point(185, 120);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(101, 13);
             this.label9.TabIndex = 40;
@@ -118,7 +118,7 @@
             this.lblGPS2Detected.AutoSize = true;
             this.lblGPS2Detected.ForeColor = System.Drawing.Color.Green;
             this.lblGPS2Detected.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblGPS2Detected.Location = new System.Drawing.Point(289, 101);
+            this.lblGPS2Detected.Location = new System.Drawing.Point(289, 105);
             this.lblGPS2Detected.Name = "lblGPS2Detected";
             this.lblGPS2Detected.Size = new System.Drawing.Size(25, 13);
             this.lblGPS2Detected.TabIndex = 39;
@@ -128,7 +128,7 @@
             // 
             this.label20.AutoSize = true;
             this.label20.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label20.Location = new System.Drawing.Point(185, 100);
+            this.label20.Location = new System.Drawing.Point(185, 105);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(88, 13);
             this.label20.TabIndex = 37;
@@ -139,7 +139,7 @@
             this.lblGPS1SatsHDOP.AutoSize = true;
             this.lblGPS1SatsHDOP.ForeColor = System.Drawing.Color.Green;
             this.lblGPS1SatsHDOP.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblGPS1SatsHDOP.Location = new System.Drawing.Point(110, 114);
+            this.lblGPS1SatsHDOP.Location = new System.Drawing.Point(110, 120);
             this.lblGPS1SatsHDOP.Name = "lblGPS1SatsHDOP";
             this.lblGPS1SatsHDOP.Size = new System.Drawing.Size(39, 13);
             this.lblGPS1SatsHDOP.TabIndex = 30;
@@ -150,7 +150,7 @@
             this.lblGPS1Detected.AutoSize = true;
             this.lblGPS1Detected.ForeColor = System.Drawing.Color.Green;
             this.lblGPS1Detected.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblGPS1Detected.Location = new System.Drawing.Point(110, 100);
+            this.lblGPS1Detected.Location = new System.Drawing.Point(110, 105);
             this.lblGPS1Detected.Name = "lblGPS1Detected";
             this.lblGPS1Detected.Size = new System.Drawing.Size(25, 13);
             this.lblGPS1Detected.TabIndex = 29;
@@ -161,7 +161,7 @@
             this.lblFTSFenceLoadState.AutoSize = true;
             this.lblFTSFenceLoadState.ForeColor = System.Drawing.Color.Green;
             this.lblFTSFenceLoadState.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblFTSFenceLoadState.Location = new System.Drawing.Point(110, 72);
+            this.lblFTSFenceLoadState.Location = new System.Drawing.Point(110, 75);
             this.lblFTSFenceLoadState.Name = "lblFTSFenceLoadState";
             this.lblFTSFenceLoadState.Size = new System.Drawing.Size(43, 13);
             this.lblFTSFenceLoadState.TabIndex = 28;
@@ -171,7 +171,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label4.Location = new System.Drawing.Point(6, 114);
+            this.label4.Location = new System.Drawing.Point(6, 120);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(101, 13);
             this.label4.TabIndex = 27;
@@ -181,7 +181,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label3.Location = new System.Drawing.Point(6, 100);
+            this.label3.Location = new System.Drawing.Point(6, 105);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(88, 13);
             this.label3.TabIndex = 26;
@@ -191,7 +191,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label2.Location = new System.Drawing.Point(6, 72);
+            this.label2.Location = new System.Drawing.Point(6, 75);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(98, 13);
             this.label2.TabIndex = 25;
@@ -202,7 +202,7 @@
             this.lblFTSFenceEnabled.AutoSize = true;
             this.lblFTSFenceEnabled.ForeColor = System.Drawing.Color.Green;
             this.lblFTSFenceEnabled.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblFTSFenceEnabled.Location = new System.Drawing.Point(110, 86);
+            this.lblFTSFenceEnabled.Location = new System.Drawing.Point(110, 90);
             this.lblFTSFenceEnabled.Name = "lblFTSFenceEnabled";
             this.lblFTSFenceEnabled.Size = new System.Drawing.Size(46, 13);
             this.lblFTSFenceEnabled.TabIndex = 24;
@@ -212,7 +212,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label1.Location = new System.Drawing.Point(6, 86);
+            this.label1.Location = new System.Drawing.Point(6, 90);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(98, 13);
             this.label1.TabIndex = 23;
@@ -224,7 +224,7 @@
             this.lblFTSTermState.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblFTSTermState.ForeColor = System.Drawing.Color.Green;
             this.lblFTSTermState.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblFTSTermState.Location = new System.Drawing.Point(289, 16);
+            this.lblFTSTermState.Location = new System.Drawing.Point(289, 15);
             this.lblFTSTermState.Name = "lblFTSTermState";
             this.lblFTSTermState.Size = new System.Drawing.Size(46, 13);
             this.lblFTSTermState.TabIndex = 22;
@@ -236,7 +236,7 @@
             this.label19.AutoSize = true;
             this.label19.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label19.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label19.Location = new System.Drawing.Point(185, 16);
+            this.label19.Location = new System.Drawing.Point(185, 15);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(77, 13);
             this.label19.TabIndex = 21;
@@ -247,7 +247,7 @@
             this.btnFTSManualTerminate.BackColor = System.Drawing.Color.Red;
             this.btnFTSManualTerminate.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold);
             this.btnFTSManualTerminate.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnFTSManualTerminate.Location = new System.Drawing.Point(188, 30);
+            this.btnFTSManualTerminate.Location = new System.Drawing.Point(188, 32);
             this.btnFTSManualTerminate.Name = "btnFTSManualTerminate";
             this.btnFTSManualTerminate.Size = new System.Drawing.Size(189, 55);
             this.btnFTSManualTerminate.TabIndex = 20;
@@ -260,7 +260,7 @@
             this.lblFTSTermHealth.AutoSize = true;
             this.lblFTSTermHealth.ForeColor = System.Drawing.Color.Green;
             this.lblFTSTermHealth.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblFTSTermHealth.Location = new System.Drawing.Point(110, 58);
+            this.lblFTSTermHealth.Location = new System.Drawing.Point(110, 60);
             this.lblFTSTermHealth.Name = "lblFTSTermHealth";
             this.lblFTSTermHealth.Size = new System.Drawing.Size(22, 13);
             this.lblFTSTermHealth.TabIndex = 19;
@@ -270,7 +270,7 @@
             // 
             this.label15.AutoSize = true;
             this.label15.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label15.Location = new System.Drawing.Point(6, 58);
+            this.label15.Location = new System.Drawing.Point(6, 60);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(87, 13);
             this.label15.TabIndex = 18;
@@ -281,7 +281,7 @@
             this.lblFTSRxRSSI.AutoSize = true;
             this.lblFTSRxRSSI.ForeColor = System.Drawing.Color.Green;
             this.lblFTSRxRSSI.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblFTSRxRSSI.Location = new System.Drawing.Point(110, 44);
+            this.lblFTSRxRSSI.Location = new System.Drawing.Point(110, 45);
             this.lblFTSRxRSSI.Name = "lblFTSRxRSSI";
             this.lblFTSRxRSSI.Size = new System.Drawing.Size(43, 13);
             this.lblFTSRxRSSI.TabIndex = 17;
@@ -291,7 +291,7 @@
             // 
             this.label18.AutoSize = true;
             this.label18.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label18.Location = new System.Drawing.Point(6, 44);
+            this.label18.Location = new System.Drawing.Point(6, 45);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(51, 13);
             this.label18.TabIndex = 16;
@@ -323,7 +323,7 @@
             this.lblFTSLinkStatus.AutoSize = true;
             this.lblFTSLinkStatus.ForeColor = System.Drawing.Color.Green;
             this.lblFTSLinkStatus.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblFTSLinkStatus.Location = new System.Drawing.Point(110, 16);
+            this.lblFTSLinkStatus.Location = new System.Drawing.Point(110, 15);
             this.lblFTSLinkStatus.Name = "lblFTSLinkStatus";
             this.lblFTSLinkStatus.Size = new System.Drawing.Size(27, 13);
             this.lblFTSLinkStatus.TabIndex = 13;
@@ -333,7 +333,7 @@
             // 
             this.label13.AutoSize = true;
             this.label13.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label13.Location = new System.Drawing.Point(6, 16);
+            this.label13.Location = new System.Drawing.Point(6, 15);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(63, 13);
             this.label13.TabIndex = 12;
@@ -344,7 +344,7 @@
             this.lblFTSAFSState.AutoSize = true;
             this.lblFTSAFSState.ForeColor = System.Drawing.Color.Green;
             this.lblFTSAFSState.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblFTSAFSState.Location = new System.Drawing.Point(249, 88);
+            this.lblFTSAFSState.Location = new System.Drawing.Point(249, 90);
             this.lblFTSAFSState.Name = "lblFTSAFSState";
             this.lblFTSAFSState.Size = new System.Drawing.Size(46, 13);
             this.lblFTSAFSState.TabIndex = 43;
@@ -354,7 +354,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label6.Location = new System.Drawing.Point(185, 86);
+            this.label6.Location = new System.Drawing.Point(185, 90);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(58, 13);
             this.label6.TabIndex = 42;
@@ -366,7 +366,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.GB);
             this.Name = "ucFTS";
-            this.Size = new System.Drawing.Size(395, 134);
+            this.Size = new System.Drawing.Size(395, 144);
             this.GB.ResumeLayout(false);
             this.GB.PerformLayout();
             this.ResumeLayout(false);
