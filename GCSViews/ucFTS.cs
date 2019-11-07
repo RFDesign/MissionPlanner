@@ -79,12 +79,10 @@ namespace MissionPlanner.GCSViews
             {
                 case FTS.TSingleFTSManager.TRemoteState.ERROR:
                 case FTS.TSingleFTSManager.TRemoteState.NORMAL:
-                    lblFTSTermState.Font = lblFTSTermHealth.Font;
                     lblFTSTermState.ForeColor = this.ForeColor;
                     break;
                 case FTS.TSingleFTSManager.TRemoteState.TERMINATING_GEOFENCE:
                 case FTS.TSingleFTSManager.TRemoteState.TERMINATING_MANUAL:
-                    lblFTSTermState.Font = new Font(lblFTSTermHealth.Font, FontStyle.Bold);
                     lblFTSTermState.ForeColor = Color.Red;
                     break;
             }
@@ -125,6 +123,11 @@ namespace MissionPlanner.GCSViews
             {
                 Manager.TerminateFlight();
             }
+        }
+
+        private void LblFTSTermState_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
