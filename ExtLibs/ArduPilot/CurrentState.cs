@@ -234,7 +234,7 @@ namespace MissionPlanner
 
         public void RxAFSState(string State)
         {
-            if (!State.Contains("COM_LOSS"))
+            if (!State.Contains("COM_LOSS") && !State.Contains("DATA_LINK_LOSS"))
             {
                 _AFSState = State;
             }
