@@ -29,7 +29,7 @@ namespace MissionPlanner.GCSViews
 
         void SetRSSILabel(System.Windows.Forms.Label L, float RSSI)
         {
-            if (float.IsNaN(RSSI))
+            if (float.IsNaN(RSSI) || !Manager.GetFTSHealth())
             {
                 SetLabelText(L, "--", false);
             }

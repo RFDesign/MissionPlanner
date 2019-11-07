@@ -13,10 +13,12 @@ namespace MissionPlanner.GCSViews
     public partial class ucFTSArray : UserControl
     {
         List<ucFTS> _FTSControls = new List<ucFTS>();
+        System.Diagnostics.Stopwatch _LastGUIUpdate = new System.Diagnostics.Stopwatch();
 
         public ucFTSArray()
         {
             InitializeComponent();
+            _LastGUIUpdate.Start();
         }
 
 
@@ -47,6 +49,16 @@ namespace MissionPlanner.GCSViews
         }
 
         public void UpdateGUI()
+        {
+            if (_LastGUIUpdate.ElapsedMilliseconds >= 250)
+            {
+                _LastGUIUpdate.Restart();
+                this.BeginInvoke(new Action(UpdateGUIInvokeTarget));
+            }
+        }
+
+
+        void UpdateGUIInvokeTarget()
         {
             var MavStates = FTS.Manager.GetMavStates();
 

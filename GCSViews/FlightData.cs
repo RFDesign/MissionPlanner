@@ -1459,7 +1459,7 @@ namespace MissionPlanner.GCSViews
                         tracklast = DateTime.Now;
                     }
 
-                    this.BeginInvoke(new Action(UpdateFTS));
+                    UpdateFTS();
                 }
                 catch (Exception ex)
                 {
