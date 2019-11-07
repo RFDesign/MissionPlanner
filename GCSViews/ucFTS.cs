@@ -89,6 +89,9 @@ namespace MissionPlanner.GCSViews
                 case FTS.TSingleFTSManager.THealthLevel.GOOD:
                     L.ForeColor = Color.Green;
                     break;
+                case FTS.TSingleFTSManager.THealthLevel.INVALID:
+                    L.ForeColor = Color.DarkGray;
+                    break;
             }
         }
 
@@ -145,7 +148,11 @@ namespace MissionPlanner.GCSViews
 
         void UpdateGPSGroup(TGPSGroup Group, FTS.TSingleFTSManager.TGPSStatus Status)
         {
-            SetLabelText(Group.lblDetected, Status.IsDetected ? "Yes" : "No", Status.IsDetected);
+            bool GettingHearbeat = Manager.GetFTSHealth();
+
+            SetLabelText(Group.lblDetected, Status.IsDetected ? "Yes" : "No", 
+                GettingHearbeat ? (Status.IsDetected ? FTS.TSingleFTSManager.THealthLevel.GOOD : FTS.TSingleFTSManager.THealthLevel.BAD) :
+                FTS.TSingleFTSManager.THealthLevel.INVALID);
             bool IsOK = (Status.QTYSats >= 4) && (Status.HDOP <= 10);
             string HDOPString;
             if (Status.QTYSats <= 0)
@@ -158,7 +165,8 @@ namespace MissionPlanner.GCSViews
             }
             SetLabelText(Group.lblSatCountAndHDOP,
                 Status.QTYSats.ToString() + " / " + HDOPString, 
-                IsOK);
+                GettingHearbeat ? (IsOK ? FTS.TSingleFTSManager.THealthLevel.GOOD : FTS.TSingleFTSManager.THealthLevel.BAD) : 
+                    FTS.TSingleFTSManager.THealthLevel.INVALID);
         }
 
         void UpdateAFSState()

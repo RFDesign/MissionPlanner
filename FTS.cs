@@ -268,7 +268,8 @@ namespace FTS
         {
             GOOD,
             WARNING,
-            BAD
+            BAD,
+            INVALID,
         }
     }
 }
