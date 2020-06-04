@@ -42,11 +42,21 @@
             this.quickView2 = new MissionPlanner.Controls.QuickView();
             this.quickView1 = new MissionPlanner.Controls.QuickView();
             this.tabActions = new System.Windows.Forms.TabPage();
+            this.modifyandSet_HR_BreakDelay = new MissionPlanner.Controls.ModifyandSet();
+            this.modifyandSet_SR_BreakDelay = new MissionPlanner.Controls.ModifyandSet();
+            this.modifyandSet_HL_BreakDelay = new MissionPlanner.Controls.ModifyandSet();
+            this.modifyandSet_SL_BreakDelay = new MissionPlanner.Controls.ModifyandSet();
+            this.chkShowBreakControls = new System.Windows.Forms.CheckBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.servoOptionsMissionSystemDisable = new MissionPlanner.Controls.ServoOptions();
+            this.label12 = new System.Windows.Forms.Label();
+            this.servoOptionsStreamCasterPower = new MissionPlanner.Controls.ServoOptions();
+            this.ResetFuel = new MissionPlanner.Controls.MyButton();
             this.servo5label2 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
+            this.lblHardRight = new System.Windows.Forms.Label();
+            this.lblSlightRight = new System.Windows.Forms.Label();
+            this.lblHardLeft = new System.Windows.Forms.Label();
+            this.lblSlightLeft = new System.Windows.Forms.Label();
             this.Break_HR = new MissionPlanner.Controls.MyButton();
             this.Break_SR = new MissionPlanner.Controls.MyButton();
             this.Break_HL = new MissionPlanner.Controls.MyButton();
@@ -73,13 +83,9 @@
             this.BUTrestartmission = new MissionPlanner.Controls.MyButton();
             this.BUTactiondo = new MissionPlanner.Controls.MyButton();
             this.servoOptions1a = new MissionPlanner.Controls.ServoOptions();
-            this.modifyandSet_HR_BreakDelay = new MissionPlanner.Controls.ModifyandSet();
             this.modifyandSet_HR_BreakRadius = new MissionPlanner.Controls.ModifyandSet();
-            this.modifyandSet_SR_BreakDelay = new MissionPlanner.Controls.ModifyandSet();
             this.modifyandSet_SR_BreakRadius = new MissionPlanner.Controls.ModifyandSet();
-            this.modifyandSet_HL_BreakDelay = new MissionPlanner.Controls.ModifyandSet();
             this.modifyandSet_HL_BreakRadius = new MissionPlanner.Controls.ModifyandSet();
-            this.modifyandSet_SL_BreakDelay = new MissionPlanner.Controls.ModifyandSet();
             this.modifyandSet_SL_BreakRadius = new MissionPlanner.Controls.ModifyandSet();
             this.modifyandSetSlewHeadingRate = new MissionPlanner.Controls.ModifyandSet();
             this.modifyandSetSlewAltRate = new MissionPlanner.Controls.ModifyandSet();
@@ -209,7 +215,6 @@
             this.dataGridViewImageColumn2 = new System.Windows.Forms.DataGridViewImageColumn();
             this.Messagetabtimer = new System.Windows.Forms.Timer(this.components);
             this.bindingSourceStatusTab = new System.Windows.Forms.BindingSource(this.components);
-            this.ResetFuel = new MissionPlanner.Controls.MyButton();
             ((System.ComponentModel.ISupportInitialize)(this.MainH)).BeginInit();
             this.MainH.Panel1.SuspendLayout();
             this.MainH.Panel2.SuspendLayout();
@@ -485,7 +490,6 @@
             this.groundColorToolStripMenuItem.CheckOnClick = true;
             this.groundColorToolStripMenuItem.Name = "groundColorToolStripMenuItem";
             resources.ApplyResources(this.groundColorToolStripMenuItem, "groundColorToolStripMenuItem");
-           // this.groundColorToolStripMenuItem.Click += new System.EventHandler(this.groundColorToolStripMenuItem_Click);
             // 
             // bindingSourceHud
             // 
@@ -639,12 +643,21 @@
             // 
             // tabActions
             // 
+            this.tabActions.Controls.Add(this.modifyandSet_HR_BreakDelay);
+            this.tabActions.Controls.Add(this.modifyandSet_SR_BreakDelay);
+            this.tabActions.Controls.Add(this.modifyandSet_HL_BreakDelay);
+            this.tabActions.Controls.Add(this.modifyandSet_SL_BreakDelay);
+            this.tabActions.Controls.Add(this.chkShowBreakControls);
+            this.tabActions.Controls.Add(this.label13);
+            this.tabActions.Controls.Add(this.servoOptionsMissionSystemDisable);
+            this.tabActions.Controls.Add(this.label12);
+            this.tabActions.Controls.Add(this.servoOptionsStreamCasterPower);
             this.tabActions.Controls.Add(this.ResetFuel);
             this.tabActions.Controls.Add(this.servo5label2);
-            this.tabActions.Controls.Add(this.label10);
-            this.tabActions.Controls.Add(this.label11);
-            this.tabActions.Controls.Add(this.label9);
-            this.tabActions.Controls.Add(this.label8);
+            this.tabActions.Controls.Add(this.lblHardRight);
+            this.tabActions.Controls.Add(this.lblSlightRight);
+            this.tabActions.Controls.Add(this.lblHardLeft);
+            this.tabActions.Controls.Add(this.lblSlightLeft);
             this.tabActions.Controls.Add(this.Break_HR);
             this.tabActions.Controls.Add(this.Break_SR);
             this.tabActions.Controls.Add(this.Break_HL);
@@ -671,13 +684,9 @@
             this.tabActions.Controls.Add(this.BUTrestartmission);
             this.tabActions.Controls.Add(this.BUTactiondo);
             this.tabActions.Controls.Add(this.servoOptions1a);
-            this.tabActions.Controls.Add(this.modifyandSet_HR_BreakDelay);
             this.tabActions.Controls.Add(this.modifyandSet_HR_BreakRadius);
-            this.tabActions.Controls.Add(this.modifyandSet_SR_BreakDelay);
             this.tabActions.Controls.Add(this.modifyandSet_SR_BreakRadius);
-            this.tabActions.Controls.Add(this.modifyandSet_HL_BreakDelay);
             this.tabActions.Controls.Add(this.modifyandSet_HL_BreakRadius);
-            this.tabActions.Controls.Add(this.modifyandSet_SL_BreakDelay);
             this.tabActions.Controls.Add(this.modifyandSet_SL_BreakRadius);
             this.tabActions.Controls.Add(this.modifyandSetSlewHeadingRate);
             this.tabActions.Controls.Add(this.modifyandSetSlewAltRate);
@@ -692,30 +701,162 @@
             this.tabActions.Name = "tabActions";
             this.tabActions.UseVisualStyleBackColor = true;
             // 
+            // modifyandSet_HR_BreakDelay
+            // 
+            this.modifyandSet_HR_BreakDelay.ButtonText = "Break Delay";
+            this.modifyandSet_HR_BreakDelay.ButtonVisible = true;
+            resources.ApplyResources(this.modifyandSet_HR_BreakDelay, "modifyandSet_HR_BreakDelay");
+            this.modifyandSet_HR_BreakDelay.Maximum = new decimal(new int[] {
+            30,
+            0,
+            0,
+            0});
+            this.modifyandSet_HR_BreakDelay.Minimum = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.modifyandSet_HR_BreakDelay.Name = "modifyandSet_HR_BreakDelay";
+            this.toolTip1.SetToolTip(this.modifyandSet_HR_BreakDelay, resources.GetString("modifyandSet_HR_BreakDelay.ToolTip"));
+            this.modifyandSet_HR_BreakDelay.Value = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            // 
+            // modifyandSet_SR_BreakDelay
+            // 
+            this.modifyandSet_SR_BreakDelay.ButtonText = "Break Delay";
+            this.modifyandSet_SR_BreakDelay.ButtonVisible = true;
+            resources.ApplyResources(this.modifyandSet_SR_BreakDelay, "modifyandSet_SR_BreakDelay");
+            this.modifyandSet_SR_BreakDelay.Maximum = new decimal(new int[] {
+            30,
+            0,
+            0,
+            0});
+            this.modifyandSet_SR_BreakDelay.Minimum = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.modifyandSet_SR_BreakDelay.Name = "modifyandSet_SR_BreakDelay";
+            this.toolTip1.SetToolTip(this.modifyandSet_SR_BreakDelay, resources.GetString("modifyandSet_SR_BreakDelay.ToolTip"));
+            this.modifyandSet_SR_BreakDelay.Value = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            // 
+            // modifyandSet_HL_BreakDelay
+            // 
+            this.modifyandSet_HL_BreakDelay.ButtonText = "Break Delay";
+            this.modifyandSet_HL_BreakDelay.ButtonVisible = true;
+            resources.ApplyResources(this.modifyandSet_HL_BreakDelay, "modifyandSet_HL_BreakDelay");
+            this.modifyandSet_HL_BreakDelay.Maximum = new decimal(new int[] {
+            30,
+            0,
+            0,
+            0});
+            this.modifyandSet_HL_BreakDelay.Minimum = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.modifyandSet_HL_BreakDelay.Name = "modifyandSet_HL_BreakDelay";
+            this.toolTip1.SetToolTip(this.modifyandSet_HL_BreakDelay, resources.GetString("modifyandSet_HL_BreakDelay.ToolTip"));
+            this.modifyandSet_HL_BreakDelay.Value = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            // 
+            // modifyandSet_SL_BreakDelay
+            // 
+            this.modifyandSet_SL_BreakDelay.ButtonText = "Break Delay";
+            this.modifyandSet_SL_BreakDelay.ButtonVisible = true;
+            resources.ApplyResources(this.modifyandSet_SL_BreakDelay, "modifyandSet_SL_BreakDelay");
+            this.modifyandSet_SL_BreakDelay.Maximum = new decimal(new int[] {
+            30,
+            0,
+            0,
+            0});
+            this.modifyandSet_SL_BreakDelay.Minimum = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.modifyandSet_SL_BreakDelay.Name = "modifyandSet_SL_BreakDelay";
+            this.toolTip1.SetToolTip(this.modifyandSet_SL_BreakDelay, resources.GetString("modifyandSet_SL_BreakDelay.ToolTip"));
+            this.modifyandSet_SL_BreakDelay.Value = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            // 
+            // chkShowBreakControls
+            // 
+            resources.ApplyResources(this.chkShowBreakControls, "chkShowBreakControls");
+            this.chkShowBreakControls.Name = "chkShowBreakControls";
+            this.chkShowBreakControls.UseVisualStyleBackColor = true;
+            this.chkShowBreakControls.CheckedChanged += new System.EventHandler(this.ChkShowBreakControls_CheckedChanged);
+            // 
+            // label13
+            // 
+            resources.ApplyResources(this.label13, "label13");
+            this.label13.Name = "label13";
+            // 
+            // servoOptionsMissionSystemDisable
+            // 
+            this.servoOptionsMissionSystemDisable.ChannValue = "13";
+            resources.ApplyResources(this.servoOptionsMissionSystemDisable, "servoOptionsMissionSystemDisable");
+            this.servoOptionsMissionSystemDisable.Name = "servoOptionsMissionSystemDisable";
+            // 
+            // label12
+            // 
+            resources.ApplyResources(this.label12, "label12");
+            this.label12.Name = "label12";
+            // 
+            // servoOptionsStreamCasterPower
+            // 
+            this.servoOptionsStreamCasterPower.ChannValue = "12";
+            resources.ApplyResources(this.servoOptionsStreamCasterPower, "servoOptionsStreamCasterPower");
+            this.servoOptionsStreamCasterPower.Name = "servoOptionsStreamCasterPower";
+            // 
+            // ResetFuel
+            // 
+            this.ResetFuel.ColorMouseDown = System.Drawing.Color.Empty;
+            this.ResetFuel.ColorMouseOver = System.Drawing.Color.Empty;
+            this.ResetFuel.ColorNotEnabled = System.Drawing.Color.Empty;
+            resources.ApplyResources(this.ResetFuel, "ResetFuel");
+            this.ResetFuel.Name = "ResetFuel";
+            this.toolTip1.SetToolTip(this.ResetFuel, resources.GetString("ResetFuel.ToolTip"));
+            this.ResetFuel.UseVisualStyleBackColor = true;
+            this.ResetFuel.Click += new System.EventHandler(this.ResetFuel_Click);
+            // 
             // servo5label2
             // 
             resources.ApplyResources(this.servo5label2, "servo5label2");
             this.servo5label2.Name = "servo5label2";
             // 
-            // label10
+            // lblHardRight
             // 
-            resources.ApplyResources(this.label10, "label10");
-            this.label10.Name = "label10";
+            resources.ApplyResources(this.lblHardRight, "lblHardRight");
+            this.lblHardRight.Name = "lblHardRight";
             // 
-            // label11
+            // lblSlightRight
             // 
-            resources.ApplyResources(this.label11, "label11");
-            this.label11.Name = "label11";
+            resources.ApplyResources(this.lblSlightRight, "lblSlightRight");
+            this.lblSlightRight.Name = "lblSlightRight";
             // 
-            // label9
+            // lblHardLeft
             // 
-            resources.ApplyResources(this.label9, "label9");
-            this.label9.Name = "label9";
+            resources.ApplyResources(this.lblHardLeft, "lblHardLeft");
+            this.lblHardLeft.Name = "lblHardLeft";
             // 
-            // label8
+            // lblSlightLeft
             // 
-            resources.ApplyResources(this.label8, "label8");
-            this.label8.Name = "label8";
+            resources.ApplyResources(this.lblSlightLeft, "lblSlightLeft");
+            this.lblSlightLeft.Name = "lblSlightLeft";
             // 
             // Break_HR
             // 
@@ -997,29 +1138,6 @@
             resources.ApplyResources(this.servoOptions1a, "servoOptions1a");
             this.servoOptions1a.Name = "servoOptions1a";
             // 
-            // modifyandSet_HR_BreakDelay
-            // 
-            this.modifyandSet_HR_BreakDelay.ButtonText = "Break Delay";
-            this.modifyandSet_HR_BreakDelay.ButtonVisible = true;
-            resources.ApplyResources(this.modifyandSet_HR_BreakDelay, "modifyandSet_HR_BreakDelay");
-            this.modifyandSet_HR_BreakDelay.Maximum = new decimal(new int[] {
-            30,
-            0,
-            0,
-            0});
-            this.modifyandSet_HR_BreakDelay.Minimum = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.modifyandSet_HR_BreakDelay.Name = "modifyandSet_HR_BreakDelay";
-            this.toolTip1.SetToolTip(this.modifyandSet_HR_BreakDelay, resources.GetString("modifyandSet_HR_BreakDelay.ToolTip"));
-            this.modifyandSet_HR_BreakDelay.Value = new decimal(new int[] {
-            5,
-            0,
-            0,
-            0});
-            // 
             // modifyandSet_HR_BreakRadius
             // 
             this.modifyandSet_HR_BreakRadius.ButtonText = "Break Radius";
@@ -1039,29 +1157,6 @@
             this.toolTip1.SetToolTip(this.modifyandSet_HR_BreakRadius, resources.GetString("modifyandSet_HR_BreakRadius.ToolTip"));
             this.modifyandSet_HR_BreakRadius.Value = new decimal(new int[] {
             50,
-            0,
-            0,
-            0});
-            // 
-            // modifyandSet_SR_BreakDelay
-            // 
-            this.modifyandSet_SR_BreakDelay.ButtonText = "Break Delay";
-            this.modifyandSet_SR_BreakDelay.ButtonVisible = true;
-            resources.ApplyResources(this.modifyandSet_SR_BreakDelay, "modifyandSet_SR_BreakDelay");
-            this.modifyandSet_SR_BreakDelay.Maximum = new decimal(new int[] {
-            30,
-            0,
-            0,
-            0});
-            this.modifyandSet_SR_BreakDelay.Minimum = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.modifyandSet_SR_BreakDelay.Name = "modifyandSet_SR_BreakDelay";
-            this.toolTip1.SetToolTip(this.modifyandSet_SR_BreakDelay, resources.GetString("modifyandSet_SR_BreakDelay.ToolTip"));
-            this.modifyandSet_SR_BreakDelay.Value = new decimal(new int[] {
-            10,
             0,
             0,
             0});
@@ -1089,29 +1184,6 @@
             0,
             0});
             // 
-            // modifyandSet_HL_BreakDelay
-            // 
-            this.modifyandSet_HL_BreakDelay.ButtonText = "Break Delay";
-            this.modifyandSet_HL_BreakDelay.ButtonVisible = true;
-            resources.ApplyResources(this.modifyandSet_HL_BreakDelay, "modifyandSet_HL_BreakDelay");
-            this.modifyandSet_HL_BreakDelay.Maximum = new decimal(new int[] {
-            30,
-            0,
-            0,
-            0});
-            this.modifyandSet_HL_BreakDelay.Minimum = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.modifyandSet_HL_BreakDelay.Name = "modifyandSet_HL_BreakDelay";
-            this.toolTip1.SetToolTip(this.modifyandSet_HL_BreakDelay, resources.GetString("modifyandSet_HL_BreakDelay.ToolTip"));
-            this.modifyandSet_HL_BreakDelay.Value = new decimal(new int[] {
-            5,
-            0,
-            0,
-            0});
-            // 
             // modifyandSet_HL_BreakRadius
             // 
             this.modifyandSet_HL_BreakRadius.ButtonText = "Break Radius";
@@ -1134,29 +1206,6 @@
             0,
             0,
             -2147483648});
-            // 
-            // modifyandSet_SL_BreakDelay
-            // 
-            this.modifyandSet_SL_BreakDelay.ButtonText = "Break Delay";
-            this.modifyandSet_SL_BreakDelay.ButtonVisible = true;
-            resources.ApplyResources(this.modifyandSet_SL_BreakDelay, "modifyandSet_SL_BreakDelay");
-            this.modifyandSet_SL_BreakDelay.Maximum = new decimal(new int[] {
-            30,
-            0,
-            0,
-            0});
-            this.modifyandSet_SL_BreakDelay.Minimum = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.modifyandSet_SL_BreakDelay.Name = "modifyandSet_SL_BreakDelay";
-            this.toolTip1.SetToolTip(this.modifyandSet_SL_BreakDelay, resources.GetString("modifyandSet_SL_BreakDelay.ToolTip"));
-            this.modifyandSet_SL_BreakDelay.Value = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
             // 
             // modifyandSet_SL_BreakRadius
             // 
@@ -2452,7 +2501,6 @@
             // 
             // zg1
             // 
-            // 
             resources.ApplyResources(this.zg1, "zg1");
             this.zg1.Name = "zg1";
             this.zg1.ScrollGrace = 0D;
@@ -2825,17 +2873,6 @@
             // 
             this.bindingSourceStatusTab.DataSource = typeof(MissionPlanner.CurrentState);
             // 
-            // ResetFuel
-            // 
-            this.ResetFuel.ColorMouseDown = System.Drawing.Color.Empty;
-            this.ResetFuel.ColorMouseOver = System.Drawing.Color.Empty;
-            this.ResetFuel.ColorNotEnabled = System.Drawing.Color.Empty;
-            resources.ApplyResources(this.ResetFuel, "ResetFuel");
-            this.ResetFuel.Name = "ResetFuel";
-            this.toolTip1.SetToolTip(this.ResetFuel, resources.GetString("ResetFuel.ToolTip"));
-            this.ResetFuel.UseVisualStyleBackColor = true;
-            this.ResetFuel.Click += new System.EventHandler(this.ResetFuel_Click);
-            // 
             // FlightData
             // 
             this.Controls.Add(this.MainH);
@@ -3097,7 +3134,7 @@
         private Controls.MyButton Break_SL;
         private Controls.ModifyandSet modifyandSet_SL_BreakRadius;
         private Controls.ModifyandSet modifyandSet_SL_BreakDelay;
-        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label lblSlightLeft;
         private Controls.ModifyandSet modifyandSet_HL_BreakDelay;
         private Controls.ModifyandSet modifyandSet_HL_BreakRadius;
         private Controls.MyButton Break_HR;
@@ -3107,11 +3144,16 @@
         private Controls.ModifyandSet modifyandSet_HR_BreakRadius;
         private Controls.ModifyandSet modifyandSet_SR_BreakDelay;
         private Controls.ModifyandSet modifyandSet_SR_BreakRadius;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label lblHardLeft;
+        private System.Windows.Forms.Label lblHardRight;
+        private System.Windows.Forms.Label lblSlightRight;
         private System.Windows.Forms.Label servo5label2;
         private Controls.ServoOptions servoOptions1a;
         private Controls.MyButton ResetFuel;
+        private System.Windows.Forms.CheckBox chkShowBreakControls;
+        private System.Windows.Forms.Label label13;
+        private Controls.ServoOptions servoOptionsMissionSystemDisable;
+        private System.Windows.Forms.Label label12;
+        private Controls.ServoOptions servoOptionsStreamCasterPower;
     }
 }

@@ -30,24 +30,16 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ServoOptions));
-            this.BUT_Low = new MissionPlanner.Controls.MyButton();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.renameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.BUT_High = new MissionPlanner.Controls.MyButton();
             this.TXT_pwm_low = new System.Windows.Forms.TextBox();
             this.TXT_pwm_high = new System.Windows.Forms.TextBox();
-            this.BUT_Repeat = new MissionPlanner.Controls.MyButton();
             this.TXT_rcchannel = new System.Windows.Forms.Label();
+            this.BUT_Repeat = new MissionPlanner.Controls.MyButton();
+            this.BUT_High = new MissionPlanner.Controls.MyButton();
+            this.BUT_Low = new MissionPlanner.Controls.MyButton();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // BUT_Low
-            // 
-            this.BUT_Low.ContextMenuStrip = this.contextMenuStrip1;
-            resources.ApplyResources(this.BUT_Low, "BUT_Low");
-            this.BUT_Low.Name = "BUT_Low";
-            this.BUT_Low.UseVisualStyleBackColor = true;
-            this.BUT_Low.Click += new System.EventHandler(this.BUT_Low_Click);
             // 
             // contextMenuStrip1
             // 
@@ -61,14 +53,6 @@
             this.renameToolStripMenuItem.Name = "renameToolStripMenuItem";
             resources.ApplyResources(this.renameToolStripMenuItem, "renameToolStripMenuItem");
             // 
-            // BUT_High
-            // 
-            this.BUT_High.ContextMenuStrip = this.contextMenuStrip1;
-            resources.ApplyResources(this.BUT_High, "BUT_High");
-            this.BUT_High.Name = "BUT_High";
-            this.BUT_High.UseVisualStyleBackColor = true;
-            this.BUT_High.Click += new System.EventHandler(this.BUT_High_Click);
-            // 
             // TXT_pwm_low
             // 
             resources.ApplyResources(this.TXT_pwm_low, "TXT_pwm_low");
@@ -81,6 +65,13 @@
             this.TXT_pwm_high.Name = "TXT_pwm_high";
             this.TXT_pwm_high.TextChanged += new System.EventHandler(this.TXT_pwm_high_TextChanged);
             // 
+            // TXT_rcchannel
+            // 
+            this.TXT_rcchannel.BackColor = System.Drawing.Color.Red;
+            this.TXT_rcchannel.ContextMenuStrip = this.contextMenuStrip1;
+            resources.ApplyResources(this.TXT_rcchannel, "TXT_rcchannel");
+            this.TXT_rcchannel.Name = "TXT_rcchannel";
+            // 
             // BUT_Repeat
             // 
             resources.ApplyResources(this.BUT_Repeat, "BUT_Repeat");
@@ -88,12 +79,21 @@
             this.BUT_Repeat.UseVisualStyleBackColor = true;
             this.BUT_Repeat.Click += new System.EventHandler(this.BUT_Repeat_Click);
             // 
-            // TXT_rcchannel
+            // BUT_High
             // 
-            this.TXT_rcchannel.BackColor = System.Drawing.Color.Red;
-            this.TXT_rcchannel.ContextMenuStrip = this.contextMenuStrip1;
-            resources.ApplyResources(this.TXT_rcchannel, "TXT_rcchannel");
-            this.TXT_rcchannel.Name = "TXT_rcchannel";
+            this.BUT_High.ContextMenuStrip = this.contextMenuStrip1;
+            resources.ApplyResources(this.BUT_High, "BUT_High");
+            this.BUT_High.Name = "BUT_High";
+            this.BUT_High.UseVisualStyleBackColor = true;
+            this.BUT_High.Click += new System.EventHandler(this.BUT_High_Click);
+            // 
+            // BUT_Low
+            // 
+            this.BUT_Low.ContextMenuStrip = this.contextMenuStrip1;
+            resources.ApplyResources(this.BUT_Low, "BUT_Low");
+            this.BUT_Low.Name = "BUT_Low";
+            this.BUT_Low.UseVisualStyleBackColor = true;
+            this.BUT_Low.Click += new System.EventHandler(this.BUT_Low_Click);
             // 
             // ServoOptions
             // 

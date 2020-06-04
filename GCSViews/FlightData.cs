@@ -331,6 +331,8 @@ namespace MissionPlanner.GCSViews
 
             MainV2.comPort.ParamListChanged += FlightData_ParentChanged;
 
+            ChkShowBreakControls_CheckedChanged(null, null);
+
         }
 
         protected override void OnInvalidated(InvalidateEventArgs e)
@@ -4936,6 +4938,23 @@ namespace MissionPlanner.GCSViews
             catch
             {
                 CustomMessageBox.Show(Strings.CommandFailed, Strings.ERROR);
+            }
+        }
+
+        private void ChkShowBreakControls_CheckedChanged(object sender, EventArgs e)
+        {
+            ShowBreakControls(chkShowBreakControls.Checked);
+        }
+
+        void ShowBreakControls(bool Show)
+        {
+            Control[] BreakControls = new Control[] {Break_SL, Break_SR, Break_HL, Break_HR, lblSlightLeft, lblSlightRight, lblHardLeft, lblHardRight,
+                modifyandSet_SL_BreakRadius, modifyandSet_SL_BreakDelay, modifyandSet_SR_BreakRadius, modifyandSet_SR_BreakDelay,
+                modifyandSet_HL_BreakRadius, modifyandSet_HL_BreakDelay, modifyandSet_HR_BreakRadius, modifyandSet_HR_BreakDelay };
+
+            foreach (var C in BreakControls)
+            {
+                C.Visible = Show;
             }
         }
     }
