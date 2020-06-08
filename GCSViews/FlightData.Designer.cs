@@ -42,6 +42,8 @@
             this.quickView2 = new MissionPlanner.Controls.QuickView();
             this.quickView1 = new MissionPlanner.Controls.QuickView();
             this.tabActions = new System.Windows.Forms.TabPage();
+            this.label8 = new System.Windows.Forms.Label();
+            this.servoOptions11 = new MissionPlanner.Controls.ServoOptions();
             this.modifyandSet_HR_BreakDelay = new MissionPlanner.Controls.ModifyandSet();
             this.modifyandSet_SR_BreakDelay = new MissionPlanner.Controls.ModifyandSet();
             this.modifyandSet_HL_BreakDelay = new MissionPlanner.Controls.ModifyandSet();
@@ -643,6 +645,8 @@
             // 
             // tabActions
             // 
+            this.tabActions.Controls.Add(this.label8);
+            this.tabActions.Controls.Add(this.servoOptions11);
             this.tabActions.Controls.Add(this.modifyandSet_HR_BreakDelay);
             this.tabActions.Controls.Add(this.modifyandSet_SR_BreakDelay);
             this.tabActions.Controls.Add(this.modifyandSet_HL_BreakDelay);
@@ -700,6 +704,17 @@
             resources.ApplyResources(this.tabActions, "tabActions");
             this.tabActions.Name = "tabActions";
             this.tabActions.UseVisualStyleBackColor = true;
+            // 
+            // label8
+            // 
+            resources.ApplyResources(this.label8, "label8");
+            this.label8.Name = "label8";
+            // 
+            // servoOptions11
+            // 
+            this.servoOptions11.ChannValue = "12";
+            resources.ApplyResources(this.servoOptions11, "servoOptions11");
+            this.servoOptions11.Name = "servoOptions11";
             // 
             // modifyandSet_HR_BreakDelay
             // 
@@ -818,7 +833,7 @@
             // 
             // servoOptionsStreamCasterPower
             // 
-            this.servoOptionsStreamCasterPower.ChannValue = "12";
+            this.servoOptionsStreamCasterPower.ChannValue = "6";
             resources.ApplyResources(this.servoOptionsStreamCasterPower, "servoOptionsStreamCasterPower");
             this.servoOptionsStreamCasterPower.Name = "servoOptionsStreamCasterPower";
             // 
@@ -3155,5 +3170,7 @@
         private Controls.ServoOptions servoOptionsMissionSystemDisable;
         private System.Windows.Forms.Label label12;
         private Controls.ServoOptions servoOptionsStreamCasterPower;
+        private System.Windows.Forms.Label label8;
+        private Controls.ServoOptions servoOptions11;
     }
 }
