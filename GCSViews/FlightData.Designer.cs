@@ -217,6 +217,8 @@
             this.dataGridViewImageColumn2 = new System.Windows.Forms.DataGridViewImageColumn();
             this.Messagetabtimer = new System.Windows.Forms.Timer(this.components);
             this.bindingSourceStatusTab = new System.Windows.Forms.BindingSource(this.components);
+            this.label9 = new System.Windows.Forms.Label();
+            this.servoOptions12 = new MissionPlanner.Controls.ServoOptions();
             ((System.ComponentModel.ISupportInitialize)(this.MainH)).BeginInit();
             this.MainH.Panel1.SuspendLayout();
             this.MainH.Panel2.SuspendLayout();
@@ -645,6 +647,8 @@
             // 
             // tabActions
             // 
+            this.tabActions.Controls.Add(this.label9);
+            this.tabActions.Controls.Add(this.servoOptions12);
             this.tabActions.Controls.Add(this.label8);
             this.tabActions.Controls.Add(this.servoOptions11);
             this.tabActions.Controls.Add(this.modifyandSet_HR_BreakDelay);
@@ -709,12 +713,14 @@
             // 
             resources.ApplyResources(this.label8, "label8");
             this.label8.Name = "label8";
+            this.toolTip1.SetToolTip(this.label8, resources.GetString("label8.ToolTip"));
             // 
             // servoOptions11
             // 
-            this.servoOptions11.ChannValue = "12";
+            this.servoOptions11.ChannValue = "6";
             resources.ApplyResources(this.servoOptions11, "servoOptions11");
             this.servoOptions11.Name = "servoOptions11";
+            this.toolTip1.SetToolTip(this.servoOptions11, resources.GetString("servoOptions11.ToolTip"));
             // 
             // modifyandSet_HR_BreakDelay
             // 
@@ -819,23 +825,27 @@
             // 
             resources.ApplyResources(this.label13, "label13");
             this.label13.Name = "label13";
+            this.toolTip1.SetToolTip(this.label13, resources.GetString("label13.ToolTip"));
             // 
             // servoOptionsMissionSystemDisable
             // 
-            this.servoOptionsMissionSystemDisable.ChannValue = "13";
+            this.servoOptionsMissionSystemDisable.ChannValue = "12";
             resources.ApplyResources(this.servoOptionsMissionSystemDisable, "servoOptionsMissionSystemDisable");
             this.servoOptionsMissionSystemDisable.Name = "servoOptionsMissionSystemDisable";
+            this.toolTip1.SetToolTip(this.servoOptionsMissionSystemDisable, resources.GetString("servoOptionsMissionSystemDisable.ToolTip"));
             // 
             // label12
             // 
             resources.ApplyResources(this.label12, "label12");
             this.label12.Name = "label12";
+            this.toolTip1.SetToolTip(this.label12, resources.GetString("label12.ToolTip"));
             // 
             // servoOptionsStreamCasterPower
             // 
-            this.servoOptionsStreamCasterPower.ChannValue = "6";
+            this.servoOptionsStreamCasterPower.ChannValue = "7";
             resources.ApplyResources(this.servoOptionsStreamCasterPower, "servoOptionsStreamCasterPower");
             this.servoOptionsStreamCasterPower.Name = "servoOptionsStreamCasterPower";
+            this.toolTip1.SetToolTip(this.servoOptionsStreamCasterPower, resources.GetString("servoOptionsStreamCasterPower.ToolTip"));
             // 
             // ResetFuel
             // 
@@ -2671,7 +2681,7 @@
             this.windDir1.BackColor = System.Drawing.Color.Transparent;
             this.windDir1.DataBindings.Add(new System.Windows.Forms.Binding("Direction", this.bindingSource1, "wind_dir", true, System.Windows.Forms.DataSourceUpdateMode.Never));
             this.windDir1.DataBindings.Add(new System.Windows.Forms.Binding("Speed", this.bindingSource1, "wind_vel", true, System.Windows.Forms.DataSourceUpdateMode.Never));
-            this.windDir1.Direction = 180D;
+            this.windDir1.Direction = 360D;
             resources.ApplyResources(this.windDir1, "windDir1");
             this.windDir1.Name = "windDir1";
             this.windDir1.Speed = 0D;
@@ -2887,6 +2897,19 @@
             // bindingSourceStatusTab
             // 
             this.bindingSourceStatusTab.DataSource = typeof(MissionPlanner.CurrentState);
+            // 
+            // label9
+            // 
+            resources.ApplyResources(this.label9, "label9");
+            this.label9.Name = "label9";
+            this.toolTip1.SetToolTip(this.label9, resources.GetString("label9.ToolTip"));
+            // 
+            // servoOptions12
+            // 
+            this.servoOptions12.ChannValue = "13";
+            resources.ApplyResources(this.servoOptions12, "servoOptions12");
+            this.servoOptions12.Name = "servoOptions12";
+            this.toolTip1.SetToolTip(this.servoOptions12, resources.GetString("servoOptions12.ToolTip"));
             // 
             // FlightData
             // 
@@ -3172,5 +3195,7 @@
         private Controls.ServoOptions servoOptionsStreamCasterPower;
         private System.Windows.Forms.Label label8;
         private Controls.ServoOptions servoOptions11;
+        private System.Windows.Forms.Label label9;
+        private Controls.ServoOptions servoOptions12;
     }
 }
