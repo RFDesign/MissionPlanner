@@ -67,6 +67,7 @@ namespace MissionPlanner.Utilities
                         typeof(MAVLink.mavlink_set_position_target_global_int_t),
                         typeof(MAVLink.mavlink_local_position_ned_t),
                         typeof(MAVLink.mavlink_command_long_t),
+                        typeof(MAVLink.mavlink_command_int_t),
                         typeof(MAVLink.mavlink_mission_item_t),
                         typeof(MAVLink.mavlink_mission_item_int_t),
                         typeof(MAVLink.mavlink_uavionix_adsb_out_cfg_t)

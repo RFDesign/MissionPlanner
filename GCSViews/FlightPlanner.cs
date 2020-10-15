@@ -5416,8 +5416,7 @@ Column 1: Field type (RALLY is the only one at the moment -- may have RALLY_LAND
                         log.Error(ex2);
                         try
                         {
-                            MainV2.comPort.getWP((byte) MainV2.comPort.sysidcurrent,
-                                (byte) MainV2.comPort.compidcurrent, 0);
+                            MainV2.comPort.getWP(0);
                         }
                         catch (Exception ex3)
                         {

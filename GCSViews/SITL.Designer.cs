@@ -204,7 +204,17 @@ namespace MissionPlanner.GCSViews
             // 
             // NUM_heading
             // 
+            this.NUM_heading.Increment = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
             resources.ApplyResources(this.NUM_heading, "NUM_heading");
+            this.NUM_heading.Maximum = new decimal(new int[] {
+            359,
+            0,
+            0,
+            0});
             this.NUM_heading.Name = "NUM_heading";
             // 
             // groupBox4

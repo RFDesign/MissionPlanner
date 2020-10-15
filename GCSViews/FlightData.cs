@@ -308,6 +308,8 @@ namespace MissionPlanner.GCSViews
 
             MainV2.comPort.ParamListChanged += FlightData_ParentChanged;
 
+            ChkShowBreakControls_CheckedChanged(null, null);
+
             //HUD Theming, color setup
             myhud.groundColor1 = ThemeManager.HudGroundTop;
             myhud.groundColor2 = ThemeManager.HudGroundBot;
@@ -326,7 +328,7 @@ namespace MissionPlanner.GCSViews
             if (CB_tuning.Checked)
                 ZedGraphTimer.Start();
 
-            hud1.altunit = CurrentState.AltUnit;
+            hud1.altunit = CurrentState.DistanceUnit;
             hud1.speedunit = CurrentState.SpeedUnit;
             hud1.distunit = CurrentState.DistanceUnit;
             coords1.AltUnit = CurrentState.AltUnit;
@@ -902,14 +904,7 @@ namespace MissionPlanner.GCSViews
             if (!MainV2.comPort.BaseStream.IsOpen)
                 return;
 
-            try
-            {
-                MainV2.comPort.doAbortLand();
-            }
-            catch
-            {
-                CustomMessageBox.Show(Strings.CommandFailed, Strings.ERROR);
-            }
+            MainV2.comPort.doAbortLand();
         }
 
         private void BUT_ARM_Click(object sender, EventArgs e)
@@ -1999,6 +1994,21 @@ namespace MissionPlanner.GCSViews
             }
         }
 
+        private void stopCameraToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (MainV2.MONO)
+                return;
+            if (MainV2.cam == null)
+                return;
+
+            MainV2.cam.camimage += null;
+
+            MainV2.cam.Dispose();
+
+            MainV2.cam = null;
+
+        }
+
         private void customizeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             using (Form customForm = new Form())
@@ -2095,9 +2105,7 @@ namespace MissionPlanner.GCSViews
         {
             threadrun = false;
 
-            DateTime end = DateTime.Now.AddSeconds(5);
-
-            while (thisthread.IsAlive && DateTime.Now < end)
+            while (thisthread.IsAlive)
             {
                 Application.DoEvents();
             }
@@ -2618,7 +2626,11 @@ namespace MissionPlanner.GCSViews
                 if (fieldValue == null)
                     continue;
 
-                if (!fieldValue.IsNumber())
+                TypeCode typeCode = Type.GetTypeCode(fieldValue.GetType());
+
+                if (
+                    !(typeCode == TypeCode.Single || typeCode == TypeCode.Double || typeCode == TypeCode.Int32 ||
+                      typeCode == TypeCode.UInt16))
                     continue;
 
                 if (field.Name.Contains("customfield"))
@@ -2654,8 +2666,7 @@ namespace MissionPlanner.GCSViews
                     Tag = "custom",
                     Location = new Point(5 + (i / row_count) * (max_length + 5), 2 + (i % row_count) * row_height),
                     Size = new Size(max_length, row_height),
-                    Checked = hud1.CustomItems.ContainsKey(fields[i].name),
-                    AutoSize = true
+                    Checked = hud1.CustomItems.ContainsKey(fields[i].name)
                 };
                 chk_box.CheckedChanged += chk_box_hud_UserItem_CheckedChanged;
                 if (chk_box.Checked)
@@ -3311,7 +3322,7 @@ namespace MissionPlanner.GCSViews
                         {
 
                             // cleanup old - no markers where added, so remove all old 
-                            if (MainV2.comPort.MAV.camerapoints.Count < photosoverlay.Markers.Count)
+                            if (MainV2.comPort.MAV.camerapoints.Count == 0)
                                 photosoverlay.Markers.Clear();
 
                             var min_interval = 0.0;
@@ -3471,12 +3482,7 @@ namespace MissionPlanner.GCSViews
                                     if (adsbplane == null || pllau == null)
                                         return;
 
-                                    adsbplane.ToolTipText = "ICAO: " + pllau.Tag + "\n" +
-                                                            "CallSign: " + pllau.CallSign + "\n" +
-                                                            "Squawk: " + Convert.ToString(pllau.Squawk) + "\n" +
-                                                            "Alt: " + pllau.Alt.ToString("0") + "\n" +
-                                                            "Speed: " + pllau.Speed.ToString("0") + "\n" +
-                                                            "Heading: " + pllau.Heading.ToString("0");
+                                    adsbplane.ToolTipText = "ICAO: " + pllau.Tag + " " + pllau.Alt.ToString("0");
                                     adsbplane.ToolTipMode = MarkerTooltipMode.OnMouseOver;
                                     adsbplane.Position = pllau;
                                     adsbplane.heading = pllau.Heading;
@@ -3701,6 +3707,96 @@ namespace MissionPlanner.GCSViews
         {
         }
 
+
+        private void modifyandSetSlewHeading_Click(object sender, EventArgs e)
+        {
+            var degrees = modifyandSetSlewHeading.Value;
+            var degs_per_second_rate = modifyandSetSlewHeadingRate.Value;
+            //CustomMessageBox.Show("Slew Heading not imple yet TODO: " + degrees.ToString());
+            try
+            {
+
+                // default to raw heading ( which is blown around by wind), then use checkbox to set it to ground-truthed heading ( holds heading over ground in wind).
+                MAVLink.HEADING_TYPE heading_type = MAVLink.HEADING_TYPE.HEADING;
+                if (this.GroundHeading.Checked == true)
+                {
+                    heading_type = MAVLink.HEADING_TYPE.COURSE_OVER_GROUND;
+                }
+
+                // mavlink_command_int_t , see MAV_CMD_GUIDED_CHANGE_HEADING
+                MainV2.comPort.doCommandInt(
+                        MAVLink.MAV_FRAME.GLOBAL_RELATIVE_ALT,  //
+                        MAVLink.MAV_CMD.GUIDED_CHANGE_HEADING,
+
+                        (float)heading_type,
+                        (float)degrees,
+                        (float)degs_per_second_rate,
+                        0,
+                        0,
+                        0,
+                        0
+                        );
+            }
+            catch
+            {
+                CustomMessageBox.Show(Strings.CommandFailed, Strings.ERROR);
+            }
+        }
+        private void modifyandSetSlewAlt_Click(object sender, EventArgs e)
+        {
+            //CustomMessageBox.Show("Slew Alt not imple yet TODO: " + x.ToString());
+            var alt = modifyandSetSlewAlt.Value;
+            var meters_per_second_rate = modifyandSetSlewAltRate.Value;
+            try
+            {
+
+                // mavlink_command_int_t , see MAV_CMD_GUIDED_CHANGE_ALTITUDE
+                MainV2.comPort.doCommandInt(
+                        MAVLink.MAV_FRAME.GLOBAL_RELATIVE_ALT,  //
+                        MAVLink.MAV_CMD.GUIDED_CHANGE_ALTITUDE,
+
+                        0,
+                        0,
+                        (float)meters_per_second_rate,
+                        0,
+                        0,
+                        0,
+                        (float)alt
+                        );
+            }
+            catch
+            {
+                CustomMessageBox.Show(Strings.CommandFailed, Strings.ERROR);
+            }
+        }
+        private void modifyandSetSlewSpeed_Click(object sender, EventArgs e)
+        {
+            //CustomMessageBox.Show("Slew Speed not imple yet TODO: " + x.ToString());
+            var speed = modifyandSetSlewSpeed.Value;
+            var meters_per_second_rate = modifyandSetSlewSpeedRate.Value;
+            try
+            {
+
+                // mavlink_command_int_t , see MAV_CMD_GUIDED_CHANGE_SPEED
+                MainV2.comPort.doCommandInt(
+                        MAVLink.MAV_FRAME.GLOBAL_RELATIVE_ALT,  // 
+                        MAVLink.MAV_CMD.GUIDED_CHANGE_SPEED,
+
+                        (float)MAVLink.SPEED_TYPE.AIRSPEED, //
+                        (float)speed,
+                        (float)meters_per_second_rate,
+                        0,
+                        0,
+                        0,
+                        0
+                        );
+            }
+            catch
+            {
+                CustomMessageBox.Show(Strings.CommandFailed, Strings.ERROR);
+            }
+        }
+
         void mymap_Paint(object sender, PaintEventArgs e)
         {
             distanceBar1.DoPaintRemote(e);
@@ -3825,12 +3921,15 @@ namespace MissionPlanner.GCSViews
 
             foreach (var field in test.GetProperties())
             {
+                TypeCode typeCode = Type.GetTypeCode(field.PropertyType);
+
+                if (!(typeCode == TypeCode.Single || typeCode == TypeCode.Double || typeCode == TypeCode.Int32 ||
+                      typeCode == TypeCode.UInt16))
+                    continue;
+
                 // field.Name has the field's name.
                 object fieldValue = field.GetValue(thisBoxed, null); // Get value
                 if (fieldValue == null)
-                    continue;
-
-                if (!fieldValue.IsNumber())
                     continue;
 
                 if (field.Name.Contains("customfield"))
@@ -3849,7 +3948,7 @@ namespace MissionPlanner.GCSViews
                 }
             }
 
-            max_length += 25;
+            max_length += 15;
             fields.Sort((a, b) => a.Item2.CompareTo(b.Item2));
 
             int col_count = (int) (Screen.FromControl(this).Bounds.Width * 0.8f) / max_length;
@@ -3868,7 +3967,6 @@ namespace MissionPlanner.GCSViews
                     Tag = qv,
                     Location = new Point(5 + (i / row_count) * (max_length + 5), 2 + (i % row_count) * row_height),
                     Size = new Size(max_length, row_height),
-                    AutoSize = true
                 };
                 chk_box.CheckedChanged += chk_box_quickview_CheckedChanged;
                 if (chk_box.Checked)
@@ -4849,19 +4947,26 @@ namespace MissionPlanner.GCSViews
 
         private void zg1_DoubleClick(object sender, EventArgs e)
         {
-
-            var selectform = new Form
+            string formname = "select";
+            Form selectform = Application.OpenForms[formname];
+            if (selectform != null)
             {
-                Name = "select",
+                selectform.WindowState = FormWindowState.Minimized;
+                selectform.Show();
+                selectform.WindowState = FormWindowState.Normal;
+                return;
+            }
+
+            selectform = new Form
+            {
+                Name = formname,
                 Width = 50,
-                Height = 50,
-                Text = "Display This",
-                AutoSize = true,
-                StartPosition = FormStartPosition.CenterParent,
-                MaximizeBox = false,
-                MinimizeBox = false,
-                AutoScroll = true
+                Height = 550,
+                Text = "Graph This",
             };
+
+            int x = 10;
+            int y = 10;
 
             ThemeManager.ApplyThemeTo(selectform);
 
@@ -4874,11 +4979,25 @@ namespace MissionPlanner.GCSViews
             foreach (var field in test.GetProperties())
             {
                 // field.Name has the field's name.
-                object fieldValue = field.GetValue(thisBoxed, null); // Get value
-                if (fieldValue == null)
-                    continue;
+                object fieldValue;
+                TypeCode typeCode;
+                try
+                {
+                    fieldValue = field.GetValue(thisBoxed, null); // Get value
 
-                if (!fieldValue.IsNumber())
+                    if (fieldValue == null)
+                        continue;
+
+                    // Get the TypeCode enumeration. Multiple types get mapped to a common typecode.
+                    typeCode = Type.GetTypeCode(fieldValue.GetType());
+                }
+                catch
+                {
+                    continue;
+                }
+
+                if (!(typeCode == TypeCode.Single || typeCode == TypeCode.Double ||
+                    typeCode == TypeCode.Int32 || typeCode == TypeCode.UInt16))
                     continue;
 
                 if (field.Name.Contains("customfield"))
@@ -4897,12 +5016,8 @@ namespace MissionPlanner.GCSViews
                 }
             }
 
-            max_length += 25;
+            max_length += 15;
             fields.Sort((a, b) => a.Item2.CompareTo(b.Item2));
-
-            int col_count = (int) (Screen.FromControl(this).Bounds.Width * 0.8f) / max_length;
-            int row_count = fields.Count / col_count + ((fields.Count % col_count == 0) ? 0 : 1);
-            int row_height = 20;
 
             selectform.SuspendLayout();
 
@@ -4976,13 +5091,22 @@ namespace MissionPlanner.GCSViews
                 chk_box.Text = field.desc;
                 chk_box.Name = field.name;
                 chk_box.Tag = "custom";
-                chk_box.Location = new Point(5 + (i / row_count) * (max_length + 5), 2 + (i % row_count) * row_height);
-                chk_box.Size = new Size(120, 20);
+                chk_box.Location = new Point(x, y);
+                chk_box.Size = new Size(100, 20);
                 chk_box.CheckedChanged += chk_box_CheckedChanged;
-                chk_box.AutoSize = true;
 
                 selectform.Controls.Add(chk_box);
+                x += 0;
+                y += 20;
                 i++;
+
+                if (y > selectform.Height - 50)
+                {
+                    x += 100;
+                    y = 10;
+
+                    selectform.Width = x + 100;
+                }
             }
 
             selectform.ResumeLayout();
@@ -5175,5 +5299,184 @@ namespace MissionPlanner.GCSViews
                // contextMenuStripMap.Show(gMapControl1, e.Location);
             }
         }
+
+        private void Abort_Click_DelayedEvent2(object sender, EventArgs e, decimal resetafter)
+        {
+
+            // do same as RTL button
+            try
+            {
+                ((Button)sender).Enabled = false;
+                MainV2.comPort.setMode("RTL");
+            }
+            catch
+            {
+                CustomMessageBox.Show(Strings.CommandFailed, Strings.ERROR);
+            }
+        ((Button)sender).Enabled = true;
+
+            // set Servo CH5 low, see ServoOptions.cs BUT_Low_Click() - servoOptions1  object = CH5
+            try
+            {
+                int x = Int32.Parse(servoOptions1.Text);
+
+                if (MainV2.comPort.doCommand(MAVLink.MAV_CMD.DO_SET_SERVO, x, int.Parse(servoOptions1.TXT_pwm_low.Text), 0, 0,
+                    0, 0, 0))
+                {
+                    servoOptions1.TXT_rcchannel.BackColor = Color.Red;
+                }
+                else
+                {
+                    CustomMessageBox.Show(Strings.CommandFailed, Strings.ERROR);
+                }
+            }
+            catch (Exception ex)
+            {
+                CustomMessageBox.Show(Strings.CommandFailed + ex.ToString(), Strings.ERROR);
+            }
+
+            //  reset WP_LOITER_RAD back to positive 100, the default for normal loiter.
+            modifyandSetLoiterRad.Value = resetafter;
+            int newrad = (int)modifyandSetLoiterRad.Value;
+
+            try
+            {
+                MainV2.comPort.setParam(new[] { "LOITER_RAD", "WP_LOITER_RAD" }, newrad / CurrentState.multiplierdist);
+            }
+            catch
+            {
+                CustomMessageBox.Show(Strings.ErrorCommunicating, Strings.ERROR);
+            }
+        }
+
+        private void Abort_Click_DelayedEvent1(object sender, EventArgs e, decimal resetafter)
+        {
+            // do same as Loiter button
+            try
+            {
+                ((Button)sender).Enabled = false;
+                MainV2.comPort.setMode("Loiter");
+            }
+            catch
+            {
+                CustomMessageBox.Show(Strings.CommandFailed, Strings.ERROR);
+            }
+((Button)sender).Enabled = true;
+        }
+
+
+        static void Delay(int ms, EventHandler action)
+        {
+            var tmp = new System.Windows.Forms.Timer { Interval = ms };
+            tmp.Tick += new EventHandler((o, e) => tmp.Enabled = false);
+            tmp.Tick += action;
+            tmp.Enabled = true;
+        }
+
+        // break SlightLeft, SlightRight, HardLeft, HardRight based on 4 different buttons and 4 different presets of data
+        private void Break_SL_Click(object sender, EventArgs e)
+        {
+            // optionally do a loiter for X seconds, at a defined WP_LOITER_RAD ( negative turns left, positive right), then  rtl etc
+            int delay = (int)modifyandSet_SL_BreakDelay.Value * 1000; //millis
+            decimal prevval = modifyandSetLoiterRad.Value;
+            modifyandSetLoiterRad.Value = (int)modifyandSet_SL_BreakRadius.Value;
+            int newrad = (int)modifyandSetLoiterRad.Value;
+            Generic_Break(sender, e, delay, newrad, prevval);
+        }
+        private void Break_HL_Click(object sender, EventArgs e)
+        {
+            // optionally do a loiter for X seconds, at a defined WP_LOITER_RAD ( negative turns left, positive right), then  rtl etc
+            int delay = (int)modifyandSet_HL_BreakDelay.Value * 1000; //millis
+            decimal prevval = modifyandSetLoiterRad.Value;
+            modifyandSetLoiterRad.Value = (int)modifyandSet_HL_BreakRadius.Value;
+            int newrad = (int)modifyandSetLoiterRad.Value;
+            Generic_Break(sender, e, delay, newrad, prevval);
+        }
+        private void Break_SR_Click(object sender, EventArgs e)
+        {
+            // optionally do a loiter for X seconds, at a defined WP_LOITER_RAD ( negative turns left, positive right), then  rtl etc
+            int delay = (int)modifyandSet_SR_BreakDelay.Value * 1000; //millis
+            decimal prevval = modifyandSetLoiterRad.Value;
+            modifyandSetLoiterRad.Value = (int)modifyandSet_SR_BreakRadius.Value;
+            int newrad = (int)modifyandSetLoiterRad.Value;
+            Generic_Break(sender, e, delay, newrad, prevval);
+        }
+        private void Break_HR_Click(object sender, EventArgs e)
+        {
+            // optionally do a loiter for X seconds, at a defined WP_LOITER_RAD ( negative turns left, positive right), then  rtl etc
+            int delay = (int)modifyandSet_HR_BreakDelay.Value * 1000; //millis
+            decimal prevval = modifyandSetLoiterRad.Value;
+            modifyandSetLoiterRad.Value = (int)modifyandSet_HR_BreakRadius.Value;
+            int newrad = (int)modifyandSetLoiterRad.Value;
+            Generic_Break(sender, e, delay, newrad, prevval);
+        }
+        private void Generic_Break(object sender, EventArgs e, int delay, int newrad, decimal prevval)
+        {
+            try
+            {
+                MainV2.comPort.setParam(new[] { "LOITER_RAD", "WP_LOITER_RAD" }, newrad / CurrentState.multiplierdist);
+            }
+            catch
+            {
+                CustomMessageBox.Show(Strings.ErrorCommunicating, Strings.ERROR);
+            }
+
+            // delay 1/2 a sec for the LOITER_RAD to be written, then attempt to LOITER
+            Delay(500, (o, a) => Abort_Click_DelayedEvent1(sender, e, prevval));
+
+
+            // setup a further delayed event to do the next stage in a few seconds., which is the RTL and CH5 low
+            Delay(delay, (o, a) => Abort_Click_DelayedEvent2(sender, e, prevval));
+
+
+        }
+
+        private void ResetFuel_Click(object sender, EventArgs e)
+        {
+
+            //CustomMessageBox.Show("ResetFuel_Click not imple yet TODO: " + e.ToString());
+            try
+            {
+                // mavlink_command_int_t , see MAV_CMD_GUIDED_CHANGE_SPEED
+                MainV2.comPort.doCommandInt(
+                        MAVLink.MAV_FRAME.GLOBAL_RELATIVE_ALT,  // 
+                        MAVLink.MAV_CMD.FUEL_USED_RESET,
+                        0, // do all battery-based fuel sensors
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0
+                        );
+            }
+            catch
+            {
+                CustomMessageBox.Show(Strings.CommandFailed, Strings.ERROR);
+            }
+        }
+
+        private void ChkShowBreakControls_CheckedChanged(object sender, EventArgs e)
+        {
+            ShowBreakControls(chkShowBreakControls.Checked);
+        }
+
+        void ShowBreakControls(bool Show)
+        {
+            Control[] BreakControls = new Control[] {Break_SL, Break_SR, Break_HL, Break_HR, lblSlightLeft, lblSlightRight, lblHardLeft, lblHardRight,
+                modifyandSet_SL_BreakRadius, modifyandSet_SL_BreakDelay, modifyandSet_SR_BreakRadius, modifyandSet_SR_BreakDelay,
+                modifyandSet_HL_BreakRadius, modifyandSet_HL_BreakDelay, modifyandSet_HR_BreakRadius, modifyandSet_HR_BreakDelay };
+
+            foreach (var C in BreakControls)
+            {
+                C.Visible = Show;
+            }
+        }
+
+        private void checkListControl1_Load(object sender, EventArgs e)
+        {
+
+        }
+
     }
 }

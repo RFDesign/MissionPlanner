@@ -44,7 +44,7 @@ namespace MissionPlanner.ArduPilot
                 {
                     log.Info("Getting WP" + a);
                     progress?.Invoke((a * 100) / cmdcount, "Getting WP " + a);
-                    commandlist.Add(await port.getWPAsync(sysid, compid, a, type).ConfigureAwait(false));
+                    commandlist.Add(await port.getWPAsync(a, type).ConfigureAwait(false));
                 }
 
                 port.setWPACK(sysid, compid, type);

@@ -17,6 +17,7 @@
             this.stopRecordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.setMJPEGSourceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.startCameraToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.stopCameraToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.setGStreamerSourceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.hereLinkVideoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gStreamerStopToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -41,7 +42,35 @@
             this.quickView2 = new MissionPlanner.Controls.QuickView();
             this.quickView1 = new MissionPlanner.Controls.QuickView();
             this.tabActions = new System.Windows.Forms.TabPage();
+            this.label9 = new System.Windows.Forms.Label();
+            this.servoOptions12 = new MissionPlanner.Controls.ServoOptions();
+            this.label10 = new System.Windows.Forms.Label();
+            this.servoOptions11 = new MissionPlanner.Controls.ServoOptions();
+            this.modifyandSet_HR_BreakDelay = new MissionPlanner.Controls.ModifyandSet();
+            this.modifyandSet_SR_BreakDelay = new MissionPlanner.Controls.ModifyandSet();
+            this.modifyandSet_HL_BreakDelay = new MissionPlanner.Controls.ModifyandSet();
+            this.modifyandSet_SL_BreakDelay = new MissionPlanner.Controls.ModifyandSet();
+            this.chkShowBreakControls = new System.Windows.Forms.CheckBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.servoOptionsMissionSystemDisable = new MissionPlanner.Controls.ServoOptions();
+            this.label12 = new System.Windows.Forms.Label();
+            this.servoOptionsStreamCasterPower = new MissionPlanner.Controls.ServoOptions();
+            this.servo5label2 = new System.Windows.Forms.Label();
+            this.lblHardRight = new System.Windows.Forms.Label();
+            this.lblSlightRight = new System.Windows.Forms.Label();
+            this.lblHardLeft = new System.Windows.Forms.Label();
+            this.lblSlightLeft = new System.Windows.Forms.Label();
+            this.Break_HR = new MissionPlanner.Controls.MyButton();
+            this.Break_SR = new MissionPlanner.Controls.MyButton();
+            this.Break_HL = new MissionPlanner.Controls.MyButton();
+            this.Break_SL = new MissionPlanner.Controls.MyButton();
+            this.servoOptions1a = new MissionPlanner.Controls.ServoOptions();
+            this.modifyandSet_HR_BreakRadius = new MissionPlanner.Controls.ModifyandSet();
+            this.modifyandSet_SR_BreakRadius = new MissionPlanner.Controls.ModifyandSet();
+            this.modifyandSet_HL_BreakRadius = new MissionPlanner.Controls.ModifyandSet();
+            this.modifyandSet_SL_BreakRadius = new MissionPlanner.Controls.ModifyandSet();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.label8 = new System.Windows.Forms.Label();
             this.BUT_abortland = new MissionPlanner.Controls.MyButton();
             this.modifyandSetLoiterRad = new MissionPlanner.Controls.ModifyandSet();
             this.BUT_clear_track = new MissionPlanner.Controls.MyButton();
@@ -64,6 +93,17 @@
             this.CMB_modes = new System.Windows.Forms.ComboBox();
             this.BUT_quickauto = new MissionPlanner.Controls.MyButton();
             this.BUT_setmode = new MissionPlanner.Controls.MyButton();
+            this.label7 = new System.Windows.Forms.Label();
+            this.modifyandSetSlewSpeedRate = new MissionPlanner.Controls.ModifyandSet();
+            this.modifyandSetSlewSpeed = new MissionPlanner.Controls.ModifyandSet();
+            this.modifyandSetSlewAltRate = new MissionPlanner.Controls.ModifyandSet();
+            this.modifyandSetSlewHeadingRate = new MissionPlanner.Controls.ModifyandSet();
+            this.modifyandSetSlewAlt = new MissionPlanner.Controls.ModifyandSet();
+            this.modifyandSetSlewHeading = new MissionPlanner.Controls.ModifyandSet();
+            this.GroundHeading = new System.Windows.Forms.CheckBox();
+            this.ResetFuel = new MissionPlanner.Controls.MyButton();
+            this.tabPagemessages = new System.Windows.Forms.TabPage();
+            this.txt_messagebox = new System.Windows.Forms.TextBox();
             this.tabActionsSimple = new System.Windows.Forms.TabPage();
             this.myButton1 = new MissionPlanner.Controls.MyButton();
             this.myButton2 = new MissionPlanner.Controls.MyButton();
@@ -93,6 +133,27 @@
             this.relayOptions2 = new MissionPlanner.Controls.RelayOptions();
             this.relayOptions3 = new MissionPlanner.Controls.RelayOptions();
             this.relayOptions4 = new MissionPlanner.Controls.RelayOptions();
+            this.tabScripts = new System.Windows.Forms.TabPage();
+            this.checkBoxRedirectOutput = new System.Windows.Forms.CheckBox();
+            this.BUT_edit_selected = new MissionPlanner.Controls.MyButton();
+            this.labelSelectedScript = new System.Windows.Forms.Label();
+            this.BUT_run_script = new MissionPlanner.Controls.MyButton();
+            this.BUT_abort_script = new MissionPlanner.Controls.MyButton();
+            this.labelScriptStatus = new System.Windows.Forms.Label();
+            this.BUT_select_script = new MissionPlanner.Controls.MyButton();
+            this.tabPayload = new System.Windows.Forms.TabPage();
+            this.BUT_PayloadFolder = new MissionPlanner.Controls.MyButton();
+            this.groupBoxRoll = new System.Windows.Forms.GroupBox();
+            this.TXT_gimbalRollPos = new System.Windows.Forms.TextBox();
+            this.bindingSourcePayloadTab = new System.Windows.Forms.BindingSource(this.components);
+            this.trackBarRoll = new System.Windows.Forms.TrackBar();
+            this.groupBoxYaw = new System.Windows.Forms.GroupBox();
+            this.TXT_gimbalYawPos = new System.Windows.Forms.TextBox();
+            this.trackBarYaw = new System.Windows.Forms.TrackBar();
+            this.BUT_resetGimbalPos = new MissionPlanner.Controls.MyButton();
+            this.groupBoxPitch = new System.Windows.Forms.GroupBox();
+            this.trackBarPitch = new System.Windows.Forms.TrackBar();
+            this.TXT_gimbalPitchPos = new System.Windows.Forms.TextBox();
             this.tabTLogs = new System.Windows.Forms.TabPage();
             this.tableLayoutPaneltlogs = new System.Windows.Forms.TableLayoutPanel();
             this.BUT_loadtelem = new MissionPlanner.Controls.MyButton();
@@ -112,36 +173,14 @@
             this.BUT_speed1_4 = new MissionPlanner.Controls.MyButton();
             this.BUT_speed1_10 = new MissionPlanner.Controls.MyButton();
             this.tablogbrowse = new System.Windows.Forms.TabPage();
-            this.BUT_georefimage = new MissionPlanner.Controls.MyButton();
-            this.BUT_loganalysis = new MissionPlanner.Controls.MyButton();
+            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.BUT_DFMavlink = new MissionPlanner.Controls.MyButton();
-            this.but_dflogtokml = new MissionPlanner.Controls.MyButton();
-            this.but_bintolog = new MissionPlanner.Controls.MyButton();
-            this.BUT_matlab = new MissionPlanner.Controls.MyButton();
+            this.BUT_georefimage = new MissionPlanner.Controls.MyButton();
             this.BUT_logbrowse = new MissionPlanner.Controls.MyButton();
-            this.tabScripts = new System.Windows.Forms.TabPage();
-            this.checkBoxRedirectOutput = new System.Windows.Forms.CheckBox();
-            this.BUT_edit_selected = new MissionPlanner.Controls.MyButton();
-            this.labelSelectedScript = new System.Windows.Forms.Label();
-            this.BUT_run_script = new MissionPlanner.Controls.MyButton();
-            this.BUT_abort_script = new MissionPlanner.Controls.MyButton();
-            this.labelScriptStatus = new System.Windows.Forms.Label();
-            this.BUT_select_script = new MissionPlanner.Controls.MyButton();
-            this.tabPagemessages = new System.Windows.Forms.TabPage();
-            this.txt_messagebox = new System.Windows.Forms.TextBox();
-            this.tabPayload = new System.Windows.Forms.TabPage();
-            this.BUT_PayloadFolder = new MissionPlanner.Controls.MyButton();
-            this.groupBoxRoll = new System.Windows.Forms.GroupBox();
-            this.TXT_gimbalRollPos = new System.Windows.Forms.TextBox();
-            this.bindingSourcePayloadTab = new System.Windows.Forms.BindingSource(this.components);
-            this.trackBarRoll = new System.Windows.Forms.TrackBar();
-            this.groupBoxYaw = new System.Windows.Forms.GroupBox();
-            this.TXT_gimbalYawPos = new System.Windows.Forms.TextBox();
-            this.trackBarYaw = new System.Windows.Forms.TrackBar();
-            this.BUT_resetGimbalPos = new MissionPlanner.Controls.MyButton();
-            this.groupBoxPitch = new System.Windows.Forms.GroupBox();
-            this.trackBarPitch = new System.Windows.Forms.TrackBar();
-            this.TXT_gimbalPitchPos = new System.Windows.Forms.TextBox();
+            this.BUT_matlab = new MissionPlanner.Controls.MyButton();
+            this.but_bintolog = new MissionPlanner.Controls.MyButton();
+            this.but_dflogtokml = new MissionPlanner.Controls.MyButton();
+            this.BUT_loganalysis = new MissionPlanner.Controls.MyButton();
             this.tableMap = new System.Windows.Forms.TableLayoutPanel();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.zg1 = new ZedGraph.ZedGraphControl();
@@ -188,7 +227,6 @@
             this.scriptChecker = new System.Windows.Forms.Timer(this.components);
             this.Messagetabtimer = new System.Windows.Forms.Timer(this.components);
             this.bindingSourceStatusTab = new System.Windows.Forms.BindingSource(this.components);
-            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             ((System.ComponentModel.ISupportInitialize)(this.MainH)).BeginInit();
             this.MainH.Panel1.SuspendLayout();
             this.MainH.Panel2.SuspendLayout();
@@ -207,19 +245,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceQuickTab)).BeginInit();
             this.tabActions.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
+            this.tabPagemessages.SuspendLayout();
             this.tabActionsSimple.SuspendLayout();
             this.tabPagePreFlight.SuspendLayout();
             this.tabGauges.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceGaugesTab)).BeginInit();
             this.tabServo.SuspendLayout();
             this.flowLayoutPanelServos.SuspendLayout();
-            this.tabTLogs.SuspendLayout();
-            this.tableLayoutPaneltlogs.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.tracklog)).BeginInit();
-            this.panel2.SuspendLayout();
-            this.tablogbrowse.SuspendLayout();
             this.tabScripts.SuspendLayout();
-            this.tabPagemessages.SuspendLayout();
             this.tabPayload.SuspendLayout();
             this.groupBoxRoll.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourcePayloadTab)).BeginInit();
@@ -228,6 +261,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.trackBarYaw)).BeginInit();
             this.groupBoxPitch.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarPitch)).BeginInit();
+            this.tabTLogs.SuspendLayout();
+            this.tableLayoutPaneltlogs.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tracklog)).BeginInit();
+            this.panel2.SuspendLayout();
+            this.tablogbrowse.SuspendLayout();
+            this.tableLayoutPanel2.SuspendLayout();
             this.tableMap.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -239,7 +278,6 @@
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Zoomlevel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceStatusTab)).BeginInit();
-            this.tableLayoutPanel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // MainH
@@ -361,7 +399,6 @@
             this.hud1.speedunit = null;
             this.hud1.SSA = 0F;
             this.hud1.status = false;
-            this.hud1.streamjpg = null;
             this.hud1.targetalt = 0F;
             this.hud1.targetheading = 0F;
             this.hud1.targetspeed = 0F;
@@ -398,6 +435,7 @@
             this.stopRecordToolStripMenuItem,
             this.setMJPEGSourceToolStripMenuItem,
             this.startCameraToolStripMenuItem,
+            this.stopCameraToolStripMenuItem,
             this.setGStreamerSourceToolStripMenuItem,
             this.hereLinkVideoToolStripMenuItem,
             this.gStreamerStopToolStripMenuItem});
@@ -427,6 +465,12 @@
             this.startCameraToolStripMenuItem.Name = "startCameraToolStripMenuItem";
             resources.ApplyResources(this.startCameraToolStripMenuItem, "startCameraToolStripMenuItem");
             this.startCameraToolStripMenuItem.Click += new System.EventHandler(this.startCameraToolStripMenuItem_Click);
+            // 
+            // stopCameraToolStripMenuItem
+            // 
+            this.stopCameraToolStripMenuItem.Name = "stopCameraToolStripMenuItem";
+            resources.ApplyResources(this.stopCameraToolStripMenuItem, "stopCameraToolStripMenuItem");
+            this.stopCameraToolStripMenuItem.Click += new System.EventHandler(this.stopCameraToolStripMenuItem_Click);
             // 
             // setGStreamerSourceToolStripMenuItem
             // 
@@ -626,14 +670,428 @@
             // 
             // tabActions
             // 
+            this.tabActions.Controls.Add(this.label9);
+            this.tabActions.Controls.Add(this.servoOptions12);
+            this.tabActions.Controls.Add(this.label10);
+            this.tabActions.Controls.Add(this.servoOptions11);
+            this.tabActions.Controls.Add(this.modifyandSet_HR_BreakDelay);
+            this.tabActions.Controls.Add(this.modifyandSet_SR_BreakDelay);
+            this.tabActions.Controls.Add(this.modifyandSet_HL_BreakDelay);
+            this.tabActions.Controls.Add(this.modifyandSet_SL_BreakDelay);
+            this.tabActions.Controls.Add(this.chkShowBreakControls);
+            this.tabActions.Controls.Add(this.label13);
+            this.tabActions.Controls.Add(this.servoOptionsMissionSystemDisable);
+            this.tabActions.Controls.Add(this.label12);
+            this.tabActions.Controls.Add(this.servoOptionsStreamCasterPower);
+            this.tabActions.Controls.Add(this.servo5label2);
+            this.tabActions.Controls.Add(this.lblHardRight);
+            this.tabActions.Controls.Add(this.lblSlightRight);
+            this.tabActions.Controls.Add(this.lblHardLeft);
+            this.tabActions.Controls.Add(this.lblSlightLeft);
+            this.tabActions.Controls.Add(this.Break_HR);
+            this.tabActions.Controls.Add(this.Break_SR);
+            this.tabActions.Controls.Add(this.Break_HL);
+            this.tabActions.Controls.Add(this.Break_SL);
+            this.tabActions.Controls.Add(this.servoOptions1a);
+            this.tabActions.Controls.Add(this.modifyandSet_HR_BreakRadius);
+            this.tabActions.Controls.Add(this.modifyandSet_SR_BreakRadius);
+            this.tabActions.Controls.Add(this.modifyandSet_HL_BreakRadius);
+            this.tabActions.Controls.Add(this.modifyandSet_SL_BreakRadius);
             this.tabActions.Controls.Add(this.tableLayoutPanel1);
             resources.ApplyResources(this.tabActions, "tabActions");
             this.tabActions.Name = "tabActions";
             this.tabActions.UseVisualStyleBackColor = true;
             // 
+            // label9
+            // 
+            resources.ApplyResources(this.label9, "label9");
+            this.label9.Name = "label9";
+            this.toolTip1.SetToolTip(this.label9, resources.GetString("label9.ToolTip"));
+            // 
+            // servoOptions12
+            // 
+            this.servoOptions12.ChannValue = "13";
+            resources.ApplyResources(this.servoOptions12, "servoOptions12");
+            this.servoOptions12.Name = "servoOptions12";
+            this.toolTip1.SetToolTip(this.servoOptions12, resources.GetString("servoOptions12.ToolTip"));
+            // 
+            // label10
+            // 
+            resources.ApplyResources(this.label10, "label10");
+            this.label10.Name = "label10";
+            this.toolTip1.SetToolTip(this.label10, resources.GetString("label10.ToolTip"));
+            // 
+            // servoOptions11
+            // 
+            this.servoOptions11.ChannValue = "6";
+            resources.ApplyResources(this.servoOptions11, "servoOptions11");
+            this.servoOptions11.Name = "servoOptions11";
+            this.toolTip1.SetToolTip(this.servoOptions11, resources.GetString("servoOptions11.ToolTip"));
+            // 
+            // modifyandSet_HR_BreakDelay
+            // 
+            this.modifyandSet_HR_BreakDelay.ButtonText = "Break Delay";
+            this.modifyandSet_HR_BreakDelay.ButtonVisible = false;
+            this.modifyandSet_HR_BreakDelay.DecimalPlaces = 0;
+            this.modifyandSet_HR_BreakDelay.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            resources.ApplyResources(this.modifyandSet_HR_BreakDelay, "modifyandSet_HR_BreakDelay");
+            this.modifyandSet_HR_BreakDelay.Maximum = new decimal(new int[] {
+            30,
+            0,
+            0,
+            0});
+            this.modifyandSet_HR_BreakDelay.Minimum = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.modifyandSet_HR_BreakDelay.Name = "modifyandSet_HR_BreakDelay";
+            this.toolTip1.SetToolTip(this.modifyandSet_HR_BreakDelay, resources.GetString("modifyandSet_HR_BreakDelay.ToolTip"));
+            this.modifyandSet_HR_BreakDelay.Value = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            // 
+            // modifyandSet_SR_BreakDelay
+            // 
+            this.modifyandSet_SR_BreakDelay.ButtonText = "Break Delay";
+            this.modifyandSet_SR_BreakDelay.ButtonVisible = false;
+            this.modifyandSet_SR_BreakDelay.DecimalPlaces = 0;
+            this.modifyandSet_SR_BreakDelay.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            resources.ApplyResources(this.modifyandSet_SR_BreakDelay, "modifyandSet_SR_BreakDelay");
+            this.modifyandSet_SR_BreakDelay.Maximum = new decimal(new int[] {
+            30,
+            0,
+            0,
+            0});
+            this.modifyandSet_SR_BreakDelay.Minimum = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.modifyandSet_SR_BreakDelay.Name = "modifyandSet_SR_BreakDelay";
+            this.toolTip1.SetToolTip(this.modifyandSet_SR_BreakDelay, resources.GetString("modifyandSet_SR_BreakDelay.ToolTip"));
+            this.modifyandSet_SR_BreakDelay.Value = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            // 
+            // modifyandSet_HL_BreakDelay
+            // 
+            this.modifyandSet_HL_BreakDelay.ButtonText = "Break Delay";
+            this.modifyandSet_HL_BreakDelay.ButtonVisible = false;
+            this.modifyandSet_HL_BreakDelay.DecimalPlaces = 0;
+            this.modifyandSet_HL_BreakDelay.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            resources.ApplyResources(this.modifyandSet_HL_BreakDelay, "modifyandSet_HL_BreakDelay");
+            this.modifyandSet_HL_BreakDelay.Maximum = new decimal(new int[] {
+            30,
+            0,
+            0,
+            0});
+            this.modifyandSet_HL_BreakDelay.Minimum = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.modifyandSet_HL_BreakDelay.Name = "modifyandSet_HL_BreakDelay";
+            this.toolTip1.SetToolTip(this.modifyandSet_HL_BreakDelay, resources.GetString("modifyandSet_HL_BreakDelay.ToolTip"));
+            this.modifyandSet_HL_BreakDelay.Value = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            // 
+            // modifyandSet_SL_BreakDelay
+            // 
+            this.modifyandSet_SL_BreakDelay.ButtonText = "Break Delay";
+            this.modifyandSet_SL_BreakDelay.ButtonVisible = false;
+            this.modifyandSet_SL_BreakDelay.DecimalPlaces = 0;
+            this.modifyandSet_SL_BreakDelay.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            resources.ApplyResources(this.modifyandSet_SL_BreakDelay, "modifyandSet_SL_BreakDelay");
+            this.modifyandSet_SL_BreakDelay.Maximum = new decimal(new int[] {
+            30,
+            0,
+            0,
+            0});
+            this.modifyandSet_SL_BreakDelay.Minimum = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.modifyandSet_SL_BreakDelay.Name = "modifyandSet_SL_BreakDelay";
+            this.toolTip1.SetToolTip(this.modifyandSet_SL_BreakDelay, resources.GetString("modifyandSet_SL_BreakDelay.ToolTip"));
+            this.modifyandSet_SL_BreakDelay.Value = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            // 
+            // chkShowBreakControls
+            // 
+            resources.ApplyResources(this.chkShowBreakControls, "chkShowBreakControls");
+            this.chkShowBreakControls.Name = "chkShowBreakControls";
+            this.chkShowBreakControls.UseVisualStyleBackColor = true;
+            this.chkShowBreakControls.CheckedChanged += new System.EventHandler(this.ChkShowBreakControls_CheckedChanged);
+            // 
+            // label13
+            // 
+            resources.ApplyResources(this.label13, "label13");
+            this.label13.Name = "label13";
+            this.toolTip1.SetToolTip(this.label13, resources.GetString("label13.ToolTip"));
+            // 
+            // servoOptionsMissionSystemDisable
+            // 
+            this.servoOptionsMissionSystemDisable.ChannValue = "12";
+            resources.ApplyResources(this.servoOptionsMissionSystemDisable, "servoOptionsMissionSystemDisable");
+            this.servoOptionsMissionSystemDisable.Name = "servoOptionsMissionSystemDisable";
+            this.toolTip1.SetToolTip(this.servoOptionsMissionSystemDisable, resources.GetString("servoOptionsMissionSystemDisable.ToolTip"));
+            // 
+            // label12
+            // 
+            resources.ApplyResources(this.label12, "label12");
+            this.label12.Name = "label12";
+            this.toolTip1.SetToolTip(this.label12, resources.GetString("label12.ToolTip"));
+            // 
+            // servoOptionsStreamCasterPower
+            // 
+            this.servoOptionsStreamCasterPower.ChannValue = "7";
+            resources.ApplyResources(this.servoOptionsStreamCasterPower, "servoOptionsStreamCasterPower");
+            this.servoOptionsStreamCasterPower.Name = "servoOptionsStreamCasterPower";
+            this.toolTip1.SetToolTip(this.servoOptionsStreamCasterPower, resources.GetString("servoOptionsStreamCasterPower.ToolTip"));
+            // 
+            // servo5label2
+            // 
+            resources.ApplyResources(this.servo5label2, "servo5label2");
+            this.servo5label2.Name = "servo5label2";
+            // 
+            // lblHardRight
+            // 
+            resources.ApplyResources(this.lblHardRight, "lblHardRight");
+            this.lblHardRight.Name = "lblHardRight";
+            // 
+            // lblSlightRight
+            // 
+            resources.ApplyResources(this.lblSlightRight, "lblSlightRight");
+            this.lblSlightRight.Name = "lblSlightRight";
+            // 
+            // lblHardLeft
+            // 
+            resources.ApplyResources(this.lblHardLeft, "lblHardLeft");
+            this.lblHardLeft.Name = "lblHardLeft";
+            // 
+            // lblSlightLeft
+            // 
+            resources.ApplyResources(this.lblSlightLeft, "lblSlightLeft");
+            this.lblSlightLeft.Name = "lblSlightLeft";
+            // 
+            // Break_HR
+            // 
+            this.Break_HR.BackColor = System.Drawing.Color.Crimson;
+            this.Break_HR.BGGradBot = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.Break_HR.BGGradTop = System.Drawing.Color.Red;
+            this.Break_HR.ColorMouseDown = System.Drawing.Color.Empty;
+            this.Break_HR.ColorMouseOver = System.Drawing.Color.Empty;
+            this.Break_HR.ColorNotEnabled = System.Drawing.Color.Empty;
+            resources.ApplyResources(this.Break_HR, "Break_HR");
+            this.Break_HR.Name = "Break_HR";
+            this.Break_HR.Outline = System.Drawing.Color.Maroon;
+            this.Break_HR.TextColor = System.Drawing.Color.Yellow;
+            this.toolTip1.SetToolTip(this.Break_HR, resources.GetString("Break_HR.ToolTip"));
+            this.Break_HR.UseVisualStyleBackColor = false;
+            this.Break_HR.Click += new System.EventHandler(this.Break_HR_Click);
+            // 
+            // Break_SR
+            // 
+            this.Break_SR.BackColor = System.Drawing.Color.Crimson;
+            this.Break_SR.BGGradBot = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.Break_SR.BGGradTop = System.Drawing.Color.Red;
+            this.Break_SR.ColorMouseDown = System.Drawing.Color.Empty;
+            this.Break_SR.ColorMouseOver = System.Drawing.Color.Empty;
+            this.Break_SR.ColorNotEnabled = System.Drawing.Color.Empty;
+            resources.ApplyResources(this.Break_SR, "Break_SR");
+            this.Break_SR.Name = "Break_SR";
+            this.Break_SR.Outline = System.Drawing.Color.Maroon;
+            this.Break_SR.TextColor = System.Drawing.Color.Yellow;
+            this.toolTip1.SetToolTip(this.Break_SR, resources.GetString("Break_SR.ToolTip"));
+            this.Break_SR.UseVisualStyleBackColor = false;
+            this.Break_SR.Click += new System.EventHandler(this.Break_SR_Click);
+            // 
+            // Break_HL
+            // 
+            this.Break_HL.BackColor = System.Drawing.Color.Crimson;
+            this.Break_HL.BGGradBot = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.Break_HL.BGGradTop = System.Drawing.Color.Red;
+            this.Break_HL.ColorMouseDown = System.Drawing.Color.Empty;
+            this.Break_HL.ColorMouseOver = System.Drawing.Color.Empty;
+            this.Break_HL.ColorNotEnabled = System.Drawing.Color.Empty;
+            resources.ApplyResources(this.Break_HL, "Break_HL");
+            this.Break_HL.Name = "Break_HL";
+            this.Break_HL.Outline = System.Drawing.Color.Maroon;
+            this.Break_HL.TextColor = System.Drawing.Color.Yellow;
+            this.toolTip1.SetToolTip(this.Break_HL, resources.GetString("Break_HL.ToolTip"));
+            this.Break_HL.UseVisualStyleBackColor = false;
+            this.Break_HL.Click += new System.EventHandler(this.Break_HL_Click);
+            // 
+            // Break_SL
+            // 
+            this.Break_SL.BackColor = System.Drawing.Color.Crimson;
+            this.Break_SL.BGGradBot = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.Break_SL.BGGradTop = System.Drawing.Color.Red;
+            this.Break_SL.ColorMouseDown = System.Drawing.Color.Empty;
+            this.Break_SL.ColorMouseOver = System.Drawing.Color.Empty;
+            this.Break_SL.ColorNotEnabled = System.Drawing.Color.Empty;
+            resources.ApplyResources(this.Break_SL, "Break_SL");
+            this.Break_SL.Name = "Break_SL";
+            this.Break_SL.Outline = System.Drawing.Color.Maroon;
+            this.Break_SL.TextColor = System.Drawing.Color.Yellow;
+            this.toolTip1.SetToolTip(this.Break_SL, resources.GetString("Break_SL.ToolTip"));
+            this.Break_SL.UseVisualStyleBackColor = false;
+            this.Break_SL.Click += new System.EventHandler(this.Break_SL_Click);
+            // 
+            // servoOptions1a
+            // 
+            this.servoOptions1a.ChannValue = "5";
+            resources.ApplyResources(this.servoOptions1a, "servoOptions1a");
+            this.servoOptions1a.Name = "servoOptions1a";
+            // 
+            // modifyandSet_HR_BreakRadius
+            // 
+            this.modifyandSet_HR_BreakRadius.ButtonText = "Break Radius";
+            this.modifyandSet_HR_BreakRadius.ButtonVisible = false;
+            this.modifyandSet_HR_BreakRadius.DecimalPlaces = 0;
+            this.modifyandSet_HR_BreakRadius.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            resources.ApplyResources(this.modifyandSet_HR_BreakRadius, "modifyandSet_HR_BreakRadius");
+            this.modifyandSet_HR_BreakRadius.Maximum = new decimal(new int[] {
+            200,
+            0,
+            0,
+            0});
+            this.modifyandSet_HR_BreakRadius.Minimum = new decimal(new int[] {
+            200,
+            0,
+            0,
+            -2147483648});
+            this.modifyandSet_HR_BreakRadius.Name = "modifyandSet_HR_BreakRadius";
+            this.toolTip1.SetToolTip(this.modifyandSet_HR_BreakRadius, resources.GetString("modifyandSet_HR_BreakRadius.ToolTip"));
+            this.modifyandSet_HR_BreakRadius.Value = new decimal(new int[] {
+            50,
+            0,
+            0,
+            0});
+            // 
+            // modifyandSet_SR_BreakRadius
+            // 
+            this.modifyandSet_SR_BreakRadius.ButtonText = "Break Radius";
+            this.modifyandSet_SR_BreakRadius.ButtonVisible = false;
+            this.modifyandSet_SR_BreakRadius.DecimalPlaces = 0;
+            this.modifyandSet_SR_BreakRadius.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            resources.ApplyResources(this.modifyandSet_SR_BreakRadius, "modifyandSet_SR_BreakRadius");
+            this.modifyandSet_SR_BreakRadius.Maximum = new decimal(new int[] {
+            200,
+            0,
+            0,
+            0});
+            this.modifyandSet_SR_BreakRadius.Minimum = new decimal(new int[] {
+            200,
+            0,
+            0,
+            -2147483648});
+            this.modifyandSet_SR_BreakRadius.Name = "modifyandSet_SR_BreakRadius";
+            this.toolTip1.SetToolTip(this.modifyandSet_SR_BreakRadius, resources.GetString("modifyandSet_SR_BreakRadius.ToolTip"));
+            this.modifyandSet_SR_BreakRadius.Value = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            // 
+            // modifyandSet_HL_BreakRadius
+            // 
+            this.modifyandSet_HL_BreakRadius.ButtonText = "Break Radius";
+            this.modifyandSet_HL_BreakRadius.ButtonVisible = false;
+            this.modifyandSet_HL_BreakRadius.DecimalPlaces = 0;
+            this.modifyandSet_HL_BreakRadius.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            resources.ApplyResources(this.modifyandSet_HL_BreakRadius, "modifyandSet_HL_BreakRadius");
+            this.modifyandSet_HL_BreakRadius.Maximum = new decimal(new int[] {
+            200,
+            0,
+            0,
+            0});
+            this.modifyandSet_HL_BreakRadius.Minimum = new decimal(new int[] {
+            200,
+            0,
+            0,
+            -2147483648});
+            this.modifyandSet_HL_BreakRadius.Name = "modifyandSet_HL_BreakRadius";
+            this.toolTip1.SetToolTip(this.modifyandSet_HL_BreakRadius, resources.GetString("modifyandSet_HL_BreakRadius.ToolTip"));
+            this.modifyandSet_HL_BreakRadius.Value = new decimal(new int[] {
+            50,
+            0,
+            0,
+            -2147483648});
+            // 
+            // modifyandSet_SL_BreakRadius
+            // 
+            this.modifyandSet_SL_BreakRadius.ButtonText = "Break Radius";
+            this.modifyandSet_SL_BreakRadius.ButtonVisible = false;
+            this.modifyandSet_SL_BreakRadius.DecimalPlaces = 0;
+            this.modifyandSet_SL_BreakRadius.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            resources.ApplyResources(this.modifyandSet_SL_BreakRadius, "modifyandSet_SL_BreakRadius");
+            this.modifyandSet_SL_BreakRadius.Maximum = new decimal(new int[] {
+            200,
+            0,
+            0,
+            0});
+            this.modifyandSet_SL_BreakRadius.Minimum = new decimal(new int[] {
+            200,
+            0,
+            0,
+            -2147483648});
+            this.modifyandSet_SL_BreakRadius.Name = "modifyandSet_SL_BreakRadius";
+            this.toolTip1.SetToolTip(this.modifyandSet_SL_BreakRadius, resources.GetString("modifyandSet_SL_BreakRadius.ToolTip"));
+            this.modifyandSet_SL_BreakRadius.Value = new decimal(new int[] {
+            100,
+            0,
+            0,
+            -2147483648});
+            // 
             // tableLayoutPanel1
             // 
             resources.ApplyResources(this.tableLayoutPanel1, "tableLayoutPanel1");
+            this.tableLayoutPanel1.Controls.Add(this.label8, 6, 0);
             this.tableLayoutPanel1.Controls.Add(this.BUT_abortland, 4, 4);
             this.tableLayoutPanel1.Controls.Add(this.modifyandSetLoiterRad, 4, 2);
             this.tableLayoutPanel1.Controls.Add(this.BUT_clear_track, 4, 3);
@@ -656,7 +1114,21 @@
             this.tableLayoutPanel1.Controls.Add(this.CMB_modes, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.BUT_quickauto, 2, 0);
             this.tableLayoutPanel1.Controls.Add(this.BUT_setmode, 1, 2);
+            this.tableLayoutPanel1.Controls.Add(this.label7, 5, 0);
+            this.tableLayoutPanel1.Controls.Add(this.modifyandSetSlewSpeedRate, 5, 1);
+            this.tableLayoutPanel1.Controls.Add(this.modifyandSetSlewSpeed, 6, 1);
+            this.tableLayoutPanel1.Controls.Add(this.modifyandSetSlewAltRate, 5, 2);
+            this.tableLayoutPanel1.Controls.Add(this.modifyandSetSlewHeadingRate, 5, 3);
+            this.tableLayoutPanel1.Controls.Add(this.modifyandSetSlewAlt, 6, 2);
+            this.tableLayoutPanel1.Controls.Add(this.modifyandSetSlewHeading, 6, 3);
+            this.tableLayoutPanel1.Controls.Add(this.GroundHeading, 6, 4);
+            this.tableLayoutPanel1.Controls.Add(this.ResetFuel, 5, 4);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            // 
+            // label8
+            // 
+            resources.ApplyResources(this.label8, "label8");
+            this.label8.Name = "label8";
             // 
             // BUT_abortland
             // 
@@ -673,6 +1145,7 @@
             // 
             resources.ApplyResources(this.modifyandSetLoiterRad, "modifyandSetLoiterRad");
             this.modifyandSetLoiterRad.ButtonText = "Set Loiter Rad";
+            this.modifyandSetLoiterRad.ButtonVisible = false;
             this.modifyandSetLoiterRad.DecimalPlaces = 0;
             this.modifyandSetLoiterRad.Increment = new decimal(new int[] {
             1,
@@ -741,6 +1214,7 @@
             // 
             resources.ApplyResources(this.modifyandSetAlt, "modifyandSetAlt");
             this.modifyandSetAlt.ButtonText = "Change Alt";
+            this.modifyandSetAlt.ButtonVisible = false;
             this.modifyandSetAlt.DecimalPlaces = 1;
             this.modifyandSetAlt.Increment = new decimal(new int[] {
             1,
@@ -769,6 +1243,7 @@
             // 
             resources.ApplyResources(this.modifyandSetSpeed, "modifyandSetSpeed");
             this.modifyandSetSpeed.ButtonText = "Change Speed";
+            this.modifyandSetSpeed.ButtonVisible = false;
             this.modifyandSetSpeed.DecimalPlaces = 1;
             this.modifyandSetSpeed.Increment = new decimal(new int[] {
             1,
@@ -939,6 +1414,217 @@
             this.toolTip1.SetToolTip(this.BUT_setmode, resources.GetString("BUT_setmode.ToolTip"));
             this.BUT_setmode.UseVisualStyleBackColor = true;
             this.BUT_setmode.Click += new System.EventHandler(this.BUT_setmode_Click);
+            // 
+            // label7
+            // 
+            resources.ApplyResources(this.label7, "label7");
+            this.label7.Name = "label7";
+            // 
+            // modifyandSetSlewSpeedRate
+            // 
+            this.modifyandSetSlewSpeedRate.ButtonText = "Slew to Speed Rate";
+            this.modifyandSetSlewSpeedRate.ButtonVisible = false;
+            this.modifyandSetSlewSpeedRate.DecimalPlaces = 0;
+            resources.ApplyResources(this.modifyandSetSlewSpeedRate, "modifyandSetSlewSpeedRate");
+            this.modifyandSetSlewSpeedRate.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.modifyandSetSlewSpeedRate.Maximum = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            this.modifyandSetSlewSpeedRate.Minimum = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.modifyandSetSlewSpeedRate.Name = "modifyandSetSlewSpeedRate";
+            this.modifyandSetSlewSpeedRate.Value = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            // 
+            // modifyandSetSlewSpeed
+            // 
+            resources.ApplyResources(this.modifyandSetSlewSpeed, "modifyandSetSlewSpeed");
+            this.modifyandSetSlewSpeed.ButtonText = "Slew to Speed";
+            this.modifyandSetSlewSpeed.ButtonVisible = false;
+            this.tableLayoutPanel1.SetColumnSpan(this.modifyandSetSlewSpeed, 2);
+            this.modifyandSetSlewSpeed.DecimalPlaces = 0;
+            this.modifyandSetSlewSpeed.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.modifyandSetSlewSpeed.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.modifyandSetSlewSpeed.Minimum = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.modifyandSetSlewSpeed.Name = "modifyandSetSlewSpeed";
+            this.modifyandSetSlewSpeed.Value = new decimal(new int[] {
+            20,
+            0,
+            0,
+            0});
+            this.modifyandSetSlewSpeed.Click += new System.EventHandler(this.modifyandSetSlewSpeed_Click);
+            // 
+            // modifyandSetSlewAltRate
+            // 
+            this.modifyandSetSlewAltRate.ButtonText = "Slew to Alt Rate";
+            this.modifyandSetSlewAltRate.ButtonVisible = false;
+            this.modifyandSetSlewAltRate.DecimalPlaces = 0;
+            resources.ApplyResources(this.modifyandSetSlewAltRate, "modifyandSetSlewAltRate");
+            this.modifyandSetSlewAltRate.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.modifyandSetSlewAltRate.Maximum = new decimal(new int[] {
+            20,
+            0,
+            0,
+            0});
+            this.modifyandSetSlewAltRate.Minimum = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.modifyandSetSlewAltRate.Name = "modifyandSetSlewAltRate";
+            this.modifyandSetSlewAltRate.Value = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            // 
+            // modifyandSetSlewHeadingRate
+            // 
+            this.modifyandSetSlewHeadingRate.ButtonText = "Slew to Heading Rate";
+            this.modifyandSetSlewHeadingRate.ButtonVisible = false;
+            this.modifyandSetSlewHeadingRate.DecimalPlaces = 0;
+            resources.ApplyResources(this.modifyandSetSlewHeadingRate, "modifyandSetSlewHeadingRate");
+            this.modifyandSetSlewHeadingRate.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.modifyandSetSlewHeadingRate.Maximum = new decimal(new int[] {
+            40,
+            0,
+            0,
+            0});
+            this.modifyandSetSlewHeadingRate.Minimum = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.modifyandSetSlewHeadingRate.Name = "modifyandSetSlewHeadingRate";
+            this.modifyandSetSlewHeadingRate.Value = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            // 
+            // modifyandSetSlewAlt
+            // 
+            this.modifyandSetSlewAlt.ButtonText = "Slew to Alt";
+            this.modifyandSetSlewAlt.ButtonVisible = false;
+            this.tableLayoutPanel1.SetColumnSpan(this.modifyandSetSlewAlt, 2);
+            this.modifyandSetSlewAlt.DecimalPlaces = 0;
+            resources.ApplyResources(this.modifyandSetSlewAlt, "modifyandSetSlewAlt");
+            this.modifyandSetSlewAlt.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.modifyandSetSlewAlt.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.modifyandSetSlewAlt.Minimum = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.modifyandSetSlewAlt.Name = "modifyandSetSlewAlt";
+            this.modifyandSetSlewAlt.Value = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            this.modifyandSetSlewAlt.Click += new System.EventHandler(this.modifyandSetSlewAlt_Click);
+            // 
+            // modifyandSetSlewHeading
+            // 
+            this.modifyandSetSlewHeading.ButtonText = "Slew to Heading";
+            this.modifyandSetSlewHeading.ButtonVisible = false;
+            this.tableLayoutPanel1.SetColumnSpan(this.modifyandSetSlewHeading, 2);
+            this.modifyandSetSlewHeading.DecimalPlaces = 0;
+            resources.ApplyResources(this.modifyandSetSlewHeading, "modifyandSetSlewHeading");
+            this.modifyandSetSlewHeading.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.modifyandSetSlewHeading.Maximum = new decimal(new int[] {
+            360,
+            0,
+            0,
+            0});
+            this.modifyandSetSlewHeading.Minimum = new decimal(new int[] {
+            360,
+            0,
+            0,
+            -2147483648});
+            this.modifyandSetSlewHeading.Name = "modifyandSetSlewHeading";
+            this.modifyandSetSlewHeading.Value = new decimal(new int[] {
+            270,
+            0,
+            0,
+            0});
+            this.modifyandSetSlewHeading.Click += new System.EventHandler(this.modifyandSetSlewHeading_Click);
+            // 
+            // GroundHeading
+            // 
+            resources.ApplyResources(this.GroundHeading, "GroundHeading");
+            this.GroundHeading.Checked = true;
+            this.GroundHeading.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.tableLayoutPanel1.SetColumnSpan(this.GroundHeading, 2);
+            this.GroundHeading.Name = "GroundHeading";
+            this.GroundHeading.UseVisualStyleBackColor = true;
+            // 
+            // ResetFuel
+            // 
+            this.ResetFuel.ColorMouseDown = System.Drawing.Color.Empty;
+            this.ResetFuel.ColorMouseOver = System.Drawing.Color.Empty;
+            this.ResetFuel.ColorNotEnabled = System.Drawing.Color.Empty;
+            resources.ApplyResources(this.ResetFuel, "ResetFuel");
+            this.ResetFuel.Name = "ResetFuel";
+            this.toolTip1.SetToolTip(this.ResetFuel, resources.GetString("ResetFuel.ToolTip"));
+            this.ResetFuel.UseVisualStyleBackColor = true;
+            this.ResetFuel.Click += new System.EventHandler(this.ResetFuel_Click);
+            // 
+            // tabPagemessages
+            // 
+            this.tabPagemessages.Controls.Add(this.txt_messagebox);
+            resources.ApplyResources(this.tabPagemessages, "tabPagemessages");
+            this.tabPagemessages.Name = "tabPagemessages";
+            this.tabPagemessages.UseVisualStyleBackColor = true;
+            // 
+            // txt_messagebox
+            // 
+            resources.ApplyResources(this.txt_messagebox, "txt_messagebox");
+            this.txt_messagebox.Name = "txt_messagebox";
             // 
             // tabActionsSimple
             // 
@@ -1484,63 +2170,63 @@
             // 
             // servoOptions1
             // 
+            this.servoOptions1.ChannValue = "5";
             resources.ApplyResources(this.servoOptions1, "servoOptions1");
             this.servoOptions1.Name = "servoOptions1";
-            this.servoOptions1.thisservo = 5;
             // 
             // servoOptions2
             // 
+            this.servoOptions2.ChannValue = "6";
             resources.ApplyResources(this.servoOptions2, "servoOptions2");
             this.servoOptions2.Name = "servoOptions2";
-            this.servoOptions2.thisservo = 6;
             // 
             // servoOptions3
             // 
+            this.servoOptions3.ChannValue = "7";
             resources.ApplyResources(this.servoOptions3, "servoOptions3");
             this.servoOptions3.Name = "servoOptions3";
-            this.servoOptions3.thisservo = 7;
             // 
             // servoOptions4
             // 
+            this.servoOptions4.ChannValue = "8";
             resources.ApplyResources(this.servoOptions4, "servoOptions4");
             this.servoOptions4.Name = "servoOptions4";
-            this.servoOptions4.thisservo = 8;
             // 
             // servoOptions5
             // 
+            this.servoOptions5.ChannValue = "9";
             resources.ApplyResources(this.servoOptions5, "servoOptions5");
             this.servoOptions5.Name = "servoOptions5";
-            this.servoOptions5.thisservo = 9;
             // 
             // servoOptions6
             // 
+            this.servoOptions6.ChannValue = "10";
             resources.ApplyResources(this.servoOptions6, "servoOptions6");
             this.servoOptions6.Name = "servoOptions6";
-            this.servoOptions6.thisservo = 10;
             // 
             // servoOptions7
             // 
+            this.servoOptions7.ChannValue = "11";
             resources.ApplyResources(this.servoOptions7, "servoOptions7");
             this.servoOptions7.Name = "servoOptions7";
-            this.servoOptions7.thisservo = 11;
             // 
             // servoOptions8
             // 
+            this.servoOptions8.ChannValue = "12";
             resources.ApplyResources(this.servoOptions8, "servoOptions8");
             this.servoOptions8.Name = "servoOptions8";
-            this.servoOptions8.thisservo = 12;
             // 
             // servoOptions9
             // 
+            this.servoOptions9.ChannValue = "13";
             resources.ApplyResources(this.servoOptions9, "servoOptions9");
             this.servoOptions9.Name = "servoOptions9";
-            this.servoOptions9.thisservo = 13;
             // 
             // servoOptions10
             // 
+            this.servoOptions10.ChannValue = "14";
             resources.ApplyResources(this.servoOptions10, "servoOptions10");
             this.servoOptions10.Name = "servoOptions10";
-            this.servoOptions10.thisservo = 14;
             // 
             // relayOptions1
             // 
@@ -1565,6 +2251,178 @@
             resources.ApplyResources(this.relayOptions4, "relayOptions4");
             this.relayOptions4.Name = "relayOptions4";
             this.relayOptions4.thisrelay = 3;
+            // 
+            // tabScripts
+            // 
+            this.tabScripts.Controls.Add(this.checkBoxRedirectOutput);
+            this.tabScripts.Controls.Add(this.BUT_edit_selected);
+            this.tabScripts.Controls.Add(this.labelSelectedScript);
+            this.tabScripts.Controls.Add(this.BUT_run_script);
+            this.tabScripts.Controls.Add(this.BUT_abort_script);
+            this.tabScripts.Controls.Add(this.labelScriptStatus);
+            this.tabScripts.Controls.Add(this.BUT_select_script);
+            resources.ApplyResources(this.tabScripts, "tabScripts");
+            this.tabScripts.Name = "tabScripts";
+            this.tabScripts.UseVisualStyleBackColor = true;
+            // 
+            // checkBoxRedirectOutput
+            // 
+            resources.ApplyResources(this.checkBoxRedirectOutput, "checkBoxRedirectOutput");
+            this.checkBoxRedirectOutput.Checked = true;
+            this.checkBoxRedirectOutput.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBoxRedirectOutput.Name = "checkBoxRedirectOutput";
+            this.checkBoxRedirectOutput.UseVisualStyleBackColor = true;
+            // 
+            // BUT_edit_selected
+            // 
+            this.BUT_edit_selected.ColorMouseDown = System.Drawing.Color.Empty;
+            this.BUT_edit_selected.ColorMouseOver = System.Drawing.Color.Empty;
+            this.BUT_edit_selected.ColorNotEnabled = System.Drawing.Color.Empty;
+            resources.ApplyResources(this.BUT_edit_selected, "BUT_edit_selected");
+            this.BUT_edit_selected.Name = "BUT_edit_selected";
+            this.BUT_edit_selected.UseVisualStyleBackColor = true;
+            this.BUT_edit_selected.Click += new System.EventHandler(this.BUT_edit_selected_Click);
+            // 
+            // labelSelectedScript
+            // 
+            resources.ApplyResources(this.labelSelectedScript, "labelSelectedScript");
+            this.labelSelectedScript.Name = "labelSelectedScript";
+            // 
+            // BUT_run_script
+            // 
+            this.BUT_run_script.ColorMouseDown = System.Drawing.Color.Empty;
+            this.BUT_run_script.ColorMouseOver = System.Drawing.Color.Empty;
+            this.BUT_run_script.ColorNotEnabled = System.Drawing.Color.Empty;
+            resources.ApplyResources(this.BUT_run_script, "BUT_run_script");
+            this.BUT_run_script.Name = "BUT_run_script";
+            this.BUT_run_script.UseVisualStyleBackColor = true;
+            this.BUT_run_script.Click += new System.EventHandler(this.BUT_run_script_Click);
+            // 
+            // BUT_abort_script
+            // 
+            this.BUT_abort_script.ColorMouseDown = System.Drawing.Color.Empty;
+            this.BUT_abort_script.ColorMouseOver = System.Drawing.Color.Empty;
+            this.BUT_abort_script.ColorNotEnabled = System.Drawing.Color.Empty;
+            resources.ApplyResources(this.BUT_abort_script, "BUT_abort_script");
+            this.BUT_abort_script.Name = "BUT_abort_script";
+            this.BUT_abort_script.UseVisualStyleBackColor = true;
+            this.BUT_abort_script.Click += new System.EventHandler(this.BUT_abort_script_Click);
+            // 
+            // labelScriptStatus
+            // 
+            resources.ApplyResources(this.labelScriptStatus, "labelScriptStatus");
+            this.labelScriptStatus.Name = "labelScriptStatus";
+            // 
+            // BUT_select_script
+            // 
+            this.BUT_select_script.ColorMouseDown = System.Drawing.Color.Empty;
+            this.BUT_select_script.ColorMouseOver = System.Drawing.Color.Empty;
+            this.BUT_select_script.ColorNotEnabled = System.Drawing.Color.Empty;
+            resources.ApplyResources(this.BUT_select_script, "BUT_select_script");
+            this.BUT_select_script.Name = "BUT_select_script";
+            this.BUT_select_script.UseVisualStyleBackColor = true;
+            this.BUT_select_script.Click += new System.EventHandler(this.BUT_select_script_Click);
+            // 
+            // tabPayload
+            // 
+            this.tabPayload.Controls.Add(this.BUT_PayloadFolder);
+            this.tabPayload.Controls.Add(this.groupBoxRoll);
+            this.tabPayload.Controls.Add(this.groupBoxYaw);
+            this.tabPayload.Controls.Add(this.BUT_resetGimbalPos);
+            this.tabPayload.Controls.Add(this.groupBoxPitch);
+            resources.ApplyResources(this.tabPayload, "tabPayload");
+            this.tabPayload.Name = "tabPayload";
+            this.tabPayload.UseVisualStyleBackColor = true;
+            // 
+            // BUT_PayloadFolder
+            // 
+            resources.ApplyResources(this.BUT_PayloadFolder, "BUT_PayloadFolder");
+            this.BUT_PayloadFolder.Name = "BUT_PayloadFolder";
+            this.BUT_PayloadFolder.UseVisualStyleBackColor = true;
+            // 
+            // groupBoxRoll
+            // 
+            this.groupBoxRoll.Controls.Add(this.TXT_gimbalRollPos);
+            this.groupBoxRoll.Controls.Add(this.trackBarRoll);
+            resources.ApplyResources(this.groupBoxRoll, "groupBoxRoll");
+            this.groupBoxRoll.Name = "groupBoxRoll";
+            this.groupBoxRoll.TabStop = false;
+            // 
+            // TXT_gimbalRollPos
+            // 
+            this.TXT_gimbalRollPos.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bindingSourcePayloadTab, "campointb", true));
+            resources.ApplyResources(this.TXT_gimbalRollPos, "TXT_gimbalRollPos");
+            this.TXT_gimbalRollPos.Name = "TXT_gimbalRollPos";
+            // 
+            // bindingSourcePayloadTab
+            // 
+            this.bindingSourcePayloadTab.DataSource = typeof(MissionPlanner.CurrentState);
+            // 
+            // trackBarRoll
+            // 
+            resources.ApplyResources(this.trackBarRoll, "trackBarRoll");
+            this.trackBarRoll.LargeChange = 10;
+            this.trackBarRoll.Maximum = 45;
+            this.trackBarRoll.Minimum = -45;
+            this.trackBarRoll.Name = "trackBarRoll";
+            this.trackBarRoll.TickFrequency = 10;
+            this.trackBarRoll.Scroll += new System.EventHandler(this.gimbalTrackbar_Scroll);
+            // 
+            // groupBoxYaw
+            // 
+            this.groupBoxYaw.Controls.Add(this.TXT_gimbalYawPos);
+            this.groupBoxYaw.Controls.Add(this.trackBarYaw);
+            resources.ApplyResources(this.groupBoxYaw, "groupBoxYaw");
+            this.groupBoxYaw.Name = "groupBoxYaw";
+            this.groupBoxYaw.TabStop = false;
+            // 
+            // TXT_gimbalYawPos
+            // 
+            this.TXT_gimbalYawPos.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bindingSourcePayloadTab, "campointc", true));
+            resources.ApplyResources(this.TXT_gimbalYawPos, "TXT_gimbalYawPos");
+            this.TXT_gimbalYawPos.Name = "TXT_gimbalYawPos";
+            // 
+            // trackBarYaw
+            // 
+            resources.ApplyResources(this.trackBarYaw, "trackBarYaw");
+            this.trackBarYaw.LargeChange = 10;
+            this.trackBarYaw.Maximum = 45;
+            this.trackBarYaw.Minimum = -45;
+            this.trackBarYaw.Name = "trackBarYaw";
+            this.trackBarYaw.TickFrequency = 10;
+            this.trackBarYaw.Scroll += new System.EventHandler(this.gimbalTrackbar_Scroll);
+            // 
+            // BUT_resetGimbalPos
+            // 
+            resources.ApplyResources(this.BUT_resetGimbalPos, "BUT_resetGimbalPos");
+            this.BUT_resetGimbalPos.Name = "BUT_resetGimbalPos";
+            this.BUT_resetGimbalPos.UseVisualStyleBackColor = true;
+            this.BUT_resetGimbalPos.Click += new System.EventHandler(this.BUT_resetGimbalPos_Click);
+            // 
+            // groupBoxPitch
+            // 
+            this.groupBoxPitch.Controls.Add(this.trackBarPitch);
+            this.groupBoxPitch.Controls.Add(this.TXT_gimbalPitchPos);
+            resources.ApplyResources(this.groupBoxPitch, "groupBoxPitch");
+            this.groupBoxPitch.Name = "groupBoxPitch";
+            this.groupBoxPitch.TabStop = false;
+            // 
+            // trackBarPitch
+            // 
+            resources.ApplyResources(this.trackBarPitch, "trackBarPitch");
+            this.trackBarPitch.LargeChange = 10;
+            this.trackBarPitch.Maximum = 45;
+            this.trackBarPitch.Minimum = -45;
+            this.trackBarPitch.Name = "trackBarPitch";
+            this.trackBarPitch.SmallChange = 5;
+            this.trackBarPitch.TickFrequency = 10;
+            this.trackBarPitch.Scroll += new System.EventHandler(this.gimbalTrackbar_Scroll);
+            // 
+            // TXT_gimbalPitchPos
+            // 
+            this.TXT_gimbalPitchPos.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bindingSourcePayloadTab, "campointa", true));
+            resources.ApplyResources(this.TXT_gimbalPitchPos, "TXT_gimbalPitchPos");
+            this.TXT_gimbalPitchPos.Name = "TXT_gimbalPitchPos";
             // 
             // tabTLogs
             // 
@@ -1745,21 +2603,17 @@
             this.tablogbrowse.Name = "tablogbrowse";
             this.tablogbrowse.UseVisualStyleBackColor = true;
             // 
-            // BUT_georefimage
+            // tableLayoutPanel2
             // 
-            resources.ApplyResources(this.BUT_georefimage, "BUT_georefimage");
-            this.BUT_georefimage.Name = "BUT_georefimage";
-            this.BUT_georefimage.Click += new System.EventHandler(this.BUT_georefimage_Click);
-            // 
-            // BUT_loganalysis
-            // 
-            this.BUT_loganalysis.ColorMouseDown = System.Drawing.Color.Empty;
-            this.BUT_loganalysis.ColorMouseOver = System.Drawing.Color.Empty;
-            this.BUT_loganalysis.ColorNotEnabled = System.Drawing.Color.Empty;
-            resources.ApplyResources(this.BUT_loganalysis, "BUT_loganalysis");
-            this.BUT_loganalysis.Name = "BUT_loganalysis";
-            this.BUT_loganalysis.UseVisualStyleBackColor = true;
-            this.BUT_loganalysis.Click += new System.EventHandler(this.BUT_loganalysis_Click);
+            resources.ApplyResources(this.tableLayoutPanel2, "tableLayoutPanel2");
+            this.tableLayoutPanel2.Controls.Add(this.BUT_DFMavlink, 0, 0);
+            this.tableLayoutPanel2.Controls.Add(this.BUT_georefimage, 0, 2);
+            this.tableLayoutPanel2.Controls.Add(this.BUT_logbrowse, 1, 0);
+            this.tableLayoutPanel2.Controls.Add(this.BUT_matlab, 2, 1);
+            this.tableLayoutPanel2.Controls.Add(this.but_bintolog, 1, 1);
+            this.tableLayoutPanel2.Controls.Add(this.but_dflogtokml, 0, 1);
+            this.tableLayoutPanel2.Controls.Add(this.BUT_loganalysis, 2, 0);
+            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             // 
             // BUT_DFMavlink
             // 
@@ -1771,35 +2625,11 @@
             this.BUT_DFMavlink.UseVisualStyleBackColor = true;
             this.BUT_DFMavlink.Click += new System.EventHandler(this.BUT_DFMavlink_Click);
             // 
-            // but_dflogtokml
+            // BUT_georefimage
             // 
-            this.but_dflogtokml.ColorMouseDown = System.Drawing.Color.Empty;
-            this.but_dflogtokml.ColorMouseOver = System.Drawing.Color.Empty;
-            this.but_dflogtokml.ColorNotEnabled = System.Drawing.Color.Empty;
-            resources.ApplyResources(this.but_dflogtokml, "but_dflogtokml");
-            this.but_dflogtokml.Name = "but_dflogtokml";
-            this.but_dflogtokml.UseVisualStyleBackColor = true;
-            this.but_dflogtokml.Click += new System.EventHandler(this.but_dflogtokml_Click);
-            // 
-            // but_bintolog
-            // 
-            this.but_bintolog.ColorMouseDown = System.Drawing.Color.Empty;
-            this.but_bintolog.ColorMouseOver = System.Drawing.Color.Empty;
-            this.but_bintolog.ColorNotEnabled = System.Drawing.Color.Empty;
-            resources.ApplyResources(this.but_bintolog, "but_bintolog");
-            this.but_bintolog.Name = "but_bintolog";
-            this.but_bintolog.UseVisualStyleBackColor = true;
-            this.but_bintolog.Click += new System.EventHandler(this.but_bintolog_Click);
-            // 
-            // BUT_matlab
-            // 
-            this.BUT_matlab.ColorMouseDown = System.Drawing.Color.Empty;
-            this.BUT_matlab.ColorMouseOver = System.Drawing.Color.Empty;
-            this.BUT_matlab.ColorNotEnabled = System.Drawing.Color.Empty;
-            resources.ApplyResources(this.BUT_matlab, "BUT_matlab");
-            this.BUT_matlab.Name = "BUT_matlab";
-            this.BUT_matlab.UseVisualStyleBackColor = true;
-            this.BUT_matlab.Click += new System.EventHandler(this.BUT_matlab_Click);
+            resources.ApplyResources(this.BUT_georefimage, "BUT_georefimage");
+            this.BUT_georefimage.Name = "BUT_georefimage";
+            this.BUT_georefimage.Click += new System.EventHandler(this.BUT_georefimage_Click);
             // 
             // BUT_logbrowse
             // 
@@ -1811,189 +2641,45 @@
             this.BUT_logbrowse.UseVisualStyleBackColor = true;
             this.BUT_logbrowse.Click += new System.EventHandler(this.BUT_logbrowse_Click);
             // 
-            // tabScripts
+            // BUT_matlab
             // 
-            this.tabScripts.Controls.Add(this.checkBoxRedirectOutput);
-            this.tabScripts.Controls.Add(this.BUT_edit_selected);
-            this.tabScripts.Controls.Add(this.labelSelectedScript);
-            this.tabScripts.Controls.Add(this.BUT_run_script);
-            this.tabScripts.Controls.Add(this.BUT_abort_script);
-            this.tabScripts.Controls.Add(this.labelScriptStatus);
-            this.tabScripts.Controls.Add(this.BUT_select_script);
-            resources.ApplyResources(this.tabScripts, "tabScripts");
-            this.tabScripts.Name = "tabScripts";
-            this.tabScripts.UseVisualStyleBackColor = true;
+            this.BUT_matlab.ColorMouseDown = System.Drawing.Color.Empty;
+            this.BUT_matlab.ColorMouseOver = System.Drawing.Color.Empty;
+            this.BUT_matlab.ColorNotEnabled = System.Drawing.Color.Empty;
+            resources.ApplyResources(this.BUT_matlab, "BUT_matlab");
+            this.BUT_matlab.Name = "BUT_matlab";
+            this.BUT_matlab.UseVisualStyleBackColor = true;
+            this.BUT_matlab.Click += new System.EventHandler(this.BUT_matlab_Click);
             // 
-            // checkBoxRedirectOutput
+            // but_bintolog
             // 
-            resources.ApplyResources(this.checkBoxRedirectOutput, "checkBoxRedirectOutput");
-            this.checkBoxRedirectOutput.Checked = true;
-            this.checkBoxRedirectOutput.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBoxRedirectOutput.Name = "checkBoxRedirectOutput";
-            this.checkBoxRedirectOutput.UseVisualStyleBackColor = true;
+            this.but_bintolog.ColorMouseDown = System.Drawing.Color.Empty;
+            this.but_bintolog.ColorMouseOver = System.Drawing.Color.Empty;
+            this.but_bintolog.ColorNotEnabled = System.Drawing.Color.Empty;
+            resources.ApplyResources(this.but_bintolog, "but_bintolog");
+            this.but_bintolog.Name = "but_bintolog";
+            this.but_bintolog.UseVisualStyleBackColor = true;
+            this.but_bintolog.Click += new System.EventHandler(this.but_bintolog_Click);
             // 
-            // BUT_edit_selected
+            // but_dflogtokml
             // 
-            this.BUT_edit_selected.ColorMouseDown = System.Drawing.Color.Empty;
-            this.BUT_edit_selected.ColorMouseOver = System.Drawing.Color.Empty;
-            this.BUT_edit_selected.ColorNotEnabled = System.Drawing.Color.Empty;
-            resources.ApplyResources(this.BUT_edit_selected, "BUT_edit_selected");
-            this.BUT_edit_selected.Name = "BUT_edit_selected";
-            this.BUT_edit_selected.UseVisualStyleBackColor = true;
-            this.BUT_edit_selected.Click += new System.EventHandler(this.BUT_edit_selected_Click);
+            this.but_dflogtokml.ColorMouseDown = System.Drawing.Color.Empty;
+            this.but_dflogtokml.ColorMouseOver = System.Drawing.Color.Empty;
+            this.but_dflogtokml.ColorNotEnabled = System.Drawing.Color.Empty;
+            resources.ApplyResources(this.but_dflogtokml, "but_dflogtokml");
+            this.but_dflogtokml.Name = "but_dflogtokml";
+            this.but_dflogtokml.UseVisualStyleBackColor = true;
+            this.but_dflogtokml.Click += new System.EventHandler(this.but_dflogtokml_Click);
             // 
-            // labelSelectedScript
+            // BUT_loganalysis
             // 
-            resources.ApplyResources(this.labelSelectedScript, "labelSelectedScript");
-            this.labelSelectedScript.Name = "labelSelectedScript";
-            // 
-            // BUT_run_script
-            // 
-            this.BUT_run_script.ColorMouseDown = System.Drawing.Color.Empty;
-            this.BUT_run_script.ColorMouseOver = System.Drawing.Color.Empty;
-            this.BUT_run_script.ColorNotEnabled = System.Drawing.Color.Empty;
-            resources.ApplyResources(this.BUT_run_script, "BUT_run_script");
-            this.BUT_run_script.Name = "BUT_run_script";
-            this.BUT_run_script.UseVisualStyleBackColor = true;
-            this.BUT_run_script.Click += new System.EventHandler(this.BUT_run_script_Click);
-            // 
-            // BUT_abort_script
-            // 
-            this.BUT_abort_script.ColorMouseDown = System.Drawing.Color.Empty;
-            this.BUT_abort_script.ColorMouseOver = System.Drawing.Color.Empty;
-            this.BUT_abort_script.ColorNotEnabled = System.Drawing.Color.Empty;
-            resources.ApplyResources(this.BUT_abort_script, "BUT_abort_script");
-            this.BUT_abort_script.Name = "BUT_abort_script";
-            this.BUT_abort_script.UseVisualStyleBackColor = true;
-            this.BUT_abort_script.Click += new System.EventHandler(this.BUT_abort_script_Click);
-            // 
-            // labelScriptStatus
-            // 
-            resources.ApplyResources(this.labelScriptStatus, "labelScriptStatus");
-            this.labelScriptStatus.Name = "labelScriptStatus";
-            // 
-            // BUT_select_script
-            // 
-            this.BUT_select_script.ColorMouseDown = System.Drawing.Color.Empty;
-            this.BUT_select_script.ColorMouseOver = System.Drawing.Color.Empty;
-            this.BUT_select_script.ColorNotEnabled = System.Drawing.Color.Empty;
-            resources.ApplyResources(this.BUT_select_script, "BUT_select_script");
-            this.BUT_select_script.Name = "BUT_select_script";
-            this.BUT_select_script.UseVisualStyleBackColor = true;
-            this.BUT_select_script.Click += new System.EventHandler(this.BUT_select_script_Click);
-            // 
-            // tabPagemessages
-            // 
-            this.tabPagemessages.Controls.Add(this.txt_messagebox);
-            resources.ApplyResources(this.tabPagemessages, "tabPagemessages");
-            this.tabPagemessages.Name = "tabPagemessages";
-            this.tabPagemessages.UseVisualStyleBackColor = true;
-            // 
-            // txt_messagebox
-            // 
-            resources.ApplyResources(this.txt_messagebox, "txt_messagebox");
-            this.txt_messagebox.Name = "txt_messagebox";
-            // 
-            // tabPayload
-            // 
-            this.tabPayload.Controls.Add(this.BUT_PayloadFolder);
-            this.tabPayload.Controls.Add(this.groupBoxRoll);
-            this.tabPayload.Controls.Add(this.groupBoxYaw);
-            this.tabPayload.Controls.Add(this.BUT_resetGimbalPos);
-            this.tabPayload.Controls.Add(this.groupBoxPitch);
-            resources.ApplyResources(this.tabPayload, "tabPayload");
-            this.tabPayload.Name = "tabPayload";
-            this.tabPayload.UseVisualStyleBackColor = true;
-            // 
-            // BUT_PayloadFolder
-            // 
-            resources.ApplyResources(this.BUT_PayloadFolder, "BUT_PayloadFolder");
-            this.BUT_PayloadFolder.Name = "BUT_PayloadFolder";
-            this.BUT_PayloadFolder.UseVisualStyleBackColor = true;
-            // 
-            // groupBoxRoll
-            // 
-            this.groupBoxRoll.Controls.Add(this.TXT_gimbalRollPos);
-            this.groupBoxRoll.Controls.Add(this.trackBarRoll);
-            resources.ApplyResources(this.groupBoxRoll, "groupBoxRoll");
-            this.groupBoxRoll.Name = "groupBoxRoll";
-            this.groupBoxRoll.TabStop = false;
-            // 
-            // TXT_gimbalRollPos
-            // 
-            this.TXT_gimbalRollPos.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bindingSourcePayloadTab, "campointb", true));
-            resources.ApplyResources(this.TXT_gimbalRollPos, "TXT_gimbalRollPos");
-            this.TXT_gimbalRollPos.Name = "TXT_gimbalRollPos";
-            // 
-            // bindingSourcePayloadTab
-            // 
-            this.bindingSourcePayloadTab.DataSource = typeof(MissionPlanner.CurrentState);
-            // 
-            // trackBarRoll
-            // 
-            resources.ApplyResources(this.trackBarRoll, "trackBarRoll");
-            this.trackBarRoll.LargeChange = 10;
-            this.trackBarRoll.Maximum = 45;
-            this.trackBarRoll.Minimum = -45;
-            this.trackBarRoll.Name = "trackBarRoll";
-            this.trackBarRoll.TickFrequency = 10;
-            this.trackBarRoll.Scroll += new System.EventHandler(this.gimbalTrackbar_Scroll);
-            // 
-            // groupBoxYaw
-            // 
-            this.groupBoxYaw.Controls.Add(this.TXT_gimbalYawPos);
-            this.groupBoxYaw.Controls.Add(this.trackBarYaw);
-            resources.ApplyResources(this.groupBoxYaw, "groupBoxYaw");
-            this.groupBoxYaw.Name = "groupBoxYaw";
-            this.groupBoxYaw.TabStop = false;
-            // 
-            // TXT_gimbalYawPos
-            // 
-            this.TXT_gimbalYawPos.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bindingSourcePayloadTab, "campointc", true));
-            resources.ApplyResources(this.TXT_gimbalYawPos, "TXT_gimbalYawPos");
-            this.TXT_gimbalYawPos.Name = "TXT_gimbalYawPos";
-            // 
-            // trackBarYaw
-            // 
-            resources.ApplyResources(this.trackBarYaw, "trackBarYaw");
-            this.trackBarYaw.LargeChange = 10;
-            this.trackBarYaw.Maximum = 45;
-            this.trackBarYaw.Minimum = -45;
-            this.trackBarYaw.Name = "trackBarYaw";
-            this.trackBarYaw.TickFrequency = 10;
-            this.trackBarYaw.Scroll += new System.EventHandler(this.gimbalTrackbar_Scroll);
-            // 
-            // BUT_resetGimbalPos
-            // 
-            resources.ApplyResources(this.BUT_resetGimbalPos, "BUT_resetGimbalPos");
-            this.BUT_resetGimbalPos.Name = "BUT_resetGimbalPos";
-            this.BUT_resetGimbalPos.UseVisualStyleBackColor = true;
-            this.BUT_resetGimbalPos.Click += new System.EventHandler(this.BUT_resetGimbalPos_Click);
-            // 
-            // groupBoxPitch
-            // 
-            this.groupBoxPitch.Controls.Add(this.trackBarPitch);
-            this.groupBoxPitch.Controls.Add(this.TXT_gimbalPitchPos);
-            resources.ApplyResources(this.groupBoxPitch, "groupBoxPitch");
-            this.groupBoxPitch.Name = "groupBoxPitch";
-            this.groupBoxPitch.TabStop = false;
-            // 
-            // trackBarPitch
-            // 
-            resources.ApplyResources(this.trackBarPitch, "trackBarPitch");
-            this.trackBarPitch.LargeChange = 10;
-            this.trackBarPitch.Maximum = 45;
-            this.trackBarPitch.Minimum = -45;
-            this.trackBarPitch.Name = "trackBarPitch";
-            this.trackBarPitch.SmallChange = 5;
-            this.trackBarPitch.TickFrequency = 10;
-            this.trackBarPitch.Scroll += new System.EventHandler(this.gimbalTrackbar_Scroll);
-            // 
-            // TXT_gimbalPitchPos
-            // 
-            this.TXT_gimbalPitchPos.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bindingSourcePayloadTab, "campointa", true));
-            resources.ApplyResources(this.TXT_gimbalPitchPos, "TXT_gimbalPitchPos");
-            this.TXT_gimbalPitchPos.Name = "TXT_gimbalPitchPos";
+            this.BUT_loganalysis.ColorMouseDown = System.Drawing.Color.Empty;
+            this.BUT_loganalysis.ColorMouseOver = System.Drawing.Color.Empty;
+            this.BUT_loganalysis.ColorNotEnabled = System.Drawing.Color.Empty;
+            resources.ApplyResources(this.BUT_loganalysis, "BUT_loganalysis");
+            this.BUT_loganalysis.Name = "BUT_loganalysis";
+            this.BUT_loganalysis.UseVisualStyleBackColor = true;
+            this.BUT_loganalysis.Click += new System.EventHandler(this.BUT_loganalysis_Click);
             // 
             // tableMap
             // 
@@ -2197,7 +2883,7 @@
             this.windDir1.BackColor = System.Drawing.Color.Transparent;
             this.windDir1.DataBindings.Add(new System.Windows.Forms.Binding("Direction", this.bindingSource1, "wind_dir", true, System.Windows.Forms.DataSourceUpdateMode.Never));
             this.windDir1.DataBindings.Add(new System.Windows.Forms.Binding("Speed", this.bindingSource1, "wind_vel", true, System.Windows.Forms.DataSourceUpdateMode.Never));
-            this.windDir1.Direction = 360D;
+            this.windDir1.Direction = 180D;
             resources.ApplyResources(this.windDir1, "windDir1");
             this.windDir1.Name = "windDir1";
             this.windDir1.Speed = 0D;
@@ -2398,18 +3084,6 @@
             // 
             this.bindingSourceStatusTab.DataSource = typeof(MissionPlanner.CurrentState);
             // 
-            // tableLayoutPanel2
-            // 
-            resources.ApplyResources(this.tableLayoutPanel2, "tableLayoutPanel2");
-            this.tableLayoutPanel2.Controls.Add(this.BUT_DFMavlink, 0, 0);
-            this.tableLayoutPanel2.Controls.Add(this.BUT_georefimage, 0, 2);
-            this.tableLayoutPanel2.Controls.Add(this.BUT_logbrowse, 1, 0);
-            this.tableLayoutPanel2.Controls.Add(this.BUT_matlab, 2, 1);
-            this.tableLayoutPanel2.Controls.Add(this.but_bintolog, 1, 1);
-            this.tableLayoutPanel2.Controls.Add(this.but_dflogtokml, 0, 1);
-            this.tableLayoutPanel2.Controls.Add(this.BUT_loganalysis, 2, 0);
-            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-            // 
             // FlightData
             // 
             this.Controls.Add(this.MainH);
@@ -2436,25 +3110,19 @@
             this.contextMenuStripQuickView.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceQuickTab)).EndInit();
             this.tabActions.ResumeLayout(false);
+            this.tabActions.PerformLayout();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
+            this.tabPagemessages.ResumeLayout(false);
+            this.tabPagemessages.PerformLayout();
             this.tabActionsSimple.ResumeLayout(false);
             this.tabPagePreFlight.ResumeLayout(false);
             this.tabGauges.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceGaugesTab)).EndInit();
             this.tabServo.ResumeLayout(false);
             this.flowLayoutPanelServos.ResumeLayout(false);
-            this.tabTLogs.ResumeLayout(false);
-            this.tableLayoutPaneltlogs.ResumeLayout(false);
-            this.tableLayoutPaneltlogs.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.tracklog)).EndInit();
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
-            this.tablogbrowse.ResumeLayout(false);
             this.tabScripts.ResumeLayout(false);
             this.tabScripts.PerformLayout();
-            this.tabPagemessages.ResumeLayout(false);
-            this.tabPagemessages.PerformLayout();
             this.tabPayload.ResumeLayout(false);
             this.groupBoxRoll.ResumeLayout(false);
             this.groupBoxRoll.PerformLayout();
@@ -2466,6 +3134,14 @@
             this.groupBoxPitch.ResumeLayout(false);
             this.groupBoxPitch.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarPitch)).EndInit();
+            this.tabTLogs.ResumeLayout(false);
+            this.tableLayoutPaneltlogs.ResumeLayout(false);
+            this.tableLayoutPaneltlogs.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tracklog)).EndInit();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
+            this.tablogbrowse.ResumeLayout(false);
+            this.tableLayoutPanel2.ResumeLayout(false);
             this.tableMap.ResumeLayout(false);
             this.tableMap.PerformLayout();
             this.splitContainer1.Panel1.ResumeLayout(false);
@@ -2480,7 +3156,6 @@
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Zoomlevel)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceStatusTab)).EndInit();
-            this.tableLayoutPanel2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -2631,6 +3306,7 @@
         private System.Windows.Forms.ToolStripMenuItem setMJPEGSourceToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem stopRecordToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem startCameraToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem stopCameraToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem customizeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem loadFileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem PointCameraCoordsToolStripMenuItem1;
@@ -2669,5 +3345,42 @@
         private System.Windows.Forms.ToolStripMenuItem flyToCoordsToolStripMenuItem;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label7;
+        private Controls.ModifyandSet modifyandSetSlewSpeedRate;
+        private Controls.ModifyandSet modifyandSetSlewSpeed;
+        private Controls.ModifyandSet modifyandSetSlewAltRate;
+        private Controls.ModifyandSet modifyandSetSlewHeadingRate;
+        private Controls.ModifyandSet modifyandSetSlewAlt;
+        private Controls.ModifyandSet modifyandSetSlewHeading;
+        private System.Windows.Forms.CheckBox GroundHeading;
+        private System.Windows.Forms.Label label9;
+        private Controls.ServoOptions servoOptions12;
+        private System.Windows.Forms.Label label10;
+        private Controls.ServoOptions servoOptions11;
+        private Controls.ModifyandSet modifyandSet_HR_BreakDelay;
+        private Controls.ModifyandSet modifyandSet_SR_BreakDelay;
+        private Controls.ModifyandSet modifyandSet_HL_BreakDelay;
+        private Controls.ModifyandSet modifyandSet_SL_BreakDelay;
+        private System.Windows.Forms.CheckBox chkShowBreakControls;
+        private System.Windows.Forms.Label label13;
+        private Controls.ServoOptions servoOptionsMissionSystemDisable;
+        private System.Windows.Forms.Label label12;
+        private Controls.ServoOptions servoOptionsStreamCasterPower;
+        private System.Windows.Forms.Label servo5label2;
+        private System.Windows.Forms.Label lblHardRight;
+        private System.Windows.Forms.Label lblSlightRight;
+        private System.Windows.Forms.Label lblHardLeft;
+        private System.Windows.Forms.Label lblSlightLeft;
+        private Controls.MyButton Break_HR;
+        private Controls.MyButton Break_SR;
+        private Controls.MyButton Break_HL;
+        private Controls.MyButton Break_SL;
+        private Controls.ServoOptions servoOptions1a;
+        private Controls.ModifyandSet modifyandSet_HR_BreakRadius;
+        private Controls.ModifyandSet modifyandSet_SR_BreakRadius;
+        private Controls.ModifyandSet modifyandSet_HL_BreakRadius;
+        private Controls.ModifyandSet modifyandSet_SL_BreakRadius;
+        private Controls.MyButton ResetFuel;
     }
 }

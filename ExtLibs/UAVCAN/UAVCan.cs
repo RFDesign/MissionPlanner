@@ -1436,9 +1436,6 @@ velocity_covariance: [1.8525, 0.0000, 0.0000, 0.0000, 1.8525, 0.0000, 0.0000, 0.
 
             var fixtest = new uavcan.uavcan_equipment_gnss_Fix();
             fixtest.decode(new uavcan.CanardRxTransfer(data));
-
-
-            
         }
 
         byte hextoint(char number)
