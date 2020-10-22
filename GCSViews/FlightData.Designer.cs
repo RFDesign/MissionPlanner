@@ -43,18 +43,10 @@
             this.quickView1 = new MissionPlanner.Controls.QuickView();
             this.tabActions = new System.Windows.Forms.TabPage();
             this.label9 = new System.Windows.Forms.Label();
-            this.servoOptions12 = new MissionPlanner.Controls.ServoOptions();
             this.label10 = new System.Windows.Forms.Label();
-            this.servoOptions11 = new MissionPlanner.Controls.ServoOptions();
-            this.modifyandSet_HR_BreakDelay = new MissionPlanner.Controls.ModifyandSet();
-            this.modifyandSet_SR_BreakDelay = new MissionPlanner.Controls.ModifyandSet();
-            this.modifyandSet_HL_BreakDelay = new MissionPlanner.Controls.ModifyandSet();
-            this.modifyandSet_SL_BreakDelay = new MissionPlanner.Controls.ModifyandSet();
             this.chkShowBreakControls = new System.Windows.Forms.CheckBox();
             this.label13 = new System.Windows.Forms.Label();
-            this.servoOptionsMissionSystemDisable = new MissionPlanner.Controls.ServoOptions();
             this.label12 = new System.Windows.Forms.Label();
-            this.servoOptionsStreamCasterPower = new MissionPlanner.Controls.ServoOptions();
             this.servo5label2 = new System.Windows.Forms.Label();
             this.lblHardRight = new System.Windows.Forms.Label();
             this.lblSlightRight = new System.Windows.Forms.Label();
@@ -64,11 +56,6 @@
             this.Break_SR = new MissionPlanner.Controls.MyButton();
             this.Break_HL = new MissionPlanner.Controls.MyButton();
             this.Break_SL = new MissionPlanner.Controls.MyButton();
-            this.servoOptions1a = new MissionPlanner.Controls.ServoOptions();
-            this.modifyandSet_HR_BreakRadius = new MissionPlanner.Controls.ModifyandSet();
-            this.modifyandSet_SR_BreakRadius = new MissionPlanner.Controls.ModifyandSet();
-            this.modifyandSet_HL_BreakRadius = new MissionPlanner.Controls.ModifyandSet();
-            this.modifyandSet_SL_BreakRadius = new MissionPlanner.Controls.ModifyandSet();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.label8 = new System.Windows.Forms.Label();
             this.BUT_abortland = new MissionPlanner.Controls.MyButton();
@@ -102,6 +89,19 @@
             this.modifyandSetSlewHeading = new MissionPlanner.Controls.ModifyandSet();
             this.GroundHeading = new System.Windows.Forms.CheckBox();
             this.ResetFuel = new MissionPlanner.Controls.MyButton();
+            this.servoOptions12 = new MissionPlanner.Controls.ServoOptions();
+            this.servoOptions11 = new MissionPlanner.Controls.ServoOptions();
+            this.modifyandSet_HR_BreakDelay = new MissionPlanner.Controls.ModifyandSet();
+            this.modifyandSet_SR_BreakDelay = new MissionPlanner.Controls.ModifyandSet();
+            this.modifyandSet_HL_BreakDelay = new MissionPlanner.Controls.ModifyandSet();
+            this.modifyandSet_SL_BreakDelay = new MissionPlanner.Controls.ModifyandSet();
+            this.servoOptionsMissionSystemDisable = new MissionPlanner.Controls.ServoOptions();
+            this.servoOptionsStreamCasterPower = new MissionPlanner.Controls.ServoOptions();
+            this.servoOptions1a = new MissionPlanner.Controls.ServoOptions();
+            this.modifyandSet_HR_BreakRadius = new MissionPlanner.Controls.ModifyandSet();
+            this.modifyandSet_SR_BreakRadius = new MissionPlanner.Controls.ModifyandSet();
+            this.modifyandSet_HL_BreakRadius = new MissionPlanner.Controls.ModifyandSet();
+            this.modifyandSet_SL_BreakRadius = new MissionPlanner.Controls.ModifyandSet();
             this.tabPagemessages = new System.Windows.Forms.TabPage();
             this.txt_messagebox = new System.Windows.Forms.TextBox();
             this.tabActionsSimple = new System.Windows.Forms.TabPage();
@@ -671,18 +671,10 @@
             // tabActions
             // 
             this.tabActions.Controls.Add(this.label9);
-            this.tabActions.Controls.Add(this.servoOptions12);
             this.tabActions.Controls.Add(this.label10);
-            this.tabActions.Controls.Add(this.servoOptions11);
-            this.tabActions.Controls.Add(this.modifyandSet_HR_BreakDelay);
-            this.tabActions.Controls.Add(this.modifyandSet_SR_BreakDelay);
-            this.tabActions.Controls.Add(this.modifyandSet_HL_BreakDelay);
-            this.tabActions.Controls.Add(this.modifyandSet_SL_BreakDelay);
             this.tabActions.Controls.Add(this.chkShowBreakControls);
             this.tabActions.Controls.Add(this.label13);
-            this.tabActions.Controls.Add(this.servoOptionsMissionSystemDisable);
             this.tabActions.Controls.Add(this.label12);
-            this.tabActions.Controls.Add(this.servoOptionsStreamCasterPower);
             this.tabActions.Controls.Add(this.servo5label2);
             this.tabActions.Controls.Add(this.lblHardRight);
             this.tabActions.Controls.Add(this.lblSlightRight);
@@ -692,12 +684,20 @@
             this.tabActions.Controls.Add(this.Break_SR);
             this.tabActions.Controls.Add(this.Break_HL);
             this.tabActions.Controls.Add(this.Break_SL);
+            this.tabActions.Controls.Add(this.tableLayoutPanel1);
+            this.tabActions.Controls.Add(this.servoOptions12);
+            this.tabActions.Controls.Add(this.servoOptions11);
+            this.tabActions.Controls.Add(this.modifyandSet_HR_BreakDelay);
+            this.tabActions.Controls.Add(this.modifyandSet_SR_BreakDelay);
+            this.tabActions.Controls.Add(this.modifyandSet_HL_BreakDelay);
+            this.tabActions.Controls.Add(this.modifyandSet_SL_BreakDelay);
+            this.tabActions.Controls.Add(this.servoOptionsMissionSystemDisable);
+            this.tabActions.Controls.Add(this.servoOptionsStreamCasterPower);
             this.tabActions.Controls.Add(this.servoOptions1a);
             this.tabActions.Controls.Add(this.modifyandSet_HR_BreakRadius);
             this.tabActions.Controls.Add(this.modifyandSet_SR_BreakRadius);
             this.tabActions.Controls.Add(this.modifyandSet_HL_BreakRadius);
             this.tabActions.Controls.Add(this.modifyandSet_SL_BreakRadius);
-            this.tabActions.Controls.Add(this.tableLayoutPanel1);
             resources.ApplyResources(this.tabActions, "tabActions");
             this.tabActions.Name = "tabActions";
             this.tabActions.UseVisualStyleBackColor = true;
@@ -708,141 +708,11 @@
             this.label9.Name = "label9";
             this.toolTip1.SetToolTip(this.label9, resources.GetString("label9.ToolTip"));
             // 
-            // servoOptions12
-            // 
-            this.servoOptions12.ChannValue = "13";
-            resources.ApplyResources(this.servoOptions12, "servoOptions12");
-            this.servoOptions12.Name = "servoOptions12";
-            this.toolTip1.SetToolTip(this.servoOptions12, resources.GetString("servoOptions12.ToolTip"));
-            // 
             // label10
             // 
             resources.ApplyResources(this.label10, "label10");
             this.label10.Name = "label10";
             this.toolTip1.SetToolTip(this.label10, resources.GetString("label10.ToolTip"));
-            // 
-            // servoOptions11
-            // 
-            this.servoOptions11.ChannValue = "6";
-            resources.ApplyResources(this.servoOptions11, "servoOptions11");
-            this.servoOptions11.Name = "servoOptions11";
-            this.toolTip1.SetToolTip(this.servoOptions11, resources.GetString("servoOptions11.ToolTip"));
-            // 
-            // modifyandSet_HR_BreakDelay
-            // 
-            this.modifyandSet_HR_BreakDelay.ButtonText = "Break Delay";
-            this.modifyandSet_HR_BreakDelay.ButtonVisible = false;
-            this.modifyandSet_HR_BreakDelay.DecimalPlaces = 0;
-            this.modifyandSet_HR_BreakDelay.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            resources.ApplyResources(this.modifyandSet_HR_BreakDelay, "modifyandSet_HR_BreakDelay");
-            this.modifyandSet_HR_BreakDelay.Maximum = new decimal(new int[] {
-            30,
-            0,
-            0,
-            0});
-            this.modifyandSet_HR_BreakDelay.Minimum = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.modifyandSet_HR_BreakDelay.Name = "modifyandSet_HR_BreakDelay";
-            this.toolTip1.SetToolTip(this.modifyandSet_HR_BreakDelay, resources.GetString("modifyandSet_HR_BreakDelay.ToolTip"));
-            this.modifyandSet_HR_BreakDelay.Value = new decimal(new int[] {
-            5,
-            0,
-            0,
-            0});
-            // 
-            // modifyandSet_SR_BreakDelay
-            // 
-            this.modifyandSet_SR_BreakDelay.ButtonText = "Break Delay";
-            this.modifyandSet_SR_BreakDelay.ButtonVisible = false;
-            this.modifyandSet_SR_BreakDelay.DecimalPlaces = 0;
-            this.modifyandSet_SR_BreakDelay.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            resources.ApplyResources(this.modifyandSet_SR_BreakDelay, "modifyandSet_SR_BreakDelay");
-            this.modifyandSet_SR_BreakDelay.Maximum = new decimal(new int[] {
-            30,
-            0,
-            0,
-            0});
-            this.modifyandSet_SR_BreakDelay.Minimum = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.modifyandSet_SR_BreakDelay.Name = "modifyandSet_SR_BreakDelay";
-            this.toolTip1.SetToolTip(this.modifyandSet_SR_BreakDelay, resources.GetString("modifyandSet_SR_BreakDelay.ToolTip"));
-            this.modifyandSet_SR_BreakDelay.Value = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
-            // 
-            // modifyandSet_HL_BreakDelay
-            // 
-            this.modifyandSet_HL_BreakDelay.ButtonText = "Break Delay";
-            this.modifyandSet_HL_BreakDelay.ButtonVisible = false;
-            this.modifyandSet_HL_BreakDelay.DecimalPlaces = 0;
-            this.modifyandSet_HL_BreakDelay.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            resources.ApplyResources(this.modifyandSet_HL_BreakDelay, "modifyandSet_HL_BreakDelay");
-            this.modifyandSet_HL_BreakDelay.Maximum = new decimal(new int[] {
-            30,
-            0,
-            0,
-            0});
-            this.modifyandSet_HL_BreakDelay.Minimum = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.modifyandSet_HL_BreakDelay.Name = "modifyandSet_HL_BreakDelay";
-            this.toolTip1.SetToolTip(this.modifyandSet_HL_BreakDelay, resources.GetString("modifyandSet_HL_BreakDelay.ToolTip"));
-            this.modifyandSet_HL_BreakDelay.Value = new decimal(new int[] {
-            5,
-            0,
-            0,
-            0});
-            // 
-            // modifyandSet_SL_BreakDelay
-            // 
-            this.modifyandSet_SL_BreakDelay.ButtonText = "Break Delay";
-            this.modifyandSet_SL_BreakDelay.ButtonVisible = false;
-            this.modifyandSet_SL_BreakDelay.DecimalPlaces = 0;
-            this.modifyandSet_SL_BreakDelay.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            resources.ApplyResources(this.modifyandSet_SL_BreakDelay, "modifyandSet_SL_BreakDelay");
-            this.modifyandSet_SL_BreakDelay.Maximum = new decimal(new int[] {
-            30,
-            0,
-            0,
-            0});
-            this.modifyandSet_SL_BreakDelay.Minimum = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.modifyandSet_SL_BreakDelay.Name = "modifyandSet_SL_BreakDelay";
-            this.toolTip1.SetToolTip(this.modifyandSet_SL_BreakDelay, resources.GetString("modifyandSet_SL_BreakDelay.ToolTip"));
-            this.modifyandSet_SL_BreakDelay.Value = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
             // 
             // chkShowBreakControls
             // 
@@ -857,25 +727,11 @@
             this.label13.Name = "label13";
             this.toolTip1.SetToolTip(this.label13, resources.GetString("label13.ToolTip"));
             // 
-            // servoOptionsMissionSystemDisable
-            // 
-            this.servoOptionsMissionSystemDisable.ChannValue = "12";
-            resources.ApplyResources(this.servoOptionsMissionSystemDisable, "servoOptionsMissionSystemDisable");
-            this.servoOptionsMissionSystemDisable.Name = "servoOptionsMissionSystemDisable";
-            this.toolTip1.SetToolTip(this.servoOptionsMissionSystemDisable, resources.GetString("servoOptionsMissionSystemDisable.ToolTip"));
-            // 
             // label12
             // 
             resources.ApplyResources(this.label12, "label12");
             this.label12.Name = "label12";
             this.toolTip1.SetToolTip(this.label12, resources.GetString("label12.ToolTip"));
-            // 
-            // servoOptionsStreamCasterPower
-            // 
-            this.servoOptionsStreamCasterPower.ChannValue = "7";
-            resources.ApplyResources(this.servoOptionsStreamCasterPower, "servoOptionsStreamCasterPower");
-            this.servoOptionsStreamCasterPower.Name = "servoOptionsStreamCasterPower";
-            this.toolTip1.SetToolTip(this.servoOptionsStreamCasterPower, resources.GetString("servoOptionsStreamCasterPower.ToolTip"));
             // 
             // servo5label2
             // 
@@ -966,132 +822,10 @@
             this.Break_SL.UseVisualStyleBackColor = false;
             this.Break_SL.Click += new System.EventHandler(this.Break_SL_Click);
             // 
-            // servoOptions1a
-            // 
-            this.servoOptions1a.ChannValue = "5";
-            resources.ApplyResources(this.servoOptions1a, "servoOptions1a");
-            this.servoOptions1a.Name = "servoOptions1a";
-            // 
-            // modifyandSet_HR_BreakRadius
-            // 
-            this.modifyandSet_HR_BreakRadius.ButtonText = "Break Radius";
-            this.modifyandSet_HR_BreakRadius.ButtonVisible = false;
-            this.modifyandSet_HR_BreakRadius.DecimalPlaces = 0;
-            this.modifyandSet_HR_BreakRadius.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            resources.ApplyResources(this.modifyandSet_HR_BreakRadius, "modifyandSet_HR_BreakRadius");
-            this.modifyandSet_HR_BreakRadius.Maximum = new decimal(new int[] {
-            200,
-            0,
-            0,
-            0});
-            this.modifyandSet_HR_BreakRadius.Minimum = new decimal(new int[] {
-            200,
-            0,
-            0,
-            -2147483648});
-            this.modifyandSet_HR_BreakRadius.Name = "modifyandSet_HR_BreakRadius";
-            this.toolTip1.SetToolTip(this.modifyandSet_HR_BreakRadius, resources.GetString("modifyandSet_HR_BreakRadius.ToolTip"));
-            this.modifyandSet_HR_BreakRadius.Value = new decimal(new int[] {
-            50,
-            0,
-            0,
-            0});
-            // 
-            // modifyandSet_SR_BreakRadius
-            // 
-            this.modifyandSet_SR_BreakRadius.ButtonText = "Break Radius";
-            this.modifyandSet_SR_BreakRadius.ButtonVisible = false;
-            this.modifyandSet_SR_BreakRadius.DecimalPlaces = 0;
-            this.modifyandSet_SR_BreakRadius.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            resources.ApplyResources(this.modifyandSet_SR_BreakRadius, "modifyandSet_SR_BreakRadius");
-            this.modifyandSet_SR_BreakRadius.Maximum = new decimal(new int[] {
-            200,
-            0,
-            0,
-            0});
-            this.modifyandSet_SR_BreakRadius.Minimum = new decimal(new int[] {
-            200,
-            0,
-            0,
-            -2147483648});
-            this.modifyandSet_SR_BreakRadius.Name = "modifyandSet_SR_BreakRadius";
-            this.toolTip1.SetToolTip(this.modifyandSet_SR_BreakRadius, resources.GetString("modifyandSet_SR_BreakRadius.ToolTip"));
-            this.modifyandSet_SR_BreakRadius.Value = new decimal(new int[] {
-            100,
-            0,
-            0,
-            0});
-            // 
-            // modifyandSet_HL_BreakRadius
-            // 
-            this.modifyandSet_HL_BreakRadius.ButtonText = "Break Radius";
-            this.modifyandSet_HL_BreakRadius.ButtonVisible = false;
-            this.modifyandSet_HL_BreakRadius.DecimalPlaces = 0;
-            this.modifyandSet_HL_BreakRadius.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            resources.ApplyResources(this.modifyandSet_HL_BreakRadius, "modifyandSet_HL_BreakRadius");
-            this.modifyandSet_HL_BreakRadius.Maximum = new decimal(new int[] {
-            200,
-            0,
-            0,
-            0});
-            this.modifyandSet_HL_BreakRadius.Minimum = new decimal(new int[] {
-            200,
-            0,
-            0,
-            -2147483648});
-            this.modifyandSet_HL_BreakRadius.Name = "modifyandSet_HL_BreakRadius";
-            this.toolTip1.SetToolTip(this.modifyandSet_HL_BreakRadius, resources.GetString("modifyandSet_HL_BreakRadius.ToolTip"));
-            this.modifyandSet_HL_BreakRadius.Value = new decimal(new int[] {
-            50,
-            0,
-            0,
-            -2147483648});
-            // 
-            // modifyandSet_SL_BreakRadius
-            // 
-            this.modifyandSet_SL_BreakRadius.ButtonText = "Break Radius";
-            this.modifyandSet_SL_BreakRadius.ButtonVisible = false;
-            this.modifyandSet_SL_BreakRadius.DecimalPlaces = 0;
-            this.modifyandSet_SL_BreakRadius.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            resources.ApplyResources(this.modifyandSet_SL_BreakRadius, "modifyandSet_SL_BreakRadius");
-            this.modifyandSet_SL_BreakRadius.Maximum = new decimal(new int[] {
-            200,
-            0,
-            0,
-            0});
-            this.modifyandSet_SL_BreakRadius.Minimum = new decimal(new int[] {
-            200,
-            0,
-            0,
-            -2147483648});
-            this.modifyandSet_SL_BreakRadius.Name = "modifyandSet_SL_BreakRadius";
-            this.toolTip1.SetToolTip(this.modifyandSet_SL_BreakRadius, resources.GetString("modifyandSet_SL_BreakRadius.ToolTip"));
-            this.modifyandSet_SL_BreakRadius.Value = new decimal(new int[] {
-            100,
-            0,
-            0,
-            -2147483648});
-            // 
             // tableLayoutPanel1
             // 
             resources.ApplyResources(this.tableLayoutPanel1, "tableLayoutPanel1");
-            this.tableLayoutPanel1.Controls.Add(this.label8, 6, 0);
+            this.tableLayoutPanel1.Controls.Add(this.label8, 7, 0);
             this.tableLayoutPanel1.Controls.Add(this.BUT_abortland, 4, 4);
             this.tableLayoutPanel1.Controls.Add(this.modifyandSetLoiterRad, 4, 2);
             this.tableLayoutPanel1.Controls.Add(this.BUT_clear_track, 4, 3);
@@ -1114,13 +848,13 @@
             this.tableLayoutPanel1.Controls.Add(this.CMB_modes, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.BUT_quickauto, 2, 0);
             this.tableLayoutPanel1.Controls.Add(this.BUT_setmode, 1, 2);
-            this.tableLayoutPanel1.Controls.Add(this.label7, 5, 0);
-            this.tableLayoutPanel1.Controls.Add(this.modifyandSetSlewSpeedRate, 5, 1);
-            this.tableLayoutPanel1.Controls.Add(this.modifyandSetSlewSpeed, 6, 1);
-            this.tableLayoutPanel1.Controls.Add(this.modifyandSetSlewAltRate, 5, 2);
-            this.tableLayoutPanel1.Controls.Add(this.modifyandSetSlewHeadingRate, 5, 3);
-            this.tableLayoutPanel1.Controls.Add(this.modifyandSetSlewAlt, 6, 2);
-            this.tableLayoutPanel1.Controls.Add(this.modifyandSetSlewHeading, 6, 3);
+            this.tableLayoutPanel1.Controls.Add(this.label7, 6, 0);
+            this.tableLayoutPanel1.Controls.Add(this.modifyandSetSlewSpeedRate, 6, 1);
+            this.tableLayoutPanel1.Controls.Add(this.modifyandSetSlewSpeed, 7, 1);
+            this.tableLayoutPanel1.Controls.Add(this.modifyandSetSlewAltRate, 6, 2);
+            this.tableLayoutPanel1.Controls.Add(this.modifyandSetSlewHeadingRate, 6, 3);
+            this.tableLayoutPanel1.Controls.Add(this.modifyandSetSlewAlt, 7, 2);
+            this.tableLayoutPanel1.Controls.Add(this.modifyandSetSlewHeading, 7, 3);
             this.tableLayoutPanel1.Controls.Add(this.GroundHeading, 6, 4);
             this.tableLayoutPanel1.Controls.Add(this.ResetFuel, 5, 4);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -1146,6 +880,7 @@
             resources.ApplyResources(this.modifyandSetLoiterRad, "modifyandSetLoiterRad");
             this.modifyandSetLoiterRad.ButtonText = "Set Loiter Rad";
             this.modifyandSetLoiterRad.ButtonVisible = false;
+            this.tableLayoutPanel1.SetColumnSpan(this.modifyandSetLoiterRad, 2);
             this.modifyandSetLoiterRad.DecimalPlaces = 0;
             this.modifyandSetLoiterRad.Increment = new decimal(new int[] {
             1,
@@ -1215,6 +950,7 @@
             resources.ApplyResources(this.modifyandSetAlt, "modifyandSetAlt");
             this.modifyandSetAlt.ButtonText = "Change Alt";
             this.modifyandSetAlt.ButtonVisible = false;
+            this.tableLayoutPanel1.SetColumnSpan(this.modifyandSetAlt, 2);
             this.modifyandSetAlt.DecimalPlaces = 1;
             this.modifyandSetAlt.Increment = new decimal(new int[] {
             1,
@@ -1244,6 +980,7 @@
             resources.ApplyResources(this.modifyandSetSpeed, "modifyandSetSpeed");
             this.modifyandSetSpeed.ButtonText = "Change Speed";
             this.modifyandSetSpeed.ButtonVisible = false;
+            this.tableLayoutPanel1.SetColumnSpan(this.modifyandSetSpeed, 2);
             this.modifyandSetSpeed.DecimalPlaces = 1;
             this.modifyandSetSpeed.Increment = new decimal(new int[] {
             1,
@@ -1613,6 +1350,272 @@
             this.toolTip1.SetToolTip(this.ResetFuel, resources.GetString("ResetFuel.ToolTip"));
             this.ResetFuel.UseVisualStyleBackColor = true;
             this.ResetFuel.Click += new System.EventHandler(this.ResetFuel_Click);
+            // 
+            // servoOptions12
+            // 
+            this.servoOptions12.ChannValue = "13";
+            resources.ApplyResources(this.servoOptions12, "servoOptions12");
+            this.servoOptions12.Name = "servoOptions12";
+            this.toolTip1.SetToolTip(this.servoOptions12, resources.GetString("servoOptions12.ToolTip"));
+            // 
+            // servoOptions11
+            // 
+            this.servoOptions11.ChannValue = "6";
+            resources.ApplyResources(this.servoOptions11, "servoOptions11");
+            this.servoOptions11.Name = "servoOptions11";
+            this.toolTip1.SetToolTip(this.servoOptions11, resources.GetString("servoOptions11.ToolTip"));
+            // 
+            // modifyandSet_HR_BreakDelay
+            // 
+            this.modifyandSet_HR_BreakDelay.ButtonText = "Break Delay";
+            this.modifyandSet_HR_BreakDelay.ButtonVisible = false;
+            this.modifyandSet_HR_BreakDelay.DecimalPlaces = 0;
+            this.modifyandSet_HR_BreakDelay.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            resources.ApplyResources(this.modifyandSet_HR_BreakDelay, "modifyandSet_HR_BreakDelay");
+            this.modifyandSet_HR_BreakDelay.Maximum = new decimal(new int[] {
+            30,
+            0,
+            0,
+            0});
+            this.modifyandSet_HR_BreakDelay.Minimum = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.modifyandSet_HR_BreakDelay.Name = "modifyandSet_HR_BreakDelay";
+            this.toolTip1.SetToolTip(this.modifyandSet_HR_BreakDelay, resources.GetString("modifyandSet_HR_BreakDelay.ToolTip"));
+            this.modifyandSet_HR_BreakDelay.Value = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            // 
+            // modifyandSet_SR_BreakDelay
+            // 
+            this.modifyandSet_SR_BreakDelay.ButtonText = "Break Delay";
+            this.modifyandSet_SR_BreakDelay.ButtonVisible = false;
+            this.modifyandSet_SR_BreakDelay.DecimalPlaces = 0;
+            this.modifyandSet_SR_BreakDelay.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            resources.ApplyResources(this.modifyandSet_SR_BreakDelay, "modifyandSet_SR_BreakDelay");
+            this.modifyandSet_SR_BreakDelay.Maximum = new decimal(new int[] {
+            30,
+            0,
+            0,
+            0});
+            this.modifyandSet_SR_BreakDelay.Minimum = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.modifyandSet_SR_BreakDelay.Name = "modifyandSet_SR_BreakDelay";
+            this.toolTip1.SetToolTip(this.modifyandSet_SR_BreakDelay, resources.GetString("modifyandSet_SR_BreakDelay.ToolTip"));
+            this.modifyandSet_SR_BreakDelay.Value = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            // 
+            // modifyandSet_HL_BreakDelay
+            // 
+            this.modifyandSet_HL_BreakDelay.ButtonText = "Break Delay";
+            this.modifyandSet_HL_BreakDelay.ButtonVisible = false;
+            this.modifyandSet_HL_BreakDelay.DecimalPlaces = 0;
+            this.modifyandSet_HL_BreakDelay.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            resources.ApplyResources(this.modifyandSet_HL_BreakDelay, "modifyandSet_HL_BreakDelay");
+            this.modifyandSet_HL_BreakDelay.Maximum = new decimal(new int[] {
+            30,
+            0,
+            0,
+            0});
+            this.modifyandSet_HL_BreakDelay.Minimum = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.modifyandSet_HL_BreakDelay.Name = "modifyandSet_HL_BreakDelay";
+            this.toolTip1.SetToolTip(this.modifyandSet_HL_BreakDelay, resources.GetString("modifyandSet_HL_BreakDelay.ToolTip"));
+            this.modifyandSet_HL_BreakDelay.Value = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            // 
+            // modifyandSet_SL_BreakDelay
+            // 
+            this.modifyandSet_SL_BreakDelay.ButtonText = "Break Delay";
+            this.modifyandSet_SL_BreakDelay.ButtonVisible = false;
+            this.modifyandSet_SL_BreakDelay.DecimalPlaces = 0;
+            this.modifyandSet_SL_BreakDelay.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            resources.ApplyResources(this.modifyandSet_SL_BreakDelay, "modifyandSet_SL_BreakDelay");
+            this.modifyandSet_SL_BreakDelay.Maximum = new decimal(new int[] {
+            30,
+            0,
+            0,
+            0});
+            this.modifyandSet_SL_BreakDelay.Minimum = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.modifyandSet_SL_BreakDelay.Name = "modifyandSet_SL_BreakDelay";
+            this.toolTip1.SetToolTip(this.modifyandSet_SL_BreakDelay, resources.GetString("modifyandSet_SL_BreakDelay.ToolTip"));
+            this.modifyandSet_SL_BreakDelay.Value = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            // 
+            // servoOptionsMissionSystemDisable
+            // 
+            this.servoOptionsMissionSystemDisable.ChannValue = "12";
+            resources.ApplyResources(this.servoOptionsMissionSystemDisable, "servoOptionsMissionSystemDisable");
+            this.servoOptionsMissionSystemDisable.Name = "servoOptionsMissionSystemDisable";
+            this.toolTip1.SetToolTip(this.servoOptionsMissionSystemDisable, resources.GetString("servoOptionsMissionSystemDisable.ToolTip"));
+            // 
+            // servoOptionsStreamCasterPower
+            // 
+            this.servoOptionsStreamCasterPower.ChannValue = "7";
+            resources.ApplyResources(this.servoOptionsStreamCasterPower, "servoOptionsStreamCasterPower");
+            this.servoOptionsStreamCasterPower.Name = "servoOptionsStreamCasterPower";
+            this.toolTip1.SetToolTip(this.servoOptionsStreamCasterPower, resources.GetString("servoOptionsStreamCasterPower.ToolTip"));
+            // 
+            // servoOptions1a
+            // 
+            this.servoOptions1a.ChannValue = "5";
+            resources.ApplyResources(this.servoOptions1a, "servoOptions1a");
+            this.servoOptions1a.Name = "servoOptions1a";
+            // 
+            // modifyandSet_HR_BreakRadius
+            // 
+            this.modifyandSet_HR_BreakRadius.ButtonText = "Break Radius";
+            this.modifyandSet_HR_BreakRadius.ButtonVisible = false;
+            this.modifyandSet_HR_BreakRadius.DecimalPlaces = 0;
+            this.modifyandSet_HR_BreakRadius.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            resources.ApplyResources(this.modifyandSet_HR_BreakRadius, "modifyandSet_HR_BreakRadius");
+            this.modifyandSet_HR_BreakRadius.Maximum = new decimal(new int[] {
+            200,
+            0,
+            0,
+            0});
+            this.modifyandSet_HR_BreakRadius.Minimum = new decimal(new int[] {
+            200,
+            0,
+            0,
+            -2147483648});
+            this.modifyandSet_HR_BreakRadius.Name = "modifyandSet_HR_BreakRadius";
+            this.toolTip1.SetToolTip(this.modifyandSet_HR_BreakRadius, resources.GetString("modifyandSet_HR_BreakRadius.ToolTip"));
+            this.modifyandSet_HR_BreakRadius.Value = new decimal(new int[] {
+            50,
+            0,
+            0,
+            0});
+            // 
+            // modifyandSet_SR_BreakRadius
+            // 
+            this.modifyandSet_SR_BreakRadius.ButtonText = "Break Radius";
+            this.modifyandSet_SR_BreakRadius.ButtonVisible = false;
+            this.modifyandSet_SR_BreakRadius.DecimalPlaces = 0;
+            this.modifyandSet_SR_BreakRadius.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            resources.ApplyResources(this.modifyandSet_SR_BreakRadius, "modifyandSet_SR_BreakRadius");
+            this.modifyandSet_SR_BreakRadius.Maximum = new decimal(new int[] {
+            200,
+            0,
+            0,
+            0});
+            this.modifyandSet_SR_BreakRadius.Minimum = new decimal(new int[] {
+            200,
+            0,
+            0,
+            -2147483648});
+            this.modifyandSet_SR_BreakRadius.Name = "modifyandSet_SR_BreakRadius";
+            this.toolTip1.SetToolTip(this.modifyandSet_SR_BreakRadius, resources.GetString("modifyandSet_SR_BreakRadius.ToolTip"));
+            this.modifyandSet_SR_BreakRadius.Value = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            // 
+            // modifyandSet_HL_BreakRadius
+            // 
+            this.modifyandSet_HL_BreakRadius.ButtonText = "Break Radius";
+            this.modifyandSet_HL_BreakRadius.ButtonVisible = false;
+            this.modifyandSet_HL_BreakRadius.DecimalPlaces = 0;
+            this.modifyandSet_HL_BreakRadius.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            resources.ApplyResources(this.modifyandSet_HL_BreakRadius, "modifyandSet_HL_BreakRadius");
+            this.modifyandSet_HL_BreakRadius.Maximum = new decimal(new int[] {
+            200,
+            0,
+            0,
+            0});
+            this.modifyandSet_HL_BreakRadius.Minimum = new decimal(new int[] {
+            200,
+            0,
+            0,
+            -2147483648});
+            this.modifyandSet_HL_BreakRadius.Name = "modifyandSet_HL_BreakRadius";
+            this.toolTip1.SetToolTip(this.modifyandSet_HL_BreakRadius, resources.GetString("modifyandSet_HL_BreakRadius.ToolTip"));
+            this.modifyandSet_HL_BreakRadius.Value = new decimal(new int[] {
+            50,
+            0,
+            0,
+            -2147483648});
+            // 
+            // modifyandSet_SL_BreakRadius
+            // 
+            this.modifyandSet_SL_BreakRadius.ButtonText = "Break Radius";
+            this.modifyandSet_SL_BreakRadius.ButtonVisible = false;
+            this.modifyandSet_SL_BreakRadius.DecimalPlaces = 0;
+            this.modifyandSet_SL_BreakRadius.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            resources.ApplyResources(this.modifyandSet_SL_BreakRadius, "modifyandSet_SL_BreakRadius");
+            this.modifyandSet_SL_BreakRadius.Maximum = new decimal(new int[] {
+            200,
+            0,
+            0,
+            0});
+            this.modifyandSet_SL_BreakRadius.Minimum = new decimal(new int[] {
+            200,
+            0,
+            0,
+            -2147483648});
+            this.modifyandSet_SL_BreakRadius.Name = "modifyandSet_SL_BreakRadius";
+            this.toolTip1.SetToolTip(this.modifyandSet_SL_BreakRadius, resources.GetString("modifyandSet_SL_BreakRadius.ToolTip"));
+            this.modifyandSet_SL_BreakRadius.Value = new decimal(new int[] {
+            100,
+            0,
+            0,
+            -2147483648});
             // 
             // tabPagemessages
             // 
@@ -2883,7 +2886,7 @@
             this.windDir1.BackColor = System.Drawing.Color.Transparent;
             this.windDir1.DataBindings.Add(new System.Windows.Forms.Binding("Direction", this.bindingSource1, "wind_dir", true, System.Windows.Forms.DataSourceUpdateMode.Never));
             this.windDir1.DataBindings.Add(new System.Windows.Forms.Binding("Speed", this.bindingSource1, "wind_vel", true, System.Windows.Forms.DataSourceUpdateMode.Never));
-            this.windDir1.Direction = 180D;
+            this.windDir1.Direction = 360D;
             resources.ApplyResources(this.windDir1, "windDir1");
             this.windDir1.Name = "windDir1";
             this.windDir1.Speed = 0D;

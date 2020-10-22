@@ -7,7 +7,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("Mission Planner")]
 [assembly: AssemblyDescription("Mission Planner ground control station for ardupilot")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Michael Oborne")]
+[assembly: AssemblyCompany("Michael Oborne / RFDesign")]
 [assembly: AssemblyProduct("Mission Planner")]
 [assembly: AssemblyCopyright("Copyright ©  2010-2019")]
 [assembly: AssemblyTrademark("")]
@@ -28,5 +28,5 @@ using System.Runtime.InteropServices;
 //      Build Number
 //      Revision
 //
-[assembly: AssemblyVersion("1.3.*")]
-[assembly: AssemblyFileVersion("1.3.74")]
+[assembly: AssemblyVersion("11.5.*")]
+[assembly: AssemblyFileVersion("11.5.74")]

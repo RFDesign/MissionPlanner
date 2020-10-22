@@ -1342,7 +1342,6 @@ namespace MissionPlanner.GCSViews
                     "Warning this will reprogram your mission, arm and issue a takeoff command (copter)") !=
                 DialogResult.OK)
                 return;
-
             try
             {
                 if (MainV2.comPort.BaseStream.IsOpen)
@@ -5318,7 +5317,7 @@ namespace MissionPlanner.GCSViews
             // set Servo CH5 low, see ServoOptions.cs BUT_Low_Click() - servoOptions1  object = CH5
             try
             {
-                int x = Int32.Parse(servoOptions1.Text);
+                int x = Int32.Parse(servoOptions1.ChannValue);
 
                 if (MainV2.comPort.doCommand(MAVLink.MAV_CMD.DO_SET_SERVO, x, int.Parse(servoOptions1.TXT_pwm_low.Text), 0, 0,
                     0, 0, 0))
