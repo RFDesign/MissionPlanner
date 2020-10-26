@@ -865,6 +865,7 @@ namespace MissionPlanner
                 foreach (var MAV in port.MAVlist)
                 {
                     port.InjectGpsData(MAV.sysid, MAV.compid, data, length, rtcm_msg);
+                    break;  //Only send once, because mavlink_gps_rtcm_data_t is a broadcast message. 
                 }
             }
         }
