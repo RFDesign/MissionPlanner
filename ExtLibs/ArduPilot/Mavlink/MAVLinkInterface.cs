@@ -4397,15 +4397,19 @@ Please check the following
                             fp.target_component != (byte)MAV_COMPONENT.MAV_COMP_ID_MISSIONPLANNER)
                             continue;
 
-                        giveComport = false;
+                        //Check the index of the reply point before returning it from this function.  
+                        if (fp.idx == no)
+                        {
+                            giveComport = false;
 
-                        plla.Lat = fp.lat;
-                        plla.Lng = fp.lng;
-                        plla.Tag = fp.idx.ToString();
+                            plla.Lat = fp.lat;
+                            plla.Lng = fp.lng;
+                            plla.Tag = fp.idx.ToString();
 
-                        total = fp.count;
+                            total = fp.count;
 
-                        return plla;
+                            return plla;
+                        }
                     }
                 }
             }
