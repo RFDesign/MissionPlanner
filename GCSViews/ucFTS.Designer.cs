@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.GB = new System.Windows.Forms.GroupBox();
+            this.lblFTSAFSState = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
             this.lblGPS2SatsHDOP = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.lblGPS2Detected = new System.Windows.Forms.Label();
@@ -52,13 +54,15 @@
             this.label16 = new System.Windows.Forms.Label();
             this.lblFTSLinkStatus = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
-            this.lblFTSAFSState = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.lblHomeAlt = new System.Windows.Forms.Label();
             this.GB.SuspendLayout();
             this.SuspendLayout();
             // 
             // GB
             // 
+            this.GB.Controls.Add(this.lblHomeAlt);
+            this.GB.Controls.Add(this.label7);
             this.GB.Controls.Add(this.lblFTSAFSState);
             this.GB.Controls.Add(this.label6);
             this.GB.Controls.Add(this.lblGPS2SatsHDOP);
@@ -87,10 +91,31 @@
             this.GB.Dock = System.Windows.Forms.DockStyle.Fill;
             this.GB.Location = new System.Drawing.Point(0, 0);
             this.GB.Name = "GB";
-            this.GB.Size = new System.Drawing.Size(395, 144);
+            this.GB.Size = new System.Drawing.Size(395, 164);
             this.GB.TabIndex = 0;
             this.GB.TabStop = false;
             this.GB.Text = "groupBox1";
+            // 
+            // lblFTSAFSState
+            // 
+            this.lblFTSAFSState.AutoSize = true;
+            this.lblFTSAFSState.ForeColor = System.Drawing.Color.Green;
+            this.lblFTSAFSState.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.lblFTSAFSState.Location = new System.Drawing.Point(249, 90);
+            this.lblFTSAFSState.Name = "lblFTSAFSState";
+            this.lblFTSAFSState.Size = new System.Drawing.Size(46, 13);
+            this.lblFTSAFSState.TabIndex = 43;
+            this.lblFTSAFSState.Text = "Enabled";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label6.Location = new System.Drawing.Point(185, 90);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(58, 13);
+            this.label6.TabIndex = 42;
+            this.label6.Text = "AFS State:";
             // 
             // lblGPS2SatsHDOP
             // 
@@ -339,26 +364,26 @@
             this.label13.TabIndex = 12;
             this.label13.Text = "Link Status:";
             // 
-            // lblFTSAFSState
+            // label7
             // 
-            this.lblFTSAFSState.AutoSize = true;
-            this.lblFTSAFSState.ForeColor = System.Drawing.Color.Green;
-            this.lblFTSAFSState.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblFTSAFSState.Location = new System.Drawing.Point(249, 90);
-            this.lblFTSAFSState.Name = "lblFTSAFSState";
-            this.lblFTSAFSState.Size = new System.Drawing.Size(46, 13);
-            this.lblFTSAFSState.TabIndex = 43;
-            this.lblFTSAFSState.Text = "Enabled";
+            this.label7.AutoSize = true;
+            this.label7.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label7.Location = new System.Drawing.Point(6, 135);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(53, 13);
+            this.label7.TabIndex = 44;
+            this.label7.Text = "Home Alt:";
             // 
-            // label6
+            // lblHomeAlt
             // 
-            this.label6.AutoSize = true;
-            this.label6.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label6.Location = new System.Drawing.Point(185, 90);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(58, 13);
-            this.label6.TabIndex = 42;
-            this.label6.Text = "AFS State:";
+            this.lblHomeAlt.AutoSize = true;
+            this.lblHomeAlt.ForeColor = System.Drawing.Color.Green;
+            this.lblHomeAlt.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.lblHomeAlt.Location = new System.Drawing.Point(110, 135);
+            this.lblHomeAlt.Name = "lblHomeAlt";
+            this.lblHomeAlt.Size = new System.Drawing.Size(39, 13);
+            this.lblHomeAlt.TabIndex = 45;
+            this.lblHomeAlt.Text = "9/1.35";
             // 
             // ucFTS
             // 
@@ -366,7 +391,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.GB);
             this.Name = "ucFTS";
-            this.Size = new System.Drawing.Size(395, 144);
+            this.Size = new System.Drawing.Size(395, 164);
             this.GB.ResumeLayout(false);
             this.GB.PerformLayout();
             this.ResumeLayout(false);
@@ -401,5 +426,7 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label lblFTSAFSState;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label lblHomeAlt;
+        private System.Windows.Forms.Label label7;
     }
 }

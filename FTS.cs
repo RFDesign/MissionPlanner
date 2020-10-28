@@ -179,12 +179,14 @@ namespace FTS
 
         public TGPSStatus GetGPS1Status()
         {
-            return new TGPSStatus(_MS.cs.GotGPS1DetectedMessage, (int)_MS.cs.satcount, _MS.cs.gpshdop);
+            //_MS.cs.
+
+            return new TGPSStatus(_MS.cs.GotGPS1DetectedMessage && _MS.cs.GettingGPS1Data, (int)_MS.cs.satcount, _MS.cs.gpshdop);
         }
 
         public TGPSStatus GetGPS2Status()
         {
-            return new TGPSStatus(_MS.cs.GotGPS2DetectedMessage, (int)_MS.cs.satcount2, _MS.cs.gpshdop2);
+            return new TGPSStatus(_MS.cs.GotGPS2DetectedMessage && _MS.cs.GettingGPS2Data, (int)_MS.cs.satcount2, _MS.cs.gpshdop2);
         }
 
         public string GetAFSStateText()
@@ -258,7 +260,11 @@ namespace FTS
 
             public TGPSStatus(bool IsDetected, int QTYSats, float HDOP)
             {
-                this.IsDetected = IsDetected;
+                this.IsDetected = IsDetected && (QTYSats > 0);
+                if (!this.IsDetected)
+                {
+                    QTYSats = 0;
+                }
                 this.QTYSats = QTYSats;
                 this.HDOP = HDOP;
             }

@@ -175,6 +175,21 @@ namespace MissionPlanner.GCSViews
             SetLabelText(lblFTSAFSState, Text, FTS.TSingleFTSManager.AFSStateTextToHealthLevel(Text));
         }
 
+        /// <summary>
+        /// Display home alt down to cm resolution.
+        /// </summary>
+        void UpdateHomeAlt()
+        {
+            try
+            {
+                SetLabelText(lblHomeAlt, Manager.MS.cs.HomeAlt.ToString("F0") + "m", true);
+            }
+            catch
+            {
+                SetLabelText(lblHomeAlt, "--", false);
+            }
+        }
+
         public void UpdateGUI()
         {
             btnFTSManualTerminate.BackColor = Color.Red;
@@ -188,6 +203,7 @@ namespace MissionPlanner.GCSViews
             UpdateGPSGroup(_GPSGroup1, Manager.GetGPS1Status());
             UpdateGPSGroup(_GPSGroup2, Manager.GetGPS2Status());
             UpdateAFSState();
+            UpdateHomeAlt();
 
             string Name = GetName();
             if (Name != null)

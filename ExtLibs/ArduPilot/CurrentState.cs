@@ -164,6 +164,14 @@ namespace MissionPlanner
         bool _GotGPS1DetectedMessage = false;
         bool _GotGPS2DetectedMessage = false;
         string _AFSState = null;
+        System.Diagnostics.Stopwatch _Start = new System.Diagnostics.Stopwatch();
+        Int64 _LastGPS1 = 0;
+        Int64 _LastGPS2 = 0;
+        /// <summary>
+        /// milliseconds
+        /// </summary>
+        const Int64 GPS_TIMEOUT = 10000;
+
 
         public bool GotFenceEnabledMessage
         {
@@ -209,6 +217,22 @@ namespace MissionPlanner
                 {
                     return _AFSState;
                 }
+            }
+        }
+
+        public bool GettingGPS1Data
+        {
+            get
+            {
+                return (_LastGPS1 != 0) && ((_Start.ElapsedMilliseconds - _LastGPS1) < GPS_TIMEOUT);
+            }
+        }
+
+        public bool GettingGPS2Data
+        {
+            get
+            {
+                return (_LastGPS2 != 0) && ((_Start.ElapsedMilliseconds - _LastGPS2) < GPS_TIMEOUT);
             }
         }
 
@@ -1569,6 +1593,7 @@ namespace MissionPlanner
 
             var t = Type.GetType("Mono.Runtime");
             MONO = (t != null);
+            _Start.Start();
         }
 
         public void ResetInternals()
@@ -2535,6 +2560,8 @@ namespace MissionPlanner
                             gpshdg_acc = -1;
                         }
 
+                        _LastGPS1 = _Start.ElapsedMilliseconds;
+
                         //MAVLink.packets[(byte)MAVLink.MSG_NAMES.GPS_RAW);
                     }
 
@@ -2554,6 +2581,8 @@ namespace MissionPlanner
 
                         groundspeed2 = gps.vel*1.0e-2f;
                         groundcourse2 = gps.cog*1.0e-2f;
+
+                        _LastGPS2 = _Start.ElapsedMilliseconds;
                     }
 
                     mavLinkMessage = MAV.getPacket((uint) MAVLink.MAVLINK_MSG_ID.GPS_STATUS);
