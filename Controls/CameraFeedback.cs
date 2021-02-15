@@ -17,7 +17,6 @@ namespace MissionPlanner.Controls
         private Timer timer1;
         private IContainer components;
         PacketInspector<MAVLink.MAVLinkMessage> mavi = new PacketInspector<MAVLink.MAVLinkMessage>();
-        private MyTreeView treeView1;
         private TableLayoutPanel tableLayoutPanel1;
         private Panel panel8;
         private System.Windows.Forms.Label lbSecTrigger;
@@ -88,7 +87,6 @@ namespace MissionPlanner.Controls
 
         public new void Update()
         {
-            treeView1.BeginUpdate();
 
             bool added = false;
 
@@ -100,71 +98,12 @@ namespace MissionPlanner.Controls
                     continue;
                 }
 
-                TreeNode sysidnode;
-                TreeNode compidnode;
-                TreeNode msgidnode;
-
-                var sysidnodes = treeView1.Nodes.Find(mavLinkMessage.sysid.ToString(), false);
-                if (sysidnodes.Length == 0)
-                {
-                    sysidnode = new TreeNode("Vehicle " + mavLinkMessage.sysid)
-                    {
-                        Name = mavLinkMessage.sysid.ToString()
-                    };
-                    treeView1.Nodes.Add(sysidnode);
-                    added = true;
-                }
-                else
-                    sysidnode = sysidnodes.First();
-
-                var compidnodes = sysidnode.Nodes.Find(mavLinkMessage.compid.ToString(), false);
-                if (compidnodes.Length == 0)
-                {
-                    compidnode = new TreeNode("Comp " + mavLinkMessage.compid)
-                    {
-                        Name = mavLinkMessage.compid.ToString()
-                    };
-                    sysidnode.Nodes.Add(compidnode);
-                    added = true;
-                }
-                else
-                    compidnode = compidnodes.First();
-
-                var msgidnodes = compidnode.Nodes.Find(mavLinkMessage.msgid.ToString(), false);
-                if (msgidnodes.Length == 0)
-                {
-                    msgidnode = new TreeNode(mavLinkMessage.msgtypename)
-                    {
-                        Name = mavLinkMessage.msgid.ToString()
-                    };
-                    compidnode.Nodes.Add(msgidnode);
-                    added = true;
-                }
-                else
-                    msgidnode = msgidnodes.First();
-
-                var msgidheader = mavLinkMessage.msgtypename + " (" +
-                                  (mavi.SeenRate(mavLinkMessage.sysid, mavLinkMessage.compid, mavLinkMessage.msgid))
-                                  .ToString("0.0 Hz") + ", #" + mavLinkMessage.msgid + ") " +
-                                  mavi.SeenBps(mavLinkMessage.sysid, mavLinkMessage.compid, mavLinkMessage.msgid).ToString("0Bps");
-
-                if (msgidnode.Text != msgidheader)
-                    msgidnode.Text = msgidheader;
-
                 var minfo = MAVLink.MAVLINK_MESSAGE_INFOS.GetMessageInfo(mavLinkMessage.msgid);
                 if (minfo.@type == null)
-                    continue;
-
-                
+                    continue;               
 
                 foreach (var field in minfo.type.GetFields())
                 {
-                    if (!msgidnode.Nodes.ContainsKey(field.Name))
-                    {
-                        msgidnode.Nodes.Add(new TreeNode() { Name = field.Name });
-                        added = true;
-                    }
-
                     object value = field.GetValue(mavLinkMessage.data);
 
                     if (field.Name == "time_unix_usec")
@@ -225,28 +164,14 @@ namespace MissionPlanner.Controls
                             value = value2.Cast<object>().Aggregate((a, b) => a + "," + b);
                         }
                     }
-
-                    msgidnode.Nodes[field.Name].Tag = new[]
-                    {
-                        field.Name, value,
-                        field.FieldType.ToString()
-                    };
-                    msgidnode.Nodes[field.Name].Text = (String.Format("{0,-32} {1,20} {2,-20}", field.Name, value,
-                        field.FieldType.ToString()));
                 }
             }
-
-            if (added)
-                treeView1.Sort();
-
-            treeView1.EndUpdate();
         }
 
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.treeView1 = new MissionPlanner.Controls.CameraFeedback.MyTreeView();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panel8 = new System.Windows.Forms.Panel();
             this.lbSecTrigger = new System.Windows.Forms.Label();
@@ -288,19 +213,6 @@ namespace MissionPlanner.Controls
             this.timer1.Interval = 200;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // treeView1
-            // 
-            this.treeView1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.treeView1.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.treeView1.FullRowSelect = true;
-            this.treeView1.Location = new System.Drawing.Point(0, 0);
-            this.treeView1.Name = "treeView1";
-            this.treeView1.Size = new System.Drawing.Size(1110, 12);
-            this.treeView1.TabIndex = 0;
-            this.treeView1.Visible = false;
-            this.treeView1.DrawNode += new System.Windows.Forms.DrawTreeNodeEventHandler(this.treeView1_DrawNode);
-            this.treeView1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterSelect);
-            // 
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.ColumnCount = 3;
@@ -322,7 +234,7 @@ namespace MissionPlanner.Controls
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.34F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1110, 639);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(955, 416);
             this.tableLayoutPanel1.TabIndex = 1;
             // 
             // panel8
@@ -330,9 +242,9 @@ namespace MissionPlanner.Controls
             this.panel8.Controls.Add(this.lbSecTrigger);
             this.panel8.Controls.Add(this.label16);
             this.panel8.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel8.Location = new System.Drawing.Point(372, 427);
+            this.panel8.Location = new System.Drawing.Point(321, 279);
             this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(363, 209);
+            this.panel8.Size = new System.Drawing.Size(312, 134);
             this.panel8.TabIndex = 7;
             // 
             // lbSecTrigger
@@ -363,9 +275,9 @@ namespace MissionPlanner.Controls
             this.panel7.Controls.Add(this.lbDistTrigger);
             this.panel7.Controls.Add(this.label14);
             this.panel7.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel7.Location = new System.Drawing.Point(3, 427);
+            this.panel7.Location = new System.Drawing.Point(3, 279);
             this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(363, 209);
+            this.panel7.Size = new System.Drawing.Size(312, 134);
             this.panel7.TabIndex = 6;
             // 
             // lbDistTrigger
@@ -396,9 +308,9 @@ namespace MissionPlanner.Controls
             this.panel6.Controls.Add(this.lbCrossTrackError);
             this.panel6.Controls.Add(this.label12);
             this.panel6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel6.Location = new System.Drawing.Point(741, 215);
+            this.panel6.Location = new System.Drawing.Point(639, 141);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(366, 206);
+            this.panel6.Size = new System.Drawing.Size(313, 132);
             this.panel6.TabIndex = 5;
             // 
             // lbCrossTrackError
@@ -429,9 +341,9 @@ namespace MissionPlanner.Controls
             this.panel5.Controls.Add(this.lbAltError);
             this.panel5.Controls.Add(this.label10);
             this.panel5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel5.Location = new System.Drawing.Point(372, 215);
+            this.panel5.Location = new System.Drawing.Point(321, 141);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(363, 206);
+            this.panel5.Size = new System.Drawing.Size(312, 132);
             this.panel5.TabIndex = 4;
             // 
             // lbAltError
@@ -462,9 +374,9 @@ namespace MissionPlanner.Controls
             this.panel4.Controls.Add(this.lbDistWp);
             this.panel4.Controls.Add(this.label8);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel4.Location = new System.Drawing.Point(3, 215);
+            this.panel4.Location = new System.Drawing.Point(3, 141);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(363, 206);
+            this.panel4.Size = new System.Drawing.Size(312, 132);
             this.panel4.TabIndex = 3;
             // 
             // lbDistWp
@@ -495,9 +407,9 @@ namespace MissionPlanner.Controls
             this.panel3.Controls.Add(this.lbNavBearing);
             this.panel3.Controls.Add(this.label6);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel3.Location = new System.Drawing.Point(741, 3);
+            this.panel3.Location = new System.Drawing.Point(639, 3);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(366, 206);
+            this.panel3.Size = new System.Drawing.Size(313, 132);
             this.panel3.TabIndex = 2;
             // 
             // lbNavBearing
@@ -528,9 +440,9 @@ namespace MissionPlanner.Controls
             this.panel2.Controls.Add(this.lbGroundCourse);
             this.panel2.Controls.Add(this.label4);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(372, 3);
+            this.panel2.Location = new System.Drawing.Point(321, 3);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(363, 206);
+            this.panel2.Size = new System.Drawing.Size(312, 132);
             this.panel2.TabIndex = 1;
             // 
             // lbGroundCourse
@@ -563,7 +475,7 @@ namespace MissionPlanner.Controls
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(3, 3);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(363, 206);
+            this.panel1.Size = new System.Drawing.Size(312, 132);
             this.panel1.TabIndex = 0;
             // 
             // lbNextWp
@@ -591,8 +503,7 @@ namespace MissionPlanner.Controls
             // 
             // CameraFeedback
             // 
-            this.ClientSize = new System.Drawing.Size(1110, 639);
-            this.Controls.Add(this.treeView1);
+            this.ClientSize = new System.Drawing.Size(955, 416);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "CameraFeedback";
             this.Text = "Camera Feedback";
@@ -618,36 +529,6 @@ namespace MissionPlanner.Controls
 
         }
 
-        private void treeView1_DrawNode(object sender, DrawTreeNodeEventArgs e)
-        {
-            if (e.Bounds.Y < 0 || e.Bounds.X == -1)
-                return;
-
-            var tv = sender as TreeView;
-
-            if (e.Node.Tag == null)
-            {
-                e.DrawDefault = true;
-                return;
-            }
-
-            var items = (object[])e.Node.Tag;
-
-            //(String.Format("{0,-32} {1,20} {2,-20}", field.Name, value, field.FieldType.ToString()));
-
-            e.Graphics.DrawString(items[0].ToString(), tv.Font, new SolidBrush(tv.ForeColor)
-                , e.Bounds.X,
-                e.Bounds.Y);
-
-            e.Graphics.DrawString(items[1].ToString().PadLeft(20, ' '), tv.Font, new SolidBrush(tv.ForeColor)
-                , e.Bounds.X + tv.Width * 0.4f,
-                e.Bounds.Y);
-
-            e.Graphics.DrawString(items[2].ToString(), tv.Font, new SolidBrush(tv.ForeColor)
-                , e.Bounds.X + tv.Width * 0.75f,
-                e.Bounds.Y);
-        }
-
         private void CameraFeedback_FormClosing(object sender, FormClosingEventArgs e)
         {
             mav.OnPacketReceived -= MavOnOnPacketReceived;
@@ -656,27 +537,7 @@ namespace MissionPlanner.Controls
             timer1.Stop();
         }
 
-        public class MyTreeView : TreeView
-        {
-            public MyTreeView()
-            {
-                DoubleBuffered = true;
-            }
-        }
-
         private (string msgid, string name) selectedmsgid;
-
-        private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
-        {
-            if (e == null || e.Node == null || e.Node.Parent == null)
-                return;
-
-            int throwaway = 0;
-            if (int.TryParse(e.Node.Parent.Name, out throwaway))
-            {
-                selectedmsgid = (e.Node.Parent.Name, e.Node.Name);
-            }
-        }
 
         private void timer1_Tick(object sender, EventArgs e)
         {
