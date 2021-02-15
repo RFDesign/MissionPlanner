@@ -1002,6 +1002,11 @@ namespace MissionPlanner
             new MAVLinkInspector(MainV2.comPort).Show();
         }
 
+        private void but_camerafeedback_Click(object sender, EventArgs e)
+        {
+            new CameraFeedback(MainV2.comPort).Show();
+        }
+
         private void BUT_driverclean_Click(object sender, EventArgs e)
         {
             CleanDrivers.Clean();

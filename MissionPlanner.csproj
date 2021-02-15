@@ -381,6 +381,9 @@
   <ItemGroup>
     <Compile Include="Antenna\TrackerGeneric.cs" />
     <Compile Include="Common.cs" />
+    <Compile Include="Controls\CameraFeedback.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Controls\UAVCANSubscriber.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -768,6 +771,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\EKFStatus.ko-KR.resx">
       <DependentUpon>EKFStatus.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\CameraFeedback.resx">
+      <DependentUpon>CameraFeedback.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\PropagationSettings.ko-KR.resx">
       <DependentUpon>PropagationSettings.cs</DependentUpon>

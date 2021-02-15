@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(temp));
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.BUT_CoT = new MissionPlanner.Controls.MyButton();
             this.but_proximity = new MissionPlanner.Controls.MyButton();
             this.but_followswarm = new MissionPlanner.Controls.MyButton();
             this.label16 = new System.Windows.Forms.Label();
@@ -143,8 +144,9 @@
             this.label55 = new System.Windows.Forms.Label();
             this.but_remotedflogger = new MissionPlanner.Controls.MyButton();
             this.controlSensorsStatus1 = new MissionPlanner.Controls.ControlSensorsStatus();
-            this.BUT_CoT = new MissionPlanner.Controls.MyButton();
             this.label12 = new System.Windows.Forms.Label();
+            this.but_camerafeedback = new MissionPlanner.Controls.MyButton();
+            this.label56 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -152,7 +154,7 @@
             // 
             this.tableLayoutPanel1.BackColor = System.Drawing.Color.Transparent;
             resources.ApplyResources(this.tableLayoutPanel1, "tableLayoutPanel1");
-            this.tableLayoutPanel1.Controls.Add(this.BUT_CoT, 0, 29);
+            this.tableLayoutPanel1.Controls.Add(this.but_camerafeedback, 0, 29);
             this.tableLayoutPanel1.Controls.Add(this.but_proximity, 2, 27);
             this.tableLayoutPanel1.Controls.Add(this.but_followswarm, 2, 28);
             this.tableLayoutPanel1.Controls.Add(this.label16, 3, 25);
@@ -265,8 +267,17 @@
             this.tableLayoutPanel1.Controls.Add(this.label54, 3, 27);
             this.tableLayoutPanel1.Controls.Add(this.label55, 3, 28);
             this.tableLayoutPanel1.Controls.Add(this.but_remotedflogger, 0, 15);
+            this.tableLayoutPanel1.Controls.Add(this.BUT_CoT, 2, 29);
             this.tableLayoutPanel1.Controls.Add(this.label12, 1, 29);
+            this.tableLayoutPanel1.Controls.Add(this.label56, 3, 29);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            // 
+            // BUT_CoT
+            // 
+            resources.ApplyResources(this.BUT_CoT, "BUT_CoT");
+            this.BUT_CoT.Name = "BUT_CoT";
+            this.BUT_CoT.UseVisualStyleBackColor = true;
+            this.BUT_CoT.Click += new System.EventHandler(this.BUT_CoT_Click);
             // 
             // but_proximity
             // 
@@ -947,17 +958,22 @@
             resources.ApplyResources(this.controlSensorsStatus1, "controlSensorsStatus1");
             this.controlSensorsStatus1.Name = "controlSensorsStatus1";
             // 
-            // BUT_CoT
-            // 
-            resources.ApplyResources(this.BUT_CoT, "BUT_CoT");
-            this.BUT_CoT.Name = "BUT_CoT";
-            this.BUT_CoT.UseVisualStyleBackColor = true;
-            this.BUT_CoT.Click += new System.EventHandler(this.BUT_CoT_Click);
-            // 
             // label12
             // 
             resources.ApplyResources(this.label12, "label12");
             this.label12.Name = "label12";
+            // 
+            // but_camerafeedback
+            // 
+            resources.ApplyResources(this.but_camerafeedback, "but_camerafeedback");
+            this.but_camerafeedback.Name = "but_camerafeedback";
+            this.but_camerafeedback.UseVisualStyleBackColor = true;
+            this.but_camerafeedback.Click += new System.EventHandler(this.but_camerafeedback_Click);
+            // 
+            // label56
+            // 
+            resources.ApplyResources(this.label56, "label56");
+            this.label56.Name = "label56";
             // 
             // temp
             // 
@@ -1092,6 +1108,8 @@
         private Controls.ControlSensorsStatus controlSensorsStatus1;
         private Controls.MyButton but_remotedflogger;
         private Controls.MyButton BUT_CoT;
+        private Controls.MyButton but_camerafeedback;
         private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label56;
     }
 }

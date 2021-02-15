@@ -122,35 +122,35 @@
     <value>4</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="BUT_CoT.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+  <data name="but_camerafeedback.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
   </data>
-  <data name="BUT_CoT.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+  <data name="but_camerafeedback.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="BUT_CoT.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="but_camerafeedback.Location" type="System.Drawing.Point, System.Drawing">
     <value>3, 525</value>
   </data>
-  <data name="BUT_CoT.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="but_camerafeedback.Size" type="System.Drawing.Size, System.Drawing">
     <value>125, 15</value>
   </data>
-  <data name="BUT_CoT.TabIndex" type="System.Int32, mscorlib">
-    <value>136</value>
+  <data name="but_camerafeedback.TabIndex" type="System.Int32, mscorlib">
+    <value>138</value>
   </data>
-  <data name="BUT_CoT.Text" xml:space="preserve">
-    <value>CoT</value>
+  <data name="but_camerafeedback.Text" xml:space="preserve">
+    <value>Camera Feedback</value>
   </data>
-  <data name="&gt;&gt;BUT_CoT.Name" xml:space="preserve">
-    <value>BUT_CoT</value>
+  <data name="&gt;&gt;but_camerafeedback.Name" xml:space="preserve">
+    <value>but_camerafeedback</value>
   </data>
-  <data name="&gt;&gt;BUT_CoT.Type" xml:space="preserve">
+  <data name="&gt;&gt;but_camerafeedback.Type" xml:space="preserve">
     <value>MissionPlanner.Controls.MyButton, MissionPlanner.Controls, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
-  <data name="&gt;&gt;BUT_CoT.Parent" xml:space="preserve">
+  <data name="&gt;&gt;but_camerafeedback.Parent" xml:space="preserve">
     <value>tableLayoutPanel1</value>
   </data>
-  <data name="&gt;&gt;BUT_CoT.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;but_camerafeedback.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
   <data name="but_proximity.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
@@ -223,7 +223,7 @@
     <value>557, 450</value>
   </data>
   <data name="label16.Size" type="System.Drawing.Size, System.Drawing">
-    <value>149, 13</value>
+    <value>198, 17</value>
   </data>
   <data name="label16.TabIndex" type="System.Int32, mscorlib">
     <value>92</value>
@@ -763,7 +763,7 @@
     <value>134, 378</value>
   </data>
   <data name="label22.Size" type="System.Drawing.Size, System.Drawing">
-    <value>153, 13</value>
+    <value>204, 17</value>
   </data>
   <data name="label22.TabIndex" type="System.Int32, mscorlib">
     <value>98</value>
@@ -1213,7 +1213,7 @@
     <value>134, 450</value>
   </data>
   <data name="label26.Size" type="System.Drawing.Size, System.Drawing">
-    <value>64, 13</value>
+    <value>85, 17</value>
   </data>
   <data name="label26.TabIndex" type="System.Int32, mscorlib">
     <value>72</value>
@@ -1243,7 +1243,7 @@
     <value>134, 432</value>
   </data>
   <data name="label25.Size" type="System.Drawing.Size, System.Drawing">
-    <value>171, 13</value>
+    <value>232, 17</value>
   </data>
   <data name="label25.TabIndex" type="System.Int32, mscorlib">
     <value>71</value>
@@ -1273,7 +1273,7 @@
     <value>134, 414</value>
   </data>
   <data name="label24.Size" type="System.Drawing.Size, System.Drawing">
-    <value>136, 13</value>
+    <value>183, 17</value>
   </data>
   <data name="label24.TabIndex" type="System.Int32, mscorlib">
     <value>70</value>
@@ -1303,7 +1303,7 @@
     <value>134, 396</value>
   </data>
   <data name="label23.Size" type="System.Drawing.Size, System.Drawing">
-    <value>111, 13</value>
+    <value>147, 17</value>
   </data>
   <data name="label23.TabIndex" type="System.Int32, mscorlib">
     <value>69</value>
@@ -1333,7 +1333,7 @@
     <value>134, 360</value>
   </data>
   <data name="label21.Size" type="System.Drawing.Size, System.Drawing">
-    <value>140, 13</value>
+    <value>186, 17</value>
   </data>
   <data name="label21.TabIndex" type="System.Int32, mscorlib">
     <value>67</value>
@@ -1363,7 +1363,7 @@
     <value>134, 342</value>
   </data>
   <data name="label20.Size" type="System.Drawing.Size, System.Drawing">
-    <value>105, 13</value>
+    <value>139, 17</value>
   </data>
   <data name="label20.TabIndex" type="System.Int32, mscorlib">
     <value>66</value>
@@ -1393,7 +1393,7 @@
     <value>134, 324</value>
   </data>
   <data name="label19.Size" type="System.Drawing.Size, System.Drawing">
-    <value>130, 13</value>
+    <value>174, 17</value>
   </data>
   <data name="label19.TabIndex" type="System.Int32, mscorlib">
     <value>65</value>
@@ -1423,7 +1423,7 @@
     <value>134, 306</value>
   </data>
   <data name="label18.Size" type="System.Drawing.Size, System.Drawing">
-    <value>123, 13</value>
+    <value>162, 17</value>
   </data>
   <data name="label18.TabIndex" type="System.Int32, mscorlib">
     <value>64</value>
@@ -1543,7 +1543,7 @@
     <value>134, 288</value>
   </data>
   <data name="label17.Size" type="System.Drawing.Size, System.Drawing">
-    <value>214, 13</value>
+    <value>229, 18</value>
   </data>
   <data name="label17.TabIndex" type="System.Int32, mscorlib">
     <value>63</value>
@@ -1633,7 +1633,7 @@
     <value>134, 252</value>
   </data>
   <data name="label15.Size" type="System.Drawing.Size, System.Drawing">
-    <value>252, 13</value>
+    <value>248, 18</value>
   </data>
   <data name="label15.TabIndex" type="System.Int32, mscorlib">
     <value>61</value>
@@ -1663,7 +1663,7 @@
     <value>134, 234</value>
   </data>
   <data name="label14.Size" type="System.Drawing.Size, System.Drawing">
-    <value>117, 13</value>
+    <value>155, 17</value>
   </data>
   <data name="label14.TabIndex" type="System.Int32, mscorlib">
     <value>60</value>
@@ -1693,7 +1693,7 @@
     <value>134, 216</value>
   </data>
   <data name="label13.Size" type="System.Drawing.Size, System.Drawing">
-    <value>128, 13</value>
+    <value>170, 17</value>
   </data>
   <data name="label13.TabIndex" type="System.Int32, mscorlib">
     <value>59</value>
@@ -1723,7 +1723,7 @@
     <value>134, 180</value>
   </data>
   <data name="label11.Size" type="System.Drawing.Size, System.Drawing">
-    <value>156, 13</value>
+    <value>208, 17</value>
   </data>
   <data name="label11.TabIndex" type="System.Int32, mscorlib">
     <value>57</value>
@@ -1753,7 +1753,7 @@
     <value>134, 162</value>
   </data>
   <data name="label10.Size" type="System.Drawing.Size, System.Drawing">
-    <value>226, 18</value>
+    <value>252, 18</value>
   </data>
   <data name="label10.TabIndex" type="System.Int32, mscorlib">
     <value>56</value>
@@ -1783,7 +1783,7 @@
     <value>134, 144</value>
   </data>
   <data name="label9.Size" type="System.Drawing.Size, System.Drawing">
-    <value>202, 13</value>
+    <value>230, 18</value>
   </data>
   <data name="label9.TabIndex" type="System.Int32, mscorlib">
     <value>55</value>
@@ -1903,7 +1903,7 @@
     <value>134, 126</value>
   </data>
   <data name="label8.Size" type="System.Drawing.Size, System.Drawing">
-    <value>131, 13</value>
+    <value>177, 17</value>
   </data>
   <data name="label8.TabIndex" type="System.Int32, mscorlib">
     <value>54</value>
@@ -1933,7 +1933,7 @@
     <value>134, 108</value>
   </data>
   <data name="label7.Size" type="System.Drawing.Size, System.Drawing">
-    <value>204, 13</value>
+    <value>257, 18</value>
   </data>
   <data name="label7.TabIndex" type="System.Int32, mscorlib">
     <value>53</value>
@@ -1993,7 +1993,7 @@
     <value>134, 90</value>
   </data>
   <data name="label6.Size" type="System.Drawing.Size, System.Drawing">
-    <value>203, 13</value>
+    <value>255, 18</value>
   </data>
   <data name="label6.TabIndex" type="System.Int32, mscorlib">
     <value>52</value>
@@ -2023,7 +2023,7 @@
     <value>134, 72</value>
   </data>
   <data name="label5.Size" type="System.Drawing.Size, System.Drawing">
-    <value>221, 13</value>
+    <value>256, 18</value>
   </data>
   <data name="label5.TabIndex" type="System.Int32, mscorlib">
     <value>51</value>
@@ -2053,7 +2053,7 @@
     <value>134, 54</value>
   </data>
   <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>163, 13</value>
+    <value>216, 17</value>
   </data>
   <data name="label4.TabIndex" type="System.Int32, mscorlib">
     <value>50</value>
@@ -2083,7 +2083,7 @@
     <value>134, 36</value>
   </data>
   <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>141, 13</value>
+    <value>187, 17</value>
   </data>
   <data name="label3.TabIndex" type="System.Int32, mscorlib">
     <value>49</value>
@@ -2113,7 +2113,7 @@
     <value>134, 18</value>
   </data>
   <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>149, 13</value>
+    <value>198, 17</value>
   </data>
   <data name="label2.TabIndex" type="System.Int32, mscorlib">
     <value>48</value>
@@ -2533,7 +2533,7 @@
     <value>134, 0</value>
   </data>
   <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>115, 13</value>
+    <value>152, 17</value>
   </data>
   <data name="label1.TabIndex" type="System.Int32, mscorlib">
     <value>47</value>
@@ -2623,7 +2623,7 @@
     <value>134, 504</value>
   </data>
   <data name="label27.Size" type="System.Drawing.Size, System.Drawing">
-    <value>128, 13</value>
+    <value>172, 17</value>
   </data>
   <data name="label27.TabIndex" type="System.Int32, mscorlib">
     <value>106</value>
@@ -2653,7 +2653,7 @@
     <value>134, 486</value>
   </data>
   <data name="label28.Size" type="System.Drawing.Size, System.Drawing">
-    <value>59, 13</value>
+    <value>79, 17</value>
   </data>
   <data name="label28.TabIndex" type="System.Int32, mscorlib">
     <value>107</value>
@@ -2683,7 +2683,7 @@
     <value>134, 468</value>
   </data>
   <data name="label29.Size" type="System.Drawing.Size, System.Drawing">
-    <value>263, 13</value>
+    <value>236, 18</value>
   </data>
   <data name="label29.TabIndex" type="System.Int32, mscorlib">
     <value>108</value>
@@ -2713,7 +2713,7 @@
     <value>557, 18</value>
   </data>
   <data name="label30.Size" type="System.Drawing.Size, System.Drawing">
-    <value>117, 13</value>
+    <value>158, 17</value>
   </data>
   <data name="label30.TabIndex" type="System.Int32, mscorlib">
     <value>109</value>
@@ -2743,7 +2743,7 @@
     <value>557, 36</value>
   </data>
   <data name="label31.Size" type="System.Drawing.Size, System.Drawing">
-    <value>142, 13</value>
+    <value>191, 17</value>
   </data>
   <data name="label31.TabIndex" type="System.Int32, mscorlib">
     <value>110</value>
@@ -2773,7 +2773,7 @@
     <value>557, 54</value>
   </data>
   <data name="label32.Size" type="System.Drawing.Size, System.Drawing">
-    <value>212, 13</value>
+    <value>222, 18</value>
   </data>
   <data name="label32.TabIndex" type="System.Int32, mscorlib">
     <value>111</value>
@@ -2803,7 +2803,7 @@
     <value>557, 72</value>
   </data>
   <data name="label33.Size" type="System.Drawing.Size, System.Drawing">
-    <value>218, 13</value>
+    <value>218, 18</value>
   </data>
   <data name="label33.TabIndex" type="System.Int32, mscorlib">
     <value>112</value>
@@ -2833,7 +2833,7 @@
     <value>557, 90</value>
   </data>
   <data name="label34.Size" type="System.Drawing.Size, System.Drawing">
-    <value>111, 13</value>
+    <value>148, 17</value>
   </data>
   <data name="label34.TabIndex" type="System.Int32, mscorlib">
     <value>113</value>
@@ -2863,7 +2863,7 @@
     <value>557, 108</value>
   </data>
   <data name="label35.Size" type="System.Drawing.Size, System.Drawing">
-    <value>76, 13</value>
+    <value>101, 17</value>
   </data>
   <data name="label35.TabIndex" type="System.Int32, mscorlib">
     <value>114</value>
@@ -2893,7 +2893,7 @@
     <value>557, 126</value>
   </data>
   <data name="label36.Size" type="System.Drawing.Size, System.Drawing">
-    <value>196, 13</value>
+    <value>213, 18</value>
   </data>
   <data name="label36.TabIndex" type="System.Int32, mscorlib">
     <value>115</value>
@@ -2923,7 +2923,7 @@
     <value>557, 144</value>
   </data>
   <data name="label37.Size" type="System.Drawing.Size, System.Drawing">
-    <value>169, 13</value>
+    <value>222, 17</value>
   </data>
   <data name="label37.TabIndex" type="System.Int32, mscorlib">
     <value>116</value>
@@ -2953,7 +2953,7 @@
     <value>557, 162</value>
   </data>
   <data name="label38.Size" type="System.Drawing.Size, System.Drawing">
-    <value>137, 13</value>
+    <value>185, 17</value>
   </data>
   <data name="label38.TabIndex" type="System.Int32, mscorlib">
     <value>117</value>
@@ -2983,7 +2983,7 @@
     <value>557, 180</value>
   </data>
   <data name="label39.Size" type="System.Drawing.Size, System.Drawing">
-    <value>144, 13</value>
+    <value>189, 17</value>
   </data>
   <data name="label39.TabIndex" type="System.Int32, mscorlib">
     <value>118</value>
@@ -3013,7 +3013,7 @@
     <value>557, 198</value>
   </data>
   <data name="label40.Size" type="System.Drawing.Size, System.Drawing">
-    <value>222, 18</value>
+    <value>194, 18</value>
   </data>
   <data name="label40.TabIndex" type="System.Int32, mscorlib">
     <value>119</value>
@@ -3043,7 +3043,7 @@
     <value>557, 216</value>
   </data>
   <data name="label41.Size" type="System.Drawing.Size, System.Drawing">
-    <value>172, 13</value>
+    <value>229, 17</value>
   </data>
   <data name="label41.TabIndex" type="System.Int32, mscorlib">
     <value>120</value>
@@ -3073,7 +3073,7 @@
     <value>557, 234</value>
   </data>
   <data name="label42.Size" type="System.Drawing.Size, System.Drawing">
-    <value>200, 13</value>
+    <value>234, 18</value>
   </data>
   <data name="label42.TabIndex" type="System.Int32, mscorlib">
     <value>121</value>
@@ -3103,7 +3103,7 @@
     <value>557, 252</value>
   </data>
   <data name="label43.Size" type="System.Drawing.Size, System.Drawing">
-    <value>196, 13</value>
+    <value>222, 18</value>
   </data>
   <data name="label43.TabIndex" type="System.Int32, mscorlib">
     <value>122</value>
@@ -3133,7 +3133,7 @@
     <value>557, 288</value>
   </data>
   <data name="label44.Size" type="System.Drawing.Size, System.Drawing">
-    <value>19, 13</value>
+    <value>24, 17</value>
   </data>
   <data name="label44.TabIndex" type="System.Int32, mscorlib">
     <value>123</value>
@@ -3163,7 +3163,7 @@
     <value>557, 306</value>
   </data>
   <data name="label45.Size" type="System.Drawing.Size, System.Drawing">
-    <value>19, 13</value>
+    <value>24, 17</value>
   </data>
   <data name="label45.TabIndex" type="System.Int32, mscorlib">
     <value>124</value>
@@ -3193,7 +3193,7 @@
     <value>557, 324</value>
   </data>
   <data name="label46.Size" type="System.Drawing.Size, System.Drawing">
-    <value>16, 13</value>
+    <value>20, 17</value>
   </data>
   <data name="label46.TabIndex" type="System.Int32, mscorlib">
     <value>125</value>
@@ -3223,7 +3223,7 @@
     <value>557, 342</value>
   </data>
   <data name="label47.Size" type="System.Drawing.Size, System.Drawing">
-    <value>98, 13</value>
+    <value>131, 17</value>
   </data>
   <data name="label47.TabIndex" type="System.Int32, mscorlib">
     <value>126</value>
@@ -3253,7 +3253,7 @@
     <value>557, 360</value>
   </data>
   <data name="label48.Size" type="System.Drawing.Size, System.Drawing">
-    <value>74, 13</value>
+    <value>98, 17</value>
   </data>
   <data name="label48.TabIndex" type="System.Int32, mscorlib">
     <value>127</value>
@@ -3283,7 +3283,7 @@
     <value>557, 378</value>
   </data>
   <data name="label49.Size" type="System.Drawing.Size, System.Drawing">
-    <value>41, 13</value>
+    <value>54, 17</value>
   </data>
   <data name="label49.TabIndex" type="System.Int32, mscorlib">
     <value>128</value>
@@ -3313,7 +3313,7 @@
     <value>557, 396</value>
   </data>
   <data name="label50.Size" type="System.Drawing.Size, System.Drawing">
-    <value>212, 18</value>
+    <value>225, 18</value>
   </data>
   <data name="label50.TabIndex" type="System.Int32, mscorlib">
     <value>129</value>
@@ -3343,7 +3343,7 @@
     <value>557, 414</value>
   </data>
   <data name="label51.Size" type="System.Drawing.Size, System.Drawing">
-    <value>184, 13</value>
+    <value>218, 18</value>
   </data>
   <data name="label51.TabIndex" type="System.Int32, mscorlib">
     <value>130</value>
@@ -3373,7 +3373,7 @@
     <value>557, 432</value>
   </data>
   <data name="label52.Size" type="System.Drawing.Size, System.Drawing">
-    <value>132, 13</value>
+    <value>177, 17</value>
   </data>
   <data name="label52.TabIndex" type="System.Int32, mscorlib">
     <value>131</value>
@@ -3403,7 +3403,7 @@
     <value>557, 468</value>
   </data>
   <data name="label53.Size" type="System.Drawing.Size, System.Drawing">
-    <value>129, 13</value>
+    <value>172, 17</value>
   </data>
   <data name="label53.TabIndex" type="System.Int32, mscorlib">
     <value>132</value>
@@ -3433,7 +3433,7 @@
     <value>557, 486</value>
   </data>
   <data name="label54.Size" type="System.Drawing.Size, System.Drawing">
-    <value>111, 13</value>
+    <value>150, 17</value>
   </data>
   <data name="label54.TabIndex" type="System.Int32, mscorlib">
     <value>133</value>
@@ -3463,7 +3463,7 @@
     <value>557, 504</value>
   </data>
   <data name="label55.Size" type="System.Drawing.Size, System.Drawing">
-    <value>61, 13</value>
+    <value>81, 17</value>
   </data>
   <data name="label55.TabIndex" type="System.Int32, mscorlib">
     <value>134</value>
@@ -3482,6 +3482,9 @@
   </data>
   <data name="&gt;&gt;label55.ZOrder" xml:space="preserve">
     <value>111</value>
+  </data>
+  <data name="but_remotedflogger.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="but_remotedflogger.Location" type="System.Drawing.Point, System.Drawing">
     <value>3, 273</value>
@@ -3507,6 +3510,36 @@
   <data name="&gt;&gt;but_remotedflogger.ZOrder" xml:space="preserve">
     <value>112</value>
   </data>
+  <data name="BUT_CoT.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="BUT_CoT.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="BUT_CoT.Location" type="System.Drawing.Point, System.Drawing">
+    <value>403, 525</value>
+  </data>
+  <data name="BUT_CoT.Size" type="System.Drawing.Size, System.Drawing">
+    <value>148, 15</value>
+  </data>
+  <data name="BUT_CoT.TabIndex" type="System.Int32, mscorlib">
+    <value>136</value>
+  </data>
+  <data name="BUT_CoT.Text" xml:space="preserve">
+    <value>CoT</value>
+  </data>
+  <data name="&gt;&gt;BUT_CoT.Name" xml:space="preserve">
+    <value>BUT_CoT</value>
+  </data>
+  <data name="&gt;&gt;BUT_CoT.Type" xml:space="preserve">
+    <value>MissionPlanner.Controls.MyButton, MissionPlanner.Controls, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;BUT_CoT.Parent" xml:space="preserve">
+    <value>tableLayoutPanel1</value>
+  </data>
+  <data name="&gt;&gt;BUT_CoT.ZOrder" xml:space="preserve">
+    <value>113</value>
+  </data>
   <data name="label12.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -3517,13 +3550,13 @@
     <value>134, 522</value>
   </data>
   <data name="label12.Size" type="System.Drawing.Size, System.Drawing">
-    <value>126, 13</value>
+    <value>238, 17</value>
   </data>
   <data name="label12.TabIndex" type="System.Int32, mscorlib">
     <value>137</value>
   </data>
   <data name="label12.Text" xml:space="preserve">
-    <value>Outputs Cursor-on-Target</value>
+    <value>Information related to camera trigger</value>
   </data>
   <data name="&gt;&gt;label12.Name" xml:space="preserve">
     <value>label12</value>
@@ -3535,7 +3568,37 @@
     <value>tableLayoutPanel1</value>
   </data>
   <data name="&gt;&gt;label12.ZOrder" xml:space="preserve">
-    <value>113</value>
+    <value>114</value>
+  </data>
+  <data name="label56.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label56.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label56.Location" type="System.Drawing.Point, System.Drawing">
+    <value>557, 522</value>
+  </data>
+  <data name="label56.Size" type="System.Drawing.Size, System.Drawing">
+    <value>172, 17</value>
+  </data>
+  <data name="label56.TabIndex" type="System.Int32, mscorlib">
+    <value>139</value>
+  </data>
+  <data name="label56.Text" xml:space="preserve">
+    <value>Outputs Cursor-on-Target</value>
+  </data>
+  <data name="&gt;&gt;label56.Name" xml:space="preserve">
+    <value>label56</value>
+  </data>
+  <data name="&gt;&gt;label56.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label56.Parent" xml:space="preserve">
+    <value>tableLayoutPanel1</value>
+  </data>
+  <data name="&gt;&gt;label56.ZOrder" xml:space="preserve">
+    <value>115</value>
   </data>
   <data name="tableLayoutPanel1.Location" type="System.Drawing.Point, System.Drawing">
     <value>12, 12</value>
@@ -3562,7 +3625,7 @@
     <value>1</value>
   </data>
   <data name="tableLayoutPanel1.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
-    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="BUT_CoT" Row="29" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="but_proximity" Row="27" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="but_followswarm" Row="28" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="label16" Row="25" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="but_lockup" Row="10" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="but_td" Row="18" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="but_gpsinj" Row="26" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="but_dem" Row="11" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="BUT_magfit2" Row="28" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="but_GDAL" Row="14" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="myButton2" Row="27" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="but_sortlogs" Row="13" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="but_optflowcalib" Row="26" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="but_logdlscp" Row="12" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="but_signkey" Row="25" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="but_acbarohight" Row="9" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="myButton1" Row="24" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="but_driverclean" Row="1" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="but_agemapdata" Row="23" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="but_packetbytes" Row="8" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="myButton_vlc" Row="22" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="label22" Row="21" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="but_trimble" Row="21" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="but_hwids" Row="7" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="BUT_QNH" Row="20" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="but_reboot" Row="19" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="but_3dmap" Row="6" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="but_messageinterval" Row="3" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="but_blupdate" Row="5" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="BUT_fft" Row="17" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="but_disablearmswitch" Row="2" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="but_paramrestore" Row="16" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="but_mavinspector" Row="4" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="but_sitl_comb" Row="15" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="but_anonlog" Row="11" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="but_dashware" Row="21" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="label26" Row="25" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="label25" Row="24" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="label24" Row="23" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="label23" Row="22" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="label21" Row="20" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="label20" Row="19" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="label19" Row="18" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="label18" Row="17" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="butlogindex" Row="25" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="but_armandtakeoff" Row="22" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="but_maplogs" Row="24" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="label17" Row="16" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="but_gimbaltest" Row="23" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="but_structtest" Row="20" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="label15" Row="14" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="label14" Row="13" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="label13" Row="12" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="label11" Row="10" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="label10" Row="9" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="label9" Row="8" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="BUT_clearcustommaps" Row="19" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="but_getfw" Row="17" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="BUT_geinjection" Row="18" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="label8" Row="7" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="label7" Row="6" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="BUT_sorttlogs" Row="16" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="label6" Row="5" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="label5" Row="4" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="label4" Row="3" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="label3" Row="2" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="label2" Row="1" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="BUT_outputMavlink" Row="5" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="BUT_outputMD" Row="4" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="BUT_outputnmea" Row="3" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="BUT_georefimage" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="button3" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="BUT_lang_edit" Row="7" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="BUT_follow_me" Row="2" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="BUT_paramgen" Row="6" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="but_osdvideo" Row="8" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="BUT_movingbase" Row="9" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="BUT_shptopoly" Row="10" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="BUT_swarm" Row="12" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="BUT_followleader" Row="13" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="label1" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="but_mavserialport" Row="14" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="but_hexmavlink" Row="0" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="label27" Row="28" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="label28" Row="27" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="label29" Row="26" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="label30" Row="1" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="label31" Row="2" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="label32" Row="3" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="label33" Row="4" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="label34" Row="5" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="label35" Row="6" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="label36" Row="7" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="label37" Row="8" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="label38" Row="9" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="label39" Row="10" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="label40" Row="11" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="label41" Row="12" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="label42" Row="13" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="label43" Row="14" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="label44" Row="16" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="label45" Row="17" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="label46" Row="18" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="label47" Row="19" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="label48" Row="20" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="label49" Row="21" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="label50" Row="22" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="label51" Row="23" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="label52" Row="24" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="label53" Row="26" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="label54" Row="27" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="label55" Row="28" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="but_remotedflogger" Row="15" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="label12" Row="29" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,16.375,Percent,33.625,Percent,19.25,Percent,30.75" /&gt;&lt;Rows Styles="Percent,3.448275,Percent,3.448275,Percent,3.448275,Percent,3.448275,Percent,3.448275,Percent,3.448275,Percent,3.448275,Percent,3.448275,Percent,3.448275,Percent,3.448275,Percent,3.448275,Percent,3.448275,Percent,3.448275,Percent,3.448275,Percent,3.448275,Percent,3.448275,Percent,3.448275,Percent,3.448275,Percent,3.448275,Percent,3.448275,Percent,3.448275,Percent,3.448275,Percent,3.448275,Percent,3.448275,Percent,3.448275,Percent,3.448275,Percent,3.448275,Percent,3.448275,Percent,3.448275,Absolute,20" /&gt;&lt;/TableLayoutSettings&gt;</value>
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="but_camerafeedback" Row="29" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="but_proximity" Row="27" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="but_followswarm" Row="28" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="label16" Row="25" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="but_lockup" Row="10" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="but_td" Row="18" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="but_gpsinj" Row="26" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="but_dem" Row="11" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="BUT_magfit2" Row="28" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="but_GDAL" Row="14" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="myButton2" Row="27" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="but_sortlogs" Row="13" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="but_optflowcalib" Row="26" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="but_logdlscp" Row="12" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="but_signkey" Row="25" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="but_acbarohight" Row="9" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="myButton1" Row="24" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="but_driverclean" Row="1" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="but_agemapdata" Row="23" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="but_packetbytes" Row="8" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="myButton_vlc" Row="22" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="label22" Row="21" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="but_trimble" Row="21" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="but_hwids" Row="7" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="BUT_QNH" Row="20" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="but_reboot" Row="19" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="but_3dmap" Row="6" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="but_messageinterval" Row="3" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="but_blupdate" Row="5" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="BUT_fft" Row="17" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="but_disablearmswitch" Row="2" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="but_paramrestore" Row="16" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="but_mavinspector" Row="4" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="but_sitl_comb" Row="15" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="but_anonlog" Row="11" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="but_dashware" Row="21" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="label26" Row="25" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="label25" Row="24" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="label24" Row="23" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="label23" Row="22" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="label21" Row="20" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="label20" Row="19" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="label19" Row="18" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="label18" Row="17" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="butlogindex" Row="25" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="but_armandtakeoff" Row="22" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="but_maplogs" Row="24" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="label17" Row="16" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="but_gimbaltest" Row="23" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="but_structtest" Row="20" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="label15" Row="14" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="label14" Row="13" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="label13" Row="12" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="label11" Row="10" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="label10" Row="9" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="label9" Row="8" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="BUT_clearcustommaps" Row="19" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="but_getfw" Row="17" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="BUT_geinjection" Row="18" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="label8" Row="7" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="label7" Row="6" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="BUT_sorttlogs" Row="16" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="label6" Row="5" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="label5" Row="4" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="label4" Row="3" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="label3" Row="2" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="label2" Row="1" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="BUT_outputMavlink" Row="5" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="BUT_outputMD" Row="4" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="BUT_outputnmea" Row="3" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="BUT_georefimage" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="button3" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="BUT_lang_edit" Row="7" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="BUT_follow_me" Row="2" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="BUT_paramgen" Row="6" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="but_osdvideo" Row="8" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="BUT_movingbase" Row="9" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="BUT_shptopoly" Row="10" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="BUT_swarm" Row="12" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="BUT_followleader" Row="13" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="label1" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="but_mavserialport" Row="14" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="but_hexmavlink" Row="0" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="label27" Row="28" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="label28" Row="27" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="label29" Row="26" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="label30" Row="1" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="label31" Row="2" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="label32" Row="3" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="label33" Row="4" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="label34" Row="5" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="label35" Row="6" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="label36" Row="7" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="label37" Row="8" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="label38" Row="9" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="label39" Row="10" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="label40" Row="11" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="label41" Row="12" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="label42" Row="13" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="label43" Row="14" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="label44" Row="16" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="label45" Row="17" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="label46" Row="18" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="label47" Row="19" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="label48" Row="20" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="label49" Row="21" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="label50" Row="22" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="label51" Row="23" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="label52" Row="24" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="label53" Row="26" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="label54" Row="27" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="label55" Row="28" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="but_remotedflogger" Row="15" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="BUT_CoT" Row="29" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="label12" Row="29" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="label56" Row="29" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,16.375,Percent,33.625,Percent,19.25,Percent,30.75" /&gt;&lt;Rows Styles="Percent,3.448275,Percent,3.448275,Percent,3.448275,Percent,3.448275,Percent,3.448275,Percent,3.448275,Percent,3.448275,Percent,3.448275,Percent,3.448275,Percent,3.448275,Percent,3.448275,Percent,3.448275,Percent,3.448275,Percent,3.448275,Percent,3.448275,Percent,3.448275,Percent,3.448275,Percent,3.448275,Percent,3.448275,Percent,3.448275,Percent,3.448275,Percent,3.448275,Percent,3.448275,Percent,3.448275,Percent,3.448275,Percent,3.448275,Percent,3.448275,Percent,3.448275,Percent,3.448275,Absolute,20,Absolute,20" /&gt;&lt;/TableLayoutSettings&gt;</value>
   </data>
   <data name="controlSensorsStatus1.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -3580,7 +3643,7 @@
     <value>controlSensorsStatus1</value>
   </data>
   <data name="&gt;&gt;controlSensorsStatus1.Type" xml:space="preserve">
-    <value>MissionPlanner.Controls.ControlSensorsStatus, MissionPlanner, Version=1.3.7514.26269, Culture=neutral, PublicKeyToken=null</value>
+    <value>MissionPlanner.Controls.ControlSensorsStatus, MissionPlanner, Version=1.3.7716.21922, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;controlSensorsStatus1.Parent" xml:space="preserve">
     <value>$this</value>
