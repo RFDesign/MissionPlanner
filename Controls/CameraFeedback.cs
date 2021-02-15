@@ -127,9 +127,9 @@ namespace MissionPlanner.Controls
                             lbNavBearing.Text = navBearing.ToString();
                         }
 
-                        if (field.Name == "alt_error") lbAltError.Text = String.Format("{0:N2}", value);
+                        if (field.Name == "alt_error") lbAltError.Text = String.Format("{0:N1}", value);
 
-                        if (field.Name == "wp_dist") lbDistWp.Text = String.Format("{0:N2}", value);
+                        if (field.Name == "wp_dist") lbDistWp.Text = String.Format("{0:N1}", value);
                     }
 
                     if (mavLinkMessage.msgid == (uint)MAVLink.MAVLINK_MSG_ID.CAMERA_FEEDBACK)
@@ -268,7 +268,7 @@ namespace MissionPlanner.Controls
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(243, 31);
             this.label16.TabIndex = 0;
-            this.label16.Text = "Seconds to Trigger";
+            this.label16.Text = "Trig Sec";
             // 
             // panel7
             // 
@@ -301,7 +301,7 @@ namespace MissionPlanner.Controls
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(214, 31);
             this.label14.TabIndex = 0;
-            this.label14.Text = "Distance Trigger";
+            this.label14.Text = "Trig Dist";
             // 
             // panel6
             // 
@@ -334,7 +334,7 @@ namespace MissionPlanner.Controls
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(300, 31);
             this.label12.TabIndex = 0;
-            this.label12.Text = "Cross-track Error (XTE)";
+            this.label12.Text = "XTE (m)";
             // 
             // panel5
             // 
@@ -367,7 +367,7 @@ namespace MissionPlanner.Controls
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(172, 31);
             this.label10.TabIndex = 0;
-            this.label10.Text = "Altitude Error";
+            this.label10.Text = "Alt Err (m)";
             // 
             // panel4
             // 
@@ -400,7 +400,7 @@ namespace MissionPlanner.Controls
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(241, 31);
             this.label8.TabIndex = 0;
-            this.label8.Text = "Distance Waypoint";
+            this.label8.Text = "WP Dist (m)";
             // 
             // panel3
             // 
@@ -433,7 +433,7 @@ namespace MissionPlanner.Controls
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(163, 31);
             this.label6.TabIndex = 0;
-            this.label6.Text = "Nav Bearing";
+            this.label6.Text = "BRG";
             // 
             // panel2
             // 
@@ -466,7 +466,7 @@ namespace MissionPlanner.Controls
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(233, 31);
             this.label4.TabIndex = 0;
-            this.label4.Text = "GND Course/TRK";
+            this.label4.Text = "TRK";
             // 
             // panel1
             // 
@@ -499,7 +499,7 @@ namespace MissionPlanner.Controls
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(190, 31);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Next Waypoint";
+            this.label1.Text = "Next WP";
             // 
             // CameraFeedback
             // 
@@ -544,9 +544,9 @@ namespace MissionPlanner.Controls
 
             // Refresh info from current state
             lbNextWp.Text = MainV2.comPort.MAV.cs.wpno.ToString();
-            lbCrossTrackError.Text = String.Format("{0:N2}", MainV2.comPort.MAV.cs.xtrack_error);
-            lbGroundCourse.Text = String.Format("{0:N2}", MainV2.comPort.MAV.cs.groundcourse);
-            //lbSecTrigger.Text = String.Format("{0:N2}", MainV2.comPort.MAV.cs.timesincelastshot);
+            lbCrossTrackError.Text = String.Format("{0:N1}", MainV2.comPort.MAV.cs.xtrack_error);
+            lbGroundCourse.Text = String.Format("{0:N1}", MainV2.comPort.MAV.cs.groundcourse);
+            //lbSecTrigger.Text = String.Format("{0:N1}", MainV2.comPort.MAV.cs.timesincelastshot);
 
             // Calculated fields
             var sinceLastShot = DateTime.Now.Subtract(lastShotTimestamp).TotalSeconds;
@@ -558,8 +558,8 @@ namespace MissionPlanner.Controls
 
             if ((untilNext >= 0) && (untilNext < 1000))
             {
-                lbSecTrigger.Text = String.Format("{0:N2}", untilNext);
-                lbDistTrigger.Text = String.Format("{0:N2}", tmp_dist * untilNext);
+                lbSecTrigger.Text = String.Format("{0:N1}", untilNext);
+                lbDistTrigger.Text = String.Format("{0:N1}", tmp_dist * untilNext);
             }
         }
     }
