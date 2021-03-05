@@ -5239,5 +5239,11 @@ namespace MissionPlanner.GCSViews
             hud1.displayCellVoltage = true;
             hud1.batterycellcount = iCellCount;
         }
+
+        private void hud1_af3click(object sender, EventArgs e)
+        {
+            MissionPlanner.Controls.AF3Status frm = new MissionPlanner.Controls.AF3Status();
+            frm.Show();
+        }
     }
 }

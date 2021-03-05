@@ -268,6 +268,7 @@ public partial class MAVLink
         new message_info(11035, "OSD_PARAM_SHOW_CONFIG", 128, 8, 8, typeof( mavlink_osd_param_show_config_t )),
         new message_info(11036, "OSD_PARAM_SHOW_CONFIG_REPLY", 177, 34, 34, typeof( mavlink_osd_param_show_config_reply_t )),
         new message_info(11037, "OBSTACLE_DISTANCE_3D", 130, 28, 28, typeof( mavlink_obstacle_distance_3d_t )),
+        new message_info(12100, "AF3_STATUS", 44, 2, 2, typeof( mavlink_af3_status_t )),
         new message_info(42000, "ICAROUS_HEARTBEAT", 227, 1, 1, typeof( mavlink_icarous_heartbeat_t )),
         new message_info(42001, "ICAROUS_KINEMATIC_BANDS", 239, 46, 46, typeof( mavlink_icarous_kinematic_bands_t )),
         new message_info(269, "VIDEO_STREAM_INFORMATION", 58, 246, 246, typeof( mavlink_video_stream_information_t )),
@@ -539,6 +540,7 @@ public partial class MAVLink
         OSD_PARAM_SHOW_CONFIG = 11035,
         OSD_PARAM_SHOW_CONFIG_REPLY = 11036,
         OBSTACLE_DISTANCE_3D = 11037,
+        AF3_STATUS = 12100,
         ICAROUS_HEARTBEAT = 42000,
         ICAROUS_KINEMATIC_BANDS = 42001,
         VIDEO_STREAM_INFORMATION = 269,
@@ -17414,6 +17416,28 @@ public partial class MAVLink
         [Description("MAVLink version, not writable by user, gets added by protocol because of magic data type: uint8_t_mavlink_version")]
         public  byte mavlink_version;
     
+    };
+
+    /// extensions_start 0
+    [StructLayout(LayoutKind.Sequential, Pack = 1, Size = 2)]
+    ///<summary> Report AF3 triple-redundant system status </summary>
+    public struct mavlink_af3_status_t
+    {
+        public mavlink_af3_status_t(byte active_rfc, byte rfc_telem_mask)
+        {
+            this.active_rfc = active_rfc;
+            this.rfc_telem_mask = rfc_telem_mask;
+
+        }
+        /// <summary>Current real flight controller commanding the vehicle   </summary>
+        [Units("")]
+        [Description("Current real flight controller commanding the vehicle")]
+        public byte active_rfc;
+        /// <summary>Mask of real flight controllers talking to the VFC via telemetry link   </summary>
+        [Units("")]
+        [Description("Mask of real flight controllers talking to the VFC via telemetry link")]
+        public byte rfc_telem_mask;
+
     };
 
 }

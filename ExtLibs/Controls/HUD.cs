@@ -124,6 +124,9 @@ namespace MissionPlanner.Controls
         public bool displayekf { get; set; }
 
         [System.ComponentModel.Browsable(true), DefaultValue(true)]
+        public bool displayaf3 { get; set; }
+
+        [System.ComponentModel.Browsable(true), DefaultValue(true)]
         public bool displayvibe { get; set; }
 
         [System.ComponentModel.Browsable(true), DefaultValue(true)]
@@ -152,7 +155,7 @@ namespace MissionPlanner.Controls
                             displayspeed =
                                 displayalt =
                                     displayconninfo =
-                                        displayxtrack = displayrollpitch = displaygps = bgon = hudon = batteryon = true;
+                                        displayxtrack = displayrollpitch = displaygps = bgon = hudon = batteryon = displayaf3 = true;
 
             displayAOASSA = false;
 
@@ -682,6 +685,9 @@ namespace MissionPlanner.Controls
         public float ekfstatus { get; set; }
 
         [System.ComponentModel.Browsable(true), System.ComponentModel.Category("Values")]
+        public float af3status { get; set; }
+
+        [System.ComponentModel.Browsable(true), System.ComponentModel.Category("Values")]
         public float AOA
         {
             get { return _AOA; }
@@ -993,9 +999,11 @@ namespace MissionPlanner.Controls
 
         public event EventHandler ekfclick;
         public event EventHandler vibeclick;
+        public event EventHandler af3click;
 
         Rectangle ekfhitzone = new Rectangle();
         Rectangle vibehitzone = new Rectangle();
+        Rectangle af3hitzone = new Rectangle();
 
         protected override void OnMouseClick(MouseEventArgs e)
         {
@@ -1012,6 +1020,12 @@ namespace MissionPlanner.Controls
                 if (vibeclick != null)
                     vibeclick(this, null);
             }
+
+            if (af3hitzone.IntersectsWith(new Rectangle(e.X, e.Y, 5, 5)))
+            {
+                if (af3click != null)
+                    af3click(this, null);
+            }
         }
 
         protected override void OnMouseMove(MouseEventArgs e)
@@ -1023,6 +1037,10 @@ namespace MissionPlanner.Controls
                 Cursor.Current = Cursors.Hand;
             }
             else if (vibehitzone.IntersectsWith(new Rectangle(e.X, e.Y, 5, 5)))
+            {
+                Cursor.Current = Cursors.Hand;
+            }
+            else if (af3hitzone.IntersectsWith(new Rectangle(e.X, e.Y, 5, 5)))
             {
                 Cursor.Current = Cursors.Hand;
             }
@@ -1664,7 +1682,28 @@ namespace MissionPlanner.Controls
             }
             else
             {
-                graphicsObjectGDIP.DrawRectangle(penn, (float) x1, (float) y1, (float) width, (float) height);
+                graphicsObjectGDIP.DrawRectangle(penn, (float)x1, (float)y1, (float)width, (float)height);
+            }
+        }
+
+        public void DrawRectangleSolid(Pen penn, double x1, double y1, double width, double height)
+        {
+
+            if (opengl)
+            {
+                GL.LineWidth(penn.Width);
+                GL.Color4(penn.Color);
+
+                GL.Begin(PrimitiveType.Quads);
+                GL.Vertex2(x1, y1);
+                GL.Vertex2(x1 + width, y1);
+                GL.Vertex2(x1 + width, y1 + height);
+                GL.Vertex2(x1, y1 + height);
+                GL.End();
+            }
+            else
+            {
+                graphicsObjectGDIP.DrawRectangle(penn, (float)x1, (float)y1, (float)width, (float)height);
             }
         }
 
@@ -2784,13 +2823,13 @@ namespace MissionPlanner.Controls
                     {
                         if (ekfstatus > 0.8)
                         {
-                            drawstring("EKF", font, fontsize + 2, (SolidBrush) Brushes.Red,
+                            drawstring("EKF", font, fontsize + 2, (SolidBrush)Brushes.Red,
                                 ekfhitzone.X,
                                 ekfhitzone.Y);
                         }
                         else
                         {
-                            drawstring("EKF", font, fontsize + 2, (SolidBrush) Brushes.Orange,
+                            drawstring("EKF", font, fontsize + 2, (SolidBrush)Brushes.Orange,
                                 ekfhitzone.X,
                                 ekfhitzone.Y);
                         }
@@ -2798,6 +2837,32 @@ namespace MissionPlanner.Controls
                     else
                     {
                         drawstring("EKF", font, fontsize + 2, _whiteBrush, ekfhitzone.X, ekfhitzone.Y);
+                    }
+                }
+
+                if (displayaf3)
+                {
+                    af3hitzone = new Rectangle(this.Width - 28 * fontsize, this.Height - ((fontsize + 2) * 3) - fontoffset, 40,
+                        fontsize * 2);
+
+                    if (af3status < 3.0)
+                    {
+                        if (af3status < 2.0)
+                        {
+                            drawstring("AF3", font, fontsize + 2, (SolidBrush)Brushes.Red,
+                                af3hitzone.X,
+                                af3hitzone.Y);
+                        }
+                        else
+                        {
+                            drawstring("AF3", font, fontsize + 2, (SolidBrush)Brushes.Orange,
+                                af3hitzone.X,
+                                af3hitzone.Y);
+                        }
+                    }
+                    else
+                    {
+                        drawstring("AF3", font, fontsize + 2, _whiteBrush, af3hitzone.X, af3hitzone.Y);
                     }
                 }
 
@@ -2922,6 +2987,11 @@ namespace MissionPlanner.Controls
         }
 
         void drawstring(string text, Font font, float fontsize, SolidBrush brush, float x, float y)
+        {
+            drawstring(text, font, fontsize, brush, x, y, Color.Empty);
+        }
+
+        void drawstring(string text, Font font, float fontsize, SolidBrush brush, float x, float y, Color bgColor)
         {
             if (!opengl)
             {
@@ -3048,6 +3118,13 @@ namespace MissionPlanner.Controls
                     TranslateTransform(-x, -y);
                     */
                     //GL.Enable(EnableCap.Blend);
+                    if (bgColor != Color.Empty)
+                    {
+                        DrawRectangleSolid(new Pen(bgColor), x, y,
+                            charDict[charid].bitmap.Width,
+                            fontsize);
+                    }
+
                     GL.BlendFunc(BlendingFactor.SrcAlpha, BlendingFactor.OneMinusSrcAlpha);
 
                     GL.Enable(EnableCap.Texture2D);

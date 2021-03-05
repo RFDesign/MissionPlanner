@@ -365,6 +365,9 @@ namespace MissionPlanner.Controls
         public float ekfstatus { get; set; }
 
         [System.ComponentModel.Browsable(true), System.ComponentModel.Category("Values")]
+        public float af3status { get; set; }
+
+        [System.ComponentModel.Browsable(true), System.ComponentModel.Category("Values")]
         public bool failsafe { get; set; }
 
         [System.ComponentModel.Browsable(true), System.ComponentModel.Category("Values")]

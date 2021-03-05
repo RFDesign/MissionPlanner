@@ -1657,6 +1657,12 @@ namespace MissionPlanner
 
         [GroupText("Flow")] [DisplayText("flow quality")] public byte opt_qua { get; set; }
 
+        [GroupText("AF3")] public float af3status { get; set; }
+        [GroupText("AF3")] public bool af3rf1telem { get; set; }
+        [GroupText("AF3")] public bool af3rf2telem { get; set; }
+        [GroupText("AF3")] public bool af3rf3telem { get; set; }
+        [GroupText("AF3")] public float af3rfcactive { get; set; }
+
         [GroupText("EKF")] public float ekfstatus { get; set; }
 
         [GroupText("EKF")] public int ekfflags { get; set; }
@@ -2087,6 +2093,24 @@ namespace MissionPlanner
                             //MAVLink.packets[(byte)MAVLink.MSG_NAMES.HWSTATUS);
                         }
 
+                        break;
+                    case (uint)MAVLink.MAVLINK_MSG_ID.AF3_STATUS:
+                        {
+                            var af3statusm = mavLinkMessage.ToStructure<MAVLink.mavlink_af3_status_t>();
+
+                            int rfc_mask = af3statusm.rfc_telem_mask;
+
+                            af3rf1telem = ((rfc_mask >> 0) & 0x01) == 1;
+                            af3rf2telem = ((rfc_mask >> 1) & 0x01) == 1;
+                            af3rf3telem = ((rfc_mask >> 2) & 0x01) == 1;
+
+                            int rfc_count = (af3rf1telem ? 1 : 0);
+                            rfc_count += (af3rf2telem ? 1 : 0);
+                            rfc_count += (af3rf3telem ? 1 : 0);
+
+                            af3status = rfc_count;
+                            af3rfcactive = af3statusm.active_rfc;
+                        }
                         break;
                     case (uint)MAVLink.MAVLINK_MSG_ID.EKF_STATUS_REPORT:
 
