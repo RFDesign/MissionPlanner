@@ -1,0 +1,681 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="tableLayoutPanel1.ColumnCount" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="lbRFC2Active.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="lbRFC2Active.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="lbRFC2Active.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="lbRFC2Active.Location" type="System.Drawing.Point, System.Drawing">
+    <value>127, 280</value>
+  </data>
+  <data name="lbRFC2Active.Size" type="System.Drawing.Size, System.Drawing">
+    <value>88, 30</value>
+  </data>
+  <data name="lbRFC2Active.TabIndex" type="System.Int32, mscorlib">
+    <value>30</value>
+  </data>
+  <data name="lbRFC2Active.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="&gt;&gt;lbRFC2Active.Name" xml:space="preserve">
+    <value>lbRFC2Active</value>
+  </data>
+  <data name="&gt;&gt;lbRFC2Active.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lbRFC2Active.Parent" xml:space="preserve">
+    <value>tableLayoutPanel1</value>
+  </data>
+  <data name="&gt;&gt;lbRFC2Active.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="lbRFC3Active.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lbRFC3Active.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="lbRFC3Active.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lbRFC3Active.Location" type="System.Drawing.Point, System.Drawing">
+    <value>221, 280</value>
+  </data>
+  <data name="lbRFC3Active.Size" type="System.Drawing.Size, System.Drawing">
+    <value>88, 30</value>
+  </data>
+  <data name="lbRFC3Active.TabIndex" type="System.Int32, mscorlib">
+    <value>29</value>
+  </data>
+  <data name="lbRFC3Active.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="&gt;&gt;lbRFC3Active.Name" xml:space="preserve">
+    <value>lbRFC3Active</value>
+  </data>
+  <data name="&gt;&gt;lbRFC3Active.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lbRFC3Active.Parent" xml:space="preserve">
+    <value>tableLayoutPanel1</value>
+  </data>
+  <data name="&gt;&gt;lbRFC3Active.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="lbRFC1Active.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lbRFC1Active.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="lbRFC1Active.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lbRFC1Active.Location" type="System.Drawing.Point, System.Drawing">
+    <value>33, 280</value>
+  </data>
+  <data name="lbRFC1Active.Size" type="System.Drawing.Size, System.Drawing">
+    <value>88, 30</value>
+  </data>
+  <data name="lbRFC1Active.TabIndex" type="System.Int32, mscorlib">
+    <value>28</value>
+  </data>
+  <data name="lbRFC1Active.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="&gt;&gt;lbRFC1Active.Name" xml:space="preserve">
+    <value>lbRFC1Active</value>
+  </data>
+  <data name="&gt;&gt;lbRFC1Active.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lbRFC1Active.Parent" xml:space="preserve">
+    <value>tableLayoutPanel1</value>
+  </data>
+  <data name="&gt;&gt;lbRFC1Active.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="lbRFC2TELEM.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lbRFC2TELEM.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="lbRFC2TELEM.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lbRFC2TELEM.Location" type="System.Drawing.Point, System.Drawing">
+    <value>127, 310</value>
+  </data>
+  <data name="lbRFC2TELEM.Size" type="System.Drawing.Size, System.Drawing">
+    <value>88, 30</value>
+  </data>
+  <data name="lbRFC2TELEM.TabIndex" type="System.Int32, mscorlib">
+    <value>27</value>
+  </data>
+  <data name="lbRFC2TELEM.Text" xml:space="preserve">
+    <value>NO TELEM</value>
+  </data>
+  <data name="lbRFC2TELEM.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="&gt;&gt;lbRFC2TELEM.Name" xml:space="preserve">
+    <value>lbRFC2TELEM</value>
+  </data>
+  <data name="&gt;&gt;lbRFC2TELEM.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lbRFC2TELEM.Parent" xml:space="preserve">
+    <value>tableLayoutPanel1</value>
+  </data>
+  <data name="&gt;&gt;lbRFC2TELEM.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="lbRFC3TELEM.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lbRFC3TELEM.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="lbRFC3TELEM.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lbRFC3TELEM.Location" type="System.Drawing.Point, System.Drawing">
+    <value>221, 310</value>
+  </data>
+  <data name="lbRFC3TELEM.Size" type="System.Drawing.Size, System.Drawing">
+    <value>88, 30</value>
+  </data>
+  <data name="lbRFC3TELEM.TabIndex" type="System.Int32, mscorlib">
+    <value>26</value>
+  </data>
+  <data name="lbRFC3TELEM.Text" xml:space="preserve">
+    <value>NO TELEM</value>
+  </data>
+  <data name="lbRFC3TELEM.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="&gt;&gt;lbRFC3TELEM.Name" xml:space="preserve">
+    <value>lbRFC3TELEM</value>
+  </data>
+  <data name="&gt;&gt;lbRFC3TELEM.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lbRFC3TELEM.Parent" xml:space="preserve">
+    <value>tableLayoutPanel1</value>
+  </data>
+  <data name="&gt;&gt;lbRFC3TELEM.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="lbRFC1TELEM.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lbRFC1TELEM.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="lbRFC1TELEM.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lbRFC1TELEM.Location" type="System.Drawing.Point, System.Drawing">
+    <value>33, 310</value>
+  </data>
+  <data name="lbRFC1TELEM.Size" type="System.Drawing.Size, System.Drawing">
+    <value>88, 30</value>
+  </data>
+  <data name="lbRFC1TELEM.TabIndex" type="System.Int32, mscorlib">
+    <value>25</value>
+  </data>
+  <data name="lbRFC1TELEM.Text" xml:space="preserve">
+    <value>NO TELEM</value>
+  </data>
+  <data name="lbRFC1TELEM.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="&gt;&gt;lbRFC1TELEM.Name" xml:space="preserve">
+    <value>lbRFC1TELEM</value>
+  </data>
+  <data name="&gt;&gt;lbRFC1TELEM.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lbRFC1TELEM.Parent" xml:space="preserve">
+    <value>tableLayoutPanel1</value>
+  </data>
+  <data name="&gt;&gt;lbRFC1TELEM.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="rf3Health.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="rf3Health.Location" type="System.Drawing.Point, System.Drawing">
+    <value>221, 83</value>
+  </data>
+  <data name="rf3Health.Size" type="System.Drawing.Size, System.Drawing">
+    <value>88, 194</value>
+  </data>
+  <data name="rf3Health.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;rf3Health.Name" xml:space="preserve">
+    <value>rf3Health</value>
+  </data>
+  <data name="&gt;&gt;rf3Health.Type" xml:space="preserve">
+    <value>MissionPlanner.Controls.VerticalProgressBar2, MissionPlanner.Controls, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;rf3Health.Parent" xml:space="preserve">
+    <value>tableLayoutPanel1</value>
+  </data>
+  <data name="&gt;&gt;rf3Health.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="rf2Health.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="rf2Health.Location" type="System.Drawing.Point, System.Drawing">
+    <value>127, 83</value>
+  </data>
+  <data name="rf2Health.Size" type="System.Drawing.Size, System.Drawing">
+    <value>88, 194</value>
+  </data>
+  <data name="rf2Health.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;rf2Health.Name" xml:space="preserve">
+    <value>rf2Health</value>
+  </data>
+  <data name="&gt;&gt;rf2Health.Type" xml:space="preserve">
+    <value>MissionPlanner.Controls.VerticalProgressBar2, MissionPlanner.Controls, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;rf2Health.Parent" xml:space="preserve">
+    <value>tableLayoutPanel1</value>
+  </data>
+  <data name="&gt;&gt;rf2Health.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="rf1Health.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="rf1Health.Location" type="System.Drawing.Point, System.Drawing">
+    <value>33, 83</value>
+  </data>
+  <data name="rf1Health.Size" type="System.Drawing.Size, System.Drawing">
+    <value>88, 194</value>
+  </data>
+  <data name="rf1Health.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;rf1Health.Name" xml:space="preserve">
+    <value>rf1Health</value>
+  </data>
+  <data name="&gt;&gt;rf1Health.Type" xml:space="preserve">
+    <value>MissionPlanner.Controls.VerticalProgressBar2, MissionPlanner.Controls, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;rf1Health.Parent" xml:space="preserve">
+    <value>tableLayoutPanel1</value>
+  </data>
+  <data name="&gt;&gt;rf1Health.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="label1.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="label1.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 15.75pt, style=Bold</value>
+  </data>
+  <data name="label1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>33, 0</value>
+  </data>
+  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>276, 50</value>
+  </data>
+  <data name="label1.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>AF3 Status</value>
+  </data>
+  <data name="label1.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="&gt;&gt;label1.Name" xml:space="preserve">
+    <value>label1</value>
+  </data>
+  <data name="&gt;&gt;label1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label1.Parent" xml:space="preserve">
+    <value>tableLayoutPanel1</value>
+  </data>
+  <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <data name="label8.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label8.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="label8.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 12pt, style=Bold</value>
+  </data>
+  <data name="label8.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label8.Location" type="System.Drawing.Point, System.Drawing">
+    <value>345, 0</value>
+  </data>
+  <data name="label8.Size" type="System.Drawing.Size, System.Drawing">
+    <value>194, 50</value>
+  </data>
+  <data name="label8.TabIndex" type="System.Int32, mscorlib">
+    <value>11</value>
+  </data>
+  <data name="label8.Text" xml:space="preserve">
+    <value>Flags</value>
+  </data>
+  <data name="label8.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="&gt;&gt;label8.Name" xml:space="preserve">
+    <value>label8</value>
+  </data>
+  <data name="&gt;&gt;label8.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label8.Parent" xml:space="preserve">
+    <value>tableLayoutPanel1</value>
+  </data>
+  <data name="&gt;&gt;label8.ZOrder" xml:space="preserve">
+    <value>10</value>
+  </data>
+  <data name="label2.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label2.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="label2.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 7.8pt, style=Bold</value>
+  </data>
+  <data name="label2.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>33, 50</value>
+  </data>
+  <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>88, 30</value>
+  </data>
+  <data name="label2.TabIndex" type="System.Int32, mscorlib">
+    <value>19</value>
+  </data>
+  <data name="label2.Text" xml:space="preserve">
+    <value>RF1</value>
+  </data>
+  <data name="label2.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="&gt;&gt;label2.Name" xml:space="preserve">
+    <value>label2</value>
+  </data>
+  <data name="&gt;&gt;label2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label2.Parent" xml:space="preserve">
+    <value>tableLayoutPanel1</value>
+  </data>
+  <data name="&gt;&gt;label2.ZOrder" xml:space="preserve">
+    <value>11</value>
+  </data>
+  <data name="label3.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label3.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="label3.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 7.8pt, style=Bold</value>
+  </data>
+  <data name="label3.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>127, 50</value>
+  </data>
+  <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>88, 30</value>
+  </data>
+  <data name="label3.TabIndex" type="System.Int32, mscorlib">
+    <value>20</value>
+  </data>
+  <data name="label3.Text" xml:space="preserve">
+    <value>RF2</value>
+  </data>
+  <data name="label3.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="&gt;&gt;label3.Name" xml:space="preserve">
+    <value>label3</value>
+  </data>
+  <data name="&gt;&gt;label3.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label3.Parent" xml:space="preserve">
+    <value>tableLayoutPanel1</value>
+  </data>
+  <data name="&gt;&gt;label3.ZOrder" xml:space="preserve">
+    <value>12</value>
+  </data>
+  <data name="label4.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label4.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="label4.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 7.8pt, style=Bold</value>
+  </data>
+  <data name="label4.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label4.Location" type="System.Drawing.Point, System.Drawing">
+    <value>221, 50</value>
+  </data>
+  <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>88, 30</value>
+  </data>
+  <data name="label4.TabIndex" type="System.Int32, mscorlib">
+    <value>21</value>
+  </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>RF3</value>
+  </data>
+  <data name="label4.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="&gt;&gt;label4.Name" xml:space="preserve">
+    <value>label4</value>
+  </data>
+  <data name="&gt;&gt;label4.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label4.Parent" xml:space="preserve">
+    <value>tableLayoutPanel1</value>
+  </data>
+  <data name="&gt;&gt;label4.ZOrder" xml:space="preserve">
+    <value>13</value>
+  </data>
+  <data name="flowLayoutPanel1.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Left, Right</value>
+  </data>
+  <data name="flowLayoutPanel1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>345, 53</value>
+  </data>
+  <data name="flowLayoutPanel1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>194, 224</value>
+  </data>
+  <data name="flowLayoutPanel1.TabIndex" type="System.Int32, mscorlib">
+    <value>24</value>
+  </data>
+  <data name="&gt;&gt;flowLayoutPanel1.Name" xml:space="preserve">
+    <value>flowLayoutPanel1</value>
+  </data>
+  <data name="&gt;&gt;flowLayoutPanel1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.FlowLayoutPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;flowLayoutPanel1.Parent" xml:space="preserve">
+    <value>tableLayoutPanel1</value>
+  </data>
+  <data name="&gt;&gt;flowLayoutPanel1.ZOrder" xml:space="preserve">
+    <value>14</value>
+  </data>
+  <data name="tableLayoutPanel1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="tableLayoutPanel1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="tableLayoutPanel1.RowCount" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="tableLayoutPanel1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>572, 369</value>
+  </data>
+  <data name="tableLayoutPanel1.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;tableLayoutPanel1.Name" xml:space="preserve">
+    <value>tableLayoutPanel1</value>
+  </data>
+  <data name="&gt;&gt;tableLayoutPanel1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TableLayoutPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tableLayoutPanel1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;tableLayoutPanel1.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="tableLayoutPanel1.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="lbRFC2Active" Row="3" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC3Active" Row="3" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC1Active" Row="3" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC2TELEM" Row="4" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC3TELEM" Row="4" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC1TELEM" Row="4" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="rf3Health" Row="2" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="rf2Health" Row="2" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="rf1Health" Row="2" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="label1" Row="0" RowSpan="1" Column="1" ColumnSpan="3" /&gt;&lt;Control Name="label8" Row="0" RowSpan="1" Column="5" ColumnSpan="1" /&gt;&lt;Control Name="label2" Row="1" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="label3" Row="1" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="label4" Row="1" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="flowLayoutPanel1" Row="1" RowSpan="2" Column="5" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Absolute,30,Percent,33.33333,Percent,33.33333,Percent,33.33333,Absolute,30,Absolute,200,Absolute,30" /&gt;&lt;Rows Styles="Absolute,50,Absolute,30,Absolute,200,Absolute,30,Absolute,30,Absolute,30" /&gt;&lt;/TableLayoutSettings&gt;</value>
+  </data>
+  <metadata name="timer1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>572, 369</value>
+  </data>
+  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>AF3 Status</value>
+  </data>
+  <data name="&gt;&gt;timer1.Name" xml:space="preserve">
+    <value>timer1</value>
+  </data>
+  <data name="&gt;&gt;timer1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Timer, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>AF3Status</value>
+  </data>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+</root>

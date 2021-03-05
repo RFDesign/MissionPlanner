@@ -414,6 +414,12 @@
   <ItemGroup>
     <Compile Include="Antenna\TrackerGeneric.cs" />
     <Compile Include="Common.cs" />
+    <Compile Include="Controls\AF3Status.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Controls\AF3Status.Designer.cs">
+      <DependentUpon>AF3Status.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\UAVCANSubscriber.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -503,6 +509,12 @@
     </Compile>
     <Compile Include="Controls\FollowMe.cs">
       <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GCSViews\AF3Config.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GCSViews\AF3Config.Designer.cs">
+      <DependentUpon>AF3Config.cs</DependentUpon>
     </Compile>
     <Compile Include="GCSViews\ConfigurationView\ConfigADSB.cs">
       <SubType>UserControl</SubType>
@@ -808,6 +820,12 @@
     <EmbeddedResource Include="Controls\DigitalSkyUI.resx">
       <DependentUpon>DigitalSkyUI.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Controls\AF3Status.ko-KR.resx">
+      <DependentUpon>AF3Status.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\AF3Status.resx">
+      <DependentUpon>AF3Status.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\EKFStatus.ko-KR.resx">
       <DependentUpon>EKFStatus.cs</DependentUpon>
     </EmbeddedResource>
@@ -879,6 +897,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\Vibration.ko-KR.resx">
       <DependentUpon>Vibration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GCSViews\AF3Config.resx">
+      <DependentUpon>AF3Config.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GCSViews\ConfigurationView\ConfigADSB.ko-KR.resx">
       <DependentUpon>ConfigADSB.cs</DependentUpon>

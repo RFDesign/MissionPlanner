@@ -144,43 +144,43 @@
     <value>714, 17</value>
   </metadata>
   <data name="recordHudToAVIToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>187, 22</value>
+    <value>236, 26</value>
   </data>
   <data name="recordHudToAVIToolStripMenuItem.Text" xml:space="preserve">
     <value>Record Hud to AVI</value>
   </data>
   <data name="stopRecordToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>187, 22</value>
+    <value>236, 26</value>
   </data>
   <data name="stopRecordToolStripMenuItem.Text" xml:space="preserve">
     <value>Stop Record</value>
   </data>
   <data name="setMJPEGSourceToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>187, 22</value>
+    <value>236, 26</value>
   </data>
   <data name="setMJPEGSourceToolStripMenuItem.Text" xml:space="preserve">
     <value>Set MJPEG source</value>
   </data>
   <data name="startCameraToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>187, 22</value>
+    <value>236, 26</value>
   </data>
   <data name="startCameraToolStripMenuItem.Text" xml:space="preserve">
     <value>Start Camera</value>
   </data>
   <data name="setGStreamerSourceToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>187, 22</value>
+    <value>236, 26</value>
   </data>
   <data name="setGStreamerSourceToolStripMenuItem.Text" xml:space="preserve">
     <value>Set GStreamer Source</value>
   </data>
   <data name="hereLinkVideoToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>187, 22</value>
+    <value>236, 26</value>
   </data>
   <data name="hereLinkVideoToolStripMenuItem.Text" xml:space="preserve">
     <value>HereLink Video</value>
   </data>
   <data name="gStreamerStopToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>187, 22</value>
+    <value>236, 26</value>
   </data>
   <data name="gStreamerStopToolStripMenuItem.Text" xml:space="preserve">
     <value>GStreamer Stop</value>
@@ -245,6 +245,9 @@
   <data name="hud1.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 0</value>
   </data>
+  <data name="hud1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
+  </data>
   <data name="hud1.Size" type="System.Drawing.Size, System.Drawing">
     <value>298, 216</value>
   </data>
@@ -280,13 +283,13 @@
     <value>491, 57</value>
   </metadata>
   <data name="customizeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>130, 22</value>
+    <value>147, 24</value>
   </data>
   <data name="customizeToolStripMenuItem.Text" xml:space="preserve">
     <value>Customize</value>
   </data>
   <data name="contextMenuStripactionstab.Size" type="System.Drawing.Size, System.Drawing">
-    <value>131, 26</value>
+    <value>148, 28</value>
   </data>
   <data name="&gt;&gt;contextMenuStripactionstab.Name" xml:space="preserve">
     <value>contextMenuStripactionstab</value>
@@ -310,7 +313,7 @@
     <value>696, 57</value>
   </metadata>
   <data name="setViewCountToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>154, 22</value>
+    <value>178, 24</value>
   </data>
   <data name="setViewCountToolStripMenuItem.Text" xml:space="preserve">
     <value>Set View Count</value>
@@ -697,7 +700,7 @@
     <value>3, 3</value>
   </data>
   <data name="CMB_action.Size" type="System.Drawing.Size, System.Drawing">
-    <value>51, 28</value>
+    <value>51, 33</value>
   </data>
   <data name="CMB_action.TabIndex" type="System.Int32, mscorlib">
     <value>59</value>
@@ -862,7 +865,7 @@
     <value>3, 39</value>
   </data>
   <data name="CMB_setwp.Size" type="System.Drawing.Size, System.Drawing">
-    <value>51, 28</value>
+    <value>51, 33</value>
   </data>
   <data name="CMB_setwp.TabIndex" type="System.Int32, mscorlib">
     <value>72</value>
@@ -1087,7 +1090,7 @@
     <value>3, 111</value>
   </data>
   <data name="CMB_mountmode.Size" type="System.Drawing.Size, System.Drawing">
-    <value>51, 28</value>
+    <value>51, 33</value>
   </data>
   <data name="CMB_mountmode.TabIndex" type="System.Int32, mscorlib">
     <value>82</value>
@@ -1213,7 +1216,7 @@
     <value>3, 75</value>
   </data>
   <data name="CMB_modes.Size" type="System.Drawing.Size, System.Drawing">
-    <value>51, 28</value>
+    <value>51, 33</value>
   </data>
   <data name="CMB_modes.TabIndex" type="System.Int32, mscorlib">
     <value>70</value>
@@ -2885,7 +2888,7 @@
     <value>19, 48</value>
   </data>
   <data name="checkBoxRedirectOutput.Size" type="System.Drawing.Size, System.Drawing">
-    <value>143, 17</value>
+    <value>188, 21</value>
   </data>
   <data name="checkBoxRedirectOutput.TabIndex" type="System.Int32, mscorlib">
     <value>91</value>
@@ -2945,7 +2948,7 @@
     <value>19, 29</value>
   </data>
   <data name="labelSelectedScript.Size" type="System.Drawing.Size, System.Drawing">
-    <value>111, 13</value>
+    <value>145, 17</value>
   </data>
   <data name="labelSelectedScript.TabIndex" type="System.Int32, mscorlib">
     <value>89</value>
@@ -3035,7 +3038,7 @@
     <value>19, 10</value>
   </data>
   <data name="labelScriptStatus.Size" type="System.Drawing.Size, System.Drawing">
-    <value>160, 13</value>
+    <value>211, 17</value>
   </data>
   <data name="labelScriptStatus.TabIndex" type="System.Int32, mscorlib">
     <value>86</value>
@@ -3146,7 +3149,7 @@
     <value>6, 19</value>
   </data>
   <data name="TXT_gimbalRollPos.Size" type="System.Drawing.Size, System.Drawing">
-    <value>51, 20</value>
+    <value>51, 22</value>
   </data>
   <data name="TXT_gimbalRollPos.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
@@ -3176,7 +3179,7 @@
     <value>True</value>
   </data>
   <data name="trackBarRoll.Size" type="System.Drawing.Size, System.Drawing">
-    <value>104, 45</value>
+    <value>104, 56</value>
   </data>
   <data name="trackBarRoll.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -3221,7 +3224,7 @@
     <value>6, 18</value>
   </data>
   <data name="TXT_gimbalYawPos.Size" type="System.Drawing.Size, System.Drawing">
-    <value>51, 20</value>
+    <value>51, 22</value>
   </data>
   <data name="TXT_gimbalYawPos.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
@@ -3245,7 +3248,7 @@
     <value>63, 18</value>
   </data>
   <data name="trackBarYaw.Size" type="System.Drawing.Size, System.Drawing">
-    <value>104, 45</value>
+    <value>104, 56</value>
   </data>
   <data name="trackBarYaw.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -3323,7 +3326,7 @@
     <value>Vertical</value>
   </data>
   <data name="trackBarPitch.Size" type="System.Drawing.Size, System.Drawing">
-    <value>45, 104</value>
+    <value>56, 104</value>
   </data>
   <data name="trackBarPitch.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -3344,7 +3347,7 @@
     <value>6, 18</value>
   </data>
   <data name="TXT_gimbalPitchPos.Size" type="System.Drawing.Size, System.Drawing">
-    <value>50, 20</value>
+    <value>50, 22</value>
   </data>
   <data name="TXT_gimbalPitchPos.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
@@ -3611,7 +3614,7 @@
     <value>90, 3</value>
   </data>
   <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>38, 13</value>
+    <value>49, 17</value>
   </data>
   <data name="label2.TabIndex" type="System.Int32, mscorlib">
     <value>84</value>
@@ -4283,115 +4286,115 @@
     <value>444, 17</value>
   </metadata>
   <data name="goHereToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>195, 22</value>
+    <value>231, 24</value>
   </data>
   <data name="goHereToolStripMenuItem.Text" xml:space="preserve">
     <value>Fly To Here</value>
   </data>
   <data name="flyToHereAltToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>195, 22</value>
+    <value>231, 24</value>
   </data>
   <data name="flyToHereAltToolStripMenuItem.Text" xml:space="preserve">
     <value>Fly To Here Alt</value>
   </data>
   <data name="flyToCoordsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>195, 22</value>
+    <value>231, 24</value>
   </data>
   <data name="flyToCoordsToolStripMenuItem.Text" xml:space="preserve">
     <value>Fly To Coords</value>
   </data>
   <data name="deleteToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>121, 22</value>
+    <value>152, 26</value>
   </data>
   <data name="deleteToolStripMenuItem.Text" xml:space="preserve">
     <value>Delete</value>
   </data>
   <data name="saveFileToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>121, 22</value>
+    <value>152, 26</value>
   </data>
   <data name="saveFileToolStripMenuItem.Text" xml:space="preserve">
     <value>Save File</value>
   </data>
   <data name="loadFileToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>121, 22</value>
+    <value>152, 26</value>
   </data>
   <data name="loadFileToolStripMenuItem.Text" xml:space="preserve">
     <value>Load File</value>
   </data>
   <data name="poiatcoordsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>121, 22</value>
+    <value>152, 26</value>
   </data>
   <data name="poiatcoordsToolStripMenuItem.Text" xml:space="preserve">
     <value>Coords</value>
   </data>
   <data name="addPoiToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>195, 22</value>
+    <value>231, 24</value>
   </data>
   <data name="addPoiToolStripMenuItem.Text" xml:space="preserve">
     <value>Add Poi</value>
   </data>
   <data name="pointCameraHereToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>195, 22</value>
+    <value>231, 24</value>
   </data>
   <data name="pointCameraHereToolStripMenuItem.Text" xml:space="preserve">
     <value>Point Camera Here</value>
   </data>
   <data name="PointCameraCoordsToolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>195, 22</value>
+    <value>231, 24</value>
   </data>
   <data name="PointCameraCoordsToolStripMenuItem1.Text" xml:space="preserve">
     <value>Point Camera Coords</value>
   </data>
   <data name="triggerCameraToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>195, 22</value>
+    <value>231, 24</value>
   </data>
   <data name="triggerCameraToolStripMenuItem.Text" xml:space="preserve">
     <value>Trigger Camera NOW</value>
   </data>
   <data name="flightPlannerToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>195, 22</value>
+    <value>231, 24</value>
   </data>
   <data name="flightPlannerToolStripMenuItem.Text" xml:space="preserve">
     <value>Flight Planner</value>
   </data>
   <data name="setEKFHomeHereToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>176, 22</value>
+    <value>222, 26</value>
   </data>
   <data name="setEKFHomeHereToolStripMenuItem.Text" xml:space="preserve">
     <value>Set EKF Origin Here</value>
   </data>
   <data name="setHomeHereToolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>176, 22</value>
+    <value>222, 26</value>
   </data>
   <data name="setHomeHereToolStripMenuItem1.Text" xml:space="preserve">
     <value>Set Home Here</value>
   </data>
   <data name="setHomeHereToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>195, 22</value>
+    <value>231, 24</value>
   </data>
   <data name="setHomeHereToolStripMenuItem.Text" xml:space="preserve">
     <value>Set Home Here</value>
   </data>
   <data name="takeOffToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>195, 22</value>
+    <value>231, 24</value>
   </data>
   <data name="takeOffToolStripMenuItem.Text" xml:space="preserve">
     <value>TakeOff</value>
   </data>
   <data name="onOffCameraOverlapToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>195, 22</value>
+    <value>231, 24</value>
   </data>
   <data name="onOffCameraOverlapToolStripMenuItem.Text" xml:space="preserve">
     <value>Camera Overlap</value>
   </data>
   <data name="altitudeAngelSettingsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>195, 22</value>
+    <value>231, 24</value>
   </data>
   <data name="altitudeAngelSettingsToolStripMenuItem.Text" xml:space="preserve">
     <value>Altitude Angel Settings</value>
   </data>
   <data name="contextMenuStripMap.Size" type="System.Drawing.Size, System.Drawing">
-    <value>196, 268</value>
+    <value>232, 292</value>
   </data>
   <data name="&gt;&gt;contextMenuStripMap.Name" xml:space="preserve">
     <value>contextMenuStripMap</value>
@@ -4493,7 +4496,7 @@
     <value>332, 167</value>
   </data>
   <data name="label6.Size" type="System.Drawing.Size, System.Drawing">
-    <value>96, 13</value>
+    <value>125, 17</value>
   </data>
   <data name="label6.TabIndex" type="System.Int32, mscorlib">
     <value>74</value>
@@ -4526,7 +4529,7 @@
     <value>245, 167</value>
   </data>
   <data name="label5.Size" type="System.Drawing.Size, System.Drawing">
-    <value>81, 13</value>
+    <value>107, 17</value>
   </data>
   <data name="label5.TabIndex" type="System.Int32, mscorlib">
     <value>73</value>
@@ -4559,7 +4562,7 @@
     <value>135, 167</value>
   </data>
   <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>104, 13</value>
+    <value>136, 17</value>
   </data>
   <data name="label3.TabIndex" type="System.Int32, mscorlib">
     <value>71</value>
@@ -4592,7 +4595,7 @@
     <value>45, 167</value>
   </data>
   <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>84, 13</value>
+    <value>112, 17</value>
   </data>
   <data name="label4.TabIndex" type="System.Int32, mscorlib">
     <value>72</value>
@@ -4712,7 +4715,7 @@
     <value>NoControl</value>
   </data>
   <data name="TRK_zoom.Location" type="System.Drawing.Point, System.Drawing">
-    <value>550, 0</value>
+    <value>539, 0</value>
   </data>
   <data name="TRK_zoom.Orientation" type="System.Windows.Forms.Orientation, System.Windows.Forms">
     <value>Vertical</value>
@@ -4799,7 +4802,7 @@
     <value>438, 2</value>
   </data>
   <data name="Zoomlevel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>76, 20</value>
+    <value>76, 22</value>
   </data>
   <data name="Zoomlevel.TabIndex" type="System.Int32, mscorlib">
     <value>69</value>
@@ -4859,10 +4862,10 @@
     <value>NoControl</value>
   </data>
   <data name="CHK_autopan.Location" type="System.Drawing.Point, System.Drawing">
-    <value>325, 3</value>
+    <value>325, -1</value>
   </data>
   <data name="CHK_autopan.Size" type="System.Drawing.Size, System.Drawing">
-    <value>70, 17</value>
+    <value>88, 21</value>
   </data>
   <data name="CHK_autopan.TabIndex" type="System.Int32, mscorlib">
     <value>68</value>
@@ -4895,10 +4898,10 @@
     <value>NoControl</value>
   </data>
   <data name="CB_tuning.Location" type="System.Drawing.Point, System.Drawing">
-    <value>260, 3</value>
+    <value>260, -1</value>
   </data>
   <data name="CB_tuning.Size" type="System.Drawing.Size, System.Drawing">
-    <value>59, 17</value>
+    <value>74, 21</value>
   </data>
   <data name="CB_tuning.TabIndex" type="System.Int32, mscorlib">
     <value>62</value>

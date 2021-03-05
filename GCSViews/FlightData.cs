@@ -5271,6 +5271,12 @@ namespace MissionPlanner.GCSViews
             tabControlactions.SelectedTab = tabQuick;
             tabQuickDetached = false;
             contextMenuStripQuickView.Items["undockToolStripMenuItem"].Visible = true;
+		}
+
+        private void hud1_af3click(object sender, EventArgs e)
+        {
+            MissionPlanner.Controls.AF3Status frm = new MissionPlanner.Controls.AF3Status();
+            frm.Show();
         }
     }
 }

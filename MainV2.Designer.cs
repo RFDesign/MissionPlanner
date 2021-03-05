@@ -47,6 +47,7 @@ namespace MissionPlanner
             this.MenuFlightPlanner = new System.Windows.Forms.ToolStripButton();
             this.MenuInitConfig = new System.Windows.Forms.ToolStripButton();
             this.MenuConfigTune = new System.Windows.Forms.ToolStripButton();
+            this.MenuAF3 = new System.Windows.Forms.ToolStripButton();
             this.MenuSimulation = new System.Windows.Forms.ToolStripButton();
             this.MenuHelp = new System.Windows.Forms.ToolStripButton();
             this.MenuConnect = new System.Windows.Forms.ToolStripButton();
@@ -71,6 +72,7 @@ namespace MissionPlanner
             this.MenuFlightPlanner,
             this.MenuInitConfig,
             this.MenuConfigTune,
+            this.MenuAF3,
             this.MenuSimulation,
             this.MenuHelp,
             this.MenuConnect,
@@ -83,6 +85,7 @@ namespace MissionPlanner
             // 
             // CTX_mainmenu
             // 
+            this.CTX_mainmenu.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.CTX_mainmenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.autoHideToolStripMenuItem,
             this.fullScreenToolStripMenuItem,
@@ -156,6 +159,14 @@ namespace MissionPlanner
             this.MenuConfigTune.Margin = new System.Windows.Forms.Padding(0);
             this.MenuConfigTune.Name = "MenuConfigTune";
             this.MenuConfigTune.Click += new System.EventHandler(this.MenuTuning_Click);
+            // 
+            // MenuAF3
+            // 
+            this.MenuAF3.ForeColor = System.Drawing.SystemColors.ControlLight;
+            resources.ApplyResources(this.MenuAF3, "MenuAF3");
+            this.MenuAF3.Margin = new System.Windows.Forms.Padding(0);
+            this.MenuAF3.Name = "MenuAF3";
+            this.MenuAF3.Click += new System.EventHandler(this.MenuAF3_Click);
             // 
             // MenuSimulation
             // 
@@ -264,5 +275,6 @@ namespace MissionPlanner
         public System.Windows.Forms.ToolStripButton MenuHelp;
         public System.Windows.Forms.ToolStripButton MenuArduPilot;
         public Controls.Status status1;
+        public System.Windows.Forms.ToolStripButton MenuAF3;
     }
 }

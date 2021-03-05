@@ -1,4 +1,5 @@
-﻿namespace MissionPlanner.GCSViews
+﻿
+namespace MissionPlanner.GCSViews
 {
     partial class SoftwareConfig
     {
