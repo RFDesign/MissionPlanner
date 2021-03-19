@@ -685,7 +685,7 @@ namespace MissionPlanner.Controls
         public float ekfstatus { get; set; }
 
         [System.ComponentModel.Browsable(true), System.ComponentModel.Category("Values")]
-        public float af3status { get; set; }
+        public float af3score { get; set; }
 
         [System.ComponentModel.Browsable(true), System.ComponentModel.Category("Values")]
         public float AOA
@@ -2799,17 +2799,17 @@ namespace MissionPlanner.Controls
 
                 if (displayvibe)
                 {
-                    vibehitzone = new Rectangle(this.Width - 18 * fontsize, this.Height - ((fontsize + 2) * 3) - fontoffset, 40,
+                    vibehitzone = new Rectangle(this.Width - 19 * fontsize, this.Height - ((fontsize + 2) * 3) - fontoffset, 40,
                         fontsize * 2);
 
                     if (vibex > 30 || vibey > 30 || vibez > 30)
                     {
-                        drawstring("Vibe", font, fontsize + 2, (SolidBrush) Brushes.Red, vibehitzone.X,
+                        drawstring("VIB", font, fontsize + 2, (SolidBrush) Brushes.Red, vibehitzone.X,
                             vibehitzone.Y);
                     }
                     else
                     {
-                        drawstring("Vibe", font, fontsize + 2, _whiteBrush, vibehitzone.X,
+                        drawstring("VIB", font, fontsize + 2, _whiteBrush, vibehitzone.X,
                             vibehitzone.Y);
                     }
                 }
@@ -2842,12 +2842,13 @@ namespace MissionPlanner.Controls
 
                 if (displayaf3)
                 {
-                    af3hitzone = new Rectangle(this.Width - 28 * fontsize, this.Height - ((fontsize + 2) * 3) - fontoffset, 40,
+                    af3hitzone = new Rectangle(this.Width - 27 * fontsize, this.Height - ((fontsize + 2) * 3) - fontoffset, 40,
                         fontsize * 2);
 
-                    if (af3status < 3.0)
+                    
+                    if (af3score > 0)
                     {
-                        if (af3status < 2.0)
+                        if (af3score > 1.0)
                         {
                             drawstring("AF3", font, fontsize + 2, (SolidBrush)Brushes.Red,
                                 af3hitzone.X,

@@ -29,8 +29,8 @@ namespace MissionPlanner
 
         private PointLatLngAlt _homelocation = new PointLatLngAlt();
         private static PointLatLngAlt _plannedhomelocation = new PointLatLngAlt();
-
         private static PointLatLngAlt _trackerloc = new PointLatLngAlt();
+        private AF3Status _af3Status = new AF3Status();
 
         public static int rateattitudebackup;
         public static int ratepositionbackup;
@@ -1656,12 +1656,14 @@ namespace MissionPlanner
         [GroupText("Flow")] [DisplayText("flow_y")] public short opt_y { get; set; }
 
         [GroupText("Flow")] [DisplayText("flow quality")] public byte opt_qua { get; set; }
-
-        [GroupText("AF3")] public float af3status { get; set; }
-        [GroupText("AF3")] public bool af3rf1telem { get; set; }
-        [GroupText("AF3")] public bool af3rf2telem { get; set; }
-        [GroupText("AF3")] public bool af3rf3telem { get; set; }
-        [GroupText("AF3")] public float af3rfcactive { get; set; }
+        [GroupText("AF3")] public float af3score { get; set; }
+        [GroupText("AF3")] public AF3Status af3 {
+            get => _af3Status;
+            set
+            {
+                _af3Status = value;
+            }
+        }
 
         [GroupText("EKF")] public float ekfstatus { get; set; }
 
@@ -2100,16 +2102,45 @@ namespace MissionPlanner
 
                             int rfc_mask = af3statusm.rfc_telem_mask;
 
-                            af3rf1telem = ((rfc_mask >> 0) & 0x01) == 1;
-                            af3rf2telem = ((rfc_mask >> 1) & 0x01) == 1;
-                            af3rf3telem = ((rfc_mask >> 2) & 0x01) == 1;
+                            af3.telemRFC[0] = ((rfc_mask >> 0) & 0x01) == 1;
+                            af3.telemRFC[1] = ((rfc_mask >> 1) & 0x01) == 1;
+                            af3.telemRFC[2] = ((rfc_mask >> 2) & 0x01) == 1;
 
-                            int rfc_count = (af3rf1telem ? 1 : 0);
-                            rfc_count += (af3rf2telem ? 1 : 0);
-                            rfc_count += (af3rf3telem ? 1 : 0);
+                            int rfc_count = (af3.telemRFC[0] ? 1 : 0);
+                            rfc_count += (af3.telemRFC[1] ? 1 : 0);
+                            rfc_count += (af3.telemRFC[2] ? 1 : 0);
 
-                            af3status = rfc_count;
-                            af3rfcactive = af3statusm.active_rfc;
+                            af3.score = rfc_count;
+                            af3.activeRFC = af3statusm.active_rfc;
+                            af3score = af3.calculateAf3Score();
+                        }
+                        break;
+                    case (uint)MAVLink.MAVLINK_MSG_ID.AF3_EP_STATUS:
+                        {
+                            var af3epstatusm = mavLinkMessage.ToStructure<MAVLink.mavlink_af3_ep_status_t>();
+
+                            AF3EndPoint endpoint =
+                                af3.findEndpoint(af3epstatusm.esc_index);
+
+                            if (endpoint != null)
+                            {
+                                endpoint.rpm = af3epstatusm.rpm;
+                                endpoint.voltageA = af3epstatusm.bus_voltage_a;
+                                endpoint.voltageB = af3epstatusm.bus_voltage_b;
+                                endpoint.lastUpdate = DateTime.Now;
+                            }
+                            else
+                            {
+                                endpoint = new AF3EndPoint(af3epstatusm.esc_index,
+                                    af3epstatusm.bus_voltage_a,
+                                    af3epstatusm.bus_voltage_b,
+                                    af3epstatusm.rpm,
+                                    DateTime.Now);
+
+                                af3.addEndpoint(endpoint);
+                            }
+
+                            af3.sortEndpoints();
                         }
                         break;
                     case (uint)MAVLink.MAVLINK_MSG_ID.EKF_STATUS_REPORT:

@@ -269,6 +269,7 @@ public partial class MAVLink
         new message_info(11036, "OSD_PARAM_SHOW_CONFIG_REPLY", 177, 34, 34, typeof( mavlink_osd_param_show_config_reply_t )),
         new message_info(11037, "OBSTACLE_DISTANCE_3D", 130, 28, 28, typeof( mavlink_obstacle_distance_3d_t )),
         new message_info(12100, "AF3_STATUS", 44, 2, 2, typeof( mavlink_af3_status_t )),
+        new message_info(12101, "AF3_EP_STATUS", 67, 13, 13, typeof( mavlink_af3_ep_status_t )),
         new message_info(42000, "ICAROUS_HEARTBEAT", 227, 1, 1, typeof( mavlink_icarous_heartbeat_t )),
         new message_info(42001, "ICAROUS_KINEMATIC_BANDS", 239, 46, 46, typeof( mavlink_icarous_kinematic_bands_t )),
         new message_info(269, "VIDEO_STREAM_INFORMATION", 58, 246, 246, typeof( mavlink_video_stream_information_t )),
@@ -541,6 +542,7 @@ public partial class MAVLink
         OSD_PARAM_SHOW_CONFIG_REPLY = 11036,
         OBSTACLE_DISTANCE_3D = 11037,
         AF3_STATUS = 12100,
+        AF3_EP_STATUS = 12101,
         ICAROUS_HEARTBEAT = 42000,
         ICAROUS_KINEMATIC_BANDS = 42001,
         VIDEO_STREAM_INFORMATION = 269,
@@ -17437,6 +17439,39 @@ public partial class MAVLink
         [Units("")]
         [Description("Mask of real flight controllers talking to the VFC via telemetry link")]
         public byte rfc_telem_mask;
+
+    };
+
+
+    /// extensions_start 0
+    [StructLayout(LayoutKind.Sequential, Pack = 1, Size = 13)]
+    ///<summary> Report performance and monitoring details of AF3 endpoints </summary>
+    public struct mavlink_af3_ep_status_t
+    {
+        public mavlink_af3_ep_status_t(int rpm, float bus_voltage_a, float bus_voltage_b, byte esc_index)
+        {
+            this.rpm = rpm;
+            this.bus_voltage_a = bus_voltage_a;
+            this.bus_voltage_b = bus_voltage_b;
+            this.esc_index = esc_index;
+
+        }
+        /// <summary>Reported RPM of the engine associated with the endpoint   </summary>
+        [Units("")]
+        [Description("Reported RPM of the engine associated with the endpoint")]
+        public int rpm;
+        /// <summary>Reported voltage on bus A measured by endpoint in mV   </summary>
+        [Units("")]
+        [Description("Reported voltage on bus A measured by endpoint in mV")]
+        public float bus_voltage_a;
+        /// <summary>Reported voltage on bus B measured by endpoint in mV   </summary>
+        [Units("")]
+        [Description("Reported voltage on bus B measured by endpoint in mV")]
+        public float bus_voltage_b;
+        /// <summary>Electronic Speed Controller (ESC) index   </summary>
+        [Units("")]
+        [Description("Electronic Speed Controller (ESC) index")]
+        public byte esc_index;
 
     };
 

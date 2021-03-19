@@ -525,6 +525,7 @@ namespace MissionPlanner
 
         public GCSViews.FlightPlanner FlightPlanner;
         GCSViews.SITL Simulation;
+        GCSViews.AF3Config AF3Config;
 
         private Form connectionStatsForm;
         private ConnectionStats _connectionStats;
@@ -881,12 +882,14 @@ namespace MissionPlanner
                 //Configuration = new GCSViews.ConfigurationView.Setup();
                 log.Info("Create SIM");
                 Simulation = new GCSViews.SITL();
+                AF3Config = new GCSViews.AF3Config();
                 //Firmware = new GCSViews.Firmware();
                 //Terminal = new GCSViews.Terminal();
 
                 FlightData.Width = MyView.Width;
                 FlightPlanner.Width = MyView.Width;
                 Simulation.Width = MyView.Width;
+                AF3Config.Width = MyView.Width;
             }
             catch (ArgumentException e)
             {
@@ -2161,6 +2164,14 @@ namespace MissionPlanner
             catch
             {
             }
+            log.Info("closing af3 config");
+            try
+            {
+                AF3Config.Dispose();
+            }
+            catch
+            {
+            }
 
             try
             {
@@ -3036,7 +3047,7 @@ namespace MissionPlanner
             MyView.AddScreen(new MainSwitcher.Screen("HWConfig", typeof(GCSViews.InitialSetup), false));
             MyView.AddScreen(new MainSwitcher.Screen("SWConfig", typeof(GCSViews.SoftwareConfig), false));
             MyView.AddScreen(new MainSwitcher.Screen("Simulation", Simulation, true));
-            MyView.AddScreen(new MainSwitcher.Screen("AF3", typeof(GCSViews.AF3Config), false));
+            MyView.AddScreen(new MainSwitcher.Screen("AF3", AF3Config, true));
             MyView.AddScreen(new MainSwitcher.Screen("Help", typeof(GCSViews.Help), false));
 
             // hide simulation under mono
@@ -3994,7 +4005,7 @@ namespace MissionPlanner
                 Settings.Instance["language"] = ci.Name;
                 //System.Threading.Thread.CurrentThread.CurrentCulture = ci;
 
-                HashSet<Control> views = new HashSet<Control> { this, FlightData, FlightPlanner, Simulation };
+                HashSet<Control> views = new HashSet<Control> { this, FlightData, FlightPlanner, Simulation, AF3Config };
 
                 foreach (Control view in MyView.Controls)
                     views.Add(view);
