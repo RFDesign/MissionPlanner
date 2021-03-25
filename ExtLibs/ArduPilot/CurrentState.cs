@@ -2134,7 +2134,12 @@ namespace MissionPlanner
                                 endpoint = new AF3EndPoint(af3epstatusm.esc_index,
                                     af3epstatusm.bus_voltage_a,
                                     af3epstatusm.bus_voltage_b,
+                                    af3epstatusm.bus_current_a,
+                                    af3epstatusm.bus_current_b,
                                     af3epstatusm.rpm,
+                                    af3epstatusm.bus0_elapsed_sec,
+                                    af3epstatusm.bus1_elapsed_sec,
+                                    af3epstatusm.bus1_elapsed_sec,
                                     DateTime.Now);
 
                                 af3.addEndpoint(endpoint);

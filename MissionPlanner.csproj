@@ -381,6 +381,12 @@
   <ItemGroup>
     <Compile Include="Antenna\TrackerGeneric.cs" />
     <Compile Include="Common.cs" />
+    <Compile Include="Controls\AF3EndpointInfo.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\AF3EndpointInfo.Designer.cs">
+      <DependentUpon>AF3EndpointInfo.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\AF3Status.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -766,6 +772,9 @@
     <Compile Include="Log\LogStrings.Designer.cs">
       <DependentUpon>LogStrings.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Controls\AF3EndpointInfo.resx">
+      <DependentUpon>AF3EndpointInfo.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\AuthKeys.ko-KR.resx">
       <DependentUpon>AuthKeys.cs</DependentUpon>
     </EmbeddedResource>

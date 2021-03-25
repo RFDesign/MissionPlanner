@@ -268,8 +268,8 @@ public partial class MAVLink
         new message_info(11035, "OSD_PARAM_SHOW_CONFIG", 128, 8, 8, typeof( mavlink_osd_param_show_config_t )),
         new message_info(11036, "OSD_PARAM_SHOW_CONFIG_REPLY", 177, 34, 34, typeof( mavlink_osd_param_show_config_reply_t )),
         new message_info(11037, "OBSTACLE_DISTANCE_3D", 130, 28, 28, typeof( mavlink_obstacle_distance_3d_t )),
-        new message_info(12100, "AF3_STATUS", 44, 2, 2, typeof( mavlink_af3_status_t )),
-        new message_info(12101, "AF3_EP_STATUS", 67, 13, 13, typeof( mavlink_af3_ep_status_t )),
+        new message_info(12100, "AF3_STATUS", 203, 3, 3, typeof( mavlink_af3_status_t )),
+        new message_info(12101, "AF3_EP_STATUS", 210, 24, 24, typeof( mavlink_af3_ep_status_t )),
         new message_info(42000, "ICAROUS_HEARTBEAT", 227, 1, 1, typeof( mavlink_icarous_heartbeat_t )),
         new message_info(42001, "ICAROUS_KINEMATIC_BANDS", 239, 46, 46, typeof( mavlink_icarous_kinematic_bands_t )),
         new message_info(269, "VIDEO_STREAM_INFORMATION", 58, 246, 246, typeof( mavlink_video_stream_information_t )),
@@ -17421,16 +17421,21 @@ public partial class MAVLink
     };
 
     /// extensions_start 0
-    [StructLayout(LayoutKind.Sequential, Pack = 1, Size = 2)]
+    [StructLayout(LayoutKind.Sequential, Pack = 1, Size = 3)]
     ///<summary> Report AF3 triple-redundant system status </summary>
     public struct mavlink_af3_status_t
     {
-        public mavlink_af3_status_t(byte active_rfc, byte rfc_telem_mask)
+        public mavlink_af3_status_t(byte number_rfcs, byte active_rfc, byte rfc_telem_mask)
         {
+            this.number_rfcs = number_rfcs;
             this.active_rfc = active_rfc;
             this.rfc_telem_mask = rfc_telem_mask;
 
         }
+        /// <summary>Number of Real Flight Controllers (RFC) in the system   </summary>
+        [Units("")]
+        [Description("Number of Real Flight Controllers (RFC) in the system")]
+        public byte number_rfcs;
         /// <summary>Current real flight controller commanding the vehicle   </summary>
         [Units("")]
         [Description("Current real flight controller commanding the vehicle")]
@@ -17444,16 +17449,21 @@ public partial class MAVLink
 
 
     /// extensions_start 0
-    [StructLayout(LayoutKind.Sequential, Pack = 1, Size = 13)]
+    [StructLayout(LayoutKind.Sequential, Pack = 1, Size = 24)]
     ///<summary> Report performance and monitoring details of AF3 endpoints </summary>
     public struct mavlink_af3_ep_status_t
     {
-        public mavlink_af3_ep_status_t(int rpm, float bus_voltage_a, float bus_voltage_b, byte esc_index)
+        public mavlink_af3_ep_status_t(int rpm, float bus_voltage_a, float bus_voltage_b, float bus_current_a, float bus_current_b, byte esc_index, byte bus0_elapsed_sec, byte bus1_elapsed_sec, byte bus2_elapsed_sec)
         {
             this.rpm = rpm;
             this.bus_voltage_a = bus_voltage_a;
             this.bus_voltage_b = bus_voltage_b;
+            this.bus_current_a = bus_current_a;
+            this.bus_current_b = bus_current_b;
             this.esc_index = esc_index;
+            this.bus0_elapsed_sec = bus0_elapsed_sec;
+            this.bus1_elapsed_sec = bus1_elapsed_sec;
+            this.bus2_elapsed_sec = bus2_elapsed_sec;
 
         }
         /// <summary>Reported RPM of the engine associated with the endpoint   </summary>
@@ -17468,10 +17478,30 @@ public partial class MAVLink
         [Units("")]
         [Description("Reported voltage on bus B measured by endpoint in mV")]
         public float bus_voltage_b;
+        /// <summary>Reported current on bus A measured by endpoint in mA   </summary>
+        [Units("")]
+        [Description("Reported current on bus A measured by endpoint in mA")]
+        public float bus_current_a;
+        /// <summary>Reported current on bus B measured by endpoint in mA   </summary>
+        [Units("")]
+        [Description("Reported current on bus B measured by endpoint in mA")]
+        public float bus_current_b;
         /// <summary>Electronic Speed Controller (ESC) index   </summary>
         [Units("")]
         [Description("Electronic Speed Controller (ESC) index")]
         public byte esc_index;
+        /// <summary>How many seconds since a message was received by the endpoint on bus 0   </summary>
+        [Units("")]
+        [Description("How many seconds since a message was received by the endpoint on bus 0")]
+        public byte bus0_elapsed_sec;
+        /// <summary>How many seconds since a message was received by the endpoint on bus 1   </summary>
+        [Units("")]
+        [Description("How many seconds since a message was received by the endpoint on bus 1")]
+        public byte bus1_elapsed_sec;
+        /// <summary>How many seconds since a message was received by the endpoint on bus 2   </summary>
+        [Units("")]
+        [Description("How many seconds since a message was received by the endpoint on bus 2")]
+        public byte bus2_elapsed_sec;
 
     };
 

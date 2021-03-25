@@ -21,12 +21,16 @@ namespace MissionPlanner.Utilities
                 countTelem += (!telemRFC[i] ? 1 : 0);
             }
 
-            // Check if any of the endpoints became unresponsive
+            // Check if any of the endpoints becomes unresponsive
+            // or disconnected from a bus
             lock (epCollectionLock)
             {
                 foreach (var ep in endpointCollection)
                 {
-                    countTelem += (ep.isDataStale() ? 1 : 0);
+                    if (ep.isDataStale() || (ep.isBusMissing() > 0))
+                    {
+                        countTelem += 1;
+                    }
                 }
             }
 
@@ -50,8 +54,10 @@ namespace MissionPlanner.Utilities
                 {
                     AF3EndPoint epItem = endpointCollection[index];
 
-                    AF3EndPoint epRetItem= new AF3EndPoint(epItem.esc_index,
-                        epItem.voltageA, epItem.voltageB, epItem.rpm, epItem.lastUpdate);
+                    AF3EndPoint epRetItem = new AF3EndPoint(epItem.esc_index,
+                        epItem.voltageA, epItem.voltageB, epItem.currentA, epItem.currentB,
+                        epItem.rpm, epItem.elapsedSecBus0, epItem.elapsedSecBus1,
+                        epItem.elapsedSecBus2, epItem.lastUpdate);
 
                     return epRetItem;
 
@@ -98,21 +104,44 @@ namespace MissionPlanner.Utilities
         public uint esc_index;
         public float voltageA;
         public float voltageB;
+        public float currentA;
+        public float currentB;
         public int rpm;
+        public double elapsed;
         public DateTime lastUpdate;
+        public byte elapsedSecBus0;
+        public byte elapsedSecBus1;
+        public byte elapsedSecBus2;
         private const int maxExpectedPeriod = 5000;
-        public AF3EndPoint(uint escIndex, float busVoltageA, float busVoltageB, int engRPM, DateTime timestamp)
+        public AF3EndPoint(uint escIndex, float busVoltageA, float busVoltageB, 
+            float busCurrA, float busCurrB, int engRPM, byte bus0Elapsed, 
+            byte bus1Elapsed, byte bus2Elapsed, DateTime timestamp)
         {
             esc_index = escIndex;
             voltageA = busVoltageA;
             voltageB = busVoltageB;
+            currentA = busCurrA;
+            currentB = busCurrB;
             lastUpdate = timestamp;
             rpm = engRPM;
+            elapsedSecBus0 = bus0Elapsed;
+            elapsedSecBus1 = bus1Elapsed;
+            elapsedSecBus2 = bus2Elapsed;
         }
 
         public bool isDataStale()
         {
-            return (DateTime.Now.Subtract(lastUpdate).TotalMilliseconds > maxExpectedPeriod);
+            elapsed = DateTime.Now.Subtract(lastUpdate).TotalMilliseconds;
+            return (elapsed > maxExpectedPeriod);
+        }
+
+        public int isBusMissing()
+        {
+            int result = 0;
+            result += ((int)elapsedSecBus0 > maxExpectedPeriod) ? 1 : 0;
+            result += ((int)elapsedSecBus1 > maxExpectedPeriod) ? 2 : 0;
+            result += ((int)elapsedSecBus2 > maxExpectedPeriod) ? 4 : 0;
+            return result;
         }
 
         public int CompareTo(object obj)
