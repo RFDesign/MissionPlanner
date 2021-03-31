@@ -2112,40 +2112,57 @@ namespace MissionPlanner
 
                             af3.score = rfc_count;
                             af3.activeRFC = af3statusm.active_rfc;
+                            af3.number_rfcs = (af3statusm.number_rfcs > 3) ?
+                                3 : af3statusm.number_rfcs;
                             af3score = af3.calculateAf3Score();
                         }
                         break;
                     case (uint)MAVLink.MAVLINK_MSG_ID.AF3_EP_STATUS:
                         {
-                            var af3epstatusm = mavLinkMessage.ToStructure<MAVLink.mavlink_af3_ep_status_t>();
-
-                            AF3EndPoint endpoint =
-                                af3.findEndpoint(af3epstatusm.esc_index);
-
-                            if (endpoint != null)
+                            if (af3.number_rfcs > 0)
                             {
-                                endpoint.rpm = af3epstatusm.rpm;
-                                endpoint.voltageA = af3epstatusm.bus_voltage_a;
-                                endpoint.voltageB = af3epstatusm.bus_voltage_b;
-                                endpoint.lastUpdate = DateTime.Now;
-                            }
-                            else
-                            {
-                                endpoint = new AF3EndPoint(af3epstatusm.esc_index,
-                                    af3epstatusm.bus_voltage_a,
-                                    af3epstatusm.bus_voltage_b,
-                                    af3epstatusm.bus_current_a,
-                                    af3epstatusm.bus_current_b,
-                                    af3epstatusm.rpm,
-                                    af3epstatusm.bus0_elapsed_sec,
-                                    af3epstatusm.bus1_elapsed_sec,
-                                    af3epstatusm.bus1_elapsed_sec,
-                                    DateTime.Now);
+                                var af3epstatusm = mavLinkMessage.ToStructure<MAVLink.mavlink_af3_ep_status_t>();
 
-                                af3.addEndpoint(endpoint);
-                            }
+                                if (af3epstatusm.esc_index == 1)
+                                    Console.WriteLine("Break here");
 
-                            af3.sortEndpoints();
+                                AF3EndPoint endpoint =
+                                    af3.findEndpoint(af3epstatusm.esc_index);
+
+                                if (endpoint != null)
+                                {
+                                    endpoint.rpm = af3epstatusm.rpm;
+                                    endpoint.voltageA = af3epstatusm.bus_voltage_a;
+                                    endpoint.voltageB = af3epstatusm.bus_voltage_b;
+                                    endpoint.currentA = af3epstatusm.bus_current_a;
+                                    endpoint.currentB = af3epstatusm.bus_current_b;
+                                    endpoint.elapsedSecBus0 = af3epstatusm.bus0_elapsed_sec;
+                                    endpoint.elapsedSecBus1 = af3epstatusm.bus1_elapsed_sec;
+                                    endpoint.elapsedSecBus2 = af3epstatusm.bus2_elapsed_sec;
+                                    endpoint.lastUpdate = DateTime.Now;
+
+                                    // We won't update number_rfcs or the esc_index after 
+                                    // creating the endpoint because they are constants
+                                }
+                                else
+                                {
+                                    endpoint = new AF3EndPoint(af3epstatusm.esc_index,
+                                        af3epstatusm.bus_voltage_a,
+                                        af3epstatusm.bus_voltage_b,
+                                        af3epstatusm.bus_current_a,
+                                        af3epstatusm.bus_current_b,
+                                        af3epstatusm.rpm,
+                                        af3epstatusm.bus0_elapsed_sec,
+                                        af3epstatusm.bus1_elapsed_sec,
+                                        af3epstatusm.bus1_elapsed_sec,
+                                        DateTime.Now,
+                                        af3.number_rfcs);
+
+                                    af3.addEndpoint(endpoint);
+                                }
+
+                                af3.sortEndpoints();
+                            }
                         }
                         break;
                     case (uint)MAVLink.MAVLINK_MSG_ID.EKF_STATUS_REPORT:

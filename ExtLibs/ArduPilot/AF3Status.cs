@@ -6,6 +6,7 @@ namespace MissionPlanner.Utilities
     public class AF3Status
     {
         public float score { get; set; }
+        public int number_rfcs { get; set; }
         public bool[] telemRFC = new bool[] { false, false, false };
  
         public float activeRFC { get; set; }
@@ -16,7 +17,8 @@ namespace MissionPlanner.Utilities
         {
             // Check how many telemetry links are lost between RFC's and VFC
             int countTelem = 0;
-            for (int i = 0; i < telemRFC.Length; i++)
+
+            for (int i = 0; i < number_rfcs; i++)
             {
                 countTelem += (!telemRFC[i] ? 1 : 0);
             }
@@ -27,12 +29,20 @@ namespace MissionPlanner.Utilities
             {
                 foreach (var ep in endpointCollection)
                 {
-                    if (ep.isDataStale() || (ep.isBusMissing() > 0))
+                    bool stale = ep.isDataStale();
+                    int missing = ep.isBusMissing();
+
+                    if (stale || (missing > 0))
                     {
+                        Console.WriteLine("Endpoint %d: stale %s missing %d",
+                            ep.esc_index, stale ? "yes" : "no", missing);
                         countTelem += 1;
                     }
                 }
             }
+
+            if (countTelem > 0)
+                Console.WriteLine("AF3 presents at least one issue");
 
             return (float) countTelem;
         }
@@ -50,14 +60,15 @@ namespace MissionPlanner.Utilities
             lock (epCollectionLock)
             {
                 if ((index < endpointCollection.Count) &&
-                    (index >= 0))
+                    (index >= 0) &&
+                    (number_rfcs > 0))
                 {
                     AF3EndPoint epItem = endpointCollection[index];
 
                     AF3EndPoint epRetItem = new AF3EndPoint(epItem.esc_index,
                         epItem.voltageA, epItem.voltageB, epItem.currentA, epItem.currentB,
                         epItem.rpm, epItem.elapsedSecBus0, epItem.elapsedSecBus1,
-                        epItem.elapsedSecBus2, epItem.lastUpdate);
+                        epItem.elapsedSecBus2, epItem.lastUpdate, number_rfcs);
 
                     return epRetItem;
 
@@ -112,10 +123,13 @@ namespace MissionPlanner.Utilities
         public byte elapsedSecBus0;
         public byte elapsedSecBus1;
         public byte elapsedSecBus2;
-        private const int maxExpectedPeriod = 5000;
+        public int numRFCs;
+
+        private const int maxPeriodTotal = 6200; 
+        private const int maxPeriodSameBus = 3000;
         public AF3EndPoint(uint escIndex, float busVoltageA, float busVoltageB, 
             float busCurrA, float busCurrB, int engRPM, byte bus0Elapsed, 
-            byte bus1Elapsed, byte bus2Elapsed, DateTime timestamp)
+            byte bus1Elapsed, byte bus2Elapsed, DateTime timestamp, int numRFCS)
         {
             esc_index = escIndex;
             voltageA = busVoltageA;
@@ -127,20 +141,28 @@ namespace MissionPlanner.Utilities
             elapsedSecBus0 = bus0Elapsed;
             elapsedSecBus1 = bus1Elapsed;
             elapsedSecBus2 = bus2Elapsed;
+            numRFCs = numRFCS;
+
         }
 
         public bool isDataStale()
         {
             elapsed = DateTime.Now.Subtract(lastUpdate).TotalMilliseconds;
-            return (elapsed > maxExpectedPeriod);
+            return (elapsed > maxPeriodTotal);
         }
 
         public int isBusMissing()
         {
             int result = 0;
-            result += ((int)elapsedSecBus0 > maxExpectedPeriod) ? 1 : 0;
-            result += ((int)elapsedSecBus1 > maxExpectedPeriod) ? 2 : 0;
-            result += ((int)elapsedSecBus2 > maxExpectedPeriod) ? 4 : 0;
+            result += ((int)elapsedSecBus0*1000 > maxPeriodSameBus) ? 1 : 0;
+            if (numRFCs > 1)
+            {
+                result += ((int)elapsedSecBus1*1000 > maxPeriodSameBus) ? 2 : 0;
+            }
+            if (numRFCs > 2)
+            {
+                result += ((int)elapsedSecBus2*1000 > maxPeriodSameBus) ? 4 : 0;
+            }
             return result;
         }
 

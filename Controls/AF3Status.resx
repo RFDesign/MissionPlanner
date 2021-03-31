@@ -258,9 +258,6 @@
   <data name="lbRFC1TELEM.TabIndex" type="System.Int32, mscorlib">
     <value>25</value>
   </data>
-  <data name="lbRFC1TELEM.Text" xml:space="preserve">
-    <value>NO TELEM</value>
-  </data>
   <data name="lbRFC1TELEM.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleCenter</value>
   </data>
@@ -294,9 +291,6 @@
   <data name="lbRFC3TELEM.TabIndex" type="System.Int32, mscorlib">
     <value>26</value>
   </data>
-  <data name="lbRFC3TELEM.Text" xml:space="preserve">
-    <value>NO TELEM</value>
-  </data>
   <data name="lbRFC3TELEM.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleCenter</value>
   </data>
@@ -329,9 +323,6 @@
   </data>
   <data name="lbRFC2TELEM.TabIndex" type="System.Int32, mscorlib">
     <value>27</value>
-  </data>
-  <data name="lbRFC2TELEM.Text" xml:space="preserve">
-    <value>NO TELEM</value>
   </data>
   <data name="lbRFC2TELEM.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleCenter</value>
@@ -447,6 +438,27 @@
   <data name="&gt;&gt;lbRFC2Active.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
+  <data name="columnHeader1.Text" xml:space="preserve">
+    <value>TIME</value>
+  </data>
+  <data name="columnHeader2.Text" xml:space="preserve">
+    <value>EP</value>
+  </data>
+  <data name="columnHeader2.Width" type="System.Int32, mscorlib">
+    <value>40</value>
+  </data>
+  <data name="columnHeader3.Text" xml:space="preserve">
+    <value>TYPE</value>
+  </data>
+  <data name="columnHeader3.Width" type="System.Int32, mscorlib">
+    <value>80</value>
+  </data>
+  <data name="columnHeader4.Text" xml:space="preserve">
+    <value>MESSAGE</value>
+  </data>
+  <data name="columnHeader4.Width" type="System.Int32, mscorlib">
+    <value>300</value>
+  </data>
   <data name="tableLayoutPanel1.ColumnCount" type="System.Int32, mscorlib">
     <value>5</value>
   </data>
@@ -460,10 +472,10 @@
     <value>Fill</value>
   </data>
   <data name="epInfo.Location" type="System.Drawing.Point, System.Drawing">
-    <value>23, 143</value>
+    <value>23, 133</value>
   </data>
   <data name="epInfo.Size" type="System.Drawing.Size, System.Drawing">
-    <value>564, 292</value>
+    <value>564, 286</value>
   </data>
   <data name="epInfo.TabIndex" type="System.Int32, mscorlib">
     <value>37</value>
@@ -472,7 +484,7 @@
     <value>epInfo</value>
   </data>
   <data name="&gt;&gt;epInfo.Type" xml:space="preserve">
-    <value>MissionPlanner.Controls.AF3EndpointInfo, MissionPlanner, Version=1.3.7754.23847, Culture=neutral, PublicKeyToken=null</value>
+    <value>MissionPlanner.Controls.AF3EndpointInfo, MissionPlanner, Version=1.3.7760.33988, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;epInfo.Parent" xml:space="preserve">
     <value>tableLayoutPanel1</value>
@@ -487,10 +499,10 @@
     <value>0, 0</value>
   </data>
   <data name="tableLayoutPanel1.RowCount" type="System.Int32, mscorlib">
-    <value>7</value>
+    <value>9</value>
   </data>
   <data name="tableLayoutPanel1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>612, 458</value>
+    <value>612, 662</value>
   </data>
   <data name="tableLayoutPanel1.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
@@ -508,16 +520,37 @@
     <value>0</value>
   </data>
   <data name="tableLayoutPanel1.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
-    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="lbRFC2Active" Row="2" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC3Active" Row="2" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC1Active" Row="2" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC2TELEM" Row="3" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC3TELEM" Row="3" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC1TELEM" Row="3" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="label2" Row="1" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="label3" Row="1" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="label4" Row="1" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="epInfo" Row="5" RowSpan="1" Column="1" ColumnSpan="3" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Absolute,20,Percent,33.33333,Percent,33.33333,Percent,33.33333,Absolute,20" /&gt;&lt;Rows Styles="Absolute,20,Absolute,30,Absolute,30,Absolute,30,Absolute,30,Percent,100,Absolute,20" /&gt;&lt;/TableLayoutSettings&gt;</value>
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="lbRFC2Active" Row="2" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC3Active" Row="2" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC1Active" Row="2" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC2TELEM" Row="3" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC3TELEM" Row="3" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC1TELEM" Row="3" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="label2" Row="1" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="label3" Row="1" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="label4" Row="1" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="epInfo" Row="5" RowSpan="1" Column="1" ColumnSpan="3" /&gt;&lt;Control Name="lsErrorList" Row="7" RowSpan="1" Column="1" ColumnSpan="3" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Absolute,20,Percent,33.33333,Percent,33.33333,Percent,33.33333,Absolute,20" /&gt;&lt;Rows Styles="Absolute,20,Absolute,30,Absolute,30,Absolute,30,Absolute,20,Percent,100,Absolute,20,Absolute,200,Absolute,20" /&gt;&lt;/TableLayoutSettings&gt;</value>
+  </data>
+  <data name="lsErrorList.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="lsErrorList.Location" type="System.Drawing.Point, System.Drawing">
+    <value>23, 445</value>
+  </data>
+  <data name="lsErrorList.Size" type="System.Drawing.Size, System.Drawing">
+    <value>564, 194</value>
+  </data>
+  <data name="lsErrorList.TabIndex" type="System.Int32, mscorlib">
+    <value>38</value>
+  </data>
+  <data name="&gt;&gt;lsErrorList.Name" xml:space="preserve">
+    <value>lsErrorList</value>
+  </data>
+  <data name="&gt;&gt;lsErrorList.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ListView, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lsErrorList.Parent" xml:space="preserve">
+    <value>tableLayoutPanel1</value>
+  </data>
+  <data name="&gt;&gt;lsErrorList.ZOrder" xml:space="preserve">
+    <value>10</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>612, 458</value>
-  </data>
-  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
+    <value>612, 662</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>AF3 Status</value>
@@ -527,6 +560,30 @@
   </data>
   <data name="&gt;&gt;timer1.Type" xml:space="preserve">
     <value>System.Windows.Forms.Timer, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;columnHeader1.Name" xml:space="preserve">
+    <value>columnHeader1</value>
+  </data>
+  <data name="&gt;&gt;columnHeader1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;columnHeader2.Name" xml:space="preserve">
+    <value>columnHeader2</value>
+  </data>
+  <data name="&gt;&gt;columnHeader2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;columnHeader3.Name" xml:space="preserve">
+    <value>columnHeader3</value>
+  </data>
+  <data name="&gt;&gt;columnHeader3.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;columnHeader4.Name" xml:space="preserve">
+    <value>columnHeader4</value>
+  </data>
+  <data name="&gt;&gt;columnHeader4.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>AF3Status</value>
