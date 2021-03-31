@@ -1,4 +1,6 @@
-﻿namespace MissionPlanner.Controls
+﻿using System.Collections.Generic;
+
+namespace MissionPlanner.Controls
 {
     partial class AF3Status
     {
@@ -40,13 +42,19 @@
             this.lbRFC1Active = new System.Windows.Forms.Label();
             this.lbRFC3Active = new System.Windows.Forms.Label();
             this.lbRFC2Active = new System.Windows.Forms.Label();
+            this.lsErrorList = new System.Windows.Forms.ListView();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.epInfo = new MissionPlanner.Controls.AF3EndpointInfo();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // timer1
             // 
+            this.timer1.Interval = 250;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // label4
@@ -94,6 +102,20 @@
             resources.ApplyResources(this.lbRFC2Active, "lbRFC2Active");
             this.lbRFC2Active.Name = "lbRFC2Active";
             // 
+            // lsErrorList
+            // 
+            this.lsErrorList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1,
+            this.columnHeader2,
+            this.columnHeader3,
+            this.columnHeader4});
+            this.tableLayoutPanel1.SetColumnSpan(this.lsErrorList, 3);
+            resources.ApplyResources(this.lsErrorList, "lsErrorList");
+            this.lsErrorList.HideSelection = false;
+            this.lsErrorList.Name = "lsErrorList";
+            this.lsErrorList.UseCompatibleStateImageBehavior = false;
+            this.lsErrorList.View = System.Windows.Forms.View.Details;
+            // 
             // tableLayoutPanel1
             // 
             resources.ApplyResources(this.tableLayoutPanel1, "tableLayoutPanel1");
@@ -107,8 +129,25 @@
             this.tableLayoutPanel1.Controls.Add(this.label3, 2, 1);
             this.tableLayoutPanel1.Controls.Add(this.label4, 3, 1);
             this.tableLayoutPanel1.Controls.Add(this.epInfo, 1, 5);
+            this.tableLayoutPanel1.Controls.Add(this.lsErrorList, 1, 7);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel1_Paint);
+            // 
+            // columnHeader1
+            // 
+            resources.ApplyResources(this.columnHeader1, "columnHeader1");
+            // 
+            // columnHeader2
+            // 
+            resources.ApplyResources(this.columnHeader2, "columnHeader2");
+            // 
+            // columnHeader3
+            // 
+            resources.ApplyResources(this.columnHeader3, "columnHeader3");
+            // 
+            // columnHeader4
+            // 
+            resources.ApplyResources(this.columnHeader4, "columnHeader4");
             // 
             // epInfo
             // 
@@ -142,5 +181,10 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.ListView lsErrorList;
+        private System.Windows.Forms.ColumnHeader columnHeader2;
+        private System.Windows.Forms.ColumnHeader columnHeader3;
+        private System.Windows.Forms.ColumnHeader columnHeader4;
+        private System.Windows.Forms.ColumnHeader columnHeader1;
     }
 }

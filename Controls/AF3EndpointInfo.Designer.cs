@@ -29,6 +29,8 @@ namespace MissionPlanner.Controls
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AF3EndpointInfo));
             this.lb1 = new System.Windows.Forms.Label();
             this.lb2 = new System.Windows.Forms.Label();
             this.lb3 = new System.Windows.Forms.Label();
@@ -37,6 +39,7 @@ namespace MissionPlanner.Controls
             this.lb7 = new System.Windows.Forms.Label();
             this.lb6 = new System.Windows.Forms.Label();
             this.lb5 = new System.Windows.Forms.Label();
+            this.icons = new System.Windows.Forms.ImageList(this.components);
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -61,7 +64,7 @@ namespace MissionPlanner.Controls
             this.lb2.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.lb2.Location = new System.Drawing.Point(33, 0);
             this.lb2.Name = "lb2";
-            this.lb2.Size = new System.Drawing.Size(59, 30);
+            this.lb2.Size = new System.Drawing.Size(69, 30);
             this.lb2.TabIndex = 32;
             this.lb2.Text = "RPM";
             this.lb2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -72,11 +75,11 @@ namespace MissionPlanner.Controls
             this.lb3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lb3.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold);
             this.lb3.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lb3.Location = new System.Drawing.Point(98, 0);
+            this.lb3.Location = new System.Drawing.Point(108, 0);
             this.lb3.Name = "lb3";
-            this.lb3.Size = new System.Drawing.Size(59, 30);
+            this.lb3.Size = new System.Drawing.Size(69, 30);
             this.lb3.TabIndex = 33;
-            this.lb3.Text = "Volt A";
+            this.lb3.Text = "VOLT A";
             this.lb3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lb4
@@ -85,23 +88,24 @@ namespace MissionPlanner.Controls
             this.lb4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lb4.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold);
             this.lb4.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lb4.Location = new System.Drawing.Point(163, 0);
+            this.lb4.Location = new System.Drawing.Point(183, 0);
             this.lb4.Name = "lb4";
-            this.lb4.Size = new System.Drawing.Size(59, 30);
+            this.lb4.Size = new System.Drawing.Size(69, 30);
             this.lb4.TabIndex = 34;
-            this.lb4.Text = "Volt B";
+            this.lb4.Text = "VOLT B";
             this.lb4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // tableLayoutPanel1
             // 
-            this.tableLayoutPanel1.ColumnCount = 7;
+            this.tableLayoutPanel1.ColumnCount = 8;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 65F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 65F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 65F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 65F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 65F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 1000F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 75F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 75F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 75F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 75F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 75F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 34F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.Controls.Add(this.lb7, 6, 0);
             this.tableLayoutPanel1.Controls.Add(this.lb6, 5, 0);
             this.tableLayoutPanel1.Controls.Add(this.lb5, 4, 0);
@@ -127,14 +131,15 @@ namespace MissionPlanner.Controls
             // lb7
             // 
             this.lb7.AutoSize = true;
+            this.tableLayoutPanel1.SetColumnSpan(this.lb7, 2);
             this.lb7.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lb7.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold);
             this.lb7.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lb7.Location = new System.Drawing.Point(358, 0);
+            this.lb7.Location = new System.Drawing.Point(408, 0);
             this.lb7.Name = "lb7";
-            this.lb7.Size = new System.Drawing.Size(994, 30);
+            this.lb7.Size = new System.Drawing.Size(419, 30);
             this.lb7.TabIndex = 37;
-            this.lb7.Text = "Information";
+            this.lb7.Text = " INFO";
             this.lb7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lb6
@@ -143,11 +148,11 @@ namespace MissionPlanner.Controls
             this.lb6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lb6.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold);
             this.lb6.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lb6.Location = new System.Drawing.Point(293, 0);
+            this.lb6.Location = new System.Drawing.Point(333, 0);
             this.lb6.Name = "lb6";
-            this.lb6.Size = new System.Drawing.Size(59, 30);
+            this.lb6.Size = new System.Drawing.Size(69, 30);
             this.lb6.TabIndex = 36;
-            this.lb6.Text = "Curr B";
+            this.lb6.Text = "CURR B";
             this.lb6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lb5
@@ -156,13 +161,20 @@ namespace MissionPlanner.Controls
             this.lb5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lb5.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold);
             this.lb5.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lb5.Location = new System.Drawing.Point(228, 0);
+            this.lb5.Location = new System.Drawing.Point(258, 0);
             this.lb5.Name = "lb5";
-            this.lb5.Size = new System.Drawing.Size(59, 30);
+            this.lb5.Size = new System.Drawing.Size(69, 30);
             this.lb5.TabIndex = 35;
-            this.lb5.Text = "Curr A";
+            this.lb5.Text = "CURR A";
             this.lb5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.lb5.Click += new System.EventHandler(this.label1_Click);
+            // 
+            // icons
+            // 
+            this.icons.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("icons.ImageStream")));
+            this.icons.TransparentColor = System.Drawing.Color.Transparent;
+            this.icons.Images.SetKeyName(0, "okt.png");
+            this.icons.Images.SetKeyName(1, "warnt.png");
+            this.icons.Images.SetKeyName(2, "errt.png");
             // 
             // AF3EndpointInfo
             // 
@@ -188,5 +200,6 @@ namespace MissionPlanner.Controls
         private System.Windows.Forms.Label lb5;
         private System.Windows.Forms.Label lb6;
         private System.Windows.Forms.Label lb7;
+        private System.Windows.Forms.ImageList icons;
     }
 }
