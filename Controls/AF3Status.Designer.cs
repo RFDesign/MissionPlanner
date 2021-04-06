@@ -43,12 +43,18 @@ namespace MissionPlanner.Controls
             this.lbRFC3Active = new System.Windows.Forms.Label();
             this.lbRFC2Active = new System.Windows.Forms.Label();
             this.lsErrorList = new System.Windows.Forms.ListView();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.lbRFC1ArmStatus = new System.Windows.Forms.Label();
+            this.lbRFC3ArmStatus = new System.Windows.Forms.Label();
+            this.lbRFC2ArmStatus = new System.Windows.Forms.Label();
+            this.lbRFC3FlightMode = new System.Windows.Forms.Label();
+            this.lbRFC2FlightMode = new System.Windows.Forms.Label();
+            this.lbRFC1FlightMode = new System.Windows.Forms.Label();
             this.epInfo = new MissionPlanner.Controls.AF3EndpointInfo();
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -116,30 +122,9 @@ namespace MissionPlanner.Controls
             this.lsErrorList.UseCompatibleStateImageBehavior = false;
             this.lsErrorList.View = System.Windows.Forms.View.Details;
             // 
-            // tableLayoutPanel1
-            // 
-            resources.ApplyResources(this.tableLayoutPanel1, "tableLayoutPanel1");
-            this.tableLayoutPanel1.Controls.Add(this.lbRFC2Active, 2, 2);
-            this.tableLayoutPanel1.Controls.Add(this.lbRFC3Active, 3, 2);
-            this.tableLayoutPanel1.Controls.Add(this.lbRFC1Active, 1, 2);
-            this.tableLayoutPanel1.Controls.Add(this.lbRFC2TELEM, 2, 3);
-            this.tableLayoutPanel1.Controls.Add(this.lbRFC3TELEM, 3, 3);
-            this.tableLayoutPanel1.Controls.Add(this.lbRFC1TELEM, 1, 3);
-            this.tableLayoutPanel1.Controls.Add(this.label2, 1, 1);
-            this.tableLayoutPanel1.Controls.Add(this.label3, 2, 1);
-            this.tableLayoutPanel1.Controls.Add(this.label4, 3, 1);
-            this.tableLayoutPanel1.Controls.Add(this.epInfo, 1, 5);
-            this.tableLayoutPanel1.Controls.Add(this.lsErrorList, 1, 7);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel1_Paint);
-            // 
             // columnHeader1
             // 
             resources.ApplyResources(this.columnHeader1, "columnHeader1");
-            // 
-            // columnHeader2
-            // 
-            resources.ApplyResources(this.columnHeader2, "columnHeader2");
             // 
             // columnHeader3
             // 
@@ -149,11 +134,67 @@ namespace MissionPlanner.Controls
             // 
             resources.ApplyResources(this.columnHeader4, "columnHeader4");
             // 
+            // tableLayoutPanel1
+            // 
+            resources.ApplyResources(this.tableLayoutPanel1, "tableLayoutPanel1");
+            this.tableLayoutPanel1.Controls.Add(this.lbRFC1ArmStatus, 1, 4);
+            this.tableLayoutPanel1.Controls.Add(this.lbRFC3ArmStatus, 3, 4);
+            this.tableLayoutPanel1.Controls.Add(this.lbRFC2ArmStatus, 2, 4);
+            this.tableLayoutPanel1.Controls.Add(this.lbRFC3FlightMode, 3, 3);
+            this.tableLayoutPanel1.Controls.Add(this.lbRFC2FlightMode, 2, 3);
+            this.tableLayoutPanel1.Controls.Add(this.lbRFC1FlightMode, 1, 3);
+            this.tableLayoutPanel1.Controls.Add(this.lbRFC2Active, 2, 5);
+            this.tableLayoutPanel1.Controls.Add(this.lbRFC3Active, 3, 5);
+            this.tableLayoutPanel1.Controls.Add(this.lbRFC1Active, 1, 5);
+            this.tableLayoutPanel1.Controls.Add(this.lbRFC2TELEM, 2, 2);
+            this.tableLayoutPanel1.Controls.Add(this.lbRFC3TELEM, 3, 2);
+            this.tableLayoutPanel1.Controls.Add(this.lbRFC1TELEM, 1, 2);
+            this.tableLayoutPanel1.Controls.Add(this.label2, 1, 1);
+            this.tableLayoutPanel1.Controls.Add(this.label3, 2, 1);
+            this.tableLayoutPanel1.Controls.Add(this.label4, 3, 1);
+            this.tableLayoutPanel1.Controls.Add(this.epInfo, 1, 7);
+            this.tableLayoutPanel1.Controls.Add(this.lsErrorList, 1, 9);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            // 
+            // lbRFC1ArmStatus
+            // 
+            resources.ApplyResources(this.lbRFC1ArmStatus, "lbRFC1ArmStatus");
+            this.lbRFC1ArmStatus.Name = "lbRFC1ArmStatus";
+            // 
+            // lbRFC3ArmStatus
+            // 
+            resources.ApplyResources(this.lbRFC3ArmStatus, "lbRFC3ArmStatus");
+            this.lbRFC3ArmStatus.Name = "lbRFC3ArmStatus";
+            // 
+            // lbRFC2ArmStatus
+            // 
+            resources.ApplyResources(this.lbRFC2ArmStatus, "lbRFC2ArmStatus");
+            this.lbRFC2ArmStatus.Name = "lbRFC2ArmStatus";
+            // 
+            // lbRFC3FlightMode
+            // 
+            resources.ApplyResources(this.lbRFC3FlightMode, "lbRFC3FlightMode");
+            this.lbRFC3FlightMode.Name = "lbRFC3FlightMode";
+            // 
+            // lbRFC2FlightMode
+            // 
+            resources.ApplyResources(this.lbRFC2FlightMode, "lbRFC2FlightMode");
+            this.lbRFC2FlightMode.Name = "lbRFC2FlightMode";
+            // 
+            // lbRFC1FlightMode
+            // 
+            resources.ApplyResources(this.lbRFC1FlightMode, "lbRFC1FlightMode");
+            this.lbRFC1FlightMode.Name = "lbRFC1FlightMode";
+            // 
             // epInfo
             // 
             resources.ApplyResources(this.epInfo, "epInfo");
             this.tableLayoutPanel1.SetColumnSpan(this.epInfo, 3);
             this.epInfo.Name = "epInfo";
+            // 
+            // columnHeader2
+            // 
+            resources.ApplyResources(this.columnHeader2, "columnHeader2");
             // 
             // AF3Status
             // 
@@ -182,9 +223,15 @@ namespace MissionPlanner.Controls
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ListView lsErrorList;
-        private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.ColumnHeader columnHeader3;
         private System.Windows.Forms.ColumnHeader columnHeader4;
         private System.Windows.Forms.ColumnHeader columnHeader1;
+        private System.Windows.Forms.Label lbRFC3FlightMode;
+        private System.Windows.Forms.Label lbRFC2FlightMode;
+        private System.Windows.Forms.Label lbRFC1FlightMode;
+        private System.Windows.Forms.Label lbRFC1ArmStatus;
+        private System.Windows.Forms.Label lbRFC3ArmStatus;
+        private System.Windows.Forms.Label lbRFC2ArmStatus;
+        private System.Windows.Forms.ColumnHeader columnHeader2;
     }
 }

@@ -268,7 +268,7 @@ public partial class MAVLink
         new message_info(11035, "OSD_PARAM_SHOW_CONFIG", 128, 8, 8, typeof( mavlink_osd_param_show_config_t )),
         new message_info(11036, "OSD_PARAM_SHOW_CONFIG_REPLY", 177, 34, 34, typeof( mavlink_osd_param_show_config_reply_t )),
         new message_info(11037, "OBSTACLE_DISTANCE_3D", 130, 28, 28, typeof( mavlink_obstacle_distance_3d_t )),
-        new message_info(12100, "AF3_STATUS", 203, 3, 3, typeof( mavlink_af3_status_t )),
+        new message_info(12100, "AF3_STATUS", 169, 15, 15, typeof( mavlink_af3_status_t )),
         new message_info(12101, "AF3_EP_STATUS", 210, 24, 24, typeof( mavlink_af3_ep_status_t )),
         new message_info(42000, "ICAROUS_HEARTBEAT", 227, 1, 1, typeof( mavlink_icarous_heartbeat_t )),
         new message_info(42001, "ICAROUS_KINEMATIC_BANDS", 239, 46, 46, typeof( mavlink_icarous_kinematic_bands_t )),
@@ -17421,18 +17421,33 @@ public partial class MAVLink
     };
 
     /// extensions_start 0
-    [StructLayout(LayoutKind.Sequential, Pack = 1, Size = 3)]
+    [StructLayout(LayoutKind.Sequential, Pack = 1, Size = 15)]
     ///<summary> Report AF3 triple-redundant system status </summary>
     public struct mavlink_af3_status_t
     {
-        public mavlink_af3_status_t(byte number_rfcs, byte active_rfc, byte rfc_telem_mask)
+        public mavlink_af3_status_t(uint rfc0_flight_mode, uint rfc1_flight_mode, uint rfc2_flight_mode, byte number_rfcs, byte active_rfc, byte rfc_telem_mask)
         {
+            this.rfc0_flight_mode = rfc0_flight_mode;
+            this.rfc1_flight_mode = rfc1_flight_mode;
+            this.rfc2_flight_mode = rfc2_flight_mode;
             this.number_rfcs = number_rfcs;
             this.active_rfc = active_rfc;
             this.rfc_telem_mask = rfc_telem_mask;
 
         }
-        /// <summary>Number of Real Flight Controllers (RFC) in the system   </summary>
+        /// <summary>Real flight controller 0 flight mode</summary>
+        [Units("")]
+        [Description("Real flight controller 0 flight mode")]
+        public uint rfc0_flight_mode;
+        /// <summary>Real flight controller 1 flight mode</summary>
+        [Units("")]
+        [Description("Real flight controller 1 flight mode")]
+        public uint rfc1_flight_mode;
+        /// <summary>Real flight controller 2 flight mode</summary>
+        [Units("")]
+        [Description("Real flight controller 2 flight mode")]
+        public uint rfc2_flight_mode;
+        /// <summary>Number of Real Flight Controllers (RFC) in the system</summary>
         [Units("")]
         [Description("Number of Real Flight Controllers (RFC) in the system")]
         public byte number_rfcs;
