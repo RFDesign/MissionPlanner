@@ -2188,6 +2188,10 @@ namespace MissionPlanner
                             af3.telemRFC[1] = ((rfc_mask >> 1) & 0x01) == 1;
                             af3.telemRFC[2] = ((rfc_mask >> 2) & 0x01) == 1;
 
+                            af3.flightModeRFC[0] = af3statusm.rfc0_flight_mode;
+                            af3.flightModeRFC[1] = af3statusm.rfc1_flight_mode;
+                            af3.flightModeRFC[2] = af3statusm.rfc2_flight_mode;
+
                             int rfc_count = (af3.telemRFC[0] ? 1 : 0);
                             rfc_count += (af3.telemRFC[1] ? 1 : 0);
                             rfc_count += (af3.telemRFC[2] ? 1 : 0);

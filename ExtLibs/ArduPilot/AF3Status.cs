@@ -8,19 +8,56 @@ namespace MissionPlanner.Utilities
         public float score { get; set; }
         public int number_rfcs { get; set; }
         public bool[] telemRFC = new bool[] { false, false, false };
- 
+        public uint[] flightModeRFC = new uint[] { 0, 0, 0 };
+
         public float activeRFC { get; set; }
         private List<AF3EndPoint> endpointCollection = new List<AF3EndPoint>();
         private object epCollectionLock = new object();
 
+        public bool checkFlightModeMismatch(int rfcIndex)
+        {
+            bool rfHealthBad = false;
+
+            if (number_rfcs > 1)
+            {
+                Dictionary<uint, uint> flightModeGroup = new Dictionary<uint, uint>(number_rfcs);
+
+                // Evaluate whether flight modes have mismatched across RFC's
+                for (int i = 0; i < number_rfcs; i++)
+                {
+                    uint fmCount = 0;
+
+                    if (flightModeGroup.TryGetValue(flightModeRFC[i], out fmCount))
+                    {
+                        flightModeGroup[flightModeRFC[i]] = fmCount + 1;
+                    }
+                    else
+                    {
+                        flightModeGroup.Add(flightModeRFC[i], 1);
+                    }
+
+                }
+
+                if (flightModeGroup[flightModeRFC[rfcIndex]] <= 1)
+                {
+                    // This is the only RFC on this mode at the moment.
+                    rfHealthBad = true;
+                }
+
+            }
+
+            return rfHealthBad;
+        }
+
         public float calculateAf3Score()
         {
             // Check how many telemetry links are lost between RFC's and VFC
-            int countTelem = 0;
+            int score = 0;
 
             for (int i = 0; i < number_rfcs; i++)
             {
-                countTelem += (!telemRFC[i] ? 1 : 0);
+                score += (!telemRFC[i] ? 1 : 0);
+                score += checkFlightModeMismatch(i) ? 1 : 0;
             }
 
             // Check if any of the endpoints becomes unresponsive
@@ -36,15 +73,15 @@ namespace MissionPlanner.Utilities
                     {
                         Console.WriteLine("Endpoint %d: stale %s missing %d",
                             ep.esc_index, stale ? "yes" : "no", missing);
-                        countTelem += 1;
+                        score += 1;
                     }
                 }
             }
 
-            if (countTelem > 0)
+            if (score > 0)
                 Console.WriteLine("AF3 presents at least one issue");
 
-            return (float) countTelem;
+            return (float) score;
         }
 
         public void addEndpoint(AF3EndPoint endpoint)

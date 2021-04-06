@@ -294,7 +294,7 @@ namespace MissionPlanner.Controls
                 if (listviewError != null)
                 {
                     string[] values = new string[] { errRec.timestamp.ToString("HH:mm:ss"),
-                        escIndex.ToString(),
+                        String.Format("EP{0}",escIndex),
                         state.ToString(),
                         message };
 

@@ -1,4 +1,5 @@
-﻿using MissionPlanner.Utilities;
+﻿using MissionPlanner.ArduPilot;
+using MissionPlanner.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -9,7 +10,12 @@ namespace MissionPlanner.Controls
     public partial class AF3Status : Form
     {
         private List<System.Windows.Forms.Label> lbRFCTelem = new List<System.Windows.Forms.Label>();
+        private List<System.Windows.Forms.Label> lbRFCFlightMode = new List<System.Windows.Forms.Label>();
+        private List<System.Windows.Forms.Label> lbRFCArmStatus = new List<System.Windows.Forms.Label>();
         private int refreshCyclesCount = 0;
+        private string[] MODE_NAMES = new string[] {"STABILIZE", "ACRO", "ALT HOLD", "AUTO","GUIDED","LOITER","RTL",
+            "CIRCLE","","LAND","","DRIFT","","SPORT","FLIP","AUTO TUNE","POS HOLD","BRAKE","THROW","AVOID ADSB","GUIDED NO GPS","SMART RTL","FLOW HOLD",
+            "FOLLOW","ZIGZAG","SYSID","HELI AUTOROT"};
 
         public AF3Status()
         {
@@ -24,10 +30,14 @@ namespace MissionPlanner.Controls
             lbRFCTelem.Add(lbRFC1TELEM);
             lbRFCTelem.Add(lbRFC2TELEM);
             lbRFCTelem.Add(lbRFC3TELEM);
-        }
 
-        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
-        {
+            lbRFCFlightMode.Add(lbRFC1FlightMode);
+            lbRFCFlightMode.Add(lbRFC2FlightMode);
+            lbRFCFlightMode.Add(lbRFC3FlightMode);
+
+            lbRFCArmStatus.Add(lbRFC1ArmStatus);
+            lbRFCArmStatus.Add(lbRFC2ArmStatus);
+            lbRFCArmStatus.Add(lbRFC3ArmStatus);
         }
 
         private void updateTelemLabel(Label lb, bool telemPresent)
@@ -35,13 +45,36 @@ namespace MissionPlanner.Controls
             if (telemPresent)
             {
                 lb.Text = "TELEM";
-                lb.BackColor = BackColor;
+                lb.BackColor = Color.FromArgb(0x33, 0x33, 0x33);
             }
             else
             {
                 lb.Text = "NO TELEM";
                 lb.BackColor = Color.Red;
             }
+        }
+
+        private void updateFlightModeLabel(uint[] flightMode, int rfc_index)
+        {
+            string mode = flightMode[rfc_index].ToString();
+            bool rfHealthy = !MainV2.comPort.MAV.cs.af3.checkFlightModeMismatch(rfc_index);
+
+            // Translate mode number to human-readable
+            if (flightMode[rfc_index] < MODE_NAMES.Length)
+                mode = MODE_NAMES[flightMode[rfc_index]];
+
+            var lbFlightMode = lbRFCFlightMode[rfc_index];
+
+            if (rfHealthy)
+            {
+                lbFlightMode.BackColor = Color.FromArgb(0x33, 0x33, 0x33);
+            }
+            else
+            {
+                lbFlightMode.BackColor = Color.FromArgb(0xFF, 0x00, 0x00);
+            }
+            
+            lbFlightMode.Text = mode.ToString();
         }
 
         private void updateActiveRfcLabel(Label lb, bool Active)
@@ -61,10 +94,12 @@ namespace MissionPlanner.Controls
         private void timer1_Tick(object sender, EventArgs e)
         {
             bool[] telem = MainV2.comPort.MAV.cs.af3.telemRFC;
+            uint[] flightModes = MainV2.comPort.MAV.cs.af3.flightModeRFC;
 
             for (int i = 0; i < MainV2.comPort.MAV.cs.af3.number_rfcs; i++)
             {
                 updateTelemLabel(lbRFCTelem[i], telem[i]);
+                updateFlightModeLabel(flightModes, i);
             }
 
             int activeRFC = (int)MainV2.comPort.MAV.cs.af3.activeRFC;
@@ -90,5 +125,6 @@ namespace MissionPlanner.Controls
             // restore colours
             //Utilities.ThemeManager.ApplyThemeTo(this);
         }
+
     }
 }
