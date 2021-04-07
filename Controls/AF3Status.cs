@@ -117,10 +117,82 @@ namespace MissionPlanner.Controls
                 AF3EndPoint item = MainV2.comPort.MAV.cs.af3.getEndpoint(i);
                 uint epEscIndex = item.esc_index;
 
-                epInfo.UpdateItem(item, lsErrorList);
+                string origin = String.Format("EP{0}", item.esc_index);
+                List<errorRecord> errLs = MainV2.comPort.MAV.cs.af3.getErrors();
+                List<errorRecord> errEp = errLs.FindAll(error => error.origin == origin &&
+                    error.resolved == false);
+
+                errorRecord worseError = null;
+
+                foreach (var err in errEp)
+                {
+                    if (worseError == null)
+                    {
+                        worseError = err;
+                        continue;
+                    }
+                    else
+                    {
+                        if ((uint)err.state >= (uint)worseError.state)
+                        {
+                            worseError = err;
+                        }
+                    }
+
+                }
+
+                epInfo.UpdateItem(item, worseError);
             }
 
             refreshCyclesCount++;
+
+            List<errorRecord> errList = MainV2.comPort.MAV.cs.af3.getErrors();
+
+            if (errList != null)
+            {
+                foreach (errorRecord error in errList)
+                {
+                    bool found = false;
+
+                    foreach (ListViewItem item in lsErrorList.Items)
+                    {
+                        /*if ((item.SubItems[0].Text == error.timestamp.ToString("HH:mm:ss")) &&
+                            (item.SubItems[1].Text == error.origin) &&
+                            (item.SubItems[2].Text == error.state.ToString()) &&
+                            (error.state == errorRecord.opState.FULL_FAILURE))
+                        {
+                            item.SubItems[3].Text = error.message;
+                            break;
+                        }*/
+
+                        if (item.Tag == error)
+                        {
+                            found = true;
+                            
+                            if (error.state == errorRecord.opCode.FULL_FAILURE)
+                            {
+                                item.SubItems[3].Text = error.message;
+                            }
+
+                            break;
+                        }
+                    }
+
+                    if ((!found))//&&(error.state != errorRecord.opCode.NORMAL))
+                    {
+                        string[] values = new string[] { error.timestamp.ToString("HH:mm:ss"),
+                        error.origin,
+                        error.state.ToString(),
+                        error.message };
+
+                        ListViewItem errLine = new ListViewItem(values);
+                        errLine.Tag = error;
+                        lsErrorList.Items.Add(errLine);
+                    }
+
+                }
+
+            }
 
             // restore colours
             //Utilities.ThemeManager.ApplyThemeTo(this);

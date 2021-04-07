@@ -44,6 +44,7 @@ namespace MissionPlanner.Controls
             this.lbRFC2Active = new System.Windows.Forms.Label();
             this.lsErrorList = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
@@ -54,7 +55,6 @@ namespace MissionPlanner.Controls
             this.lbRFC2FlightMode = new System.Windows.Forms.Label();
             this.lbRFC1FlightMode = new System.Windows.Forms.Label();
             this.epInfo = new MissionPlanner.Controls.AF3EndpointInfo();
-            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -126,6 +126,10 @@ namespace MissionPlanner.Controls
             // 
             resources.ApplyResources(this.columnHeader1, "columnHeader1");
             // 
+            // columnHeader2
+            // 
+            resources.ApplyResources(this.columnHeader2, "columnHeader2");
+            // 
             // columnHeader3
             // 
             resources.ApplyResources(this.columnHeader3, "columnHeader3");
@@ -191,10 +195,6 @@ namespace MissionPlanner.Controls
             resources.ApplyResources(this.epInfo, "epInfo");
             this.tableLayoutPanel1.SetColumnSpan(this.epInfo, 3);
             this.epInfo.Name = "epInfo";
-            // 
-            // columnHeader2
-            // 
-            resources.ApplyResources(this.columnHeader2, "columnHeader2");
             // 
             // AF3Status
             // 

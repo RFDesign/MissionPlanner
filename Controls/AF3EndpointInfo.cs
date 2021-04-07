@@ -28,14 +28,14 @@ namespace MissionPlanner.Controls
                 lb6.Margin = lb7.Margin = new Padding(0);
         }
 
-        public void UpdateItem(MissionPlanner.Utilities.AF3EndPoint item, ListView lsError)
+        public void UpdateItem(MissionPlanner.Utilities.AF3EndPoint item, errorRecord error)
         {
             if (item != null)
             {
 
                 if ((!escLabelCollection.ContainsKey(item.esc_index)) && escLabelRowCount < 10)
                 {
-                    escLabelCollection.Add(item.esc_index, new AF3StatusLabels(item.esc_index, icons, lsError));
+                    escLabelCollection.Add(item.esc_index, new AF3StatusLabels(item.esc_index, icons));
                     int row = escLabelRowColumn;
 
                     foreach (var label in escLabelCollection[item.esc_index].lineControls)
@@ -47,7 +47,7 @@ namespace MissionPlanner.Controls
                     escLabelRowCount++;
                 }
 
-                escLabelCollection[item.esc_index].update(item);
+                escLabelCollection[item.esc_index].update(item, error);
 
             }
         }
@@ -67,29 +67,6 @@ namespace MissionPlanner.Controls
             }
 
             return fullErrorList;
-        }
-    }
-
-    public class errorRecord
-    {
-        public DateTime timestamp;
-        public opState state;
-        public String message;
-        public int failedBuses;
-        public ListViewItem lsItem;
-        public enum opState
-        {
-            NORMAL = 0,
-            FULL_FAILURE,
-            BUS_ERROR,
-        }
-
-        public errorRecord(opState st, String msg, int failBusesMask)
-        {
-            timestamp = DateTime.Now;
-            message = msg;
-            state = st;
-            failedBuses = failBusesMask;
         }
     }
 
@@ -139,11 +116,10 @@ namespace MissionPlanner.Controls
             }
         }
 
-        public AF3StatusLabels(uint escindex, ImageList imgList, ListView lsError)
+        public AF3StatusLabels(uint escindex, ImageList imgList)
         {
             escIndex = escindex;
             icons = imgList;
-            listviewError = lsError;
 
             for (int i = 0; i < (int)lbIndex.LAST; i++)
             {
@@ -151,7 +127,6 @@ namespace MissionPlanner.Controls
 
                 if (i == (int)lbIndex.ICON)
                 {
-                    ct.Cursor = Cursors.Hand;
                     ct.Image = icons.Images[0];
                 }
 
@@ -255,76 +230,7 @@ namespace MissionPlanner.Controls
             lineControls[(int)lbIndex.RPM].Text = String.Format("{0:D}", Rpm);
         }
 
-        private String MillisToTime(double millis)
-        {
-            String result = "";
-            double seconds = millis / 1000;
-            double minutes = seconds / 60;
-            double hours = minutes / 60;
-
-            if ((int)hours > 0)
-            {
-                double min = (hours - ((int)hours)) * 60;
-                result = String.Format("{0:0}:{1:00}'", hours, min);
-            }
-            else if ((int)minutes > 0)
-            {
-                double secs = seconds - (((int)minutes) * 60);
-                result = String.Format("{0:0}' {1:00}\"", minutes, secs);
-            }
-            else
-            {
-                result = String.Format("{0:0.0} s", seconds);
-            }
-            return result;
-        }
-
-        private errorRecord.opState state = errorRecord.opState.NORMAL;
-
-        private void addError(errorRecord.opState state, String message, int failedBuses)
-        {
-
-            if ((errorList.Count == 0) || 
-                (errorList.Last().state != state) ||
-                (errorList.Last().failedBuses != failedBuses))
-            {
-                errorRecord errRec = new errorRecord(state, message, failedBuses);
-                errorList.Add(errRec);
-
-                if (listviewError != null)
-                {
-                    string[] values = new string[] { errRec.timestamp.ToString("HH:mm:ss"),
-                        String.Format("EP{0}",escIndex),
-                        state.ToString(),
-                        message };
-
-                    ListViewItem errLine = new ListViewItem(values);
-                    errRec.lsItem = listviewError.Items.Add(errLine);
-                }
-
-            }
-            else if ((errorList.Last().state == state) && 
-                (errorList.Last().failedBuses == failedBuses) &&
-                (errorList.Last().state != errorRecord.opState.NORMAL))
-            {
-
-                errorRecord err = errorList.Last();
-                err.message = message;
-
-                if (listviewError != null)
-                {
-                    if (err.lsItem != null)
-                    {
-                        err.lsItem.SubItems[3].Text = message;
-                    }
-
-                }
-
-            }
-
-        }
-
-        public void update(AF3EndPoint endPoint)
+        public void update(AF3EndPoint endPoint, errorRecord error)
         {
             setRpm(endPoint.rpm);
             setVoltageA(endPoint.voltageA);
@@ -342,64 +248,31 @@ namespace MissionPlanner.Controls
             if (endPoint.esc_index == 1)
                 Console.WriteLine("stop here");
 
-            // Check time since last time message was received
-            var elapsed = endPoint.isDataStale();
-            var busError = endPoint.isBusMissing();
-
-            if (elapsed)
-            {
-                String errorMessage = String.Format("Endpoint not communicating for {0}", MillisToTime(endPoint.elapsed));
-                lineControls[(int)lbIndex.INFO].Text = errorMessage;
-                changeLabelsBackground(badColor);
-                changeLabelsForecolor(Color.White);
-                (lineControls[(int)lbIndex.ICON] as Label).Image = icons.Images[2];
-
-                addError(errorRecord.opState.FULL_FAILURE, errorMessage, 7); // 7 corresponds to all buses failing
-            }
-            else if (busError != 0)
-            {
-                int err = (int)busError;
-                int bus0Error = err & 1;
-                int bus1Error = (err & 2) >> 1;
-                int bus2Error = (err & 4) >> 2;
-                int sumErrors = bus0Error + bus1Error + bus2Error;
-
-                if (sumErrors > 1)
-                {
-                    String errorMessage = String.Format("Endpoint not communicating in buses: {0}{1}{2}{3}",
-                        bus0Error > 0 ? "1 and " : "",
-                        bus1Error > 0 ? "2" : "",
-                        (bus1Error + bus2Error) > 1 ? " and " : "",
-                        bus2Error > 0 ? "3" : "");
-
-                    lineControls[(int)lbIndex.INFO].Text = errorMessage;
-                    addError(errorRecord.opState.BUS_ERROR, errorMessage, err);
-                }
-                else
-                {
-                    String errorMessage = String.Format("Endpoint not communicating in bus {0}{1}{2}",
-                        bus0Error > 0 ? "1" : "",
-                        bus1Error > 0 ? "2" : "",
-                        bus2Error > 0 ? "3" : "");
-
-                    lineControls[(int)lbIndex.INFO].Text = errorMessage;
-                    addError(errorRecord.opState.BUS_ERROR, errorMessage, err);
-
-                }
-                changeLabelsBackground(attColor);
-                changeLabelsForecolor(Color.White);
-                (lineControls[(int)lbIndex.ICON] as Label).Image = icons.Images[1];
-
-            }
-            else
+            if (error == null)
             {
                 lineControls[(int)lbIndex.INFO].Text = "";
                 changeLabelsBackground(goodBgColor);
-                addError(errorRecord.opState.NORMAL, "Endpoint operating normally", 0);
+            }
+            else
+            {
+                if (error.state == errorRecord.opCode.BUS_ERROR)
+                {
+                    (lineControls[(int)lbIndex.ICON] as Label).Image = icons.Images[1];
+                    changeLabelsBackground(attColor);
+                }
+                else if (error.state == errorRecord.opCode.FULL_FAILURE)
+                {
+                    (lineControls[(int)lbIndex.ICON] as Label).Image = icons.Images[2];
+                    changeLabelsBackground(badColor);
+                }
+
+                lineControls[(int)lbIndex.INFO].Text = error.message;
+                changeLabelsForecolor(Color.White);
+
             }
 
         }
 
-
     }
+
 }

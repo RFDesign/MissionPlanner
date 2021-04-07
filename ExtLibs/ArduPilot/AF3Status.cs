@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Windows;
 
 namespace MissionPlanner.Utilities
 {
@@ -12,7 +13,72 @@ namespace MissionPlanner.Utilities
 
         public float activeRFC { get; set; }
         private List<AF3EndPoint> endpointCollection = new List<AF3EndPoint>();
+        private List<errorRecord> errorList = new List<errorRecord>();
         private object epCollectionLock = new object();
+        private object erCollectionLock = new object();
+
+        public String MillisToTime(double millis)
+        {
+            String result = "";
+            double seconds = millis / 1000;
+            double minutes = seconds / 60;
+            double hours = minutes / 60;
+
+            if ((int)hours > 0)
+            {
+                double min = (hours - ((int)hours)) * 60;
+                result = String.Format("{0:0}:{1:00}'", hours, min);
+            }
+            else if ((int)minutes > 0)
+            {
+                double secs = seconds - (((int)minutes) * 60);
+                result = String.Format("{0:0}' {1:00}\"", minutes, secs);
+            }
+            else
+            {
+                result = String.Format("{0:0.0} s", seconds);
+            }
+            return result;
+        }
+
+        private void addError(string origin, errorRecord.opCode state, String message, int failedBuses)
+        {
+            lock (erCollectionLock)
+            {
+
+                errorRecord lastError = errorList.FindLast(error => error.origin == origin &&
+                    error.state == state && error.failedBuses == failedBuses && error.resolved == false);
+
+                if (lastError == null)
+                {
+                    errorRecord errRec = new errorRecord(state, message, failedBuses, origin);
+                    errorList.Add(errRec);
+                }
+                else if (lastError.state == errorRecord.opCode.FULL_FAILURE)
+                {
+                    lastError.message = message;
+                }
+
+            }
+
+        }
+
+        public List<errorRecord> getErrors()
+        {
+            /*List<errorRecord> errList = new List<errorRecord>();
+            lock (erCollectionLock)
+            {
+                foreach (var error in errorList)
+                {
+                    errList.Add(new errorRecord(error.state, 
+                        error.message, 
+                        error.failedBuses, 
+                        error.origin));
+                }
+            }*/
+
+            return errorList;
+        }
 
         public bool checkFlightModeMismatch(int rfcIndex)
         {
@@ -56,8 +122,52 @@ namespace MissionPlanner.Utilities
 
             for (int i = 0; i < number_rfcs; i++)
             {
-                score += (!telemRFC[i] ? 1 : 0);
-                score += checkFlightModeMismatch(i) ? 1 : 0;
+                int rfcNo = i + 1;
+                string origin = String.Format("RFC{0}", rfcNo);
+
+                if (telemRFC[i])
+                {
+
+                    errorRecord err = errorList.FindLast(error => error.origin == origin &&
+                    error.state == errorRecord.opCode.TELEM_FAILURE && 
+                    error.resolved == false);
+
+                    if (err != null)
+                    {
+                        err.resolved = true;
+                    }
+
+                }
+                else
+                {
+                    score++;
+                    addError(origin,
+                        errorRecord.opCode.TELEM_FAILURE,
+                        String.Format("Telemetry link not available between {0} and VFC", origin),
+                        1 << i);
+                }
+
+                if (checkFlightModeMismatch(i))
+                {
+                    score++;
+                    addError(String.Format("RFC{0}", rfcNo),
+                        errorRecord.opCode.MODE_MISMATCH,
+                        String.Format("Flight mode mismatch on RFC{0}", rfcNo),
+                        1 << i);
+                }
+                else
+                {
+
+                    errorRecord err = errorList.FindLast(error => error.origin == origin &&
+                    error.state == errorRecord.opCode.MODE_MISMATCH &&
+                    error.resolved == false);
+
+                    if (err != null)
+                    {
+                        err.resolved = true;
+                    }
+
+                }
             }
 
             // Check if any of the endpoints becomes unresponsive
@@ -66,14 +176,60 @@ namespace MissionPlanner.Utilities
             {
                 foreach (var ep in endpointCollection)
                 {
-                    bool stale = ep.isDataStale();
-                    int missing = ep.isBusMissing();
+                    var stale = ep.isDataStale();
+                    var busError = ep.isBusMissing();
+                    string origin = String.Format("EP{0}", ep.esc_index);
 
-                    if (stale || (missing > 0))
+                    if (stale)
                     {
-                        Console.WriteLine("Endpoint %d: stale %s missing %d",
-                            ep.esc_index, stale ? "yes" : "no", missing);
-                        score += 1;
+                        String errorMessage = String.Format("Endpoint not communicating for {0}", 
+                            MillisToTime(ep.elapsed));
+
+                        addError(origin,
+                            errorRecord.opCode.FULL_FAILURE, errorMessage, 7); // 7 corresponds to all buses failing
+                    }
+                    else if (busError != 0)
+                    {
+                        int err = (int)busError;
+                        int bus0Error = err & 1;
+                        int bus1Error = (err & 2) >> 1;
+                        int bus2Error = (err & 4) >> 2;
+                        int sumErrors = bus0Error + bus1Error + bus2Error;
+
+                        if (sumErrors > 1)
+                        {
+                            String errorMessage = String.Format("Endpoint not communicating in buses: {0}{1}{2}{3}",
+                                bus0Error > 0 ? "1 and " : "",
+                                bus1Error > 0 ? "2" : "",
+                                (bus1Error + bus2Error) > 1 ? " and " : "",
+                                bus2Error > 0 ? "3" : "");
+
+                            addError(origin, 
+                                errorRecord.opCode.BUS_ERROR, errorMessage, err);
+                        }
+                        else
+                        {
+                            String errorMessage = String.Format("Endpoint not communicating in bus {0}{1}{2}",
+                                bus0Error > 0 ? "1" : "",
+                                bus1Error > 0 ? "2" : "",
+                                bus2Error > 0 ? "3" : "");
+
+                            addError(origin, 
+                                errorRecord.opCode.BUS_ERROR, errorMessage, err);
+
+                        }
+
+                    }
+                    else
+                    {
+                        List<errorRecord> errList = errorList.FindAll(error => error.origin == origin &&
+                        (error.state == errorRecord.opCode.BUS_ERROR || error.state == errorRecord.opCode.FULL_FAILURE) &&
+                        error.resolved == false);
+                        
+                        foreach(errorRecord err in errList)
+                        {
+                            err.resolved = true;
+                        }
                     }
                 }
             }
@@ -145,6 +301,35 @@ namespace MissionPlanner.Utilities
         }
 
 
+    }
+
+    public class errorRecord
+    {
+        public DateTime timestamp;
+        public string origin;
+        public opCode state;
+        public String message;
+        public int failedBuses;
+        public object lsItem;
+        public bool resolved;
+        public enum opCode
+        {
+            NORMAL = 0,
+            MODE_MISMATCH,
+            TELEM_FAILURE,
+            BUS_ERROR,
+            FULL_FAILURE,
+        };
+
+        public errorRecord(opCode st, String msg, int failBusesMask, string _origin)
+        {
+            origin = _origin;
+            timestamp = DateTime.Now;
+            message = msg;
+            state = st;
+            failedBuses = failBusesMask;
+            resolved = false;
+        }
     }
 
     public class AF3EndPoint : IComparable, IEquatable<AF3EndPoint>
