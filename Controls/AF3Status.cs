@@ -16,6 +16,7 @@ namespace MissionPlanner.Controls
         private string[] MODE_NAMES = new string[] {"STABILIZE", "ACRO", "ALT HOLD", "AUTO","GUIDED","LOITER","RTL",
             "CIRCLE","","LAND","","DRIFT","","SPORT","FLIP","AUTO TUNE","POS HOLD","BRAKE","THROW","AVOID ADSB","GUIDED NO GPS","SMART RTL","FLOW HOLD",
             "FOLLOW","ZIGZAG","SYSID","HELI AUTOROT"};
+        private string[] ARMED_NAMES = new string[] { "ARM UNKNOWN", "ARMED", "DISARMED" };
 
         public AF3Status()
         {
@@ -54,14 +55,14 @@ namespace MissionPlanner.Controls
             }
         }
 
-        private void updateFlightModeLabel(uint[] flightMode, int rfc_index)
+        private void updateFlightModeLabel(uint flightMode, int rfc_index)
         {
-            string mode = flightMode[rfc_index].ToString();
+            string mode = flightMode.ToString();
             bool rfHealthy = !MainV2.comPort.MAV.cs.af3.checkFlightModeMismatch(rfc_index);
 
             // Translate mode number to human-readable
-            if (flightMode[rfc_index] < MODE_NAMES.Length)
-                mode = MODE_NAMES[flightMode[rfc_index]];
+            if (flightMode < MODE_NAMES.Length)
+                mode = MODE_NAMES[flightMode];
 
             var lbFlightMode = lbRFCFlightMode[rfc_index];
 
@@ -75,6 +76,29 @@ namespace MissionPlanner.Controls
             }
             
             lbFlightMode.Text = mode.ToString();
+        }
+
+        private void updateArmedStatusLabel(uint armedStatus, int rfc_index)
+        {
+            string status = armedStatus.ToString();
+            bool rfHealthy = !MainV2.comPort.MAV.cs.af3.checkArmedStatusMismatch(rfc_index);
+
+            // Translate mode number to human-readable
+            if (armedStatus < ARMED_NAMES.Length)
+                status = ARMED_NAMES[armedStatus];
+
+            var lbArmedStatus = lbRFCArmStatus[rfc_index];
+
+            if (rfHealthy)
+            {
+                lbArmedStatus.BackColor = Color.FromArgb(0x33, 0x33, 0x33);
+            }
+            else
+            {
+                lbArmedStatus.BackColor = Color.FromArgb(0xFF, 0x00, 0x00);
+            }
+
+            lbArmedStatus.Text = status.ToString();
         }
 
         private void updateActiveRfcLabel(Label lb, bool Active)
@@ -95,11 +119,13 @@ namespace MissionPlanner.Controls
         {
             bool[] telem = MainV2.comPort.MAV.cs.af3.telemRFC;
             uint[] flightModes = MainV2.comPort.MAV.cs.af3.flightModeRFC;
+            uint[] armStatuses = MainV2.comPort.MAV.cs.af3.armedStatRFC;
 
             for (int i = 0; i < MainV2.comPort.MAV.cs.af3.number_rfcs; i++)
             {
                 updateTelemLabel(lbRFCTelem[i], telem[i]);
-                updateFlightModeLabel(flightModes, i);
+                updateFlightModeLabel(flightModes[i], i);
+                updateArmedStatusLabel(armStatuses[i], i);
             }
 
             int activeRFC = (int)MainV2.comPort.MAV.cs.af3.activeRFC;
