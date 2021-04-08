@@ -2192,6 +2192,11 @@ namespace MissionPlanner
                             af3.flightModeRFC[1] = af3statusm.rfc1_flight_mode;
                             af3.flightModeRFC[2] = af3statusm.rfc2_flight_mode;
 
+                            for (int n = 0; n < af3statusm.number_rfcs; n++)
+                            {
+                                af3.armedStatRFC[n] = ((uint)af3statusm.rfc_arming_mask >> (n * 2)) & 0x03;
+                            }
+
                             int rfc_count = (af3.telemRFC[0] ? 1 : 0);
                             rfc_count += (af3.telemRFC[1] ? 1 : 0);
                             rfc_count += (af3.telemRFC[2] ? 1 : 0);

@@ -349,7 +349,7 @@
     <value>NoControl</value>
   </data>
   <data name="lbRFC1Active.Location" type="System.Drawing.Point, System.Drawing">
-    <value>23, 111</value>
+    <value>23, 140</value>
   </data>
   <data name="lbRFC1Active.Size" type="System.Drawing.Size, System.Drawing">
     <value>184, 30</value>
@@ -382,7 +382,7 @@
     <value>NoControl</value>
   </data>
   <data name="lbRFC3Active.Location" type="System.Drawing.Point, System.Drawing">
-    <value>403, 111</value>
+    <value>403, 140</value>
   </data>
   <data name="lbRFC3Active.Size" type="System.Drawing.Size, System.Drawing">
     <value>184, 30</value>
@@ -415,7 +415,7 @@
     <value>NoControl</value>
   </data>
   <data name="lbRFC2Active.Location" type="System.Drawing.Point, System.Drawing">
-    <value>213, 111</value>
+    <value>213, 140</value>
   </data>
   <data name="lbRFC2Active.Size" type="System.Drawing.Size, System.Drawing">
     <value>184, 30</value>
@@ -475,10 +475,13 @@
     <value>23, 110</value>
   </data>
   <data name="lbRFC1ArmStatus.Size" type="System.Drawing.Size, System.Drawing">
-    <value>184, 1</value>
+    <value>184, 30</value>
   </data>
   <data name="lbRFC1ArmStatus.TabIndex" type="System.Int32, mscorlib">
     <value>44</value>
+  </data>
+  <data name="lbRFC1ArmStatus.Text" xml:space="preserve">
+    <value>ARM UNKNOWN</value>
   </data>
   <data name="lbRFC1ArmStatus.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleCenter</value>
@@ -508,10 +511,13 @@
     <value>403, 110</value>
   </data>
   <data name="lbRFC3ArmStatus.Size" type="System.Drawing.Size, System.Drawing">
-    <value>184, 1</value>
+    <value>184, 30</value>
   </data>
   <data name="lbRFC3ArmStatus.TabIndex" type="System.Int32, mscorlib">
     <value>43</value>
+  </data>
+  <data name="lbRFC3ArmStatus.Text" xml:space="preserve">
+    <value>ARM UNKNOWN</value>
   </data>
   <data name="lbRFC3ArmStatus.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleCenter</value>
@@ -541,10 +547,13 @@
     <value>213, 110</value>
   </data>
   <data name="lbRFC2ArmStatus.Size" type="System.Drawing.Size, System.Drawing">
-    <value>184, 1</value>
+    <value>184, 30</value>
   </data>
   <data name="lbRFC2ArmStatus.TabIndex" type="System.Int32, mscorlib">
     <value>42</value>
+  </data>
+  <data name="lbRFC2ArmStatus.Text" xml:space="preserve">
+    <value>ARM UNKNOWN</value>
   </data>
   <data name="lbRFC2ArmStatus.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleCenter</value>
@@ -670,10 +679,10 @@
     <value>Fill</value>
   </data>
   <data name="epInfo.Location" type="System.Drawing.Point, System.Drawing">
-    <value>23, 164</value>
+    <value>23, 193</value>
   </data>
   <data name="epInfo.Size" type="System.Drawing.Size, System.Drawing">
-    <value>564, 255</value>
+    <value>564, 226</value>
   </data>
   <data name="epInfo.TabIndex" type="System.Int32, mscorlib">
     <value>37</value>
@@ -682,7 +691,7 @@
     <value>epInfo</value>
   </data>
   <data name="&gt;&gt;epInfo.Type" xml:space="preserve">
-    <value>MissionPlanner.Controls.AF3EndpointInfo, MissionPlanner, Version=1.3.7767.29381, Culture=neutral, PublicKeyToken=null</value>
+    <value>MissionPlanner.Controls.AF3EndpointInfo, MissionPlanner, Version=1.3.7768.26389, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;epInfo.Parent" xml:space="preserve">
     <value>tableLayoutPanel1</value>
@@ -718,7 +727,7 @@
     <value>0</value>
   </data>
   <data name="tableLayoutPanel1.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
-    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="lbRFC1ArmStatus" Row="4" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC3ArmStatus" Row="4" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC2ArmStatus" Row="4" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC3FlightMode" Row="3" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC2FlightMode" Row="3" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC1FlightMode" Row="3" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC2Active" Row="5" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC3Active" Row="5" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC1Active" Row="5" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC2TELEM" Row="2" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC3TELEM" Row="2" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC1TELEM" Row="2" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="label2" Row="1" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="label3" Row="1" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="label4" Row="1" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="epInfo" Row="7" RowSpan="1" Column="1" ColumnSpan="3" /&gt;&lt;Control Name="lsErrorList" Row="9" RowSpan="1" Column="1" ColumnSpan="3" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Absolute,20,Percent,33.33333,Percent,33.33333,Percent,33.33333,Absolute,20" /&gt;&lt;Rows Styles="Absolute,20,Absolute,30,Absolute,30,Absolute,30,Absolute,1,Absolute,30,Absolute,20,Percent,100,Absolute,20,Absolute,200,Absolute,20" /&gt;&lt;/TableLayoutSettings&gt;</value>
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="lbRFC1ArmStatus" Row="4" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC3ArmStatus" Row="4" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC2ArmStatus" Row="4" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC3FlightMode" Row="3" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC2FlightMode" Row="3" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC1FlightMode" Row="3" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC2Active" Row="5" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC3Active" Row="5" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC1Active" Row="5" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC2TELEM" Row="2" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC3TELEM" Row="2" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC1TELEM" Row="2" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="label2" Row="1" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="label3" Row="1" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="label4" Row="1" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="epInfo" Row="7" RowSpan="1" Column="1" ColumnSpan="3" /&gt;&lt;Control Name="lsErrorList" Row="9" RowSpan="1" Column="1" ColumnSpan="3" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Absolute,20,Percent,33.33333,Percent,33.33333,Percent,33.33333,Absolute,20" /&gt;&lt;Rows Styles="Absolute,20,Absolute,30,Absolute,30,Absolute,30,Absolute,30,Absolute,30,Absolute,20,Percent,100,Absolute,20,Absolute,200,Absolute,20" /&gt;&lt;/TableLayoutSettings&gt;</value>
   </data>
   <data name="lsErrorList.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>

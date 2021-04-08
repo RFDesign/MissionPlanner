@@ -10,6 +10,7 @@ namespace MissionPlanner.Utilities
         public int number_rfcs { get; set; }
         public bool[] telemRFC = new bool[] { false, false, false };
         public uint[] flightModeRFC = new uint[] { 0, 0, 0 };
+        public uint[] armedStatRFC = new uint[] { 0, 0, 0 };
 
         public float activeRFC { get; set; }
         private List<AF3EndPoint> endpointCollection = new List<AF3EndPoint>();
@@ -65,19 +66,42 @@ namespace MissionPlanner.Utilities
 
         public List<errorRecord> getErrors()
         {
-            /*List<errorRecord> errList = new List<errorRecord>();
-            lock (erCollectionLock)
-            {
-                foreach (var error in errorList)
-                {
-                    errList.Add(new errorRecord(error.state, 
-                        error.message, 
-                        error.failedBuses, 
-                        error.origin));
-                }
-            }*/
-
             return errorList;
+        }
+
+        public bool checkArmedStatusMismatch(int rfcIndex)
+        {
+            bool rfHealthBad = false;
+
+            if (number_rfcs > 1)
+            {
+                Dictionary<uint, uint> armStatusGroup = new Dictionary<uint, uint>(number_rfcs);
+
+                // Evaluate whether flight modes have mismatched across RFC's
+                for (int i = 0; i < number_rfcs; i++)
+                {
+                    uint asCount = 0;
+
+                    if (armStatusGroup.TryGetValue(armedStatRFC[i], out asCount))
+                    {
+                        armStatusGroup[armedStatRFC[i]] = asCount + 1;
+                    }
+                    else
+                    {
+                        armStatusGroup.Add(armedStatRFC[i], 1);
+                    }
+
+                }
+
+                if (armStatusGroup[armedStatRFC[rfcIndex]] <= 1)
+                {
+                    // This is the only RFC on this mode at the moment.
+                    rfHealthBad = true;
+                }
+
+            }
+
+            return rfHealthBad;
         }
 
         public bool checkFlightModeMismatch(int rfcIndex)
@@ -160,6 +184,28 @@ namespace MissionPlanner.Utilities
 
                     errorRecord err = errorList.FindLast(error => error.origin == origin &&
                     error.state == errorRecord.opCode.MODE_MISMATCH &&
+                    error.resolved == false);
+
+                    if (err != null)
+                    {
+                        err.resolved = true;
+                    }
+
+                }
+
+                if (checkArmedStatusMismatch(i))
+                {
+                    score++;
+                    addError(String.Format("RFC{0}", rfcNo),
+                        errorRecord.opCode.ARM_MISMATCH,
+                        String.Format("Arm status mismatch on RFC{0}", rfcNo),
+                        1 << i);
+                }
+                else
+                {
+
+                    errorRecord err = errorList.FindLast(error => error.origin == origin &&
+                    error.state == errorRecord.opCode.ARM_MISMATCH &&
                     error.resolved == false);
 
                     if (err != null)
@@ -317,6 +363,7 @@ namespace MissionPlanner.Utilities
             NORMAL = 0,
             MODE_MISMATCH,
             TELEM_FAILURE,
+            ARM_MISMATCH,
             BUS_ERROR,
             FULL_FAILURE,
         };
