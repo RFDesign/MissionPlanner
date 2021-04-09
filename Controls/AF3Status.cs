@@ -3,6 +3,9 @@ using MissionPlanner.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
+using System.Security.Cryptography;
+using System.Text;
 using System.Windows.Forms;
 
 namespace MissionPlanner.Controls
@@ -249,7 +252,7 @@ namespace MissionPlanner.Controls
                     foreach (ListViewItem item in lsErrorList.Items)
                     {
 
-                        if (item.Tag == error)
+                        if ((item.Tag as string).Equals(error.hash))
                         {
                             found = true;
                             item.UseItemStyleForSubItems = false;
@@ -274,13 +277,16 @@ namespace MissionPlanner.Controls
                     if (!found)
                     {
                         string[] values = new string[] { error.timestamp.ToString("HH:mm:ss"),
-                        error.origin,
-                        error.state.ToString(),
-                        error.message,
-                        ""};
+                            error.origin,
+                            error.state.ToString(),
+                            error.message,
+                            ""};
+
+                        string hash = error.timestamp.ToBinary().ToString() + values[1] +
+                                values[2] + error.failedBuses.ToString();
 
                         ListViewItem errLine = new ListViewItem(values);
-                        errLine.Tag = error;
+                        errLine.Tag = hash;
                         lsErrorList.Items.Add(errLine);
                     }
 

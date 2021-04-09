@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Security.Cryptography;
+using System.Text;
 using System.Windows;
 
 namespace MissionPlanner.Utilities
@@ -70,6 +72,25 @@ namespace MissionPlanner.Utilities
 
         public List<errorRecord> getErrors()
         {
+            var retErrList = new List<errorRecord>();
+
+            lock (erCollectionLock)
+            {
+
+                for (int i = 0; i < errorList.Count; i++)
+                {
+                    errorRecord err = errorList[i];
+
+                    retErrList.Add(new errorRecord(
+                        err.state,
+                        err.message,
+                        err.failedBuses,
+                        err.origin,
+                        err.timestamp,
+                        err.resolved));
+                }
+            }
+
             return errorList;
         }
 
@@ -188,109 +209,110 @@ namespace MissionPlanner.Utilities
             // Check how many telemetry links are lost between RFC's and VFC
             int score = 0;
 
-            for (int i = 0; i < number_rfcs; i++)
+            lock (erCollectionLock)
             {
-                int rfcNo = i + 1;
-                string origin = String.Format("RFC{0}", rfcNo);
 
-                score += analyseCondition(!telemRFC[i],
-                    origin, errorRecord.opCode.TELEM_FAILURE,
-                    String.Format("Telemetry link not available between {0} and VFC", origin),
-                    1 << i);
-
-                score += analyseCondition(checkFlightModeMismatch(i), 
-                    origin, errorRecord.opCode.MODE_MISMATCH,
-                    String.Format("Flight mode mismatch on {0}", origin),
-                    1 << i);
-
-                score += analyseCondition(checkArmedStatusMismatch(i),
-                    origin, errorRecord.opCode.ARM_MISMATCH,
-                    String.Format("Arm status mismatch on {0}", origin),
-                    1 << i);
-
-                score += analyseCondition(canElapsedRFC[i] > 1,
-                    origin, errorRecord.opCode.RFC_NO_CAN,
-                    String.Format("{0} became disconnected from CAN bus", origin),
-                    1 << i);
-
-                score += analyseCondition(!ppmVisRFC[i],
-                    origin, errorRecord.opCode.RFC_NO_PPM,
-                    String.Format("{0} is not receiveing PPM stream", origin),
-                    1 << i);
-
-            }
-
-            // Check if any of the endpoints becomes unresponsive
-            // or disconnected from a bus
-            lock (epCollectionLock)
-            {
-                foreach (var ep in endpointCollection)
+                for (int i = 0; i < number_rfcs; i++)
                 {
-                    var stale = ep.isDataStale();
-                    var busError = ep.isBusMissing();
-                    string origin = String.Format("EP{0}", ep.esc_index);
+                    int rfcNo = i + 1;
+                    string origin = String.Format("RFC{0}", rfcNo);
 
-                    if (stale)
+                    score += analyseCondition(!telemRFC[i],
+                        origin, errorRecord.opCode.TELEM_FAILURE,
+                        String.Format("Telemetry link not available between {0} and VFC", origin),
+                        1 << i);
+
+                    score += analyseCondition(checkFlightModeMismatch(i),
+                        origin, errorRecord.opCode.MODE_MISMATCH,
+                        String.Format("Flight mode mismatch on {0}", origin),
+                        1 << i);
+
+                    score += analyseCondition(checkArmedStatusMismatch(i),
+                        origin, errorRecord.opCode.ARM_MISMATCH,
+                        String.Format("Arm status mismatch on {0}", origin),
+                        1 << i);
+
+                    score += analyseCondition(canElapsedRFC[i] > 1,
+                        origin, errorRecord.opCode.RFC_NO_CAN,
+                        String.Format("{0} became disconnected from CAN bus", origin),
+                        1 << i);
+
+                    score += analyseCondition(!ppmVisRFC[i],
+                        origin, errorRecord.opCode.RFC_NO_PPM,
+                        String.Format("{0} is not receiveing PPM stream", origin),
+                        1 << i);
+
+                }
+
+                // Check if any of the endpoints becomes unresponsive
+                // or disconnected from a bus
+                lock (epCollectionLock)
+                {
+                    foreach (var ep in endpointCollection)
                     {
-                        String errorMessage = String.Format("Endpoint not communicating in any CAN bus");
-                        int failedBuses = 7; // 7 corresponds to all buses failing
+                        var stale = ep.isDataStale();
+                        var busError = ep.isBusMissing();
+                        string origin = String.Format("EP{0}", ep.esc_index);
 
-                        addError(origin,
-                            errorRecord.opCode.BUS_ERROR, errorMessage, failedBuses); 
-
-                        clearUnresolvedErrorsByType(origin, errorRecord.opCode.BUS_ERROR, failedBuses);
-
-                    }
-                    else if (busError != 0)
-                    {
-                        int err = (int)busError;
-                        int bus0Error = err & 1;
-                        int bus1Error = (err & 2) >> 1;
-                        int bus2Error = (err & 4) >> 2;
-                        int sumErrors = bus0Error + bus1Error + bus2Error;
-
-                        if (sumErrors > 1)
+                        if (stale)
                         {
-                            String errorMessage = String.Format("Endpoint not communicating in buses: {0}{1}{2}{3}",
-                                bus0Error > 0 ? "1 and " : "",
-                                bus1Error > 0 ? "2" : "",
-                                (bus1Error + bus2Error) > 1 ? " and " : "",
-                                bus2Error > 0 ? "3" : "");
+                            String errorMessage = String.Format("Endpoint not communicating in any CAN bus");
+                            int failedBuses = 7; // 7 corresponds to all buses failing
 
-                            addError(origin, 
-                                errorRecord.opCode.BUS_ERROR, errorMessage, err);
+                            addError(origin,
+                                errorRecord.opCode.BUS_ERROR, errorMessage, failedBuses);
+
+                            clearUnresolvedErrorsByType(origin, errorRecord.opCode.BUS_ERROR, failedBuses);
+
+                        }
+                        else if (busError != 0)
+                        {
+                            int err = (int)busError;
+                            int bus0Error = err & 1;
+                            int bus1Error = (err & 2) >> 1;
+                            int bus2Error = (err & 4) >> 2;
+                            int sumErrors = bus0Error + bus1Error + bus2Error;
+
+                            if (sumErrors > 1)
+                            {
+                                String errorMessage = String.Format("Endpoint not communicating in buses: {0}{1}{2}{3}",
+                                    bus0Error > 0 ? "1 and " : "",
+                                    bus1Error > 0 ? "2" : "",
+                                    (bus1Error + bus2Error) > 1 ? " and " : "",
+                                    bus2Error > 0 ? "3" : "");
+
+                                addError(origin,
+                                    errorRecord.opCode.BUS_ERROR, errorMessage, err);
+                            }
+                            else
+                            {
+                                String errorMessage = String.Format("Endpoint not communicating in bus {0}{1}{2}",
+                                    bus0Error > 0 ? "1" : "",
+                                    bus1Error > 0 ? "2" : "",
+                                    bus2Error > 0 ? "3" : "");
+
+                                addError(origin,
+                                    errorRecord.opCode.BUS_ERROR, errorMessage, err);
+
+                            }
+
+                            clearUnresolvedErrorsByType(origin, errorRecord.opCode.BUS_ERROR, busError);
+
                         }
                         else
                         {
-                            String errorMessage = String.Format("Endpoint not communicating in bus {0}{1}{2}",
-                                bus0Error > 0 ? "1" : "",
-                                bus1Error > 0 ? "2" : "",
-                                bus2Error > 0 ? "3" : "");
+                            List<errorRecord> errList = errorList.FindAll(error => error.origin == origin &&
+                            (error.state == errorRecord.opCode.BUS_ERROR) &&
+                            error.resolved == DateTime.MinValue);
 
-                            addError(origin, 
-                                errorRecord.opCode.BUS_ERROR, errorMessage, err);
-
-                        }
-
-                        clearUnresolvedErrorsByType(origin, errorRecord.opCode.BUS_ERROR, busError);
-
-                    }
-                    else
-                    {
-                        List<errorRecord> errList = errorList.FindAll(error => error.origin == origin &&
-                        (error.state == errorRecord.opCode.BUS_ERROR) &&
-                        error.resolved == DateTime.MinValue);
-                        
-                        foreach(errorRecord err in errList)
-                        {
-                            err.resolved = DateTime.Now;
+                            foreach (errorRecord err in errList)
+                            {
+                                err.resolved = DateTime.Now;
+                            }
                         }
                     }
                 }
             }
-
-            if (score > 0)
-                Console.WriteLine("AF3 presents at least one issue");
 
             return (float) score;
         }
@@ -364,8 +386,8 @@ namespace MissionPlanner.Utilities
         public opCode state;
         public String message;
         public int failedBuses;
-        public object lsItem;
         public DateTime resolved;
+        public string hash;
 
         public enum opCode
         {
@@ -386,6 +408,21 @@ namespace MissionPlanner.Utilities
             state = st;
             failedBuses = failBusesMask;
             resolved = DateTime.MinValue;
+            hash = timestamp.ToBinary().ToString() +
+                origin + state.ToString() + failedBuses.ToString();
+        }
+
+        public errorRecord(opCode st, String msg, int failBusesMask, string _origin, 
+            DateTime creationTime, DateTime resolvedTime)
+        {
+            origin = _origin;
+            timestamp = creationTime;
+            message = msg;
+            state = st;
+            failedBuses = failBusesMask;
+            resolved = resolvedTime;
+            hash = timestamp.ToBinary().ToString() +
+                origin + state.ToString() + failedBuses.ToString();
         }
     }
 
