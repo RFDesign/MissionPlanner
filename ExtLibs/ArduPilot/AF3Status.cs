@@ -9,14 +9,22 @@ namespace MissionPlanner.Utilities
         public float score { get; set; }
         public int number_rfcs { get; set; }
         public bool[] telemRFC = new bool[] { false, false, false };
+        public bool[] ppmVisRFC = new bool[] { false, false, false };
         public uint[] flightModeRFC = new uint[] { 0, 0, 0 };
         public uint[] armedStatRFC = new uint[] { 0, 0, 0 };
+        public uint[] canElapsedRFC = new uint[] { 0, 0, 0 };
+        public float[] scoreRFC = new float[] { float.NaN, float.NaN, float.NaN };
 
         public float activeRFC { get; set; }
         private List<AF3EndPoint> endpointCollection = new List<AF3EndPoint>();
         private List<errorRecord> errorList = new List<errorRecord>();
         private object epCollectionLock = new object();
         private object erCollectionLock = new object();
+
+        public AF3Status()
+        {
+            activeRFC = -1.0f;
+        }
 
         public String MillisToTime(double millis)
         {
@@ -48,16 +56,12 @@ namespace MissionPlanner.Utilities
             {
 
                 errorRecord lastError = errorList.FindLast(error => error.origin == origin &&
-                    error.state == state && error.failedBuses == failedBuses && error.resolved == false);
+                    error.state == state && error.failedBuses == failedBuses && error.resolved == DateTime.MinValue);
 
                 if (lastError == null)
                 {
                     errorRecord errRec = new errorRecord(state, message, failedBuses, origin);
                     errorList.Add(errRec);
-                }
-                else if (lastError.state == errorRecord.opCode.FULL_FAILURE)
-                {
-                    lastError.message = message;
                 }
 
             }
@@ -139,6 +143,46 @@ namespace MissionPlanner.Utilities
             return rfHealthBad;
         }
 
+        private int analyseCondition(bool errorCondition, string origin, errorRecord.opCode errType, string errorMsg, int failedBuses)
+        {
+            if (errorCondition)
+            {
+                addError(String.Format("{0}", origin),
+                    errType,
+                    errorMsg,
+                    failedBuses);
+
+                return 1;
+            }
+            else
+            {
+
+                errorRecord err = errorList.FindLast(error => error.origin == origin &&
+                error.state == errType &&
+                error.resolved == DateTime.MinValue);
+
+                if (err != null)
+                {
+                    err.resolved = DateTime.Now;
+                }
+
+                return 0;
+            }
+        }
+
+        private void clearUnresolvedErrorsByType(string origin, errorRecord.opCode type, int failedBuses)
+        {
+            List<errorRecord> errList = errorList.FindAll(error => error.origin == origin &&
+                        (error.state == type) &&
+                        error.resolved == DateTime.MinValue &&
+                        error.failedBuses != failedBuses);
+
+            foreach (errorRecord err in errList)
+            {
+                err.resolved = DateTime.Now;
+            }
+        }
+
         public float calculateAf3Score()
         {
             // Check how many telemetry links are lost between RFC's and VFC
@@ -149,71 +193,31 @@ namespace MissionPlanner.Utilities
                 int rfcNo = i + 1;
                 string origin = String.Format("RFC{0}", rfcNo);
 
-                if (telemRFC[i])
-                {
+                score += analyseCondition(!telemRFC[i],
+                    origin, errorRecord.opCode.TELEM_FAILURE,
+                    String.Format("Telemetry link not available between {0} and VFC", origin),
+                    1 << i);
 
-                    errorRecord err = errorList.FindLast(error => error.origin == origin &&
-                    error.state == errorRecord.opCode.TELEM_FAILURE && 
-                    error.resolved == false);
+                score += analyseCondition(checkFlightModeMismatch(i), 
+                    origin, errorRecord.opCode.MODE_MISMATCH,
+                    String.Format("Flight mode mismatch on {0}", origin),
+                    1 << i);
 
-                    if (err != null)
-                    {
-                        err.resolved = true;
-                    }
+                score += analyseCondition(checkArmedStatusMismatch(i),
+                    origin, errorRecord.opCode.ARM_MISMATCH,
+                    String.Format("Arm status mismatch on {0}", origin),
+                    1 << i);
 
-                }
-                else
-                {
-                    score++;
-                    addError(origin,
-                        errorRecord.opCode.TELEM_FAILURE,
-                        String.Format("Telemetry link not available between {0} and VFC", origin),
-                        1 << i);
-                }
+                score += analyseCondition(canElapsedRFC[i] > 1,
+                    origin, errorRecord.opCode.RFC_NO_CAN,
+                    String.Format("{0} became disconnected from CAN bus", origin),
+                    1 << i);
 
-                if (checkFlightModeMismatch(i))
-                {
-                    score++;
-                    addError(String.Format("RFC{0}", rfcNo),
-                        errorRecord.opCode.MODE_MISMATCH,
-                        String.Format("Flight mode mismatch on RFC{0}", rfcNo),
-                        1 << i);
-                }
-                else
-                {
+                score += analyseCondition(!ppmVisRFC[i],
+                    origin, errorRecord.opCode.RFC_NO_PPM,
+                    String.Format("{0} is not receiveing PPM stream", origin),
+                    1 << i);
 
-                    errorRecord err = errorList.FindLast(error => error.origin == origin &&
-                    error.state == errorRecord.opCode.MODE_MISMATCH &&
-                    error.resolved == false);
-
-                    if (err != null)
-                    {
-                        err.resolved = true;
-                    }
-
-                }
-
-                if (checkArmedStatusMismatch(i))
-                {
-                    score++;
-                    addError(String.Format("RFC{0}", rfcNo),
-                        errorRecord.opCode.ARM_MISMATCH,
-                        String.Format("Arm status mismatch on RFC{0}", rfcNo),
-                        1 << i);
-                }
-                else
-                {
-
-                    errorRecord err = errorList.FindLast(error => error.origin == origin &&
-                    error.state == errorRecord.opCode.ARM_MISMATCH &&
-                    error.resolved == false);
-
-                    if (err != null)
-                    {
-                        err.resolved = true;
-                    }
-
-                }
             }
 
             // Check if any of the endpoints becomes unresponsive
@@ -228,11 +232,14 @@ namespace MissionPlanner.Utilities
 
                     if (stale)
                     {
-                        String errorMessage = String.Format("Endpoint not communicating for {0}", 
-                            MillisToTime(ep.elapsed));
+                        String errorMessage = String.Format("Endpoint not communicating in any CAN bus");
+                        int failedBuses = 7; // 7 corresponds to all buses failing
 
                         addError(origin,
-                            errorRecord.opCode.FULL_FAILURE, errorMessage, 7); // 7 corresponds to all buses failing
+                            errorRecord.opCode.BUS_ERROR, errorMessage, failedBuses); 
+
+                        clearUnresolvedErrorsByType(origin, errorRecord.opCode.BUS_ERROR, failedBuses);
+
                     }
                     else if (busError != 0)
                     {
@@ -265,16 +272,18 @@ namespace MissionPlanner.Utilities
 
                         }
 
+                        clearUnresolvedErrorsByType(origin, errorRecord.opCode.BUS_ERROR, busError);
+
                     }
                     else
                     {
                         List<errorRecord> errList = errorList.FindAll(error => error.origin == origin &&
-                        (error.state == errorRecord.opCode.BUS_ERROR || error.state == errorRecord.opCode.FULL_FAILURE) &&
-                        error.resolved == false);
+                        (error.state == errorRecord.opCode.BUS_ERROR) &&
+                        error.resolved == DateTime.MinValue);
                         
                         foreach(errorRecord err in errList)
                         {
-                            err.resolved = true;
+                            err.resolved = DateTime.Now;
                         }
                     }
                 }
@@ -306,8 +315,7 @@ namespace MissionPlanner.Utilities
 
                     AF3EndPoint epRetItem = new AF3EndPoint(epItem.esc_index,
                         epItem.voltageA, epItem.voltageB, epItem.currentA, epItem.currentB,
-                        epItem.rpm, epItem.elapsedSecBus0, epItem.elapsedSecBus1,
-                        epItem.elapsedSecBus2, epItem.lastUpdate, number_rfcs);
+                        epItem.rpm, epItem.elapsedSecBus, epItem.lastUpdate, number_rfcs);
 
                     return epRetItem;
 
@@ -357,15 +365,17 @@ namespace MissionPlanner.Utilities
         public String message;
         public int failedBuses;
         public object lsItem;
-        public bool resolved;
+        public DateTime resolved;
+
         public enum opCode
         {
             NORMAL = 0,
             MODE_MISMATCH,
             TELEM_FAILURE,
             ARM_MISMATCH,
-            BUS_ERROR,
-            FULL_FAILURE,
+            RFC_NO_CAN,
+            RFC_NO_PPM,
+            BUS_ERROR
         };
 
         public errorRecord(opCode st, String msg, int failBusesMask, string _origin)
@@ -375,7 +385,7 @@ namespace MissionPlanner.Utilities
             message = msg;
             state = st;
             failedBuses = failBusesMask;
-            resolved = false;
+            resolved = DateTime.MinValue;
         }
     }
 
@@ -389,7 +399,7 @@ namespace MissionPlanner.Utilities
         public int rpm;
         public double elapsed;
         public DateTime lastUpdate;
-        public byte elapsedSecBus0;
+        public byte[] elapsedSecBus = new byte[] {0,0,0};
         public byte elapsedSecBus1;
         public byte elapsedSecBus2;
         public int numRFCs;
@@ -397,8 +407,8 @@ namespace MissionPlanner.Utilities
         private const int maxPeriodTotal = 6200; 
         private const int maxPeriodSameBus = 3000;
         public AF3EndPoint(uint escIndex, float busVoltageA, float busVoltageB, 
-            float busCurrA, float busCurrB, int engRPM, byte bus0Elapsed, 
-            byte bus1Elapsed, byte bus2Elapsed, DateTime timestamp, int numRFCS)
+            float busCurrA, float busCurrB, int engRPM, byte[] busElapsed, 
+            DateTime timestamp, int numRFCS)
         {
             esc_index = escIndex;
             voltageA = busVoltageA;
@@ -407,9 +417,9 @@ namespace MissionPlanner.Utilities
             currentB = busCurrB;
             lastUpdate = timestamp;
             rpm = engRPM;
-            elapsedSecBus0 = bus0Elapsed;
-            elapsedSecBus1 = bus1Elapsed;
-            elapsedSecBus2 = bus2Elapsed;
+            elapsedSecBus[0] = busElapsed[0];
+            elapsedSecBus[1] = busElapsed[1];
+            elapsedSecBus[2] = busElapsed[2];
             numRFCs = numRFCS;
 
         }
@@ -423,14 +433,14 @@ namespace MissionPlanner.Utilities
         public int isBusMissing()
         {
             int result = 0;
-            result += ((int)elapsedSecBus0*1000 > maxPeriodSameBus) ? 1 : 0;
+            result += ((int)elapsedSecBus[0]*1000 > maxPeriodSameBus) ? 1 : 0;
             if (numRFCs > 1)
             {
-                result += ((int)elapsedSecBus1*1000 > maxPeriodSameBus) ? 2 : 0;
+                result += ((int)elapsedSecBus[1]*1000 > maxPeriodSameBus) ? 2 : 0;
             }
             if (numRFCs > 2)
             {
-                result += ((int)elapsedSecBus2*1000 > maxPeriodSameBus) ? 4 : 0;
+                result += ((int)elapsedSecBus[2]*1000 > maxPeriodSameBus) ? 4 : 0;
             }
             return result;
         }

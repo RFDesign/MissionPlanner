@@ -2181,31 +2181,30 @@ namespace MissionPlanner
                     case (uint)MAVLink.MAVLINK_MSG_ID.AF3_STATUS:
                         {
                             var af3statusm = mavLinkMessage.ToStructure<MAVLink.mavlink_af3_status_t>();
-
-                            int rfc_mask = af3statusm.rfc_telem_mask;
-
-                            af3.telemRFC[0] = ((rfc_mask >> 0) & 0x01) == 1;
-                            af3.telemRFC[1] = ((rfc_mask >> 1) & 0x01) == 1;
-                            af3.telemRFC[2] = ((rfc_mask >> 2) & 0x01) == 1;
-
-                            af3.flightModeRFC[0] = af3statusm.rfc0_flight_mode;
-                            af3.flightModeRFC[1] = af3statusm.rfc1_flight_mode;
-                            af3.flightModeRFC[2] = af3statusm.rfc2_flight_mode;
-
-                            for (int n = 0; n < af3statusm.number_rfcs; n++)
-                            {
-                                af3.armedStatRFC[n] = ((uint)af3statusm.rfc_arming_mask >> (n * 2)) & 0x03;
-                            }
-
-                            int rfc_count = (af3.telemRFC[0] ? 1 : 0);
-                            rfc_count += (af3.telemRFC[1] ? 1 : 0);
-                            rfc_count += (af3.telemRFC[2] ? 1 : 0);
-
-                            af3.score = rfc_count;
+                            
                             af3.activeRFC = af3statusm.active_rfc;
                             af3.number_rfcs = (af3statusm.number_rfcs > 3) ?
                                 3 : af3statusm.number_rfcs;
                             af3score = af3.calculateAf3Score();
+                        }
+                        break;
+                    case (uint)MAVLink.MAVLINK_MSG_ID.AF3_RFC_STATUS:
+                        {
+                            var af3rfcstatusm = mavLinkMessage.ToStructure<MAVLink.mavlink_af3_rfc_status_t>();
+                            int busid = af3rfcstatusm.bus_id;
+
+                            if (busid < af3.number_rfcs)
+                            {
+                                af3.scoreRFC[busid] = af3rfcstatusm.error_score;
+                                af3.flightModeRFC[busid] = af3rfcstatusm.flight_mode;
+                                af3.ppmVisRFC[busid] = (af3rfcstatusm.status_flag & 0x01) > 0;
+                                af3.telemRFC[busid] = (af3rfcstatusm.status_flag & 0x02) > 0;
+                                af3.armedStatRFC[busid] = ((uint)af3rfcstatusm.status_flag & 0x0C) >> 2;
+                                af3.canElapsedRFC[busid] = af3rfcstatusm.can_elapsed;
+                            }
+
+                            af3score = af3.calculateAf3Score();
+
                         }
                         break;
                     case (uint)MAVLink.MAVLINK_MSG_ID.AF3_EP_STATUS:
@@ -2227,9 +2226,9 @@ namespace MissionPlanner
                                     endpoint.voltageB = af3epstatusm.bus_voltage_b;
                                     endpoint.currentA = af3epstatusm.bus_current_a;
                                     endpoint.currentB = af3epstatusm.bus_current_b;
-                                    endpoint.elapsedSecBus0 = af3epstatusm.bus0_elapsed_sec;
-                                    endpoint.elapsedSecBus1 = af3epstatusm.bus1_elapsed_sec;
-                                    endpoint.elapsedSecBus2 = af3epstatusm.bus2_elapsed_sec;
+                                    endpoint.elapsedSecBus[0] = af3epstatusm.bus0_elapsed_sec;
+                                    endpoint.elapsedSecBus[1] = af3epstatusm.bus1_elapsed_sec;
+                                    endpoint.elapsedSecBus[2] = af3epstatusm.bus2_elapsed_sec;
                                     endpoint.lastUpdate = DateTime.Now;
 
                                     // We won't update number_rfcs or the esc_index after 
@@ -2237,15 +2236,18 @@ namespace MissionPlanner
                                 }
                                 else
                                 {
+                                    byte[] bus_elapsed_sec = new byte[3] {
+                                        af3epstatusm.bus0_elapsed_sec,
+                                        af3epstatusm.bus1_elapsed_sec,
+                                        af3epstatusm.bus2_elapsed_sec};
+
                                     endpoint = new AF3EndPoint(af3epstatusm.esc_index,
                                         af3epstatusm.bus_voltage_a,
                                         af3epstatusm.bus_voltage_b,
                                         af3epstatusm.bus_current_a,
                                         af3epstatusm.bus_current_b,
                                         af3epstatusm.rpm,
-                                        af3epstatusm.bus0_elapsed_sec,
-                                        af3epstatusm.bus1_elapsed_sec,
-                                        af3epstatusm.bus1_elapsed_sec,
+                                        bus_elapsed_sec,
                                         DateTime.Now,
                                         af3.number_rfcs);
 
@@ -2254,6 +2256,8 @@ namespace MissionPlanner
 
                                 af3.sortEndpoints();
                             }
+
+                            af3score = af3.calculateAf3Score();
                         }
                         break;
                     case (uint)MAVLink.MAVLINK_MSG_ID.EKF_STATUS_REPORT:

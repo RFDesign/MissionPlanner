@@ -273,8 +273,9 @@ public partial class MAVLink
         new message_info(11035, "OSD_PARAM_SHOW_CONFIG", 128, 8, 8, typeof( mavlink_osd_param_show_config_t )),
         new message_info(11036, "OSD_PARAM_SHOW_CONFIG_REPLY", 177, 34, 34, typeof( mavlink_osd_param_show_config_reply_t )),
         new message_info(11037, "OBSTACLE_DISTANCE_3D", 130, 28, 28, typeof( mavlink_obstacle_distance_3d_t )),
-        new message_info(12100, "AF3_STATUS", 171, 16, 16, typeof( mavlink_af3_status_t )),
+        new message_info(12100, "AF3_STATUS", 162, 2, 2, typeof( mavlink_af3_status_t )),
         new message_info(12101, "AF3_EP_STATUS", 210, 24, 24, typeof( mavlink_af3_ep_status_t )),
+        new message_info(12102, "AF3_RFC_STATUS", 152, 11, 11, typeof( mavlink_af3_rfc_status_t )),
         new message_info(42000, "ICAROUS_HEARTBEAT", 227, 1, 1, typeof( mavlink_icarous_heartbeat_t )),
         new message_info(42001, "ICAROUS_KINEMATIC_BANDS", 239, 46, 46, typeof( mavlink_icarous_kinematic_bands_t )),
         new message_info(99269, "VIDEO_STREAM_INFORMATION99", 251, 213, 213, typeof( mavlink_video_stream_information99_t )),
@@ -554,6 +555,7 @@ public partial class MAVLink
         OBSTACLE_DISTANCE_3D = 11037,
         AF3_STATUS = 12100,
         AF3_EP_STATUS = 12101,
+        AF3_RFC_STATUS = 12102,
         ICAROUS_HEARTBEAT = 42000,
         ICAROUS_KINEMATIC_BANDS = 42001,
         VIDEO_STREAM_INFORMATION99 = 99269,
@@ -17849,34 +17851,17 @@ public partial class MAVLink
     };
 
     /// extensions_start 0
-    [StructLayout(LayoutKind.Sequential, Pack = 1, Size = 16)]
+    [StructLayout(LayoutKind.Sequential, Pack = 1, Size = 2)]
     ///<summary> Report AF3 triple-redundant system status </summary>
     public struct mavlink_af3_status_t
     {
-        public mavlink_af3_status_t(uint rfc0_flight_mode, uint rfc1_flight_mode, uint rfc2_flight_mode, byte number_rfcs, byte active_rfc, byte rfc_telem_mask, byte rfc_arming_mask)
+        public mavlink_af3_status_t(byte number_rfcs, byte active_rfc)
         {
-            this.rfc0_flight_mode = rfc0_flight_mode;
-            this.rfc1_flight_mode = rfc1_flight_mode;
-            this.rfc2_flight_mode = rfc2_flight_mode;
             this.number_rfcs = number_rfcs;
             this.active_rfc = active_rfc;
-            this.rfc_telem_mask = rfc_telem_mask;
-            this.rfc_arming_mask = rfc_arming_mask;
 
         }
-        /// <summary>Real flight controller 0 flight mode</summary>
-        [Units("")]
-        [Description("Real flight controller 0 flight mode")]
-        public uint rfc0_flight_mode;
-        /// <summary>Real flight controller 1 flight mode</summary>
-        [Units("")]
-        [Description("Real flight controller 1 flight mode")]
-        public uint rfc1_flight_mode;
-        /// <summary>Real flight controller 2 flight mode</summary>
-        [Units("")]
-        [Description("Real flight controller 2 flight mode")]
-        public uint rfc2_flight_mode;
-        /// <summary>Number of Real Flight Controllers (RFC) in the system</summary>
+        /// <summary>Number of Real Flight Controllers (RFC) in the system   </summary>
         [Units("")]
         [Description("Number of Real Flight Controllers (RFC) in the system")]
         public byte number_rfcs;
@@ -17884,14 +17869,6 @@ public partial class MAVLink
         [Units("")]
         [Description("Current real flight controller commanding the vehicle")]
         public byte active_rfc;
-        /// <summary>Mask of real flight controllers talking to the VFC via telemetry link   </summary>
-        [Units("")]
-        [Description("Mask of real flight controllers talking to the VFC via telemetry link")]
-        public byte rfc_telem_mask;
-        /// <summary>Mask of real flight controllers armed status   </summary>
-        [Units("")]
-        [Description("Mask of real flight controllers armed status")]
-        public byte rfc_arming_mask;
 
     };
 
@@ -17950,6 +17927,44 @@ public partial class MAVLink
         [Units("")]
         [Description("How many seconds since a message was received by the endpoint on bus 2")]
         public byte bus2_elapsed_sec;
+
+    };
+
+
+    /// extensions_start 0
+    [StructLayout(LayoutKind.Sequential, Pack = 1, Size = 11)]
+    ///<summary> Report AF3 triple-redundant system status </summary>
+    public struct mavlink_af3_rfc_status_t
+    {
+        public mavlink_af3_rfc_status_t(uint flight_mode, uint error_score, byte bus_id, byte status_flag, byte can_elapsed)
+        {
+            this.flight_mode = flight_mode;
+            this.error_score = error_score;
+            this.bus_id = bus_id;
+            this.status_flag = status_flag;
+            this.can_elapsed = can_elapsed;
+
+        }
+        /// <summary>Real flight controller 2 flight mode   </summary>
+        [Units("")]
+        [Description("Real flight controller 2 flight mode")]
+        public uint flight_mode;
+        /// <summary>Flight controller error score as calculated by the EP onboard of the VFC   </summary>
+        [Units("")]
+        [Description("Flight controller error score as calculated by the EP onboard of the VFC")]
+        public uint error_score;
+        /// <summary>RFC identifier   </summary>
+        [Units("")]
+        [Description("RFC identifier")]
+        public byte bus_id;
+        /// <summary>Bitfield indicating telemetry, armed, and PMM visibility status   </summary>
+        [Units("")]
+        [Description("Bitfield indicating telemetry, armed, and PMM visibility status")]
+        public byte status_flag;
+        /// <summary>Seconds since last FC health msg was received on CAN BUS 0   </summary>
+        [Units("")]
+        [Description("Seconds since last FC health msg was received on CAN BUS 0")]
+        public byte can_elapsed;
 
     };
 
