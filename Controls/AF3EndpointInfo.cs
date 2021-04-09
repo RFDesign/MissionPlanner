@@ -255,12 +255,12 @@ namespace MissionPlanner.Controls
             }
             else
             {
-                if (error.state == errorRecord.opCode.BUS_ERROR)
+                if (error.state == errorRecord.opCode.BUS_ERROR && error.failedBuses != 7)
                 {
                     (lineControls[(int)lbIndex.ICON] as Label).Image = icons.Images[1];
                     changeLabelsBackground(attColor);
                 }
-                else if (error.state == errorRecord.opCode.FULL_FAILURE)
+                else if (error.state == errorRecord.opCode.BUS_ERROR && error.failedBuses == 7)
                 {
                     (lineControls[(int)lbIndex.ICON] as Label).Image = icons.Images[2];
                     changeLabelsBackground(badColor);
