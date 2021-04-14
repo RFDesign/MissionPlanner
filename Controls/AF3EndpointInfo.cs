@@ -1,4 +1,5 @@
 ﻿using MissionPlanner.Utilities;
+using MissionPlanner.Utilities.AF3;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,6 +16,7 @@ namespace MissionPlanner.Controls
     {
         private int escLabelRowCount = 1;
         private int escLabelRowColumn = 0;
+        private int neededHeight { get { return escLabelRowCount * 20; } }
 
         private Dictionary<uint, AF3StatusLabels> escLabelCollection = new Dictionary<uint, AF3StatusLabels>();
         public AF3EndpointInfo()
@@ -28,7 +30,7 @@ namespace MissionPlanner.Controls
                 lb6.Margin = lb7.Margin = new Padding(0);
         }
 
-        public void UpdateItem(MissionPlanner.Utilities.AF3EndPoint item, errorRecord error)
+        public void UpdateItem(MissionPlanner.Utilities.AF3.EndPoint item, errorRecord error)
         {
             if (item != null)
             {
@@ -88,10 +90,6 @@ namespace MissionPlanner.Controls
 
         public List<System.Windows.Forms.Control> lineControls = new List<System.Windows.Forms.Control>();
         public List<errorRecord> errorList = new List<errorRecord>();
-        private const float lowerVoltageThres = 6800f;
-        private const float midVoltageThres = 7200f;
-        private const float higherCurrentThres = 8000f;
-        private const float midCurrentThres = 7000f;
         private Color badColor = Color.Red;
         private Color attColor = Color.Orange;
         private Color okColor = Color.White;
@@ -150,11 +148,11 @@ namespace MissionPlanner.Controls
 
         private void setVoltageA(float VoltA)
         {
-            if (VoltA < lowerVoltageThres)
+            if (VoltA < Constants.lowerVoltageThres)
             {
                 lineControls[(int)lbIndex.VOLT_A].ForeColor = badColor;
             }
-            else if (VoltA < midVoltageThres)
+            else if (VoltA < Constants.midVoltageThres)
             {
                 lineControls[(int)lbIndex.VOLT_A].ForeColor = attColor;
             }
@@ -167,11 +165,11 @@ namespace MissionPlanner.Controls
         }
         private void setVoltageB(float VoltB)
         {
-            if (VoltB < lowerVoltageThres)
+            if (VoltB < Constants.lowerVoltageThres)
             {
                 lineControls[(int)lbIndex.VOLT_B].ForeColor = badColor;
             }
-            else if (VoltB < midVoltageThres)
+            else if (VoltB < Constants.midVoltageThres)
             {
                 lineControls[(int)lbIndex.VOLT_B].ForeColor = attColor;
             }
@@ -186,11 +184,11 @@ namespace MissionPlanner.Controls
 
         private void setCurrentA(float CurrA)
         {
-            if (CurrA > higherCurrentThres)
+            if (CurrA > Constants.higherCurrentThres)
             {
                 lineControls[(int)lbIndex.CURR_A].ForeColor = badColor;
             }
-            else if (CurrA > midCurrentThres)
+            else if (CurrA > Constants.midCurrentThres)
             {
                 lineControls[(int)lbIndex.CURR_A].ForeColor = attColor;
             }
@@ -204,11 +202,11 @@ namespace MissionPlanner.Controls
 
         private void setCurrentB(float CurrB)
         {
-            if (CurrB > higherCurrentThres)
+            if (CurrB > Constants.higherCurrentThres)
             {
                 lineControls[(int)lbIndex.CURR_B].ForeColor = badColor;
             }
-            else if (CurrB > midCurrentThres)
+            else if (CurrB > Constants.midCurrentThres)
             {
                 lineControls[(int)lbIndex.CURR_B].ForeColor = attColor;
             }
@@ -230,7 +228,7 @@ namespace MissionPlanner.Controls
             lineControls[(int)lbIndex.RPM].Text = String.Format("{0:D}", Rpm);
         }
 
-        public void update(AF3EndPoint endPoint, errorRecord error)
+        public void update(EndPoint endPoint, errorRecord error)
         {
             setRpm(endPoint.rpm);
             setVoltageA(endPoint.voltageA);
