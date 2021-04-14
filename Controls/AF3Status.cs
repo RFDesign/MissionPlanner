@@ -1,5 +1,6 @@
 ﻿using MissionPlanner.ArduPilot;
 using MissionPlanner.Utilities;
+using MissionPlanner.Utilities.AF3;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -23,6 +24,7 @@ namespace MissionPlanner.Controls
             "CIRCLE","","LAND","","DRIFT","","SPORT","FLIP","AUTO TUNE","POS HOLD","BRAKE","THROW","AVOID ADSB","GUIDED NO GPS","SMART RTL","FLOW HOLD",
             "FOLLOW","ZIGZAG","SYSID","HELI AUTOROT"};
         private string[] ARMED_NAMES = new string[] { "ARM UNKNOWN", "ARMED", "DISARMED" };
+        private ListView lsErrorList;
 
         protected override CreateParams CreateParams
         {
@@ -42,7 +44,8 @@ namespace MissionPlanner.Controls
 
             timer1.Start();
 
-            label2.BackColor = label3.BackColor = label4.BackColor = Color.FromArgb(0x55, 0x55, 0x55);
+            label1.BackColor = label2.BackColor = label3.BackColor = 
+                label4.BackColor = Color.FromArgb(0x55, 0x55, 0x55);
 
             lbRFCTelem.Add(lbRFC1TELEM);
             lbRFCTelem.Add(lbRFC2TELEM);
@@ -208,13 +211,13 @@ namespace MissionPlanner.Controls
 
             for (int i = 0; i < epCount; i++)
             {
-                AF3EndPoint item = MainV2.comPort.MAV.cs.af3.getEndpoint(i);
+                EndPoint item = MainV2.comPort.MAV.cs.af3.getEndpoint(i);
                 uint epEscIndex = item.esc_index;
 
                 string origin = String.Format("EP{0}", item.esc_index);
                 List<errorRecord> errLs = MainV2.comPort.MAV.cs.af3.getErrors();
                 List<errorRecord> errEp = errLs.FindAll(error => error.origin == origin &&
-                    error.resolved == DateTime.MinValue);
+                    !error.resolved);
 
                 errorRecord worseError = null;
 
@@ -240,9 +243,39 @@ namespace MissionPlanner.Controls
 
             refreshCyclesCount++;
 
+            // Populate ECAM list
+
+            List<ecamErrorRecord> ecamErrList = MainV2.comPort.MAV.cs.af3.getEcamErrors();
+
+            if (ecamErrList != null && ecamList != null)
+            {
+                ecamList.Items.Clear();
+
+                foreach (var item in ecamErrList)
+                {
+                    var lsItem = ecamList.Items.Add(item.message);
+                    Color clr = Color.Green;
+                    
+                    switch (item.severity)
+                    {
+                        case ecamErrorRecord.severityType.ALERT:
+                            clr = Color.Orange;
+                            break;
+                        case ecamErrorRecord.severityType.CRITICAL:
+                            clr = Color.Red;
+                            break;
+                    }
+
+                    lsItem.ForeColor = clr;
+                }
+
+            }
+
+            // Populate detailed failure log
+
             List<errorRecord> errList = MainV2.comPort.MAV.cs.af3.getErrors();
 
-            if (errList != null)
+            if (errList != null && lsErrorList != null)
             {
                 // error inacessible member
                 foreach (errorRecord error in errList)
@@ -257,16 +290,16 @@ namespace MissionPlanner.Controls
                             found = true;
                             item.UseItemStyleForSubItems = false;
 
-                            if (error.resolved == DateTime.MinValue)
+                            if (!error.resolved)
                             {
                                 double elapsedMillis = DateTime.Now.Subtract(error.timestamp).TotalMilliseconds;
-                                item.SubItems[4].Text = MainV2.comPort.MAV.cs.af3.MillisToTime(elapsedMillis);
+                                item.SubItems[4].Text = Util.MillisToHumanTime(elapsedMillis);
                                 item.SubItems[4].ForeColor = Color.Red;
                             }
                             else
                             {
-                                double elapsedMillis = error.resolved.Subtract(error.timestamp).TotalMilliseconds;
-                                item.SubItems[4].Text = MainV2.comPort.MAV.cs.af3.MillisToTime(elapsedMillis);
+                                double elapsedMillis = error.resolveTimestamp.Subtract(error.timestamp).TotalMilliseconds;
+                                item.SubItems[4].Text = Util.MillisToHumanTime(elapsedMillis);
                                 item.SubItems[4].ForeColor = Color.White;
                             }
 
@@ -298,5 +331,9 @@ namespace MissionPlanner.Controls
             //Utilities.ThemeManager.ApplyThemeTo(this);
         }
 
+        private void AF3Status_Load(object sender, EventArgs e)
+        {
+            lsErrorList = listView1;
+        }
     }
 }

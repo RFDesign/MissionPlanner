@@ -2,6 +2,7 @@
 using MissionPlanner.ArduPilot;
 using MissionPlanner.Attributes;
 using MissionPlanner.Utilities;
+using MissionPlanner.Utilities.AF3;
 using Newtonsoft.Json;
 using System;
 using System.Collections;
@@ -30,7 +31,7 @@ namespace MissionPlanner
         private PointLatLngAlt _homelocation = new PointLatLngAlt();
         private static PointLatLngAlt _plannedhomelocation = new PointLatLngAlt();
         private static PointLatLngAlt _trackerloc = new PointLatLngAlt();
-        private AF3Status _af3Status = new AF3Status();
+        private MissionPlanner.Utilities.AF3.Status _af3Status = new MissionPlanner.Utilities.AF3.Status();
 
         public static int rateattitudebackup;
         public static int ratepositionbackup;
@@ -1704,7 +1705,7 @@ namespace MissionPlanner
 
         [GroupText("Flow")] [DisplayText("flow quality")] public byte opt_qua { get; set; }
         [GroupText("AF3")] public float af3score { get; set; }
-        [GroupText("AF3")] public AF3Status af3 {
+        [GroupText("AF3")] public MissionPlanner.Utilities.AF3.Status af3 {
             get => _af3Status;
             set
             {
@@ -2185,7 +2186,7 @@ namespace MissionPlanner
                             af3.activeRFC = af3statusm.active_rfc;
                             af3.number_rfcs = (af3statusm.number_rfcs > 3) ?
                                 3 : af3statusm.number_rfcs;
-                            af3score = af3.calculateAf3Score();
+                            af3score = af3.calculateScore();
                         }
                         break;
                     case (uint)MAVLink.MAVLINK_MSG_ID.AF3_RFC_STATUS:
@@ -2203,7 +2204,7 @@ namespace MissionPlanner
                                 af3.canElapsedRFC[busid] = af3rfcstatusm.can_elapsed;
                             }
 
-                            af3score = af3.calculateAf3Score();
+                            af3score = af3.calculateScore();
 
                         }
                         break;
@@ -2216,7 +2217,7 @@ namespace MissionPlanner
                                 if (af3epstatusm.esc_index == 1)
                                     Console.WriteLine("Break here");
 
-                                AF3EndPoint endpoint =
+                                EndPoint endpoint =
                                     af3.findEndpoint(af3epstatusm.esc_index);
 
                                 if (endpoint != null)
@@ -2241,7 +2242,7 @@ namespace MissionPlanner
                                         af3epstatusm.bus1_elapsed_sec,
                                         af3epstatusm.bus2_elapsed_sec};
 
-                                    endpoint = new AF3EndPoint(af3epstatusm.esc_index,
+                                    endpoint = new EndPoint(af3epstatusm.esc_index,
                                         af3epstatusm.bus_voltage_a,
                                         af3epstatusm.bus_voltage_b,
                                         af3epstatusm.bus_current_a,
@@ -2257,7 +2258,7 @@ namespace MissionPlanner
                                 af3.sortEndpoints();
                             }
 
-                            af3score = af3.calculateAf3Score();
+                            af3score = af3.calculateScore();
                         }
                         break;
                     case (uint)MAVLink.MAVLINK_MSG_ID.EKF_STATUS_REPORT:

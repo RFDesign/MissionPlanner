@@ -136,7 +136,7 @@
     <value>NoControl</value>
   </data>
   <data name="label4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>420, 15</value>
+    <value>420, 255</value>
   </data>
   <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
     <value>195, 30</value>
@@ -160,7 +160,7 @@
     <value>tableLayoutPanel1</value>
   </data>
   <data name="&gt;&gt;label4.ZOrder" xml:space="preserve">
-    <value>23</value>
+    <value>25</value>
   </data>
   <data name="label3.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -175,7 +175,7 @@
     <value>NoControl</value>
   </data>
   <data name="label3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>219, 15</value>
+    <value>219, 255</value>
   </data>
   <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
     <value>195, 30</value>
@@ -199,6 +199,831 @@
     <value>tableLayoutPanel1</value>
   </data>
   <data name="&gt;&gt;label3.ZOrder" xml:space="preserve">
+    <value>24</value>
+  </data>
+  <data name="lbRFC3TELEM.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lbRFC3TELEM.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="lbRFC3TELEM.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 7pt</value>
+  </data>
+  <data name="lbRFC3TELEM.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lbRFC3TELEM.Location" type="System.Drawing.Point, System.Drawing">
+    <value>420, 285</value>
+  </data>
+  <data name="lbRFC3TELEM.Size" type="System.Drawing.Size, System.Drawing">
+    <value>195, 20</value>
+  </data>
+  <data name="lbRFC3TELEM.TabIndex" type="System.Int32, mscorlib">
+    <value>26</value>
+  </data>
+  <data name="lbRFC3TELEM.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="&gt;&gt;lbRFC3TELEM.Name" xml:space="preserve">
+    <value>lbRFC3TELEM</value>
+  </data>
+  <data name="&gt;&gt;lbRFC3TELEM.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lbRFC3TELEM.Parent" xml:space="preserve">
+    <value>tableLayoutPanel1</value>
+  </data>
+  <data name="&gt;&gt;lbRFC3TELEM.ZOrder" xml:space="preserve">
+    <value>21</value>
+  </data>
+  <data name="lbRFC2TELEM.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lbRFC2TELEM.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="lbRFC2TELEM.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 7pt</value>
+  </data>
+  <data name="lbRFC2TELEM.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lbRFC2TELEM.Location" type="System.Drawing.Point, System.Drawing">
+    <value>219, 285</value>
+  </data>
+  <data name="lbRFC2TELEM.Size" type="System.Drawing.Size, System.Drawing">
+    <value>195, 20</value>
+  </data>
+  <data name="lbRFC2TELEM.TabIndex" type="System.Int32, mscorlib">
+    <value>27</value>
+  </data>
+  <data name="lbRFC2TELEM.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="&gt;&gt;lbRFC2TELEM.Name" xml:space="preserve">
+    <value>lbRFC2TELEM</value>
+  </data>
+  <data name="&gt;&gt;lbRFC2TELEM.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lbRFC2TELEM.Parent" xml:space="preserve">
+    <value>tableLayoutPanel1</value>
+  </data>
+  <data name="&gt;&gt;lbRFC2TELEM.ZOrder" xml:space="preserve">
+    <value>20</value>
+  </data>
+  <data name="lbRFC3Active.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lbRFC3Active.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="lbRFC3Active.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 7pt</value>
+  </data>
+  <data name="lbRFC3Active.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lbRFC3Active.Location" type="System.Drawing.Point, System.Drawing">
+    <value>420, 405</value>
+  </data>
+  <data name="lbRFC3Active.Size" type="System.Drawing.Size, System.Drawing">
+    <value>195, 20</value>
+  </data>
+  <data name="lbRFC3Active.TabIndex" type="System.Int32, mscorlib">
+    <value>29</value>
+  </data>
+  <data name="lbRFC3Active.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="&gt;&gt;lbRFC3Active.Name" xml:space="preserve">
+    <value>lbRFC3Active</value>
+  </data>
+  <data name="&gt;&gt;lbRFC3Active.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lbRFC3Active.Parent" xml:space="preserve">
+    <value>tableLayoutPanel1</value>
+  </data>
+  <data name="&gt;&gt;lbRFC3Active.ZOrder" xml:space="preserve">
+    <value>18</value>
+  </data>
+  <data name="lbRFC2Active.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lbRFC2Active.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="lbRFC2Active.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 7pt</value>
+  </data>
+  <data name="lbRFC2Active.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lbRFC2Active.Location" type="System.Drawing.Point, System.Drawing">
+    <value>219, 405</value>
+  </data>
+  <data name="lbRFC2Active.Size" type="System.Drawing.Size, System.Drawing">
+    <value>195, 20</value>
+  </data>
+  <data name="lbRFC2Active.TabIndex" type="System.Int32, mscorlib">
+    <value>30</value>
+  </data>
+  <data name="lbRFC2Active.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="&gt;&gt;lbRFC2Active.Name" xml:space="preserve">
+    <value>lbRFC2Active</value>
+  </data>
+  <data name="&gt;&gt;lbRFC2Active.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lbRFC2Active.Parent" xml:space="preserve">
+    <value>tableLayoutPanel1</value>
+  </data>
+  <data name="&gt;&gt;lbRFC2Active.ZOrder" xml:space="preserve">
+    <value>17</value>
+  </data>
+  <data name="tableLayoutPanel1.ColumnCount" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="listView1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="listView1.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 7pt</value>
+  </data>
+  <data name="listView1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>18, 143</value>
+  </data>
+  <data name="listView1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>597, 74</value>
+  </data>
+  <data name="listView1.TabIndex" type="System.Int32, mscorlib">
+    <value>56</value>
+  </data>
+  <data name="&gt;&gt;listView1.Name" xml:space="preserve">
+    <value>listView1</value>
+  </data>
+  <data name="&gt;&gt;listView1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ListView, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;listView1.Parent" xml:space="preserve">
+    <value>tableLayoutPanel1</value>
+  </data>
+  <data name="&gt;&gt;listView1.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="label1.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="label1.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 7.8pt, style=Bold</value>
+  </data>
+  <data name="label1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>18, 110</value>
+  </data>
+  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>597, 30</value>
+  </data>
+  <data name="label1.TabIndex" type="System.Int32, mscorlib">
+    <value>54</value>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>VFC</value>
+  </data>
+  <data name="label1.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="&gt;&gt;label1.Name" xml:space="preserve">
+    <value>label1</value>
+  </data>
+  <data name="&gt;&gt;label1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label1.Parent" xml:space="preserve">
+    <value>tableLayoutPanel1</value>
+  </data>
+  <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="lbRFC3ppmVis.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lbRFC3ppmVis.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="lbRFC3ppmVis.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 7pt</value>
+  </data>
+  <data name="lbRFC3ppmVis.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lbRFC3ppmVis.Location" type="System.Drawing.Point, System.Drawing">
+    <value>420, 385</value>
+  </data>
+  <data name="lbRFC3ppmVis.Size" type="System.Drawing.Size, System.Drawing">
+    <value>195, 20</value>
+  </data>
+  <data name="lbRFC3ppmVis.TabIndex" type="System.Int32, mscorlib">
+    <value>53</value>
+  </data>
+  <data name="lbRFC3ppmVis.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="&gt;&gt;lbRFC3ppmVis.Name" xml:space="preserve">
+    <value>lbRFC3ppmVis</value>
+  </data>
+  <data name="&gt;&gt;lbRFC3ppmVis.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lbRFC3ppmVis.Parent" xml:space="preserve">
+    <value>tableLayoutPanel1</value>
+  </data>
+  <data name="&gt;&gt;lbRFC3ppmVis.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="lbRFC2ppmVis.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lbRFC2ppmVis.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="lbRFC2ppmVis.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 7pt</value>
+  </data>
+  <data name="lbRFC2ppmVis.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lbRFC2ppmVis.Location" type="System.Drawing.Point, System.Drawing">
+    <value>219, 385</value>
+  </data>
+  <data name="lbRFC2ppmVis.Size" type="System.Drawing.Size, System.Drawing">
+    <value>195, 20</value>
+  </data>
+  <data name="lbRFC2ppmVis.TabIndex" type="System.Int32, mscorlib">
+    <value>52</value>
+  </data>
+  <data name="lbRFC2ppmVis.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="&gt;&gt;lbRFC2ppmVis.Name" xml:space="preserve">
+    <value>lbRFC2ppmVis</value>
+  </data>
+  <data name="&gt;&gt;lbRFC2ppmVis.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lbRFC2ppmVis.Parent" xml:space="preserve">
+    <value>tableLayoutPanel1</value>
+  </data>
+  <data name="&gt;&gt;lbRFC2ppmVis.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="lbRFC1ppmVis.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lbRFC1ppmVis.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="lbRFC1ppmVis.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 7pt</value>
+  </data>
+  <data name="lbRFC1ppmVis.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lbRFC1ppmVis.Location" type="System.Drawing.Point, System.Drawing">
+    <value>18, 385</value>
+  </data>
+  <data name="lbRFC1ppmVis.Size" type="System.Drawing.Size, System.Drawing">
+    <value>195, 20</value>
+  </data>
+  <data name="lbRFC1ppmVis.TabIndex" type="System.Int32, mscorlib">
+    <value>51</value>
+  </data>
+  <data name="lbRFC1ppmVis.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="&gt;&gt;lbRFC1ppmVis.Name" xml:space="preserve">
+    <value>lbRFC1ppmVis</value>
+  </data>
+  <data name="&gt;&gt;lbRFC1ppmVis.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lbRFC1ppmVis.Parent" xml:space="preserve">
+    <value>tableLayoutPanel1</value>
+  </data>
+  <data name="&gt;&gt;lbRFC1ppmVis.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="lbRFC3Score.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lbRFC3Score.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="lbRFC3Score.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 7pt</value>
+  </data>
+  <data name="lbRFC3Score.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lbRFC3Score.Location" type="System.Drawing.Point, System.Drawing">
+    <value>420, 365</value>
+  </data>
+  <data name="lbRFC3Score.Size" type="System.Drawing.Size, System.Drawing">
+    <value>195, 20</value>
+  </data>
+  <data name="lbRFC3Score.TabIndex" type="System.Int32, mscorlib">
+    <value>50</value>
+  </data>
+  <data name="lbRFC3Score.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="&gt;&gt;lbRFC3Score.Name" xml:space="preserve">
+    <value>lbRFC3Score</value>
+  </data>
+  <data name="&gt;&gt;lbRFC3Score.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lbRFC3Score.Parent" xml:space="preserve">
+    <value>tableLayoutPanel1</value>
+  </data>
+  <data name="&gt;&gt;lbRFC3Score.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="lbRFC2Score.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lbRFC2Score.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="lbRFC2Score.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 7pt</value>
+  </data>
+  <data name="lbRFC2Score.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lbRFC2Score.Location" type="System.Drawing.Point, System.Drawing">
+    <value>219, 365</value>
+  </data>
+  <data name="lbRFC2Score.Size" type="System.Drawing.Size, System.Drawing">
+    <value>195, 20</value>
+  </data>
+  <data name="lbRFC2Score.TabIndex" type="System.Int32, mscorlib">
+    <value>49</value>
+  </data>
+  <data name="lbRFC2Score.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="&gt;&gt;lbRFC2Score.Name" xml:space="preserve">
+    <value>lbRFC2Score</value>
+  </data>
+  <data name="&gt;&gt;lbRFC2Score.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lbRFC2Score.Parent" xml:space="preserve">
+    <value>tableLayoutPanel1</value>
+  </data>
+  <data name="&gt;&gt;lbRFC2Score.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="lbRFC1Score.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lbRFC1Score.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="lbRFC1Score.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 7pt</value>
+  </data>
+  <data name="lbRFC1Score.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lbRFC1Score.Location" type="System.Drawing.Point, System.Drawing">
+    <value>18, 365</value>
+  </data>
+  <data name="lbRFC1Score.Size" type="System.Drawing.Size, System.Drawing">
+    <value>195, 20</value>
+  </data>
+  <data name="lbRFC1Score.TabIndex" type="System.Int32, mscorlib">
+    <value>48</value>
+  </data>
+  <data name="lbRFC1Score.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="&gt;&gt;lbRFC1Score.Name" xml:space="preserve">
+    <value>lbRFC1Score</value>
+  </data>
+  <data name="&gt;&gt;lbRFC1Score.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lbRFC1Score.Parent" xml:space="preserve">
+    <value>tableLayoutPanel1</value>
+  </data>
+  <data name="&gt;&gt;lbRFC1Score.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="lbRFC3CanPres.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lbRFC3CanPres.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="lbRFC3CanPres.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 7pt</value>
+  </data>
+  <data name="lbRFC3CanPres.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lbRFC3CanPres.Location" type="System.Drawing.Point, System.Drawing">
+    <value>420, 345</value>
+  </data>
+  <data name="lbRFC3CanPres.Size" type="System.Drawing.Size, System.Drawing">
+    <value>195, 20</value>
+  </data>
+  <data name="lbRFC3CanPres.TabIndex" type="System.Int32, mscorlib">
+    <value>47</value>
+  </data>
+  <data name="lbRFC3CanPres.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="&gt;&gt;lbRFC3CanPres.Name" xml:space="preserve">
+    <value>lbRFC3CanPres</value>
+  </data>
+  <data name="&gt;&gt;lbRFC3CanPres.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lbRFC3CanPres.Parent" xml:space="preserve">
+    <value>tableLayoutPanel1</value>
+  </data>
+  <data name="&gt;&gt;lbRFC3CanPres.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="lbRFC2CanPres.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lbRFC2CanPres.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="lbRFC2CanPres.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 7pt</value>
+  </data>
+  <data name="lbRFC2CanPres.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lbRFC2CanPres.Location" type="System.Drawing.Point, System.Drawing">
+    <value>219, 345</value>
+  </data>
+  <data name="lbRFC2CanPres.Size" type="System.Drawing.Size, System.Drawing">
+    <value>195, 20</value>
+  </data>
+  <data name="lbRFC2CanPres.TabIndex" type="System.Int32, mscorlib">
+    <value>46</value>
+  </data>
+  <data name="lbRFC2CanPres.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="&gt;&gt;lbRFC2CanPres.Name" xml:space="preserve">
+    <value>lbRFC2CanPres</value>
+  </data>
+  <data name="&gt;&gt;lbRFC2CanPres.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lbRFC2CanPres.Parent" xml:space="preserve">
+    <value>tableLayoutPanel1</value>
+  </data>
+  <data name="&gt;&gt;lbRFC2CanPres.ZOrder" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <data name="lbRFC1CanPres.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lbRFC1CanPres.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="lbRFC1CanPres.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 7pt</value>
+  </data>
+  <data name="lbRFC1CanPres.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lbRFC1CanPres.Location" type="System.Drawing.Point, System.Drawing">
+    <value>18, 345</value>
+  </data>
+  <data name="lbRFC1CanPres.Size" type="System.Drawing.Size, System.Drawing">
+    <value>195, 20</value>
+  </data>
+  <data name="lbRFC1CanPres.TabIndex" type="System.Int32, mscorlib">
+    <value>45</value>
+  </data>
+  <data name="lbRFC1CanPres.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="&gt;&gt;lbRFC1CanPres.Name" xml:space="preserve">
+    <value>lbRFC1CanPres</value>
+  </data>
+  <data name="&gt;&gt;lbRFC1CanPres.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lbRFC1CanPres.Parent" xml:space="preserve">
+    <value>tableLayoutPanel1</value>
+  </data>
+  <data name="&gt;&gt;lbRFC1CanPres.ZOrder" xml:space="preserve">
+    <value>10</value>
+  </data>
+  <data name="lbRFC1ArmStatus.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lbRFC1ArmStatus.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="lbRFC1ArmStatus.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 7pt</value>
+  </data>
+  <data name="lbRFC1ArmStatus.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lbRFC1ArmStatus.Location" type="System.Drawing.Point, System.Drawing">
+    <value>18, 325</value>
+  </data>
+  <data name="lbRFC1ArmStatus.Size" type="System.Drawing.Size, System.Drawing">
+    <value>195, 20</value>
+  </data>
+  <data name="lbRFC1ArmStatus.TabIndex" type="System.Int32, mscorlib">
+    <value>44</value>
+  </data>
+  <data name="lbRFC1ArmStatus.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="&gt;&gt;lbRFC1ArmStatus.Name" xml:space="preserve">
+    <value>lbRFC1ArmStatus</value>
+  </data>
+  <data name="&gt;&gt;lbRFC1ArmStatus.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lbRFC1ArmStatus.Parent" xml:space="preserve">
+    <value>tableLayoutPanel1</value>
+  </data>
+  <data name="&gt;&gt;lbRFC1ArmStatus.ZOrder" xml:space="preserve">
+    <value>11</value>
+  </data>
+  <data name="lbRFC3ArmStatus.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lbRFC3ArmStatus.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="lbRFC3ArmStatus.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 7pt</value>
+  </data>
+  <data name="lbRFC3ArmStatus.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lbRFC3ArmStatus.Location" type="System.Drawing.Point, System.Drawing">
+    <value>420, 325</value>
+  </data>
+  <data name="lbRFC3ArmStatus.Size" type="System.Drawing.Size, System.Drawing">
+    <value>195, 20</value>
+  </data>
+  <data name="lbRFC3ArmStatus.TabIndex" type="System.Int32, mscorlib">
+    <value>43</value>
+  </data>
+  <data name="lbRFC3ArmStatus.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="&gt;&gt;lbRFC3ArmStatus.Name" xml:space="preserve">
+    <value>lbRFC3ArmStatus</value>
+  </data>
+  <data name="&gt;&gt;lbRFC3ArmStatus.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lbRFC3ArmStatus.Parent" xml:space="preserve">
+    <value>tableLayoutPanel1</value>
+  </data>
+  <data name="&gt;&gt;lbRFC3ArmStatus.ZOrder" xml:space="preserve">
+    <value>12</value>
+  </data>
+  <data name="lbRFC2ArmStatus.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lbRFC2ArmStatus.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="lbRFC2ArmStatus.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 7pt</value>
+  </data>
+  <data name="lbRFC2ArmStatus.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lbRFC2ArmStatus.Location" type="System.Drawing.Point, System.Drawing">
+    <value>219, 325</value>
+  </data>
+  <data name="lbRFC2ArmStatus.Size" type="System.Drawing.Size, System.Drawing">
+    <value>195, 20</value>
+  </data>
+  <data name="lbRFC2ArmStatus.TabIndex" type="System.Int32, mscorlib">
+    <value>42</value>
+  </data>
+  <data name="lbRFC2ArmStatus.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="&gt;&gt;lbRFC2ArmStatus.Name" xml:space="preserve">
+    <value>lbRFC2ArmStatus</value>
+  </data>
+  <data name="&gt;&gt;lbRFC2ArmStatus.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lbRFC2ArmStatus.Parent" xml:space="preserve">
+    <value>tableLayoutPanel1</value>
+  </data>
+  <data name="&gt;&gt;lbRFC2ArmStatus.ZOrder" xml:space="preserve">
+    <value>13</value>
+  </data>
+  <data name="lbRFC3FlightMode.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lbRFC3FlightMode.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="lbRFC3FlightMode.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 7pt</value>
+  </data>
+  <data name="lbRFC3FlightMode.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lbRFC3FlightMode.Location" type="System.Drawing.Point, System.Drawing">
+    <value>420, 305</value>
+  </data>
+  <data name="lbRFC3FlightMode.Size" type="System.Drawing.Size, System.Drawing">
+    <value>195, 20</value>
+  </data>
+  <data name="lbRFC3FlightMode.TabIndex" type="System.Int32, mscorlib">
+    <value>41</value>
+  </data>
+  <data name="lbRFC3FlightMode.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="&gt;&gt;lbRFC3FlightMode.Name" xml:space="preserve">
+    <value>lbRFC3FlightMode</value>
+  </data>
+  <data name="&gt;&gt;lbRFC3FlightMode.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lbRFC3FlightMode.Parent" xml:space="preserve">
+    <value>tableLayoutPanel1</value>
+  </data>
+  <data name="&gt;&gt;lbRFC3FlightMode.ZOrder" xml:space="preserve">
+    <value>14</value>
+  </data>
+  <data name="lbRFC2FlightMode.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lbRFC2FlightMode.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="lbRFC2FlightMode.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 7pt</value>
+  </data>
+  <data name="lbRFC2FlightMode.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lbRFC2FlightMode.Location" type="System.Drawing.Point, System.Drawing">
+    <value>219, 305</value>
+  </data>
+  <data name="lbRFC2FlightMode.Size" type="System.Drawing.Size, System.Drawing">
+    <value>195, 20</value>
+  </data>
+  <data name="lbRFC2FlightMode.TabIndex" type="System.Int32, mscorlib">
+    <value>40</value>
+  </data>
+  <data name="lbRFC2FlightMode.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="&gt;&gt;lbRFC2FlightMode.Name" xml:space="preserve">
+    <value>lbRFC2FlightMode</value>
+  </data>
+  <data name="&gt;&gt;lbRFC2FlightMode.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lbRFC2FlightMode.Parent" xml:space="preserve">
+    <value>tableLayoutPanel1</value>
+  </data>
+  <data name="&gt;&gt;lbRFC2FlightMode.ZOrder" xml:space="preserve">
+    <value>15</value>
+  </data>
+  <data name="lbRFC1FlightMode.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lbRFC1FlightMode.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="lbRFC1FlightMode.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 7pt</value>
+  </data>
+  <data name="lbRFC1FlightMode.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lbRFC1FlightMode.Location" type="System.Drawing.Point, System.Drawing">
+    <value>18, 305</value>
+  </data>
+  <data name="lbRFC1FlightMode.Size" type="System.Drawing.Size, System.Drawing">
+    <value>195, 20</value>
+  </data>
+  <data name="lbRFC1FlightMode.TabIndex" type="System.Int32, mscorlib">
+    <value>39</value>
+  </data>
+  <data name="lbRFC1FlightMode.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="&gt;&gt;lbRFC1FlightMode.Name" xml:space="preserve">
+    <value>lbRFC1FlightMode</value>
+  </data>
+  <data name="&gt;&gt;lbRFC1FlightMode.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lbRFC1FlightMode.Parent" xml:space="preserve">
+    <value>tableLayoutPanel1</value>
+  </data>
+  <data name="&gt;&gt;lbRFC1FlightMode.ZOrder" xml:space="preserve">
+    <value>16</value>
+  </data>
+  <data name="lbRFC1Active.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lbRFC1Active.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="lbRFC1Active.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 7pt</value>
+  </data>
+  <data name="lbRFC1Active.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lbRFC1Active.Location" type="System.Drawing.Point, System.Drawing">
+    <value>18, 405</value>
+  </data>
+  <data name="lbRFC1Active.Size" type="System.Drawing.Size, System.Drawing">
+    <value>195, 20</value>
+  </data>
+  <data name="lbRFC1Active.TabIndex" type="System.Int32, mscorlib">
+    <value>28</value>
+  </data>
+  <data name="lbRFC1Active.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="&gt;&gt;lbRFC1Active.Name" xml:space="preserve">
+    <value>lbRFC1Active</value>
+  </data>
+  <data name="&gt;&gt;lbRFC1Active.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lbRFC1Active.Parent" xml:space="preserve">
+    <value>tableLayoutPanel1</value>
+  </data>
+  <data name="&gt;&gt;lbRFC1Active.ZOrder" xml:space="preserve">
+    <value>19</value>
+  </data>
+  <data name="lbRFC1TELEM.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lbRFC1TELEM.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="lbRFC1TELEM.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 7pt</value>
+  </data>
+  <data name="lbRFC1TELEM.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lbRFC1TELEM.Location" type="System.Drawing.Point, System.Drawing">
+    <value>18, 285</value>
+  </data>
+  <data name="lbRFC1TELEM.Size" type="System.Drawing.Size, System.Drawing">
+    <value>195, 20</value>
+  </data>
+  <data name="lbRFC1TELEM.TabIndex" type="System.Int32, mscorlib">
+    <value>25</value>
+  </data>
+  <data name="lbRFC1TELEM.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="&gt;&gt;lbRFC1TELEM.Name" xml:space="preserve">
+    <value>lbRFC1TELEM</value>
+  </data>
+  <data name="&gt;&gt;lbRFC1TELEM.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lbRFC1TELEM.Parent" xml:space="preserve">
+    <value>tableLayoutPanel1</value>
+  </data>
+  <data name="&gt;&gt;lbRFC1TELEM.ZOrder" xml:space="preserve">
     <value>22</value>
   </data>
   <data name="label2.AutoSize" type="System.Boolean, mscorlib">
@@ -214,7 +1039,7 @@
     <value>NoControl</value>
   </data>
   <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>18, 15</value>
+    <value>18, 255</value>
   </data>
   <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
     <value>195, 30</value>
@@ -238,445 +1063,64 @@
     <value>tableLayoutPanel1</value>
   </data>
   <data name="&gt;&gt;label2.ZOrder" xml:space="preserve">
-    <value>21</value>
+    <value>23</value>
   </data>
-  <data name="lbRFC1TELEM.AutoSize" type="System.Boolean, mscorlib">
+  <data name="epInfo.AutoScroll" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="lbRFC1TELEM.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="lbRFC1TELEM.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 7pt</value>
-  </data>
-  <data name="lbRFC1TELEM.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="lbRFC1TELEM.Location" type="System.Drawing.Point, System.Drawing">
-    <value>18, 45</value>
-  </data>
-  <data name="lbRFC1TELEM.Size" type="System.Drawing.Size, System.Drawing">
-    <value>195, 20</value>
-  </data>
-  <data name="lbRFC1TELEM.TabIndex" type="System.Int32, mscorlib">
-    <value>25</value>
-  </data>
-  <data name="lbRFC1TELEM.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleCenter</value>
-  </data>
-  <data name="&gt;&gt;lbRFC1TELEM.Name" xml:space="preserve">
-    <value>lbRFC1TELEM</value>
-  </data>
-  <data name="&gt;&gt;lbRFC1TELEM.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lbRFC1TELEM.Parent" xml:space="preserve">
-    <value>tableLayoutPanel1</value>
-  </data>
-  <data name="&gt;&gt;lbRFC1TELEM.ZOrder" xml:space="preserve">
-    <value>20</value>
-  </data>
-  <data name="lbRFC3TELEM.AutoSize" type="System.Boolean, mscorlib">
+  <data name="epInfo.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="lbRFC3TELEM.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+  <data name="epInfo.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
   </data>
-  <data name="lbRFC3TELEM.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 7pt</value>
+  <data name="epInfo.Location" type="System.Drawing.Point, System.Drawing">
+    <value>18, 448</value>
   </data>
-  <data name="lbRFC3TELEM.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
+  <data name="epInfo.Size" type="System.Drawing.Size, System.Drawing">
+    <value>597, 151</value>
   </data>
-  <data name="lbRFC3TELEM.Location" type="System.Drawing.Point, System.Drawing">
-    <value>420, 45</value>
-  </data>
-  <data name="lbRFC3TELEM.Size" type="System.Drawing.Size, System.Drawing">
-    <value>195, 20</value>
-  </data>
-  <data name="lbRFC3TELEM.TabIndex" type="System.Int32, mscorlib">
-    <value>26</value>
-  </data>
-  <data name="lbRFC3TELEM.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleCenter</value>
-  </data>
-  <data name="&gt;&gt;lbRFC3TELEM.Name" xml:space="preserve">
-    <value>lbRFC3TELEM</value>
-  </data>
-  <data name="&gt;&gt;lbRFC3TELEM.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lbRFC3TELEM.Parent" xml:space="preserve">
-    <value>tableLayoutPanel1</value>
-  </data>
-  <data name="&gt;&gt;lbRFC3TELEM.ZOrder" xml:space="preserve">
-    <value>19</value>
-  </data>
-  <data name="lbRFC2TELEM.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="lbRFC2TELEM.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="lbRFC2TELEM.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 7pt</value>
-  </data>
-  <data name="lbRFC2TELEM.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="lbRFC2TELEM.Location" type="System.Drawing.Point, System.Drawing">
-    <value>219, 45</value>
-  </data>
-  <data name="lbRFC2TELEM.Size" type="System.Drawing.Size, System.Drawing">
-    <value>195, 20</value>
-  </data>
-  <data name="lbRFC2TELEM.TabIndex" type="System.Int32, mscorlib">
-    <value>27</value>
-  </data>
-  <data name="lbRFC2TELEM.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleCenter</value>
-  </data>
-  <data name="&gt;&gt;lbRFC2TELEM.Name" xml:space="preserve">
-    <value>lbRFC2TELEM</value>
-  </data>
-  <data name="&gt;&gt;lbRFC2TELEM.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lbRFC2TELEM.Parent" xml:space="preserve">
-    <value>tableLayoutPanel1</value>
-  </data>
-  <data name="&gt;&gt;lbRFC2TELEM.ZOrder" xml:space="preserve">
-    <value>18</value>
-  </data>
-  <data name="lbRFC1Active.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="lbRFC1Active.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="lbRFC1Active.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 7pt</value>
-  </data>
-  <data name="lbRFC1Active.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="lbRFC1Active.Location" type="System.Drawing.Point, System.Drawing">
-    <value>18, 165</value>
-  </data>
-  <data name="lbRFC1Active.Size" type="System.Drawing.Size, System.Drawing">
-    <value>195, 20</value>
-  </data>
-  <data name="lbRFC1Active.TabIndex" type="System.Int32, mscorlib">
-    <value>28</value>
-  </data>
-  <data name="lbRFC1Active.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleCenter</value>
-  </data>
-  <data name="&gt;&gt;lbRFC1Active.Name" xml:space="preserve">
-    <value>lbRFC1Active</value>
-  </data>
-  <data name="&gt;&gt;lbRFC1Active.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lbRFC1Active.Parent" xml:space="preserve">
-    <value>tableLayoutPanel1</value>
-  </data>
-  <data name="&gt;&gt;lbRFC1Active.ZOrder" xml:space="preserve">
-    <value>17</value>
-  </data>
-  <data name="lbRFC3Active.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="lbRFC3Active.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="lbRFC3Active.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 7pt</value>
-  </data>
-  <data name="lbRFC3Active.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="lbRFC3Active.Location" type="System.Drawing.Point, System.Drawing">
-    <value>420, 165</value>
-  </data>
-  <data name="lbRFC3Active.Size" type="System.Drawing.Size, System.Drawing">
-    <value>195, 20</value>
-  </data>
-  <data name="lbRFC3Active.TabIndex" type="System.Int32, mscorlib">
-    <value>29</value>
-  </data>
-  <data name="lbRFC3Active.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleCenter</value>
-  </data>
-  <data name="&gt;&gt;lbRFC3Active.Name" xml:space="preserve">
-    <value>lbRFC3Active</value>
-  </data>
-  <data name="&gt;&gt;lbRFC3Active.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lbRFC3Active.Parent" xml:space="preserve">
-    <value>tableLayoutPanel1</value>
-  </data>
-  <data name="&gt;&gt;lbRFC3Active.ZOrder" xml:space="preserve">
-    <value>16</value>
-  </data>
-  <data name="lbRFC2Active.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="lbRFC2Active.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="lbRFC2Active.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 7pt</value>
-  </data>
-  <data name="lbRFC2Active.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="lbRFC2Active.Location" type="System.Drawing.Point, System.Drawing">
-    <value>219, 165</value>
-  </data>
-  <data name="lbRFC2Active.Size" type="System.Drawing.Size, System.Drawing">
-    <value>195, 20</value>
-  </data>
-  <data name="lbRFC2Active.TabIndex" type="System.Int32, mscorlib">
-    <value>30</value>
-  </data>
-  <data name="lbRFC2Active.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleCenter</value>
-  </data>
-  <data name="&gt;&gt;lbRFC2Active.Name" xml:space="preserve">
-    <value>lbRFC2Active</value>
-  </data>
-  <data name="&gt;&gt;lbRFC2Active.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lbRFC2Active.Parent" xml:space="preserve">
-    <value>tableLayoutPanel1</value>
-  </data>
-  <data name="&gt;&gt;lbRFC2Active.ZOrder" xml:space="preserve">
-    <value>15</value>
-  </data>
-  <data name="columnHeader1.Text" xml:space="preserve">
-    <value>TIME</value>
-  </data>
-  <data name="columnHeader2.Text" xml:space="preserve">
-    <value>ORIGIN</value>
-  </data>
-  <data name="columnHeader2.Width" type="System.Int32, mscorlib">
-    <value>55</value>
-  </data>
-  <data name="columnHeader3.Text" xml:space="preserve">
-    <value>TYPE</value>
-  </data>
-  <data name="columnHeader3.Width" type="System.Int32, mscorlib">
-    <value>100</value>
-  </data>
-  <data name="columnHeader4.Text" xml:space="preserve">
-    <value>MESSAGE</value>
-  </data>
-  <data name="columnHeader4.Width" type="System.Int32, mscorlib">
-    <value>300</value>
-  </data>
-  <data name="columnHeader5.Text" xml:space="preserve">
-    <value>ELAPSED</value>
-  </data>
-  <data name="columnHeader5.Width" type="System.Int32, mscorlib">
-    <value>70</value>
-  </data>
-  <data name="tableLayoutPanel1.ColumnCount" type="System.Int32, mscorlib">
-    <value>5</value>
-  </data>
-  <data name="&gt;&gt;lbRFC3ppmVis.Name" xml:space="preserve">
-    <value>lbRFC3ppmVis</value>
-  </data>
-  <data name="&gt;&gt;lbRFC3ppmVis.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lbRFC3ppmVis.Parent" xml:space="preserve">
-    <value>tableLayoutPanel1</value>
-  </data>
-  <data name="&gt;&gt;lbRFC3ppmVis.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;lbRFC2ppmVis.Name" xml:space="preserve">
-    <value>lbRFC2ppmVis</value>
-  </data>
-  <data name="&gt;&gt;lbRFC2ppmVis.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lbRFC2ppmVis.Parent" xml:space="preserve">
-    <value>tableLayoutPanel1</value>
-  </data>
-  <data name="&gt;&gt;lbRFC2ppmVis.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;lbRFC1ppmVis.Name" xml:space="preserve">
-    <value>lbRFC1ppmVis</value>
-  </data>
-  <data name="&gt;&gt;lbRFC1ppmVis.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lbRFC1ppmVis.Parent" xml:space="preserve">
-    <value>tableLayoutPanel1</value>
-  </data>
-  <data name="&gt;&gt;lbRFC1ppmVis.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;lbRFC3Score.Name" xml:space="preserve">
-    <value>lbRFC3Score</value>
-  </data>
-  <data name="&gt;&gt;lbRFC3Score.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lbRFC3Score.Parent" xml:space="preserve">
-    <value>tableLayoutPanel1</value>
-  </data>
-  <data name="&gt;&gt;lbRFC3Score.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="&gt;&gt;lbRFC2Score.Name" xml:space="preserve">
-    <value>lbRFC2Score</value>
-  </data>
-  <data name="&gt;&gt;lbRFC2Score.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lbRFC2Score.Parent" xml:space="preserve">
-    <value>tableLayoutPanel1</value>
-  </data>
-  <data name="&gt;&gt;lbRFC2Score.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="&gt;&gt;lbRFC1Score.Name" xml:space="preserve">
-    <value>lbRFC1Score</value>
-  </data>
-  <data name="&gt;&gt;lbRFC1Score.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lbRFC1Score.Parent" xml:space="preserve">
-    <value>tableLayoutPanel1</value>
-  </data>
-  <data name="&gt;&gt;lbRFC1Score.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="&gt;&gt;lbRFC3CanPres.Name" xml:space="preserve">
-    <value>lbRFC3CanPres</value>
-  </data>
-  <data name="&gt;&gt;lbRFC3CanPres.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lbRFC3CanPres.Parent" xml:space="preserve">
-    <value>tableLayoutPanel1</value>
-  </data>
-  <data name="&gt;&gt;lbRFC3CanPres.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <data name="&gt;&gt;lbRFC2CanPres.Name" xml:space="preserve">
-    <value>lbRFC2CanPres</value>
-  </data>
-  <data name="&gt;&gt;lbRFC2CanPres.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lbRFC2CanPres.Parent" xml:space="preserve">
-    <value>tableLayoutPanel1</value>
-  </data>
-  <data name="&gt;&gt;lbRFC2CanPres.ZOrder" xml:space="preserve">
-    <value>7</value>
-  </data>
-  <data name="&gt;&gt;lbRFC1CanPres.Name" xml:space="preserve">
-    <value>lbRFC1CanPres</value>
-  </data>
-  <data name="&gt;&gt;lbRFC1CanPres.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lbRFC1CanPres.Parent" xml:space="preserve">
-    <value>tableLayoutPanel1</value>
-  </data>
-  <data name="&gt;&gt;lbRFC1CanPres.ZOrder" xml:space="preserve">
-    <value>8</value>
-  </data>
-  <data name="&gt;&gt;lbRFC1ArmStatus.Name" xml:space="preserve">
-    <value>lbRFC1ArmStatus</value>
-  </data>
-  <data name="&gt;&gt;lbRFC1ArmStatus.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lbRFC1ArmStatus.Parent" xml:space="preserve">
-    <value>tableLayoutPanel1</value>
-  </data>
-  <data name="&gt;&gt;lbRFC1ArmStatus.ZOrder" xml:space="preserve">
-    <value>9</value>
-  </data>
-  <data name="&gt;&gt;lbRFC3ArmStatus.Name" xml:space="preserve">
-    <value>lbRFC3ArmStatus</value>
-  </data>
-  <data name="&gt;&gt;lbRFC3ArmStatus.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lbRFC3ArmStatus.Parent" xml:space="preserve">
-    <value>tableLayoutPanel1</value>
-  </data>
-  <data name="&gt;&gt;lbRFC3ArmStatus.ZOrder" xml:space="preserve">
-    <value>10</value>
-  </data>
-  <data name="&gt;&gt;lbRFC2ArmStatus.Name" xml:space="preserve">
-    <value>lbRFC2ArmStatus</value>
-  </data>
-  <data name="&gt;&gt;lbRFC2ArmStatus.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lbRFC2ArmStatus.Parent" xml:space="preserve">
-    <value>tableLayoutPanel1</value>
-  </data>
-  <data name="&gt;&gt;lbRFC2ArmStatus.ZOrder" xml:space="preserve">
-    <value>11</value>
-  </data>
-  <data name="&gt;&gt;lbRFC3FlightMode.Name" xml:space="preserve">
-    <value>lbRFC3FlightMode</value>
-  </data>
-  <data name="&gt;&gt;lbRFC3FlightMode.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lbRFC3FlightMode.Parent" xml:space="preserve">
-    <value>tableLayoutPanel1</value>
-  </data>
-  <data name="&gt;&gt;lbRFC3FlightMode.ZOrder" xml:space="preserve">
-    <value>12</value>
-  </data>
-  <data name="&gt;&gt;lbRFC2FlightMode.Name" xml:space="preserve">
-    <value>lbRFC2FlightMode</value>
-  </data>
-  <data name="&gt;&gt;lbRFC2FlightMode.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lbRFC2FlightMode.Parent" xml:space="preserve">
-    <value>tableLayoutPanel1</value>
-  </data>
-  <data name="&gt;&gt;lbRFC2FlightMode.ZOrder" xml:space="preserve">
-    <value>13</value>
-  </data>
-  <data name="&gt;&gt;lbRFC1FlightMode.Name" xml:space="preserve">
-    <value>lbRFC1FlightMode</value>
-  </data>
-  <data name="&gt;&gt;lbRFC1FlightMode.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lbRFC1FlightMode.Parent" xml:space="preserve">
-    <value>tableLayoutPanel1</value>
-  </data>
-  <data name="&gt;&gt;lbRFC1FlightMode.ZOrder" xml:space="preserve">
-    <value>14</value>
+  <data name="epInfo.TabIndex" type="System.Int32, mscorlib">
+    <value>37</value>
   </data>
   <data name="&gt;&gt;epInfo.Name" xml:space="preserve">
     <value>epInfo</value>
   </data>
   <data name="&gt;&gt;epInfo.Type" xml:space="preserve">
-    <value>MissionPlanner.Controls.AF3EndpointInfo, MissionPlanner, Version=1.3.7769.24763, Culture=neutral, PublicKeyToken=null</value>
+    <value>MissionPlanner.Controls.AF3EndpointInfo, MissionPlanner, Version=1.3.7774.31261, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;epInfo.Parent" xml:space="preserve">
     <value>tableLayoutPanel1</value>
   </data>
   <data name="&gt;&gt;epInfo.ZOrder" xml:space="preserve">
-    <value>24</value>
+    <value>26</value>
+  </data>
+  <data name="ecamList.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="ecamList.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 10.2pt</value>
+  </data>
+  <data name="ecamList.Location" type="System.Drawing.Point, System.Drawing">
+    <value>18, 18</value>
+  </data>
+  <data name="ecamList.Size" type="System.Drawing.Size, System.Drawing">
+    <value>597, 74</value>
+  </data>
+  <data name="ecamList.TabIndex" type="System.Int32, mscorlib">
+    <value>55</value>
+  </data>
+  <data name="&gt;&gt;ecamList.Name" xml:space="preserve">
+    <value>ecamList</value>
+  </data>
+  <data name="&gt;&gt;ecamList.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ListView, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;ecamList.Parent" xml:space="preserve">
+    <value>tableLayoutPanel1</value>
+  </data>
+  <data name="&gt;&gt;ecamList.ZOrder" xml:space="preserve">
+    <value>27</value>
   </data>
   <data name="tableLayoutPanel1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -685,10 +1129,10 @@
     <value>0, 0</value>
   </data>
   <data name="tableLayoutPanel1.RowCount" type="System.Int32, mscorlib">
-    <value>14</value>
+    <value>18</value>
   </data>
   <data name="tableLayoutPanel1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>635, 662</value>
+    <value>635, 617</value>
   </data>
   <data name="tableLayoutPanel1.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
@@ -706,607 +1150,31 @@
     <value>0</value>
   </data>
   <data name="tableLayoutPanel1.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
-    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="lbRFC3ppmVis" Row="7" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC2ppmVis" Row="7" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC1ppmVis" Row="7" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC3Score" Row="6" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC2Score" Row="6" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC1Score" Row="6" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC3CanPres" Row="5" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC2CanPres" Row="5" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC1CanPres" Row="5" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC1ArmStatus" Row="4" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC3ArmStatus" Row="4" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC2ArmStatus" Row="4" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC3FlightMode" Row="3" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC2FlightMode" Row="3" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC1FlightMode" Row="3" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC2Active" Row="8" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC3Active" Row="8" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC1Active" Row="8" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC2TELEM" Row="2" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC3TELEM" Row="2" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC1TELEM" Row="2" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="label2" Row="1" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="label3" Row="1" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="label4" Row="1" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="epInfo" Row="10" RowSpan="1" Column="1" ColumnSpan="3" /&gt;&lt;Control Name="lsErrorList" Row="12" RowSpan="1" Column="1" ColumnSpan="3" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Absolute,15,Percent,33.33333,Percent,33.33333,Percent,33.33333,Absolute,15" /&gt;&lt;Rows Styles="Absolute,15,Absolute,30,Absolute,20,Absolute,20,Absolute,20,Absolute,20,Absolute,20,Absolute,20,Absolute,20,Absolute,20,Percent,100,Absolute,20,Absolute,200,Absolute,15" /&gt;&lt;/TableLayoutSettings&gt;</value>
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="listView1" Row="4" RowSpan="1" Column="1" ColumnSpan="3" /&gt;&lt;Control Name="label1" Row="3" RowSpan="1" Column="1" ColumnSpan="3" /&gt;&lt;Control Name="lbRFC3ppmVis" Row="13" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC2ppmVis" Row="13" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC1ppmVis" Row="13" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC3Score" Row="12" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC2Score" Row="12" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC1Score" Row="12" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC3CanPres" Row="11" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC2CanPres" Row="11" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC1CanPres" Row="11" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC1ArmStatus" Row="10" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC3ArmStatus" Row="10" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC2ArmStatus" Row="10" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC3FlightMode" Row="9" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC2FlightMode" Row="9" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC1FlightMode" Row="9" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC2Active" Row="14" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC3Active" Row="14" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC1Active" Row="14" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC2TELEM" Row="8" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC3TELEM" Row="8" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC1TELEM" Row="8" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="label2" Row="7" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="label3" Row="7" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="label4" Row="7" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="epInfo" Row="16" RowSpan="1" Column="1" ColumnSpan="3" /&gt;&lt;Control Name="ecamList" Row="1" RowSpan="1" Column="1" ColumnSpan="3" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Absolute,15,Percent,33.33333,Percent,33.33333,Percent,33.33333,Absolute,15" /&gt;&lt;Rows Styles="Absolute,15,Absolute,80,Absolute,15,Absolute,30,Absolute,80,Absolute,20,Absolute,15,Absolute,30,Absolute,20,Absolute,20,Absolute,20,Absolute,20,Absolute,20,Absolute,20,Absolute,20,Absolute,20,Percent,100,Absolute,15" /&gt;&lt;/TableLayoutSettings&gt;</value>
   </data>
-  <data name="lsErrorList.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
+  <data name="columnHeader1.Width" type="System.Int32, mscorlib">
+    <value>80</value>
   </data>
-  <data name="lsErrorList.Location" type="System.Drawing.Point, System.Drawing">
-    <value>18, 450</value>
+  <data name="columnHeader2.Width" type="System.Int32, mscorlib">
+    <value>79</value>
   </data>
-  <data name="lsErrorList.Size" type="System.Drawing.Size, System.Drawing">
-    <value>597, 194</value>
+  <data name="columnHeader3.Width" type="System.Int32, mscorlib">
+    <value>78</value>
   </data>
-  <data name="lsErrorList.TabIndex" type="System.Int32, mscorlib">
-    <value>38</value>
+  <data name="columnHeader4.Width" type="System.Int32, mscorlib">
+    <value>286</value>
   </data>
-  <data name="&gt;&gt;lsErrorList.Name" xml:space="preserve">
-    <value>lsErrorList</value>
-  </data>
-  <data name="&gt;&gt;lsErrorList.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ListView, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lsErrorList.Parent" xml:space="preserve">
-    <value>tableLayoutPanel1</value>
-  </data>
-  <data name="&gt;&gt;lsErrorList.ZOrder" xml:space="preserve">
-    <value>25</value>
-  </data>
-  <data name="lbRFC1ArmStatus.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="lbRFC1ArmStatus.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="lbRFC1ArmStatus.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 7pt</value>
-  </data>
-  <data name="lbRFC1ArmStatus.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="lbRFC1ArmStatus.Location" type="System.Drawing.Point, System.Drawing">
-    <value>18, 85</value>
-  </data>
-  <data name="lbRFC1ArmStatus.Size" type="System.Drawing.Size, System.Drawing">
-    <value>195, 20</value>
-  </data>
-  <data name="lbRFC1ArmStatus.TabIndex" type="System.Int32, mscorlib">
-    <value>44</value>
-  </data>
-  <data name="lbRFC1ArmStatus.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleCenter</value>
-  </data>
-  <data name="&gt;&gt;lbRFC1ArmStatus.Name" xml:space="preserve">
-    <value>lbRFC1ArmStatus</value>
-  </data>
-  <data name="&gt;&gt;lbRFC1ArmStatus.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lbRFC1ArmStatus.Parent" xml:space="preserve">
-    <value>tableLayoutPanel1</value>
-  </data>
-  <data name="&gt;&gt;lbRFC1ArmStatus.ZOrder" xml:space="preserve">
-    <value>9</value>
-  </data>
-  <data name="lbRFC3ArmStatus.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="lbRFC3ArmStatus.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="lbRFC3ArmStatus.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 7pt</value>
-  </data>
-  <data name="lbRFC3ArmStatus.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="lbRFC3ArmStatus.Location" type="System.Drawing.Point, System.Drawing">
-    <value>420, 85</value>
-  </data>
-  <data name="lbRFC3ArmStatus.Size" type="System.Drawing.Size, System.Drawing">
-    <value>195, 20</value>
-  </data>
-  <data name="lbRFC3ArmStatus.TabIndex" type="System.Int32, mscorlib">
-    <value>43</value>
-  </data>
-  <data name="lbRFC3ArmStatus.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleCenter</value>
-  </data>
-  <data name="&gt;&gt;lbRFC3ArmStatus.Name" xml:space="preserve">
-    <value>lbRFC3ArmStatus</value>
-  </data>
-  <data name="&gt;&gt;lbRFC3ArmStatus.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lbRFC3ArmStatus.Parent" xml:space="preserve">
-    <value>tableLayoutPanel1</value>
-  </data>
-  <data name="&gt;&gt;lbRFC3ArmStatus.ZOrder" xml:space="preserve">
-    <value>10</value>
-  </data>
-  <data name="lbRFC2ArmStatus.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="lbRFC2ArmStatus.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="lbRFC2ArmStatus.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 7pt</value>
-  </data>
-  <data name="lbRFC2ArmStatus.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="lbRFC2ArmStatus.Location" type="System.Drawing.Point, System.Drawing">
-    <value>219, 85</value>
-  </data>
-  <data name="lbRFC2ArmStatus.Size" type="System.Drawing.Size, System.Drawing">
-    <value>195, 20</value>
-  </data>
-  <data name="lbRFC2ArmStatus.TabIndex" type="System.Int32, mscorlib">
-    <value>42</value>
-  </data>
-  <data name="lbRFC2ArmStatus.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleCenter</value>
-  </data>
-  <data name="&gt;&gt;lbRFC2ArmStatus.Name" xml:space="preserve">
-    <value>lbRFC2ArmStatus</value>
-  </data>
-  <data name="&gt;&gt;lbRFC2ArmStatus.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lbRFC2ArmStatus.Parent" xml:space="preserve">
-    <value>tableLayoutPanel1</value>
-  </data>
-  <data name="&gt;&gt;lbRFC2ArmStatus.ZOrder" xml:space="preserve">
-    <value>11</value>
-  </data>
-  <data name="lbRFC3FlightMode.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="lbRFC3FlightMode.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="lbRFC3FlightMode.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 7pt</value>
-  </data>
-  <data name="lbRFC3FlightMode.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="lbRFC3FlightMode.Location" type="System.Drawing.Point, System.Drawing">
-    <value>420, 65</value>
-  </data>
-  <data name="lbRFC3FlightMode.Size" type="System.Drawing.Size, System.Drawing">
-    <value>195, 20</value>
-  </data>
-  <data name="lbRFC3FlightMode.TabIndex" type="System.Int32, mscorlib">
-    <value>41</value>
-  </data>
-  <data name="lbRFC3FlightMode.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleCenter</value>
-  </data>
-  <data name="&gt;&gt;lbRFC3FlightMode.Name" xml:space="preserve">
-    <value>lbRFC3FlightMode</value>
-  </data>
-  <data name="&gt;&gt;lbRFC3FlightMode.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lbRFC3FlightMode.Parent" xml:space="preserve">
-    <value>tableLayoutPanel1</value>
-  </data>
-  <data name="&gt;&gt;lbRFC3FlightMode.ZOrder" xml:space="preserve">
-    <value>12</value>
-  </data>
-  <data name="lbRFC2FlightMode.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="lbRFC2FlightMode.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="lbRFC2FlightMode.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 7pt</value>
-  </data>
-  <data name="lbRFC2FlightMode.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="lbRFC2FlightMode.Location" type="System.Drawing.Point, System.Drawing">
-    <value>219, 65</value>
-  </data>
-  <data name="lbRFC2FlightMode.Size" type="System.Drawing.Size, System.Drawing">
-    <value>195, 20</value>
-  </data>
-  <data name="lbRFC2FlightMode.TabIndex" type="System.Int32, mscorlib">
-    <value>40</value>
-  </data>
-  <data name="lbRFC2FlightMode.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleCenter</value>
-  </data>
-  <data name="&gt;&gt;lbRFC2FlightMode.Name" xml:space="preserve">
-    <value>lbRFC2FlightMode</value>
-  </data>
-  <data name="&gt;&gt;lbRFC2FlightMode.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lbRFC2FlightMode.Parent" xml:space="preserve">
-    <value>tableLayoutPanel1</value>
-  </data>
-  <data name="&gt;&gt;lbRFC2FlightMode.ZOrder" xml:space="preserve">
-    <value>13</value>
-  </data>
-  <data name="lbRFC1FlightMode.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="lbRFC1FlightMode.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="lbRFC1FlightMode.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 7pt</value>
-  </data>
-  <data name="lbRFC1FlightMode.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="lbRFC1FlightMode.Location" type="System.Drawing.Point, System.Drawing">
-    <value>18, 65</value>
-  </data>
-  <data name="lbRFC1FlightMode.Size" type="System.Drawing.Size, System.Drawing">
-    <value>195, 20</value>
-  </data>
-  <data name="lbRFC1FlightMode.TabIndex" type="System.Int32, mscorlib">
-    <value>39</value>
-  </data>
-  <data name="lbRFC1FlightMode.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleCenter</value>
-  </data>
-  <data name="&gt;&gt;lbRFC1FlightMode.Name" xml:space="preserve">
-    <value>lbRFC1FlightMode</value>
-  </data>
-  <data name="&gt;&gt;lbRFC1FlightMode.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lbRFC1FlightMode.Parent" xml:space="preserve">
-    <value>tableLayoutPanel1</value>
-  </data>
-  <data name="&gt;&gt;lbRFC1FlightMode.ZOrder" xml:space="preserve">
-    <value>14</value>
-  </data>
-  <data name="lbRFC1CanPres.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="lbRFC1CanPres.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="lbRFC1CanPres.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 7pt</value>
-  </data>
-  <data name="lbRFC1CanPres.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="lbRFC1CanPres.Location" type="System.Drawing.Point, System.Drawing">
-    <value>18, 105</value>
-  </data>
-  <data name="lbRFC1CanPres.Size" type="System.Drawing.Size, System.Drawing">
-    <value>195, 20</value>
-  </data>
-  <data name="lbRFC1CanPres.TabIndex" type="System.Int32, mscorlib">
-    <value>45</value>
-  </data>
-  <data name="lbRFC1CanPres.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleCenter</value>
-  </data>
-  <data name="&gt;&gt;lbRFC1CanPres.Name" xml:space="preserve">
-    <value>lbRFC1CanPres</value>
-  </data>
-  <data name="&gt;&gt;lbRFC1CanPres.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lbRFC1CanPres.Parent" xml:space="preserve">
-    <value>tableLayoutPanel1</value>
-  </data>
-  <data name="&gt;&gt;lbRFC1CanPres.ZOrder" xml:space="preserve">
-    <value>8</value>
-  </data>
-  <data name="lbRFC2CanPres.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="lbRFC2CanPres.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="lbRFC2CanPres.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 7pt</value>
-  </data>
-  <data name="lbRFC2CanPres.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="lbRFC2CanPres.Location" type="System.Drawing.Point, System.Drawing">
-    <value>219, 105</value>
-  </data>
-  <data name="lbRFC2CanPres.Size" type="System.Drawing.Size, System.Drawing">
-    <value>195, 20</value>
-  </data>
-  <data name="lbRFC2CanPres.TabIndex" type="System.Int32, mscorlib">
-    <value>46</value>
-  </data>
-  <data name="lbRFC2CanPres.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleCenter</value>
-  </data>
-  <data name="&gt;&gt;lbRFC2CanPres.Name" xml:space="preserve">
-    <value>lbRFC2CanPres</value>
-  </data>
-  <data name="&gt;&gt;lbRFC2CanPres.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lbRFC2CanPres.Parent" xml:space="preserve">
-    <value>tableLayoutPanel1</value>
-  </data>
-  <data name="&gt;&gt;lbRFC2CanPres.ZOrder" xml:space="preserve">
-    <value>7</value>
-  </data>
-  <data name="lbRFC3CanPres.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="lbRFC3CanPres.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="lbRFC3CanPres.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 7pt</value>
-  </data>
-  <data name="lbRFC3CanPres.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="lbRFC3CanPres.Location" type="System.Drawing.Point, System.Drawing">
-    <value>420, 105</value>
-  </data>
-  <data name="lbRFC3CanPres.Size" type="System.Drawing.Size, System.Drawing">
-    <value>195, 20</value>
-  </data>
-  <data name="lbRFC3CanPres.TabIndex" type="System.Int32, mscorlib">
-    <value>47</value>
-  </data>
-  <data name="lbRFC3CanPres.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleCenter</value>
-  </data>
-  <data name="&gt;&gt;lbRFC3CanPres.Name" xml:space="preserve">
-    <value>lbRFC3CanPres</value>
-  </data>
-  <data name="&gt;&gt;lbRFC3CanPres.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lbRFC3CanPres.Parent" xml:space="preserve">
-    <value>tableLayoutPanel1</value>
-  </data>
-  <data name="&gt;&gt;lbRFC3CanPres.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <data name="lbRFC1Score.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="lbRFC1Score.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="lbRFC1Score.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 7pt</value>
-  </data>
-  <data name="lbRFC1Score.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="lbRFC1Score.Location" type="System.Drawing.Point, System.Drawing">
-    <value>18, 125</value>
-  </data>
-  <data name="lbRFC1Score.Size" type="System.Drawing.Size, System.Drawing">
-    <value>195, 20</value>
-  </data>
-  <data name="lbRFC1Score.TabIndex" type="System.Int32, mscorlib">
-    <value>48</value>
-  </data>
-  <data name="lbRFC1Score.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleCenter</value>
-  </data>
-  <data name="&gt;&gt;lbRFC1Score.Name" xml:space="preserve">
-    <value>lbRFC1Score</value>
-  </data>
-  <data name="&gt;&gt;lbRFC1Score.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lbRFC1Score.Parent" xml:space="preserve">
-    <value>tableLayoutPanel1</value>
-  </data>
-  <data name="&gt;&gt;lbRFC1Score.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="lbRFC2Score.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="lbRFC2Score.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="lbRFC2Score.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 7pt</value>
-  </data>
-  <data name="lbRFC2Score.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="lbRFC2Score.Location" type="System.Drawing.Point, System.Drawing">
-    <value>219, 125</value>
-  </data>
-  <data name="lbRFC2Score.Size" type="System.Drawing.Size, System.Drawing">
-    <value>195, 20</value>
-  </data>
-  <data name="lbRFC2Score.TabIndex" type="System.Int32, mscorlib">
-    <value>49</value>
-  </data>
-  <data name="lbRFC2Score.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleCenter</value>
-  </data>
-  <data name="&gt;&gt;lbRFC2Score.Name" xml:space="preserve">
-    <value>lbRFC2Score</value>
-  </data>
-  <data name="&gt;&gt;lbRFC2Score.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lbRFC2Score.Parent" xml:space="preserve">
-    <value>tableLayoutPanel1</value>
-  </data>
-  <data name="&gt;&gt;lbRFC2Score.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="lbRFC3Score.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="lbRFC3Score.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="lbRFC3Score.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 7pt</value>
-  </data>
-  <data name="lbRFC3Score.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="lbRFC3Score.Location" type="System.Drawing.Point, System.Drawing">
-    <value>420, 125</value>
-  </data>
-  <data name="lbRFC3Score.Size" type="System.Drawing.Size, System.Drawing">
-    <value>195, 20</value>
-  </data>
-  <data name="lbRFC3Score.TabIndex" type="System.Int32, mscorlib">
-    <value>50</value>
-  </data>
-  <data name="lbRFC3Score.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleCenter</value>
-  </data>
-  <data name="&gt;&gt;lbRFC3Score.Name" xml:space="preserve">
-    <value>lbRFC3Score</value>
-  </data>
-  <data name="&gt;&gt;lbRFC3Score.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lbRFC3Score.Parent" xml:space="preserve">
-    <value>tableLayoutPanel1</value>
-  </data>
-  <data name="&gt;&gt;lbRFC3Score.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="epInfo.AutoScroll" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="epInfo.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="epInfo.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="epInfo.Location" type="System.Drawing.Point, System.Drawing">
-    <value>18, 208</value>
-  </data>
-  <data name="epInfo.Size" type="System.Drawing.Size, System.Drawing">
-    <value>597, 216</value>
-  </data>
-  <data name="epInfo.TabIndex" type="System.Int32, mscorlib">
-    <value>37</value>
-  </data>
-  <data name="&gt;&gt;epInfo.Name" xml:space="preserve">
-    <value>epInfo</value>
-  </data>
-  <data name="&gt;&gt;epInfo.Type" xml:space="preserve">
-    <value>MissionPlanner.Controls.AF3EndpointInfo, MissionPlanner, Version=1.3.7769.24763, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;epInfo.Parent" xml:space="preserve">
-    <value>tableLayoutPanel1</value>
-  </data>
-  <data name="&gt;&gt;epInfo.ZOrder" xml:space="preserve">
-    <value>24</value>
-  </data>
-  <data name="lbRFC1ppmVis.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="lbRFC1ppmVis.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="lbRFC1ppmVis.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 7pt</value>
-  </data>
-  <data name="lbRFC1ppmVis.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="lbRFC1ppmVis.Location" type="System.Drawing.Point, System.Drawing">
-    <value>18, 145</value>
-  </data>
-  <data name="lbRFC1ppmVis.Size" type="System.Drawing.Size, System.Drawing">
-    <value>195, 20</value>
-  </data>
-  <data name="lbRFC1ppmVis.TabIndex" type="System.Int32, mscorlib">
-    <value>51</value>
-  </data>
-  <data name="lbRFC1ppmVis.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleCenter</value>
-  </data>
-  <data name="&gt;&gt;lbRFC1ppmVis.Name" xml:space="preserve">
-    <value>lbRFC1ppmVis</value>
-  </data>
-  <data name="&gt;&gt;lbRFC1ppmVis.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lbRFC1ppmVis.Parent" xml:space="preserve">
-    <value>tableLayoutPanel1</value>
-  </data>
-  <data name="&gt;&gt;lbRFC1ppmVis.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="lbRFC2ppmVis.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="lbRFC2ppmVis.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="lbRFC2ppmVis.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 7pt</value>
-  </data>
-  <data name="lbRFC2ppmVis.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="lbRFC2ppmVis.Location" type="System.Drawing.Point, System.Drawing">
-    <value>219, 145</value>
-  </data>
-  <data name="lbRFC2ppmVis.Size" type="System.Drawing.Size, System.Drawing">
-    <value>195, 20</value>
-  </data>
-  <data name="lbRFC2ppmVis.TabIndex" type="System.Int32, mscorlib">
-    <value>52</value>
-  </data>
-  <data name="lbRFC2ppmVis.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleCenter</value>
-  </data>
-  <data name="&gt;&gt;lbRFC2ppmVis.Name" xml:space="preserve">
-    <value>lbRFC2ppmVis</value>
-  </data>
-  <data name="&gt;&gt;lbRFC2ppmVis.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lbRFC2ppmVis.Parent" xml:space="preserve">
-    <value>tableLayoutPanel1</value>
-  </data>
-  <data name="&gt;&gt;lbRFC2ppmVis.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="lbRFC3ppmVis.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="lbRFC3ppmVis.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="lbRFC3ppmVis.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 7pt</value>
-  </data>
-  <data name="lbRFC3ppmVis.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="lbRFC3ppmVis.Location" type="System.Drawing.Point, System.Drawing">
-    <value>420, 145</value>
-  </data>
-  <data name="lbRFC3ppmVis.Size" type="System.Drawing.Size, System.Drawing">
-    <value>195, 20</value>
-  </data>
-  <data name="lbRFC3ppmVis.TabIndex" type="System.Int32, mscorlib">
-    <value>53</value>
-  </data>
-  <data name="lbRFC3ppmVis.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleCenter</value>
-  </data>
-  <data name="&gt;&gt;lbRFC3ppmVis.Name" xml:space="preserve">
-    <value>lbRFC3ppmVis</value>
-  </data>
-  <data name="&gt;&gt;lbRFC3ppmVis.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lbRFC3ppmVis.Parent" xml:space="preserve">
-    <value>tableLayoutPanel1</value>
-  </data>
-  <data name="&gt;&gt;lbRFC3ppmVis.ZOrder" xml:space="preserve">
-    <value>0</value>
+  <data name="columnHeader5.Width" type="System.Int32, mscorlib">
+    <value>66</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>635, 662</value>
+    <value>635, 617</value>
+  </data>
+  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>AF3 Status</value>

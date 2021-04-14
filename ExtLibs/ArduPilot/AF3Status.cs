@@ -2,33 +2,27 @@
 using System.Collections.Generic;
 using System.Security.Cryptography;
 using System.Text;
+using System.Threading;
 using System.Windows;
 
-namespace MissionPlanner.Utilities
+namespace MissionPlanner.Utilities.AF3
 {
-    public class AF3Status
+    public static class Constants
     {
-        public float score { get; set; }
-        public int number_rfcs { get; set; }
-        public bool[] telemRFC = new bool[] { false, false, false };
-        public bool[] ppmVisRFC = new bool[] { false, false, false };
-        public uint[] flightModeRFC = new uint[] { 0, 0, 0 };
-        public uint[] armedStatRFC = new uint[] { 0, 0, 0 };
-        public uint[] canElapsedRFC = new uint[] { 0, 0, 0 };
-        public float[] scoreRFC = new float[] { float.NaN, float.NaN, float.NaN };
+        public const float lowerVoltageThres = 6800f;
+        public const float midVoltageThres = 7200f;
+        public const float higherCurrentThres = 8000f;
+        public const float midCurrentThres = 7000f;
 
-        public float activeRFC { get; set; }
-        private List<AF3EndPoint> endpointCollection = new List<AF3EndPoint>();
-        private List<errorRecord> errorList = new List<errorRecord>();
-        private object epCollectionLock = new object();
-        private object erCollectionLock = new object();
+        public const int BUS_A = 1;
+        public const int BUS_B = 2;
 
-        public AF3Status()
-        {
-            activeRFC = -1.0f;
-        }
+        public const int canElapsedThreshold = 1;
+    }
 
-        public String MillisToTime(double millis)
+    public static class Util
+    {
+        static public String MillisToHumanTime(double millis)
         {
             String result = "";
             double seconds = millis / 1000;
@@ -52,13 +46,72 @@ namespace MissionPlanner.Utilities
             return result;
         }
 
+        static public string printHumanSequence(bool[] flags)
+        {
+            string ret = "";
+            int sumFlagsSet = 0;
+            int sumFlagsPrinted = 0;
+
+            for (int i = 0; i < flags.Length; i++)
+            {
+                if (flags[i]) sumFlagsSet++;
+            }
+
+            for (int i = 0; i < flags.Length; i++)
+            {
+                if (flags[i]) {
+                    if (sumFlagsPrinted != 0)
+                    {
+                        if (sumFlagsPrinted == sumFlagsSet - 1)
+                        {
+                            ret += " AND ";
+                        }
+                        else
+                        {
+                            ret += ", ";
+                        }
+                    }
+                    ret += (i + 1).ToString();
+                    sumFlagsPrinted++;
+                }
+            }
+
+            return ret;
+        }
+    }
+
+    public class Status
+    {
+        public float score { get; set; }
+        public int number_rfcs { get; set; }
+        public int number_buses { get { return number_rfcs == 1 ? 2 : 3; } }
+        public int all_can_mask { get { return number_rfcs == 1 ? 3 : 7; } }
+        public bool[] telemRFC = new bool[] { false, false, false };
+        public bool[] ppmVisRFC = new bool[] { false, false, false };
+        public uint[] flightModeRFC = new uint[] { 0, 0, 0 };
+        public uint[] armedStatRFC = new uint[] { 0, 0, 0 };
+        public uint[] canElapsedRFC = new uint[] { 0, 0, 0 };
+        public float[] scoreRFC = new float[] { float.NaN, float.NaN, float.NaN };
+        public bool detected { get { return (number_rfcs > 0); } }
+
+        public float activeRFC { get; set; }
+        private List<EndPoint> endpointCollection = new List<EndPoint>();
+        private List<errorRecord> errorList = new List<errorRecord>();
+        private object epCollectionLock = new object();
+        private object erCollectionLock = new object();
+
+        public Status()
+        {
+            activeRFC = -1.0f;
+        }
+
         private void addError(string origin, errorRecord.opCode state, String message, int failedBuses)
         {
             lock (erCollectionLock)
             {
 
                 errorRecord lastError = errorList.FindLast(error => error.origin == origin &&
-                    error.state == state && error.failedBuses == failedBuses && error.resolved == DateTime.MinValue);
+                    error.state == state && error.failedBuses == failedBuses && !error.resolved);
 
                 if (lastError == null)
                 {
@@ -70,7 +123,184 @@ namespace MissionPlanner.Utilities
 
         }
 
-        public List<errorRecord> getErrors()
+        public List<ecamErrorRecord> getEcamErrors()
+        {
+            var errList = getErrors();
+            var retEcamErrList = new List<ecamErrorRecord>();
+            int epNo = 0;
+            string ecamMsg = "";
+
+            lock (epCollectionLock)
+            {
+                epNo = endpointCollection.Count;
+            }
+
+            // detect CAN buses where endpoints are not communicating   
+
+            bool[] failedBus = new bool[number_buses];
+            int failedBusCount = 0;
+
+            for (int i = 0; i < number_buses; i++)
+            {
+                // find whether all endpoints in this bus 
+                // have reported issues
+
+                List<string> failedBusEp = new List<string>();
+
+                var logicalBusIssues = errList.FindAll(error =>
+                    error.state == errorRecord.opCode.BUS_ERROR &&
+                    (error.failedBuses & (1 << i)) > 0);
+
+                foreach (var error in logicalBusIssues)
+                {
+                    if (!failedBusEp.Contains(error.origin))
+                    {
+                        failedBusEp.Add(error.origin);
+                    }
+                }
+
+                if (failedBusEp.Count == epNo)
+                {
+
+                    var rfcCanIssues = errList.FindAll(error =>
+                        error.state == errorRecord.opCode.RFC_NO_CAN &&
+                        (error.failedBuses & (1 << i)) > 0);
+
+                    if (logicalBusIssues.Count >= epNo && rfcCanIssues.Count > 0)
+                    {
+                        failedBus[i] = true;
+                        failedBusCount++;
+                    }
+
+                }
+
+            }
+
+            if (failedBusCount > 0)
+            {
+                ecamMsg = String.Format("CAN BUS {0} FAIL", Util.printHumanSequence(failedBus));
+                retEcamErrList.Add(new ecamErrorRecord(ecamMsg, ecamErrorRecord.severityType.CRITICAL));
+            }
+
+            // Check RFC failure or intermittency
+
+            bool[] failedRFC = new bool[number_rfcs];
+            bool[] intermittentRFC = new bool[number_rfcs];
+            int failedRfcCount = 0;
+            int intermittentRfcCount = 0;
+
+            for (int i = 0; i < number_rfcs; i++)
+            {
+                if (failedBus[i]) continue;
+
+                failedRFC[i] = intermittentRFC[i] = false;
+
+                var telemIssues = errList.FindAll(error =>
+                    error.state == errorRecord.opCode.TELEM_FAILURE &&
+                    (error.failedBuses & (1 << i)) > 0);
+
+                var canIssues = errList.FindAll(error =>
+                    error.state == errorRecord.opCode.RFC_NO_CAN &&
+                    (error.failedBuses & (1 << i)) > 0);
+
+                if (telemIssues.Count == 1)
+                {
+                    if (!telemIssues[0].resolved)
+                    {
+                        failedRFC[i] = true;
+                        failedRfcCount++;
+                    }
+                }
+                
+                if (canIssues.Count == 1)
+                {
+                    if (!canIssues[0].resolved)
+                    {
+                        failedRFC[i] = true;
+                        failedRfcCount++;
+                    }
+                }
+                
+                if (telemIssues.Count > 1 || canIssues.Count > 1)
+                {
+                    intermittentRFC[i] = true;
+                    intermittentRfcCount++;
+                }
+
+                if (intermittentRFC[i])
+                {
+                    ecamMsg = String.Format("RFC{0} INTERMITTENT", i + 1);
+                    retEcamErrList.Add(new ecamErrorRecord(ecamMsg, ecamErrorRecord.severityType.CRITICAL));
+                }
+                else if (failedRFC[i])
+                {
+                    ecamMsg = String.Format("RFC{0} FAIL", i + 1);
+                    retEcamErrList.Add(new ecamErrorRecord(ecamMsg, ecamErrorRecord.severityType.CRITICAL));
+                }
+
+            }
+
+            // Check for endpoints not responding in any 
+            // of the CAN buses
+
+            List<string> failedEp = new List<string>();
+            List<string> intermittentEp = new List<string>();
+
+            var epFullFailureList = errList.FindAll(error =>
+                    error.state == errorRecord.opCode.BUS_ERROR &&
+                    error.failedBuses == all_can_mask);
+
+            foreach (var error in epFullFailureList)
+            {
+                var epFullFailureInstances = epFullFailureList.FindAll(err => err.origin == error.origin);
+
+                if (epFullFailureInstances.Count == 1)
+                {
+                    if (!epFullFailureInstances[0].resolved)
+                    {
+                        if (!failedEp.Contains(error.origin))
+                        {
+                            failedEp.Add(error.origin);
+                        }
+                    }
+
+                }
+                else
+                {
+                    if (!intermittentEp.Contains(error.origin))
+                    {
+                        intermittentEp.Add(error.origin);
+                    }
+                }
+            }
+
+            foreach (var origin in intermittentEp)
+            {
+                ecamMsg = String.Format("{0} INTERMITTENT", origin);
+                retEcamErrList.Add(new ecamErrorRecord(ecamMsg, ecamErrorRecord.severityType.CRITICAL));
+            }
+
+            foreach (var origin in failedEp)
+            {
+                if (!intermittentEp.Contains(origin))
+                {
+                    ecamMsg = String.Format("{0} FAIL", origin);
+                    retEcamErrList.Add(new ecamErrorRecord(ecamMsg, ecamErrorRecord.severityType.CRITICAL));
+                }
+            }
+
+            if (retEcamErrList.Count == 0 && detected)
+            {
+                var okMsg = new ecamErrorRecord("SYSTEM OK", 
+                    ecamErrorRecord.severityType.OK);
+
+                retEcamErrList.Add(okMsg);
+            }
+
+            return retEcamErrList;
+        }
+
+            public List<errorRecord> getErrors()
         {
             var retErrList = new List<errorRecord>();
 
@@ -87,7 +317,7 @@ namespace MissionPlanner.Utilities
                         err.failedBuses,
                         err.origin,
                         err.timestamp,
-                        err.resolved));
+                        err.resolveTimestamp));
                 }
             }
 
@@ -164,7 +394,8 @@ namespace MissionPlanner.Utilities
             return rfHealthBad;
         }
 
-        private int analyseCondition(bool errorCondition, string origin, errorRecord.opCode errType, string errorMsg, int failedBuses)
+        private int analyseCondition(bool errorCondition, string origin, errorRecord.opCode errType, 
+            string errorMsg, int failedBuses, bool checkBuses = false)
         {
             if (errorCondition)
             {
@@ -178,13 +409,21 @@ namespace MissionPlanner.Utilities
             else
             {
 
-                errorRecord err = errorList.FindLast(error => error.origin == origin &&
-                error.state == errType &&
-                error.resolved == DateTime.MinValue);
+                errorRecord err;
+                
+                if (checkBuses)
+                    err = errorList.FindLast(error => error.origin == origin &&
+                        error.state == errType &&
+                        !error.resolved &&
+                        error.failedBuses == failedBuses);
+                else
+                    err = errorList.FindLast(error => error.origin == origin &&
+                        error.state == errType &&
+                        !error.resolved);
 
                 if (err != null)
                 {
-                    err.resolved = DateTime.Now;
+                    err.resolve();
                 }
 
                 return 0;
@@ -195,16 +434,16 @@ namespace MissionPlanner.Utilities
         {
             List<errorRecord> errList = errorList.FindAll(error => error.origin == origin &&
                         (error.state == type) &&
-                        error.resolved == DateTime.MinValue &&
+                        !error.resolved &&
                         error.failedBuses != failedBuses);
 
             foreach (errorRecord err in errList)
             {
-                err.resolved = DateTime.Now;
+                err.resolve();
             }
         }
 
-        public float calculateAf3Score()
+        public float calculateScore()
         {
             // Check how many telemetry links are lost between RFC's and VFC
             int score = 0;
@@ -232,7 +471,7 @@ namespace MissionPlanner.Utilities
                         String.Format("Arm status mismatch on {0}", origin),
                         1 << i);
 
-                    score += analyseCondition(canElapsedRFC[i] > 1,
+                    score += analyseCondition(canElapsedRFC[i] > Constants.canElapsedThreshold,
                         origin, errorRecord.opCode.RFC_NO_CAN,
                         String.Format("{0} became disconnected from CAN bus", origin),
                         1 << i);
@@ -250,6 +489,8 @@ namespace MissionPlanner.Utilities
                 {
                     foreach (var ep in endpointCollection)
                     {
+                        // Check communication issues
+
                         var stale = ep.isDataStale();
                         var busError = ep.isBusMissing();
                         string origin = String.Format("EP{0}", ep.esc_index);
@@ -303,13 +544,35 @@ namespace MissionPlanner.Utilities
                         {
                             List<errorRecord> errList = errorList.FindAll(error => error.origin == origin &&
                             (error.state == errorRecord.opCode.BUS_ERROR) &&
-                            error.resolved == DateTime.MinValue);
+                            error.resolved);
 
                             foreach (errorRecord err in errList)
                             {
-                                err.resolved = DateTime.Now;
+                                err.resolve();
                             }
                         }
+
+                        // Check bus voltages and currents
+
+                        score += analyseCondition(ep.voltageA < Constants.lowerVoltageThres,
+                            origin, errorRecord.opCode.BUS_VOLTAGE,
+                            String.Format("{0} low voltage on bus A", origin),
+                            Constants.BUS_A, true);
+
+                        score += analyseCondition(ep.currentA > Constants.higherCurrentThres,
+                            origin, errorRecord.opCode.BUS_CURRENT,
+                            String.Format("{0} low voltage on bus B", origin),
+                            Constants.BUS_A, true);
+
+                        score += analyseCondition(ep.voltageB < Constants.lowerVoltageThres,
+                            origin, errorRecord.opCode.BUS_VOLTAGE,
+                            String.Format("{0} low voltage on bus A", origin),
+                            Constants.BUS_B, true);
+
+                        score += analyseCondition(ep.currentB > Constants.higherCurrentThres,
+                            origin, errorRecord.opCode.BUS_CURRENT,
+                            String.Format("{0} low voltage on bus B", origin),
+                            Constants.BUS_B, true);
                     }
                 }
             }
@@ -317,7 +580,7 @@ namespace MissionPlanner.Utilities
             return (float) score;
         }
 
-        public void addEndpoint(AF3EndPoint endpoint)
+        public void addEndpoint(EndPoint endpoint)
         {
             lock (epCollectionLock)
             {
@@ -325,7 +588,7 @@ namespace MissionPlanner.Utilities
             }
         }
 
-        public AF3EndPoint getEndpoint(int index)
+        public EndPoint getEndpoint(int index)
         {
             lock (epCollectionLock)
             {
@@ -333,9 +596,9 @@ namespace MissionPlanner.Utilities
                     (index >= 0) &&
                     (number_rfcs > 0))
                 {
-                    AF3EndPoint epItem = endpointCollection[index];
+                    EndPoint epItem = endpointCollection[index];
 
-                    AF3EndPoint epRetItem = new AF3EndPoint(epItem.esc_index,
+                    EndPoint epRetItem = new EndPoint(epItem.esc_index,
                         epItem.voltageA, epItem.voltageB, epItem.currentA, epItem.currentB,
                         epItem.rpm, epItem.elapsedSecBus, epItem.lastUpdate, number_rfcs);
 
@@ -357,11 +620,11 @@ namespace MissionPlanner.Utilities
             }
         }
 
-        public AF3EndPoint findEndpoint (uint escIndex)
+        public EndPoint findEndpoint (uint escIndex)
         {
             lock (epCollectionLock)
             {
-                AF3EndPoint endpoint =
+                EndPoint endpoint =
                     endpointCollection.Find(ep => ep.esc_index == escIndex);
 
                 return endpoint;
@@ -379,6 +642,25 @@ namespace MissionPlanner.Utilities
 
     }
 
+    public class ecamErrorRecord
+    {
+        public string message;
+        public severityType severity;
+        
+        public enum severityType
+        {
+            OK,
+            ALERT,
+            CRITICAL
+        }
+
+        public ecamErrorRecord(string msg, severityType _severity)
+        {
+            message = msg;
+            severity = _severity;
+        }
+    }
+
     public class errorRecord
     {
         public DateTime timestamp;
@@ -386,7 +668,8 @@ namespace MissionPlanner.Utilities
         public opCode state;
         public String message;
         public int failedBuses;
-        public DateTime resolved;
+        public bool resolved;
+        public DateTime resolveTimestamp;
         public string hash;
 
         public enum opCode
@@ -394,6 +677,8 @@ namespace MissionPlanner.Utilities
             NORMAL = 0,
             MODE_MISMATCH,
             TELEM_FAILURE,
+            BUS_VOLTAGE,
+            BUS_CURRENT,
             ARM_MISMATCH,
             RFC_NO_CAN,
             RFC_NO_PPM,
@@ -407,7 +692,8 @@ namespace MissionPlanner.Utilities
             message = msg;
             state = st;
             failedBuses = failBusesMask;
-            resolved = DateTime.MinValue;
+            resolved = false;
+            resolveTimestamp = DateTime.MinValue;
             hash = timestamp.ToBinary().ToString() +
                 origin + state.ToString() + failedBuses.ToString();
         }
@@ -420,13 +706,27 @@ namespace MissionPlanner.Utilities
             message = msg;
             state = st;
             failedBuses = failBusesMask;
-            resolved = resolvedTime;
+
             hash = timestamp.ToBinary().ToString() +
                 origin + state.ToString() + failedBuses.ToString();
+
+            resolve(resolvedTime);
+        }
+
+        public void resolve(DateTime rTimestamp)
+        {
+            resolved = true;
+            resolveTimestamp = rTimestamp;
+        }
+
+        public void resolve()
+        {
+            resolved = true;
+            resolveTimestamp = DateTime.Now;
         }
     }
 
-    public class AF3EndPoint : IComparable, IEquatable<AF3EndPoint>
+    public class EndPoint : IComparable, IEquatable<EndPoint>
     {
         public uint esc_index;
         public float voltageA;
@@ -443,7 +743,7 @@ namespace MissionPlanner.Utilities
 
         private const int maxPeriodTotal = 6200; 
         private const int maxPeriodSameBus = 3000;
-        public AF3EndPoint(uint escIndex, float busVoltageA, float busVoltageB, 
+        public EndPoint(uint escIndex, float busVoltageA, float busVoltageB, 
             float busCurrA, float busCurrB, int engRPM, byte[] busElapsed, 
             DateTime timestamp, int numRFCS)
         {
@@ -486,7 +786,7 @@ namespace MissionPlanner.Utilities
         {
             if (obj == null) return 1;
 
-            AF3EndPoint otherEndpoint = obj as AF3EndPoint;
+            EndPoint otherEndpoint = obj as EndPoint;
             if (otherEndpoint != null)
                 return this.esc_index.CompareTo(otherEndpoint.esc_index);
             else
@@ -501,12 +801,12 @@ namespace MissionPlanner.Utilities
         public override bool Equals(object obj)
         {
             if (obj == null) return false;
-            AF3EndPoint objAsPart = obj as AF3EndPoint;
+            EndPoint objAsPart = obj as EndPoint;
             if (objAsPart == null) return false;
             else return Equals(objAsPart);
         }
 
-        public bool Equals(AF3EndPoint other)
+        public bool Equals(EndPoint other)
         {
             if (other == null) return false;
             return other.esc_index == esc_index;
