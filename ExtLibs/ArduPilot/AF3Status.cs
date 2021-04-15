@@ -17,7 +17,18 @@ namespace MissionPlanner.Utilities.AF3
         public const int BUS_A = 1;
         public const int BUS_B = 2;
 
+        /// <summary>
+        /// If a CAN bus is not visitible for more than canElapsedThreshold seconds,
+        /// it's deemed faulty
+        /// </summary>
         public const int canElapsedThreshold = 1;
+
+        /// <summary>
+        /// After AF3 status message is received, it takes sysExpBootupMs milliseconds
+        /// to start recording errors. Past this point, if an RFC remains unresponsive,
+        /// the ECAM message "SYS INIT SLOW" is also displayed
+        /// </summary>
+        public const int sysExpBootupMs = 1500;
     }
 
     public static class Util
@@ -91,22 +102,61 @@ namespace MissionPlanner.Utilities.AF3
         public uint[] flightModeRFC = new uint[] { 0, 0, 0 };
         public uint[] armedStatRFC = new uint[] { 0, 0, 0 };
         public uint[] canElapsedRFC = new uint[] { 0, 0, 0 };
-        public float[] scoreRFC = new float[] { float.NaN, float.NaN, float.NaN };
-        public bool detected { get { return (number_rfcs > 0); } }
 
-        public float activeRFC { get; set; }
+        public bool allRfcDetected { get {
+
+                if (firstRfcDetected == DateTime.MinValue)
+                {
+
+                    bool det = number_rfcs > 0;
+
+                    for (int i = 0; i < number_rfcs; i++)
+                    {
+                        det = det && telemRFC[i];
+                    }
+
+                    if (det)
+                    {
+                        firstRfcDetected = DateTime.Now;
+                    }
+
+                    return det;
+                }
+
+                return true;
+            } }
+        public float[] scoreRFC = new float[] { float.NaN, float.NaN, float.NaN };
+        public float activeRFC { 
+            get { return _activeRFC; }
+            set { 
+                _activeRFC = value;
+                if (firstAf3MsgDetected == DateTime.MinValue)
+                {
+                    firstAf3MsgDetected = DateTime.Now;
+                }
+            } }
         private List<EndPoint> endpointCollection = new List<EndPoint>();
         private List<errorRecord> errorList = new List<errorRecord>();
         private object epCollectionLock = new object();
         private object erCollectionLock = new object();
+        private DateTime firstRfcDetected = DateTime.MinValue;
+        private DateTime firstAf3MsgDetected = DateTime.MinValue;
+
+        private float _activeRFC;
 
         public Status()
         {
-            activeRFC = -1.0f;
+            _activeRFC = -1.0f;
         }
 
         private void addError(string origin, errorRecord.opCode state, String message, int failedBuses)
         {
+            if (firstRfcDetected == DateTime.MinValue)
+                return;
+
+            if (DateTime.Now.Subtract(firstRfcDetected).TotalMilliseconds < Constants.sysExpBootupMs)
+                return;
+
             lock (erCollectionLock)
             {
 
@@ -221,7 +271,7 @@ namespace MissionPlanner.Utilities.AF3
                     }
                 }
                 
-                if (telemIssues.Count > 1 || canIssues.Count > 1)
+                if ((telemIssues.Count + canIssues.Count) > 1)
                 {
                     intermittentRFC[i] = true;
                     intermittentRfcCount++;
@@ -289,10 +339,82 @@ namespace MissionPlanner.Utilities.AF3
                 }
             }
 
-            if (retEcamErrList.Count == 0 && detected)
+            // Check PPM streams
+            bool[] failedPPM = new bool[number_rfcs];
+            bool[] intermittentPPM = new bool[number_rfcs];
+            int failedPPMCount = 0;
+            int intermittentPPMCount = 0;
+            int failOrIntPPMCount = 0;
+
+            for (int i = 0; i < number_rfcs; i++)
             {
-                var okMsg = new ecamErrorRecord("SYSTEM OK", 
-                    ecamErrorRecord.severityType.OK);
+                failedPPM[i] = intermittentPPM[i] = false;
+
+                var ppmIssues = errList.FindAll(error =>
+                    error.state == errorRecord.opCode.RFC_NO_PPM &&
+                    (error.failedBuses & (1 << i)) > 0);
+
+                if (ppmIssues.Count == 1)
+                {
+                    if (!ppmIssues[0].resolved)
+                    {
+                        failedPPM[i] = true;
+                        failedPPMCount++;
+                    }
+                }
+
+                if (ppmIssues.Count > 1)
+                {
+                    intermittentPPM[i] = true;
+                    intermittentPPMCount++;
+                }
+
+                if (intermittentPPM[i] || failedPPM[i]) failOrIntPPMCount++;
+
+            }
+
+            if (failOrIntPPMCount >= number_rfcs)
+            {
+                ecamMsg = String.Format("NO PPM ALL RFC");
+                retEcamErrList.Add(new ecamErrorRecord(ecamMsg, ecamErrorRecord.severityType.CRITICAL));
+            }
+            else
+            {
+
+                for (int i = 0; i < number_rfcs; i++)
+                {
+                    if (intermittentPPM[i])
+                    {
+                        ecamMsg = String.Format("PPM RFC{0} INTERMITTENT", i + 1);
+                        retEcamErrList.Add(new ecamErrorRecord(ecamMsg, ecamErrorRecord.severityType.CRITICAL));
+                    }
+                    else if (failedPPM[i])
+                    {
+                        ecamMsg = String.Format("PPM RFC{0} FAIL", i + 1);
+                        retEcamErrList.Add(new ecamErrorRecord(ecamMsg, ecamErrorRecord.severityType.CRITICAL));
+                    }
+                }
+
+            }
+
+            if (allRfcDetected)
+            {
+                var notOkEcamMsgs = retEcamErrList.FindAll(err => err.severity != ecamErrorRecord.severityType.OK);
+
+                if (notOkEcamMsgs.Count == 0)
+                {
+                    var okMsg = new ecamErrorRecord("SYSTEM OK",
+                        ecamErrorRecord.severityType.OK);
+
+                    retEcamErrList.Add(okMsg);
+                }
+
+            }
+            else if (firstAf3MsgDetected != DateTime.MinValue && 
+                DateTime.Now.Subtract(firstAf3MsgDetected).TotalMilliseconds > Constants.sysExpBootupMs)
+            {
+                var okMsg = new ecamErrorRecord("SYS INIT SLOW",
+                    ecamErrorRecord.severityType.ALERT);
 
                 retEcamErrList.Add(okMsg);
             }
@@ -544,7 +666,7 @@ namespace MissionPlanner.Utilities.AF3
                         {
                             List<errorRecord> errList = errorList.FindAll(error => error.origin == origin &&
                             (error.state == errorRecord.opCode.BUS_ERROR) &&
-                            error.resolved);
+                            !error.resolved);
 
                             foreach (errorRecord err in errList)
                             {
