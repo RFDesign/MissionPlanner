@@ -136,7 +136,7 @@
     <value>NoControl</value>
   </data>
   <data name="label4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>420, 255</value>
+    <value>420, 195</value>
   </data>
   <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
     <value>195, 30</value>
@@ -160,7 +160,7 @@
     <value>tableLayoutPanel1</value>
   </data>
   <data name="&gt;&gt;label4.ZOrder" xml:space="preserve">
-    <value>25</value>
+    <value>24</value>
   </data>
   <data name="label3.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -175,7 +175,7 @@
     <value>NoControl</value>
   </data>
   <data name="label3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>219, 255</value>
+    <value>219, 195</value>
   </data>
   <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
     <value>195, 30</value>
@@ -199,7 +199,7 @@
     <value>tableLayoutPanel1</value>
   </data>
   <data name="&gt;&gt;label3.ZOrder" xml:space="preserve">
-    <value>24</value>
+    <value>23</value>
   </data>
   <data name="lbRFC3TELEM.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -214,7 +214,7 @@
     <value>NoControl</value>
   </data>
   <data name="lbRFC3TELEM.Location" type="System.Drawing.Point, System.Drawing">
-    <value>420, 285</value>
+    <value>420, 225</value>
   </data>
   <data name="lbRFC3TELEM.Size" type="System.Drawing.Size, System.Drawing">
     <value>195, 20</value>
@@ -235,7 +235,7 @@
     <value>tableLayoutPanel1</value>
   </data>
   <data name="&gt;&gt;lbRFC3TELEM.ZOrder" xml:space="preserve">
-    <value>21</value>
+    <value>20</value>
   </data>
   <data name="lbRFC2TELEM.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -250,7 +250,7 @@
     <value>NoControl</value>
   </data>
   <data name="lbRFC2TELEM.Location" type="System.Drawing.Point, System.Drawing">
-    <value>219, 285</value>
+    <value>219, 225</value>
   </data>
   <data name="lbRFC2TELEM.Size" type="System.Drawing.Size, System.Drawing">
     <value>195, 20</value>
@@ -271,7 +271,7 @@
     <value>tableLayoutPanel1</value>
   </data>
   <data name="&gt;&gt;lbRFC2TELEM.ZOrder" xml:space="preserve">
-    <value>20</value>
+    <value>19</value>
   </data>
   <data name="lbRFC3Active.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -286,7 +286,7 @@
     <value>NoControl</value>
   </data>
   <data name="lbRFC3Active.Location" type="System.Drawing.Point, System.Drawing">
-    <value>420, 405</value>
+    <value>420, 345</value>
   </data>
   <data name="lbRFC3Active.Size" type="System.Drawing.Size, System.Drawing">
     <value>195, 20</value>
@@ -307,7 +307,7 @@
     <value>tableLayoutPanel1</value>
   </data>
   <data name="&gt;&gt;lbRFC3Active.ZOrder" xml:space="preserve">
-    <value>18</value>
+    <value>17</value>
   </data>
   <data name="lbRFC2Active.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -322,7 +322,7 @@
     <value>NoControl</value>
   </data>
   <data name="lbRFC2Active.Location" type="System.Drawing.Point, System.Drawing">
-    <value>219, 405</value>
+    <value>219, 345</value>
   </data>
   <data name="lbRFC2Active.Size" type="System.Drawing.Size, System.Drawing">
     <value>195, 20</value>
@@ -343,37 +343,10 @@
     <value>tableLayoutPanel1</value>
   </data>
   <data name="&gt;&gt;lbRFC2Active.ZOrder" xml:space="preserve">
-    <value>17</value>
+    <value>16</value>
   </data>
   <data name="tableLayoutPanel1.ColumnCount" type="System.Int32, mscorlib">
     <value>5</value>
-  </data>
-  <data name="listView1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="listView1.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 7pt</value>
-  </data>
-  <data name="listView1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>18, 143</value>
-  </data>
-  <data name="listView1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>597, 74</value>
-  </data>
-  <data name="listView1.TabIndex" type="System.Int32, mscorlib">
-    <value>56</value>
-  </data>
-  <data name="&gt;&gt;listView1.Name" xml:space="preserve">
-    <value>listView1</value>
-  </data>
-  <data name="&gt;&gt;listView1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ListView, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;listView1.Parent" xml:space="preserve">
-    <value>tableLayoutPanel1</value>
-  </data>
-  <data name="&gt;&gt;listView1.ZOrder" xml:space="preserve">
-    <value>0</value>
   </data>
   <data name="label1.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -412,7 +385,7 @@
     <value>tableLayoutPanel1</value>
   </data>
   <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>0</value>
   </data>
   <data name="lbRFC3ppmVis.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -427,7 +400,7 @@
     <value>NoControl</value>
   </data>
   <data name="lbRFC3ppmVis.Location" type="System.Drawing.Point, System.Drawing">
-    <value>420, 385</value>
+    <value>420, 325</value>
   </data>
   <data name="lbRFC3ppmVis.Size" type="System.Drawing.Size, System.Drawing">
     <value>195, 20</value>
@@ -448,7 +421,7 @@
     <value>tableLayoutPanel1</value>
   </data>
   <data name="&gt;&gt;lbRFC3ppmVis.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>1</value>
   </data>
   <data name="lbRFC2ppmVis.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -463,7 +436,7 @@
     <value>NoControl</value>
   </data>
   <data name="lbRFC2ppmVis.Location" type="System.Drawing.Point, System.Drawing">
-    <value>219, 385</value>
+    <value>219, 325</value>
   </data>
   <data name="lbRFC2ppmVis.Size" type="System.Drawing.Size, System.Drawing">
     <value>195, 20</value>
@@ -484,7 +457,7 @@
     <value>tableLayoutPanel1</value>
   </data>
   <data name="&gt;&gt;lbRFC2ppmVis.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>2</value>
   </data>
   <data name="lbRFC1ppmVis.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -499,7 +472,7 @@
     <value>NoControl</value>
   </data>
   <data name="lbRFC1ppmVis.Location" type="System.Drawing.Point, System.Drawing">
-    <value>18, 385</value>
+    <value>18, 325</value>
   </data>
   <data name="lbRFC1ppmVis.Size" type="System.Drawing.Size, System.Drawing">
     <value>195, 20</value>
@@ -520,7 +493,7 @@
     <value>tableLayoutPanel1</value>
   </data>
   <data name="&gt;&gt;lbRFC1ppmVis.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>3</value>
   </data>
   <data name="lbRFC3Score.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -535,7 +508,7 @@
     <value>NoControl</value>
   </data>
   <data name="lbRFC3Score.Location" type="System.Drawing.Point, System.Drawing">
-    <value>420, 365</value>
+    <value>420, 305</value>
   </data>
   <data name="lbRFC3Score.Size" type="System.Drawing.Size, System.Drawing">
     <value>195, 20</value>
@@ -556,7 +529,7 @@
     <value>tableLayoutPanel1</value>
   </data>
   <data name="&gt;&gt;lbRFC3Score.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>4</value>
   </data>
   <data name="lbRFC2Score.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -571,7 +544,7 @@
     <value>NoControl</value>
   </data>
   <data name="lbRFC2Score.Location" type="System.Drawing.Point, System.Drawing">
-    <value>219, 365</value>
+    <value>219, 305</value>
   </data>
   <data name="lbRFC2Score.Size" type="System.Drawing.Size, System.Drawing">
     <value>195, 20</value>
@@ -592,7 +565,7 @@
     <value>tableLayoutPanel1</value>
   </data>
   <data name="&gt;&gt;lbRFC2Score.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>5</value>
   </data>
   <data name="lbRFC1Score.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -607,7 +580,7 @@
     <value>NoControl</value>
   </data>
   <data name="lbRFC1Score.Location" type="System.Drawing.Point, System.Drawing">
-    <value>18, 365</value>
+    <value>18, 305</value>
   </data>
   <data name="lbRFC1Score.Size" type="System.Drawing.Size, System.Drawing">
     <value>195, 20</value>
@@ -628,7 +601,7 @@
     <value>tableLayoutPanel1</value>
   </data>
   <data name="&gt;&gt;lbRFC1Score.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>6</value>
   </data>
   <data name="lbRFC3CanPres.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -643,7 +616,7 @@
     <value>NoControl</value>
   </data>
   <data name="lbRFC3CanPres.Location" type="System.Drawing.Point, System.Drawing">
-    <value>420, 345</value>
+    <value>420, 285</value>
   </data>
   <data name="lbRFC3CanPres.Size" type="System.Drawing.Size, System.Drawing">
     <value>195, 20</value>
@@ -664,7 +637,7 @@
     <value>tableLayoutPanel1</value>
   </data>
   <data name="&gt;&gt;lbRFC3CanPres.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>7</value>
   </data>
   <data name="lbRFC2CanPres.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -679,7 +652,7 @@
     <value>NoControl</value>
   </data>
   <data name="lbRFC2CanPres.Location" type="System.Drawing.Point, System.Drawing">
-    <value>219, 345</value>
+    <value>219, 285</value>
   </data>
   <data name="lbRFC2CanPres.Size" type="System.Drawing.Size, System.Drawing">
     <value>195, 20</value>
@@ -700,7 +673,7 @@
     <value>tableLayoutPanel1</value>
   </data>
   <data name="&gt;&gt;lbRFC2CanPres.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>8</value>
   </data>
   <data name="lbRFC1CanPres.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -715,7 +688,7 @@
     <value>NoControl</value>
   </data>
   <data name="lbRFC1CanPres.Location" type="System.Drawing.Point, System.Drawing">
-    <value>18, 345</value>
+    <value>18, 285</value>
   </data>
   <data name="lbRFC1CanPres.Size" type="System.Drawing.Size, System.Drawing">
     <value>195, 20</value>
@@ -736,7 +709,7 @@
     <value>tableLayoutPanel1</value>
   </data>
   <data name="&gt;&gt;lbRFC1CanPres.ZOrder" xml:space="preserve">
-    <value>10</value>
+    <value>9</value>
   </data>
   <data name="lbRFC1ArmStatus.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -751,7 +724,7 @@
     <value>NoControl</value>
   </data>
   <data name="lbRFC1ArmStatus.Location" type="System.Drawing.Point, System.Drawing">
-    <value>18, 325</value>
+    <value>18, 265</value>
   </data>
   <data name="lbRFC1ArmStatus.Size" type="System.Drawing.Size, System.Drawing">
     <value>195, 20</value>
@@ -772,7 +745,7 @@
     <value>tableLayoutPanel1</value>
   </data>
   <data name="&gt;&gt;lbRFC1ArmStatus.ZOrder" xml:space="preserve">
-    <value>11</value>
+    <value>10</value>
   </data>
   <data name="lbRFC3ArmStatus.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -787,7 +760,7 @@
     <value>NoControl</value>
   </data>
   <data name="lbRFC3ArmStatus.Location" type="System.Drawing.Point, System.Drawing">
-    <value>420, 325</value>
+    <value>420, 265</value>
   </data>
   <data name="lbRFC3ArmStatus.Size" type="System.Drawing.Size, System.Drawing">
     <value>195, 20</value>
@@ -808,7 +781,7 @@
     <value>tableLayoutPanel1</value>
   </data>
   <data name="&gt;&gt;lbRFC3ArmStatus.ZOrder" xml:space="preserve">
-    <value>12</value>
+    <value>11</value>
   </data>
   <data name="lbRFC2ArmStatus.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -823,7 +796,7 @@
     <value>NoControl</value>
   </data>
   <data name="lbRFC2ArmStatus.Location" type="System.Drawing.Point, System.Drawing">
-    <value>219, 325</value>
+    <value>219, 265</value>
   </data>
   <data name="lbRFC2ArmStatus.Size" type="System.Drawing.Size, System.Drawing">
     <value>195, 20</value>
@@ -844,7 +817,7 @@
     <value>tableLayoutPanel1</value>
   </data>
   <data name="&gt;&gt;lbRFC2ArmStatus.ZOrder" xml:space="preserve">
-    <value>13</value>
+    <value>12</value>
   </data>
   <data name="lbRFC3FlightMode.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -859,7 +832,7 @@
     <value>NoControl</value>
   </data>
   <data name="lbRFC3FlightMode.Location" type="System.Drawing.Point, System.Drawing">
-    <value>420, 305</value>
+    <value>420, 245</value>
   </data>
   <data name="lbRFC3FlightMode.Size" type="System.Drawing.Size, System.Drawing">
     <value>195, 20</value>
@@ -880,7 +853,7 @@
     <value>tableLayoutPanel1</value>
   </data>
   <data name="&gt;&gt;lbRFC3FlightMode.ZOrder" xml:space="preserve">
-    <value>14</value>
+    <value>13</value>
   </data>
   <data name="lbRFC2FlightMode.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -895,7 +868,7 @@
     <value>NoControl</value>
   </data>
   <data name="lbRFC2FlightMode.Location" type="System.Drawing.Point, System.Drawing">
-    <value>219, 305</value>
+    <value>219, 245</value>
   </data>
   <data name="lbRFC2FlightMode.Size" type="System.Drawing.Size, System.Drawing">
     <value>195, 20</value>
@@ -916,7 +889,7 @@
     <value>tableLayoutPanel1</value>
   </data>
   <data name="&gt;&gt;lbRFC2FlightMode.ZOrder" xml:space="preserve">
-    <value>15</value>
+    <value>14</value>
   </data>
   <data name="lbRFC1FlightMode.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -931,7 +904,7 @@
     <value>NoControl</value>
   </data>
   <data name="lbRFC1FlightMode.Location" type="System.Drawing.Point, System.Drawing">
-    <value>18, 305</value>
+    <value>18, 245</value>
   </data>
   <data name="lbRFC1FlightMode.Size" type="System.Drawing.Size, System.Drawing">
     <value>195, 20</value>
@@ -952,7 +925,7 @@
     <value>tableLayoutPanel1</value>
   </data>
   <data name="&gt;&gt;lbRFC1FlightMode.ZOrder" xml:space="preserve">
-    <value>16</value>
+    <value>15</value>
   </data>
   <data name="lbRFC1Active.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -967,7 +940,7 @@
     <value>NoControl</value>
   </data>
   <data name="lbRFC1Active.Location" type="System.Drawing.Point, System.Drawing">
-    <value>18, 405</value>
+    <value>18, 345</value>
   </data>
   <data name="lbRFC1Active.Size" type="System.Drawing.Size, System.Drawing">
     <value>195, 20</value>
@@ -988,7 +961,7 @@
     <value>tableLayoutPanel1</value>
   </data>
   <data name="&gt;&gt;lbRFC1Active.ZOrder" xml:space="preserve">
-    <value>19</value>
+    <value>18</value>
   </data>
   <data name="lbRFC1TELEM.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1003,7 +976,7 @@
     <value>NoControl</value>
   </data>
   <data name="lbRFC1TELEM.Location" type="System.Drawing.Point, System.Drawing">
-    <value>18, 285</value>
+    <value>18, 225</value>
   </data>
   <data name="lbRFC1TELEM.Size" type="System.Drawing.Size, System.Drawing">
     <value>195, 20</value>
@@ -1024,7 +997,7 @@
     <value>tableLayoutPanel1</value>
   </data>
   <data name="&gt;&gt;lbRFC1TELEM.ZOrder" xml:space="preserve">
-    <value>22</value>
+    <value>21</value>
   </data>
   <data name="label2.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1039,7 +1012,7 @@
     <value>NoControl</value>
   </data>
   <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>18, 255</value>
+    <value>18, 195</value>
   </data>
   <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
     <value>195, 30</value>
@@ -1063,7 +1036,7 @@
     <value>tableLayoutPanel1</value>
   </data>
   <data name="&gt;&gt;label2.ZOrder" xml:space="preserve">
-    <value>23</value>
+    <value>22</value>
   </data>
   <data name="epInfo.AutoScroll" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1075,10 +1048,10 @@
     <value>Fill</value>
   </data>
   <data name="epInfo.Location" type="System.Drawing.Point, System.Drawing">
-    <value>18, 448</value>
+    <value>18, 388</value>
   </data>
   <data name="epInfo.Size" type="System.Drawing.Size, System.Drawing">
-    <value>597, 151</value>
+    <value>597, 211</value>
   </data>
   <data name="epInfo.TabIndex" type="System.Int32, mscorlib">
     <value>37</value>
@@ -1087,13 +1060,13 @@
     <value>epInfo</value>
   </data>
   <data name="&gt;&gt;epInfo.Type" xml:space="preserve">
-    <value>MissionPlanner.Controls.AF3EndpointInfo, MissionPlanner, Version=1.3.7774.31261, Culture=neutral, PublicKeyToken=null</value>
+    <value>MissionPlanner.Controls.AF3EndpointInfo, MissionPlanner, Version=1.3.7775.28427, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;epInfo.Parent" xml:space="preserve">
     <value>tableLayoutPanel1</value>
   </data>
   <data name="&gt;&gt;epInfo.ZOrder" xml:space="preserve">
-    <value>26</value>
+    <value>25</value>
   </data>
   <data name="ecamList.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -1120,7 +1093,7 @@
     <value>tableLayoutPanel1</value>
   </data>
   <data name="&gt;&gt;ecamList.ZOrder" xml:space="preserve">
-    <value>27</value>
+    <value>26</value>
   </data>
   <data name="tableLayoutPanel1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -1150,31 +1123,13 @@
     <value>0</value>
   </data>
   <data name="tableLayoutPanel1.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
-    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="listView1" Row="4" RowSpan="1" Column="1" ColumnSpan="3" /&gt;&lt;Control Name="label1" Row="3" RowSpan="1" Column="1" ColumnSpan="3" /&gt;&lt;Control Name="lbRFC3ppmVis" Row="13" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC2ppmVis" Row="13" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC1ppmVis" Row="13" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC3Score" Row="12" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC2Score" Row="12" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC1Score" Row="12" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC3CanPres" Row="11" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC2CanPres" Row="11" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC1CanPres" Row="11" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC1ArmStatus" Row="10" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC3ArmStatus" Row="10" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC2ArmStatus" Row="10" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC3FlightMode" Row="9" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC2FlightMode" Row="9" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC1FlightMode" Row="9" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC2Active" Row="14" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC3Active" Row="14" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC1Active" Row="14" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC2TELEM" Row="8" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC3TELEM" Row="8" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC1TELEM" Row="8" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="label2" Row="7" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="label3" Row="7" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="label4" Row="7" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="epInfo" Row="16" RowSpan="1" Column="1" ColumnSpan="3" /&gt;&lt;Control Name="ecamList" Row="1" RowSpan="1" Column="1" ColumnSpan="3" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Absolute,15,Percent,33.33333,Percent,33.33333,Percent,33.33333,Absolute,15" /&gt;&lt;Rows Styles="Absolute,15,Absolute,80,Absolute,15,Absolute,30,Absolute,80,Absolute,20,Absolute,15,Absolute,30,Absolute,20,Absolute,20,Absolute,20,Absolute,20,Absolute,20,Absolute,20,Absolute,20,Absolute,20,Percent,100,Absolute,15" /&gt;&lt;/TableLayoutSettings&gt;</value>
-  </data>
-  <data name="columnHeader1.Width" type="System.Int32, mscorlib">
-    <value>80</value>
-  </data>
-  <data name="columnHeader2.Width" type="System.Int32, mscorlib">
-    <value>79</value>
-  </data>
-  <data name="columnHeader3.Width" type="System.Int32, mscorlib">
-    <value>78</value>
-  </data>
-  <data name="columnHeader4.Width" type="System.Int32, mscorlib">
-    <value>286</value>
-  </data>
-  <data name="columnHeader5.Width" type="System.Int32, mscorlib">
-    <value>66</value>
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="label1" Row="3" RowSpan="1" Column="1" ColumnSpan="3" /&gt;&lt;Control Name="lbRFC3ppmVis" Row="13" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC2ppmVis" Row="13" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC1ppmVis" Row="13" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC3Score" Row="12" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC2Score" Row="12" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC1Score" Row="12" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC3CanPres" Row="11" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC2CanPres" Row="11" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC1CanPres" Row="11" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC1ArmStatus" Row="10" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC3ArmStatus" Row="10" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC2ArmStatus" Row="10" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC3FlightMode" Row="9" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC2FlightMode" Row="9" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC1FlightMode" Row="9" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC2Active" Row="14" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC3Active" Row="14" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC1Active" Row="14" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC2TELEM" Row="8" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC3TELEM" Row="8" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC1TELEM" Row="8" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="label2" Row="7" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="label3" Row="7" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="label4" Row="7" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="epInfo" Row="16" RowSpan="1" Column="1" ColumnSpan="3" /&gt;&lt;Control Name="ecamList" Row="1" RowSpan="1" Column="1" ColumnSpan="3" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Absolute,15,Percent,33.33333,Percent,33.33333,Percent,33.33333,Absolute,15" /&gt;&lt;Rows Styles="Absolute,15,Absolute,80,Absolute,15,Absolute,30,Absolute,20,Absolute,20,Absolute,15,Absolute,30,Absolute,20,Absolute,20,Absolute,20,Absolute,20,Absolute,20,Absolute,20,Absolute,20,Absolute,20,Percent,100,Absolute,15" /&gt;&lt;/TableLayoutSettings&gt;</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
     <value>635, 617</value>
-  </data>
-  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>AF3 Status</value>
@@ -1184,36 +1139,6 @@
   </data>
   <data name="&gt;&gt;timer1.Type" xml:space="preserve">
     <value>System.Windows.Forms.Timer, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;columnHeader1.Name" xml:space="preserve">
-    <value>columnHeader1</value>
-  </data>
-  <data name="&gt;&gt;columnHeader1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;columnHeader2.Name" xml:space="preserve">
-    <value>columnHeader2</value>
-  </data>
-  <data name="&gt;&gt;columnHeader2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;columnHeader3.Name" xml:space="preserve">
-    <value>columnHeader3</value>
-  </data>
-  <data name="&gt;&gt;columnHeader3.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;columnHeader4.Name" xml:space="preserve">
-    <value>columnHeader4</value>
-  </data>
-  <data name="&gt;&gt;columnHeader4.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;columnHeader5.Name" xml:space="preserve">
-    <value>columnHeader5</value>
-  </data>
-  <data name="&gt;&gt;columnHeader5.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>AF3Status</value>

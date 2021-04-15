@@ -420,6 +420,12 @@
     <Compile Include="Controls\AF3EndpointInfo.Designer.cs">
       <DependentUpon>AF3EndpointInfo.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\AF3ErrorLog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Controls\AF3ErrorLog.Designer.cs">
+      <DependentUpon>AF3ErrorLog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\AF3Status.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -816,6 +822,12 @@
     </Compile>
     <EmbeddedResource Include="Controls\AF3EndpointInfo.resx">
       <DependentUpon>AF3EndpointInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\AF3ErrorLog.ko-KR.resx">
+      <DependentUpon>AF3ErrorLog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\AF3ErrorLog.resx">
+      <DependentUpon>AF3ErrorLog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\AuthKeys.ko-KR.resx">
       <DependentUpon>AuthKeys.cs</DependentUpon>

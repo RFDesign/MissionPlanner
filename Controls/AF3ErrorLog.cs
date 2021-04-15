@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace MissionPlanner.Controls
 {
-    public partial class AF3Status : Form
+    public partial class AF3ErrorLog : Form
     {
         private List<System.Windows.Forms.Label> lbRFCTelem = new List<System.Windows.Forms.Label>();
         private List<System.Windows.Forms.Label> lbRFCFlightMode = new List<System.Windows.Forms.Label>();
@@ -24,7 +24,6 @@ namespace MissionPlanner.Controls
             "CIRCLE","","LAND","","DRIFT","","SPORT","FLIP","AUTO TUNE","POS HOLD","BRAKE","THROW","AVOID ADSB","GUIDED NO GPS","SMART RTL","FLOW HOLD",
             "FOLLOW","ZIGZAG","SYSID","HELI AUTOROT"};
         private string[] ARMED_NAMES = new string[] { "ARM UNKNOWN", "ARMED", "DISARMED" };
-        private AF3ErrorLog errorLog = new AF3ErrorLog();
 
         protected override CreateParams CreateParams
         {
@@ -36,40 +35,13 @@ namespace MissionPlanner.Controls
             }
         }
 
-        public AF3Status()
+        public AF3ErrorLog()
         {
             InitializeComponent();
 
             Utilities.ThemeManager.ApplyThemeTo(this);
 
             timer1.Start();
-
-            label1.BackColor = label2.BackColor = label3.BackColor = 
-                label4.BackColor = Color.FromArgb(0x55, 0x55, 0x55);
-
-            lbRFCTelem.Add(lbRFC1TELEM);
-            lbRFCTelem.Add(lbRFC2TELEM);
-            lbRFCTelem.Add(lbRFC3TELEM);
-
-            lbRFCFlightMode.Add(lbRFC1FlightMode);
-            lbRFCFlightMode.Add(lbRFC2FlightMode);
-            lbRFCFlightMode.Add(lbRFC3FlightMode);
-
-            lbRFCArmStatus.Add(lbRFC1ArmStatus);
-            lbRFCArmStatus.Add(lbRFC2ArmStatus);
-            lbRFCArmStatus.Add(lbRFC3ArmStatus);
-
-            lbRFCCanPres.Add(lbRFC1CanPres);
-            lbRFCCanPres.Add(lbRFC2CanPres);
-            lbRFCCanPres.Add(lbRFC3CanPres);
-
-            lbRFCScore.Add(lbRFC1Score);
-            lbRFCScore.Add(lbRFC2Score);
-            lbRFCScore.Add(lbRFC3Score);
-
-            lbRFCppmVis.Add(lbRFC1ppmVis);
-            lbRFCppmVis.Add(lbRFC2ppmVis);
-            lbRFCppmVis.Add(lbRFC3ppmVis);
         }
 
         private void updateCanPresLabel(Label lb, uint canPresent)
@@ -182,107 +154,68 @@ namespace MissionPlanner.Controls
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            bool[] telem = MainV2.comPort.MAV.cs.af3.telemRFC;
-            bool[] ppmvis = MainV2.comPort.MAV.cs.af3.ppmVisRFC;
-            uint[] canPresent = MainV2.comPort.MAV.cs.af3.canElapsedRFC;
-            uint[] flightModes = MainV2.comPort.MAV.cs.af3.flightModeRFC;
-            uint[] armStatuses = MainV2.comPort.MAV.cs.af3.armedStatRFC;
-            float[] scores = MainV2.comPort.MAV.cs.af3.scoreRFC;
+            // Populate detailed failure log
 
-            for (int i = 0; i < MainV2.comPort.MAV.cs.af3.number_rfcs; i++)
+            List<errorRecord> errList = MainV2.comPort.MAV.cs.af3.getErrors();
+
+            if (errList != null)
             {
-                updateTelemLabel(lbRFCTelem[i], telem[i]);
-                updateCanPresLabel(lbRFCCanPres[i], canPresent[i]);
-                updateScoreLabel(lbRFCScore[i], scores[i]);
-                updateFlightModeLabel(flightModes[i], i);
-                updateArmedStatusLabel(armStatuses[i], i);
-                updatePpmLabel(lbRFCppmVis[i], ppmvis[i]);
-            }
-
-            int activeRFC = (int)MainV2.comPort.MAV.cs.af3.activeRFC;
-
-            updateActiveRfcLabel(lbRFC1Active, (activeRFC == 0));
-            updateActiveRfcLabel(lbRFC2Active, (activeRFC == 1));
-            updateActiveRfcLabel(lbRFC3Active, (activeRFC == 2));
-
-            // Update/Create ESC info labels
-
-            int epCount = MainV2.comPort.MAV.cs.af3.getEndpointCount();
-
-            for (int i = 0; i < epCount; i++)
-            {
-                EndPoint item = MainV2.comPort.MAV.cs.af3.getEndpoint(i);
-                uint epEscIndex = item.esc_index;
-
-                string origin = String.Format("EP{0}", item.esc_index);
-                List<errorRecord> errLs = MainV2.comPort.MAV.cs.af3.getErrors();
-                List<errorRecord> errEp = errLs.FindAll(error => error.origin == origin &&
-                    !error.resolved);
-
-                errorRecord worseError = null;
-
-                foreach (var err in errEp)
+                // error inacessible member
+                foreach (errorRecord error in errList)
                 {
-                    if (worseError == null)
+                    bool found = false;
+
+                    foreach (ListViewItem item in listView1.Items)
                     {
-                        worseError = err;
-                        continue;
-                    }
-                    else
-                    {
-                        if ((uint)err.state >= (uint)worseError.state)
+
+                        if ((item.Tag as string).Equals(error.hash))
                         {
-                            worseError = err;
+                            found = true;
+                            item.UseItemStyleForSubItems = false;
+
+                            if (!error.resolved)
+                            {
+                                double elapsedMillis = DateTime.Now.Subtract(error.timestamp).TotalMilliseconds;
+                                item.SubItems[4].Text = Util.MillisToHumanTime(elapsedMillis);
+                                item.SubItems[4].ForeColor = Color.Red;
+                            }
+                            else
+                            {
+                                double elapsedMillis = error.resolveTimestamp.Subtract(error.timestamp).TotalMilliseconds;
+                                item.SubItems[4].Text = Util.MillisToHumanTime(elapsedMillis);
+                                item.SubItems[4].ForeColor = Color.White;
+                            }
+
+                            break;
                         }
                     }
 
-                }
-
-                epInfo.UpdateItem(item, worseError);
-            }
-
-            refreshCyclesCount++;
-
-            // Populate ECAM list
-
-            List<ecamErrorRecord> ecamErrList = MainV2.comPort.MAV.cs.af3.getEcamErrors();
-
-            if (ecamErrList != null && ecamList != null)
-            {
-                ecamList.Items.Clear();
-
-                foreach (var item in ecamErrList)
-                {
-                    var lsItem = ecamList.Items.Add(item.message);
-                    Color clr = Color.Green;
-                    
-                    switch (item.severity)
+                    if (!found)
                     {
-                        case ecamErrorRecord.severityType.ALERT:
-                            clr = Color.Orange;
-                            break;
-                        case ecamErrorRecord.severityType.CRITICAL:
-                            clr = Color.Red;
-                            break;
+                        string[] values = new string[] { error.timestamp.ToString("HH:mm:ss"),
+                            error.origin,
+                            error.state.ToString(),
+                            error.message,
+                            ""};
+
+                        string hash = error.timestamp.ToBinary().ToString() + values[1] +
+                                values[2] + error.failedBuses.ToString();
+
+                        ListViewItem errLine = new ListViewItem(values);
+                        errLine.Tag = hash;
+                        listView1.Items.Add(errLine);
                     }
 
-                    lsItem.ForeColor = clr;
                 }
 
             }
 
-            // restore colours
-            //Utilities.ThemeManager.ApplyThemeTo(this);
         }
 
-        private void AF3Status_Load(object sender, EventArgs e)
+        private void AF3ErrorLog_FormClosing(object sender, FormClosingEventArgs e)
         {
-
-        }
-
-        private void ecamList_DoubleClick(object sender, EventArgs e)
-        {
-            errorLog.Show();
+            e.Cancel = true;
+            this.Hide();
         }
     }
 }
