@@ -188,6 +188,7 @@ namespace MissionPlanner.Utilities.AF3
             // detect CAN buses where endpoints are not communicating   
 
             bool[] failedBus = new bool[number_buses];
+            uint failedBusMask = 0;
             int failedBusCount = 0;
 
             for (int i = 0; i < number_buses; i++)
@@ -228,6 +229,11 @@ namespace MissionPlanner.Utilities.AF3
 
             if (failedBusCount > 0)
             {
+                for (int i = 0; i < failedBus.Length; i++)
+                {
+                    failedBusMask += failedBus[i] ? 1 : 0 << 0;
+                }
+
                 ecamMsg = String.Format("CAN BUS {0} FAIL", Util.printHumanSequence(failedBus));
                 retEcamErrList.Add(new ecamErrorRecord(ecamMsg, ecamErrorRecord.severityType.CRITICAL));
             }
@@ -302,7 +308,9 @@ namespace MissionPlanner.Utilities.AF3
 
             foreach (var error in epFullFailureList)
             {
-                var epFullFailureInstances = epFullFailureList.FindAll(err => err.origin == error.origin);
+                var epFullFailureInstances = epFullFailureList.FindAll(err => 
+                    err.origin == error.origin &&
+                    (err.failedBuses & (~failedBusMask)) > 0);
 
                 if (epFullFailureInstances.Count == 1)
                 {
@@ -373,7 +381,7 @@ namespace MissionPlanner.Utilities.AF3
 
             }
 
-            if (failOrIntPPMCount >= number_rfcs)
+            if (failOrIntPPMCount >= number_rfcs && number_rfcs > 0)
             {
                 ecamMsg = String.Format("NO PPM ALL RFC");
                 retEcamErrList.Add(new ecamErrorRecord(ecamMsg, ecamErrorRecord.severityType.CRITICAL));
@@ -422,7 +430,7 @@ namespace MissionPlanner.Utilities.AF3
             return retEcamErrList;
         }
 
-            public List<errorRecord> getErrors()
+        public List<errorRecord> getErrors()
         {
             var retErrList = new List<errorRecord>();
 
@@ -443,7 +451,7 @@ namespace MissionPlanner.Utilities.AF3
                 }
             }
 
-            return errorList;
+            return retErrList;
         }
 
         public bool checkArmedStatusMismatch(int rfcIndex)
@@ -837,7 +845,7 @@ namespace MissionPlanner.Utilities.AF3
 
         public void resolve(DateTime rTimestamp)
         {
-            resolved = true;
+            resolved = rTimestamp != DateTime.MinValue;
             resolveTimestamp = rTimestamp;
         }
 
