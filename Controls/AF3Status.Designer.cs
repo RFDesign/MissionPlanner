@@ -59,8 +59,11 @@ namespace MissionPlanner.Controls
             this.lbRFC1Active = new System.Windows.Forms.Label();
             this.lbRFC1TELEM = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.ecamList = new System.Windows.Forms.ListView();
             this.epInfo = new MissionPlanner.Controls.AF3EndpointInfo();
+            this.ecamList = new System.Windows.Forms.ListView();
+            this.lbVfcTemp = new System.Windows.Forms.Label();
+            this.lbVfcLoading = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -102,6 +105,9 @@ namespace MissionPlanner.Controls
             // tableLayoutPanel1
             // 
             resources.ApplyResources(this.tableLayoutPanel1, "tableLayoutPanel1");
+            this.tableLayoutPanel1.Controls.Add(this.label7, 3, 4);
+            this.tableLayoutPanel1.Controls.Add(this.lbVfcLoading, 2, 4);
+            this.tableLayoutPanel1.Controls.Add(this.lbVfcTemp, 1, 4);
             this.tableLayoutPanel1.Controls.Add(this.label1, 1, 3);
             this.tableLayoutPanel1.Controls.Add(this.lbRFC3ppmVis, 3, 13);
             this.tableLayoutPanel1.Controls.Add(this.lbRFC2ppmVis, 2, 13);
@@ -227,6 +233,12 @@ namespace MissionPlanner.Controls
             resources.ApplyResources(this.label2, "label2");
             this.label2.Name = "label2";
             // 
+            // epInfo
+            // 
+            resources.ApplyResources(this.epInfo, "epInfo");
+            this.tableLayoutPanel1.SetColumnSpan(this.epInfo, 3);
+            this.epInfo.Name = "epInfo";
+            // 
             // ecamList
             // 
             this.ecamList.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -238,11 +250,20 @@ namespace MissionPlanner.Controls
             this.ecamList.View = System.Windows.Forms.View.List;
             this.ecamList.DoubleClick += new System.EventHandler(this.ecamList_DoubleClick);
             // 
-            // epInfo
+            // lbVfcTemp
             // 
-            resources.ApplyResources(this.epInfo, "epInfo");
-            this.tableLayoutPanel1.SetColumnSpan(this.epInfo, 3);
-            this.epInfo.Name = "epInfo";
+            resources.ApplyResources(this.lbVfcTemp, "lbVfcTemp");
+            this.lbVfcTemp.Name = "lbVfcTemp";
+            // 
+            // lbVfcLoading
+            // 
+            resources.ApplyResources(this.lbVfcLoading, "lbVfcLoading");
+            this.lbVfcLoading.Name = "lbVfcLoading";
+            // 
+            // label7
+            // 
+            resources.ApplyResources(this.label7, "label7");
+            this.label7.Name = "label7";
             // 
             // AF3Status
             // 
@@ -288,5 +309,8 @@ namespace MissionPlanner.Controls
         private AF3EndpointInfo epInfo;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ListView ecamList;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label lbVfcLoading;
+        private System.Windows.Forms.Label lbVfcTemp;
     }
 }

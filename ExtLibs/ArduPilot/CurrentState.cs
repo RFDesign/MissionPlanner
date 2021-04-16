@@ -2186,6 +2186,9 @@ namespace MissionPlanner
                             af3.activeRFC = af3statusm.active_rfc;
                             af3.number_rfcs = (af3statusm.number_rfcs > 3) ?
                                 3 : af3statusm.number_rfcs;
+                            af3.vfcCpuLoading = af3statusm.vfc_cpu_loading;
+                            af3.vfcCpuTemperature = af3statusm.vfc_cpu_temp;
+
                             af3score = af3.calculateScore();
                         }
                         break;

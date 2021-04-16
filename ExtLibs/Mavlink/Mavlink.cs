@@ -273,7 +273,7 @@ public partial class MAVLink
         new message_info(11035, "OSD_PARAM_SHOW_CONFIG", 128, 8, 8, typeof( mavlink_osd_param_show_config_t )),
         new message_info(11036, "OSD_PARAM_SHOW_CONFIG_REPLY", 177, 34, 34, typeof( mavlink_osd_param_show_config_reply_t )),
         new message_info(11037, "OBSTACLE_DISTANCE_3D", 130, 28, 28, typeof( mavlink_obstacle_distance_3d_t )),
-        new message_info(12100, "AF3_STATUS", 162, 2, 2, typeof( mavlink_af3_status_t )),
+        new message_info(12100, "AF3_STATUS", 50, 7, 7, typeof( mavlink_af3_status_t )),
         new message_info(12101, "AF3_EP_STATUS", 210, 24, 24, typeof( mavlink_af3_ep_status_t )),
         new message_info(12102, "AF3_RFC_STATUS", 152, 11, 11, typeof( mavlink_af3_rfc_status_t )),
         new message_info(42000, "ICAROUS_HEARTBEAT", 227, 1, 1, typeof( mavlink_icarous_heartbeat_t )),
@@ -17851,16 +17851,22 @@ public partial class MAVLink
     };
 
     /// extensions_start 0
-    [StructLayout(LayoutKind.Sequential, Pack = 1, Size = 2)]
+    [StructLayout(LayoutKind.Sequential, Pack = 1, Size = 7)]
     ///<summary> Report AF3 triple-redundant system status </summary>
     public struct mavlink_af3_status_t
     {
-        public mavlink_af3_status_t(byte number_rfcs, byte active_rfc)
+        public mavlink_af3_status_t(float vfc_cpu_temp, byte number_rfcs, byte active_rfc, byte vfc_cpu_loading)
         {
+            this.vfc_cpu_temp = vfc_cpu_temp;
             this.number_rfcs = number_rfcs;
             this.active_rfc = active_rfc;
+            this.vfc_cpu_loading = vfc_cpu_loading;
 
         }
+        /// <summary>CPU temperature of VFC device   </summary>
+        [Units("")]
+        [Description("CPU temperature of VFC device")]
+        public float vfc_cpu_temp;
         /// <summary>Number of Real Flight Controllers (RFC) in the system   </summary>
         [Units("")]
         [Description("Number of Real Flight Controllers (RFC) in the system")]
@@ -17869,6 +17875,10 @@ public partial class MAVLink
         [Units("")]
         [Description("Current real flight controller commanding the vehicle")]
         public byte active_rfc;
+        /// <summary>CPU loading of VFC device   </summary>
+        [Units("")]
+        [Description("CPU loading of VFC device")]
+        public byte vfc_cpu_loading;
 
     };
 

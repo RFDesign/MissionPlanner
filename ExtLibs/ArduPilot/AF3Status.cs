@@ -29,6 +29,8 @@ namespace MissionPlanner.Utilities.AF3
         /// the ECAM message "SYS INIT SLOW" is also displayed
         /// </summary>
         public const int sysExpBootupMs = 1500;
+        public const int maxCpuLoading = 70;
+        public const int maxCpuTemperature = 70;
     }
 
     public static class Util
@@ -95,6 +97,8 @@ namespace MissionPlanner.Utilities.AF3
     {
         public float score { get; set; }
         public int number_rfcs { get; set; }
+        public float vfcCpuTemperature { get; set; }
+        public int vfcCpuLoading { get; set; }
         public int number_buses { get { return number_rfcs == 1 ? 2 : 3; } }
         public int all_can_mask { get { return number_rfcs == 1 ? 3 : 7; } }
         public bool[] telemRFC = new bool[] { false, false, false };

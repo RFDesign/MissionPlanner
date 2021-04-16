@@ -25,6 +25,7 @@ namespace MissionPlanner.Controls
             "FOLLOW","ZIGZAG","SYSID","HELI AUTOROT"};
         private string[] ARMED_NAMES = new string[] { "ARM UNKNOWN", "ARMED", "DISARMED" };
         private AF3ErrorLog errorLog = new AF3ErrorLog();
+        private Color defaultBgColor = Color.FromArgb(0x33, 0x33, 0x33);
 
         protected override CreateParams CreateParams
         {
@@ -77,7 +78,7 @@ namespace MissionPlanner.Controls
             if (canPresent < 2)
             {
                 lb.Text = "CAN PRESENT";
-                lb.BackColor = Color.FromArgb(0x33, 0x33, 0x33);
+                lb.BackColor = defaultBgColor;
             }
             else
             {
@@ -89,7 +90,7 @@ namespace MissionPlanner.Controls
         private void updateScoreLabel(Label lb, float score)
         {
             lb.Text = String.Format("{0:N2}", score);
-            lb.BackColor = Color.FromArgb(0x33, 0x33, 0x33);
+            lb.BackColor = defaultBgColor;
         }
 
         private void updateTelemLabel(Label lb, bool telemPresent)
@@ -97,7 +98,7 @@ namespace MissionPlanner.Controls
             if (telemPresent)
             {
                 lb.Text = "TELEM";
-                lb.BackColor = Color.FromArgb(0x33, 0x33, 0x33);
+                lb.BackColor = defaultBgColor;
             }
             else
             {
@@ -111,13 +112,22 @@ namespace MissionPlanner.Controls
             if (ppmVisible)
             {
                 lb.Text = "PPM OK";
-                lb.BackColor = Color.FromArgb(0x33, 0x33, 0x33);
+                lb.BackColor = defaultBgColor;
             }
             else
             {
                 lb.Text = "NO PPM";
                 lb.BackColor = Color.Red;
             }
+        }
+
+        private void updateVfcStats(int cpuLoading, float temperature)
+        {
+            lbVfcLoading.Text = String.Format("CPU LOAD {0}%", cpuLoading);
+            lbVfcLoading.BackColor = cpuLoading > Constants.maxCpuLoading ? Color.Red : defaultBgColor;
+
+            lbVfcTemp.Text = String.Format("CPU TEMP {0} °C", temperature);
+            lbVfcTemp.BackColor = cpuLoading > Constants.maxCpuTemperature ? Color.Red : defaultBgColor;
         }
 
         private void updateFlightModeLabel(uint flightMode, int rfc_index)
@@ -133,7 +143,7 @@ namespace MissionPlanner.Controls
 
             if (rfHealthy)
             {
-                lbFlightMode.BackColor = Color.FromArgb(0x33, 0x33, 0x33);
+                lbFlightMode.BackColor = defaultBgColor;
             }
             else
             {
@@ -156,7 +166,7 @@ namespace MissionPlanner.Controls
 
             if (rfHealthy)
             {
-                lbArmedStatus.BackColor = Color.FromArgb(0x33, 0x33, 0x33);
+                lbArmedStatus.BackColor = defaultBgColor;
             }
             else
             {
@@ -198,6 +208,9 @@ namespace MissionPlanner.Controls
                 updateArmedStatusLabel(armStatuses[i], i);
                 updatePpmLabel(lbRFCppmVis[i], ppmvis[i]);
             }
+
+            updateVfcStats(MainV2.comPort.MAV.cs.af3.vfcCpuLoading,
+                MainV2.comPort.MAV.cs.af3.vfcCpuTemperature);
 
             int activeRFC = (int)MainV2.comPort.MAV.cs.af3.activeRFC;
 
