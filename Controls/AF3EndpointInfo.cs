@@ -257,15 +257,16 @@ namespace MissionPlanner.Controls
                 {
                     (lineControls[(int)lbIndex.ICON] as Label).Image = icons.Images[1];
                     changeLabelsBackground(attColor);
+                    changeLabelsForecolor(Color.White);
                 }
                 else if (error.state == errorRecord.opCode.BUS_ERROR && error.failedBuses == 7)
                 {
                     (lineControls[(int)lbIndex.ICON] as Label).Image = icons.Images[2];
                     changeLabelsBackground(badColor);
+                    changeLabelsForecolor(Color.White);
                 }
 
                 lineControls[(int)lbIndex.INFO].Text = error.message;
-                changeLabelsForecolor(Color.White);
 
             }
 

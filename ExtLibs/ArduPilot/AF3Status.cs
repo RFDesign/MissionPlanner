@@ -14,6 +14,7 @@ namespace MissionPlanner.Utilities.AF3
         public const float higherCurrentThres = 8000f;
         public const float midCurrentThres = 7000f;
 
+        public const int numPowerBuses = 2;
         public const int BUS_A = 1;
         public const int BUS_B = 2;
 
@@ -240,6 +241,29 @@ namespace MissionPlanner.Utilities.AF3
 
                 ecamMsg = String.Format("CAN BUS {0} FAIL", Util.printHumanSequence(failedBus));
                 retEcamErrList.Add(new ecamErrorRecord(ecamMsg, ecamErrorRecord.severityType.CRITICAL));
+            }
+
+            //Check for low bus voltage
+
+            bool[] lowVoltageBus = new bool[Constants.numPowerBuses];
+
+            for (int i = 0; i < Constants.numPowerBuses; i++)
+            {
+                var numFailedEPs = errList.FindAll(error =>
+                    error.state == errorRecord.opCode.BUS_ERROR &&
+                    error.failedBuses == 7).Count;
+
+                var numLowVoltage = errList.FindAll(error =>
+                    error.state == errorRecord.opCode.BUS_VOLTAGE &&
+                    error.failedBuses == 1 << i).Count;
+
+                var pwrBusName = Char.ConvertFromUtf32(i + 65);
+
+                if (numFailedEPs > 0 && numLowVoltage >= (epNo - numFailedEPs))
+                {
+                    ecamMsg = String.Format("POWER BUS {0} LOW VOLTAGE", pwrBusName);
+                    retEcamErrList.Add(new ecamErrorRecord(ecamMsg, ecamErrorRecord.severityType.CRITICAL));
+                }
             }
 
             // Check RFC failure or intermittency
