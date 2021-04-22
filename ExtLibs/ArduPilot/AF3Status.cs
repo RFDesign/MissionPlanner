@@ -107,6 +107,11 @@ namespace MissionPlanner.Utilities.AF3
         public uint[] flightModeRFC = new uint[] { 0, 0, 0 };
         public uint[] armedStatRFC = new uint[] { 0, 0, 0 };
         public uint[] canElapsedRFC = new uint[] { 0, 0, 0 };
+        /// <summary>
+        /// Ecam Messages are only shown if errors ocurred after the 
+        /// clearCutoffTimestemp.
+        /// </summary>
+        private DateTime clearCutoffTimestamp = DateTime.Now;
 
         public bool allRfcDetected { get {
 
@@ -178,9 +183,18 @@ namespace MissionPlanner.Utilities.AF3
 
         }
 
+        public void ClearEcamMessages()
+        {
+            clearCutoffTimestamp = DateTime.Now;
+        }
+
         public List<ecamErrorRecord> getEcamErrors()
         {
-            var errList = getErrors();
+            // Only takes into account errors that are currently unresolved
+            // or were generated after the cutoff timestamp
+            var errList = getErrors().FindAll(error => error.timestamp > 
+                clearCutoffTimestamp || !error.resolved);
+
             var retEcamErrList = new List<ecamErrorRecord>();
             int epNo = 0;
             string ecamMsg = "";
@@ -259,7 +273,7 @@ namespace MissionPlanner.Utilities.AF3
 
                 var pwrBusName = Char.ConvertFromUtf32(i + 65);
 
-                if (numFailedEPs > 0 && numLowVoltage >= (epNo - numFailedEPs))
+                if (epNo > 0 && numLowVoltage >= (epNo - numFailedEPs))
                 {
                     ecamMsg = String.Format("POWER BUS {0} LOW VOLTAGE", pwrBusName);
                     retEcamErrList.Add(new ecamErrorRecord(ecamMsg, ecamErrorRecord.severityType.CRITICAL));
