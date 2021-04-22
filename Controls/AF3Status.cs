@@ -121,13 +121,31 @@ namespace MissionPlanner.Controls
             }
         }
 
-        private void updateVfcStats(int cpuLoading, float temperature)
+        private void updateVfcStats(int cpuLoading, float temperature, float voltA, float voltB,
+            float rxAux, float txAux, float rxAf3, float txAf3)
         {
+            if (MainV2.comPort.MAV.cs.af3.number_rfcs == 0) return;
+
             lbVfcLoading.Text = String.Format("CPU LOAD {0}%", cpuLoading);
             lbVfcLoading.BackColor = cpuLoading > Constants.maxCpuLoading ? Color.Red : defaultBgColor;
 
             lbVfcTemp.Text = String.Format("CPU TEMP {0} °C", temperature);
             lbVfcTemp.BackColor = cpuLoading > Constants.maxCpuTemperature ? Color.Red : defaultBgColor;
+
+            lbVfcVoltA.Text = String.Format("VFC VOLT A {0:N} V", voltA / 1000);
+            lbVfcVoltA.BackColor = voltA < Constants.lowerVoltageThres ? Color.Red : defaultBgColor;
+            lbVfcVoltB.Text = String.Format("VFC VOLT B {0:N} V", voltB / 1000);
+            lbVfcVoltB.BackColor = voltB < Constants.lowerVoltageThres ? Color.Red : defaultBgColor;
+
+            lbRxAf3.Text = String.Format("VFC RX AF3 {0:N} kbps", rxAf3 / 1000);
+            lbTxAf3.Text = String.Format("VFC TX AF3 {0:N} kbps", txAf3 / 1000);
+            lbRxAux.Text = String.Format("VFC RX AUX {0:N} kbps", rxAf3 / 1000);
+            lbTxAux.Text = String.Format("VFC TX AUX {0:N} kbps", txAf3 / 1000);
+
+            lbRxAf3.BackColor = defaultBgColor;
+            lbTxAf3.BackColor = defaultBgColor;
+            lbRxAux.BackColor = defaultBgColor;
+            lbTxAux.BackColor = defaultBgColor;
         }
 
         private void updateFlightModeLabel(uint flightMode, int rfc_index)
@@ -210,7 +228,13 @@ namespace MissionPlanner.Controls
             }
 
             updateVfcStats(MainV2.comPort.MAV.cs.af3.vfcCpuLoading,
-                MainV2.comPort.MAV.cs.af3.vfcCpuTemperature);
+                MainV2.comPort.MAV.cs.af3.vfcCpuTemperature,
+                MainV2.comPort.MAV.cs.af3.vfcPsVoltageA,
+                MainV2.comPort.MAV.cs.af3.vfcPsVoltageB,
+                MainV2.comPort.MAV.cs.af3.vfcBitrateRxAux,
+                MainV2.comPort.MAV.cs.af3.vfcBitrateTxAux,
+                MainV2.comPort.MAV.cs.af3.vfcBitrateRxAf3,
+                MainV2.comPort.MAV.cs.af3.vfcBitrateTxAf3);
 
             int activeRFC = (int)MainV2.comPort.MAV.cs.af3.activeRFC;
 

@@ -2184,10 +2184,20 @@ namespace MissionPlanner
                             var af3statusm = mavLinkMessage.ToStructure<MAVLink.mavlink_af3_status_t>();
                             
                             af3.activeRFC = af3statusm.active_rfc;
+
                             af3.number_rfcs = (af3statusm.number_rfcs > 3) ?
                                 3 : af3statusm.number_rfcs;
+
                             af3.vfcCpuLoading = af3statusm.vfc_cpu_loading;
                             af3.vfcCpuTemperature = af3statusm.vfc_cpu_temp;
+
+                            af3.vfcBitrateRxAf3 = af3statusm.vfc_af3_rx_bitrate;
+                            af3.vfcBitrateTxAf3 = af3statusm.vfc_af3_tx_bitrate;
+                            af3.vfcBitrateRxAux = af3statusm.vfc_aux_rx_bitrate;
+                            af3.vfcBitrateTxAux = af3statusm.vfc_aux_tx_bitrate;
+
+                            af3.vfcPsVoltageA = af3statusm.vfc_ps_volt_A;
+                            af3.vfcPsVoltageB = af3statusm.vfc_ps_volt_B;
 
                             af3score = af3.calculateScore();
                         }
