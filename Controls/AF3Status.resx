@@ -1168,13 +1168,31 @@
     <value>epInfo</value>
   </data>
   <data name="&gt;&gt;epInfo.Type" xml:space="preserve">
-    <value>MissionPlanner.Controls.AF3EndpointInfo, MissionPlanner, Version=1.3.7775.30188, Culture=neutral, PublicKeyToken=null</value>
+    <value>MissionPlanner.Controls.AF3EndpointInfo, MissionPlanner, Version=1.3.7782.25572, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;epInfo.Parent" xml:space="preserve">
     <value>tableLayoutPanel1</value>
   </data>
   <data name="&gt;&gt;epInfo.ZOrder" xml:space="preserve">
     <value>28</value>
+  </data>
+  <metadata name="ecamMenu.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>118, 17</value>
+  </metadata>
+  <data name="clearAllMessagesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>210, 24</value>
+  </data>
+  <data name="clearAllMessagesToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Clear all messages</value>
+  </data>
+  <data name="ecamMenu.Size" type="System.Drawing.Size, System.Drawing">
+    <value>201, 28</value>
+  </data>
+  <data name="&gt;&gt;ecamMenu.Name" xml:space="preserve">
+    <value>ecamMenu</value>
+  </data>
+  <data name="&gt;&gt;ecamMenu.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="ecamList.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -1228,7 +1246,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;tableLayoutPanel1.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <data name="tableLayoutPanel1.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
     <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="label7" Row="4" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="lbVfcLoading" Row="4" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="lbVfcTemp" Row="4" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="label1" Row="3" RowSpan="1" Column="1" ColumnSpan="3" /&gt;&lt;Control Name="lbRFC3ppmVis" Row="13" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC2ppmVis" Row="13" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC1ppmVis" Row="13" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC3Score" Row="12" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC2Score" Row="12" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC1Score" Row="12" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC3CanPres" Row="11" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC2CanPres" Row="11" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC1CanPres" Row="11" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC1ArmStatus" Row="10" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC3ArmStatus" Row="10" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC2ArmStatus" Row="10" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC3FlightMode" Row="9" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC2FlightMode" Row="9" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC1FlightMode" Row="9" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC2Active" Row="14" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC3Active" Row="14" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC1Active" Row="14" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC2TELEM" Row="8" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC3TELEM" Row="8" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC1TELEM" Row="8" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="label2" Row="7" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="label3" Row="7" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="label4" Row="7" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="epInfo" Row="16" RowSpan="1" Column="1" ColumnSpan="3" /&gt;&lt;Control Name="ecamList" Row="1" RowSpan="1" Column="1" ColumnSpan="3" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Absolute,15,Percent,33.33333,Percent,33.33333,Percent,33.33333,Absolute,15" /&gt;&lt;Rows Styles="Absolute,15,Absolute,80,Absolute,15,Absolute,30,Absolute,20,Absolute,20,Absolute,15,Absolute,30,Absolute,20,Absolute,20,Absolute,20,Absolute,20,Absolute,20,Absolute,20,Absolute,20,Absolute,20,Percent,100,Absolute,15" /&gt;&lt;/TableLayoutSettings&gt;</value>
@@ -1247,6 +1265,12 @@
   </data>
   <data name="&gt;&gt;timer1.Type" xml:space="preserve">
     <value>System.Windows.Forms.Timer, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;clearAllMessagesToolStripMenuItem.Name" xml:space="preserve">
+    <value>clearAllMessagesToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;clearAllMessagesToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>AF3Status</value>

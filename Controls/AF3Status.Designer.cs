@@ -40,6 +40,9 @@ namespace MissionPlanner.Controls
             this.lbRFC3Active = new System.Windows.Forms.Label();
             this.lbRFC2Active = new System.Windows.Forms.Label();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.label7 = new System.Windows.Forms.Label();
+            this.lbVfcLoading = new System.Windows.Forms.Label();
+            this.lbVfcTemp = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.lbRFC3ppmVis = new System.Windows.Forms.Label();
             this.lbRFC2ppmVis = new System.Windows.Forms.Label();
@@ -61,10 +64,10 @@ namespace MissionPlanner.Controls
             this.label2 = new System.Windows.Forms.Label();
             this.epInfo = new MissionPlanner.Controls.AF3EndpointInfo();
             this.ecamList = new System.Windows.Forms.ListView();
-            this.lbVfcTemp = new System.Windows.Forms.Label();
-            this.lbVfcLoading = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
+            this.ecamMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.clearAllMessagesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel1.SuspendLayout();
+            this.ecamMenu.SuspendLayout();
             this.SuspendLayout();
             // 
             // timer1
@@ -136,6 +139,21 @@ namespace MissionPlanner.Controls
             this.tableLayoutPanel1.Controls.Add(this.epInfo, 1, 16);
             this.tableLayoutPanel1.Controls.Add(this.ecamList, 1, 1);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            // 
+            // label7
+            // 
+            resources.ApplyResources(this.label7, "label7");
+            this.label7.Name = "label7";
+            // 
+            // lbVfcLoading
+            // 
+            resources.ApplyResources(this.lbVfcLoading, "lbVfcLoading");
+            this.lbVfcLoading.Name = "lbVfcLoading";
+            // 
+            // lbVfcTemp
+            // 
+            resources.ApplyResources(this.lbVfcTemp, "lbVfcTemp");
+            this.lbVfcTemp.Name = "lbVfcTemp";
             // 
             // label1
             // 
@@ -243,6 +261,7 @@ namespace MissionPlanner.Controls
             // 
             this.ecamList.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tableLayoutPanel1.SetColumnSpan(this.ecamList, 3);
+            this.ecamList.ContextMenuStrip = this.ecamMenu;
             resources.ApplyResources(this.ecamList, "ecamList");
             this.ecamList.HideSelection = false;
             this.ecamList.Name = "ecamList";
@@ -250,20 +269,19 @@ namespace MissionPlanner.Controls
             this.ecamList.View = System.Windows.Forms.View.List;
             this.ecamList.DoubleClick += new System.EventHandler(this.ecamList_DoubleClick);
             // 
-            // lbVfcTemp
+            // ecamMenu
             // 
-            resources.ApplyResources(this.lbVfcTemp, "lbVfcTemp");
-            this.lbVfcTemp.Name = "lbVfcTemp";
+            this.ecamMenu.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.ecamMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.clearAllMessagesToolStripMenuItem});
+            this.ecamMenu.Name = "contextMenuStrip1";
+            resources.ApplyResources(this.ecamMenu, "ecamMenu");
             // 
-            // lbVfcLoading
+            // clearAllMessagesToolStripMenuItem
             // 
-            resources.ApplyResources(this.lbVfcLoading, "lbVfcLoading");
-            this.lbVfcLoading.Name = "lbVfcLoading";
-            // 
-            // label7
-            // 
-            resources.ApplyResources(this.label7, "label7");
-            this.label7.Name = "label7";
+            this.clearAllMessagesToolStripMenuItem.Name = "clearAllMessagesToolStripMenuItem";
+            resources.ApplyResources(this.clearAllMessagesToolStripMenuItem, "clearAllMessagesToolStripMenuItem");
+            this.clearAllMessagesToolStripMenuItem.Click += new System.EventHandler(this.clearAllMessagesToolStripMenuItem_Click);
             // 
             // AF3Status
             // 
@@ -275,6 +293,7 @@ namespace MissionPlanner.Controls
             this.Load += new System.EventHandler(this.AF3Status_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
+            this.ecamMenu.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -312,5 +331,7 @@ namespace MissionPlanner.Controls
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label lbVfcLoading;
         private System.Windows.Forms.Label lbVfcTemp;
+        private System.Windows.Forms.ContextMenuStrip ecamMenu;
+        private System.Windows.Forms.ToolStripMenuItem clearAllMessagesToolStripMenuItem;
     }
 }

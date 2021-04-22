@@ -256,12 +256,39 @@ namespace MissionPlanner.Controls
 
             refreshCyclesCount++;
 
-            // Populate ECAM list
+            populateEcam();
+
+            // restore colours
+            //Utilities.ThemeManager.ApplyThemeTo(this);
+        }
+
+        private void populateEcam()
+        {
 
             List<ecamErrorRecord> ecamErrList = MainV2.comPort.MAV.cs.af3.getEcamErrors();
 
             if (ecamErrList != null && ecamList != null)
             {
+                // Only update is the ecam List has changed
+
+                if (ecamErrList.Count == ecamList.Items.Count)
+                {
+                    bool equal = true;
+
+                    for (int i = 0; i < ecamErrList.Count; i++)
+                    {
+
+                        if (ecamList.Items[i].Text != ecamErrList[i].message)
+                        {
+                            equal = false;
+                            break;
+                        }
+
+                    }
+
+                    if (equal) return;
+                }
+
                 ecamList.Items.Clear();
 
                 foreach (var item in ecamErrList)
@@ -284,8 +311,6 @@ namespace MissionPlanner.Controls
 
             }
 
-            // restore colours
-            //Utilities.ThemeManager.ApplyThemeTo(this);
         }
 
         private void AF3Status_Load(object sender, EventArgs e)
@@ -296,6 +321,11 @@ namespace MissionPlanner.Controls
         private void ecamList_DoubleClick(object sender, EventArgs e)
         {
             errorLog.Show();
+        }
+
+        private void clearAllMessagesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MainV2.comPort.MAV.cs.af3.ClearEcamMessages();
         }
     }
 }
