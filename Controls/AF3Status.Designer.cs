@@ -66,6 +66,12 @@ namespace MissionPlanner.Controls
             this.ecamList = new System.Windows.Forms.ListView();
             this.ecamMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.clearAllMessagesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.lbRxAf3 = new System.Windows.Forms.Label();
+            this.lbRxAux = new System.Windows.Forms.Label();
+            this.lbVfcVoltA = new System.Windows.Forms.Label();
+            this.lbTxAf3 = new System.Windows.Forms.Label();
+            this.lbTxAux = new System.Windows.Forms.Label();
+            this.lbVfcVoltB = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.ecamMenu.SuspendLayout();
             this.SuspendLayout();
@@ -108,35 +114,41 @@ namespace MissionPlanner.Controls
             // tableLayoutPanel1
             // 
             resources.ApplyResources(this.tableLayoutPanel1, "tableLayoutPanel1");
-            this.tableLayoutPanel1.Controls.Add(this.label7, 3, 4);
-            this.tableLayoutPanel1.Controls.Add(this.lbVfcLoading, 2, 4);
-            this.tableLayoutPanel1.Controls.Add(this.lbVfcTemp, 1, 4);
+            this.tableLayoutPanel1.Controls.Add(this.lbVfcVoltB, 3, 5);
+            this.tableLayoutPanel1.Controls.Add(this.lbTxAux, 2, 5);
+            this.tableLayoutPanel1.Controls.Add(this.lbTxAf3, 1, 5);
+            this.tableLayoutPanel1.Controls.Add(this.lbVfcVoltA, 3, 4);
+            this.tableLayoutPanel1.Controls.Add(this.lbRxAux, 2, 4);
+            this.tableLayoutPanel1.Controls.Add(this.lbRxAf3, 1, 4);
+            this.tableLayoutPanel1.Controls.Add(this.label7, 3, 6);
+            this.tableLayoutPanel1.Controls.Add(this.lbVfcLoading, 2, 6);
+            this.tableLayoutPanel1.Controls.Add(this.lbVfcTemp, 1, 6);
             this.tableLayoutPanel1.Controls.Add(this.label1, 1, 3);
-            this.tableLayoutPanel1.Controls.Add(this.lbRFC3ppmVis, 3, 13);
-            this.tableLayoutPanel1.Controls.Add(this.lbRFC2ppmVis, 2, 13);
-            this.tableLayoutPanel1.Controls.Add(this.lbRFC1ppmVis, 1, 13);
-            this.tableLayoutPanel1.Controls.Add(this.lbRFC3Score, 3, 12);
-            this.tableLayoutPanel1.Controls.Add(this.lbRFC2Score, 2, 12);
-            this.tableLayoutPanel1.Controls.Add(this.lbRFC1Score, 1, 12);
-            this.tableLayoutPanel1.Controls.Add(this.lbRFC3CanPres, 3, 11);
-            this.tableLayoutPanel1.Controls.Add(this.lbRFC2CanPres, 2, 11);
-            this.tableLayoutPanel1.Controls.Add(this.lbRFC1CanPres, 1, 11);
-            this.tableLayoutPanel1.Controls.Add(this.lbRFC1ArmStatus, 1, 10);
-            this.tableLayoutPanel1.Controls.Add(this.lbRFC3ArmStatus, 3, 10);
-            this.tableLayoutPanel1.Controls.Add(this.lbRFC2ArmStatus, 2, 10);
-            this.tableLayoutPanel1.Controls.Add(this.lbRFC3FlightMode, 3, 9);
-            this.tableLayoutPanel1.Controls.Add(this.lbRFC2FlightMode, 2, 9);
-            this.tableLayoutPanel1.Controls.Add(this.lbRFC1FlightMode, 1, 9);
-            this.tableLayoutPanel1.Controls.Add(this.lbRFC2Active, 2, 14);
-            this.tableLayoutPanel1.Controls.Add(this.lbRFC3Active, 3, 14);
-            this.tableLayoutPanel1.Controls.Add(this.lbRFC1Active, 1, 14);
-            this.tableLayoutPanel1.Controls.Add(this.lbRFC2TELEM, 2, 8);
-            this.tableLayoutPanel1.Controls.Add(this.lbRFC3TELEM, 3, 8);
-            this.tableLayoutPanel1.Controls.Add(this.lbRFC1TELEM, 1, 8);
-            this.tableLayoutPanel1.Controls.Add(this.label2, 1, 7);
-            this.tableLayoutPanel1.Controls.Add(this.label3, 2, 7);
-            this.tableLayoutPanel1.Controls.Add(this.label4, 3, 7);
-            this.tableLayoutPanel1.Controls.Add(this.epInfo, 1, 16);
+            this.tableLayoutPanel1.Controls.Add(this.lbRFC3ppmVis, 3, 15);
+            this.tableLayoutPanel1.Controls.Add(this.lbRFC2ppmVis, 2, 15);
+            this.tableLayoutPanel1.Controls.Add(this.lbRFC1ppmVis, 1, 15);
+            this.tableLayoutPanel1.Controls.Add(this.lbRFC3Score, 3, 14);
+            this.tableLayoutPanel1.Controls.Add(this.lbRFC2Score, 2, 14);
+            this.tableLayoutPanel1.Controls.Add(this.lbRFC1Score, 1, 14);
+            this.tableLayoutPanel1.Controls.Add(this.lbRFC3CanPres, 3, 13);
+            this.tableLayoutPanel1.Controls.Add(this.lbRFC2CanPres, 2, 13);
+            this.tableLayoutPanel1.Controls.Add(this.lbRFC1CanPres, 1, 13);
+            this.tableLayoutPanel1.Controls.Add(this.lbRFC1ArmStatus, 1, 12);
+            this.tableLayoutPanel1.Controls.Add(this.lbRFC3ArmStatus, 3, 12);
+            this.tableLayoutPanel1.Controls.Add(this.lbRFC2ArmStatus, 2, 12);
+            this.tableLayoutPanel1.Controls.Add(this.lbRFC3FlightMode, 3, 11);
+            this.tableLayoutPanel1.Controls.Add(this.lbRFC2FlightMode, 2, 11);
+            this.tableLayoutPanel1.Controls.Add(this.lbRFC1FlightMode, 1, 11);
+            this.tableLayoutPanel1.Controls.Add(this.lbRFC2Active, 2, 16);
+            this.tableLayoutPanel1.Controls.Add(this.lbRFC3Active, 3, 16);
+            this.tableLayoutPanel1.Controls.Add(this.lbRFC1Active, 1, 16);
+            this.tableLayoutPanel1.Controls.Add(this.lbRFC2TELEM, 2, 10);
+            this.tableLayoutPanel1.Controls.Add(this.lbRFC3TELEM, 3, 10);
+            this.tableLayoutPanel1.Controls.Add(this.lbRFC1TELEM, 1, 10);
+            this.tableLayoutPanel1.Controls.Add(this.label2, 1, 9);
+            this.tableLayoutPanel1.Controls.Add(this.label3, 2, 9);
+            this.tableLayoutPanel1.Controls.Add(this.label4, 3, 9);
+            this.tableLayoutPanel1.Controls.Add(this.epInfo, 1, 18);
             this.tableLayoutPanel1.Controls.Add(this.ecamList, 1, 1);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             // 
@@ -283,6 +295,36 @@ namespace MissionPlanner.Controls
             resources.ApplyResources(this.clearAllMessagesToolStripMenuItem, "clearAllMessagesToolStripMenuItem");
             this.clearAllMessagesToolStripMenuItem.Click += new System.EventHandler(this.clearAllMessagesToolStripMenuItem_Click);
             // 
+            // lbRxAf3
+            // 
+            resources.ApplyResources(this.lbRxAf3, "lbRxAf3");
+            this.lbRxAf3.Name = "lbRxAf3";
+            // 
+            // lbRxAux
+            // 
+            resources.ApplyResources(this.lbRxAux, "lbRxAux");
+            this.lbRxAux.Name = "lbRxAux";
+            // 
+            // lbVfcVoltA
+            // 
+            resources.ApplyResources(this.lbVfcVoltA, "lbVfcVoltA");
+            this.lbVfcVoltA.Name = "lbVfcVoltA";
+            // 
+            // lbTxAf3
+            // 
+            resources.ApplyResources(this.lbTxAf3, "lbTxAf3");
+            this.lbTxAf3.Name = "lbTxAf3";
+            // 
+            // lbTxAux
+            // 
+            resources.ApplyResources(this.lbTxAux, "lbTxAux");
+            this.lbTxAux.Name = "lbTxAux";
+            // 
+            // lbVfcVoltB
+            // 
+            resources.ApplyResources(this.lbVfcVoltB, "lbVfcVoltB");
+            this.lbVfcVoltB.Name = "lbVfcVoltB";
+            // 
             // AF3Status
             // 
             resources.ApplyResources(this, "$this");
@@ -333,5 +375,11 @@ namespace MissionPlanner.Controls
         private System.Windows.Forms.Label lbVfcTemp;
         private System.Windows.Forms.ContextMenuStrip ecamMenu;
         private System.Windows.Forms.ToolStripMenuItem clearAllMessagesToolStripMenuItem;
+        private System.Windows.Forms.Label lbVfcVoltB;
+        private System.Windows.Forms.Label lbTxAux;
+        private System.Windows.Forms.Label lbTxAf3;
+        private System.Windows.Forms.Label lbVfcVoltA;
+        private System.Windows.Forms.Label lbRxAux;
+        private System.Windows.Forms.Label lbRxAf3;
     }
 }

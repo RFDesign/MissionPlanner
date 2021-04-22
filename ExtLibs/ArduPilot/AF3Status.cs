@@ -100,6 +100,12 @@ namespace MissionPlanner.Utilities.AF3
         public int number_rfcs { get; set; }
         public float vfcCpuTemperature { get; set; }
         public int vfcCpuLoading { get; set; }
+        public float vfcPsVoltageA { get; set; }
+        public float vfcPsVoltageB { get; set; }
+        public float vfcBitrateTxAf3 { get; set; }
+        public float vfcBitrateRxAf3 { get; set; }
+        public float vfcBitrateTxAux { get; set; }
+        public float vfcBitrateRxAux { get; set; }
         public int number_buses { get { return number_rfcs == 1 ? 2 : 3; } }
         public int all_can_mask { get { return number_rfcs == 1 ? 3 : 7; } }
         public bool[] telemRFC = new bool[] { false, false, false };
