@@ -290,8 +290,6 @@ namespace MissionPlanner.Utilities.AF3
 
             bool[] failedRFC = new bool[number_rfcs];
             bool[] intermittentRFC = new bool[number_rfcs];
-            int failedRfcCount = 0;
-            int intermittentRfcCount = 0;
 
             for (int i = 0; i < number_rfcs; i++)
             {
@@ -307,28 +305,38 @@ namespace MissionPlanner.Utilities.AF3
                     error.state == errorRecord.opCode.RFC_NO_CAN &&
                     (error.failedBuses & (1 << i)) > 0);
 
-                if (telemIssues.Count == 1)
+                if (telemIssues.Count > 0 || canIssues.Count > 0)
                 {
-                    if (!telemIssues[0].resolved)
+
+                    if (telemIssues.Count == 1)
                     {
-                        failedRFC[i] = true;
-                        failedRfcCount++;
+                        if (telemIssues[0].resolved)
+                        {
+                            intermittentRFC[i] = true;
+                        }
+                        else
+                        {
+                            failedRFC[i] = true;
+                        }
                     }
-                }
-                
-                if (canIssues.Count == 1)
-                {
-                    if (!canIssues[0].resolved)
+
+                    if (canIssues.Count == 1)
                     {
-                        failedRFC[i] = true;
-                        failedRfcCount++;
+                        if (canIssues[0].resolved)
+                        {
+                            intermittentRFC[i] = true;
+                        }
+                        else
+                        {
+                            failedRFC[i] = true;
+                        }
                     }
-                }
-                
-                if ((telemIssues.Count + canIssues.Count) > 1)
-                {
-                    intermittentRFC[i] = true;
-                    intermittentRfcCount++;
+
+                    if (canIssues.Count > 1 || telemIssues.Count > 1)
+                    {
+                        intermittentRFC[i] = true;
+                    }
+
                 }
 
                 if (intermittentRFC[i])
