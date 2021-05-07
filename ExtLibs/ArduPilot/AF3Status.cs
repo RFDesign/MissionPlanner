@@ -286,68 +286,129 @@ namespace MissionPlanner.Utilities.AF3
                 }
             }
 
-            // Check RFC failure or intermittency
-
-            bool[] failedRFC = new bool[number_rfcs];
-            bool[] intermittentRFC = new bool[number_rfcs];
-
-            for (int i = 0; i < number_rfcs; i++)
+            if (allRfcDetected)
             {
-                if (failedBus[i]) continue;
 
-                failedRFC[i] = intermittentRFC[i] = false;
+                // Check RFC CAN bus failure or intermittency
 
-                var telemIssues = errList.FindAll(error =>
-                    error.state == errorRecord.opCode.TELEM_FAILURE &&
-                    (error.failedBuses & (1 << i)) > 0);
+                bool[] failedCanRFC = new bool[number_rfcs];
+                bool[] intermittentCanRFC = new bool[number_rfcs];
+                bool allCanRFCfailed = true;
 
-                var canIssues = errList.FindAll(error =>
-                    error.state == errorRecord.opCode.RFC_NO_CAN &&
-                    (error.failedBuses & (1 << i)) > 0);
+                for (int i = 0; i < number_rfcs; i++)
+                {
+                    if (failedBus[i]) continue;
 
-                if (telemIssues.Count > 0 || canIssues.Count > 0)
+                    failedCanRFC[i] = intermittentCanRFC[i] = false;
+
+                    var canIssues = errList.FindAll(error =>
+                        error.state == errorRecord.opCode.RFC_NO_CAN &&
+                        (error.failedBuses & (1 << i)) > 0);
+
+                    if (canIssues.Count > 0)
+                    {
+
+                        if (canIssues[canIssues.Count - 1].resolved)
+                        {
+                            intermittentCanRFC[i] = true;
+                        }
+                        else
+                        {
+                            failedCanRFC[i] = true;
+                        }
+
+                    }
+
+                    // Cheking whether all RFC's have failed to communicate on the
+                    // respective CAN buses
+                    allCanRFCfailed &= !intermittentCanRFC[i] && failedCanRFC[i];
+
+                }
+
+                if (allCanRFCfailed)
+                {
+                    ecamMsg = "ALL RFC CAN FAIL";
+                    retEcamErrList.Add(new ecamErrorRecord(ecamMsg, ecamErrorRecord.severityType.CRITICAL));
+                }
+                else
                 {
 
-                    if (telemIssues.Count == 1)
+                    for (int i = 0; i < number_rfcs; i++)
                     {
-                        if (telemIssues[0].resolved)
-                        {
-                            intermittentRFC[i] = true;
-                        }
-                        else
-                        {
-                            failedRFC[i] = true;
-                        }
-                    }
 
-                    if (canIssues.Count == 1)
-                    {
-                        if (canIssues[0].resolved)
+                        if (intermittentCanRFC[i])
                         {
-                            intermittentRFC[i] = true;
+                            ecamMsg = String.Format("RFC{0} CAN INTERMITTENT", i + 1);
+                            retEcamErrList.Add(new ecamErrorRecord(ecamMsg, ecamErrorRecord.severityType.ALERT));
                         }
-                        else
+                        else if (failedCanRFC[i])
                         {
-                            failedRFC[i] = true;
+                            ecamMsg = String.Format("RFC{0} CAN FAIL", i + 1);
+                            retEcamErrList.Add(new ecamErrorRecord(ecamMsg, ecamErrorRecord.severityType.ALERT));
                         }
-                    }
 
-                    if (canIssues.Count > 1 || telemIssues.Count > 1)
-                    {
-                        intermittentRFC[i] = true;
                     }
 
                 }
 
-                if (intermittentRFC[i])
+                // Check RFC telemetry availability or intermittency
+
+                bool[] failedTelemRFC = new bool[number_rfcs];
+                bool[] intermittentTelemRFC = new bool[number_rfcs];
+                bool allTelemRFCfailed = true;
+
+                for (int i = 0; i < number_rfcs; i++)
                 {
-                    ecamMsg = String.Format("RFC{0} INTERMITTENT", i + 1);
+                    if (failedBus[i]) continue;
+
+                    failedTelemRFC[i] = intermittentTelemRFC[i] = false;
+
+                    var telemIssues = errList.FindAll(error =>
+                        error.state == errorRecord.opCode.TELEM_FAILURE &&
+                        (error.failedBuses & (1 << i)) > 0);
+
+                    if (telemIssues.Count > 0)
+                    {
+
+                        if (telemIssues[telemIssues.Count - 1].resolved)
+                        {
+                            intermittentTelemRFC[i] = true;
+                        }
+                        else
+                        {
+                            failedTelemRFC[i] = true;
+                        }
+
+                    }
+
+                    allTelemRFCfailed &= !intermittentTelemRFC[i] && failedTelemRFC[i];
+
+                }
+
+                if (allTelemRFCfailed)
+                {
+                    ecamMsg = "ALL RFC TELEM UNAVAIL";
                     retEcamErrList.Add(new ecamErrorRecord(ecamMsg, ecamErrorRecord.severityType.CRITICAL));
                 }
-                else if (failedRFC[i])
+                else
                 {
-                    ecamMsg = String.Format("RFC{0} FAIL", i + 1);
-                    retEcamErrList.Add(new ecamErrorRecord(ecamMsg, ecamErrorRecord.severityType.CRITICAL));
+
+                    for (int i = 0; i < number_rfcs; i++)
+                    {
+
+                        if (intermittentTelemRFC[i])
+                        {
+                            ecamMsg = String.Format("RFC{0} TELEM INTERMITTENT", i + 1);
+                            retEcamErrList.Add(new ecamErrorRecord(ecamMsg, ecamErrorRecord.severityType.ALERT));
+                        }
+                        else if (failedTelemRFC[i])
+                        {
+                            ecamMsg = String.Format("RFC{0} TELEM UNAVAIL", i + 1);
+                            retEcamErrList.Add(new ecamErrorRecord(ecamMsg, ecamErrorRecord.severityType.ALERT));
+                        }
+
+                    }
+
                 }
 
             }
@@ -440,7 +501,7 @@ namespace MissionPlanner.Utilities.AF3
             if (failOrIntPPMCount >= number_rfcs && number_rfcs > 0)
             {
                 ecamMsg = String.Format("NO PPM ALL RFC");
-                retEcamErrList.Add(new ecamErrorRecord(ecamMsg, ecamErrorRecord.severityType.CRITICAL));
+                retEcamErrList.Add(new ecamErrorRecord(ecamMsg, ecamErrorRecord.severityType.ALERT));
             }
             else
             {
