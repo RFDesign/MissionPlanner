@@ -45,8 +45,8 @@ namespace MissionPlanner.Controls
 
             timer1.Start();
 
-            label1.BackColor = label2.BackColor = label3.BackColor = 
-                label4.BackColor = Color.FromArgb(0x55, 0x55, 0x55);
+            label1.BackColor = lbRFC1.BackColor = lbRFC2.BackColor = 
+                lbRFC3.BackColor = Color.FromArgb(0x55, 0x55, 0x55);
 
             lbRFCTelem.Add(lbRFC1TELEM);
             lbRFCTelem.Add(lbRFC2TELEM);
@@ -71,6 +71,14 @@ namespace MissionPlanner.Controls
             lbRFCppmVis.Add(lbRFC1ppmVis);
             lbRFCppmVis.Add(lbRFC2ppmVis);
             lbRFCppmVis.Add(lbRFC3ppmVis);
+
+            if (MainV2.comPort.MAV.cs.af3.number_rfcs == 2)
+            {
+                lbRFC1.Text = "RFC1 CAN1";
+                lbRFC2.Text = "RFC1 CAN2";
+                lbRFC3.Text = "";
+                lbRFC3.BackColor = this.BackColor;
+            }
         }
 
         private void updateCanPresLabel(Label lb, uint canPresent)
@@ -217,14 +225,26 @@ namespace MissionPlanner.Controls
             uint[] armStatuses = MainV2.comPort.MAV.cs.af3.armedStatRFC;
             float[] scores = MainV2.comPort.MAV.cs.af3.scoreRFC;
 
-            for (int i = 0; i < MainV2.comPort.MAV.cs.af3.number_rfcs; i++)
+            for (int i = 0; i < Constants.maxNumCanBuses; i++)
             {
-                updateTelemLabel(lbRFCTelem[i], telem[i]);
-                updateCanPresLabel(lbRFCCanPres[i], canPresent[i]);
-                updateScoreLabel(lbRFCScore[i], scores[i]);
-                updateFlightModeLabel(flightModes[i], i);
-                updateArmedStatusLabel(armStatuses[i], i);
-                updatePpmLabel(lbRFCppmVis[i], ppmvis[i]);
+                if (i < MainV2.comPort.MAV.cs.af3.number_rfcs)
+                {
+                    updateTelemLabel(lbRFCTelem[i], telem[i]);
+                    updateCanPresLabel(lbRFCCanPres[i], canPresent[i]);
+                    updateScoreLabel(lbRFCScore[i], scores[i]);
+                    updateFlightModeLabel(flightModes[i], i);
+                    updateArmedStatusLabel(armStatuses[i], i);
+                    updatePpmLabel(lbRFCppmVis[i], ppmvis[i]);
+                }
+                else
+                {
+                    lbRFCTelem[i].Text = "";
+                    lbRFCCanPres[i].Text = "";
+                    lbRFCScore[i].Text = "";
+                    lbRFCFlightMode[i].Text = "";
+                    lbRFCArmStatus[i].Text = "";
+                    lbRFCppmVis[i].Text = "";
+                }
             }
 
             updateVfcStats(MainV2.comPort.MAV.cs.af3.vfcCpuLoading,

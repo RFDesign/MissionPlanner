@@ -33,13 +33,19 @@ namespace MissionPlanner.Controls
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AF3Status));
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.label4 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
+            this.lbRFC3 = new System.Windows.Forms.Label();
+            this.lbRFC2 = new System.Windows.Forms.Label();
             this.lbRFC3TELEM = new System.Windows.Forms.Label();
             this.lbRFC2TELEM = new System.Windows.Forms.Label();
             this.lbRFC3Active = new System.Windows.Forms.Label();
             this.lbRFC2Active = new System.Windows.Forms.Label();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.lbVfcVoltB = new System.Windows.Forms.Label();
+            this.lbTxAux = new System.Windows.Forms.Label();
+            this.lbTxAf3 = new System.Windows.Forms.Label();
+            this.lbVfcVoltA = new System.Windows.Forms.Label();
+            this.lbRxAux = new System.Windows.Forms.Label();
+            this.lbRxAf3 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.lbVfcLoading = new System.Windows.Forms.Label();
             this.lbVfcTemp = new System.Windows.Forms.Label();
@@ -61,17 +67,11 @@ namespace MissionPlanner.Controls
             this.lbRFC1FlightMode = new System.Windows.Forms.Label();
             this.lbRFC1Active = new System.Windows.Forms.Label();
             this.lbRFC1TELEM = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.lbRFC1 = new System.Windows.Forms.Label();
             this.epInfo = new MissionPlanner.Controls.AF3EndpointInfo();
             this.ecamList = new System.Windows.Forms.ListView();
             this.ecamMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.clearAllMessagesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.lbRxAf3 = new System.Windows.Forms.Label();
-            this.lbRxAux = new System.Windows.Forms.Label();
-            this.lbVfcVoltA = new System.Windows.Forms.Label();
-            this.lbTxAf3 = new System.Windows.Forms.Label();
-            this.lbTxAux = new System.Windows.Forms.Label();
-            this.lbVfcVoltB = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.ecamMenu.SuspendLayout();
             this.SuspendLayout();
@@ -81,15 +81,15 @@ namespace MissionPlanner.Controls
             this.timer1.Interval = 250;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // label4
+            // lbRFC3
             // 
-            resources.ApplyResources(this.label4, "label4");
-            this.label4.Name = "label4";
+            resources.ApplyResources(this.lbRFC3, "lbRFC3");
+            this.lbRFC3.Name = "lbRFC3";
             // 
-            // label3
+            // lbRFC2
             // 
-            resources.ApplyResources(this.label3, "label3");
-            this.label3.Name = "label3";
+            resources.ApplyResources(this.lbRFC2, "lbRFC2");
+            this.lbRFC2.Name = "lbRFC2";
             // 
             // lbRFC3TELEM
             // 
@@ -145,12 +145,42 @@ namespace MissionPlanner.Controls
             this.tableLayoutPanel1.Controls.Add(this.lbRFC2TELEM, 2, 10);
             this.tableLayoutPanel1.Controls.Add(this.lbRFC3TELEM, 3, 10);
             this.tableLayoutPanel1.Controls.Add(this.lbRFC1TELEM, 1, 10);
-            this.tableLayoutPanel1.Controls.Add(this.label2, 1, 9);
-            this.tableLayoutPanel1.Controls.Add(this.label3, 2, 9);
-            this.tableLayoutPanel1.Controls.Add(this.label4, 3, 9);
+            this.tableLayoutPanel1.Controls.Add(this.lbRFC1, 1, 9);
+            this.tableLayoutPanel1.Controls.Add(this.lbRFC2, 2, 9);
+            this.tableLayoutPanel1.Controls.Add(this.lbRFC3, 3, 9);
             this.tableLayoutPanel1.Controls.Add(this.epInfo, 1, 18);
             this.tableLayoutPanel1.Controls.Add(this.ecamList, 1, 1);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            // 
+            // lbVfcVoltB
+            // 
+            resources.ApplyResources(this.lbVfcVoltB, "lbVfcVoltB");
+            this.lbVfcVoltB.Name = "lbVfcVoltB";
+            // 
+            // lbTxAux
+            // 
+            resources.ApplyResources(this.lbTxAux, "lbTxAux");
+            this.lbTxAux.Name = "lbTxAux";
+            // 
+            // lbTxAf3
+            // 
+            resources.ApplyResources(this.lbTxAf3, "lbTxAf3");
+            this.lbTxAf3.Name = "lbTxAf3";
+            // 
+            // lbVfcVoltA
+            // 
+            resources.ApplyResources(this.lbVfcVoltA, "lbVfcVoltA");
+            this.lbVfcVoltA.Name = "lbVfcVoltA";
+            // 
+            // lbRxAux
+            // 
+            resources.ApplyResources(this.lbRxAux, "lbRxAux");
+            this.lbRxAux.Name = "lbRxAux";
+            // 
+            // lbRxAf3
+            // 
+            resources.ApplyResources(this.lbRxAf3, "lbRxAf3");
+            this.lbRxAf3.Name = "lbRxAf3";
             // 
             // label7
             // 
@@ -258,10 +288,10 @@ namespace MissionPlanner.Controls
             resources.ApplyResources(this.lbRFC1TELEM, "lbRFC1TELEM");
             this.lbRFC1TELEM.Name = "lbRFC1TELEM";
             // 
-            // label2
+            // lbRFC1
             // 
-            resources.ApplyResources(this.label2, "label2");
-            this.label2.Name = "label2";
+            resources.ApplyResources(this.lbRFC1, "lbRFC1");
+            this.lbRFC1.Name = "lbRFC1";
             // 
             // epInfo
             // 
@@ -295,36 +325,6 @@ namespace MissionPlanner.Controls
             resources.ApplyResources(this.clearAllMessagesToolStripMenuItem, "clearAllMessagesToolStripMenuItem");
             this.clearAllMessagesToolStripMenuItem.Click += new System.EventHandler(this.clearAllMessagesToolStripMenuItem_Click);
             // 
-            // lbRxAf3
-            // 
-            resources.ApplyResources(this.lbRxAf3, "lbRxAf3");
-            this.lbRxAf3.Name = "lbRxAf3";
-            // 
-            // lbRxAux
-            // 
-            resources.ApplyResources(this.lbRxAux, "lbRxAux");
-            this.lbRxAux.Name = "lbRxAux";
-            // 
-            // lbVfcVoltA
-            // 
-            resources.ApplyResources(this.lbVfcVoltA, "lbVfcVoltA");
-            this.lbVfcVoltA.Name = "lbVfcVoltA";
-            // 
-            // lbTxAf3
-            // 
-            resources.ApplyResources(this.lbTxAf3, "lbTxAf3");
-            this.lbTxAf3.Name = "lbTxAf3";
-            // 
-            // lbTxAux
-            // 
-            resources.ApplyResources(this.lbTxAux, "lbTxAux");
-            this.lbTxAux.Name = "lbTxAux";
-            // 
-            // lbVfcVoltB
-            // 
-            resources.ApplyResources(this.lbVfcVoltB, "lbVfcVoltB");
-            this.lbVfcVoltB.Name = "lbVfcVoltB";
-            // 
             // AF3Status
             // 
             resources.ApplyResources(this, "$this");
@@ -347,8 +347,8 @@ namespace MissionPlanner.Controls
         private System.Windows.Forms.Label lbRFC3Active;
         private System.Windows.Forms.Label lbRFC2TELEM;
         private System.Windows.Forms.Label lbRFC3TELEM;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label lbRFC2;
+        private System.Windows.Forms.Label lbRFC3;
         private System.Windows.Forms.Label lbRFC3FlightMode;
         private System.Windows.Forms.Label lbRFC2FlightMode;
         private System.Windows.Forms.Label lbRFC3ArmStatus;
@@ -366,7 +366,7 @@ namespace MissionPlanner.Controls
         private System.Windows.Forms.Label lbRFC1FlightMode;
         private System.Windows.Forms.Label lbRFC1Active;
         private System.Windows.Forms.Label lbRFC1TELEM;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lbRFC1;
         private AF3EndpointInfo epInfo;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ListView ecamList;

@@ -124,7 +124,7 @@ namespace MissionPlanner.Controls
         public bool displayekf { get; set; }
 
         [System.ComponentModel.Browsable(true), DefaultValue(true)]
-        public bool displayaf3 { get; set; }
+        public int displayaf3 { get; set; }
 
         [System.ComponentModel.Browsable(true), DefaultValue(true)]
         public bool displayvibe { get; set; }
@@ -155,9 +155,11 @@ namespace MissionPlanner.Controls
                             displayspeed =
                                 displayalt =
                                     displayconninfo =
-                                        displayxtrack = displayrollpitch = displaygps = bgon = hudon = batteryon = displayaf3 = true;
+                                        displayxtrack = displayrollpitch = displaygps = bgon = hudon = batteryon = true;
 
             displayAOASSA = false;
+
+            displayaf3 = -1;
 
             this.Name = "Hud";
 
@@ -2840,7 +2842,7 @@ namespace MissionPlanner.Controls
                     }
                 }
 
-                if (displayaf3)
+                if (displayaf3 > 0)
                 {
                     af3hitzone = new Rectangle(this.Width - 27 * fontsize, this.Height - ((fontsize + 2) * 3) - fontoffset, 40,
                         fontsize * 2);
@@ -2850,13 +2852,13 @@ namespace MissionPlanner.Controls
                     {
                         if (af3score > 1.0)
                         {
-                            drawstring("AF3", font, fontsize + 2, (SolidBrush)Brushes.Red,
+                            drawstring(String.Format("AF{0}", displayaf3), font, fontsize + 2, (SolidBrush)Brushes.Red,
                                 af3hitzone.X,
                                 af3hitzone.Y);
                         }
                         else
                         {
-                            drawstring("AF3", font, fontsize + 2, (SolidBrush)Brushes.Orange,
+                            drawstring(String.Format("AF{0}", displayaf3), font, fontsize + 2, (SolidBrush)Brushes.Orange,
                                 af3hitzone.X,
                                 af3hitzone.Y);
                         }

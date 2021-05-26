@@ -121,84 +121,84 @@
     <value>17, 17</value>
   </metadata>
   <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="label4.AutoSize" type="System.Boolean, mscorlib">
+  <data name="lbRFC3.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="label4.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+  <data name="lbRFC3.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="label4.Font" type="System.Drawing.Font, System.Drawing">
+  <data name="lbRFC3.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 7.8pt, style=Bold</value>
   </data>
-  <data name="label4.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+  <data name="lbRFC3.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="label4.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="lbRFC3.Location" type="System.Drawing.Point, System.Drawing">
     <value>420, 235</value>
   </data>
-  <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="lbRFC3.Size" type="System.Drawing.Size, System.Drawing">
     <value>195, 30</value>
   </data>
-  <data name="label4.TabIndex" type="System.Int32, mscorlib">
+  <data name="lbRFC3.TabIndex" type="System.Int32, mscorlib">
     <value>21</value>
   </data>
-  <data name="label4.Text" xml:space="preserve">
+  <data name="lbRFC3.Text" xml:space="preserve">
     <value>RFC3</value>
   </data>
-  <data name="label4.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+  <data name="lbRFC3.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleCenter</value>
   </data>
-  <data name="&gt;&gt;label4.Name" xml:space="preserve">
-    <value>label4</value>
+  <data name="&gt;&gt;lbRFC3.Name" xml:space="preserve">
+    <value>lbRFC3</value>
   </data>
-  <data name="&gt;&gt;label4.Type" xml:space="preserve">
+  <data name="&gt;&gt;lbRFC3.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;label4.Parent" xml:space="preserve">
+  <data name="&gt;&gt;lbRFC3.Parent" xml:space="preserve">
     <value>tableLayoutPanel1</value>
   </data>
-  <data name="&gt;&gt;label4.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;lbRFC3.ZOrder" xml:space="preserve">
     <value>33</value>
   </data>
-  <data name="label3.AutoSize" type="System.Boolean, mscorlib">
+  <data name="lbRFC2.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="label3.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+  <data name="lbRFC2.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
   </data>
-  <data name="label3.Font" type="System.Drawing.Font, System.Drawing">
+  <data name="lbRFC2.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 7.8pt, style=Bold</value>
   </data>
-  <data name="label3.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+  <data name="lbRFC2.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="label3.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="lbRFC2.Location" type="System.Drawing.Point, System.Drawing">
     <value>219, 235</value>
   </data>
-  <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="lbRFC2.Size" type="System.Drawing.Size, System.Drawing">
     <value>195, 30</value>
   </data>
-  <data name="label3.TabIndex" type="System.Int32, mscorlib">
+  <data name="lbRFC2.TabIndex" type="System.Int32, mscorlib">
     <value>20</value>
   </data>
-  <data name="label3.Text" xml:space="preserve">
+  <data name="lbRFC2.Text" xml:space="preserve">
     <value>RFC2</value>
   </data>
-  <data name="label3.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+  <data name="lbRFC2.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleCenter</value>
   </data>
-  <data name="&gt;&gt;label3.Name" xml:space="preserve">
-    <value>label3</value>
+  <data name="&gt;&gt;lbRFC2.Name" xml:space="preserve">
+    <value>lbRFC2</value>
   </data>
-  <data name="&gt;&gt;label3.Type" xml:space="preserve">
+  <data name="&gt;&gt;lbRFC2.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;label3.Parent" xml:space="preserve">
+  <data name="&gt;&gt;lbRFC2.Parent" xml:space="preserve">
     <value>tableLayoutPanel1</value>
   </data>
-  <data name="&gt;&gt;label3.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;lbRFC2.ZOrder" xml:space="preserve">
     <value>32</value>
   </data>
   <data name="lbRFC3TELEM.AutoSize" type="System.Boolean, mscorlib">
@@ -1323,43 +1323,43 @@
   <data name="&gt;&gt;lbRFC1TELEM.ZOrder" xml:space="preserve">
     <value>30</value>
   </data>
-  <data name="label2.AutoSize" type="System.Boolean, mscorlib">
+  <data name="lbRFC1.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="label2.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+  <data name="lbRFC1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
   </data>
-  <data name="label2.Font" type="System.Drawing.Font, System.Drawing">
+  <data name="lbRFC1.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 7.8pt, style=Bold</value>
   </data>
-  <data name="label2.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+  <data name="lbRFC1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="lbRFC1.Location" type="System.Drawing.Point, System.Drawing">
     <value>18, 235</value>
   </data>
-  <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="lbRFC1.Size" type="System.Drawing.Size, System.Drawing">
     <value>195, 30</value>
   </data>
-  <data name="label2.TabIndex" type="System.Int32, mscorlib">
+  <data name="lbRFC1.TabIndex" type="System.Int32, mscorlib">
     <value>19</value>
   </data>
-  <data name="label2.Text" xml:space="preserve">
+  <data name="lbRFC1.Text" xml:space="preserve">
     <value>RFC1</value>
   </data>
-  <data name="label2.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+  <data name="lbRFC1.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleCenter</value>
   </data>
-  <data name="&gt;&gt;label2.Name" xml:space="preserve">
-    <value>label2</value>
+  <data name="&gt;&gt;lbRFC1.Name" xml:space="preserve">
+    <value>lbRFC1</value>
   </data>
-  <data name="&gt;&gt;label2.Type" xml:space="preserve">
+  <data name="&gt;&gt;lbRFC1.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;label2.Parent" xml:space="preserve">
+  <data name="&gt;&gt;lbRFC1.Parent" xml:space="preserve">
     <value>tableLayoutPanel1</value>
   </data>
-  <data name="&gt;&gt;label2.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;lbRFC1.ZOrder" xml:space="preserve">
     <value>31</value>
   </data>
   <data name="epInfo.AutoScroll" type="System.Boolean, mscorlib">
@@ -1384,7 +1384,7 @@
     <value>epInfo</value>
   </data>
   <data name="&gt;&gt;epInfo.Type" xml:space="preserve">
-    <value>MissionPlanner.Controls.AF3EndpointInfo, MissionPlanner, Version=1.3.7782.25572, Culture=neutral, PublicKeyToken=null</value>
+    <value>MissionPlanner.Controls.AF3EndpointInfo, MissionPlanner, Version=1.3.7814.21500, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;epInfo.Parent" xml:space="preserve">
     <value>tableLayoutPanel1</value>
@@ -1465,7 +1465,7 @@
     <value>1</value>
   </data>
   <data name="tableLayoutPanel1.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
-    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="lbVfcVoltB" Row="5" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="lbTxAux" Row="5" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="lbTxAf3" Row="5" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lbVfcVoltA" Row="4" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="lbRxAux" Row="4" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="lbRxAf3" Row="4" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="label7" Row="6" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="lbVfcLoading" Row="6" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="lbVfcTemp" Row="6" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="label1" Row="3" RowSpan="1" Column="1" ColumnSpan="3" /&gt;&lt;Control Name="lbRFC3ppmVis" Row="15" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC2ppmVis" Row="15" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC1ppmVis" Row="15" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC3Score" Row="14" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC2Score" Row="14" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC1Score" Row="14" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC3CanPres" Row="13" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC2CanPres" Row="13" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC1CanPres" Row="13" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC1ArmStatus" Row="12" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC3ArmStatus" Row="12" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC2ArmStatus" Row="12" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC3FlightMode" Row="11" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC2FlightMode" Row="11" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC1FlightMode" Row="11" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC2Active" Row="16" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC3Active" Row="16" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC1Active" Row="16" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC2TELEM" Row="10" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC3TELEM" Row="10" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC1TELEM" Row="10" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="label2" Row="9" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="label3" Row="9" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="label4" Row="9" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="epInfo" Row="18" RowSpan="1" Column="1" ColumnSpan="3" /&gt;&lt;Control Name="ecamList" Row="1" RowSpan="1" Column="1" ColumnSpan="3" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Absolute,15,Percent,33.33333,Percent,33.33333,Percent,33.33333,Absolute,15" /&gt;&lt;Rows Styles="Absolute,15,Absolute,80,Absolute,15,Absolute,30,Absolute,20,Absolute,20,Absolute,20,Absolute,20,Absolute,15,Absolute,30,Absolute,20,Absolute,20,Absolute,20,Absolute,20,Absolute,20,Absolute,20,Absolute,20,Absolute,20,Percent,100,Absolute,15" /&gt;&lt;/TableLayoutSettings&gt;</value>
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="lbVfcVoltB" Row="5" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="lbTxAux" Row="5" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="lbTxAf3" Row="5" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lbVfcVoltA" Row="4" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="lbRxAux" Row="4" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="lbRxAf3" Row="4" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="label7" Row="6" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="lbVfcLoading" Row="6" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="lbVfcTemp" Row="6" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="label1" Row="3" RowSpan="1" Column="1" ColumnSpan="3" /&gt;&lt;Control Name="lbRFC3ppmVis" Row="15" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC2ppmVis" Row="15" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC1ppmVis" Row="15" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC3Score" Row="14" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC2Score" Row="14" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC1Score" Row="14" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC3CanPres" Row="13" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC2CanPres" Row="13" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC1CanPres" Row="13" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC1ArmStatus" Row="12" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC3ArmStatus" Row="12" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC2ArmStatus" Row="12" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC3FlightMode" Row="11" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC2FlightMode" Row="11" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC1FlightMode" Row="11" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC2Active" Row="16" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC3Active" Row="16" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC1Active" Row="16" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC2TELEM" Row="10" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC3TELEM" Row="10" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC1TELEM" Row="10" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC1" Row="9" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC2" Row="9" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="lbRFC3" Row="9" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="epInfo" Row="18" RowSpan="1" Column="1" ColumnSpan="3" /&gt;&lt;Control Name="ecamList" Row="1" RowSpan="1" Column="1" ColumnSpan="3" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Absolute,15,Percent,33.33333,Percent,33.33333,Percent,33.33333,Absolute,15" /&gt;&lt;Rows Styles="Absolute,15,Absolute,80,Absolute,15,Absolute,30,Absolute,20,Absolute,20,Absolute,20,Absolute,20,Absolute,15,Absolute,30,Absolute,20,Absolute,20,Absolute,20,Absolute,20,Absolute,20,Absolute,20,Absolute,20,Absolute,20,Percent,100,Absolute,15" /&gt;&lt;/TableLayoutSettings&gt;</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>

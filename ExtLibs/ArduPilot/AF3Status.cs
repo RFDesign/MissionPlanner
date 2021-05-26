@@ -23,6 +23,7 @@ namespace MissionPlanner.Utilities.AF3
         /// it's deemed faulty
         /// </summary>
         public const int canElapsedThreshold = 1;
+        public const int maxNumCanBuses = 3;
 
         /// <summary>
         /// After AF3 status message is received, it takes sysExpBootupMs milliseconds
@@ -254,13 +255,17 @@ namespace MissionPlanner.Utilities.AF3
 
             if (failedBusCount > 0)
             {
+                bool allFailed = true;
+
                 for (int i = 0; i < failedBus.Length; i++)
                 {
                     failedBusMask += failedBus[i] ? 1 : 0 << 0;
+                    allFailed &= failedBus[i];
                 }
 
                 ecamMsg = String.Format("CAN BUS {0} FAIL", Util.printHumanSequence(failedBus));
-                retEcamErrList.Add(new ecamErrorRecord(ecamMsg, ecamErrorRecord.severityType.CRITICAL));
+                retEcamErrList.Add(new ecamErrorRecord(ecamMsg, 
+                    allFailed ? ecamErrorRecord.severityType.CRITICAL : ecamErrorRecord.severityType.ALERT));
             }
 
             //Check for low bus voltage
