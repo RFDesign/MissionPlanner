@@ -1705,6 +1705,7 @@ namespace MissionPlanner
 
         [GroupText("Flow")] [DisplayText("flow quality")] public byte opt_qua { get; set; }
         [GroupText("AF3")] public float af3score { get; set; }
+        [GroupText("AF3")] public int displayaf3 { get; set; }
         [GroupText("AF3")] public MissionPlanner.Utilities.AF3.Status af3 {
             get => _af3Status;
             set
@@ -2199,6 +2200,7 @@ namespace MissionPlanner
                             af3.vfcPsVoltageA = af3statusm.vfc_ps_volt_A;
                             af3.vfcPsVoltageB = af3statusm.vfc_ps_volt_B;
 
+                            displayaf3 = af3statusm.number_rfcs;
                             af3score = af3.calculateScore();
                         }
                         break;
