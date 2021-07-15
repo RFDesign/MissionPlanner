@@ -1390,5 +1390,10 @@ namespace MissionPlanner
         {
             new SerialOutputCoT().Show();
         }
+
+        private void myButton3_Click_1(object sender, EventArgs e)
+        {
+            new MAVLinkVideoService(MainV2.comPort).Show();
+        }
     }
 }

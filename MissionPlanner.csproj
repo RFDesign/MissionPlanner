@@ -43,6 +43,7 @@
     <RunCodeAnalysis>false</RunCodeAnalysis>
     <CodeAnalysisRuleSet>
     </CodeAnalysisRuleSet>
+    <PlatformTarget>AnyCPU</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
     <OutputPath>bin\Release\net461\</OutputPath>
@@ -398,6 +399,9 @@
     </Compile>
     <Compile Include="Controls\AF3Status.Designer.cs">
       <DependentUpon>AF3Status.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\MavlinkVideoService.cs">
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="Controls\UAVCANSubscriber.cs">
       <SubType>UserControl</SubType>
@@ -807,6 +811,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\EKFStatus.ko-KR.resx">
       <DependentUpon>EKFStatus.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\MavlinkVideoService.resx">
+      <DependentUpon>MavlinkVideoService.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\PropagationSettings.ko-KR.resx">
       <DependentUpon>PropagationSettings.cs</DependentUpon>

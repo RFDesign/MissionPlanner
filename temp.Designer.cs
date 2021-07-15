@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(temp));
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.BUT_CoT = new MissionPlanner.Controls.MyButton();
             this.but_proximity = new MissionPlanner.Controls.MyButton();
             this.but_followswarm = new MissionPlanner.Controls.MyButton();
             this.label16 = new System.Windows.Forms.Label();
@@ -142,9 +143,10 @@
             this.label54 = new System.Windows.Forms.Label();
             this.label55 = new System.Windows.Forms.Label();
             this.but_remotedflogger = new MissionPlanner.Controls.MyButton();
-            this.controlSensorsStatus1 = new MissionPlanner.Controls.ControlSensorsStatus();
-            this.BUT_CoT = new MissionPlanner.Controls.MyButton();
             this.label12 = new System.Windows.Forms.Label();
+            this.controlSensorsStatus1 = new MissionPlanner.Controls.ControlSensorsStatus();
+            this.myButton3 = new MissionPlanner.Controls.MyButton();
+            this.label56 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -152,6 +154,8 @@
             // 
             this.tableLayoutPanel1.BackColor = System.Drawing.Color.Transparent;
             resources.ApplyResources(this.tableLayoutPanel1, "tableLayoutPanel1");
+            this.tableLayoutPanel1.Controls.Add(this.label56, 3, 29);
+            this.tableLayoutPanel1.Controls.Add(this.myButton3, 2, 29);
             this.tableLayoutPanel1.Controls.Add(this.BUT_CoT, 0, 29);
             this.tableLayoutPanel1.Controls.Add(this.but_proximity, 2, 27);
             this.tableLayoutPanel1.Controls.Add(this.but_followswarm, 2, 28);
@@ -267,6 +271,13 @@
             this.tableLayoutPanel1.Controls.Add(this.but_remotedflogger, 0, 15);
             this.tableLayoutPanel1.Controls.Add(this.label12, 1, 29);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            // 
+            // BUT_CoT
+            // 
+            resources.ApplyResources(this.BUT_CoT, "BUT_CoT");
+            this.BUT_CoT.Name = "BUT_CoT";
+            this.BUT_CoT.UseVisualStyleBackColor = true;
+            this.BUT_CoT.Click += new System.EventHandler(this.BUT_CoT_Click);
             // 
             // but_proximity
             // 
@@ -942,22 +953,27 @@
             this.but_remotedflogger.UseVisualStyleBackColor = true;
             this.but_remotedflogger.Click += new System.EventHandler(this.but_remotedflogger_Click);
             // 
+            // label12
+            // 
+            resources.ApplyResources(this.label12, "label12");
+            this.label12.Name = "label12";
+            // 
             // controlSensorsStatus1
             // 
             resources.ApplyResources(this.controlSensorsStatus1, "controlSensorsStatus1");
             this.controlSensorsStatus1.Name = "controlSensorsStatus1";
             // 
-            // BUT_CoT
+            // myButton3
             // 
-            resources.ApplyResources(this.BUT_CoT, "BUT_CoT");
-            this.BUT_CoT.Name = "BUT_CoT";
-            this.BUT_CoT.UseVisualStyleBackColor = true;
-            this.BUT_CoT.Click += new System.EventHandler(this.BUT_CoT_Click);
+            resources.ApplyResources(this.myButton3, "myButton3");
+            this.myButton3.Name = "myButton3";
+            this.myButton3.UseVisualStyleBackColor = true;
+            this.myButton3.Click += new System.EventHandler(this.myButton3_Click_1);
             // 
-            // label12
+            // label56
             // 
-            resources.ApplyResources(this.label12, "label12");
-            this.label12.Name = "label12";
+            resources.ApplyResources(this.label56, "label56");
+            this.label56.Name = "label56";
             // 
             // temp
             // 
@@ -1093,5 +1109,7 @@
         private Controls.MyButton but_remotedflogger;
         private Controls.MyButton BUT_CoT;
         private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label56;
+        private Controls.MyButton myButton3;
     }
 }
