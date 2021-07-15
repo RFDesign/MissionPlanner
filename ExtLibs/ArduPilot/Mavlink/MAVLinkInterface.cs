@@ -1,5 +1,6 @@
 ﻿using log4net;
 using MissionPlanner.ArduPilot;
+using MissionPlanner.ArduPilot.Mavlink;
 using MissionPlanner.Comms;
 using MissionPlanner.Mavlink;
 using MissionPlanner.Utilities;
@@ -82,6 +83,27 @@ namespace MissionPlanner
                 _OnPacketReceived -= value;
             }
         }
+
+        public event EventHandler<(byte, byte)> MAVDetected
+        {
+            add
+            {
+                log.Info("Subscribed " + new StackTrace(1, true)?.GetFrame(0)?.ToString() + " " + value?.Method?.Name +
+                         " " + value?.Target?.GetType()?.Name +
+                         " " + value);
+                _MAVDetected += value;
+            }
+
+            remove
+            {
+                log.Info("UnSubscribed " + new StackTrace(1, true)?.GetFrame(0)?.ToString() + " " +
+                         value?.Method?.Name + " " + value?.Target?.GetType()?.Name +
+                         " " + value);
+                _MAVDetected -= value;
+            }
+        }
+
+        private EventHandler<(byte, byte)> _MAVDetected;
 
         public void DoOnPacketSent(MAVLinkMessage pkt)
         {
@@ -228,7 +250,6 @@ namespace MissionPlanner
                     // wait for current read to end before continue
                     lock (readlock)
                     {
-
                     }
                 }
 
@@ -237,12 +258,12 @@ namespace MissionPlanner
             }
         }
 
-        volatile bool _giveComport = false;
+        private volatile bool _giveComport = false;
 
-        DateTime lastparamset = DateTime.MinValue;
+        private DateTime lastparamset = DateTime.MinValue;
 
         internal string plaintxtline = "";
-        string buildplaintxtline = "";
+        private string buildplaintxtline = "";
 
         public bool ReadOnly = false;
 
@@ -250,7 +271,7 @@ namespace MissionPlanner
 
         public event ProgressEventHandler Progress;
 
-        int _sysidcurrent = 0;
+        private int _sysidcurrent = 0;
 
         public int sysidcurrent
         {
@@ -264,7 +285,7 @@ namespace MissionPlanner
             }
         }
 
-        int _compidcurrent = 0;
+        private int _compidcurrent = 0;
 
         public int compidcurrent
         {
@@ -318,7 +339,7 @@ namespace MissionPlanner
         }
 
         /// <summary>
-        /// Observable of the count of packets skipped (on reception), 
+        /// Observable of the count of packets skipped (on reception),
         /// calculated from periods where received packet sequence is not
         /// contiguous
         /// </summary>
@@ -331,12 +352,10 @@ namespace MissionPlanner
         /// </summary>
         public volatile object objlock = new object();
 
-
-
         /// <summary>
         /// mavlink version
         /// </summary>
-        byte mavlinkversion = 0;
+        private byte mavlinkversion = 0;
 
         /// <summary>
         /// turns on console packet display
@@ -352,15 +371,14 @@ namespace MissionPlanner
             set { _logreadmode = value; }
         }
 
-
         /// <summary>
         /// used to disable all speech originating from this module
         /// </summary>
         public bool speechenabled { get; set; } = true;
 
-        bool _logreadmode = false;
+        private bool _logreadmode = false;
 
-        BinaryReader _logplaybackfile;
+        private BinaryReader _logplaybackfile;
 
         public DateTime lastlogread { get; set; }
         public DateTime lastlogreadwall { get; set; }
@@ -380,12 +398,12 @@ namespace MissionPlanner
         public BufferedStream logfile { get; set; }
         public BufferedStream rawlogfile { get; set; }
 
-        int _mavlink1count = 0;
-        int _mavlink2count = 0;
-        int _mavlink2signed = 0;
-        int _bps1 = 0;
-        int _bps2 = 0;
-        DateTime _bpstime { get; set; }
+        private int _mavlink1count = 0;
+        private int _mavlink2count = 0;
+        private int _mavlink2signed = 0;
+        private int _bps1 = 0;
+        private int _bps2 = 0;
+        private DateTime _bpstime { get; set; }
 
         public static ISpeech Speech;
 
@@ -420,6 +438,26 @@ namespace MissionPlanner
             _mavlink2signed = 0;
 
             AIS.Start(this);
+
+            // new hearbeat detected
+            MAVDetected += async (sender, tuple) =>
+            {
+                // check for a camera
+                if (tuple.Item2 >= (byte) MAVLink.MAV_COMPONENT.MAV_COMP_ID_CAMERA &&
+                    tuple.Item2 <= (byte) MAV_COMPONENT.MAV_COMP_ID_CAMERA6)
+                {
+                    MAVlist[tuple.Item1, tuple.Item2].Camera = new CameraProtocol();
+                    try
+                    {
+                        await MAVlist[tuple.Item1, tuple.Item2].Camera.StartID(MAVlist[tuple.Item1, tuple.Item2])
+                            .ConfigureAwait(false);
+                    }
+                    catch (Exception e)
+                    {
+                        log.Error(e);
+                    }
+                }
+            };
         }
 
         public MAVLinkInterface(Stream logfileStream)
@@ -518,12 +556,12 @@ namespace MissionPlanner
             }
         }
 
-        void FrmProgressReporterDoWorkAndParams(IProgressReporterDialogue sender)
+        private void FrmProgressReporterDoWorkAndParams(IProgressReporterDialogue sender)
         {
             OpenBg(sender, true);
         }
 
-        void FrmProgressReporterDoWorkNOParams(IProgressReporterDialogue sender)
+        private void FrmProgressReporterDoWorkNOParams(IProgressReporterDialogue sender)
         {
             OpenBg(sender, false);
         }
@@ -534,7 +572,7 @@ namespace MissionPlanner
 
             if (BaseStream is SerialPort)
             {
-                // allow settings to settle - previous dtr 
+                // allow settings to settle - previous dtr
                 Thread.Sleep(1000);
             }
 
@@ -705,7 +743,7 @@ Mission Planner waits for 2 valid heartbeat packets before connecting");
                 char[] temp = ("Mission Planner " + getAppVersion() + "\0").ToCharArray();
                 Array.Resize(ref temp, 50);
 
-                // 
+                //
                 generatePacket((byte) MAVLINK_MSG_ID.STATUSTEXT,
                     new mavlink_statustext_t() {severity = (byte) MAV_SEVERITY.INFO, text = temp.ToByteArray()});
 
@@ -724,7 +762,7 @@ Mission Planner waits for 2 valid heartbeat packets before connecting");
                 // this ensures a mavlink2 change has been noticed
                 getHeartBeat();
 
-                getVersion();
+                getVersion((byte) sysidcurrent, (byte) compidcurrent);
 
                 doCommand((byte) sysidcurrent, (byte) compidcurrent, MAV_CMD.DO_SEND_BANNER, 0, 0, 0, 0, 0, 0, 0,
                     false);
@@ -734,7 +772,7 @@ Mission Planner waits for 2 valid heartbeat packets before connecting");
                     frmProgressReporter.UpdateProgressAndStatus(0,
                         "Getting Params.. (sysid " + MAV.sysid + " compid " + MAV.compid + ") ");
 
-                    getParamList(MAV.sysid, MAV.compid);
+                    getParamListMavftp(MAV.sysid, MAV.compid);
                 }
 
                 if (frmProgressReporter.doWorkArgs.CancelAcknowledged == true)
@@ -792,7 +830,7 @@ Mission Planner waits for 2 valid heartbeat packets before connecting");
             return "0.0";
         }
 
-        uint request_id = 0;
+        private uint request_id = 0;
 
         /// <summary>
         /// devop read spi mpu6000 0 0 0xf5 1
@@ -910,7 +948,7 @@ Mission Planner waits for 2 valid heartbeat packets before connecting");
             return result;
         }
 
-        void SetupMavConnect(MAVLinkMessage message, mavlink_heartbeat_t hb)
+        private void SetupMavConnect(MAVLinkMessage message, mavlink_heartbeat_t hb)
         {
             mavlinkversion = hb.mavlink_version;
             MAVlist[message.sysid, message.compid].aptype = (MAV_TYPE) hb.type;
@@ -934,6 +972,14 @@ Mission Planner waits for 2 valid heartbeat packets before connecting");
         public async Task<MAVLinkMessage> getHeartBeatAsync()
         {
             giveComport = true;
+
+            sendPacket(new MAVLink.mavlink_heartbeat_t()
+            {
+                type = (byte) MAVLink.MAV_TYPE.GCS,
+                autopilot = (byte) MAVLink.MAV_AUTOPILOT.INVALID,
+                mavlink_version = 3 // MAVLink.MAVLINK_VERSION
+            }, gcssysid, 190);
+
             DateTime start = DateTime.Now;
             int readcount = 0;
             while (true)
@@ -999,10 +1045,17 @@ Mission Planner waits for 2 valid heartbeat packets before connecting");
             generatePacket((int) messageType, indata);
         }
 
-        void generatePacket(int messageType, object indata)
+        private void generatePacket(int messageType, object indata)
         {
             //uses currently targeted mavs sysid and compid
             generatePacket(messageType, indata, MAV.sysid, MAV.compid);
+        }
+
+        public void generatePacket(MAVLINK_MSG_ID messageType, object indata, int sysid, int compid,
+            bool forcemavlink2 = false,
+            bool forcesigning = false)
+        {
+            generatePacket((int) messageType, indata, sysid, compid, forcemavlink2, forcesigning);
         }
 
         /// <summary>
@@ -1076,7 +1129,6 @@ Mission Planner waits for 2 valid heartbeat packets before connecting");
 
                     checksum = MavlinkCRC.crc_accumulate(MAVLINK_MESSAGE_INFOS.GetMessageInfo((uint) messageType).crc,
                         checksum);
-
 
                     byte ck_a = (byte) (checksum & 0xFF); ///< High byte
                     byte ck_b = (byte) (checksum >> 8); ///< Low byte
@@ -1305,7 +1357,6 @@ Mission Planner waits for 2 valid heartbeat packets before connecting");
             MAVlist[sysid, compid].signing = true;
             MAVlist[sysid, compid].mavlinkv2 = true;
 
-
             return MAVlist[sysid, compid].signing;
         }
 
@@ -1511,9 +1562,130 @@ Mission Planner waits for 2 valid heartbeat packets before connecting");
             _ParamListChanged?.Invoke(this, null);
         }
 
-        void FrmProgressReporterGetParams(IProgressReporterDialogue sender)
+        private void FrmProgressReporterGetParams(IProgressReporterDialogue sender)
         {
-            getParamList(MAV.sysid, MAV.compid);
+            getParamListMavftp(MAV.sysid, MAV.compid);
+        }
+
+        /// <summary>
+        /// Get param list via mavftp with old style fallback
+        /// </summary>
+        /// <param name="sysid"></param>
+        /// <param name="compid"></param>
+        /// <returns>MAVLinkParamList</returns>
+        public MAVLinkParamList getParamListMavftp(byte sysid, byte compid)
+        {
+            return getParamListMavftpAsync(sysid, compid).AwaitSync();
+        }
+
+        public async Task<MAVLinkParamList> getParamListMavftpAsync(byte sysid, byte compid)
+        {
+            var sub2 = SubscribeToPacketType(MAVLINK_MSG_ID.STATUSTEXT, buffer =>
+            {
+                if (buffer.msgid == (byte) MAVLINK_MSG_ID.STATUSTEXT)
+                {
+                    var msg = buffer.ToStructure<mavlink_statustext_t>();
+
+                    string logdata = Encoding.ASCII.GetString(msg.text);
+
+                    int ind = logdata.IndexOf('\0');
+                    if (ind != -1)
+                        logdata = logdata.Substring(0, ind);
+
+                    if (logdata.ToLower().Contains("copter") || logdata.ToLower().Contains("rover") ||
+                        logdata.ToLower().Contains("plane"))
+                    {
+                        MAVlist[sysid, compid].VersionString = logdata;
+                    }
+                    else if (logdata.ToLower().Contains("nuttx") || logdata.ToLower().Contains("chibios"))
+                    {
+                        MAVlist[sysid, compid].SoftwareVersions = logdata;
+                    }
+                    else if (logdata.ToLower().Contains("px4v2") ||
+                             Regex.IsMatch(logdata, @"\s[0-9A-F]+\s[0-9A-F]+\s[0-9A-F]+"))
+                    {
+                        MAVlist[sysid, compid].SerialString = logdata;
+                    }
+                    else if (logdata.ToLower().Contains("frame"))
+                    {
+                        MAVlist[sysid, compid].FrameString = logdata;
+                    }
+                    else
+                    {
+                    }
+                }
+
+                return true;
+            });
+
+            // get the banner
+            doCommand((byte) sysid, (byte) compid, MAV_CMD.DO_SEND_BANNER, 0, 0, 0, 0, 0, 0, 0,
+                false);
+
+            try
+            {
+                if ((MAV.cs.capabilities & (int) MAV_PROTOCOL_CAPABILITY.FTP) > 0)
+                {
+                    if (frmProgressReporter != null)
+                        frmProgressReporter.UpdateProgressAndStatus(-1, "Checking for Param MAVFTP");
+                    var cancel = new CancellationTokenSource();
+                    var paramfileTask = Task.Run<MemoryStream>(() =>
+                    {
+                        return new MAVFtp(this, sysid, compid).GetFile(
+                            "@PARAM/param.pck", cancel, false, 110);
+                    });
+                    while (!paramfileTask.IsCompleted)
+                    {
+                        if (frmProgressReporter != null)
+                            if (frmProgressReporter.doWorkArgs.CancelRequested)
+                            {
+                                cancel.Cancel();
+                                frmProgressReporter.doWorkArgs.CancelAcknowledged = true;
+                                return MAVlist[sysid, compid].param;
+                            }
+
+                        await Task.Delay(10).ConfigureAwait(false);
+                    }
+
+                    if (frmProgressReporter != null)
+                        if (frmProgressReporter.doWorkArgs.CancelRequested)
+                            return MAVlist[sysid, compid].param;
+
+                    var paramfile = paramfileTask.Result;
+                    if (paramfile != null && paramfile.Length > 0)
+                    {
+                        var mavlist = parampck.unpack(paramfile.ToArray());
+                        if (mavlist != null)
+                        {
+                            MAVlist[sysid, compid].param.Clear();
+                            MAVlist[sysid, compid].param.TotalReported =
+                                mavlist.Count;
+                            MAVlist[sysid, compid].param.AddRange(mavlist);
+                            var gen = new MavlinkParse();
+                            mavlist.ForEach(a =>
+                            {
+                                MAVlist[sysid, compid].param_types[a.Name] =
+                                    a.Type;
+                                SaveToTlog(gen.GenerateMAVLinkPacket10(
+                                    MAVLINK_MSG_ID.PARAM_VALUE,
+                                    new mavlink_param_value_t((float) a.Value, (ushort) mavlist.Count,
+                                        0,
+                                        a.Name.MakeBytesSize(16), (byte) a.Type)));
+                            });
+
+                            UnSubscribeToPacketType(sub2);
+                            return MAVlist[sysid, compid].param;
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                log.Error(e);
+            }
+
+            UnSubscribeToPacketType(sub2);
+            return await getParamListAsync(sysid, compid);
         }
 
         /// <summary>
@@ -1542,7 +1714,8 @@ Mission Planner waits for 2 valid heartbeat packets before connecting");
 
             mavlink_param_request_list_t req = new mavlink_param_request_list_t
             {
-                target_system = sysid, target_component = compid
+                target_system = sysid,
+                target_component = compid
             };
 
             generatePacket((byte) MAVLINK_MSG_ID.PARAM_REQUEST_LIST, req);
@@ -1589,7 +1762,6 @@ Mission Planner waits for 2 valid heartbeat packets before connecting");
                     }
                     else
                     {
-
                     }
                 }
 
@@ -1858,7 +2030,10 @@ Mission Planner waits for 2 valid heartbeat packets before connecting");
             giveComport = true;
             mavlink_param_request_read_t req = new mavlink_param_request_read_t
             {
-                target_system = sysid, target_component = compid, param_index = index, param_id = new byte[] {0}
+                target_system = sysid,
+                target_component = compid,
+                param_index = index,
+                param_id = new byte[] {0}
             };
             if (index == -1)
             {
@@ -1964,7 +2139,6 @@ Mission Planner waits for 2 valid heartbeat packets before connecting");
                 req_stream_id = 0
             };
 
-
             // no error on bad
             try
             {
@@ -1990,7 +2164,10 @@ Mission Planner waits for 2 valid heartbeat packets before connecting");
         {
             mavlink_mission_ack_t req = new mavlink_mission_ack_t
             {
-                target_system = sysid, target_component = compid, type = 0, mission_type = (byte) type
+                target_system = sysid,
+                target_component = compid,
+                type = 0,
+                mission_type = (byte) type
             };
 
             generatePacket((byte) MAVLINK_MSG_ID.MISSION_ACK, req);
@@ -2008,9 +2185,10 @@ Mission Planner waits for 2 valid heartbeat packets before connecting");
 
             mavlink_mission_set_current_t req = new mavlink_mission_set_current_t
             {
-                target_system = sysid, target_component = compid, seq = index
+                target_system = sysid,
+                target_component = compid,
+                seq = index
             };
-
 
             generatePacket((byte) MAVLINK_MSG_ID.MISSION_SET_CURRENT, req);
 
@@ -2122,7 +2300,6 @@ Mission Planner waits for 2 valid heartbeat packets before connecting");
         public bool doARM(byte sysid, byte compid, bool armit, bool force = false)
         {
             return doARMAsync(sysid, compid, armit, force).AwaitSync();
-
         }
 
         public async Task<bool> doARMAsync(byte sysid, byte compid, bool armit, bool force = false)
@@ -2201,9 +2378,6 @@ Mission Planner waits for 2 valid heartbeat packets before connecting");
                 param6 = p6,
                 param7 = p7
             };
-
-
-
 
             log.InfoFormat("doCommand cmd {0} {1} {2} {3} {4} {5} {6} {7}", actionid.ToString(), p1, p2, p3, p4, p5, p6,
                 p7);
@@ -2521,8 +2695,6 @@ Mission Planner waits for 2 valid heartbeat packets before connecting");
                 chan8_raw = rc8
             };
 
-
-
             sendPacket(rc, rc.target_system, rc.target_component);
         }
 
@@ -2537,9 +2709,6 @@ Mission Planner waits for 2 valid heartbeat packets before connecting");
                 r = r,
                 buttons = buttons
             };
-
-
-
 
             sendPacket(mc, sysid, compid);
         }
@@ -2567,6 +2736,7 @@ Mission Planner waits for 2 valid heartbeat packets before connecting");
                 case MAV_DATA_STREAM.ALL:
 
                     break;
+
                 case MAV_DATA_STREAM.EXTENDED_STATUS:
                     if (MAVlist[sysid, compid].packetspersecondbuild.ContainsKey((byte) MAVLINK_MSG_ID.SYS_STATUS))
                     {
@@ -2582,6 +2752,7 @@ Mission Planner waits for 2 valid heartbeat packets before connecting");
                     }
 
                     break;
+
                 case MAV_DATA_STREAM.EXTRA1:
                     if (MAVlist[sysid, compid].packetspersecondbuild.ContainsKey((byte) MAVLINK_MSG_ID.ATTITUDE))
                     {
@@ -2597,6 +2768,7 @@ Mission Planner waits for 2 valid heartbeat packets before connecting");
                     }
 
                     break;
+
                 case MAV_DATA_STREAM.EXTRA2:
                     if (MAVlist[sysid, compid].packetspersecondbuild.ContainsKey((byte) MAVLINK_MSG_ID.VFR_HUD))
                     {
@@ -2612,6 +2784,7 @@ Mission Planner waits for 2 valid heartbeat packets before connecting");
                     }
 
                     break;
+
                 case MAV_DATA_STREAM.EXTRA3:
                     if (MAVlist[sysid, compid].packetspersecondbuild.ContainsKey((byte) MAVLINK_MSG_ID.AHRS))
                     {
@@ -2627,6 +2800,7 @@ Mission Planner waits for 2 valid heartbeat packets before connecting");
                     }
 
                     break;
+
                 case MAV_DATA_STREAM.POSITION:
                     if (MAVlist[sysid, compid]
                         .packetspersecondbuild.ContainsKey((byte) MAVLINK_MSG_ID.GLOBAL_POSITION_INT))
@@ -2643,6 +2817,7 @@ Mission Planner waits for 2 valid heartbeat packets before connecting");
                     }
 
                     break;
+
                 case MAV_DATA_STREAM.RAW_CONTROLLER:
                     if (MAVlist[sysid, compid]
                         .packetspersecondbuild.ContainsKey((byte) MAVLINK_MSG_ID.RC_CHANNELS_SCALED))
@@ -2659,6 +2834,7 @@ Mission Planner waits for 2 valid heartbeat packets before connecting");
                     }
 
                     break;
+
                 case MAV_DATA_STREAM.RAW_SENSORS:
                     if (MAVlist[sysid, compid].packetspersecondbuild.ContainsKey((byte) MAVLINK_MSG_ID.RAW_IMU))
                     {
@@ -2674,6 +2850,7 @@ Mission Planner waits for 2 valid heartbeat packets before connecting");
                     }
 
                     break;
+
                 case MAV_DATA_STREAM.RC_CHANNELS:
                     if (MAVlist[sysid, compid].packetspersecondbuild.ContainsKey((byte) MAVLINK_MSG_ID.RC_CHANNELS_RAW))
                     {
@@ -2702,7 +2879,7 @@ Mission Planner waits for 2 valid heartbeat packets before connecting");
         }
 
         // returns true for ok
-        bool hzratecheck(double pps, int hzrate)
+        private bool hzratecheck(double pps, int hzrate)
         {
             if (double.IsInfinity(pps))
             {
@@ -2768,9 +2945,10 @@ Mission Planner waits for 2 valid heartbeat packets before connecting");
             MAVLinkMessage buffer;
             mavlink_mission_request_list_t req = new mavlink_mission_request_list_t
             {
-                target_system = sysid, target_component = compid, mission_type = (byte) type
+                target_system = sysid,
+                target_component = compid,
+                mission_type = (byte) type
             };
-
 
             // request list
             generatePacket((byte) MAVLINK_MSG_ID.MISSION_REQUEST_LIST, req);
@@ -2907,10 +3085,11 @@ Mission Planner waits for 2 valid heartbeat packets before connecting");
             {
                 mavlink_mission_request_int_t reqi = new mavlink_mission_request_int_t
                 {
-                    target_system = sysid, target_component = compid, mission_type = (byte) type, seq = index
+                    target_system = sysid,
+                    target_component = compid,
+                    mission_type = (byte) type,
+                    seq = index
                 };
-
-
 
                 // request
                 generatePacket((byte) MAVLINK_MSG_ID.MISSION_REQUEST_INT, reqi);
@@ -2921,10 +3100,11 @@ Mission Planner waits for 2 valid heartbeat packets before connecting");
             {
                 mavlink_mission_request_t reqf = new mavlink_mission_request_t
                 {
-                    target_system = sysid, target_component = compid, mission_type = (byte) type, seq = index
+                    target_system = sysid,
+                    target_component = compid,
+                    mission_type = (byte) type,
+                    seq = index
                 };
-
-
 
                 // request
                 generatePacket((byte) MAVLINK_MSG_ID.MISSION_REQUEST, reqf);
@@ -3246,9 +3426,11 @@ Mission Planner waits for 2 valid heartbeat packets before connecting");
             giveComport = true;
             mavlink_mission_count_t req = new mavlink_mission_count_t
             {
-                target_system = sysid, target_component = compid, count = wp_total, mission_type = (byte) type
+                target_system = sysid,
+                target_component = compid,
+                count = wp_total,
+                mission_type = (byte) type
             };
-
 
             log.Info("setWPTotal req MISSION_COUNT " + req.ToJSON(Formatting.None));
             generatePacket((byte) MAVLINK_MSG_ID.MISSION_COUNT, req);
@@ -3338,6 +3520,20 @@ Mission Planner waits for 2 valid heartbeat packets before connecting");
                             return;
                         }
                     }
+                    else if (buffer.msgid == (byte) MAVLINK_MSG_ID.MISSION_ACK && buffer.sysid == req.target_system &&
+                             buffer.compid == req.target_component)
+                    {
+                        var ans = buffer.ToStructure<mavlink_mission_ack_t>();
+                        log.Info("setWPTotal ACK 47 : " + buffer.msgid + " ans " +
+                                 Enum.Parse(typeof(MAV_MISSION_RESULT), ans.type.ToString()));
+                        // check this gcs sent it
+                        if (ans.target_system != gcssysid ||
+                            ans.target_component != (byte) MAV_COMPONENT.MAV_COMP_ID_MISSIONPLANNER)
+                            continue;
+
+                        giveComport = false;
+                        return; // (MAV_MISSION_RESULT)ans.type;
+                    }
                     else
                     {
                         //Console.WriteLine(DateTime.Now + " PC getwp " + buffer.msgid);
@@ -3352,7 +3548,7 @@ Mission Planner waits for 2 valid heartbeat packets before connecting");
             InjectGpsData(MAV.sysid, MAV.compid, data, length);
         }
 
-        int inject_seq_no = 0;
+        private int inject_seq_no = 0;
 
         /// <summary>
         /// used to inject data into the gps ie rtcm/sbp/ubx
@@ -3473,10 +3669,6 @@ Mission Planner waits for 2 valid heartbeat packets before connecting");
                     frame = (byte) frame
                 };
 
-
-
-
-
                 if (loc.id == (ushort) MAV_CMD.DO_DIGICAM_CONTROL || loc.id == (ushort) MAV_CMD.DO_DIGICAM_CONFIGURE)
                 {
                     req.y = (int) (loc.lng);
@@ -3520,13 +3712,6 @@ Mission Planner waits for 2 valid heartbeat packets before connecting");
                     seq = index
                 };
 
-
-
-
-
-
-
-
                 return await setWPAsync(req).ConfigureAwait(false);
             }
         }
@@ -3544,7 +3729,6 @@ Mission Planner waits for 2 valid heartbeat packets before connecting");
 
             // request
             generatePacket((byte) MAVLINK_MSG_ID.MISSION_ITEM, req);
-
 
             DateTime start = DateTime.Now;
             int retrys = 10;
@@ -3801,7 +3985,6 @@ Mission Planner waits for 2 valid heartbeat packets before connecting");
                             }
                             else if (req.current == 3)
                             {
-
                             }
                             else
                             {
@@ -4068,7 +4251,8 @@ Mission Planner waits for 2 valid heartbeat packets before connecting");
         {
             mavlink_mount_control_t req = new mavlink_mount_control_t
             {
-                target_system = sysid, target_component = compid
+                target_system = sysid,
+                target_component = compid
             };
 
             if (!islatlng)
@@ -4129,7 +4313,7 @@ Mission Planner waits for 2 valid heartbeat packets before connecting");
 
         public bool debug = false;
 
-        static bool ByteArrayCompare(ReadOnlySpan<byte> a1, ReadOnlySpan<byte> a2)
+        private static bool ByteArrayCompare(ReadOnlySpan<byte> a1, ReadOnlySpan<byte> a2)
         {
             return a1.SequenceEqual(a2);
         }
@@ -4137,7 +4321,7 @@ Mission Planner waits for 2 valid heartbeat packets before connecting");
         /// <summary>
         /// used for a readlock on readpacket
         /// </summary>
-        SemaphoreSlim readlock = new SemaphoreSlim(1, 1);
+        private SemaphoreSlim readlock = new SemaphoreSlim(1, 1);
 
         /// <summary>
         /// Serial Reader to read mavlink packets. POLL method
@@ -4318,7 +4502,7 @@ Mission Planner waits for 2 valid heartbeat packets before connecting");
                         else
                         {
                             length = buffer[1] + headerlengthstx +
-                                     MAVLINK_NUM_CHECKSUM_BYTES; // data + header + checksum - U - length    
+                                     MAVLINK_NUM_CHECKSUM_BYTES; // data + header + checksum - U - length
                         }
 
                         if (debug)
@@ -4652,7 +4836,6 @@ Mission Planner waits for 2 valid heartbeat packets before connecting");
                             if (action > MAV_COLLISION_ACTION.REPORT)
                             {
                                 // we are reacting to a threat
-
                             }
 
                             var threat_level = (MAV_COLLISION_THREAT_LEVEL) coll.threat_level;
@@ -4709,6 +4892,7 @@ Mission Planner waits for 2 valid heartbeat packets before connecting");
                                 MAVlist[sysid, compid].aptype = (MAV_TYPE) hb.type;
                                 MAVlist[sysid, compid].apname = (MAV_AUTOPILOT) hb.autopilot;
                                 setAPType(sysid, compid);
+                                _MAVDetected?.Invoke(this, (sysid, compid));
                             }
 
                             // attach to the only remote device. / default to first device seen
@@ -4933,9 +5117,16 @@ Mission Planner waits for 2 valid heartbeat packets before connecting");
             }
         }
 
-        List<KeyValuePair<MAVLINK_MSG_ID, Func<MAVLinkMessage, bool>>> Subscriptions =
+        private List<KeyValuePair<MAVLINK_MSG_ID, Func<MAVLinkMessage, bool>>> Subscriptions =
             new List<KeyValuePair<MAVLINK_MSG_ID, Func<MAVLinkMessage, bool>>>();
 
+        /// <summary>
+        /// Subscribe to a packet on the current target MAV. use OnPacketReceived to get all MAVs
+        /// </summary>
+        /// <param name="type"></param>
+        /// <param name="function"></param>
+        /// <param name="exclusive"></param>
+        /// <returns></returns>
         public KeyValuePair<MAVLINK_MSG_ID, Func<MAVLinkMessage, bool>> SubscribeToPacketType(MAVLINK_MSG_ID type,
             Func<MAVLinkMessage, bool> function, bool exclusive = false)
         {
@@ -5185,7 +5376,7 @@ Mission Planner waits for 2 valid heartbeat packets before connecting");
                     tsync.tc1 = now_ns;
                     if (BaseStream != null && BaseStream.IsOpen)
                         sendPacket(tsync, buffer.sysid, buffer.compid);
-                } // system knows the time 
+                } // system knows the time
                 else if (tsync.tc1 > 0)
                 {
                     Int64 offset_ns = (tsync.ts1 + now_ns - tsync.tc1 * 2) / 2;
@@ -5260,7 +5451,6 @@ Mission Planner waits for 2 valid heartbeat packets before connecting");
                         buffer.compid == req.target_component)
                     {
                         giveComport = false;
-
                         return true;
                     }
                 }
@@ -5333,202 +5523,210 @@ Mission Planner waits for 2 valid heartbeat packets before connecting");
         [Obsolete]
         public async Task<FileStream> GetLog(ushort no)
         {
-            FileStream ms = new FileStream(Path.GetTempFileName(), FileMode.Create, FileAccess.ReadWrite);
-            Hashtable set = new Hashtable();
+            return new FileStream(await GetLog(MAV.sysid, MAV.compid, no), FileMode.Open, FileAccess.ReadWrite);
+        }
 
-            giveComport = true;
-            MAVLinkMessage buffer;
-
-            if (Progress != null)
+        public async Task<string> GetLog(byte sysid, byte compid, ushort no)
+        {
+            var filename = Path.GetTempFileName();
+            using (FileStream ms = new FileStream(filename, FileMode.Create, FileAccess.ReadWrite))
             {
-                Progress((int) 0, "");
-            }
+                Hashtable set = new Hashtable();
 
-            uint totallength = 0;
-            uint ofs = 0;
-            uint bps = 0;
-            DateTime bpstimer = DateTime.Now;
+                giveComport = true;
+                MAVLinkMessage buffer;
 
-            mavlink_log_request_data_t req = new mavlink_log_request_data_t();
-
-            req.target_component = MAV.compid;
-            req.target_system = MAV.sysid;
-            req.id = no;
-            req.ofs = ofs;
-            // entire log
-            req.count = 0xFFFFFFFF;
-
-            // request point
-            generatePacket((byte) MAVLINK_MSG_ID.LOG_REQUEST_DATA, req);
-
-            DateTime start = DateTime.Now;
-            int retrys = 3;
-
-            while (true)
-            {
-                if (!(start.AddMilliseconds(3000) > DateTime.Now))
+                if (Progress != null)
                 {
-                    if (retrys > 0)
-                    {
-                        log.Info("GetLog Retry " + retrys + " - giv com " + giveComport);
-                        generatePacket((byte) MAVLINK_MSG_ID.LOG_REQUEST_DATA, req);
-                        start = DateTime.Now;
-                        retrys--;
-                        continue;
-                    }
-
-                    giveComport = false;
-                    throw new TimeoutException("Timeout on read - GetLog");
+                    Progress((int) 0, "");
                 }
 
-                var start1 = DateTime.Now;
-                buffer = await readPacketAsync().ConfigureAwait(false);
-                var end = DateTime.Now - start1;
-                var lapse = end.TotalMilliseconds;
-                //Console.WriteLine("readPacketAsync: " + lapse);
-                if (buffer.Length > 5)
+                uint totallength = 0;
+                uint ofs = 0;
+                uint bps = 0;
+                DateTime bpstimer = DateTime.Now;
+
+                mavlink_log_request_data_t req = new mavlink_log_request_data_t();
+
+                req.target_component = compid;
+                req.target_system = sysid;
+                req.id = no;
+                req.ofs = ofs;
+                // entire log
+                req.count = 0xFFFFFFFF;
+
+                // request point
+                generatePacket((byte) MAVLINK_MSG_ID.LOG_REQUEST_DATA, req);
+
+                DateTime start = DateTime.Now;
+                int retrys = 3;
+
+                while (true)
                 {
-                    if (buffer.msgid == (byte) MAVLINK_MSG_ID.LOG_DATA && buffer.sysid == req.target_system &&
-                        buffer.compid == req.target_component)
+                    if (!(start.AddMilliseconds(3000) > DateTime.Now))
                     {
-                        var data = buffer.ToStructure<mavlink_log_data_t>();
-
-                        if (data.id != no)
-                            continue;
-
-                        // reset retrys
-                        retrys = 3;
-                        start = DateTime.Now;
-
-                        bps += data.count;
-
-                        // record what we have received
-                        set[(data.ofs / 90).ToString()] = 1;
-
-                        if (ms.Position != data.ofs)
-                            ms.Seek((long) data.ofs, SeekOrigin.Begin);
-                        ms.Write(data.data, 0, data.count);
-
-                        // update new start point
-                        req.ofs = data.ofs + data.count;
-
-                        if (bpstimer.Second != DateTime.Now.Second)
+                        if (retrys > 0)
                         {
-                            if (Progress != null)
-                            {
-                                Progress((int) req.ofs, "");
-                            }
-
-                            //Console.WriteLine("log dl bps: " + bps.ToString());
-                            bpstimer = DateTime.Now;
-                            bps = 0;
-                        }
-
-                        // if data is less than max packet size or 0 > exit
-                        if (data.count < 90 || data.count == 0)
-                        {
-                            totallength = data.ofs + data.count;
-                            log.Info("start fillin len " + totallength + " count " + set.Count + " datalen " +
-                                     data.count);
-                            break;
-                        }
-                    }
-                }
-            }
-
-            log.Info("set count " + set.Count);
-            log.Info("count total " + ((totallength) / 90 + 1));
-            log.Info("totallength " + totallength);
-            log.Info("current length " + ms.Length);
-
-            while (true && ((BaseStream != null && BaseStream.IsOpen) || logreadmode))
-            {
-                if (totallength == ms.Length && set.Count >= ((totallength) / 90 + 1))
-                {
-                    giveComport = false;
-                    return ms;
-                }
-
-                if (!(start.AddMilliseconds(500) > DateTime.Now))
-                {
-                    for (int a = 0; a < ((totallength) / 90 + 1); a++)
-                    {
-                        if (!set.ContainsKey(a.ToString()))
-                        {
-                            // request large chunk if they are back to back
-                            uint bytereq = 90;
-                            int b = a + 1;
-                            while (!set.ContainsKey(b.ToString()))
-                            {
-                                bytereq += 90;
-                                b++;
-                            }
-
-                            req.ofs = (uint) (a * 90);
-                            req.count = bytereq;
-                            log.Info("req missing " + req.ofs + " bytes " + req.count + " got " + set.Count + "/" +
-                                     ((totallength) / 90 + 1));
+                            log.Info("GetLog Retry " + retrys + " - giv com " + giveComport);
                             generatePacket((byte) MAVLINK_MSG_ID.LOG_REQUEST_DATA, req);
                             start = DateTime.Now;
-                            break;
-                        }
-                    }
-                }
-
-                buffer = await readPacketAsync().ConfigureAwait(false);
-                if (buffer.Length > 5)
-                {
-                    if (buffer.msgid == (byte) MAVLINK_MSG_ID.LOG_DATA && buffer.sysid == req.target_system &&
-                        buffer.compid == req.target_component)
-                    {
-                        var data = buffer.ToStructure<mavlink_log_data_t>();
-
-                        if (data.id != no)
+                            retrys--;
                             continue;
+                        }
 
-                        // reset retrys
-                        retrys = 3;
-                        start = DateTime.Now;
+                        giveComport = false;
+                        throw new TimeoutException("Timeout on read - GetLog");
+                    }
 
-                        bps += data.count;
-
-                        // record what we have received
-                        set[(data.ofs / 90).ToString()] = 1;
-
-                        ms.Seek((long) data.ofs, SeekOrigin.Begin);
-                        ms.Write(data.data, 0, data.count);
-
-                        // update new start point
-                        req.ofs = data.ofs + data.count;
-
-                        if (bpstimer.Second != DateTime.Now.Second)
+                    var start1 = DateTime.Now;
+                    buffer = await readPacketAsync().ConfigureAwait(false);
+                    var end = DateTime.Now - start1;
+                    var lapse = end.TotalMilliseconds;
+                    //Console.WriteLine("readPacketAsync: " + lapse);
+                    if (buffer.Length > 5)
+                    {
+                        if (buffer.msgid == (byte) MAVLINK_MSG_ID.LOG_DATA && buffer.sysid == req.target_system &&
+                            buffer.compid == req.target_component)
                         {
-                            if (Progress != null)
+                            var data = buffer.ToStructure<mavlink_log_data_t>();
+
+                            if (data.id != no)
+                                continue;
+
+                            // reset retrys
+                            retrys = 3;
+                            start = DateTime.Now;
+
+                            bps += data.count;
+
+                            // record what we have received
+                            set[(data.ofs / 90).ToString()] = 1;
+
+                            if (ms.Position != data.ofs)
+                                ms.Seek((long) data.ofs, SeekOrigin.Begin);
+                            ms.Write(data.data, 0, data.count);
+
+                            // update new start point
+                            req.ofs = data.ofs + data.count;
+
+                            if (bpstimer.Second != DateTime.Now.Second)
                             {
-                                Progress((int) req.ofs, "");
+                                if (Progress != null)
+                                {
+                                    Progress((int) req.ofs, "");
+                                }
+
+                                //Console.WriteLine("log dl bps: " + bps.ToString());
+                                bpstimer = DateTime.Now;
+                                bps = 0;
                             }
 
-                            //Console.WriteLine("log dl bps: " + bps.ToString());
-                            bpstimer = DateTime.Now;
-                            bps = 0;
-                        }
-
-                        // check if we have next set and invalidate to request next packets
-                        if (set.ContainsKey(((data.ofs / 90) + 1).ToString()))
-                        {
-                            start = DateTime.MinValue;
-                        }
-
-                        // if data is less than max packet size or 0 > exit
-                        if (data.count < 90 || data.count == 0)
-                        {
-                            continue;
+                            // if data is less than max packet size or 0 > exit
+                            if (data.count < 90 || data.count == 0)
+                            {
+                                totallength = data.ofs + data.count;
+                                log.Info("start fillin len " + totallength + " count " + set.Count + " datalen " +
+                                         data.count);
+                                break;
+                            }
                         }
                     }
                 }
-            }
 
-            throw new Exception("Failed to get log");
+                log.Info("set count " + set.Count);
+                log.Info("count total " + ((totallength) / 90 + 1));
+                log.Info("totallength " + totallength);
+                log.Info("current length " + ms.Length);
+
+                while (true && ((BaseStream != null && BaseStream.IsOpen) || logreadmode))
+                {
+                    if (totallength == ms.Length && set.Count >= ((totallength) / 90 + 1))
+                    {
+                        giveComport = false;
+                        return filename;
+                    }
+
+                    if (!(start.AddMilliseconds(500) > DateTime.Now))
+                    {
+                        for (int a = 0; a < ((totallength) / 90 + 1); a++)
+                        {
+                            if (!set.ContainsKey(a.ToString()))
+                            {
+                                // request large chunk if they are back to back
+                                uint bytereq = 90;
+                                int b = a + 1;
+                                while (!set.ContainsKey(b.ToString()))
+                                {
+                                    bytereq += 90;
+                                    b++;
+                                }
+
+                                req.ofs = (uint) (a * 90);
+                                req.count = bytereq;
+                                log.Info("req missing " + req.ofs + " bytes " + req.count + " got " + set.Count + "/" +
+                                         ((totallength) / 90 + 1));
+                                generatePacket((byte) MAVLINK_MSG_ID.LOG_REQUEST_DATA, req);
+                                start = DateTime.Now;
+                                break;
+                            }
+                        }
+                    }
+
+                    buffer = await readPacketAsync().ConfigureAwait(false);
+                    if (buffer.Length > 5)
+                    {
+                        if (buffer.msgid == (byte) MAVLINK_MSG_ID.LOG_DATA && buffer.sysid == req.target_system &&
+                            buffer.compid == req.target_component)
+                        {
+                            var data = buffer.ToStructure<mavlink_log_data_t>();
+
+                            if (data.id != no)
+                                continue;
+
+                            // reset retrys
+                            retrys = 3;
+                            start = DateTime.Now;
+
+                            bps += data.count;
+
+                            // record what we have received
+                            set[(data.ofs / 90).ToString()] = 1;
+
+                            ms.Seek((long) data.ofs, SeekOrigin.Begin);
+                            ms.Write(data.data, 0, data.count);
+
+                            // update new start point
+                            req.ofs = data.ofs + data.count;
+
+                            if (bpstimer.Second != DateTime.Now.Second)
+                            {
+                                if (Progress != null)
+                                {
+                                    Progress((int) req.ofs, "");
+                                }
+
+                                //Console.WriteLine("log dl bps: " + bps.ToString());
+                                bpstimer = DateTime.Now;
+                                bps = 0;
+                            }
+
+                            // check if we have next set and invalidate to request next packets
+                            if (set.ContainsKey(((data.ofs / 90) + 1).ToString()))
+                            {
+                                start = DateTime.MinValue;
+                            }
+
+                            // if data is less than max packet size or 0 > exit
+                            if (data.count < 90 || data.count == 0)
+                            {
+                                continue;
+                            }
+                        }
+                    }
+                }
+
+                throw new Exception("Failed to get log");
+            }
         }
 
         [Obsolete]
@@ -5735,7 +5933,6 @@ Mission Planner waits for 2 valid heartbeat packets before connecting");
                         plla.Tag = fp.idx.ToString();
                         plla.Alt = fp.alt;
 
-
                         giveComport = false;
 
                         return (plla, fp.count);
@@ -5757,7 +5954,6 @@ Mission Planner waits for 2 valid heartbeat packets before connecting");
             fp.target_system = MAV.sysid;
 
             int retry = 3;
-
 
             while (retry > 0)
             {
@@ -5824,7 +6020,7 @@ Mission Planner waits for 2 valid heartbeat packets before connecting");
             return doCommand(sysid, compid, MAV_CMD.PREFLIGHT_SET_SENSOR_OFFSETS, (int) sensor, x, y, z, 0, 0, 0);
         }
 
-        Dictionary<Stream, Tuple<string, long>> streamfncache = new Dictionary<Stream, Tuple<string, long>>();
+        private Dictionary<Stream, Tuple<string, long>> streamfncache = new Dictionary<Stream, Tuple<string, long>>();
         private EventHandler<MAVLinkMessage> _OnPacketReceived;
         private EventHandler<MAVLinkMessage> _OnPacketSent;
         private static EventHandler<adsb.PointLatLngAltHdg> _UpdateADSBPlanePosition;
@@ -5834,7 +6030,7 @@ Mission Planner waits for 2 valid heartbeat packets before connecting");
         private EventHandler _CommsClose;
         public bool printbps = true;
 
-        MAVLinkMessage readlogPacketMavlink()
+        private MAVLinkMessage readlogPacketMavlink()
         {
             byte[] datearray = new byte[8];
 
@@ -5931,6 +6127,7 @@ Mission Planner waits for 2 valid heartbeat packets before connecting");
                         }
 
                         break;
+
                     case 1:
                         byte1 = tempb;
                         // handle length
@@ -5941,6 +6138,7 @@ Mission Planner waits for 2 valid heartbeat packets before connecting");
                         length = byte1 + headerlengthstx + 2; // header + 2 checksum
                     }
                         break;
+
                     case 2:
                         byte2 = tempb;
                         // handle signing and mavlink2
@@ -6029,42 +6227,55 @@ Mission Planner waits for 2 valid heartbeat packets before connecting");
                         case MAV_TYPE.FIXED_WING:
                             MAVlist[sysid, compid].cs.firmware = Firmwares.ArduPlane;
                             break;
+
                         case MAV_TYPE n when (n >= MAV_TYPE.VTOL_DUOROTOR && n <= MAV_TYPE.VTOL_RESERVED5):
                             MAVlist[sysid, compid].cs.firmware = Firmwares.ArduPlane;
                             break;
+
                         case MAV_TYPE.FLAPPING_WING:
                             MAVlist[sysid, compid].cs.firmware = Firmwares.ArduPlane;
                             break;
+
                         case MAV_TYPE.QUADROTOR:
                             MAVlist[sysid, compid].cs.firmware = Firmwares.ArduCopter2;
                             break;
+
                         case MAV_TYPE.TRICOPTER:
                             MAVlist[sysid, compid].cs.firmware = Firmwares.ArduCopter2;
                             break;
+
                         case MAV_TYPE.HEXAROTOR:
                             MAVlist[sysid, compid].cs.firmware = Firmwares.ArduCopter2;
                             break;
+
                         case MAV_TYPE.OCTOROTOR:
                             MAVlist[sysid, compid].cs.firmware = Firmwares.ArduCopter2;
                             break;
+
                         case MAV_TYPE.HELICOPTER:
                             MAVlist[sysid, compid].cs.firmware = Firmwares.ArduCopter2;
                             break;
+
                         case MAV_TYPE.DODECAROTOR:
                             MAVlist[sysid, compid].cs.firmware = Firmwares.ArduCopter2;
                             break;
+
                         case MAV_TYPE.GROUND_ROVER:
                             MAVlist[sysid, compid].cs.firmware = Firmwares.ArduRover;
                             break;
+
                         case MAV_TYPE.SURFACE_BOAT:
                             MAVlist[sysid, compid].cs.firmware = Firmwares.ArduRover;
                             break;
+
                         case MAV_TYPE.SUBMARINE:
                             MAVlist[sysid, compid].cs.firmware = Firmwares.ArduSub;
                             break;
+
                         case MAV_TYPE.ANTENNA_TRACKER:
                             MAVlist[sysid, compid].cs.firmware = Firmwares.ArduTracker;
                             break;
+
                         default:
                             MAVlist[sysid, compid].cs.firmware = Firmwares.Other;
                             log.Error(MAVlist[sysid, compid].aptype + " not registered as valid type");
@@ -6072,6 +6283,7 @@ Mission Planner waits for 2 valid heartbeat packets before connecting");
                     }
 
                     break;
+
                 case MAV_AUTOPILOT.UDB:
                     switch (MAVlist[sysid, compid].aptype)
                     {
@@ -6081,6 +6293,7 @@ Mission Planner waits for 2 valid heartbeat packets before connecting");
                     }
 
                     break;
+
                 case MAV_AUTOPILOT.GENERIC:
                     switch (MAVlist[sysid, compid].aptype)
                     {
@@ -6090,9 +6303,11 @@ Mission Planner waits for 2 valid heartbeat packets before connecting");
                     }
 
                     break;
+
                 case MAV_AUTOPILOT.PX4:
                     MAVlist[sysid, compid].cs.firmware = Firmwares.PX4;
                     break;
+
                 default:
                     switch (MAVlist[sysid, compid].aptype)
                     {
@@ -6115,7 +6330,6 @@ Mission Planner waits for 2 valid heartbeat packets before connecting");
 
             return "MAV " + MAV.sysid + " on Ice";
         }
-
 
         public void Dispose()
         {

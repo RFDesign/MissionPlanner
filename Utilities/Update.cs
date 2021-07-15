@@ -64,9 +64,9 @@ namespace MissionPlanner.Utilities
                 string exePath = Path.GetDirectoryName(Application.ExecutablePath);
                 if (MONO)
                 {
-                    process.StartInfo.FileName = "mono";
-                    process.StartInfo.Arguments = " \"" + exePath + Path.DirectorySeparatorChar + "Updater.exe\"" +
-                                                  "  \"" + Application.ExecutablePath + "\"";
+                    process.StartInfo.FileName = "/bin/bash";
+                    process.StartInfo.Arguments = " -c 'mono \"" + exePath + Path.DirectorySeparatorChar + "Updater.exe\"" +
+                                                  "  \"" + Application.ExecutablePath + "\"'";
                 }
                 else
                 {
@@ -630,6 +630,7 @@ namespace MissionPlanner.Utilities
             #region Fetch Parameter Meta Data
 
             var progressReporterDialogue = ((IProgressReporterDialogue)sender);
+            /*
             progressReporterDialogue.UpdateProgressAndStatus(-1, "Getting updated parameter documentation");
 
             try
@@ -652,7 +653,7 @@ namespace MissionPlanner.Utilities
                 log.Error(ex.ToString());
                 CustomMessageBox.Show("Error getting Parameter Information");
             }
-
+            */
             #endregion Fetch Parameter Meta Data
 
             progressReporterDialogue.UpdateProgressAndStatus(-1, "Getting Base URL");

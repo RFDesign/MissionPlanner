@@ -20,17 +20,25 @@ namespace MissionPlanner.Utilities
 
         private static Dictionary<string,XDocument> _parameterMetaDataXML = new Dictionary<string, XDocument>();
 
-        static string[] vehicles = new[] { "Copter", "Plane", "Rover", "Tracker" };
+        private static string[] vehicles = new[]
+        {
+             "SITL", "AP_Periph", "ArduSub", "Rover", "ArduCopter",
+            "ArduPlane", "AntennaTracker"
+        };
 
         static string url = "https://autotest.ardupilot.org/Parameters/{0}/apm.pdef.xml.gz";
 
+        static ParameterMetaDataRepositoryAPMpdef()
+        {
+            GetMetaData();
+        }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ParameterMetaDataRepository"/> class.
         /// </summary>
         public static void CheckLoad(string vehicle = "")
         {
-            if (_parameterMetaDataXML[vehicle] == null)
+            if (!_parameterMetaDataXML.ContainsKey(vehicle))
                 Reload(vehicle);
         }
 
@@ -69,7 +77,7 @@ namespace MissionPlanner.Utilities
                                 read.Position = 0;
                                 var stream = new GZipStream(read, CompressionMode.Decompress);
                                 //var stream = new XZStream(read);
-                                using (var outst = File.OpenWrite(fileout))
+                                using (var outst = File.Open(fileout, FileMode.Create))
                                 {
                                     stream.CopyTo(outst);
                                 }
@@ -86,7 +94,7 @@ namespace MissionPlanner.Utilities
         public static void Reload(string vehicle = "")
         {
             string paramMetaDataXMLFileName =
-                String.Format("{0}{1}", Settings.GetUserDataDirectory(), vehicle + ".apm.pdef.xml");
+                String.Format("{0}{1}", Settings.GetDataDirectory(), vehicle + ".apm.pdef.xml");
 
             try
             {
@@ -112,7 +120,7 @@ namespace MissionPlanner.Utilities
             if (vechileType == "ArduCopter2")
                 vechileType = "ArduCopter";
             if (vechileType == "ArduRover")
-                vechileType = "APMrover2";
+                vechileType = "Rover";
             if (vechileType == "ArduTracker")
                 vechileType = "AntennaTracker";
 
@@ -126,7 +134,7 @@ namespace MissionPlanner.Utilities
             if (metaKey == ParameterMetaDataConstants.User)
                 metaKey = "user";
 
-            if (_parameterMetaDataXML[vechileType] != null)
+            if (_parameterMetaDataXML.ContainsKey(vechileType))
             {
                 try
                 {

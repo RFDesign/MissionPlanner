@@ -1,11 +1,15 @@
 ﻿using MissionPlanner.Comms;
 using MissionPlanner.Utilities;
+using MissionPlanner.Utilities.CoT;
 using System;
 using System.Globalization;
+using System.IO;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading;
 using System.Windows.Forms;
+using System.Xml;
+using System.Xml.Serialization;
 
 namespace MissionPlanner.Controls
 {
@@ -237,6 +241,53 @@ namespace MissionPlanner.Controls
             culture.NumberFormat.NumberGroupSeparator = "";
 
             DateTime time = DateTime.UtcNow;
+
+            var cotevent = new @event()
+            {
+                uid = uid, type = type, time = time.ToString("o"), start = time.AddSeconds(-5).ToString("o"),
+                stale = time.AddSeconds(5).ToString("o"), how = how,
+                detail = new detail()
+                {
+                    track = new track()
+                    {
+                        course = course.ToString("N2", culture), speed = speed.ToString("N2", culture)
+                    }
+
+                },
+                point = new point()
+                {
+                    lat = lat.ToString("N7", culture), lon = lng.ToString("N7", culture), hae = alt.ToString("N2", culture).PadLeft(5, ' ')
+                }
+            };
+
+            using(StringWriter textWriter = new StringWriter())
+            {
+                XmlWriterSettings xws = new XmlWriterSettings();
+                xws.OmitXmlDeclaration = false;
+                xws.Indent = true;
+                xws.Encoding = Encoding.UTF8;
+                xws.NewLineOnAttributes = true;
+
+                //Create our own namespaces for the output
+                XmlSerializerNamespaces ns = new XmlSerializerNamespaces();
+
+                //Add an empty namespace and empty value
+                ns.Add("", "");
+
+                var xtw = XmlTextWriter.Create(textWriter, xws);
+                // Then we can set our indenting options (this is, of course, optional).
+                XmlSerializer serializer =
+                    new XmlSerializer(typeof(@event));
+
+                xtw.WriteStartDocument(true);          
+       
+                serializer.Serialize(xtw, cotevent, ns);      
+
+                var ans = textWriter.ToString();
+
+                return ans;
+            }
+            
             StringBuilder sb = new StringBuilder();
 
             sb.AppendLine  ("<?xml version='1.0' encoding='UTF-8' standalone='yes'?>");
@@ -269,10 +320,11 @@ namespace MissionPlanner.Controls
             // hae = Height above the WGS ellipsoid in meters
             // ce = Circular 1-sigma or decimal a circular area about the point in meters
             // le = Linear 1-sigma error or decimal an attitude range about the point in meters
-            sb.AppendFormat(culture, "  <point lat=\"{0:N7}\" lon=\"{1:N7}\" hae=\"{2,5:N2}\" ce=\"1.0\" le=\"1.0\"", lat, lng, alt); sb.AppendLine();
+            sb.AppendFormat(culture, "  <point lat=\"{0:N7}\" lon=\"{1:N7}\" hae=\"{2,5:N2}\" ce=\"1.0\" le=\"1.0\"/>", lat, lng, alt); sb.AppendLine();
             sb.AppendLine  ("</event>");
 
             return sb.ToString();
+            
         }
 
         private void BTN_clear_TB_Click(object sender, EventArgs e)

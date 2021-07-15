@@ -64,12 +64,12 @@ namespace MissionPlanner.Utilities
 
         static Dictionary<int, string> _filenameDictionary = new Dictionary<int, string>();
 
-        private static Func<int, int, string> filenameDictionary = (x,y) =>
+        private static Func<int, int, string> filenameDictionary = (x, y) =>
         {
-            int id = y*1000 + x;
-
-            if (_filenameDictionary.ContainsKey(id))
-                return _filenameDictionary[id];
+            int id = y * 1000 + x;
+            lock (_filenameDictionary)
+                if (_filenameDictionary.ContainsKey(id))
+                    return _filenameDictionary[id];
 
             if (y < -90 || y > 90)
                 return "";
@@ -81,8 +81,9 @@ namespace MissionPlanner.Utilities
 
             var sx = Math.Abs(x).ToString("000");
 
-            _filenameDictionary[id] = string.Format("{0}{1}{2}{3}{4}", y >= 0 ? "N" : "S", sy,
-                x >= 0 ? "E" : "W", sx, ".hgt");
+            lock (_filenameDictionary)
+                _filenameDictionary[id] = string.Format("{0}{1}{2}{3}{4}", y >= 0 ? "N" : "S", sy,
+                    x >= 0 ? "E" : "W", sx, ".hgt");
 
             return _filenameDictionary[id];
         };
@@ -396,6 +397,7 @@ namespace MissionPlanner.Utilities
                             {
                                 log.Info("Getting " + filename);
                                 queue.Add(filename);
+                                requestSemaphore.Release();
                             }
                         }
 
@@ -540,6 +542,8 @@ namespace MissionPlanner.Utilities
             }
         }
 
+        static SemaphoreSlim requestSemaphore = new SemaphoreSlim(1);
+
         static async void requestRunner()
         {
             log.Info("requestRunner start");
@@ -550,6 +554,8 @@ namespace MissionPlanner.Utilities
             {
                 try
                 {
+                    await requestSemaphore.WaitAsync(30000);
+
                     string item = "";
                     lock (objlock)
                     {
@@ -566,6 +572,12 @@ namespace MissionPlanner.Utilities
                         lock (objlock)
                         {
                             queue.Remove(item);
+
+                            // continue without delay
+                            if (queue.Count > 0)
+                            {
+                                requestSemaphore.Release();
+                            }
                         }
                     }
                 }
@@ -574,6 +586,7 @@ namespace MissionPlanner.Utilities
                     log.Error(ex);
                 }
 
+                // never more than 1/s
                 await Task.Delay(1000);
             }
         }

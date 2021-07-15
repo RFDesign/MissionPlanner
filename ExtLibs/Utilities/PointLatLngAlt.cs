@@ -11,6 +11,7 @@ using ProjNet.CoordinateSystems.Transformations;
 using GeoUtility;
 using GeoUtility.GeoSystem;
 using System.Collections;
+using GeoAPI.Geometries;
 
 namespace MissionPlanner.Utilities
 {
@@ -137,6 +138,23 @@ namespace MissionPlanner.Utilities
             return false;
         }
 
+
+        public static bool operator ==(PointLatLngAlt p1, PointLatLngAlt p2)
+        {
+            if (p1 is null && p2 is null)
+                return true;
+
+            if (p1 is null && !(p2 is null))
+                return false;
+
+            return p1.Equals(p2);
+        }
+
+        public static bool operator !=(PointLatLngAlt p1, PointLatLngAlt p2)
+        {
+            return !(p1 == p2);
+        }
+
         public static bool operator ==(PointLatLngAlt p1, PointLatLng p2)
         {
             if (p1 == null || p2 == null)
@@ -176,6 +194,18 @@ namespace MissionPlanner.Utilities
             return zone;
         }
 
+        public int GetLngStartFromZone()
+        {
+            int zone = GetUTMZone();
+            return ((Math.Abs(zone) * 6) - 180) - 6;
+        }
+
+        public int GetLngEndFromZone()
+        {
+            int zone = GetUTMZone();
+            return ((Math.Abs(zone) * 6) - 180);
+        }
+
         public string GetFriendlyZone()
         {
             return GetUTMZone().ToString("0N;0S");
@@ -188,6 +218,16 @@ namespace MissionPlanner.Utilities
             MGRS mgrs = (MGRS)geo;
 
             return mgrs.ToString();
+        }
+
+        public static Coordinate[] Transform(Coordinate[] points, string sourceCoordinateSystemString, string targetCoordinateSystemString = "GEOGCS[\"GCS_WGS_1984\",DATUM[\"D_WGS_1984\",SPHEROID[\"WGS_1984\",6378137,298.257223563]],PRIMEM[\"Greenwich\",0],UNIT[\"Degree\",0.0174532925199433]]")
+        {
+            CoordinateSystemFactory coordinateSystemFactory = new CoordinateSystemFactory();
+            ICoordinateSystem sourceCoordinateSystem = coordinateSystemFactory.CreateFromWkt(sourceCoordinateSystemString);
+            ICoordinateSystem targetCoordinateSystem = coordinateSystemFactory.CreateFromWkt(targetCoordinateSystemString);
+            ICoordinateTransformation trans = (new CoordinateTransformationFactory()).CreateFromCoordinateSystems(sourceCoordinateSystem, targetCoordinateSystem);
+
+            return trans.MathTransform.TransformList(points).ToArray();
         }
 
         public static PointLatLngAlt FromUTM(int zone,double x, double y)
@@ -247,6 +287,13 @@ namespace MissionPlanner.Utilities
             list.ForEach(x => { data.Add((double[])x); });
 
             return trans.MathTransform.TransformList(data).ToList();
+        }
+
+        public static double[] ToUTM(int utmzone, double lat, double lng)
+        {
+            ICoordinateTransformation trans = TryGetTransform(utmzone, lat);
+
+            return trans.MathTransform.Transform(new double[] { lng, lat});
         }
 
 

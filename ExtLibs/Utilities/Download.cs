@@ -132,7 +132,7 @@ namespace MissionPlanner.Utilities
 
                 var maxcount = (int)Math.Min(chunkleft, count);
 
-                Array.Copy(chunk.Value.GetBuffer(), positioninchunk, buffer, offset, maxcount);
+                Array.Copy(chunk.Value.ToArray(), positioninchunk, buffer, offset, maxcount);
 
                 bytesgot += maxcount;
                 offset += maxcount;
@@ -307,7 +307,7 @@ namespace MissionPlanner.Utilities
                 using (var response = await client.GetAsync(url))
                 {
                     lock (log)
-                        log.Info((response).StatusCode.ToString());
+                        log.Info(url + " " +(response).StatusCode.ToString());
                     if ((response).StatusCode != HttpStatusCode.OK)
                         return false;
 
@@ -323,7 +323,7 @@ namespace MissionPlanner.Utilities
                             if ((response).Content.Headers.ContentLength == new FileInfo(saveto).Length)
                             {
                                 lock (log)
-                                    log.Info("got LastModified " + saveto + " " +
+                                    log.Info(url + " " + "got LastModified " + saveto + " " +
                                              (response).Content.Headers.LastModified +
                                              " vs " + new FileInfo(saveto).LastWriteTime);
                                 response.Dispose();

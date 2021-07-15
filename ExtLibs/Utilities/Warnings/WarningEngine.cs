@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Threading;
+using System.Threading.Tasks;
 using MissionPlanner.Utilities;
 
 namespace MissionPlanner.Warnings
@@ -59,14 +60,16 @@ namespace MissionPlanner.Warnings
 
         public static event EventHandler<string> WarningMessage;
 
+        //Called for QV Panel background changes
+        //first arg: datasource field name, second arg: colorname
+        //Nota bene: using Action is not elegant, but quick and since it used only one other place, no harm done
+        public static event Action<string, string> QuickPanelColoring;
+
         public static void Start(ISpeech speech)
         {
             if (run == false)
             {
-                thisthread = new Thread(MainLoop);
-                thisthread.Name = "Warning Engine";
-                thisthread.IsBackground = true;
-                thisthread.Start();
+                MainLoop();
             }
 
             _speech = speech;
@@ -75,46 +78,56 @@ namespace MissionPlanner.Warnings
         public static void Stop()
         {
             run = false;
-            if (thisthread != null && thisthread.IsAlive)
-                thisthread.Join();
         }
 
-        static Thread thisthread;
         private static ISpeech _speech;
 
-        public static void MainLoop()
+        public static async void MainLoop()
         {
             run = true;
             while (run)
             {
-                
-                    try
+
+                try
+                {
+                    lock (warnings)
                     {
-                        lock (warnings)
+                        foreach (var item in warnings)
                         {
-                            foreach (var item in warnings)
+                            // check primary condition
+                            if (checkCond(item))
                             {
-                                // check primary condition
-                                if (checkCond(item))
+                                //Check item type
+                                if (item.type == CustomWarning.WarningType.SpeakAndText)
                                 {
                                     if (_speech != null)
                                     {
                                         while (!_speech.IsReady)
-                                            System.Threading.Thread.Sleep(10);
+                                            Thread.Yield();
 
                                         _speech.SpeakAsync(item.SayText());
                                     }
 
                                     WarningMessage?.Invoke(null, item.SayText());
                                 }
+                                else if (item.type == CustomWarning.WarningType.Coloring)
+                                {
+                                    QuickPanelColoring?.Invoke(item.Name, item.color);
+                                }
+                            }
+                            // if condition is not met, then color back the QV panel to default BackGround
+                            else if (item.type == CustomWarning.WarningType.Coloring)
+                            {
+                                QuickPanelColoring?.Invoke(item.Name, "NoColor");
                             }
                         }
                     }
-                    catch
-                    {
-                    }
+                }
+                catch
+                {
+                }
 
-                System.Threading.Thread.Sleep(100);
+                await Task.Delay(250).ConfigureAwait(false);
             }
         }
 

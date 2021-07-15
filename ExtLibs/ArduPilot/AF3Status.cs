@@ -259,7 +259,7 @@ namespace MissionPlanner.Utilities.AF3
 
                 for (int i = 0; i < failedBus.Length; i++)
                 {
-                    failedBusMask += failedBus[i] ? 1 : 0 << 0;
+                    failedBusMask += (uint)(failedBus[i] ? 1 : 0 << 0);
                     allFailed &= failedBus[i];
                 }
 

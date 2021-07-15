@@ -1170,6 +1170,7 @@
             // 
             // NUM_UpDownFlySpeed
             // 
+            this.NUM_UpDownFlySpeed.DecimalPlaces = 1;
             resources.ApplyResources(this.NUM_UpDownFlySpeed, "NUM_UpDownFlySpeed");
             this.NUM_UpDownFlySpeed.Maximum = new decimal(new int[] {
             360,
@@ -1352,7 +1353,7 @@
             this.map.HoldInvalidation = false;
             this.map.LevelsKeepInMemmory = 5;
             this.map.MarkersEnabled = true;
-            this.map.MaxZoom = 19;
+            this.map.MaxZoom = 24;
             this.map.MinZoom = 2;
             this.map.MouseWheelZoomType = GMap.NET.MouseWheelZoomType.MousePositionWithoutCenter;
             this.map.Name = "map";

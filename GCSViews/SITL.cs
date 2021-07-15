@@ -13,6 +13,7 @@ using System.IO;
 using System.Linq;
 using System.Net.Sockets;
 using System.Reflection;
+using System.Runtime.InteropServices;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
@@ -160,7 +161,7 @@ namespace MissionPlanner.GCSViews
                 return;
             }
 
-            var exepath = CheckandGetSITLImage("APMrover2.elf");
+            var exepath = CheckandGetSITLImage("ArduRover.elf");
             try
             {
                 StartSITL(await exepath, "rover",
@@ -245,33 +246,36 @@ namespace MissionPlanner.GCSViews
                 return BundledPath + System.IO.Path.DirectorySeparatorChar + file;
             }
 
-            Uri fullurl = new Uri(sitlurl, filename);
+            if (!chk_skipdownload.Checked)
+            {
+                Uri fullurl = new Uri(sitlurl, filename);
 
-            var load = Common.LoadingBox("Downloading", "Downloading sitl software");
+                var load = Common.LoadingBox("Downloading", "Downloading sitl software");
 
-            var t1 = Download.getFilefromNetAsync(fullurl.ToString(),
-                sitldirectory + Path.GetFileNameWithoutExtension(filename) + ".exe");
+                var t1 = Download.getFilefromNetAsync(fullurl.ToString(),
+                    sitldirectory + Path.GetFileNameWithoutExtension(filename) + ".exe");
 
-            load.Refresh();
+                load.Refresh();
 
-            // dependancys
-            var depurl = new Uri(sitlurl, "cyggcc_s-1.dll");
-            var t2 = Download.getFilefromNetAsync(depurl.ToString(), sitldirectory + depurl.Segments[depurl.Segments.Length - 1]);
+                // dependancys
+                var depurl = new Uri(sitlurl, "cyggcc_s-1.dll");
+                var t2 = Download.getFilefromNetAsync(depurl.ToString(), sitldirectory + depurl.Segments[depurl.Segments.Length - 1]);
 
-            load.Refresh();
-            depurl = new Uri(sitlurl, "cygstdc++-6.dll");
-            var t3 = Download.getFilefromNetAsync(depurl.ToString(), sitldirectory + depurl.Segments[depurl.Segments.Length - 1]);
+                load.Refresh();
+                depurl = new Uri(sitlurl, "cygstdc++-6.dll");
+                var t3 = Download.getFilefromNetAsync(depurl.ToString(), sitldirectory + depurl.Segments[depurl.Segments.Length - 1]);
 
-            load.Refresh();
-            depurl = new Uri(sitlurl, "cygwin1.dll");
-            var t4 = Download.getFilefromNetAsync(depurl.ToString(), sitldirectory + depurl.Segments[depurl.Segments.Length - 1]);
+                load.Refresh();
+                depurl = new Uri(sitlurl, "cygwin1.dll");
+                var t4 = Download.getFilefromNetAsync(depurl.ToString(), sitldirectory + depurl.Segments[depurl.Segments.Length - 1]);
 
-            await t1.ConfigureAwait(true);
-            await t2.ConfigureAwait(true);
-            await t3.ConfigureAwait(true);
-            await t4.ConfigureAwait(true);
+                await t1.ConfigureAwait(true);
+                await t2.ConfigureAwait(true);
+                await t3.ConfigureAwait(true);
+                await t4.ConfigureAwait(true);
 
-            load.Close();
+                load.Close();
+            }
 
             return sitldirectory + Path.GetFileNameWithoutExtension(filename) + ".exe";
         }
@@ -481,18 +485,50 @@ namespace MissionPlanner.GCSViews
             exestart.Arguments = String.Format("-M{0} -O{1} -s{2} --uartA tcp:0 {3}", model, homelocation, speedup, extraargs);
             exestart.WorkingDirectory = simdir;
             exestart.WindowStyle = ProcessWindowStyle.Minimized;
-            exestart.UseShellExecute = true;
+            Console.WriteLine("sitl: {0} {1} {2}", exestart.WorkingDirectory, exestart.FileName,
+                exestart.Arguments);
+            if (RuntimeInformation.OSArchitecture == Architecture.X64 ||
+                RuntimeInformation.OSArchitecture == Architecture.X86)
+            {
+                exestart.UseShellExecute = true;
 
-            try
-            {
-                Console.WriteLine("sitl: {0} {1} {2}", exestart.WorkingDirectory, exestart.FileName,
-                    exestart.Arguments);
-                simulator.Add(System.Diagnostics.Process.Start(exestart));
+                try
+                {
+                    simulator.Add(System.Diagnostics.Process.Start(exestart));
+                }
+                catch (Exception ex)
+                {
+                    CustomMessageBox.Show("Failed to start the simulator\n" + ex.ToString(), Strings.ERROR);
+                    return;
+                }
             }
-            catch (Exception ex)
+            else
             {
-                CustomMessageBox.Show("Failed to start the simulator\n" + ex.ToString(), Strings.ERROR);
-                return;
+
+                exestart.UseShellExecute = false;
+                exestart.RedirectStandardOutput = true;
+                exestart.RedirectStandardError = true;
+
+                try
+                {
+                    var proc = System.Diagnostics.Process.Start(exestart);
+                    simulator.Add(proc);
+
+                    proc.ErrorDataReceived += (sender, args) => { Console.WriteLine("SITL ERR: " + args.Data); };
+
+                    proc.OutputDataReceived += (sender, args) => { Console.WriteLine("SITL: " + args.Data); };
+
+                    proc.Exited += (sender, args) => { Console.WriteLine("SITL EXIT!"); };
+
+                    proc.BeginOutputReadLine();
+                    proc.BeginErrorReadLine();
+
+                }
+                catch (Exception ex)
+                {
+                    CustomMessageBox.Show("Failed to start the simulator\n" + ex.ToString(), Strings.ERROR);
+                    return;
+                }
             }
 
             await Task.Delay(2000);
@@ -601,7 +637,7 @@ namespace MissionPlanner.GCSViews
 
             if (keyData == (Keys.Control | Keys.D))
             {
-                StartSwarmSeperate();
+                _ = StartSwarmSeperate();
                 return true;
             }
 
@@ -839,7 +875,7 @@ SIM_DRIFT_TIME=0
 
                 try
                 {
-                    MainV2.comPort.getParamListAsync((byte)MainV2.comPort.sysidcurrent, (byte)MainV2.comPort.compidcurrent);
+                    _ = MainV2.comPort.getParamListMavftpAsync((byte)MainV2.comPort.sysidcurrent, (byte)MainV2.comPort.compidcurrent);
                 }
                 catch
                 {
@@ -861,7 +897,7 @@ SIM_DRIFT_TIME=0
 
         private void but_swarmlink_Click(object sender, EventArgs e)
         {
-             StartSwarmSeperate();
+            _ = StartSwarmSeperate();
         }
     }
 }

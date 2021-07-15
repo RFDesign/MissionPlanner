@@ -18,14 +18,25 @@ namespace Xamarin.MacOS
             var style = NSWindowStyle.Closable | NSWindowStyle.Resizable | NSWindowStyle.Titled;
             var rect = new CoreGraphics.CGRect(200,200,1024,768);
             mainWindow = new NSWindow(rect, style, NSBackingStore.Buffered, false);
-            mainWindow.Title = "Xamarin.Forms on Mac!";
+            mainWindow.Title = "Mission Planner on Mac!";
             mainWindow.TitleVisibility = NSWindowTitleVisibility.Hidden;
+            mainWindow.DidResize += MainWindow_DidResize;
+            mainWindow.WillClose += MainWindow_WillClose;
 
             Test.BlueToothDevice = new BTDevice();
             Test.UsbDevices = new USBDevices();
             Test.Radio = new Radio();
 
             new System.Drawing.android.android();
+        }
+
+        private void MainWindow_WillClose(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.GetCurrentProcess().CloseMainWindow();
+        }
+
+        private void MainWindow_DidResize(object sender, EventArgs e)
+        {
         }
 
         private  NSWindow mainWindow;
@@ -56,9 +67,9 @@ namespace Xamarin.MacOS
 
         public class BTDevice : IBlueToothDevice
         {
-            Task<List<DeviceInfo>> IBlueToothDevice.GetDeviceInfoList()
+            public async Task<List<DeviceInfo>> GetDeviceInfoList()
             {
-                throw new NotImplementedException();
+                return new List<DeviceInfo>();
             }
 
             public Task<ICommsSerial> GetBT(DeviceInfo first)
@@ -72,11 +83,6 @@ namespace Xamarin.MacOS
             public event EventHandler<DeviceInfo> USBEvent;
 
             public DeviceInfo GetDeviceInfo(object devicein)
-            {
-                throw new NotImplementedException();
-            }
-
-            public Task GetDeviceInfoList()
             {
                 throw new NotImplementedException();
             }

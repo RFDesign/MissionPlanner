@@ -2,24 +2,7 @@
 <mavlink>
   <version>3</version>
   <dialect>0</dialect>
-  <enums>
-    <enum name="MAV_CMD">
-      <entry value="2504" name="MAV_CMD_REQUEST_VIDEO_STREAM_INFORMATION" hasLocation="false" isDestination="false">
-            <wip/>
-            <!-- This message is work-in-progress and it can therefore change. It should NOT be used in stable production environments. -->
-            <description>Request video stream information (VIDEO_STREAM_INFORMATION)</description>
-            <param index="1" label="Stream ID" minValue="0" increment="1">Video Stream ID (0 for all streams, 1 for first, 2 for second, etc.)</param>
-            <param index="2">Reserved (all remaining params)</param>
-      </entry>
-        <entry value="2502" name="MAV_CMD_VIDEO_START_STREAMING" hasLocation="false" isDestination="false">
-        <wip/>
-        <!-- This message is work-in-progress and it can therefore change. It should NOT be used in stable production environments. -->
-        <description>Start video streaming</description>
-        <param index="1" label="Stream ID" minValue="0" increment="1">Video Stream ID (0 for all streams, 1 for first, 2 for second, etc.)</param>
-        <param index="2">Reserved</param>
-      </entry>
-    </enum>
-  </enums>
+
   <messages>
     <message id="269" name="VIDEO_STREAM_INFORMATION">
       <wip/>

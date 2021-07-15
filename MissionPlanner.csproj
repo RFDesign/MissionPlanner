@@ -33,6 +33,10 @@
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
     <TargetFrameworkProfile />
+    <ProjectTypeGuids>{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <RunAnalyzersDuringBuild>false</RunAnalyzersDuringBuild>
+    <RunAnalyzersDuringLiveAnalysis>false</RunAnalyzersDuringLiveAnalysis>
+    <RunAnalyzers>false</RunAnalyzers>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
     <OutputPath>bin\Debug\net461\</OutputPath>
@@ -97,6 +101,8 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.IO.Compression" />
     <Reference Include="System.Management" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Speech" />
     <Reference Include="System.Web, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
     <Reference Include="System.Web.Extensions" />
@@ -235,6 +241,10 @@
       <Project>{785380e0-ceb9-4c34-82e5-60d0e33e848e}</Project>
       <Name>netDxf</Name>
     </ProjectReference>
+    <ProjectReference Include="ExtLibs\Onvif\Onvif.csproj">
+      <Project>{CA8C83FC-FCDC-4F8F-9384-A2C9C5B2F7DD}</Project>
+      <Name>Onvif</Name>
+    </ProjectReference>
     <ProjectReference Include="ExtLibs\OSDConfigurator\OSDConfigurator.csproj">
       <Project>{1442b805-d6b1-4729-89f8-3a5a1c7547ad}</Project>
       <Name>OSDConfigurator</Name>
@@ -283,6 +293,10 @@
       <Project>{1378A66C-38E4-46F5-A05F-DC04EF7D4D16}</Project>
       <Name>MissionPlanner.Utilities</Name>
     </ProjectReference>
+    <ProjectReference Include="ExtLibs\WebAPIs\MissionPlanner.WebAPIs.csproj">
+      <Project>{9a702625-fb81-4400-adac-053553109f64}</Project>
+      <Name>MissionPlanner.WebAPIs</Name>
+    </ProjectReference>
     <ProjectReference Include="ExtLibs\WebCamService\WebCamService.csproj">
       <Project>{78AC6375-28AF-4175-9F20-B5099C92EA2B}</Project>
       <Name>WebCamService</Name>
@@ -302,6 +316,14 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="AsyncFixer">
+      <Version>1.5.1</Version>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Asyncify">
+      <Version>0.9.7</Version>
+    </PackageReference>
     <PackageReference Include="Crc32.NET">
       <Version>1.2.0</Version>
     </PackageReference>
@@ -337,11 +359,18 @@
       <Version>2.0.2</Version>
     </PackageReference>
     <PackageReference Include="log4net" version="2.0.12" targetFramework="net462" />
-    <PackageReference Include="Microsoft.CodeAnalysis.CSharp">
-      <Version>3.6.0</Version>
+    <PackageReference Include="Meziantou.Analyzer">
+      <Version>1.0.663</Version>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.Diagnostics.Runtime">
       <Version>1.1.127808</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Threading.Analyzers">
+      <Version>16.10.56</Version>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.Win32.Registry" Version="4.7.0" />
     <PackageReference Include="NETStandard.Library">
@@ -375,9 +404,13 @@
     </PackageReference>
     <PackageReference Include="Unofficial.ObjectListView" version="2.6.0" targetFramework="net40" />
     <PackageReference Include="Xamarin.Forms">
-      <Version>5.0.0.1874</Version>
+      <Version>5.0.0.2012</Version>
     </PackageReference>
     <PackageReference Include="zlib.net" version="1.0.4.0" targetFramework="net40" />
+    <PackageReference Include="WebSocket4Net" Version="0.15.2" ExcludeAssets="Compile" GeneratePathProperty="true" />
+    <Reference Include="WebSocket4Net">
+      <HintPath>$(NuGetPackageRoot)\websocket4net\0.15.2\lib\netstandard1.3\WebSocket4Net.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Antenna\TrackerGeneric.cs" />
@@ -604,30 +637,39 @@
     </None>
     <None Include="MissionPlanner.GCSViews.ConfigurationView.ConfigGPSOrder+GPSCAN.datasource" />
     <None Include="MissionPlanner.GCSViews.ConfigurationView.ConfigHWCompass2+CompassDeviceInfo.datasource" />
-    <Compile Include="plugins\example2-menu.cs">
+    <None Include="plugins\example10-canlogfile.cs">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="plugins\example11-trace.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <Compile Include="Utilities\AirMarket.cs">
+      <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="plugins\example3-fencedist.cs">
+    <None Include="plugins\example2-menu.cs">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Compile>
-    <Compile Include="plugins\example4-herelink.cs">
+    </None>
+    <None Include="plugins\example3-fencedist.cs">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Compile>
-    <Compile Include="plugins\example5-latencytracker.cs">
+    </None>
+    <None Include="plugins\example4-herelink.cs">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Compile>
-    <Compile Include="plugins\example6-mapicondesc.cs">
+    </None>
+    <None Include="plugins\example5-latencytracker.cs">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Compile>
-    <Compile Include="plugins\example7-canrtcm.cs">
+    </None>
+    <None Include="plugins\example6-mapicondesc.cs">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Compile>
+    </None>
+    <None Include="plugins\example7-canrtcm.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="plugins\InitialParamsCalculator.cs">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <Compile Include="plugins\example8-modechange.cs">
+    <None Include="plugins\example8-modechange.cs">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Compile>
+    </None>
     <None Include="plugins\generator.cs">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <SubType>UserControl</SubType>
@@ -656,9 +698,9 @@
     <None Include="plugins\example8.cs">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <Compile Include="plugins\example9-hudonoff.cs">
+    <None Include="plugins\example9-hudonoff.cs">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Compile>
+    </None>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Radio\Models.cs" />
     <Compile Include="ResEdit.Designer.cs">
@@ -1799,6 +1841,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\paramcompare.resx">
       <DependentUpon>paramcompare.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Utilities\AirMarket.resx">
+      <DependentUpon>AirMarket.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="plugins\generator.resx">
       <DependentUpon>generator.cs</DependentUpon>
@@ -4574,9 +4619,9 @@
     <Content Include="rotmat.py">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Compile Include="plugins\example-watchbutton.cs">
+    <None Include="plugins\example-watchbutton.cs">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Compile>
+    </None>
     <None Include=".editorconfig" />
     <None Include="BurntKermit.mpsystheme">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -4592,9 +4637,9 @@
     </None>
     <None Include="MissionPlanner.GCSViews.ConfigurationView.DeviceInfo.datasource" />
     <None Include="Resources\Gaugebg.png" />
-    <Content Include="appxmanifest.xml">
+    <None Include="appxmanifest.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    </None>
     <Content Include="ArduCopterConfig.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -4956,6 +5001,5 @@
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

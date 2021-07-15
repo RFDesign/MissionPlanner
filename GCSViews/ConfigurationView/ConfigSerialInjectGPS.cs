@@ -169,11 +169,13 @@ namespace MissionPlanner.GCSViews.ConfigurationView
                    });
 
                 // we need to remove ctls for this system
-                while (ctls.Invoke(obs[0].sys).Count() > obs.Count)
+                //while (ctls.Invoke(obs[0].sys).Count() > obs.Count)
                {
-                   var list = ctls.Invoke(obs[0].sys);
-                   panel1.Controls.Remove(list.First());
+                   //var list = ctls.Invoke(obs[0].sys);
+                   //panel1.Controls.Remove(list.First());
                }
+
+               ctls.Invoke(obs[0].sys).ForEach((vp) => vp.Value = 0);
 
                int width = panel1.Width / panel1.Controls.OfType<VerticalProgressBar2>().Count();
 
@@ -423,13 +425,13 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             {
                 this.LogInfo("Setup UBLOX");
 
-                ubx_m8p.SetupM8P(comPort, chk_m8p_130p.Checked, chk_movingbase.Checked);
+                ubx_m8p.SetupM8P(comPort, chk_m8p_130p.Checked);
 
                 if (basepos != PointLatLngAlt.Zero)
                 {
-                    ubx_m8p.SetupBasePos(comPort, basepos, 0, 0, true, chk_movingbase.Checked);
+                    ubx_m8p.SetupBasePos(comPort, basepos, 0, 0, true);
 
-                    ubx_m8p.SetupBasePos(comPort, basepos, 0, 0, false, chk_movingbase.Checked);
+                    ubx_m8p.SetupBasePos(comPort, basepos, 0, 0, false);
                 }
 
                 CMB_baudrate.Text = "460800";
@@ -1061,7 +1063,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
                     myGMAP1.ZoomAndCenterMarkers("base");
                 }
 
-                if (myGMAP1.Overlays[0].Markers[0].Position != MainV2.comPort.MAV.cs.MovingBase)
+                if (MainV2.comPort.MAV.cs.MovingBase != myGMAP1.Overlays[0].Markers[0].Position)
                 {
                     myGMAP1.Overlays[0].Markers[0].Position = MainV2.comPort.MAV.cs.MovingBase;
                     myGMAP1.ZoomAndCenterMarkers("base");
@@ -1082,7 +1084,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
         public void Activate()
         {
             myGMAP1.MapProvider = GCSViews.FlightData.mymap.MapProvider;
-            myGMAP1.MaxZoom = 22;
+            myGMAP1.MaxZoom = 24;
             myGMAP1.Zoom = 16;
             myGMAP1.DisableFocusOnMouseEnter = true;
 
@@ -1191,8 +1193,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
                 {
                     ubx_m8p.SetupBasePos(comPort, basepos,
                         int.Parse(txt_surveyinDur.Text, CultureInfo.InvariantCulture),
-                        double.Parse(txt_surveyinAcc.Text, CultureInfo.InvariantCulture), false,
-                        chk_movingbase.Checked);
+                        double.Parse(txt_surveyinAcc.Text, CultureInfo.InvariantCulture), false);
 
                     ubx_m8p.poll_msg(comPort, 0x06, 0x71);
                 }
@@ -1272,12 +1273,12 @@ namespace MissionPlanner.GCSViews.ConfigurationView
 
             if (comPort.IsOpen)
             {
-                ubx_m8p.SetupBasePos(comPort, basepos, 0, 0, true, chk_movingbase.Checked);
+                ubx_m8p.SetupBasePos(comPort, basepos, 0, 0, true);
 
-                ubx_m8p.SetupM8P(comPort, chk_m8p_130p.Checked, chk_movingbase.Checked);
+                ubx_m8p.SetupM8P(comPort, chk_m8p_130p.Checked);
 
                 ubx_m8p.SetupBasePos(comPort, basepos, int.Parse(txt_surveyinDur.Text, CultureInfo.InvariantCulture),
-                    double.Parse(txt_surveyinAcc.Text, CultureInfo.InvariantCulture), false, chk_movingbase.Checked);
+                    double.Parse(txt_surveyinAcc.Text, CultureInfo.InvariantCulture), false);
             }
         }
 

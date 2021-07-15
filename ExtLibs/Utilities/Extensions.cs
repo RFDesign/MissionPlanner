@@ -3,12 +3,14 @@ using System.Collections;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.IO;
+using System.IO.Compression;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
+using K4os.Compression.LZ4;
 using MissionPlanner.Comms;
 using Newtonsoft.Json;
 
@@ -489,6 +491,21 @@ namespace MissionPlanner.Utilities
             return pi.GetValue(obj);
         }
 
+        public static int Search(this byte[] src, byte[] pattern, int startfrom = 0)
+        {
+            int maxFirstCharSlot = src.Length - pattern.Length + 1;
+            int j;
+            for (int i = startfrom; i < maxFirstCharSlot; i++)
+            {
+                if (src[i] != pattern[0]) continue;//comp only first byte
+        
+                // found a match on first byte, it tries to match rest of the pattern
+                for (j = pattern.Length - 1; j >= 1 && src[i + j] == pattern[j]; j--) ;
+                if (j == 0) return i;
+            }
+            return -1;
+        }
+
         static ConcurrentDictionary<Action,long> reentryDictionary = new ConcurrentDictionary<Action, long>();
 
         public static void ProtectReentry(Action action)
@@ -581,6 +598,16 @@ namespace MissionPlanner.Utilities
                 else vals.Push(Double.Parse(s));
             }
             return vals.Pop();
+        }
+
+        public static byte[] Compress(this byte[] input)
+        {
+            return LZ4Pickler.Pickle(input);
+        }
+
+        public static byte[] Decompress(this byte[] input)
+        {
+            return LZ4Pickler.Unpickle(input);
         }
     }
 }

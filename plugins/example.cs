@@ -6,7 +6,9 @@ using MissionPlanner.Utilities;
 using System.IO;
 using System.Windows.Forms;
 using System.Diagnostics;
+using System.Threading.Tasks;
 using MissionPlanner;
+//loadassembly: MissionPlanner.WebAPIs
 
 namespace test
 {

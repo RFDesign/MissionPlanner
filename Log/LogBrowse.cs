@@ -195,6 +195,8 @@ namespace MissionPlanner.Log
             if (GCSViews.FlightData.mymap != null)
                 myGMAP1.MapProvider = GCSViews.FlightData.mymap.MapProvider;
 
+            myGMAP1.MaxZoom = 24;
+
             myGMAP1.Overlays.Add(mapoverlay);
             myGMAP1.Overlays.Add(markeroverlay);
 
@@ -221,6 +223,8 @@ namespace MissionPlanner.Log
                 logdata.Clear();
 
             GC.Collect();
+
+            myGMAP1.DisableFocusOnMouseEnter = true;
 
             ErrorCache = new List<TextObj>();
             EVCache = new List<TextObj>();
@@ -3390,6 +3394,9 @@ main()
 
         private void chk_params_CheckedChanged(object sender, EventArgs e)
         {
+            if (chk_params.Checked == false)
+                return;
+
             chk_params.Checked = false;
 
             var parmdata = logdata.GetEnumeratorType("PARM").Select(a =>
@@ -3399,7 +3406,7 @@ main()
             MainV2.comPort.MAV.param.Clear();
             MainV2.comPort.MAV.param.AddRange(parmdata);
 
-            new ConfigRawParams().ShowUserControl();
+            var frm = new ConfigRawParamsTree().ShowUserControl();
         }
     }
 }

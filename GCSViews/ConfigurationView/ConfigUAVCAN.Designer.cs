@@ -34,15 +34,17 @@
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.but_slcanmode1 = new MissionPlanner.Controls.MyButton();
             this.contextMenu1 = new System.Windows.Forms.ContextMenu();
-            this.menu_update = new System.Windows.Forms.MenuItem();
             this.menu_parameters = new System.Windows.Forms.MenuItem();
             this.menu_restart = new System.Windows.Forms.MenuItem();
+            this.menu_update = new System.Windows.Forms.MenuItem();
+            this.menu_updatebeta = new System.Windows.Forms.MenuItem();
             this.menu_passthrough = new System.Windows.Forms.MenuItem();
             this.label1 = new System.Windows.Forms.Label();
             this.but_slcanmode2 = new MissionPlanner.Controls.MyButton();
             this.but_uavcaninspector = new MissionPlanner.Controls.MyButton();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.textBox3 = new System.Windows.Forms.TextBox();
+            this.uAVCANModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.textBox13 = new System.Windows.Forms.TextBox();
             this.textBox11 = new System.Windows.Forms.TextBox();
             this.textBox10 = new System.Windows.Forms.TextBox();
@@ -60,12 +62,7 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.chk_log = new System.Windows.Forms.CheckBox();
             this.DGDebug = new System.Windows.Forms.DataGridView();
-            this.Node = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Level = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Source = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Text = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.chk_canonclose = new System.Windows.Forms.CheckBox();
-            this.uAVCANModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.myDataGridView1 = new MissionPlanner.Controls.MyDataGridView();
             this.iDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -76,9 +73,13 @@
             this.SoftwareVersion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SoftwareCRC = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Menu = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.Node = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Level = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Source = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.UAVText = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tableLayoutPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.DGDebug)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.uAVCANModelBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DGDebug)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.myDataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -119,13 +120,8 @@
             this.menu_parameters,
             this.menu_restart,
             this.menu_update,
+            this.menu_updatebeta,
             this.menu_passthrough});
-            // 
-            // menu_update
-            // 
-            this.menu_update.Index = 2;
-            this.menu_update.Text = "Update";
-            this.menu_update.Click += new System.EventHandler(this.menu_update_Click);
             // 
             // menu_parameters
             // 
@@ -139,9 +135,21 @@
             this.menu_restart.Text = "Restart";
             this.menu_restart.Click += new System.EventHandler(this.menu_restart_Click);
             // 
+            // menu_update
+            // 
+            this.menu_update.Index = 2;
+            this.menu_update.Text = "Update";
+            this.menu_update.Click += new System.EventHandler(this.menu_update_Click);
+            // 
+            // menu_updatebeta
+            // 
+            this.menu_updatebeta.Index = 3;
+            this.menu_updatebeta.Text = "Update Beta";
+            this.menu_updatebeta.Click += new System.EventHandler(this.menu_updatebeta_Click);
+            // 
             // menu_passthrough
             // 
-            this.menu_passthrough.Index = 3;
+            this.menu_passthrough.Index = 4;
             this.menu_passthrough.RadioCheck = true;
             this.menu_passthrough.Text = "CANPassThrough";
             this.menu_passthrough.Click += new System.EventHandler(this.menu_passthrough_Click);
@@ -221,6 +229,12 @@
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(423, 20);
             this.textBox3.TabIndex = 18;
+            // 
+            // uAVCANModelBindingSource
+            // 
+            this.uAVCANModelBindingSource.AllowNew = true;
+            this.uAVCANModelBindingSource.DataSource = typeof(MissionPlanner.GCSViews.ConfigurationView.UAVCANModel);
+            this.uAVCANModelBindingSource.CurrentChanged += new System.EventHandler(this.uAVCANModelBindingSource_CurrentChanged);
             // 
             // textBox13
             // 
@@ -386,39 +400,11 @@
             this.Node,
             this.Level,
             this.Source,
-            this.Text});
+            this.UAVText});
             this.DGDebug.Location = new System.Drawing.Point(7, 437);
             this.DGDebug.Name = "DGDebug";
             this.DGDebug.Size = new System.Drawing.Size(757, 144);
             this.DGDebug.TabIndex = 89;
-            // 
-            // Node
-            // 
-            this.Node.HeaderText = "Node";
-            this.Node.Name = "Node";
-            this.Node.ReadOnly = true;
-            this.Node.Width = 40;
-            // 
-            // Level
-            // 
-            this.Level.HeaderText = "Level";
-            this.Level.Name = "Level";
-            this.Level.ReadOnly = true;
-            this.Level.Width = 40;
-            // 
-            // Source
-            // 
-            this.Source.HeaderText = "Source";
-            this.Source.Name = "Source";
-            this.Source.ReadOnly = true;
-            this.Source.Width = 50;
-            // 
-            // Text
-            // 
-            this.Text.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Text.HeaderText = "Text";
-            this.Text.Name = "Text";
-            this.Text.ReadOnly = true;
             // 
             // chk_canonclose
             // 
@@ -432,12 +418,6 @@
             this.chk_canonclose.TabIndex = 90;
             this.chk_canonclose.Text = "Exit SLCAN on leave?";
             this.chk_canonclose.UseVisualStyleBackColor = true;
-            // 
-            // uAVCANModelBindingSource
-            // 
-            this.uAVCANModelBindingSource.AllowNew = true;
-            this.uAVCANModelBindingSource.DataSource = typeof(MissionPlanner.GCSViews.ConfigurationView.UAVCANModel);
-            this.uAVCANModelBindingSource.CurrentChanged += new System.EventHandler(this.uAVCANModelBindingSource_CurrentChanged);
             // 
             // myDataGridView1
             // 
@@ -543,6 +523,34 @@
             this.Menu.ReadOnly = true;
             this.Menu.Width = 50;
             // 
+            // Node
+            // 
+            this.Node.HeaderText = "Node";
+            this.Node.Name = "Node";
+            this.Node.ReadOnly = true;
+            this.Node.Width = 40;
+            // 
+            // Level
+            // 
+            this.Level.HeaderText = "Level";
+            this.Level.Name = "Level";
+            this.Level.ReadOnly = true;
+            this.Level.Width = 40;
+            // 
+            // Source
+            // 
+            this.Source.HeaderText = "Source";
+            this.Source.Name = "Source";
+            this.Source.ReadOnly = true;
+            this.Source.Width = 50;
+            // 
+            // UAVText
+            // 
+            this.UAVText.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.UAVText.HeaderText = "Text";
+            this.UAVText.Name = "UAVText";
+            this.UAVText.ReadOnly = true;
+            // 
             // ConfigUAVCAN
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -562,8 +570,8 @@
             this.Size = new System.Drawing.Size(767, 584);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.DGDebug)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.uAVCANModelBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DGDebug)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.myDataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -599,10 +607,6 @@
         private System.Windows.Forms.CheckBox chk_log;
         public System.Windows.Forms.BindingSource uAVCANModelBindingSource;
         private System.Windows.Forms.DataGridView DGDebug;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Node;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Level;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Source;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Text;
         private System.Windows.Forms.CheckBox chk_canonclose;
         private System.Windows.Forms.ContextMenu contextMenu1;
         private System.Windows.Forms.MenuItem menu_passthrough;
@@ -618,5 +622,10 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn SoftwareVersion;
         private System.Windows.Forms.DataGridViewTextBoxColumn SoftwareCRC;
         private System.Windows.Forms.DataGridViewButtonColumn Menu;
+        private System.Windows.Forms.MenuItem menu_updatebeta;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Node;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Level;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Source;
+        private System.Windows.Forms.DataGridViewTextBoxColumn UAVText;
     }
 }

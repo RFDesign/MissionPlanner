@@ -25,6 +25,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Dowding.Model;
 using Microsoft.Scripting.Utils;
 using WebCamService;
 using ZedGraph;
@@ -110,7 +111,7 @@ namespace MissionPlanner.GCSViews
         bool playingLog;
         GMapOverlay polygons;
         private Propagation prop;
-        Random random = new Random();
+        
         GMapRoute route;
         GMapOverlay routes;
         GMapOverlay adsbais;
@@ -147,7 +148,8 @@ namespace MissionPlanner.GCSViews
             Preflight_Reboot_Shutdown,
             Trigger_Camera,
             System_Time,
-            Battery_Reset
+            Battery_Reset,
+            ADSB_Out_Ident
         }
 
         public FlightData()
@@ -351,7 +353,7 @@ namespace MissionPlanner.GCSViews
                     if (ctls.Length > 0)
                     {
                         QuickView QV = (QuickView) ctls[0];
-
+                        
                         // set description and unit
                         string desc = Settings.Instance["quickView" + f];
                         if (QV.Tag == null)
@@ -833,8 +835,8 @@ namespace MissionPlanner.GCSViews
                     mBorders.InnerMarker = m;
                     try
                     {
-                        mBorders.wprad =
-                            (int) (Settings.Instance.GetFloat("TXT_WPRad") / CurrentState.multiplierdist);
+                        mBorders.wprad = 
+                            (Settings.Instance.GetFloat("TXT_WPRad") / CurrentState.multiplierdist);
                     }
                     catch
                     {
@@ -1606,7 +1608,13 @@ namespace MissionPlanner.GCSViews
                         param3 = 0;
                     }
 
+
+
                     var cmd = (MAVLink.MAV_CMD) Enum.Parse(typeof(MAVLink.MAV_CMD), CMB_action.Text.ToUpper());
+                    if (cmd == null)
+                        cmd = (MAVLink.MAV_CMD) Enum.Parse(typeof(MAVLink.MAV_CMD),
+                            "Do_Start_" + CMB_action.Text.ToUpper());
+                    
 
                     if (MainV2.comPort.doCommand(cmd, param1, param2, param3, 0, 0, 0, 0))
                     {
@@ -2110,6 +2118,9 @@ namespace MissionPlanner.GCSViews
 
             DateTime end = DateTime.Now.AddSeconds(5);
 
+            if (thisthread == null)
+                return;
+
             while (thisthread.IsAlive && DateTime.Now < end)
             {
                 Application.DoEvents();
@@ -2175,6 +2186,8 @@ namespace MissionPlanner.GCSViews
             hud1.doResize();
 
             prop = new Propagation(gMapControl1);
+
+            splitContainer1.Panel1Collapsed = true;
 
             try
             {
@@ -2356,30 +2369,6 @@ namespace MissionPlanner.GCSViews
                     lng = MainV2.comPort.MAV.GuidedMode.y / 1e7
                 });
             }
-        }
-
-        Color GetColor()
-        {
-            //The mix color is set to the inverse of background color, so white background will get dark colors
-            Color mix = Color.FromArgb(ThemeManager.BGColor.ToArgb() ^ 0xffffff);
-
-            int red = random.Next(256);
-            int green = random.Next(256);
-            int blue = random.Next(256);
-
-            // mix the color
-            if (mix != null)
-            {
-                red = (red + mix.R) / 2;
-                green = (green + mix.G) / 2;
-                blue = (blue + mix.B) / 2;
-            }
-
-            var col = Color.FromArgb(red, green, blue);
-
-            this.LogInfo("GetColor() " + col);
-
-            return col;
         }
 
         private void gimbalTrackbar_Scroll(object sender, EventArgs e)
@@ -2658,7 +2647,7 @@ namespace MissionPlanner.GCSViews
             }
 
             max_length += 15;
-            fields.Sort((a, b) => a.Item2.CompareTo(b.Item2));
+            fields.Sort((a, b) => CurrentState.StringCompareTo(a.Item2, b.Item2));
 
             int col_count = (int) (Screen.FromControl(this).Bounds.Width * 0.8f) / max_length;
             int row_count = fields.Count / col_count + ((fields.Count % col_count == 0) ? 0 : 1);
@@ -2955,7 +2944,7 @@ namespace MissionPlanner.GCSViews
 
                 try
                 {
-                    CheckAndBindPreFlightData();
+                    //CheckAndBindPreFlightData();
                     //Console.WriteLine(DateTime.Now.Millisecond);
                     //int fixme;
                     updateBindingSource();
@@ -3051,6 +3040,8 @@ namespace MissionPlanner.GCSViews
                         OpenGLtest2.instance.LocationCenter = new PointLatLngAlt(MainV2.comPort.MAV.cs.lat,
                             MainV2.comPort.MAV.cs.lng, MainV2.comPort.MAV.cs.altasl / CurrentState.multiplieralt,
                             "here");
+                        OpenGLtest2.instance.Velocity = new Vector3(MainV2.comPort.MAV.cs.vx, MainV2.comPort.MAV.cs.vy,
+                            MainV2.comPort.MAV.cs.vz);
                         OpenGLtest2.instance.WPs = MainV2.comPort.MAV.wps.Values.Select(a => (Locationwp) a).ToList();
                     }
 
@@ -3058,7 +3049,7 @@ namespace MissionPlanner.GCSViews
                     Vario.SetValue(MainV2.comPort.MAV.cs.climbrate);
 
                     // udpate tunning tab
-                    if (tunning.AddMilliseconds(50) < DateTime.Now && CB_tuning.Checked)
+                    if (tunning.AddMilliseconds(75) < DateTime.Now && CB_tuning.Checked)
                     {
                         double time = (Environment.TickCount - tickStart) / 1000.0;
                         if (list1item != null)
@@ -3608,7 +3599,7 @@ namespace MissionPlanner.GCSViews
         }
 
 
-        private void updateMarkersAsNeeded<TBuilder, TMarker>(IEnumerable<TBuilder> list, GMapOverlay gMapOverlay,
+        public void updateMarkersAsNeeded<TBuilder, TMarker>(IEnumerable<TBuilder> list, GMapOverlay gMapOverlay,
             Func<TBuilder, string> GetTagSource, Func<GMapMarker, string> GetTagMarker,
             Func<TBuilder, GMapMarker> create, Action<TBuilder, GMapMarker> update)
         {
@@ -3651,7 +3642,7 @@ namespace MissionPlanner.GCSViews
             // remove dups - can happen because the delayed invoke on first create
             sourcelist.Distinct().ForEach(a =>
             {
-                var sublist = markers.Where(b => GetTagMarker(b) == a);
+                var sublist = markers.Where(b => b.Tag != null && GetTagMarker(b) == a);
                 if (sublist.Count() > 1)
                     BeginInvoke((Action) delegate { gMapOverlay.Markers.Remove(sublist.Last()); });
             });
@@ -3659,8 +3650,8 @@ namespace MissionPlanner.GCSViews
 
         private void Messagetabtimer_Tick(object sender, EventArgs e)
         {
-            var newmsgcount = MainV2.comPort.MAV.cs.messages.Count;
-            if (messagecount != newmsgcount)
+            var messagetime = MainV2.comPort.MAV.cs.messages.LastOrDefault().time;
+            if (messagecount != messagetime.toUnixTime())
             {
                 try
                 {
@@ -3671,7 +3662,7 @@ namespace MissionPlanner.GCSViews
                     });
                     txt_messagebox.Text = message.ToString();
 
-                    messagecount = newmsgcount;
+                    messagecount = messagetime.toUnixTime();
                 }
                 catch (Exception ex)
                 {
@@ -4228,7 +4219,8 @@ namespace MissionPlanner.GCSViews
                 QV.DoubleClick += quickView_DoubleClick;
                 QV.ContextMenuStrip = contextMenuStripQuickView;
                 QV.Dock = DockStyle.Fill;
-                QV.numberColor = GetColor();
+                QV.numberColor = ThemeManager.getQvNumberColor();
+                QV.numberColorBackup = QV.numberColor;
                 QV.number = 0;
 
                 tableLayoutPanelQuick.Controls.Add(QV);
@@ -4637,8 +4629,8 @@ namespace MissionPlanner.GCSViews
 
         private void updateBindingSource()
         {
-            //  run at 25 hz.
-            if (lastscreenupdate.AddMilliseconds(40) < DateTime.Now)
+            //  run at 20 hz.
+            if (lastscreenupdate.AddMilliseconds(50) < DateTime.Now)
             {
                 lock (updateBindingSourcelock)
                 {
@@ -4718,6 +4710,8 @@ namespace MissionPlanner.GCSViews
                     MainV2.comPort.MAV.cs.UpdateCurrentSettings(
                         bindingSourceHud.UpdateDataSource(MainV2.comPort.MAV.cs));
                 }
+                //if the tab detached wi have to update it 
+                if (tabQuickDetached) MainV2.comPort.MAV.cs.UpdateCurrentSettings(bindingSourceQuickTab.UpdateDataSource(MainV2.comPort.MAV.cs));
 
                 lastscreenupdate = DateTime.Now;
             }
@@ -5169,18 +5163,18 @@ namespace MissionPlanner.GCSViews
 
             foreach (var field in list)
             {
-                g.DrawString(field, this.Font, br, new RectangleF(x, y, 95, 15));
+                g.DrawString(field, this.Font, br, new RectangleF(x, y, 120, 15));
 
                 if (cs != null)
                     g.DrawString(typeof(CurrentState).GetProperty(field).GetValue(cs)?.ToString(), this.Font,
-                        br, new RectangleF(x + 95, y, 50, 15));
+                        br, new RectangleF(x + 120, y, 50, 15));
 
                 x += 0;
                 y += 15;
 
                 if (y > tabStatus.Height - 30)
                 {
-                    x += 165;
+                    x += 190;
                     y = 10;
                 }
             }
@@ -5239,6 +5233,45 @@ namespace MissionPlanner.GCSViews
             hud1.displayCellVoltage = true;
             hud1.batterycellcount = iCellCount;
         }
+        private bool tabQuickDetached = false;
+
+        private void undockDockToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+            Form dropout = new Form();
+            TabControl tab = new TabControl();
+            dropout.FormBorderStyle = FormBorderStyle.Sizable;
+            dropout.ShowInTaskbar = false;
+            dropout.Size = new Size(300, 450);
+            tabQuickDetached = true;
+            tab.Appearance = TabAppearance.FlatButtons;
+            tab.ItemSize = new Size(0, 0);
+            tab.SizeMode = TabSizeMode.Fixed;
+            tab.Size = new Size(dropout.ClientSize.Width, dropout.ClientSize.Height + 22);
+            tab.Location = new Point(0, -22);
+
+            tab.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+
+            dropout.Text = "Flight DATA";
+            tabControlactions.Controls.Remove(tabQuick);
+            tab.Controls.Add(tabQuick);
+            tabQuick.BorderStyle = BorderStyle.Fixed3D;
+            dropout.FormClosed += dropoutQuick_FormClosed;
+            dropout.Controls.Add(tab);
+            dropout.RestoreStartupLocation();
+            dropout.Show();
+            tabQuickDetached = true;
+            (sender as ToolStripMenuItem).Visible = false;
+        }
+
+        void dropoutQuick_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            (sender as Form).SaveStartupLocation();
+            tabControlactions.Controls.Add(tabQuick);
+            tabControlactions.SelectedTab = tabQuick;
+            tabQuickDetached = false;
+            contextMenuStripQuickView.Items["undockToolStripMenuItem"].Visible = true;
+		}
 
         private void hud1_af3click(object sender, EventArgs e)
         {

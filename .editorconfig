@@ -32,3 +32,34 @@ dotnet_diagnostic.CA1307.severity = suggestion
 
 # CA1815: Override equals and operator equals on value types
 dotnet_diagnostic.CA1815.severity = silent
+
+dotnet_diagnostic.CS3003.severity = silent
+dotnet_diagnostic.CS3009.severity = silent
+dotnet_diagnostic.CS3001.severity = silent
+
+# CS0612: 'MAVLink.mavlink_ais_vessel_t' is obsolete
+dotnet_diagnostic.CS0612.severity = silent
+
+# SCS0006: Weak hashing function
+dotnet_diagnostic.SCS0006.severity = silent
+
+# SCS0005: Weak random generator
+dotnet_diagnostic.SCS0005.severity = silent
+
+# CS0162: Unreachable code detected
+dotnet_diagnostic.CS0162.severity = suggestion
+csharp_indent_block_contents=true
+
+# CS1522: Empty switch block
+dotnet_diagnostic.CS1522.severity = suggestion
+
+dotnet_diagnostic.CS3021.severity = silent
+dotnet_diagnostic.CS0618.severity = silent
+
+# AsyncVoidAnalyzer: Async Void methods should catch exceptions
+dotnet_diagnostic.AsyncVoidAnalyzer.severity = error
+
+dotnet_diagnostic.ASYNC0003.severity = error
+
+# CS8105: Attribute 'System.Reflection.AssemblyKeyFileAttribute' is ignored when public signing is specified.
+dotnet_diagnostic.CS8105.severity = silent

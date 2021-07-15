@@ -7,6 +7,7 @@ using System.Data;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading;
@@ -178,7 +179,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
                     {
                         port.Open();
                     }
-                    catch (Exception e)
+                    catch (Exception)
                     {
                         CustomMessageBox.Show(Strings.CheckPortSettingsOr);
                         return;
@@ -314,7 +315,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
         private Timer timer;
         private TcpListener listener;
 
-        private async void myDataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void myDataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             // Ignore clicks that are not on button cells. 
             if (e.RowIndex < 0) return;
@@ -330,7 +331,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             }
         }
 
-        private void FirmwareUpdate(byte nodeID)
+        private void FirmwareUpdate(byte nodeID, bool beta = false)
         {
             ProgressReporterDialogue prd = new ProgressReporterDialogue();
             uavcan.FileSendProgressArgs filesend = (id, file, percent) =>
@@ -347,15 +348,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             if (CustomMessageBox.Show("Do you want to search the internet for an update?", "Update",
                 CustomMessageBox.MessageBoxButtons.YesNo) == CustomMessageBox.DialogResult.Yes)
             {
-                var usebeta = false;
-
-                if (CustomMessageBox.Show("Do you want to search for a beta firmware? (not recommended)", "Update",
-                    CustomMessageBox.MessageBoxButtons.YesNo) == CustomMessageBox.DialogResult.Yes)
-                {
-                    usebeta = true;
-                }
-
-                var url = can.LookForUpdate(devicename, hwversion, usebeta);
+                var url = can.LookForUpdate(devicename, hwversion, beta);
 
                 if (url != string.Empty)
                 {
@@ -384,7 +377,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
                             {
                                 can.Update(nodeID, devicename, hwversion, tempfile, cancel.Token);
                             }
-                            catch (Exception ex)
+                            catch (Exception)
                             {
                                 throw;
                             }
@@ -496,7 +489,10 @@ namespace MissionPlanner.GCSViews.ConfigurationView
 
         private void myDataGridView1_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
         {
-            myDataGridView1[Menu.Index, e.RowIndex].Value = "Menu";
+            for (int RowIndex = 0; RowIndex < myDataGridView1.RowCount; RowIndex++)
+            {
+                myDataGridView1[Menu.Index, RowIndex].Value = "Menu";
+            }
         }
 
         private void uAVCANModelBindingSource_CurrentChanged(object sender, EventArgs e)
@@ -571,7 +567,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
                     try
                     {
 
-                        listener = new TcpListener(port);
+                        listener = new TcpListener(IPAddress.Any, port);
                         listener.Start();
 
                         int tcpbps = 0;
@@ -673,6 +669,11 @@ namespace MissionPlanner.GCSViews.ConfigurationView
         private void menu_restart_Click(object sender, EventArgs e)
         {
             can.RestartNode(byte.Parse(myDataGridView1.CurrentRow.Cells[iDDataGridViewTextBoxColumn.Index].Value.ToString()));
+        }
+
+        private void menu_updatebeta_Click(object sender, EventArgs e)
+        {
+            FirmwareUpdate(byte.Parse(myDataGridView1.CurrentRow.Cells[iDDataGridViewTextBoxColumn.Index].Value.ToString()), true);
         }
     }
 }
