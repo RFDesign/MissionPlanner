@@ -2940,7 +2940,32 @@ namespace MissionPlanner
                     case (uint)MAVLink.MAVLINK_MSG_ID.GPS2_RAW:
 
                         {
-                            var gps = mavLinkMessage.ToStructure<MAVLink.mavlink_gps2_raw_t>();
+                            var gps = new MAVLink.mavlink_gps2_raw_t();
+
+                            //Manually unpack, because using marshalling was causing an unexplained crash.  
+                            RFDLib.TDeserialiser Deser = new RFDLib.TDeserialiser(mavLinkMessage.buffer);
+                            if (mavLinkMessage.ismavlink2)
+                            {
+                                Deser.Skip(MAVLink.MAVLINK_NUM_HEADER_BYTES);
+                            }
+                            else
+                            {
+                                Deser.Skip(6);
+                            }
+
+                            gps.time_usec = Deser.GetULong();
+                            gps.lat = Deser.GetInt();
+                            gps.lon = Deser.GetInt();
+                            gps.alt = Deser.GetInt();
+                            gps.dgps_age = Deser.GetUInt();
+                            gps.eph = Deser.GetUShort();
+                            gps.epv = Deser.GetUShort();
+                            gps.vel = Deser.GetUShort();
+                            gps.cog = Deser.GetUShort();
+                            gps.fix_type = Deser.GetByte();
+                            gps.satellites_visible = Deser.GetByte();
+                            gps.dgps_numch = Deser.GetByte();
+                            gps.yaw = Deser.GetUShort();
 
                             lat2 = gps.lat * 1.0e-7;
                             lng2 = gps.lon * 1.0e-7;
