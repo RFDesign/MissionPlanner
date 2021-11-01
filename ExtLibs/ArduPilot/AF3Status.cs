@@ -894,6 +894,14 @@ namespace MissionPlanner.Utilities.AF3
 
     }
 
+    public class IntegrityStatus
+    {
+        public bool GotSnapshot;
+        public bool IntegrityOK;
+        public MAVLink.AF3_INTEGRITY_ACTION Action;
+        public byte Progress;
+    }
+
     public class ecamErrorRecord
     {
         public string message;

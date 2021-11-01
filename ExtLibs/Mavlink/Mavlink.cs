@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 
 public partial class MAVLink
 {
-    public const string MAVLINK_BUILD_DATE = "Thu Jun 10 2021";
+    public const string MAVLINK_BUILD_DATE = "Thu Oct 21 2021";
     public const string MAVLINK_WIRE_PROTOCOL_VERSION = "2.0";
     public const int MAVLINK_MAX_PAYLOAD_LEN = 255;
 
@@ -37,6 +37,70 @@ public partial class MAVLink
         
     // msgid, name, crc, minlength, length, type
     public static message_info[] MAVLINK_MESSAGE_INFOS = new message_info[] {
+        new message_info(150, "SENSOR_OFFSETS", 134, 42, 42, typeof( mavlink_sensor_offsets_t )),
+        new message_info(151, "SET_MAG_OFFSETS", 219, 8, 8, typeof( mavlink_set_mag_offsets_t )),
+        new message_info(152, "MEMINFO", 208, 4, 8, typeof( mavlink_meminfo_t )),
+        new message_info(153, "AP_ADC", 188, 12, 12, typeof( mavlink_ap_adc_t )),
+        new message_info(154, "DIGICAM_CONFIGURE", 84, 15, 15, typeof( mavlink_digicam_configure_t )),
+        new message_info(155, "DIGICAM_CONTROL", 22, 13, 13, typeof( mavlink_digicam_control_t )),
+        new message_info(156, "MOUNT_CONFIGURE", 19, 6, 6, typeof( mavlink_mount_configure_t )),
+        new message_info(157, "MOUNT_CONTROL", 21, 15, 15, typeof( mavlink_mount_control_t )),
+        new message_info(158, "MOUNT_STATUS", 134, 14, 14, typeof( mavlink_mount_status_t )),
+        new message_info(160, "FENCE_POINT", 78, 12, 12, typeof( mavlink_fence_point_t )),
+        new message_info(161, "FENCE_FETCH_POINT", 68, 3, 3, typeof( mavlink_fence_fetch_point_t )),
+        new message_info(163, "AHRS", 127, 28, 28, typeof( mavlink_ahrs_t )),
+        new message_info(164, "SIMSTATE", 154, 44, 44, typeof( mavlink_simstate_t )),
+        new message_info(165, "HWSTATUS", 21, 3, 3, typeof( mavlink_hwstatus_t )),
+        new message_info(166, "RADIO", 21, 9, 9, typeof( mavlink_radio_t )),
+        new message_info(167, "LIMITS_STATUS", 144, 22, 22, typeof( mavlink_limits_status_t )),
+        new message_info(168, "WIND", 1, 12, 12, typeof( mavlink_wind_t )),
+        new message_info(169, "DATA16", 234, 18, 18, typeof( mavlink_data16_t )),
+        new message_info(170, "DATA32", 73, 34, 34, typeof( mavlink_data32_t )),
+        new message_info(171, "DATA64", 181, 66, 66, typeof( mavlink_data64_t )),
+        new message_info(172, "DATA96", 22, 98, 98, typeof( mavlink_data96_t )),
+        new message_info(173, "RANGEFINDER", 83, 8, 8, typeof( mavlink_rangefinder_t )),
+        new message_info(174, "AIRSPEED_AUTOCAL", 167, 48, 48, typeof( mavlink_airspeed_autocal_t )),
+        new message_info(175, "RALLY_POINT", 138, 19, 19, typeof( mavlink_rally_point_t )),
+        new message_info(176, "RALLY_FETCH_POINT", 234, 3, 3, typeof( mavlink_rally_fetch_point_t )),
+        new message_info(177, "COMPASSMOT_STATUS", 240, 20, 20, typeof( mavlink_compassmot_status_t )),
+        new message_info(178, "AHRS2", 47, 24, 24, typeof( mavlink_ahrs2_t )),
+        new message_info(179, "CAMERA_STATUS", 189, 29, 29, typeof( mavlink_camera_status_t )),
+        new message_info(180, "CAMERA_FEEDBACK", 52, 45, 47, typeof( mavlink_camera_feedback_t )),
+        new message_info(181, "BATTERY2", 174, 4, 4, typeof( mavlink_battery2_t )),
+        new message_info(182, "AHRS3", 229, 40, 40, typeof( mavlink_ahrs3_t )),
+        new message_info(183, "AUTOPILOT_VERSION_REQUEST", 85, 2, 2, typeof( mavlink_autopilot_version_request_t )),
+        new message_info(184, "REMOTE_LOG_DATA_BLOCK", 159, 206, 206, typeof( mavlink_remote_log_data_block_t )),
+        new message_info(185, "REMOTE_LOG_BLOCK_STATUS", 186, 7, 7, typeof( mavlink_remote_log_block_status_t )),
+        new message_info(186, "LED_CONTROL", 72, 29, 29, typeof( mavlink_led_control_t )),
+        new message_info(191, "MAG_CAL_PROGRESS", 92, 27, 27, typeof( mavlink_mag_cal_progress_t )),
+        new message_info(193, "EKF_STATUS_REPORT", 71, 22, 26, typeof( mavlink_ekf_status_report_t )),
+        new message_info(194, "PID_TUNING", 98, 25, 25, typeof( mavlink_pid_tuning_t )),
+        new message_info(195, "DEEPSTALL", 120, 37, 37, typeof( mavlink_deepstall_t )),
+        new message_info(200, "GIMBAL_REPORT", 134, 42, 42, typeof( mavlink_gimbal_report_t )),
+        new message_info(201, "GIMBAL_CONTROL", 205, 14, 14, typeof( mavlink_gimbal_control_t )),
+        new message_info(214, "GIMBAL_TORQUE_CMD_REPORT", 69, 8, 8, typeof( mavlink_gimbal_torque_cmd_report_t )),
+        new message_info(215, "GOPRO_HEARTBEAT", 101, 3, 3, typeof( mavlink_gopro_heartbeat_t )),
+        new message_info(216, "GOPRO_GET_REQUEST", 50, 3, 3, typeof( mavlink_gopro_get_request_t )),
+        new message_info(217, "GOPRO_GET_RESPONSE", 202, 6, 6, typeof( mavlink_gopro_get_response_t )),
+        new message_info(218, "GOPRO_SET_REQUEST", 17, 7, 7, typeof( mavlink_gopro_set_request_t )),
+        new message_info(219, "GOPRO_SET_RESPONSE", 162, 2, 2, typeof( mavlink_gopro_set_response_t )),
+        new message_info(226, "RPM", 207, 8, 8, typeof( mavlink_rpm_t )),
+        new message_info(11000, "DEVICE_OP_READ", 134, 51, 52, typeof( mavlink_device_op_read_t )),
+        new message_info(11001, "DEVICE_OP_READ_REPLY", 15, 135, 136, typeof( mavlink_device_op_read_reply_t )),
+        new message_info(11002, "DEVICE_OP_WRITE", 234, 179, 180, typeof( mavlink_device_op_write_t )),
+        new message_info(11003, "DEVICE_OP_WRITE_REPLY", 64, 5, 5, typeof( mavlink_device_op_write_reply_t )),
+        new message_info(11010, "ADAP_TUNING", 46, 49, 49, typeof( mavlink_adap_tuning_t )),
+        new message_info(11011, "VISION_POSITION_DELTA", 106, 44, 44, typeof( mavlink_vision_position_delta_t )),
+        new message_info(11020, "AOA_SSA", 205, 16, 16, typeof( mavlink_aoa_ssa_t )),
+        new message_info(11030, "ESC_TELEMETRY_1_TO_4", 144, 44, 44, typeof( mavlink_esc_telemetry_1_to_4_t )),
+        new message_info(11031, "ESC_TELEMETRY_5_TO_8", 133, 44, 44, typeof( mavlink_esc_telemetry_5_to_8_t )),
+        new message_info(11032, "ESC_TELEMETRY_9_TO_12", 85, 44, 44, typeof( mavlink_esc_telemetry_9_to_12_t )),
+        new message_info(11033, "OSD_PARAM_CONFIG", 195, 37, 37, typeof( mavlink_osd_param_config_t )),
+        new message_info(11034, "OSD_PARAM_CONFIG_REPLY", 79, 5, 5, typeof( mavlink_osd_param_config_reply_t )),
+        new message_info(11035, "OSD_PARAM_SHOW_CONFIG", 128, 8, 8, typeof( mavlink_osd_param_show_config_t )),
+        new message_info(11036, "OSD_PARAM_SHOW_CONFIG_REPLY", 177, 34, 34, typeof( mavlink_osd_param_show_config_reply_t )),
+        new message_info(11037, "OBSTACLE_DISTANCE_3D", 130, 28, 28, typeof( mavlink_obstacle_distance_3d_t )),
+        new message_info(269, "VIDEO_STREAM_INFORMATION", 58, 246, 246, typeof( mavlink_video_stream_information_t )),
         new message_info(1, "SYS_STATUS", 124, 31, 31, typeof( mavlink_sys_status_t )),
         new message_info(2, "SYSTEM_TIME", 137, 12, 12, typeof( mavlink_system_time_t )),
         new message_info(4, "PING", 237, 14, 14, typeof( mavlink_ping_t )),
@@ -153,57 +217,9 @@ public partial class MAVLink
         new message_info(147, "BATTERY_STATUS", 154, 36, 49, typeof( mavlink_battery_status_t )),
         new message_info(148, "AUTOPILOT_VERSION", 178, 60, 78, typeof( mavlink_autopilot_version_t )),
         new message_info(149, "LANDING_TARGET", 200, 30, 60, typeof( mavlink_landing_target_t )),
-        new message_info(150, "SENSOR_OFFSETS", 134, 42, 42, typeof( mavlink_sensor_offsets_t )),
-        new message_info(151, "SET_MAG_OFFSETS", 219, 8, 8, typeof( mavlink_set_mag_offsets_t )),
-        new message_info(152, "MEMINFO", 208, 4, 8, typeof( mavlink_meminfo_t )),
-        new message_info(153, "AP_ADC", 188, 12, 12, typeof( mavlink_ap_adc_t )),
-        new message_info(154, "DIGICAM_CONFIGURE", 84, 15, 15, typeof( mavlink_digicam_configure_t )),
-        new message_info(155, "DIGICAM_CONTROL", 22, 13, 13, typeof( mavlink_digicam_control_t )),
-        new message_info(156, "MOUNT_CONFIGURE", 19, 6, 6, typeof( mavlink_mount_configure_t )),
-        new message_info(157, "MOUNT_CONTROL", 21, 15, 15, typeof( mavlink_mount_control_t )),
-        new message_info(158, "MOUNT_STATUS", 134, 14, 14, typeof( mavlink_mount_status_t )),
-        new message_info(160, "FENCE_POINT", 78, 12, 12, typeof( mavlink_fence_point_t )),
-        new message_info(161, "FENCE_FETCH_POINT", 68, 3, 3, typeof( mavlink_fence_fetch_point_t )),
         new message_info(162, "FENCE_STATUS", 189, 8, 9, typeof( mavlink_fence_status_t )),
-        new message_info(163, "AHRS", 127, 28, 28, typeof( mavlink_ahrs_t )),
-        new message_info(164, "SIMSTATE", 154, 44, 44, typeof( mavlink_simstate_t )),
-        new message_info(165, "HWSTATUS", 21, 3, 3, typeof( mavlink_hwstatus_t )),
-        new message_info(166, "RADIO", 21, 9, 9, typeof( mavlink_radio_t )),
-        new message_info(167, "LIMITS_STATUS", 144, 22, 22, typeof( mavlink_limits_status_t )),
-        new message_info(168, "WIND", 1, 12, 12, typeof( mavlink_wind_t )),
-        new message_info(169, "DATA16", 234, 18, 18, typeof( mavlink_data16_t )),
-        new message_info(170, "DATA32", 73, 34, 34, typeof( mavlink_data32_t )),
-        new message_info(171, "DATA64", 181, 66, 66, typeof( mavlink_data64_t )),
-        new message_info(172, "DATA96", 22, 98, 98, typeof( mavlink_data96_t )),
-        new message_info(173, "RANGEFINDER", 83, 8, 8, typeof( mavlink_rangefinder_t )),
-        new message_info(174, "AIRSPEED_AUTOCAL", 167, 48, 48, typeof( mavlink_airspeed_autocal_t )),
-        new message_info(175, "RALLY_POINT", 138, 19, 19, typeof( mavlink_rally_point_t )),
-        new message_info(176, "RALLY_FETCH_POINT", 234, 3, 3, typeof( mavlink_rally_fetch_point_t )),
-        new message_info(177, "COMPASSMOT_STATUS", 240, 20, 20, typeof( mavlink_compassmot_status_t )),
-        new message_info(178, "AHRS2", 47, 24, 24, typeof( mavlink_ahrs2_t )),
-        new message_info(179, "CAMERA_STATUS", 189, 29, 29, typeof( mavlink_camera_status_t )),
-        new message_info(180, "CAMERA_FEEDBACK", 52, 45, 47, typeof( mavlink_camera_feedback_t )),
-        new message_info(181, "BATTERY2", 174, 4, 4, typeof( mavlink_battery2_t )),
-        new message_info(182, "AHRS3", 229, 40, 40, typeof( mavlink_ahrs3_t )),
-        new message_info(183, "AUTOPILOT_VERSION_REQUEST", 85, 2, 2, typeof( mavlink_autopilot_version_request_t )),
-        new message_info(184, "REMOTE_LOG_DATA_BLOCK", 159, 206, 206, typeof( mavlink_remote_log_data_block_t )),
-        new message_info(185, "REMOTE_LOG_BLOCK_STATUS", 186, 7, 7, typeof( mavlink_remote_log_block_status_t )),
-        new message_info(186, "LED_CONTROL", 72, 29, 29, typeof( mavlink_led_control_t )),
-        new message_info(191, "MAG_CAL_PROGRESS", 92, 27, 27, typeof( mavlink_mag_cal_progress_t )),
         new message_info(192, "MAG_CAL_REPORT", 36, 44, 54, typeof( mavlink_mag_cal_report_t )),
-        new message_info(193, "EKF_STATUS_REPORT", 71, 22, 26, typeof( mavlink_ekf_status_report_t )),
-        new message_info(194, "PID_TUNING", 98, 25, 25, typeof( mavlink_pid_tuning_t )),
-        new message_info(195, "DEEPSTALL", 120, 37, 37, typeof( mavlink_deepstall_t )),
-        new message_info(200, "GIMBAL_REPORT", 134, 42, 42, typeof( mavlink_gimbal_report_t )),
-        new message_info(201, "GIMBAL_CONTROL", 205, 14, 14, typeof( mavlink_gimbal_control_t )),
-        new message_info(214, "GIMBAL_TORQUE_CMD_REPORT", 69, 8, 8, typeof( mavlink_gimbal_torque_cmd_report_t )),
-        new message_info(215, "GOPRO_HEARTBEAT", 101, 3, 3, typeof( mavlink_gopro_heartbeat_t )),
-        new message_info(216, "GOPRO_GET_REQUEST", 50, 3, 3, typeof( mavlink_gopro_get_request_t )),
-        new message_info(217, "GOPRO_GET_RESPONSE", 202, 6, 6, typeof( mavlink_gopro_get_response_t )),
-        new message_info(218, "GOPRO_SET_REQUEST", 17, 7, 7, typeof( mavlink_gopro_set_request_t )),
-        new message_info(219, "GOPRO_SET_RESPONSE", 162, 2, 2, typeof( mavlink_gopro_set_response_t )),
         new message_info(225, "EFI_STATUS", 208, 65, 65, typeof( mavlink_efi_status_t )),
-        new message_info(226, "RPM", 207, 8, 8, typeof( mavlink_rpm_t )),
         new message_info(230, "ESTIMATOR_STATUS", 163, 42, 42, typeof( mavlink_estimator_status_t )),
         new message_info(231, "WIND_COV", 105, 40, 40, typeof( mavlink_wind_cov_t )),
         new message_info(232, "GPS_INPUT", 151, 63, 65, typeof( mavlink_gps_input_t )),
@@ -252,35 +268,21 @@ public partial class MAVLink
         new message_info(375, "ACTUATOR_OUTPUT_STATUS", 251, 140, 140, typeof( mavlink_actuator_output_status_t )),
         new message_info(9000, "WHEEL_DISTANCE", 113, 137, 137, typeof( mavlink_wheel_distance_t )),
         new message_info(9005, "WINCH_STATUS", 117, 34, 34, typeof( mavlink_winch_status_t )),
+        new message_info(99269, "VIDEO_STREAM_INFORMATION99", 251, 213, 213, typeof( mavlink_video_stream_information99_t )),
+        new message_info(42000, "ICAROUS_HEARTBEAT", 227, 1, 1, typeof( mavlink_icarous_heartbeat_t )),
+        new message_info(42001, "ICAROUS_KINEMATIC_BANDS", 239, 46, 46, typeof( mavlink_icarous_kinematic_bands_t )),
+        new message_info(0, "HEARTBEAT", 50, 9, 9, typeof( mavlink_heartbeat_t )),
         new message_info(10001, "UAVIONIX_ADSB_OUT_CFG", 209, 20, 20, typeof( mavlink_uavionix_adsb_out_cfg_t )),
         new message_info(10002, "UAVIONIX_ADSB_OUT_DYNAMIC", 186, 41, 41, typeof( mavlink_uavionix_adsb_out_dynamic_t )),
         new message_info(10003, "UAVIONIX_ADSB_TRANSCEIVER_HEALTH_REPORT", 4, 1, 1, typeof( mavlink_uavionix_adsb_transceiver_health_report_t )),
         new message_info(10004, "UAVIONIX_ADSB_OUT_CFG_REGISTRATION", 133, 9, 9, typeof( mavlink_uavionix_adsb_out_cfg_registration_t )),
         new message_info(10005, "UAVIONIX_ADSB_OUT_CFG_FLIGHTID", 103, 9, 9, typeof( mavlink_uavionix_adsb_out_cfg_flightid_t )),
         new message_info(10006, "UAVIONIX_ADSB_GET", 193, 4, 4, typeof( mavlink_uavionix_adsb_get_t )),
-        new message_info(11000, "DEVICE_OP_READ", 134, 51, 52, typeof( mavlink_device_op_read_t )),
-        new message_info(11001, "DEVICE_OP_READ_REPLY", 15, 135, 136, typeof( mavlink_device_op_read_reply_t )),
-        new message_info(11002, "DEVICE_OP_WRITE", 234, 179, 180, typeof( mavlink_device_op_write_t )),
-        new message_info(11003, "DEVICE_OP_WRITE_REPLY", 64, 5, 5, typeof( mavlink_device_op_write_reply_t )),
-        new message_info(11010, "ADAP_TUNING", 46, 49, 49, typeof( mavlink_adap_tuning_t )),
-        new message_info(11011, "VISION_POSITION_DELTA", 106, 44, 44, typeof( mavlink_vision_position_delta_t )),
-        new message_info(11020, "AOA_SSA", 205, 16, 16, typeof( mavlink_aoa_ssa_t )),
-        new message_info(11030, "ESC_TELEMETRY_1_TO_4", 144, 44, 44, typeof( mavlink_esc_telemetry_1_to_4_t )),
-        new message_info(11031, "ESC_TELEMETRY_5_TO_8", 133, 44, 44, typeof( mavlink_esc_telemetry_5_to_8_t )),
-        new message_info(11032, "ESC_TELEMETRY_9_TO_12", 85, 44, 44, typeof( mavlink_esc_telemetry_9_to_12_t )),
-        new message_info(11033, "OSD_PARAM_CONFIG", 195, 37, 37, typeof( mavlink_osd_param_config_t )),
-        new message_info(11034, "OSD_PARAM_CONFIG_REPLY", 79, 5, 5, typeof( mavlink_osd_param_config_reply_t )),
-        new message_info(11035, "OSD_PARAM_SHOW_CONFIG", 128, 8, 8, typeof( mavlink_osd_param_show_config_t )),
-        new message_info(11036, "OSD_PARAM_SHOW_CONFIG_REPLY", 177, 34, 34, typeof( mavlink_osd_param_show_config_reply_t )),
-        new message_info(11037, "OBSTACLE_DISTANCE_3D", 130, 28, 28, typeof( mavlink_obstacle_distance_3d_t )),
         new message_info(12100, "AF3_STATUS", 182, 31, 31, typeof( mavlink_af3_status_t )),
         new message_info(12101, "AF3_EP_STATUS", 210, 24, 24, typeof( mavlink_af3_ep_status_t )),
         new message_info(12102, "AF3_RFC_STATUS", 152, 11, 11, typeof( mavlink_af3_rfc_status_t )),
-        new message_info(42000, "ICAROUS_HEARTBEAT", 227, 1, 1, typeof( mavlink_icarous_heartbeat_t )),
-        new message_info(42001, "ICAROUS_KINEMATIC_BANDS", 239, 46, 46, typeof( mavlink_icarous_kinematic_bands_t )),
-        new message_info(99269, "VIDEO_STREAM_INFORMATION99", 251, 213, 213, typeof( mavlink_video_stream_information99_t )),
-        new message_info(269, "VIDEO_STREAM_INFORMATION", 58, 246, 246, typeof( mavlink_video_stream_information_t )),
-        new message_info(0, "HEARTBEAT", 50, 9, 9, typeof( mavlink_heartbeat_t )),
+        new message_info(12103, "VFC_STATUS", 10, 3, 3, typeof( mavlink_vfc_status_t )),
+        new message_info(12104, "AF3_INTEGRITY_STATUS", 123, 5, 5, typeof( mavlink_af3_integrity_status_t )),
 
     };
 
@@ -317,6 +319,70 @@ public partial class MAVLink
     public enum MAVLINK_MSG_ID 
     {
 
+        SENSOR_OFFSETS = 150,
+        SET_MAG_OFFSETS = 151,
+        MEMINFO = 152,
+        AP_ADC = 153,
+        DIGICAM_CONFIGURE = 154,
+        DIGICAM_CONTROL = 155,
+        MOUNT_CONFIGURE = 156,
+        MOUNT_CONTROL = 157,
+        MOUNT_STATUS = 158,
+        FENCE_POINT = 160,
+        FENCE_FETCH_POINT = 161,
+        AHRS = 163,
+        SIMSTATE = 164,
+        HWSTATUS = 165,
+        RADIO = 166,
+        LIMITS_STATUS = 167,
+        WIND = 168,
+        DATA16 = 169,
+        DATA32 = 170,
+        DATA64 = 171,
+        DATA96 = 172,
+        RANGEFINDER = 173,
+        AIRSPEED_AUTOCAL = 174,
+        RALLY_POINT = 175,
+        RALLY_FETCH_POINT = 176,
+        COMPASSMOT_STATUS = 177,
+        AHRS2 = 178,
+        CAMERA_STATUS = 179,
+        CAMERA_FEEDBACK = 180,
+        BATTERY2 = 181,
+        AHRS3 = 182,
+        AUTOPILOT_VERSION_REQUEST = 183,
+        REMOTE_LOG_DATA_BLOCK = 184,
+        REMOTE_LOG_BLOCK_STATUS = 185,
+        LED_CONTROL = 186,
+        MAG_CAL_PROGRESS = 191,
+        EKF_STATUS_REPORT = 193,
+        PID_TUNING = 194,
+        DEEPSTALL = 195,
+        GIMBAL_REPORT = 200,
+        GIMBAL_CONTROL = 201,
+        GIMBAL_TORQUE_CMD_REPORT = 214,
+        GOPRO_HEARTBEAT = 215,
+        GOPRO_GET_REQUEST = 216,
+        GOPRO_GET_RESPONSE = 217,
+        GOPRO_SET_REQUEST = 218,
+        GOPRO_SET_RESPONSE = 219,
+        RPM = 226,
+        DEVICE_OP_READ = 11000,
+        DEVICE_OP_READ_REPLY = 11001,
+        DEVICE_OP_WRITE = 11002,
+        DEVICE_OP_WRITE_REPLY = 11003,
+        ADAP_TUNING = 11010,
+        VISION_POSITION_DELTA = 11011,
+        AOA_SSA = 11020,
+        ESC_TELEMETRY_1_TO_4 = 11030,
+        ESC_TELEMETRY_5_TO_8 = 11031,
+        ESC_TELEMETRY_9_TO_12 = 11032,
+        OSD_PARAM_CONFIG = 11033,
+        OSD_PARAM_CONFIG_REPLY = 11034,
+        OSD_PARAM_SHOW_CONFIG = 11035,
+        OSD_PARAM_SHOW_CONFIG_REPLY = 11036,
+        OBSTACLE_DISTANCE_3D = 11037,
+        VIDEO_STREAM_INFORMATION = 269,
         SYS_STATUS = 1,
         SYSTEM_TIME = 2,
         PING = 4,
@@ -433,57 +499,9 @@ public partial class MAVLink
         BATTERY_STATUS = 147,
         AUTOPILOT_VERSION = 148,
         LANDING_TARGET = 149,
-        SENSOR_OFFSETS = 150,
-        SET_MAG_OFFSETS = 151,
-        MEMINFO = 152,
-        AP_ADC = 153,
-        DIGICAM_CONFIGURE = 154,
-        DIGICAM_CONTROL = 155,
-        MOUNT_CONFIGURE = 156,
-        MOUNT_CONTROL = 157,
-        MOUNT_STATUS = 158,
-        FENCE_POINT = 160,
-        FENCE_FETCH_POINT = 161,
         FENCE_STATUS = 162,
-        AHRS = 163,
-        SIMSTATE = 164,
-        HWSTATUS = 165,
-        RADIO = 166,
-        LIMITS_STATUS = 167,
-        WIND = 168,
-        DATA16 = 169,
-        DATA32 = 170,
-        DATA64 = 171,
-        DATA96 = 172,
-        RANGEFINDER = 173,
-        AIRSPEED_AUTOCAL = 174,
-        RALLY_POINT = 175,
-        RALLY_FETCH_POINT = 176,
-        COMPASSMOT_STATUS = 177,
-        AHRS2 = 178,
-        CAMERA_STATUS = 179,
-        CAMERA_FEEDBACK = 180,
-        BATTERY2 = 181,
-        AHRS3 = 182,
-        AUTOPILOT_VERSION_REQUEST = 183,
-        REMOTE_LOG_DATA_BLOCK = 184,
-        REMOTE_LOG_BLOCK_STATUS = 185,
-        LED_CONTROL = 186,
-        MAG_CAL_PROGRESS = 191,
         MAG_CAL_REPORT = 192,
-        EKF_STATUS_REPORT = 193,
-        PID_TUNING = 194,
-        DEEPSTALL = 195,
-        GIMBAL_REPORT = 200,
-        GIMBAL_CONTROL = 201,
-        GIMBAL_TORQUE_CMD_REPORT = 214,
-        GOPRO_HEARTBEAT = 215,
-        GOPRO_GET_REQUEST = 216,
-        GOPRO_GET_RESPONSE = 217,
-        GOPRO_SET_REQUEST = 218,
-        GOPRO_SET_RESPONSE = 219,
         EFI_STATUS = 225,
-        RPM = 226,
         ESTIMATOR_STATUS = 230,
         WIND_COV = 231,
         GPS_INPUT = 232,
@@ -532,35 +550,21 @@ public partial class MAVLink
         ACTUATOR_OUTPUT_STATUS = 375,
         WHEEL_DISTANCE = 9000,
         WINCH_STATUS = 9005,
+        VIDEO_STREAM_INFORMATION99 = 99269,
+        ICAROUS_HEARTBEAT = 42000,
+        ICAROUS_KINEMATIC_BANDS = 42001,
+        HEARTBEAT = 0,
         UAVIONIX_ADSB_OUT_CFG = 10001,
         UAVIONIX_ADSB_OUT_DYNAMIC = 10002,
         UAVIONIX_ADSB_TRANSCEIVER_HEALTH_REPORT = 10003,
         UAVIONIX_ADSB_OUT_CFG_REGISTRATION = 10004,
         UAVIONIX_ADSB_OUT_CFG_FLIGHTID = 10005,
         UAVIONIX_ADSB_GET = 10006,
-        DEVICE_OP_READ = 11000,
-        DEVICE_OP_READ_REPLY = 11001,
-        DEVICE_OP_WRITE = 11002,
-        DEVICE_OP_WRITE_REPLY = 11003,
-        ADAP_TUNING = 11010,
-        VISION_POSITION_DELTA = 11011,
-        AOA_SSA = 11020,
-        ESC_TELEMETRY_1_TO_4 = 11030,
-        ESC_TELEMETRY_5_TO_8 = 11031,
-        ESC_TELEMETRY_9_TO_12 = 11032,
-        OSD_PARAM_CONFIG = 11033,
-        OSD_PARAM_CONFIG_REPLY = 11034,
-        OSD_PARAM_SHOW_CONFIG = 11035,
-        OSD_PARAM_SHOW_CONFIG_REPLY = 11036,
-        OBSTACLE_DISTANCE_3D = 11037,
         AF3_STATUS = 12100,
         AF3_EP_STATUS = 12101,
         AF3_RFC_STATUS = 12102,
-        ICAROUS_HEARTBEAT = 42000,
-        ICAROUS_KINEMATIC_BANDS = 42001,
-        VIDEO_STREAM_INFORMATION99 = 99269,
-        VIDEO_STREAM_INFORMATION = 269,
-        HEARTBEAT = 0,
+        VFC_STATUS = 12103,
+        AF3_INTEGRITY_STATUS = 12104,
     }
     
     
@@ -4637,211 +4641,6 @@ public partial class MAVLink
     };
     
     
-    ///<summary> State flags for ADS-B transponder dynamic report </summary>
-    public enum UAVIONIX_ADSB_OUT_DYNAMIC_STATE: ushort
-    {
-        ///<summary>  | </summary>
-        [Description("")]
-        INTENT_CHANGE=1, 
-        ///<summary>  | </summary>
-        [Description("")]
-        AUTOPILOT_ENABLED=2, 
-        ///<summary>  | </summary>
-        [Description("")]
-        NICBARO_CROSSCHECKED=4, 
-        ///<summary>  | </summary>
-        [Description("")]
-        ON_GROUND=8, 
-        ///<summary>  | </summary>
-        [Description("")]
-        IDENT=16, 
-        
-    };
-    
-    ///<summary> Transceiver RF control flags for ADS-B transponder dynamic reports </summary>
-    public enum UAVIONIX_ADSB_OUT_RF_SELECT: byte
-    {
-        ///<summary>  | </summary>
-        [Description("")]
-        STANDBY=0, 
-        ///<summary>  | </summary>
-        [Description("")]
-        RX_ENABLED=1, 
-        ///<summary>  | </summary>
-        [Description("")]
-        TX_ENABLED=2, 
-        
-    };
-    
-    ///<summary> Status for ADS-B transponder dynamic input </summary>
-    public enum UAVIONIX_ADSB_OUT_DYNAMIC_GPS_FIX: byte
-    {
-        ///<summary>  | </summary>
-        [Description("")]
-        NONE_0=0, 
-        ///<summary>  | </summary>
-        [Description("")]
-        NONE_1=1, 
-        ///<summary>  | </summary>
-        [Description("")]
-        _2D=2, 
-        ///<summary>  | </summary>
-        [Description("")]
-        _3D=3, 
-        ///<summary>  | </summary>
-        [Description("")]
-        DGPS=4, 
-        ///<summary>  | </summary>
-        [Description("")]
-        RTK=5, 
-        
-    };
-    
-    ///<summary> Status flags for ADS-B transponder dynamic output </summary>
-    public enum UAVIONIX_ADSB_RF_HEALTH: byte
-    {
-        ///<summary>  | </summary>
-        [Description("")]
-        INITIALIZING=0, 
-        ///<summary>  | </summary>
-        [Description("")]
-        OK=1, 
-        ///<summary>  | </summary>
-        [Description("")]
-        FAIL_TX=2, 
-        ///<summary>  | </summary>
-        [Description("")]
-        FAIL_RX=16, 
-        
-    };
-    
-    ///<summary> Definitions for aircraft size </summary>
-    public enum UAVIONIX_ADSB_OUT_CFG_AIRCRAFT_SIZE: byte
-    {
-        ///<summary>  | </summary>
-        [Description("")]
-        NO_DATA=0, 
-        ///<summary>  | </summary>
-        [Description("")]
-        L15M_W23M=1, 
-        ///<summary>  | </summary>
-        [Description("")]
-        L25M_W28P5M=2, 
-        ///<summary>  | </summary>
-        [Description("")]
-        L25_34M=3, 
-        ///<summary>  | </summary>
-        [Description("")]
-        L35_33M=4, 
-        ///<summary>  | </summary>
-        [Description("")]
-        L35_38M=5, 
-        ///<summary>  | </summary>
-        [Description("")]
-        L45_39P5M=6, 
-        ///<summary>  | </summary>
-        [Description("")]
-        L45_45M=7, 
-        ///<summary>  | </summary>
-        [Description("")]
-        L55_45M=8, 
-        ///<summary>  | </summary>
-        [Description("")]
-        L55_52M=9, 
-        ///<summary>  | </summary>
-        [Description("")]
-        L65_59P5M=10, 
-        ///<summary>  | </summary>
-        [Description("")]
-        L65_67M=11, 
-        ///<summary>  | </summary>
-        [Description("")]
-        L75_W72P5M=12, 
-        ///<summary>  | </summary>
-        [Description("")]
-        L75_W80M=13, 
-        ///<summary>  | </summary>
-        [Description("")]
-        L85_W80M=14, 
-        ///<summary>  | </summary>
-        [Description("")]
-        L85_W90M=15, 
-        
-    };
-    
-    ///<summary> GPS lataral offset encoding </summary>
-    public enum UAVIONIX_ADSB_OUT_CFG_GPS_OFFSET_LAT: byte
-    {
-        ///<summary>  | </summary>
-        [Description("")]
-        NO_DATA=0, 
-        ///<summary>  | </summary>
-        [Description("")]
-        LEFT_2M=1, 
-        ///<summary>  | </summary>
-        [Description("")]
-        LEFT_4M=2, 
-        ///<summary>  | </summary>
-        [Description("")]
-        LEFT_6M=3, 
-        ///<summary>  | </summary>
-        [Description("")]
-        RIGHT_0M=4, 
-        ///<summary>  | </summary>
-        [Description("")]
-        RIGHT_2M=5, 
-        ///<summary>  | </summary>
-        [Description("")]
-        RIGHT_4M=6, 
-        ///<summary>  | </summary>
-        [Description("")]
-        RIGHT_6M=7, 
-        
-    };
-    
-    ///<summary> GPS longitudinal offset encoding </summary>
-    public enum UAVIONIX_ADSB_OUT_CFG_GPS_OFFSET_LON: byte
-    {
-        ///<summary>  | </summary>
-        [Description("")]
-        NO_DATA=0, 
-        ///<summary>  | </summary>
-        [Description("")]
-        APPLIED_BY_SENSOR=1, 
-        
-    };
-    
-    ///<summary> Emergency status encoding </summary>
-    public enum UAVIONIX_ADSB_EMERGENCY_STATUS: byte
-    {
-        ///<summary>  | </summary>
-        [Description("")]
-        UAVIONIX_ADSB_OUT_NO_EMERGENCY=0, 
-        ///<summary>  | </summary>
-        [Description("")]
-        UAVIONIX_ADSB_OUT_GENERAL_EMERGENCY=1, 
-        ///<summary>  | </summary>
-        [Description("")]
-        UAVIONIX_ADSB_OUT_LIFEGUARD_EMERGENCY=2, 
-        ///<summary>  | </summary>
-        [Description("")]
-        UAVIONIX_ADSB_OUT_MINIMUM_FUEL_EMERGENCY=3, 
-        ///<summary>  | </summary>
-        [Description("")]
-        UAVIONIX_ADSB_OUT_NO_COMM_EMERGENCY=4, 
-        ///<summary>  | </summary>
-        [Description("")]
-        UAVIONIX_ADSB_OUT_UNLAWFUL_INTERFERANCE_EMERGENCY=5, 
-        ///<summary>  | </summary>
-        [Description("")]
-        UAVIONIX_ADSB_OUT_DOWNED_AIRCRAFT_EMERGENCY=6, 
-        ///<summary>  | </summary>
-        [Description("")]
-        UAVIONIX_ADSB_OUT_RESERVED=7, 
-        
-    };
-    
-    
     ///<summary>  </summary>
     public enum ICAROUS_TRACK_BAND_TYPES: byte
     {
@@ -5541,6 +5340,255 @@ public partial class MAVLink
         [Description("Component for handling system messages (e.g. to ARM, takeoff, etc.).")]
         [Obsolete]
         MAV_COMP_ID_SYSTEM_CONTROL=250, 
+        
+    };
+    
+    
+    ///<summary> State flags for ADS-B transponder dynamic report </summary>
+    public enum UAVIONIX_ADSB_OUT_DYNAMIC_STATE: ushort
+    {
+        ///<summary>  | </summary>
+        [Description("")]
+        INTENT_CHANGE=1, 
+        ///<summary>  | </summary>
+        [Description("")]
+        AUTOPILOT_ENABLED=2, 
+        ///<summary>  | </summary>
+        [Description("")]
+        NICBARO_CROSSCHECKED=4, 
+        ///<summary>  | </summary>
+        [Description("")]
+        ON_GROUND=8, 
+        ///<summary>  | </summary>
+        [Description("")]
+        IDENT=16, 
+        
+    };
+    
+    ///<summary> Transceiver RF control flags for ADS-B transponder dynamic reports </summary>
+    public enum UAVIONIX_ADSB_OUT_RF_SELECT: byte
+    {
+        ///<summary>  | </summary>
+        [Description("")]
+        STANDBY=0, 
+        ///<summary>  | </summary>
+        [Description("")]
+        RX_ENABLED=1, 
+        ///<summary>  | </summary>
+        [Description("")]
+        TX_ENABLED=2, 
+        
+    };
+    
+    ///<summary> Status for ADS-B transponder dynamic input </summary>
+    public enum UAVIONIX_ADSB_OUT_DYNAMIC_GPS_FIX: byte
+    {
+        ///<summary>  | </summary>
+        [Description("")]
+        NONE_0=0, 
+        ///<summary>  | </summary>
+        [Description("")]
+        NONE_1=1, 
+        ///<summary>  | </summary>
+        [Description("")]
+        _2D=2, 
+        ///<summary>  | </summary>
+        [Description("")]
+        _3D=3, 
+        ///<summary>  | </summary>
+        [Description("")]
+        DGPS=4, 
+        ///<summary>  | </summary>
+        [Description("")]
+        RTK=5, 
+        
+    };
+    
+    ///<summary> Status flags for ADS-B transponder dynamic output </summary>
+    public enum UAVIONIX_ADSB_RF_HEALTH: byte
+    {
+        ///<summary>  | </summary>
+        [Description("")]
+        INITIALIZING=0, 
+        ///<summary>  | </summary>
+        [Description("")]
+        OK=1, 
+        ///<summary>  | </summary>
+        [Description("")]
+        FAIL_TX=2, 
+        ///<summary>  | </summary>
+        [Description("")]
+        FAIL_RX=16, 
+        
+    };
+    
+    ///<summary> Definitions for aircraft size </summary>
+    public enum UAVIONIX_ADSB_OUT_CFG_AIRCRAFT_SIZE: byte
+    {
+        ///<summary>  | </summary>
+        [Description("")]
+        NO_DATA=0, 
+        ///<summary>  | </summary>
+        [Description("")]
+        L15M_W23M=1, 
+        ///<summary>  | </summary>
+        [Description("")]
+        L25M_W28P5M=2, 
+        ///<summary>  | </summary>
+        [Description("")]
+        L25_34M=3, 
+        ///<summary>  | </summary>
+        [Description("")]
+        L35_33M=4, 
+        ///<summary>  | </summary>
+        [Description("")]
+        L35_38M=5, 
+        ///<summary>  | </summary>
+        [Description("")]
+        L45_39P5M=6, 
+        ///<summary>  | </summary>
+        [Description("")]
+        L45_45M=7, 
+        ///<summary>  | </summary>
+        [Description("")]
+        L55_45M=8, 
+        ///<summary>  | </summary>
+        [Description("")]
+        L55_52M=9, 
+        ///<summary>  | </summary>
+        [Description("")]
+        L65_59P5M=10, 
+        ///<summary>  | </summary>
+        [Description("")]
+        L65_67M=11, 
+        ///<summary>  | </summary>
+        [Description("")]
+        L75_W72P5M=12, 
+        ///<summary>  | </summary>
+        [Description("")]
+        L75_W80M=13, 
+        ///<summary>  | </summary>
+        [Description("")]
+        L85_W80M=14, 
+        ///<summary>  | </summary>
+        [Description("")]
+        L85_W90M=15, 
+        
+    };
+    
+    ///<summary> GPS lataral offset encoding </summary>
+    public enum UAVIONIX_ADSB_OUT_CFG_GPS_OFFSET_LAT: byte
+    {
+        ///<summary>  | </summary>
+        [Description("")]
+        NO_DATA=0, 
+        ///<summary>  | </summary>
+        [Description("")]
+        LEFT_2M=1, 
+        ///<summary>  | </summary>
+        [Description("")]
+        LEFT_4M=2, 
+        ///<summary>  | </summary>
+        [Description("")]
+        LEFT_6M=3, 
+        ///<summary>  | </summary>
+        [Description("")]
+        RIGHT_0M=4, 
+        ///<summary>  | </summary>
+        [Description("")]
+        RIGHT_2M=5, 
+        ///<summary>  | </summary>
+        [Description("")]
+        RIGHT_4M=6, 
+        ///<summary>  | </summary>
+        [Description("")]
+        RIGHT_6M=7, 
+        
+    };
+    
+    ///<summary> GPS longitudinal offset encoding </summary>
+    public enum UAVIONIX_ADSB_OUT_CFG_GPS_OFFSET_LON: byte
+    {
+        ///<summary>  | </summary>
+        [Description("")]
+        NO_DATA=0, 
+        ///<summary>  | </summary>
+        [Description("")]
+        APPLIED_BY_SENSOR=1, 
+        
+    };
+    
+    ///<summary> Emergency status encoding </summary>
+    public enum UAVIONIX_ADSB_EMERGENCY_STATUS: byte
+    {
+        ///<summary>  | </summary>
+        [Description("")]
+        UAVIONIX_ADSB_OUT_NO_EMERGENCY=0, 
+        ///<summary>  | </summary>
+        [Description("")]
+        UAVIONIX_ADSB_OUT_GENERAL_EMERGENCY=1, 
+        ///<summary>  | </summary>
+        [Description("")]
+        UAVIONIX_ADSB_OUT_LIFEGUARD_EMERGENCY=2, 
+        ///<summary>  | </summary>
+        [Description("")]
+        UAVIONIX_ADSB_OUT_MINIMUM_FUEL_EMERGENCY=3, 
+        ///<summary>  | </summary>
+        [Description("")]
+        UAVIONIX_ADSB_OUT_NO_COMM_EMERGENCY=4, 
+        ///<summary>  | </summary>
+        [Description("")]
+        UAVIONIX_ADSB_OUT_UNLAWFUL_INTERFERANCE_EMERGENCY=5, 
+        ///<summary>  | </summary>
+        [Description("")]
+        UAVIONIX_ADSB_OUT_DOWNED_AIRCRAFT_EMERGENCY=6, 
+        ///<summary>  | </summary>
+        [Description("")]
+        UAVIONIX_ADSB_OUT_RESERVED=7, 
+        
+    };
+    
+    
+    ///<summary> Integrity flags. </summary>
+    [Flags]
+	public enum AF3_INTEGRITY_FLAGS: byte
+    {
+        ///<summary> Got snapshot | </summary>
+        [Description("Got snapshot")]
+        GOT_SNAPSHOT=1, 
+        ///<summary> Integrity checked OK | </summary>
+        [Description("Integrity checked OK")]
+        INTEGRITY_CHECKED_OK=2, 
+        
+    };
+    
+    ///<summary> Integrity action. </summary>
+    public enum AF3_INTEGRITY_ACTION: byte
+    {
+        ///<summary> Idle | </summary>
+        [Description("Idle")]
+        IDLE=0, 
+        ///<summary> Getting snapshot | </summary>
+        [Description("Getting snapshot")]
+        GETTING_SNAPSHOT=1, 
+        ///<summary> Checking integrity | </summary>
+        [Description("Checking integrity")]
+        CHECKING_INTEGRITY=2, 
+        
+    };
+    
+    ///<summary> AF3 command numbers </summary>
+    public enum AF3_COMMANDS: int /*default*/
+    {
+        ///<summary> (0xAF30) Get Snapshot | </summary>
+        [Description("(0xAF30) Get Snapshot")]
+        GET_SNAPSHOT=44848, 
+        ///<summary> Check integrity | </summary>
+        [Description("Check integrity")]
+        CHECK_INTEGRITY=44849, 
+        ///<summary> Report integrity status | </summary>
+        [Description("Report integrity status")]
+        REPORT_INTEGRITY_STATUS=44850, 
         
     };
     
@@ -17477,6 +17525,160 @@ public partial class MAVLink
 
     
     /// extensions_start 0
+    [StructLayout(LayoutKind.Sequential,Pack=1,Size=1)]
+    ///<summary> ICAROUS heartbeat </summary>
+    public struct mavlink_icarous_heartbeat_t
+    {
+        public mavlink_icarous_heartbeat_t(/*ICAROUS_FMS_STATE*/byte status) 
+        {
+              this.status = status;
+            
+        }
+        /// <summary>See the FMS_STATE enum. ICAROUS_FMS_STATE  </summary>
+        [Units("")]
+        [Description("See the FMS_STATE enum.")]
+        public  /*ICAROUS_FMS_STATE*/byte status;
+    
+    };
+
+    
+    /// extensions_start 0
+    [StructLayout(LayoutKind.Sequential,Pack=1,Size=46)]
+    ///<summary> Kinematic multi bands (track) output from Daidalus </summary>
+    public struct mavlink_icarous_kinematic_bands_t
+    {
+        public mavlink_icarous_kinematic_bands_t(float min1,float max1,float min2,float max2,float min3,float max3,float min4,float max4,float min5,float max5,sbyte numBands,/*ICAROUS_TRACK_BAND_TYPES*/byte type1,/*ICAROUS_TRACK_BAND_TYPES*/byte type2,/*ICAROUS_TRACK_BAND_TYPES*/byte type3,/*ICAROUS_TRACK_BAND_TYPES*/byte type4,/*ICAROUS_TRACK_BAND_TYPES*/byte type5) 
+        {
+              this.min1 = min1;
+              this.max1 = max1;
+              this.min2 = min2;
+              this.max2 = max2;
+              this.min3 = min3;
+              this.max3 = max3;
+              this.min4 = min4;
+              this.max4 = max4;
+              this.min5 = min5;
+              this.max5 = max5;
+              this.numBands = numBands;
+              this.type1 = type1;
+              this.type2 = type2;
+              this.type3 = type3;
+              this.type4 = type4;
+              this.type5 = type5;
+            
+        }
+        /// <summary>min angle (degrees)  [deg] </summary>
+        [Units("[deg]")]
+        [Description("min angle (degrees)")]
+        public  float min1;
+            /// <summary>max angle (degrees)  [deg] </summary>
+        [Units("[deg]")]
+        [Description("max angle (degrees)")]
+        public  float max1;
+            /// <summary>min angle (degrees)  [deg] </summary>
+        [Units("[deg]")]
+        [Description("min angle (degrees)")]
+        public  float min2;
+            /// <summary>max angle (degrees)  [deg] </summary>
+        [Units("[deg]")]
+        [Description("max angle (degrees)")]
+        public  float max2;
+            /// <summary>min angle (degrees)  [deg] </summary>
+        [Units("[deg]")]
+        [Description("min angle (degrees)")]
+        public  float min3;
+            /// <summary>max angle (degrees)  [deg] </summary>
+        [Units("[deg]")]
+        [Description("max angle (degrees)")]
+        public  float max3;
+            /// <summary>min angle (degrees)  [deg] </summary>
+        [Units("[deg]")]
+        [Description("min angle (degrees)")]
+        public  float min4;
+            /// <summary>max angle (degrees)  [deg] </summary>
+        [Units("[deg]")]
+        [Description("max angle (degrees)")]
+        public  float max4;
+            /// <summary>min angle (degrees)  [deg] </summary>
+        [Units("[deg]")]
+        [Description("min angle (degrees)")]
+        public  float min5;
+            /// <summary>max angle (degrees)  [deg] </summary>
+        [Units("[deg]")]
+        [Description("max angle (degrees)")]
+        public  float max5;
+            /// <summary>Number of track bands   </summary>
+        [Units("")]
+        [Description("Number of track bands")]
+        public  sbyte numBands;
+            /// <summary>See the TRACK_BAND_TYPES enum. ICAROUS_TRACK_BAND_TYPES  </summary>
+        [Units("")]
+        [Description("See the TRACK_BAND_TYPES enum.")]
+        public  /*ICAROUS_TRACK_BAND_TYPES*/byte type1;
+            /// <summary>See the TRACK_BAND_TYPES enum. ICAROUS_TRACK_BAND_TYPES  </summary>
+        [Units("")]
+        [Description("See the TRACK_BAND_TYPES enum.")]
+        public  /*ICAROUS_TRACK_BAND_TYPES*/byte type2;
+            /// <summary>See the TRACK_BAND_TYPES enum. ICAROUS_TRACK_BAND_TYPES  </summary>
+        [Units("")]
+        [Description("See the TRACK_BAND_TYPES enum.")]
+        public  /*ICAROUS_TRACK_BAND_TYPES*/byte type3;
+            /// <summary>See the TRACK_BAND_TYPES enum. ICAROUS_TRACK_BAND_TYPES  </summary>
+        [Units("")]
+        [Description("See the TRACK_BAND_TYPES enum.")]
+        public  /*ICAROUS_TRACK_BAND_TYPES*/byte type4;
+            /// <summary>See the TRACK_BAND_TYPES enum. ICAROUS_TRACK_BAND_TYPES  </summary>
+        [Units("")]
+        [Description("See the TRACK_BAND_TYPES enum.")]
+        public  /*ICAROUS_TRACK_BAND_TYPES*/byte type5;
+    
+    };
+
+    
+    /// extensions_start 0
+    [StructLayout(LayoutKind.Sequential,Pack=1,Size=9)]
+    ///<summary> The heartbeat message shows that a system or component is present and responding. The type and autopilot fields (along with the message component id), allow the receiving system to treat further messages from this system appropriately (e.g. by laying out the user interface based on the autopilot). This microservice is documented at https://mavlink.io/en/services/heartbeat.html </summary>
+    public struct mavlink_heartbeat_t
+    {
+        public mavlink_heartbeat_t(uint custom_mode,/*MAV_TYPE*/byte type,/*MAV_AUTOPILOT*/byte autopilot,/*MAV_MODE_FLAG*/byte base_mode,/*MAV_STATE*/byte system_status,byte mavlink_version) 
+        {
+              this.custom_mode = custom_mode;
+              this.type = type;
+              this.autopilot = autopilot;
+              this.base_mode = base_mode;
+              this.system_status = system_status;
+              this.mavlink_version = mavlink_version;
+            
+        }
+        /// <summary>A bitfield for use for autopilot-specific flags   </summary>
+        [Units("")]
+        [Description("A bitfield for use for autopilot-specific flags")]
+        public  uint custom_mode;
+            /// <summary>Vehicle or component type. For a flight controller component the vehicle type (quadrotor, helicopter, etc.). For other components the component type (e.g. camera, gimbal, etc.). This should be used in preference to component id for identifying the component type. MAV_TYPE  </summary>
+        [Units("")]
+        [Description("Vehicle or component type. For a flight controller component the vehicle type (quadrotor, helicopter, etc.). For other components the component type (e.g. camera, gimbal, etc.). This should be used in preference to component id for identifying the component type.")]
+        public  /*MAV_TYPE*/byte type;
+            /// <summary>Autopilot type / class. Use MAV_AUTOPILOT_INVALID for components that are not flight controllers. MAV_AUTOPILOT  </summary>
+        [Units("")]
+        [Description("Autopilot type / class. Use MAV_AUTOPILOT_INVALID for components that are not flight controllers.")]
+        public  /*MAV_AUTOPILOT*/byte autopilot;
+            /// <summary>System mode bitmap. MAV_MODE_FLAG  bitmask</summary>
+        [Units("")]
+        [Description("System mode bitmap.")]
+        public  /*MAV_MODE_FLAG*/byte base_mode;
+            /// <summary>System status flag. MAV_STATE  </summary>
+        [Units("")]
+        [Description("System status flag.")]
+        public  /*MAV_STATE*/byte system_status;
+            /// <summary>MAVLink version, not writable by user, gets added by protocol because of magic data type: uint8_t_mavlink_version   </summary>
+        [Units("")]
+        [Description("MAVLink version, not writable by user, gets added by protocol because of magic data type: uint8_t_mavlink_version")]
+        public  byte mavlink_version;
+    
+    };
+
+    
+    /// extensions_start 0
     [StructLayout(LayoutKind.Sequential,Pack=1,Size=20)]
     ///<summary> Static data to configure the ADS-B transponder (send within 10 sec of a POR and every 10 sec thereafter) </summary>
     public struct mavlink_uavionix_adsb_out_cfg_t
@@ -17698,314 +17900,227 @@ public partial class MAVLink
 
     
     /// extensions_start 0
-    [StructLayout(LayoutKind.Sequential,Pack=1,Size=1)]
-    ///<summary> ICAROUS heartbeat </summary>
-    public struct mavlink_icarous_heartbeat_t
-    {
-        public mavlink_icarous_heartbeat_t(/*ICAROUS_FMS_STATE*/byte status) 
-        {
-              this.status = status;
-            
-        }
-        /// <summary>See the FMS_STATE enum. ICAROUS_FMS_STATE  </summary>
-        [Units("")]
-        [Description("See the FMS_STATE enum.")]
-        public  /*ICAROUS_FMS_STATE*/byte status;
-    
-    };
-
-    
-    /// extensions_start 0
-    [StructLayout(LayoutKind.Sequential,Pack=1,Size=46)]
-    ///<summary> Kinematic multi bands (track) output from Daidalus </summary>
-    public struct mavlink_icarous_kinematic_bands_t
-    {
-        public mavlink_icarous_kinematic_bands_t(float min1,float max1,float min2,float max2,float min3,float max3,float min4,float max4,float min5,float max5,sbyte numBands,/*ICAROUS_TRACK_BAND_TYPES*/byte type1,/*ICAROUS_TRACK_BAND_TYPES*/byte type2,/*ICAROUS_TRACK_BAND_TYPES*/byte type3,/*ICAROUS_TRACK_BAND_TYPES*/byte type4,/*ICAROUS_TRACK_BAND_TYPES*/byte type5) 
-        {
-              this.min1 = min1;
-              this.max1 = max1;
-              this.min2 = min2;
-              this.max2 = max2;
-              this.min3 = min3;
-              this.max3 = max3;
-              this.min4 = min4;
-              this.max4 = max4;
-              this.min5 = min5;
-              this.max5 = max5;
-              this.numBands = numBands;
-              this.type1 = type1;
-              this.type2 = type2;
-              this.type3 = type3;
-              this.type4 = type4;
-              this.type5 = type5;
-            
-        }
-        /// <summary>min angle (degrees)  [deg] </summary>
-        [Units("[deg]")]
-        [Description("min angle (degrees)")]
-        public  float min1;
-            /// <summary>max angle (degrees)  [deg] </summary>
-        [Units("[deg]")]
-        [Description("max angle (degrees)")]
-        public  float max1;
-            /// <summary>min angle (degrees)  [deg] </summary>
-        [Units("[deg]")]
-        [Description("min angle (degrees)")]
-        public  float min2;
-            /// <summary>max angle (degrees)  [deg] </summary>
-        [Units("[deg]")]
-        [Description("max angle (degrees)")]
-        public  float max2;
-            /// <summary>min angle (degrees)  [deg] </summary>
-        [Units("[deg]")]
-        [Description("min angle (degrees)")]
-        public  float min3;
-            /// <summary>max angle (degrees)  [deg] </summary>
-        [Units("[deg]")]
-        [Description("max angle (degrees)")]
-        public  float max3;
-            /// <summary>min angle (degrees)  [deg] </summary>
-        [Units("[deg]")]
-        [Description("min angle (degrees)")]
-        public  float min4;
-            /// <summary>max angle (degrees)  [deg] </summary>
-        [Units("[deg]")]
-        [Description("max angle (degrees)")]
-        public  float max4;
-            /// <summary>min angle (degrees)  [deg] </summary>
-        [Units("[deg]")]
-        [Description("min angle (degrees)")]
-        public  float min5;
-            /// <summary>max angle (degrees)  [deg] </summary>
-        [Units("[deg]")]
-        [Description("max angle (degrees)")]
-        public  float max5;
-            /// <summary>Number of track bands   </summary>
-        [Units("")]
-        [Description("Number of track bands")]
-        public  sbyte numBands;
-            /// <summary>See the TRACK_BAND_TYPES enum. ICAROUS_TRACK_BAND_TYPES  </summary>
-        [Units("")]
-        [Description("See the TRACK_BAND_TYPES enum.")]
-        public  /*ICAROUS_TRACK_BAND_TYPES*/byte type1;
-            /// <summary>See the TRACK_BAND_TYPES enum. ICAROUS_TRACK_BAND_TYPES  </summary>
-        [Units("")]
-        [Description("See the TRACK_BAND_TYPES enum.")]
-        public  /*ICAROUS_TRACK_BAND_TYPES*/byte type2;
-            /// <summary>See the TRACK_BAND_TYPES enum. ICAROUS_TRACK_BAND_TYPES  </summary>
-        [Units("")]
-        [Description("See the TRACK_BAND_TYPES enum.")]
-        public  /*ICAROUS_TRACK_BAND_TYPES*/byte type3;
-            /// <summary>See the TRACK_BAND_TYPES enum. ICAROUS_TRACK_BAND_TYPES  </summary>
-        [Units("")]
-        [Description("See the TRACK_BAND_TYPES enum.")]
-        public  /*ICAROUS_TRACK_BAND_TYPES*/byte type4;
-            /// <summary>See the TRACK_BAND_TYPES enum. ICAROUS_TRACK_BAND_TYPES  </summary>
-        [Units("")]
-        [Description("See the TRACK_BAND_TYPES enum.")]
-        public  /*ICAROUS_TRACK_BAND_TYPES*/byte type5;
-    
-    };
-
-    
-    /// extensions_start 0
-    [StructLayout(LayoutKind.Sequential,Pack=1,Size=9)]
-    ///<summary> The heartbeat message shows that a system or component is present and responding. The type and autopilot fields (along with the message component id), allow the receiving system to treat further messages from this system appropriately (e.g. by laying out the user interface based on the autopilot). This microservice is documented at https://mavlink.io/en/services/heartbeat.html </summary>
-    public struct mavlink_heartbeat_t
-    {
-        public mavlink_heartbeat_t(uint custom_mode,/*MAV_TYPE*/byte type,/*MAV_AUTOPILOT*/byte autopilot,/*MAV_MODE_FLAG*/byte base_mode,/*MAV_STATE*/byte system_status,byte mavlink_version) 
-        {
-              this.custom_mode = custom_mode;
-              this.type = type;
-              this.autopilot = autopilot;
-              this.base_mode = base_mode;
-              this.system_status = system_status;
-              this.mavlink_version = mavlink_version;
-            
-        }
-        /// <summary>A bitfield for use for autopilot-specific flags   </summary>
-        [Units("")]
-        [Description("A bitfield for use for autopilot-specific flags")]
-        public  uint custom_mode;
-            /// <summary>Vehicle or component type. For a flight controller component the vehicle type (quadrotor, helicopter, etc.). For other components the component type (e.g. camera, gimbal, etc.). This should be used in preference to component id for identifying the component type. MAV_TYPE  </summary>
-        [Units("")]
-        [Description("Vehicle or component type. For a flight controller component the vehicle type (quadrotor, helicopter, etc.). For other components the component type (e.g. camera, gimbal, etc.). This should be used in preference to component id for identifying the component type.")]
-        public  /*MAV_TYPE*/byte type;
-            /// <summary>Autopilot type / class. Use MAV_AUTOPILOT_INVALID for components that are not flight controllers. MAV_AUTOPILOT  </summary>
-        [Units("")]
-        [Description("Autopilot type / class. Use MAV_AUTOPILOT_INVALID for components that are not flight controllers.")]
-        public  /*MAV_AUTOPILOT*/byte autopilot;
-            /// <summary>System mode bitmap. MAV_MODE_FLAG  bitmask</summary>
-        [Units("")]
-        [Description("System mode bitmap.")]
-        public  /*MAV_MODE_FLAG*/byte base_mode;
-            /// <summary>System status flag. MAV_STATE  </summary>
-        [Units("")]
-        [Description("System status flag.")]
-        public  /*MAV_STATE*/byte system_status;
-            /// <summary>MAVLink version, not writable by user, gets added by protocol because of magic data type: uint8_t_mavlink_version   </summary>
-        [Units("")]
-        [Description("MAVLink version, not writable by user, gets added by protocol because of magic data type: uint8_t_mavlink_version")]
-        public  byte mavlink_version;
-    
-    };
-
-    /// extensions_start 0
-    [StructLayout(LayoutKind.Sequential, Pack = 1, Size = 31)]
+    [StructLayout(LayoutKind.Sequential,Pack=1,Size=31)]
     ///<summary> Report AF3 triple-redundant system status </summary>
     public struct mavlink_af3_status_t
     {
-        public mavlink_af3_status_t(float vfc_cpu_temp, float vfc_ps_volt_A, float vfc_ps_volt_B, float vfc_aux_rx_bitrate, float vfc_aux_tx_bitrate, float vfc_af3_rx_bitrate, float vfc_af3_tx_bitrate, byte number_rfcs, byte active_rfc, byte vfc_cpu_loading)
+        public mavlink_af3_status_t(float vfc_cpu_temp,float vfc_ps_volt_A,float vfc_ps_volt_B,float vfc_aux_rx_bitrate,float vfc_aux_tx_bitrate,float vfc_af3_rx_bitrate,float vfc_af3_tx_bitrate,byte number_rfcs,byte active_rfc,byte vfc_cpu_loading) 
         {
-            this.vfc_cpu_temp = vfc_cpu_temp;
-            this.vfc_ps_volt_A = vfc_ps_volt_A;
-            this.vfc_ps_volt_B = vfc_ps_volt_B;
-            this.vfc_aux_rx_bitrate = vfc_aux_rx_bitrate;
-            this.vfc_aux_tx_bitrate = vfc_aux_tx_bitrate;
-            this.vfc_af3_rx_bitrate = vfc_af3_rx_bitrate;
-            this.vfc_af3_tx_bitrate = vfc_af3_tx_bitrate;
-            this.number_rfcs = number_rfcs;
-            this.active_rfc = active_rfc;
-            this.vfc_cpu_loading = vfc_cpu_loading;
-
+              this.vfc_cpu_temp = vfc_cpu_temp;
+              this.vfc_ps_volt_A = vfc_ps_volt_A;
+              this.vfc_ps_volt_B = vfc_ps_volt_B;
+              this.vfc_aux_rx_bitrate = vfc_aux_rx_bitrate;
+              this.vfc_aux_tx_bitrate = vfc_aux_tx_bitrate;
+              this.vfc_af3_rx_bitrate = vfc_af3_rx_bitrate;
+              this.vfc_af3_tx_bitrate = vfc_af3_tx_bitrate;
+              this.number_rfcs = number_rfcs;
+              this.active_rfc = active_rfc;
+              this.vfc_cpu_loading = vfc_cpu_loading;
+            
         }
         /// <summary>Internal VFC: CPU temperature of VFC device   </summary>
         [Units("")]
         [Description("Internal VFC: CPU temperature of VFC device")]
-        public float vfc_cpu_temp;
-        /// <summary>Internal VFC: CPU voltage on power supply input 1   </summary>
+        public  float vfc_cpu_temp;
+            /// <summary>Internal VFC: CPU voltage on power supply input 1   </summary>
         [Units("")]
         [Description("Internal VFC: CPU voltage on power supply input 1")]
-        public float vfc_ps_volt_A;
-        /// <summary>Internal VFC: CPU voltage on power supply input 2   </summary>
+        public  float vfc_ps_volt_A;
+            /// <summary>Internal VFC: CPU voltage on power supply input 2   </summary>
         [Units("")]
         [Description("Internal VFC: CPU voltage on power supply input 2")]
-        public float vfc_ps_volt_B;
-        /// <summary>Internal VFC: RX bitrate between TX2 and AUX CAN bus   </summary>
+        public  float vfc_ps_volt_B;
+            /// <summary>Internal VFC: RX bitrate between TX2 and AUX CAN bus   </summary>
         [Units("")]
         [Description("Internal VFC: RX bitrate between TX2 and AUX CAN bus")]
-        public float vfc_aux_rx_bitrate;
-        /// <summary>Internal VFC: TX bitrate between TX2 and AUX CAN bus   </summary>
+        public  float vfc_aux_rx_bitrate;
+            /// <summary>Internal VFC: TX bitrate between TX2 and AUX CAN bus   </summary>
         [Units("")]
         [Description("Internal VFC: TX bitrate between TX2 and AUX CAN bus")]
-        public float vfc_aux_tx_bitrate;
-        /// <summary>Internal VFC: RX bitrate between TX2 and AF3 CAN bus   </summary>
+        public  float vfc_aux_tx_bitrate;
+            /// <summary>Internal VFC: RX bitrate between TX2 and AF3 CAN bus   </summary>
         [Units("")]
         [Description("Internal VFC: RX bitrate between TX2 and AF3 CAN bus")]
-        public float vfc_af3_rx_bitrate;
-        /// <summary>Internal VFC: TX bitrate between TX2 and AF3 CAN bus   </summary>
+        public  float vfc_af3_rx_bitrate;
+            /// <summary>Internal VFC: TX bitrate between TX2 and AF3 CAN bus   </summary>
         [Units("")]
         [Description("Internal VFC: TX bitrate between TX2 and AF3 CAN bus")]
-        public float vfc_af3_tx_bitrate;
-        /// <summary>Number of Real Flight Controllers (RFC) in the system   </summary>
+        public  float vfc_af3_tx_bitrate;
+            /// <summary>Number of Real Flight Controllers (RFC) in the system   </summary>
         [Units("")]
         [Description("Number of Real Flight Controllers (RFC) in the system")]
-        public byte number_rfcs;
-        /// <summary>Current real flight controller commanding the vehicle   </summary>
+        public  byte number_rfcs;
+            /// <summary>Current real flight controller commanding the vehicle   </summary>
         [Units("")]
         [Description("Current real flight controller commanding the vehicle")]
-        public byte active_rfc;
-        /// <summary>Internal VFC: CPU loading of VFC device   </summary>
+        public  byte active_rfc;
+            /// <summary>Internal VFC: CPU loading of VFC device   </summary>
         [Units("")]
         [Description("Internal VFC: CPU loading of VFC device")]
-        public byte vfc_cpu_loading;
-
+        public  byte vfc_cpu_loading;
+    
     };
 
-
+    
     /// extensions_start 0
-    [StructLayout(LayoutKind.Sequential, Pack = 1, Size = 24)]
+    [StructLayout(LayoutKind.Sequential,Pack=1,Size=24)]
     ///<summary> Report performance and monitoring details of AF3 endpoints </summary>
     public struct mavlink_af3_ep_status_t
     {
-        public mavlink_af3_ep_status_t(int rpm, float bus_voltage_a, float bus_voltage_b, float bus_current_a, float bus_current_b, byte esc_index, byte bus0_elapsed_sec, byte bus1_elapsed_sec, byte bus2_elapsed_sec)
+        public mavlink_af3_ep_status_t(int rpm,float bus_voltage_a,float bus_voltage_b,float bus_current_a,float bus_current_b,byte esc_index,byte bus0_elapsed_sec,byte bus1_elapsed_sec,byte bus2_elapsed_sec) 
         {
-            this.rpm = rpm;
-            this.bus_voltage_a = bus_voltage_a;
-            this.bus_voltage_b = bus_voltage_b;
-            this.bus_current_a = bus_current_a;
-            this.bus_current_b = bus_current_b;
-            this.esc_index = esc_index;
-            this.bus0_elapsed_sec = bus0_elapsed_sec;
-            this.bus1_elapsed_sec = bus1_elapsed_sec;
-            this.bus2_elapsed_sec = bus2_elapsed_sec;
-
+              this.rpm = rpm;
+              this.bus_voltage_a = bus_voltage_a;
+              this.bus_voltage_b = bus_voltage_b;
+              this.bus_current_a = bus_current_a;
+              this.bus_current_b = bus_current_b;
+              this.esc_index = esc_index;
+              this.bus0_elapsed_sec = bus0_elapsed_sec;
+              this.bus1_elapsed_sec = bus1_elapsed_sec;
+              this.bus2_elapsed_sec = bus2_elapsed_sec;
+            
         }
         /// <summary>Reported RPM of the engine associated with the endpoint   </summary>
         [Units("")]
         [Description("Reported RPM of the engine associated with the endpoint")]
-        public int rpm;
-        /// <summary>Reported voltage on bus A measured by endpoint in mV   </summary>
+        public  int rpm;
+            /// <summary>Reported voltage on bus A measured by endpoint in mV   </summary>
         [Units("")]
         [Description("Reported voltage on bus A measured by endpoint in mV")]
-        public float bus_voltage_a;
-        /// <summary>Reported voltage on bus B measured by endpoint in mV   </summary>
+        public  float bus_voltage_a;
+            /// <summary>Reported voltage on bus B measured by endpoint in mV   </summary>
         [Units("")]
         [Description("Reported voltage on bus B measured by endpoint in mV")]
-        public float bus_voltage_b;
-        /// <summary>Reported current on bus A measured by endpoint in mA   </summary>
+        public  float bus_voltage_b;
+            /// <summary>Reported current on bus A measured by endpoint in mA   </summary>
         [Units("")]
         [Description("Reported current on bus A measured by endpoint in mA")]
-        public float bus_current_a;
-        /// <summary>Reported current on bus B measured by endpoint in mA   </summary>
+        public  float bus_current_a;
+            /// <summary>Reported current on bus B measured by endpoint in mA   </summary>
         [Units("")]
         [Description("Reported current on bus B measured by endpoint in mA")]
-        public float bus_current_b;
-        /// <summary>Electronic Speed Controller (ESC) index   </summary>
+        public  float bus_current_b;
+            /// <summary>Electronic Speed Controller (ESC) index   </summary>
         [Units("")]
         [Description("Electronic Speed Controller (ESC) index")]
-        public byte esc_index;
-        /// <summary>How many seconds since a message was received by the endpoint on bus 0   </summary>
+        public  byte esc_index;
+            /// <summary>How many seconds since a message was received by the endpoint on bus 0   </summary>
         [Units("")]
         [Description("How many seconds since a message was received by the endpoint on bus 0")]
-        public byte bus0_elapsed_sec;
-        /// <summary>How many seconds since a message was received by the endpoint on bus 1   </summary>
+        public  byte bus0_elapsed_sec;
+            /// <summary>How many seconds since a message was received by the endpoint on bus 1   </summary>
         [Units("")]
         [Description("How many seconds since a message was received by the endpoint on bus 1")]
-        public byte bus1_elapsed_sec;
-        /// <summary>How many seconds since a message was received by the endpoint on bus 2   </summary>
+        public  byte bus1_elapsed_sec;
+            /// <summary>How many seconds since a message was received by the endpoint on bus 2   </summary>
         [Units("")]
         [Description("How many seconds since a message was received by the endpoint on bus 2")]
-        public byte bus2_elapsed_sec;
-
+        public  byte bus2_elapsed_sec;
+    
     };
 
-
+    
     /// extensions_start 0
-    [StructLayout(LayoutKind.Sequential, Pack = 1, Size = 11)]
+    [StructLayout(LayoutKind.Sequential,Pack=1,Size=11)]
     ///<summary> Report AF3 triple-redundant system status </summary>
     public struct mavlink_af3_rfc_status_t
     {
-        public mavlink_af3_rfc_status_t(uint flight_mode, uint error_score, byte bus_id, byte status_flag, byte can_elapsed)
+        public mavlink_af3_rfc_status_t(uint flight_mode,uint error_score,byte bus_id,byte status_flag,byte can_elapsed) 
         {
-            this.flight_mode = flight_mode;
-            this.error_score = error_score;
-            this.bus_id = bus_id;
-            this.status_flag = status_flag;
-            this.can_elapsed = can_elapsed;
-
+              this.flight_mode = flight_mode;
+              this.error_score = error_score;
+              this.bus_id = bus_id;
+              this.status_flag = status_flag;
+              this.can_elapsed = can_elapsed;
+            
         }
         /// <summary>Real flight controller 2 flight mode   </summary>
         [Units("")]
         [Description("Real flight controller 2 flight mode")]
-        public uint flight_mode;
-        /// <summary>Flight controller error score as calculated by the EP onboard of the VFC   </summary>
+        public  uint flight_mode;
+            /// <summary>Flight controller error score as calculated by the EP onboard of the VFC   </summary>
         [Units("")]
         [Description("Flight controller error score as calculated by the EP onboard of the VFC")]
-        public uint error_score;
-        /// <summary>RFC identifier   </summary>
+        public  uint error_score;
+            /// <summary>RFC identifier   </summary>
         [Units("")]
         [Description("RFC identifier")]
-        public byte bus_id;
-        /// <summary>Bitfield indicating telemetry, armed, and PMM visibility status   </summary>
+        public  byte bus_id;
+            /// <summary>Bitfield indicating telemetry, armed, and PMM visibility status   </summary>
         [Units("")]
         [Description("Bitfield indicating telemetry, armed, and PMM visibility status")]
-        public byte status_flag;
-        /// <summary>Seconds since last FC health msg was received on CAN BUS 0   </summary>
+        public  byte status_flag;
+            /// <summary>Seconds since last FC health msg was received on CAN BUS 0   </summary>
         [Units("")]
         [Description("Seconds since last FC health msg was received on CAN BUS 0")]
-        public byte can_elapsed;
+        public  byte can_elapsed;
+    
+    };
 
+    
+    /// extensions_start 0
+    [StructLayout(LayoutKind.Sequential,Pack=1,Size=3)]
+    ///<summary> The VFC status. </summary>
+    public struct mavlink_vfc_status_t
+    {
+        public mavlink_vfc_status_t(byte RFC1Status,byte RFC2Status,byte RFC3Status) 
+        {
+              this.RFC1Status = RFC1Status;
+              this.RFC2Status = RFC2Status;
+              this.RFC3Status = RFC3Status;
+            
+        }
+        /// <summary>Status byte for RFC1.   </summary>
+        [Units("")]
+        [Description("Status byte for RFC1.")]
+        public  byte RFC1Status;
+            /// <summary>Status byte for RFC2.   </summary>
+        [Units("")]
+        [Description("Status byte for RFC2.")]
+        public  byte RFC2Status;
+            /// <summary>Status byte for RFC3.   </summary>
+        [Units("")]
+        [Description("Status byte for RFC3.")]
+        public  byte RFC3Status;
+    
+    };
+
+    
+    /// extensions_start 0
+    [StructLayout(LayoutKind.Sequential,Pack=1,Size=5)]
+    ///<summary> Report AF3 integrity status </summary>
+    public struct mavlink_af3_integrity_status_t
+    {
+        public mavlink_af3_integrity_status_t(byte target_system,byte target_component,/*AF3_INTEGRITY_FLAGS*/byte flags,/*AF3_INTEGRITY_ACTION*/byte action,byte progress) 
+        {
+              this.target_system = target_system;
+              this.target_component = target_component;
+              this.flags = flags;
+              this.action = action;
+              this.progress = progress;
+            
+        }
+        /// <summary>Target System   </summary>
+        [Units("")]
+        [Description("Target System")]
+        public  byte target_system;
+            /// <summary>Target Component   </summary>
+        [Units("")]
+        [Description("Target Component")]
+        public  byte target_component;
+            /// <summary>Flags AF3_INTEGRITY_FLAGS  </summary>
+        [Units("")]
+        [Description("Flags")]
+        public  /*AF3_INTEGRITY_FLAGS*/byte flags;
+            /// <summary>Action AF3_INTEGRITY_ACTION  </summary>
+        [Units("")]
+        [Description("Action")]
+        public  /*AF3_INTEGRITY_ACTION*/byte action;
+            /// <summary>Progress   </summary>
+        [Units("")]
+        [Description("Progress")]
+        public  byte progress;
+    
     };
 
 }

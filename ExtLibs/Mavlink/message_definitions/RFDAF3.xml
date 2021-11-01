@@ -1,0 +1,97 @@
+<?xml version="1.0"?>
+<!-- RFDAF3 Mavlink Message Definition File -->
+<!-- Used for the AF3 triple-redudant flight controller -->
+<mavlink>
+  <enums>
+	<enum name="AF3_INTEGRITY_FLAGS">
+	  <description>Integrity flags.</description>
+	  <entry value="1" name="GOT_SNAPSHOT">
+		<description>Got snapshot</description>
+	  </entry>
+	  <entry value="2" name="INTEGRITY_CHECKED_OK">
+		<description>Integrity checked OK</description>
+	  </entry>
+	</enum>
+	<enum name="AF3_INTEGRITY_ACTION">
+	  <description>Integrity action.</description>
+	  <entry value="0" name="IDLE">
+		<description>Idle</description>
+	  </entry>
+	  <entry value="1" name="GETTING_SNAPSHOT">
+		<description>Getting snapshot</description>
+	  </entry>
+	  <entry value="2" name="CHECKING_INTEGRITY">
+		<description>Checking integrity</description>
+	  </entry>
+	</enum>
+	  <enum name="AF3_COMMANDS">
+		  <description>AF3 command numbers</description>
+		  <entry value="44848" name="GET_SNAPSHOT">
+			  <description>(0xAF30) Get Snapshot</description>
+		  </entry>
+		  <entry value="44849" name="CHECK_INTEGRITY">
+			  <description>Check integrity</description>
+		  </entry>
+		  <entry value="44850" name="REPORT_INTEGRITY_STATUS">
+			  <description>Report integrity status</description>
+		  </entry>
+	  </enum>
+  </enums>
+  <messages>
+    <message id="12100" name="AF3_STATUS">
+      <description>Report AF3 triple-redundant system status</description>
+      <field type="uint8_t" name="number_rfcs">Number of Real Flight Controllers (RFC) in the system</field>
+      <field type="uint8_t" name="active_rfc">Current real flight controller commanding the vehicle</field>
+      <field type="uint8_t" name="vfc_cpu_loading">Internal VFC: CPU loading of VFC device</field>
+      <field type="float" name="vfc_cpu_temp">Internal VFC: CPU temperature of VFC device</field>
+      <field type="float" name="vfc_ps_volt_A">Internal VFC: CPU voltage on power supply input 1</field>
+      <field type="float" name="vfc_ps_volt_B">Internal VFC: CPU voltage on power supply input 2</field>
+      <field type="float" name="vfc_aux_rx_bitrate">Internal VFC: RX bitrate between TX2 and AUX CAN bus</field>
+      <field type="float" name="vfc_aux_tx_bitrate">Internal VFC: TX bitrate between TX2 and AUX CAN bus</field>
+      <field type="float" name="vfc_af3_rx_bitrate">Internal VFC: RX bitrate between TX2 and AF3 CAN bus</field>
+      <field type="float" name="vfc_af3_tx_bitrate">Internal VFC: TX bitrate between TX2 and AF3 CAN bus</field>
+    </message>
+  </messages>
+  <messages>
+    <message id="12101" name="AF3_EP_STATUS">
+      <description>Report performance and monitoring details of AF3 endpoints</description>
+      <field type="uint8_t" name="esc_index">Electronic Speed Controller (ESC) index</field>
+      <field type="int32_t" name="rpm">Reported RPM of the engine associated with the endpoint</field>
+      <field type="float" name="bus_voltage_a">Reported voltage on bus A measured by endpoint in mV</field>
+      <field type="float" name="bus_voltage_b">Reported voltage on bus B measured by endpoint in mV</field>
+      <field type="float" name="bus_current_a">Reported current on bus A measured by endpoint in mA</field>
+      <field type="float" name="bus_current_b">Reported current on bus B measured by endpoint in mA</field>
+      <field type="uint8_t" name="bus0_elapsed_sec">How many seconds since a message was received by the endpoint on bus 0</field>
+      <field type="uint8_t" name="bus1_elapsed_sec">How many seconds since a message was received by the endpoint on bus 1</field>
+      <field type="uint8_t" name="bus2_elapsed_sec">How many seconds since a message was received by the endpoint on bus 2</field>
+    </message>
+  </messages>
+  <messages>
+    <message id="12102" name="AF3_RFC_STATUS">
+      <description>Report AF3 triple-redundant system status</description>
+      <field type="uint8_t" name="bus_id">RFC identifier</field>
+      <field type="uint8_t" name="status_flag">Bitfield indicating telemetry, armed, and PMM visibility status</field>
+      <field type="uint32_t" name="flight_mode">Real flight controller 2 flight mode</field>
+      <field type="uint8_t" name="can_elapsed">Seconds since last FC health msg was received on CAN BUS 0</field>
+      <field type="uint32_t" name="error_score">Flight controller error score as calculated by the EP onboard of the VFC</field>
+    </message>
+  </messages>
+  <messages>
+    <message id="12103" name="VFC_STATUS">
+      <description>The VFC status.</description>
+      <field type="uint8_t" name="RFC1Status">Status byte for RFC1.</field>
+      <field type="uint8_t" name="RFC2Status">Status byte for RFC2.</field>
+      <field type="uint8_t" name="RFC3Status">Status byte for RFC3.</field>
+    </message>
+  </messages>
+  <messages>
+	<message id="12104" name="AF3_INTEGRITY_STATUS">
+	  <description>Report AF3 integrity status</description>
+		<field type="uint8_t" name="target_system">Target System</field>
+		<field type="uint8_t" name="target_component">Target Component</field>
+		<field type="uint8_t" name="flags" enum="AF3_INTEGRITY_FLAGS">Flags</field>
+		<field type="uint8_t" name="action" enum="AF3_INTEGRITY_ACTION">Action</field>	
+		<field type="uint8_t" name="progress">Progress</field>
+	</message>
+  </messages>
+</mavlink>

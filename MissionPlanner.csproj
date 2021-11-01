@@ -256,6 +256,10 @@
       <Project>{664FC484-2A94-4B0D-808F-A71F88E06B11}</Project>
       <Name>px4uploader</Name>
     </ProjectReference>
+    <ProjectReference Include="ExtLibs\RFDLib\RFDLib.csproj">
+      <Project>{f8aca4c4-fab5-46aa-86d0-3b410caefc7a}</Project>
+      <Name>RFDLib</Name>
+    </ProjectReference>
     <ProjectReference Include="ExtLibs\SharpAdbClient\SharpAdbClient.csproj">
       <Project>{65473257-e70f-410b-9269-d0c0f771ea87}</Project>
       <Name>SharpAdbClient</Name>
@@ -639,6 +643,8 @@
     <None Include="plugins\example11-trace.cs">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <Compile Include="SikRadio\ISikRadioForm.cs" />
+    <Compile Include="SikRadio\RFD900.cs" />
     <Compile Include="Utilities\AirMarket.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -702,10 +708,6 @@
     <Compile Include="ResEdit.Designer.cs">
       <DependentUpon>ResEdit.cs</DependentUpon>
     </Compile>
-    <Compile Include="SikRadio\ISikRadioForm.cs" />
-    <Compile Include="SikRadio\RFD900.cs" />
-    <Compile Include="SikRadio\RFDLib\Array.cs" />
-    <Compile Include="SikRadio\RFDLib\Text.cs" />
     <Compile Include="Splash.Designer.cs">
       <SubType>Form</SubType>
       <DependentUpon>Splash.cs</DependentUpon>
@@ -4994,5 +4996,6 @@
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

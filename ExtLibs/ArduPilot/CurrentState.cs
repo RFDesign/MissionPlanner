@@ -32,6 +32,7 @@ namespace MissionPlanner
         private static PointLatLngAlt _plannedhomelocation = new PointLatLngAlt();
         private static PointLatLngAlt _trackerloc = new PointLatLngAlt();
         private MissionPlanner.Utilities.AF3.Status _af3Status = new MissionPlanner.Utilities.AF3.Status();
+        RFDLib.Telemetry.TTimestamped<MissionPlanner.Utilities.AF3.IntegrityStatus> _af3IntegStatus = new RFDLib.Telemetry.TTimestamped<IntegrityStatus>(3000);
 
         public static int rateattitudebackup;
         public static int ratepositionbackup;
@@ -1714,6 +1715,15 @@ namespace MissionPlanner
             }
         }
 
+        [GroupText("AF3")]
+        public RFDLib.Telemetry.TTimestamped<MissionPlanner.Utilities.AF3.IntegrityStatus> af3IntegrityStatus
+        {
+            get => _af3IntegStatus;
+            set
+            {
+                _af3IntegStatus = value;
+            }
+        }
         [GroupText("EKF")] public float ekfstatus { get; set; }
 
         [GroupText("EKF")] public int ekfflags { get; set; }
@@ -2275,6 +2285,17 @@ namespace MissionPlanner
 
                             af3score = af3.calculateScore();
                         }
+                        break;
+                    case (uint)MAVLink.MAVLINK_MSG_ID.AF3_INTEGRITY_STATUS:
+                        var AF3IntegrityStatus = mavLinkMessage.ToStructure<MAVLink.mavlink_af3_integrity_status_t>();
+                        MissionPlanner.Utilities.AF3.IntegrityStatus IS = new IntegrityStatus();
+
+                        IS.Action = (MAVLink.AF3_INTEGRITY_ACTION)AF3IntegrityStatus.action;
+                        IS.Progress = AF3IntegrityStatus.progress;
+                        IS.GotSnapshot = (AF3IntegrityStatus.flags & (byte)MAVLink.AF3_INTEGRITY_FLAGS.GOT_SNAPSHOT) != 0;
+                        IS.IntegrityOK = (AF3IntegrityStatus.flags & (byte)MAVLink.AF3_INTEGRITY_FLAGS.INTEGRITY_CHECKED_OK) != 0;
+
+                        _af3IntegStatus.Update(IS);
                         break;
                     case (uint)MAVLink.MAVLINK_MSG_ID.EKF_STATUS_REPORT:
 

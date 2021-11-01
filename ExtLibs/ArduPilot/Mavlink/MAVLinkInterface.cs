@@ -2350,6 +2350,169 @@ Mission Planner waits for 2 valid heartbeat packets before connecting");
             return doCommand(MAV.sysid, MAV.compid, actionid, p1, p2, p3, p4, p5, p6, p7, requireack, null);
         }
 
+        /// <summary>
+        /// A class for completing a command which takes some time and progress is received in that time.
+        /// </summary>
+        public class CmdProgress : IDisposable
+        {
+            System.Threading.Thread _Worker;
+            MAVLinkInterface _MLI;
+            uint _CmdID;
+            byte _SysID;
+            byte _CompID;
+            MAV_RESULT _RESULT = MAV_RESULT.IN_PROGRESS;
+            byte _Progress = 0;
+            bool _ShouldRun = true;
+
+            public CmdProgress(
+                        MAVLinkInterface MLI, 
+                        uint CmdID,
+                        byte SysID,
+                        byte CompID)
+            {
+                _MLI = MLI;
+                //_MLI = new MAVLinkInterface();
+                _CmdID = CmdID;
+                _SysID = SysID;
+                _CompID = CompID;
+
+                _Worker = new Thread(Worker);
+                _Worker.Start();
+            }
+
+            public void Dispose()
+            {
+                _ShouldRun = false;
+            }
+
+            public MAV_RESULT Result
+            {
+                get
+                {
+                    return _RESULT;
+                }
+            }
+
+            public byte Progress
+            {
+                get
+                {
+                    return _Progress;
+                }
+            }
+
+            public uint CmdID
+            {
+                get
+                {
+                    return _CmdID;
+                }
+            }
+
+            void Worker()
+            {
+                while (_ShouldRun)
+                {
+                    var buffer = _MLI.readPacket();
+                    if (buffer.Length > 5)
+                    {
+                        if (buffer.msgid == (byte)MAVLINK_MSG_ID.COMMAND_ACK && buffer.sysid == _SysID &&
+                            buffer.compid == _CompID)
+                        {
+                            //var ack = buffer.ToStructure<TCmdAckExt>();
+                            TCmdAckExt ack = new TCmdAckExt();
+                            object Ext = ack;
+                            if (buffer.ismavlink2)
+                            {
+                                MavlinkUtil.ByteArrayToStructure(buffer.buffer, ref Ext, MAVLINK_NUM_HEADER_BYTES, 10);
+                            }
+                            else
+                            {
+                                MavlinkUtil.ByteArrayToStructure(buffer.buffer, ref Ext, 6, 10);
+                            }
+
+                            ack = (TCmdAckExt)Ext;
+
+                            if (ack.command != _CmdID)
+                            {
+                                log.InfoFormat("doCommandIntAsync cmd resp {0} - {1} - Commands dont match",
+                                    (MAV_CMD)ack.command,
+                                    (MAV_RESULT)ack.result);
+                                continue;
+                            }
+
+                            log.InfoFormat("doCommandIntAsync cmd resp {0} - {1}", (MAV_CMD)ack.command,
+                                (MAV_RESULT)ack.result);
+
+                            switch ((MAV_RESULT)ack.result)
+                            {
+                                case MAV_RESULT.IN_PROGRESS:
+                                    _RESULT = (MAV_RESULT)ack.result;
+                                    _Progress = ack.progress;
+                                    break;
+                                default:
+                                    _RESULT = (MAV_RESULT)ack.result;
+                                    return;
+                            }
+                        }
+                    }
+                }
+            }
+
+            [StructLayout(LayoutKind.Sequential, Pack = 1, Size = 10)]
+            struct TCmdAckExt
+            {
+                /// <summary>Command ID (of acknowledged command). MAV_CMD  </summary>
+                [Units("")]
+                [Description("Command ID (of acknowledged command).")]
+                public  /*MAV_CMD*/ushort command;
+                /// <summary>Result of command. MAV_RESULT  </summary>
+                [Units("")]
+                [Description("Result of command.")]
+                public  /*MAV_RESULT*/byte result;
+
+
+                public byte progress; /*<  WIP: Also used as result_param1, it can be set with a enum containing the errors reasons of why the command was denied or the progress percentage or 255 if unknown the progress when result is MAV_RESULT_IN_PROGRESS.*/
+                public Int32 result_param2; /*<  WIP: Additional parameter of the result, example: which parameter of MAV_CMD_NAV_WAYPOINT caused it to be denied.*/
+                public byte target_system; /*<  WIP: System which requested the command to be executed*/
+                public byte target_component;
+            }
+        }
+
+        public CmdProgress doCommandIntWithProgress(byte sysid, byte compid, MAV_CMD actionid, float p1, float p2, float p3,
+            float p4,
+            int p5, int p6, float p7,
+            MAV_FRAME frame = MAV_FRAME.GLOBAL)
+        {
+            mavlink_command_int_t req = new mavlink_command_int_t()
+            {
+                target_system = sysid,
+                target_component = compid,
+
+                command = (ushort)actionid,
+
+                param1 = p1,
+                param2 = p2,
+                param3 = p3,
+                param4 = p4,
+                x = p5,
+                y = p6,
+                z = p7,
+                autocontinue = 0,
+                current = 0,
+                frame = (byte)frame
+            };
+
+            log.InfoFormat("doCommandIntAsync cmd {0} {1} {2} {3} {4} {5} {6} {7}", actionid.ToString(), p1, p2, p3, p4,
+                p5, p6,
+                p7);
+
+            generatePacket((byte)MAVLINK_MSG_ID.COMMAND_INT, req, sysid, compid);
+
+            CmdProgress Result = new CmdProgress(this, (uint)actionid, sysid, compid);
+            return Result;
+        }
+
         public bool doCommand(byte sysid, byte compid, MAV_CMD actionid, float p1, float p2, float p3,
             float p4,
             float p5, float p6, float p7, bool requireack = true, Action uicallback = null)
