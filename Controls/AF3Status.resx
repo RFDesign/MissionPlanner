@@ -1384,7 +1384,7 @@
     <value>epInfo</value>
   </data>
   <data name="&gt;&gt;epInfo.Type" xml:space="preserve">
-    <value>MissionPlanner.Controls.AF3EndpointInfo, MissionPlanner, Version=1.3.7814.21500, Culture=neutral, PublicKeyToken=null</value>
+    <value>MissionPlanner.Controls.AF3EndpointInfo, MissionPlanner, Version=1.3.7893.23306, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;epInfo.Parent" xml:space="preserve">
     <value>tableLayoutPanel1</value>

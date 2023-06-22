@@ -26,6 +26,7 @@ namespace MissionPlanner.Controls
         private string[] ARMED_NAMES = new string[] { "ARM UNKNOWN", "ARMED", "DISARMED" };
         private AF3ErrorLog errorLog = new AF3ErrorLog();
         private Color defaultBgColor = Color.FromArgb(0x33, 0x33, 0x33);
+        private MissionPlanner.Utilities.AF3.Status af3;
 
         protected override CreateParams CreateParams
         {
@@ -40,6 +41,8 @@ namespace MissionPlanner.Controls
         public AF3Status()
         {
             InitializeComponent();
+
+            af3 = MainV2.comPort.MAV.cs.af3;
 
             Utilities.ThemeManager.ApplyThemeTo(this);
 
@@ -72,12 +75,15 @@ namespace MissionPlanner.Controls
             lbRFCppmVis.Add(lbRFC2ppmVis);
             lbRFCppmVis.Add(lbRFC3ppmVis);
 
-            if (MainV2.comPort.MAV.cs.af3.number_rfcs == 2)
+            if (af3.number_buses == 2)
             {
                 lbRFC1.Text = "RFC1 CAN1";
                 lbRFC2.Text = "RFC1 CAN2";
                 lbRFC3.Text = "";
                 lbRFC3.BackColor = this.BackColor;
+                tableLayoutPanel1.RowStyles[10].Height = 0; // Hide telemetry status
+                tableLayoutPanel1.RowStyles[11].Height = 0; // Hide flight mode
+                tableLayoutPanel1.RowStyles[12].Height = 0; // Hide arm status
             }
         }
 
@@ -132,7 +138,7 @@ namespace MissionPlanner.Controls
         private void updateVfcStats(int cpuLoading, float temperature, float voltA, float voltB,
             float rxAux, float txAux, float rxAf3, float txAf3)
         {
-            if (MainV2.comPort.MAV.cs.af3.number_rfcs == 0) return;
+            if (af3.number_rfcs == 0) return;
 
             lbVfcLoading.Text = String.Format("CPU LOAD {0}%", cpuLoading);
             lbVfcLoading.BackColor = cpuLoading > Constants.maxCpuLoading ? Color.Red : defaultBgColor;
@@ -159,7 +165,7 @@ namespace MissionPlanner.Controls
         private void updateFlightModeLabel(uint flightMode, int rfc_index)
         {
             string mode = flightMode.ToString();
-            bool rfHealthy = !MainV2.comPort.MAV.cs.af3.checkFlightModeMismatch(rfc_index);
+            bool rfHealthy = !af3.checkFlightModeMismatch(rfc_index);
 
             // Translate mode number to human-readable
             if (flightMode < MODE_NAMES.Length)
@@ -182,7 +188,7 @@ namespace MissionPlanner.Controls
         private void updateArmedStatusLabel(uint armedStatus, int rfc_index)
         {
             string status = armedStatus.ToString();
-            bool rfHealthy = !MainV2.comPort.MAV.cs.af3.checkArmedStatusMismatch(rfc_index);
+            bool rfHealthy = !af3.checkArmedStatusMismatch(rfc_index);
 
             // Translate mode number to human-readable
             if (armedStatus < ARMED_NAMES.Length)
@@ -218,16 +224,16 @@ namespace MissionPlanner.Controls
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            bool[] telem = MainV2.comPort.MAV.cs.af3.telemRFC;
-            bool[] ppmvis = MainV2.comPort.MAV.cs.af3.ppmVisRFC;
-            uint[] canPresent = MainV2.comPort.MAV.cs.af3.canElapsedRFC;
-            uint[] flightModes = MainV2.comPort.MAV.cs.af3.flightModeRFC;
-            uint[] armStatuses = MainV2.comPort.MAV.cs.af3.armedStatRFC;
-            float[] scores = MainV2.comPort.MAV.cs.af3.scoreRFC;
+            bool[] telem = af3.telemRFC;
+            bool[] ppmvis = af3.ppmVisRFC;
+            uint[] canPresent = af3.canElapsedRFC;
+            uint[] flightModes = af3.flightModeRFC;
+            uint[] armStatuses = af3.armedStatRFC;
+            float[] scores = af3.scoreRFC;
 
             for (int i = 0; i < Constants.maxNumCanBuses; i++)
             {
-                if (i < MainV2.comPort.MAV.cs.af3.number_rfcs)
+                if (i < af3.number_buses)
                 {
                     updateTelemLabel(lbRFCTelem[i], telem[i]);
                     updateCanPresLabel(lbRFCCanPres[i], canPresent[i]);
@@ -247,16 +253,16 @@ namespace MissionPlanner.Controls
                 }
             }
 
-            updateVfcStats(MainV2.comPort.MAV.cs.af3.vfcCpuLoading,
-                MainV2.comPort.MAV.cs.af3.vfcCpuTemperature,
-                MainV2.comPort.MAV.cs.af3.vfcPsVoltageA,
-                MainV2.comPort.MAV.cs.af3.vfcPsVoltageB,
-                MainV2.comPort.MAV.cs.af3.vfcBitrateRxAux,
-                MainV2.comPort.MAV.cs.af3.vfcBitrateTxAux,
-                MainV2.comPort.MAV.cs.af3.vfcBitrateRxAf3,
-                MainV2.comPort.MAV.cs.af3.vfcBitrateTxAf3);
+            updateVfcStats(af3.vfcCpuLoading,
+                af3.vfcCpuTemperature,
+                af3.vfcPsVoltageA,
+                af3.vfcPsVoltageB,
+                af3.vfcBitrateRxAux,
+                af3.vfcBitrateTxAux,
+                af3.vfcBitrateRxAf3,
+                af3.vfcBitrateTxAf3);
 
-            int activeRFC = (int)MainV2.comPort.MAV.cs.af3.activeRFC;
+            int activeRFC = (int)af3.activeRFC;
 
             updateActiveRfcLabel(lbRFC1Active, (activeRFC == 0));
             updateActiveRfcLabel(lbRFC2Active, (activeRFC == 1));
@@ -264,15 +270,15 @@ namespace MissionPlanner.Controls
 
             // Update/Create ESC info labels
 
-            int epCount = MainV2.comPort.MAV.cs.af3.getEndpointCount();
+            int epCount = af3.getEndpointCount();
 
             for (int i = 0; i < epCount; i++)
             {
-                EndPoint item = MainV2.comPort.MAV.cs.af3.getEndpoint(i);
+                EndPoint item = af3.getEndpoint(i);
                 uint epEscIndex = item.esc_index;
 
                 string origin = String.Format("EP{0}", item.esc_index);
-                List<errorRecord> errLs = MainV2.comPort.MAV.cs.af3.getErrors();
+                List<errorRecord> errLs = af3.getErrors();
                 List<errorRecord> errEp = errLs.FindAll(error => error.origin == origin &&
                     !error.resolved);
 
@@ -309,7 +315,7 @@ namespace MissionPlanner.Controls
         private void populateEcam()
         {
 
-            List<ecamErrorRecord> ecamErrList = MainV2.comPort.MAV.cs.af3.getEcamErrors();
+            List<ecamErrorRecord> ecamErrList = af3.getEcamErrors();
 
             if (ecamErrList != null && ecamList != null)
             {
@@ -369,7 +375,7 @@ namespace MissionPlanner.Controls
 
         private void clearAllMessagesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MainV2.comPort.MAV.cs.af3.ClearEcamMessages();
+            af3.ClearEcamMessages();
         }
     }
 }

@@ -27,6 +27,8 @@ namespace MissionPlanner.Controls
         IPEndPoint ep;
         byte[] udpBuffer = new byte[BUFFER_SIZE];
         int udpBuffCount = 0;
+        private Label label1;
+        private Label label2;
         DateTime lastSent;
 
         public MAVLinkVideoService(MAVLinkInterface mav)
@@ -87,15 +89,39 @@ namespace MissionPlanner.Controls
 
         private void InitializeComponent()
         {
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(118, 92);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(173, 13);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "You can now minimize this window.";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(76, 120);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(262, 13);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "Closing it will cause the video service to be interrupted";
             // 
             // MAVLinkVideoService
             // 
             this.ClientSize = new System.Drawing.Size(420, 222);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
             this.Name = "MAVLinkVideoService";
-            this.Text = "Mavlink Inspector";
+            this.Text = "Mavlink Video Service";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MAVLinkInspector_FormClosing);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -105,5 +131,9 @@ namespace MissionPlanner.Controls
             mav.OnPacketSent -= MavOnOnPacketReceived;
         }
 
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
