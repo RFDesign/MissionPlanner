@@ -30,12 +30,17 @@ namespace MissionPlanner.Controls
         private Label label1;
         private Label label2;
         DateTime lastSent;
+        byte _LastSeq = 0;
+
+        MavLinkVideoService.TTCPServer _TCPServer;
 
         public MAVLinkVideoService(MAVLinkInterface mav)
         {
             InitializeComponent();
 
             this.mav = mav;
+
+            _TCPServer = new MavLinkVideoService.TTCPServer(7760);
 
             mav.OnPacketReceived += MavOnOnPacketReceived;
             lastSent = DateTime.Now;
@@ -62,10 +67,21 @@ namespace MissionPlanner.Controls
             if (linkMessage.msgid == (uint)172)
             {
                 MAVLink.mavlink_data96_t data = (MAVLink.mavlink_data96_t)linkMessage.data;
-                
+
                 if (data.type == 'R')
                 {
-                    udpService.SendTo(data.data, ep);
+                    udpService.SendTo(data.data, 1, data.len - 1, SocketFlags.None, ep);
+
+                    byte Seq = data.data[0];
+                    _TCPServer.Output(data.data, 1, data.len - 1);
+
+                    if (Seq != _LastSeq + 1)
+                    {
+                        System.Diagnostics.Debug.WriteLine("Missed packet " + _LastSeq.ToString() + ", " + Seq.ToString());
+                    }
+
+                    _LastSeq = Seq;
+
                     /*Buffer.BlockCopy(data.data, 0, udpBuffer, udpBuffCount * MAX_MAV_PAYLOAD, MAX_MAV_PAYLOAD);
 
                     udpBuffCount++;
