@@ -4066,6 +4066,35 @@ namespace MissionPlanner.GCSViews
             MainV2.comPort.sendPacket(go, MainV2.comPort.MAV.sysid, MainV2.comPort.MAV.compid);
         }
 
+        public static void SetGStreamerSource(string url)
+        {
+            Settings.Instance["gstreamer_url"] = url;
+
+            GStreamer.StopAll();
+
+            GStreamer.LookForGstreamer();
+
+            if (!File.Exists(GStreamer.gstlaunch))
+            {
+                GStreamerUI.DownloadGStreamer();
+
+                if (!File.Exists(GStreamer.gstlaunch))
+                {
+                    return;
+                }
+            }
+
+            try
+            {
+                GStreamer.StartA(url);
+            }
+            catch (Exception ex)
+            {
+                CustomMessageBox.Show(ex.ToString(), Strings.ERROR);
+            }
+
+        }
+
         private void setGStreamerSourceToolStripMenuItem_Click(object sender, EventArgs e)
         {
             string url = Settings.Instance["gstreamer_url"] != null
@@ -4076,30 +4105,7 @@ namespace MissionPlanner.GCSViews
                 "Enter the source pipeline\nEnsure the final payload is ! videoconvert ! video/x-raw,format=BGRA ! appsink name=outsink",
                 ref url))
             {
-                Settings.Instance["gstreamer_url"] = url;
-
-                GStreamer.StopAll();
-
-                GStreamer.LookForGstreamer();
-
-                if (!File.Exists(GStreamer.gstlaunch))
-                {
-                    GStreamerUI.DownloadGStreamer();
-
-                    if (!File.Exists(GStreamer.gstlaunch))
-                    {
-                        return;
-                    }
-                }
-
-                try
-                {
-                    GStreamer.StartA(url);
-                }
-                catch (Exception ex)
-                {
-                    CustomMessageBox.Show(ex.ToString(), Strings.ERROR);
-                }
+                SetGStreamerSource(url);
             }
             else
             {

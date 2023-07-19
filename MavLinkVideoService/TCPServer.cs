@@ -13,7 +13,7 @@ namespace MissionPlanner.MavLinkVideoService
         public TTCPServer(UInt16 Port)
         {
             //_Listener = new System.Net.Sockets.TcpListener(Port);
-            _Listener = new System.Net.Sockets.TcpListener(System.Net.IPAddress.Parse("192.168.137.1"), Port);
+            _Listener = new System.Net.Sockets.TcpListener(System.Net.IPAddress.Parse("127.0.0.1"), Port);
             _Listener.Start();
 
             System.Threading.Thread Worker = new System.Threading.Thread(AcceptWorker);

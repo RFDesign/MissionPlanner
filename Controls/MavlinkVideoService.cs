@@ -32,7 +32,7 @@ namespace MissionPlanner.Controls
         DateTime lastSent;
         //byte _LastSeq = 0;
 
-        MavLinkVideoService.TTCPServer _TCPServer;
+        //MavLinkVideoService.TTCPServer _TCPServer;
 
         public MAVLinkVideoService(MAVLinkInterface mav)
         {
@@ -40,14 +40,20 @@ namespace MissionPlanner.Controls
 
             this.mav = mav;
 
-            _TCPServer = new MavLinkVideoService.TTCPServer(7760);
+            //_TCPServer = new MavLinkVideoService.TTCPServer(7760);
 
             mav.OnPacketReceived += MavOnOnPacketReceived;
             lastSent = DateTime.Now;
 
             udpService = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
-            IPAddress broadcast = IPAddress.Parse("192.168.1.255");
+            //IPAddress broadcast = IPAddress.Parse("192.168.1.255");
+            IPAddress broadcast = IPAddress.Parse("127.0.0.1");
             ep = new IPEndPoint(broadcast, 11000);
+
+            
+            MissionPlanner.GCSViews.FlightData.SetGStreamerSource(
+                "udpsrc address=127.0.0.1 port=11000 ! h264parse ! queue ! avdec_h264 ! queue ! videoconvert ! video/x-raw,format=BGRA ! appsink name=outsink");
+            
 
             ThemeManager.ApplyThemeTo(this);
         }
@@ -73,7 +79,7 @@ namespace MissionPlanner.Controls
                     udpService.SendTo(data.data, 0, data.len, SocketFlags.None, ep);
 
                     //byte Seq = data.data[0];
-                    _TCPServer.Output(data.data, 0, data.len);
+                    //_TCPServer.Output(data.data, 0, data.len);
 
                     /*if (Seq != _LastSeq + 1)
                     {

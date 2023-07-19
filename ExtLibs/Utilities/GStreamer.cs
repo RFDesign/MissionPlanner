@@ -594,9 +594,15 @@ namespace MissionPlanner.Utilities
             set { Settings.Instance["gstlaunchexe"] = value; }
         }
 
+        const string GST_DIR_LOC_KEY = "gstreamer_dir_loc";
         public static string LookForGstreamer()
         {
             List<string> dirs = new List<string>();
+
+            if (Settings.Instance.ContainsKey(GST_DIR_LOC_KEY))
+            {
+                dirs.Add(Settings.Instance[GST_DIR_LOC_KEY]);
+            }
 
             dirs.Add("/usr/lib/x86_64-linux-gnu");
 
@@ -607,7 +613,7 @@ namespace MissionPlanner.Utilities
             DriveInfo[] allDrives = DriveInfo.GetDrives();
             foreach (DriveInfo d in allDrives)
             {
-                if (d.IsReady && d.DriveType == DriveType.Fixed)
+                if (d.DriveType == DriveType.Fixed && d.IsReady)
                 {
                     dirs.Add(d.RootDirectory.Name + "gstreamer");
                     dirs.Add(d.RootDirectory.Name + "Program Files" + Path.DirectorySeparatorChar + "gstreamer");
@@ -629,6 +635,8 @@ namespace MissionPlanner.Utilities
                     if (ans.Length > 0)
                     {
                         log.Info("Found gstreamer " + ans.First());
+                        Settings.Instance[GST_DIR_LOC_KEY] = dir;
+                        Settings.Instance.Save();
                         SetGSTPath(ans.First());
                         return ans.First();
                     }
