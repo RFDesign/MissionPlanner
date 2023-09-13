@@ -55,6 +55,7 @@ namespace MissionPlanner
             this.menu = new MissionPlanner.Controls.MyButton();
             this.panel1 = new System.Windows.Forms.Panel();
             this.status1 = new MissionPlanner.Controls.Status();
+            this.mULTIVEHICLEToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MainMenu.SuspendLayout();
             this.CTX_mainmenu.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -75,7 +76,8 @@ namespace MissionPlanner
             this.MenuHelp,
             this.MenuConnect,
             this.toolStripConnectionControl,
-            this.MenuArduPilot});
+            this.MenuArduPilot,
+            this.mULTIVEHICLEToolStripMenuItem});
             this.MainMenu.Name = "MainMenu";
             this.MainMenu.ShowItemToolTips = true;
             this.MainMenu.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.MainMenu_ItemClicked);
@@ -224,6 +226,13 @@ namespace MissionPlanner
             this.status1.Name = "status1";
             this.status1.Percent = 0D;
             // 
+            // mULTIVEHICLEToolStripMenuItem
+            // 
+            this.mULTIVEHICLEToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.mULTIVEHICLEToolStripMenuItem.Name = "mULTIVEHICLEToolStripMenuItem";
+            resources.ApplyResources(this.mULTIVEHICLEToolStripMenuItem, "mULTIVEHICLEToolStripMenuItem");
+            this.mULTIVEHICLEToolStripMenuItem.Click += new System.EventHandler(this.mULTIVEHICLEToolStripMenuItem_Click);
+            // 
             // MainV2
             // 
             resources.ApplyResources(this, "$this");
@@ -265,5 +274,6 @@ namespace MissionPlanner
         public System.Windows.Forms.ToolStripButton MenuHelp;
         public System.Windows.Forms.ToolStripButton MenuArduPilot;
         public Controls.Status status1;
+        private System.Windows.Forms.ToolStripMenuItem mULTIVEHICLEToolStripMenuItem;
     }
 }

@@ -4520,5 +4520,11 @@ namespace MissionPlanner
                 }
             }
         }
+
+        private void mULTIVEHICLEToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DockSample.MainForm main = new DockSample.MainForm(MainV2.Comports);
+            main.Show();
+        }
     }
 }
