@@ -162,6 +162,7 @@ namespace SikRadio
         {
             MainV2.comPort.BaseStream.BaudRate = int.Parse(CMB_Baudrate.Text);
             MainV2.comPortBaud = int.Parse(CMB_Baudrate.Text);
+            DoDisconnectReconnect();
         }
 
         private void CMB_SerialPort_Click(object sender, EventArgs e)
@@ -307,7 +308,7 @@ namespace SikRadio
                     {
                         _CurrentForm.Enabled = true;
                     }
-                    CMB_Baudrate.Enabled = false;
+                    CMB_Baudrate.Enabled = (_comPort is SerialPort);
                     CMB_SerialPort.Enabled = false;
                 }
             }
