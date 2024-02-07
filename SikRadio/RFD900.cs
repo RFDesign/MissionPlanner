@@ -93,47 +93,10 @@ namespace RFD.RFD900
         /// <returns>The token array index of the token received, or -1 is none of the tokens received.</returns>
         public int WaitForAnyOfTheseTokens(string[] Tokens, int MaxWait)
         {
-            System.Diagnostics.Stopwatch SW = new System.Diagnostics.Stopwatch();
-            string Temp = "";
-            int Timeout = _Port.ReadTimeout;
-            _Port.ReadTimeout = MaxWait;
-            SW.Start();
+            string Junk;
 
-            while (SW.ElapsedMilliseconds < MaxWait)
-            {
-                try
-                {
-                    int Byte;
-                    while (((Byte = _Port.ReadByte()) != -1) && (SW.ElapsedMilliseconds < MaxWait))
-                    {
-                        //string x = _Port.ReadExisting();
-                        Temp += ((char)Byte);
-
-                        for (int n = 0; n < Tokens.Length; n++)
-                        {
-                            if (Temp.Contains(Tokens[n]))
-                            {
-                                _Port.ReadTimeout = Timeout;
-                                return n;
-                            }
-                        }
-                    }
-
-                    Thread.Sleep(50);
-                }
-                catch (Exception e)
-                {
-                    //System.Diagnostics.Debug.WriteLine(e.Message);
-                    //System.Diagnostics.Debug.WriteLine("No tokens, got " + Temp);
-
-                    return -1;
-                }
-            }
-
-            //Console.WriteLine("Failed to get token, got this instead:  " + Temp);
-
-            _Port.ReadTimeout = Timeout;
-            return -1;
+            return RFDLib.IO.TSerialPort.WaitForAnyOfTheseTokens(
+                new TMissionPlannerSerialPort(_Port), Tokens, MaxWait, out Junk);
         }
 
         void WriteBootloaderCode(uploader.Uploader.Code Code)
@@ -195,20 +158,25 @@ namespace RFD.RFD900
             return false;
         }
 
-        bool TryEscapeFromTransparent()
+        bool TryEscapeFromTransparent(int Delay = 1100)
         {
             _Port.ReadTimeout = 2000;
-            //Console.WriteLine("Waiting 1500ms");
-            Thread.Sleep(1500);
+            //Console.WriteLine("Waiting 1100ms");
+            Thread.Sleep(Delay);
             _Port.DiscardInBuffer();
             //Console.WriteLine("Sending +++");
             _Port.Write("+++");
-            //Console.WriteLine("Waiting up to 1.5s for OK");
-            return WaitForToken("OK\r\n", 1500);
+            //Console.WriteLine("Waiting up to 1.1s for OK");
+            return WaitForToken("OK\r\n", 1100);
         }
 
         TMode DetermineMode()
         {
+            if (TryEscapeFromTransparent(0))
+            {
+                return TMode.AT_COMMAND;
+            }
+
             if (IsInBootloaderXMode())
             {
                 return TMode.BOOTLOADER_X;
@@ -224,7 +192,7 @@ namespace RFD.RFD900
                 return TMode.AT_COMMAND;
             }
 
-            if (TryEscapeFromTransparent() || TryEscapeFromTransparent())
+            if (TryEscapeFromTransparent(700) || TryEscapeFromTransparent())
             {
                 return TMode.AT_COMMAND;
             }
@@ -1278,7 +1246,7 @@ namespace RFD.RFD900
             string ATI5QR = UseATI10ToGetATI5QueryResponse(Remote);
             if (ATI5QR == null || (ATI5QR.Length == 0))
             {
-                ATI5QR = ATCClient.DoQueryWithMultiLineResponse(Remote ? "RTI5?" : "ATI5?");
+                ATI5QR = ATCClient.DoQueryWithMultiLineResponse(Remote ? "RTI5?" : "ATI5?", "ATI");
             }
 
             var Result = GetSettings(ATI5QR, Board, ATI5Response, Ranges, out UseRanges);

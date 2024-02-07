@@ -48,7 +48,7 @@ namespace RFDLib.IO
         /// Wait for the given token or timeout on the given serial port
         /// </summary>
         /// <param name="Port">The port.  Must not be null.</param>
-        /// <param name="Token">The token to wait for.  Can be null if not waiting for a token.</param>
+        /// <param name="Token">The token to wait for.  Can be null if not waiting for a token, but waiting for timeout instead</param>
         /// <param name="MaxWait">The maximum amount of time to wait for a response, in milliseconds.</param>
         /// <param name="Result">The data returned.  Never null.</param>
         /// <returns>true if token was received, false if not.</returns>
@@ -79,12 +79,66 @@ namespace RFDLib.IO
                     return true;
                 }
 
-                System.Threading.Thread.Sleep(50);
+                System.Threading.Thread.Sleep(2);
             }
             Port.ReadTimeout = Timeout;
             Result = Temp;
             return false;
         }
+
+        /// <summary>
+        /// Wait for any of these tokens to be received on the port.  
+        /// Wait up to MaxWait milliseconds.  If a token was received, return the array index of
+        /// the token.  If no tokens received, return -1.
+        /// </summary>
+        /// <param name="Tokens">The tokens to wait for.  Must not be null.</param>
+        /// <param name="MaxWait">The max wait time in milliseconds.</param>
+        /// <returns>The token array index of the token received, or -1 is none of the tokens received.</returns>
+        public static int WaitForAnyOfTheseTokens(TSerialPort Port, string[] Tokens, int MaxWait, out string RxData)
+        {
+            System.Diagnostics.Stopwatch SW = new System.Diagnostics.Stopwatch();
+            RxData = "";
+            int Timeout = Port.ReadTimeout;
+            Port.ReadTimeout = MaxWait;
+            SW.Start();
+
+            while (SW.ElapsedMilliseconds < MaxWait)
+            {
+                try
+                {
+                    int Byte;
+                    while (((Byte = Port.ReadChar()) != -1) && (SW.ElapsedMilliseconds < MaxWait))
+                    {
+                        //string x = _Port.ReadExisting();
+                        RxData += ((char)Byte);
+
+                        for (int n = 0; n < Tokens.Length; n++)
+                        {
+                            if (RxData.Contains(Tokens[n]))
+                            {
+                                Port.ReadTimeout = Timeout;
+                                return n;
+                            }
+                        }
+                    }
+
+                    System.Threading.Thread.Sleep(50);
+                }
+                catch (Exception e)
+                {
+                    //System.Diagnostics.Debug.WriteLine(e.Message);
+                    //System.Diagnostics.Debug.WriteLine("No tokens, got " + Temp);
+
+                    return -1;
+                }
+            }
+
+            //Console.WriteLine("Failed to get token, got this instead:  " + Temp);
+
+            Port.ReadTimeout = Timeout;
+            return -1;
+        }
+
     }
 
     public class TSystemIOPortsSerialPort : TSerialPort

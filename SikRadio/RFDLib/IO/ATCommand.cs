@@ -96,11 +96,20 @@ namespace RFDLib.IO.ATCommand
         /// Do a command and wait for a reply.  Returns true if "OK"
         /// </summary>
         /// <param name="Command"></param>
+        /// <param name="WaitForOK">true to wait for a response, or timeout, false to just return true immediately.</param>
         /// <returns></returns>
-        public bool DoCommand(string Command)
+        public bool DoCommand(string Command, bool WaitForOK = true)
         {
-            string Result = DoQuery(Command, true);
-            return Result.Contains("OK");
+            if (WaitForOK)
+            {
+                string Result = DoQuery(Command, true);
+                return Result.Contains("OK");
+            }
+            else
+            {
+                _Port.Write(Command + GetTerminator());
+                return true;
+            }
         }
 
         /// <summary>
@@ -151,22 +160,45 @@ namespace RFDLib.IO.ATCommand
             }
         }
 
-        public string DoQueryWithMultiLineResponse(string Command)
+        /// <summary>
+        /// Query, expecting a multi-line response.  Use the given "terminator" command
+        /// to mark the end of the response, to obviate the need to wait for a timeout
+        /// at the end of the response.
+        /// </summary>
+        /// <param name="Command">The query command.  Must not be null.</param>
+        /// <param name="TerminatorCommand">The terminator command.  Must not be null.</param>
+        /// <returns>The response.  Never null.</returns>
+        public string DoQueryWithMultiLineResponse(string Command, string TerminatorCommand)
         {
             string CompleteCommand = Command + GetTerminator();
             _Port.DiscardInBuffer();
             _Port.Write(CompleteCommand);
+            string CompleteTerminatorCommand = TerminatorCommand + GetTerminator();
+            bool TerminatorSent = false;
 
             if (EliminateEcho(CompleteCommand))
             {
                 string Result = "";
                 string Temp;
                 int Timeout = this.Timeout;
+                int Index;
+
 
                 while (IO.TSerialPort.WaitForToken(_Port, Terminator, Timeout, out Temp))
                 {
+                    if (!TerminatorSent)
+                    {
+                        _Port.Write(CompleteTerminatorCommand);
+                        TerminatorSent = true;
+                    }
+
                     Result += Temp;
-                    Timeout = 500;
+                    Timeout = 500;  
+
+                    if (Result.Contains(GetTerminator() + CompleteTerminatorCommand))
+                    {
+                        break;
+                    }
                 }
 
                 return Result;

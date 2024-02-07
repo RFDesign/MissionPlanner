@@ -1410,6 +1410,27 @@ S15: MAX_WINDOW=131
         }
 
         /// <summary>
+        /// AT command query the modem, if that fails, try the query again.
+        /// If wait for terminator, returns the result minus
+        /// the terminator.
+        /// </summary>
+        /// <param name="Query">The query.  Must not be null.</param>
+        /// <param name="WaitForTerminator">true to wait for terminator.</param>
+        /// <returns>The reply, except for the echo.</returns>
+        string DoQueryWithRetry(string Query, bool WaitForTerminator)
+        {
+            string Result = _Session.ATCClient.DoQuery(Query, WaitForTerminator);
+            if (Result == "")
+            {
+                return _Session.ATCClient.DoQuery(Query, WaitForTerminator);
+            }
+            else
+            {
+                return Result;
+            }
+        }
+
+        /// <summary>
         /// Load settings button evt hdlr
         /// </summary>
         /// <param name="sender"></param>
@@ -1447,7 +1468,7 @@ S15: MAX_WINDOW=131
 
                     bool SomeSettingsInvalid = false;
                     // cleanup
-                    doCommand(Session.Port, "AT&T", false, 1);
+                    Session.ATCClient.DoCommand("AT&T", false);
                     /*Session.ATCClient.Timeout = 100;
                     Session.ATCClient.DoCommand("AT&T");
                     Session.ATCClient.Timeout = 1000;*/
@@ -1459,7 +1480,7 @@ S15: MAX_WINDOW=131
 
                     //Set the text box to show the radio version
                     int multipoint_fix = -1;    //If this radio has multipoint firmware, the index within returned strings to use for returned values, otherwise -1.
-                    var ati_str = doCommand(Session.Port, "ATI").Trim(); //Session.ATCClient.DoQuery("ATI", true);// doCommand(Session.Port, "ATI").Trim();
+                    var ati_str = DoQueryWithRetry("ATI", true).Trim();
                     //System.Diagnostics.Debug.WriteLine(SW.ElapsedMilliseconds.ToString() + ":  Done ATI cmd");
 
                     if (ati_str.StartsWith("["))
@@ -1473,7 +1494,7 @@ S15: MAX_WINDOW=131
                     NumberStyles style = NumberStyles.Any;
 
                     //Get the board frequency.
-                    var freqstring = doCommand(Session.Port, "ATI3").Trim(); //Session.ATCClient.DoQuery("ATI3", true);// doCommand(Session.Port, "ATI3").Trim();
+                    var freqstring = DoQueryWithRetry("ATI3", true).Trim();
                     //System.Diagnostics.Debug.WriteLine(SW.ElapsedMilliseconds.ToString() + ":  Done ATI3 cmd");
 
                     //Some multipoint firmware versions don't reply to ATI command with [n] at start of reply, but they do for ATI3 command, so check for [n] again...
@@ -1499,7 +1520,7 @@ S15: MAX_WINDOW=131
 
                     style = NumberStyles.Any;
 
-                    var boardstring = doCommand(Session.Port, "ATI2").Trim(); //Session.ATCClient.DoQuery("ATI2", true);// doCommand(Session.Port, "ATI2").Trim();
+                    var boardstring = DoQueryWithRetry("ATI2", true);
                     //System.Diagnostics.Debug.WriteLine(SW.ElapsedMilliseconds.ToString() + ":  Done ATI2 cmd");
 
                     if (multipoint_fix > 0)
@@ -1529,16 +1550,8 @@ S15: MAX_WINDOW=131
                         AIR_SPEED.DataSource = new int[] { 4, 64, 125, 250, 500 };
                         RAIR_SPEED.DataSource = new int[] { 4, 64, 125, 250, 500 };
 
-                        if (ATI.Text.Contains("ASYNC"))
-                        {
-                            NETID.DataSource = Range(0, 1, 255);
-                            RNETID.DataSource = Range(0, 1, 255);
-                        }
-                        else
-                        {
-                            NETID.DataSource = Range(0, 1, 65535);
-                            RNETID.DataSource = Range(0, 1, 65535);
-                        }
+                        NETID.DataSource = Range(0, 1, 255);
+                        RNETID.DataSource = Range(0, 1, 255);
 
                         MIN_FREQ.DataSource = Range(902000, 1000, 927000);
                         RMIN_FREQ.DataSource = Range(902000, 1000, 927000);
@@ -1611,7 +1624,7 @@ S15: MAX_WINDOW=131
 
                     if (multipoint_fix == -1)
                     {
-                        var AESKey = doCommand(Session.Port, "AT&E?").Trim(); //Session.ATCClient.DoQuery("AT&E?", true);// doCommand(Session.Port, "AT&E?").Trim();
+                        var AESKey = DoQueryWithRetry("AT&E?", true).Trim();// doCommand(Session.Port, "AT&E?").Trim();
                         if (AESKey.Contains("ERROR"))
                         {
                             AESKEY.Text = "";
@@ -1631,13 +1644,13 @@ S15: MAX_WINDOW=131
                         SetupComboForMavlink(MAVLINK, true);
                     }
 
-                    RSSI.Text = doCommand(Session.Port, "ATI7").Trim(); //Session.ATCClient.DoQuery("ATI7", true);// doCommand(Session.Port, "ATI7").Trim();
+                    RSSI.Text = DoQueryWithRetry("ATI7", true).Trim(); //Session.ATCClient.DoQuery("ATI7", true);// doCommand(Session.Port, "ATI7").Trim();
                     //System.Diagnostics.Debug.WriteLine(SW.ElapsedMilliseconds.ToString() + ":  Done ATI7 cmd");
 
 
                     lbl_status.Text = "Doing Command ATI5";
 
-                    var answer = doCommand(Session.Port, "ATI5", true); //Session.ATCClient.DoQueryWithMultiLineResponse("ATI5");// doCommand(Session.Port, "ATI5", true);
+                    var answer = Session.ATCClient.DoQueryWithMultiLineResponse("ATI5", "ATI");
 
                     bool Junk;
 
@@ -1705,7 +1718,7 @@ S15: MAX_WINDOW=131
 
                     Session.Port.DiscardInBuffer();
 
-                    string RTIText = doCommand(Session.Port, "RTI");
+                    string RTIText = DoQueryWithRetry("RTI", true);
 
                     if ((RTIText.Length < 5) || RTIText.Substring(0, 5) == "ERROR")
                     {
@@ -1725,7 +1738,7 @@ S15: MAX_WINDOW=131
 
                         try
                         {
-                            var resp = doCommand(Session.Port, "RTI2");
+                            var resp = DoQueryWithRetry("RTI2", true);
                             if (resp.Trim() != "")
                                 RTI2.Text =
                                     ((Uploader.Board)Enum.Parse(typeof(Uploader.Board), resp)).ToString();
@@ -1736,7 +1749,7 @@ S15: MAX_WINDOW=131
 
                         if (multipoint_fix == -1)
                         {
-                            var AESKey = doCommand(Session.Port, "RT&E?").Trim();
+                            var AESKey = DoQueryWithRetry("RT&E?", true).Trim();
                             if (AESKey.Contains("ERROR"))
                             {
                                 RAESKEY.Text = "";
@@ -1758,7 +1771,7 @@ S15: MAX_WINDOW=131
 
                         lbl_status.Text = "Doing Command RTI5";
 
-                        answer = doCommand(Session.Port, "RTI5", true);
+                        answer = DoQueryWithRetry("RTI5", true);
 
                         bool UsedAltRanges;
 
