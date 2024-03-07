@@ -35,13 +35,11 @@
             this.RSSI = new System.Windows.Forms.TextBox();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.RRTSCTS = new System.Windows.Forms.CheckBox();
-            this.RMAX_WINDOW = new System.Windows.Forms.ComboBox();
             this.RMAX_FREQ = new System.Windows.Forms.ComboBox();
             this.RNUM_CHANNELS = new System.Windows.Forms.ComboBox();
             this.RDUTY_CYCLE = new System.Windows.Forms.ComboBox();
             this.RLBT_RSSI = new System.Windows.Forms.ComboBox();
             this.RMIN_FREQ = new System.Windows.Forms.ComboBox();
-            this.RMAVLINK = new System.Windows.Forms.ComboBox();
             this.RGPO1_1R_COUT = new System.Windows.Forms.CheckBox();
             this.RGPI1_1R_CIN = new System.Windows.Forms.CheckBox();
             this.RSERIAL_SPEED = new System.Windows.Forms.ComboBox();
@@ -51,7 +49,6 @@
             this.RECC = new System.Windows.Forms.CheckBox();
             this.ROPPRESEND = new System.Windows.Forms.CheckBox();
             this.RTSCTS = new System.Windows.Forms.CheckBox();
-            this.MAX_WINDOW = new System.Windows.Forms.ComboBox();
             this.MAX_FREQ = new System.Windows.Forms.ComboBox();
             this.NUM_CHANNELS = new System.Windows.Forms.ComboBox();
             this.LBT_RSSI = new System.Windows.Forms.ComboBox();
@@ -70,7 +67,14 @@
             this.RENCRYPTION_LEVEL = new System.Windows.Forms.ComboBox();
             this.FSFRAMELOSS = new System.Windows.Forms.ComboBox();
             this.RFSFRAMELOSS = new System.Windows.Forms.ComboBox();
-            this.GPO1_3SBUSIN = new System.Windows.Forms.CheckBox();
+            this.FORMAT = new System.Windows.Forms.TextBox();
+            this.comboSyncMode = new System.Windows.Forms.ComboBox();
+            this.AUXSER_SPEED = new System.Windows.Forms.ComboBox();
+            this.AIR_FRAMELEN = new System.Windows.Forms.ComboBox();
+            this.RSSI_IN_DBM = new System.Windows.Forms.CheckBox();
+            this.RMAX_WINDOW = new System.Windows.Forms.ComboBox();
+            this.RMAVLINK = new System.Windows.Forms.ComboBox();
+            this.MAX_WINDOW = new System.Windows.Forms.ComboBox();
             this.RGPO1_3SBUSIN = new System.Windows.Forms.CheckBox();
             this.GPO1_3STATLED = new System.Windows.Forms.CheckBox();
             this.GPO1_0TXEN485 = new System.Windows.Forms.CheckBox();
@@ -83,6 +87,8 @@
             this.lbl_status = new System.Windows.Forms.Label();
             this.ATI3 = new System.Windows.Forms.TextBox();
             this.groupBoxLocal = new System.Windows.Forms.GroupBox();
+            this.linkLabel_mavlink = new System.Windows.Forms.LinkLabel();
+            this.linkLabel_lowlatency = new System.Windows.Forms.LinkLabel();
             this.label54 = new System.Windows.Forms.Label();
             this.GPO1_3AUXOUT = new System.Windows.Forms.CheckBox();
             this.lblGPO1_3AUXOUT = new System.Windows.Forms.Label();
@@ -92,13 +98,10 @@
             this.GPIO1_1FUNC = new System.Windows.Forms.ComboBox();
             this.lblGPO1_0TXEN485 = new System.Windows.Forms.Label();
             this.lblGPO1_3STATLED = new System.Windows.Forms.Label();
-            this.GPO1_3SBUSOUT = new System.Windows.Forms.ComboBox();
             this.label49 = new System.Windows.Forms.Label();
             this.txtCountry = new System.Windows.Forms.TextBox();
             this.label45 = new System.Windows.Forms.Label();
             this.RATE_FREQBAND = new System.Windows.Forms.ComboBox();
-            this.lblSBUSOUT = new System.Windows.Forms.Label();
-            this.lblSBUSIN = new System.Windows.Forms.Label();
             this.btnRandom = new System.Windows.Forms.Button();
             this.lblRX_ENCAP_METHOD = new System.Windows.Forms.Label();
             this.RX_ENCAP_METHOD = new System.Windows.Forms.ComboBox();
@@ -112,7 +115,6 @@
             this.lblGPI1_1R_CIN = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.FORMAT = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.lblNETID = new System.Windows.Forms.Label();
             this.lblTXPOWER = new System.Windows.Forms.Label();
@@ -133,8 +135,6 @@
             this.label35 = new System.Windows.Forms.Label();
             this.AESKEY = new System.Windows.Forms.TextBox();
             this.lblRTSCTS = new System.Windows.Forms.Label();
-            this.linkLabel_mavlink = new System.Windows.Forms.LinkLabel();
-            this.linkLabel_lowlatency = new System.Windows.Forms.LinkLabel();
             this.lblMAX_WINDOW = new System.Windows.Forms.Label();
             this.lblMIN_FREQ = new System.Windows.Forms.Label();
             this.lblLBT_RSSI = new System.Windows.Forms.Label();
@@ -203,20 +203,49 @@
             this.label10 = new System.Windows.Forms.Label();
             this.dlgSave = new System.Windows.Forms.SaveFileDialog();
             this.dlgOpen = new System.Windows.Forms.OpenFileDialog();
-            this.BUT_loadcustom = new MissionPlanner.Controls.MyButton();
-            this.BUT_resettodefault = new MissionPlanner.Controls.MyButton();
-            this.btnRemoteLoadFromFile = new MissionPlanner.Controls.MyButton();
-            this.btnRemoteSaveToFile = new MissionPlanner.Controls.MyButton();
+            this.radioLocal = new System.Windows.Forms.RadioButton();
+            this.radioRemote = new System.Windows.Forms.RadioButton();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.label4 = new System.Windows.Forms.Label();
+            this.groupFirmware = new System.Windows.Forms.GroupBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.groupRadio = new System.Windows.Forms.GroupBox();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.groupData = new System.Windows.Forms.GroupBox();
+            this.groupGPIO = new System.Windows.Forms.GroupBox();
+            this.GPO1_1SBUSIN = new System.Windows.Forms.CheckBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.GPO1_1SBUSOUT = new System.Windows.Forms.ComboBox();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.BUT_SetPPMFailSafeRemote = new MissionPlanner.Controls.MyButton();
             this.BUT_SetPPMFailSafe = new MissionPlanner.Controls.MyButton();
+            this.btnLoadFromFile = new MissionPlanner.Controls.MyButton();
+            this.btnSaveToFile = new MissionPlanner.Controls.MyButton();
+            this.btnRemoteLoadFromFile = new MissionPlanner.Controls.MyButton();
+            this.btnRemoteSaveToFile = new MissionPlanner.Controls.MyButton();
+            this.BUT_loadcustom = new MissionPlanner.Controls.MyButton();
+            this.BUT_resettodefault = new MissionPlanner.Controls.MyButton();
             this.BUT_savesettings = new MissionPlanner.Controls.MyButton();
             this.BUT_getcurrent = new MissionPlanner.Controls.MyButton();
             this.BUT_upload = new MissionPlanner.Controls.MyButton();
             this.BUT_Syncoptions = new MissionPlanner.Controls.MyButton();
-            this.btnSaveToFile = new MissionPlanner.Controls.MyButton();
-            this.btnLoadFromFile = new MissionPlanner.Controls.MyButton();
-            this.groupBoxLocal.SuspendLayout();
+            this.GPO1_3SBUSIN = new System.Windows.Forms.CheckBox();
+            this.lblSBUSIN = new System.Windows.Forms.Label();
+            this.lblSBUSOUT = new System.Windows.Forms.Label();
+            this.GPO1_3SBUSOUT = new System.Windows.Forms.ComboBox();
             this.groupBoxRemote.SuspendLayout();
+            this.panel1.SuspendLayout();
+            this.groupFirmware.SuspendLayout();
+            this.groupRadio.SuspendLayout();
+            this.groupBox1.SuspendLayout();
+            this.groupData.SuspendLayout();
+            this.groupGPIO.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // Progressbar
@@ -245,45 +274,6 @@
             resources.ApplyResources(this.RRTSCTS, "RRTSCTS");
             this.RRTSCTS.Name = "RRTSCTS";
             this.toolTip1.SetToolTip(this.RRTSCTS, resources.GetString("RRTSCTS.ToolTip"));
-            // 
-            // RMAX_WINDOW
-            // 
-            this.RMAX_WINDOW.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            resources.ApplyResources(this.RMAX_WINDOW, "RMAX_WINDOW");
-            this.RMAX_WINDOW.FormattingEnabled = true;
-            this.RMAX_WINDOW.Items.AddRange(new object[] {
-            resources.GetString("RMAX_WINDOW.Items"),
-            resources.GetString("RMAX_WINDOW.Items1"),
-            resources.GetString("RMAX_WINDOW.Items2"),
-            resources.GetString("RMAX_WINDOW.Items3"),
-            resources.GetString("RMAX_WINDOW.Items4"),
-            resources.GetString("RMAX_WINDOW.Items5"),
-            resources.GetString("RMAX_WINDOW.Items6"),
-            resources.GetString("RMAX_WINDOW.Items7"),
-            resources.GetString("RMAX_WINDOW.Items8"),
-            resources.GetString("RMAX_WINDOW.Items9"),
-            resources.GetString("RMAX_WINDOW.Items10"),
-            resources.GetString("RMAX_WINDOW.Items11"),
-            resources.GetString("RMAX_WINDOW.Items12"),
-            resources.GetString("RMAX_WINDOW.Items13"),
-            resources.GetString("RMAX_WINDOW.Items14"),
-            resources.GetString("RMAX_WINDOW.Items15"),
-            resources.GetString("RMAX_WINDOW.Items16"),
-            resources.GetString("RMAX_WINDOW.Items17"),
-            resources.GetString("RMAX_WINDOW.Items18"),
-            resources.GetString("RMAX_WINDOW.Items19"),
-            resources.GetString("RMAX_WINDOW.Items20"),
-            resources.GetString("RMAX_WINDOW.Items21"),
-            resources.GetString("RMAX_WINDOW.Items22"),
-            resources.GetString("RMAX_WINDOW.Items23"),
-            resources.GetString("RMAX_WINDOW.Items24"),
-            resources.GetString("RMAX_WINDOW.Items25"),
-            resources.GetString("RMAX_WINDOW.Items26"),
-            resources.GetString("RMAX_WINDOW.Items27"),
-            resources.GetString("RMAX_WINDOW.Items28"),
-            resources.GetString("RMAX_WINDOW.Items29"),
-            resources.GetString("RMAX_WINDOW.Items30")});
-            this.RMAX_WINDOW.Name = "RMAX_WINDOW";
             // 
             // RMAX_FREQ
             // 
@@ -383,13 +373,6 @@
             resources.GetString("RMIN_FREQ.Items8")});
             this.RMIN_FREQ.Name = "RMIN_FREQ";
             this.toolTip1.SetToolTip(this.RMIN_FREQ, resources.GetString("RMIN_FREQ.ToolTip"));
-            // 
-            // RMAVLINK
-            // 
-            this.RMAVLINK.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            resources.ApplyResources(this.RMAVLINK, "RMAVLINK");
-            this.RMAVLINK.FormattingEnabled = true;
-            this.RMAVLINK.Name = "RMAVLINK";
             // 
             // RGPO1_1R_COUT
             // 
@@ -516,45 +499,6 @@
             resources.ApplyResources(this.RTSCTS, "RTSCTS");
             this.RTSCTS.Name = "RTSCTS";
             this.toolTip1.SetToolTip(this.RTSCTS, resources.GetString("RTSCTS.ToolTip"));
-            // 
-            // MAX_WINDOW
-            // 
-            this.MAX_WINDOW.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            resources.ApplyResources(this.MAX_WINDOW, "MAX_WINDOW");
-            this.MAX_WINDOW.FormattingEnabled = true;
-            this.MAX_WINDOW.Items.AddRange(new object[] {
-            resources.GetString("MAX_WINDOW.Items"),
-            resources.GetString("MAX_WINDOW.Items1"),
-            resources.GetString("MAX_WINDOW.Items2"),
-            resources.GetString("MAX_WINDOW.Items3"),
-            resources.GetString("MAX_WINDOW.Items4"),
-            resources.GetString("MAX_WINDOW.Items5"),
-            resources.GetString("MAX_WINDOW.Items6"),
-            resources.GetString("MAX_WINDOW.Items7"),
-            resources.GetString("MAX_WINDOW.Items8"),
-            resources.GetString("MAX_WINDOW.Items9"),
-            resources.GetString("MAX_WINDOW.Items10"),
-            resources.GetString("MAX_WINDOW.Items11"),
-            resources.GetString("MAX_WINDOW.Items12"),
-            resources.GetString("MAX_WINDOW.Items13"),
-            resources.GetString("MAX_WINDOW.Items14"),
-            resources.GetString("MAX_WINDOW.Items15"),
-            resources.GetString("MAX_WINDOW.Items16"),
-            resources.GetString("MAX_WINDOW.Items17"),
-            resources.GetString("MAX_WINDOW.Items18"),
-            resources.GetString("MAX_WINDOW.Items19"),
-            resources.GetString("MAX_WINDOW.Items20"),
-            resources.GetString("MAX_WINDOW.Items21"),
-            resources.GetString("MAX_WINDOW.Items22"),
-            resources.GetString("MAX_WINDOW.Items23"),
-            resources.GetString("MAX_WINDOW.Items24"),
-            resources.GetString("MAX_WINDOW.Items25"),
-            resources.GetString("MAX_WINDOW.Items26"),
-            resources.GetString("MAX_WINDOW.Items27"),
-            resources.GetString("MAX_WINDOW.Items28"),
-            resources.GetString("MAX_WINDOW.Items29"),
-            resources.GetString("MAX_WINDOW.Items30")});
-            this.MAX_WINDOW.Name = "MAX_WINDOW";
             // 
             // MAX_FREQ
             // 
@@ -884,10 +828,140 @@
             this.RFSFRAMELOSS.Name = "RFSFRAMELOSS";
             this.toolTip1.SetToolTip(this.RFSFRAMELOSS, resources.GetString("RFSFRAMELOSS.ToolTip"));
             // 
-            // GPO1_3SBUSIN
+            // FORMAT
             // 
-            resources.ApplyResources(this.GPO1_3SBUSIN, "GPO1_3SBUSIN");
-            this.GPO1_3SBUSIN.Name = "GPO1_3SBUSIN";
+            resources.ApplyResources(this.FORMAT, "FORMAT");
+            this.FORMAT.Name = "FORMAT";
+            this.FORMAT.ReadOnly = true;
+            this.toolTip1.SetToolTip(this.FORMAT, resources.GetString("FORMAT.ToolTip"));
+            // 
+            // comboSyncMode
+            // 
+            this.comboSyncMode.FormattingEnabled = true;
+            this.comboSyncMode.Items.AddRange(new object[] {
+            resources.GetString("comboSyncMode.Items"),
+            resources.GetString("comboSyncMode.Items1"),
+            resources.GetString("comboSyncMode.Items2")});
+            resources.ApplyResources(this.comboSyncMode, "comboSyncMode");
+            this.comboSyncMode.Name = "comboSyncMode";
+            this.toolTip1.SetToolTip(this.comboSyncMode, resources.GetString("comboSyncMode.ToolTip"));
+            // 
+            // AUXSER_SPEED
+            // 
+            this.AUXSER_SPEED.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            resources.ApplyResources(this.AUXSER_SPEED, "AUXSER_SPEED");
+            this.AUXSER_SPEED.FormattingEnabled = true;
+            this.AUXSER_SPEED.Items.AddRange(new object[] {
+            resources.GetString("AUXSER_SPEED.Items"),
+            resources.GetString("AUXSER_SPEED.Items1"),
+            resources.GetString("AUXSER_SPEED.Items2"),
+            resources.GetString("AUXSER_SPEED.Items3"),
+            resources.GetString("AUXSER_SPEED.Items4"),
+            resources.GetString("AUXSER_SPEED.Items5"),
+            resources.GetString("AUXSER_SPEED.Items6"),
+            resources.GetString("AUXSER_SPEED.Items7"),
+            resources.GetString("AUXSER_SPEED.Items8")});
+            this.AUXSER_SPEED.Name = "AUXSER_SPEED";
+            this.toolTip1.SetToolTip(this.AUXSER_SPEED, resources.GetString("AUXSER_SPEED.ToolTip"));
+            // 
+            // AIR_FRAMELEN
+            // 
+            this.AIR_FRAMELEN.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            resources.ApplyResources(this.AIR_FRAMELEN, "AIR_FRAMELEN");
+            this.AIR_FRAMELEN.FormattingEnabled = true;
+            this.AIR_FRAMELEN.Name = "AIR_FRAMELEN";
+            this.toolTip1.SetToolTip(this.AIR_FRAMELEN, resources.GetString("AIR_FRAMELEN.ToolTip"));
+            // 
+            // RSSI_IN_DBM
+            // 
+            resources.ApplyResources(this.RSSI_IN_DBM, "RSSI_IN_DBM");
+            this.RSSI_IN_DBM.Name = "RSSI_IN_DBM";
+            this.toolTip1.SetToolTip(this.RSSI_IN_DBM, resources.GetString("RSSI_IN_DBM.ToolTip"));
+            // 
+            // RMAX_WINDOW
+            // 
+            this.RMAX_WINDOW.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            resources.ApplyResources(this.RMAX_WINDOW, "RMAX_WINDOW");
+            this.RMAX_WINDOW.FormattingEnabled = true;
+            this.RMAX_WINDOW.Items.AddRange(new object[] {
+            resources.GetString("RMAX_WINDOW.Items"),
+            resources.GetString("RMAX_WINDOW.Items1"),
+            resources.GetString("RMAX_WINDOW.Items2"),
+            resources.GetString("RMAX_WINDOW.Items3"),
+            resources.GetString("RMAX_WINDOW.Items4"),
+            resources.GetString("RMAX_WINDOW.Items5"),
+            resources.GetString("RMAX_WINDOW.Items6"),
+            resources.GetString("RMAX_WINDOW.Items7"),
+            resources.GetString("RMAX_WINDOW.Items8"),
+            resources.GetString("RMAX_WINDOW.Items9"),
+            resources.GetString("RMAX_WINDOW.Items10"),
+            resources.GetString("RMAX_WINDOW.Items11"),
+            resources.GetString("RMAX_WINDOW.Items12"),
+            resources.GetString("RMAX_WINDOW.Items13"),
+            resources.GetString("RMAX_WINDOW.Items14"),
+            resources.GetString("RMAX_WINDOW.Items15"),
+            resources.GetString("RMAX_WINDOW.Items16"),
+            resources.GetString("RMAX_WINDOW.Items17"),
+            resources.GetString("RMAX_WINDOW.Items18"),
+            resources.GetString("RMAX_WINDOW.Items19"),
+            resources.GetString("RMAX_WINDOW.Items20"),
+            resources.GetString("RMAX_WINDOW.Items21"),
+            resources.GetString("RMAX_WINDOW.Items22"),
+            resources.GetString("RMAX_WINDOW.Items23"),
+            resources.GetString("RMAX_WINDOW.Items24"),
+            resources.GetString("RMAX_WINDOW.Items25"),
+            resources.GetString("RMAX_WINDOW.Items26"),
+            resources.GetString("RMAX_WINDOW.Items27"),
+            resources.GetString("RMAX_WINDOW.Items28"),
+            resources.GetString("RMAX_WINDOW.Items29"),
+            resources.GetString("RMAX_WINDOW.Items30")});
+            this.RMAX_WINDOW.Name = "RMAX_WINDOW";
+            // 
+            // RMAVLINK
+            // 
+            this.RMAVLINK.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            resources.ApplyResources(this.RMAVLINK, "RMAVLINK");
+            this.RMAVLINK.FormattingEnabled = true;
+            this.RMAVLINK.Name = "RMAVLINK";
+            // 
+            // MAX_WINDOW
+            // 
+            this.MAX_WINDOW.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            resources.ApplyResources(this.MAX_WINDOW, "MAX_WINDOW");
+            this.MAX_WINDOW.FormattingEnabled = true;
+            this.MAX_WINDOW.Items.AddRange(new object[] {
+            resources.GetString("MAX_WINDOW.Items"),
+            resources.GetString("MAX_WINDOW.Items1"),
+            resources.GetString("MAX_WINDOW.Items2"),
+            resources.GetString("MAX_WINDOW.Items3"),
+            resources.GetString("MAX_WINDOW.Items4"),
+            resources.GetString("MAX_WINDOW.Items5"),
+            resources.GetString("MAX_WINDOW.Items6"),
+            resources.GetString("MAX_WINDOW.Items7"),
+            resources.GetString("MAX_WINDOW.Items8"),
+            resources.GetString("MAX_WINDOW.Items9"),
+            resources.GetString("MAX_WINDOW.Items10"),
+            resources.GetString("MAX_WINDOW.Items11"),
+            resources.GetString("MAX_WINDOW.Items12"),
+            resources.GetString("MAX_WINDOW.Items13"),
+            resources.GetString("MAX_WINDOW.Items14"),
+            resources.GetString("MAX_WINDOW.Items15"),
+            resources.GetString("MAX_WINDOW.Items16"),
+            resources.GetString("MAX_WINDOW.Items17"),
+            resources.GetString("MAX_WINDOW.Items18"),
+            resources.GetString("MAX_WINDOW.Items19"),
+            resources.GetString("MAX_WINDOW.Items20"),
+            resources.GetString("MAX_WINDOW.Items21"),
+            resources.GetString("MAX_WINDOW.Items22"),
+            resources.GetString("MAX_WINDOW.Items23"),
+            resources.GetString("MAX_WINDOW.Items24"),
+            resources.GetString("MAX_WINDOW.Items25"),
+            resources.GetString("MAX_WINDOW.Items26"),
+            resources.GetString("MAX_WINDOW.Items27"),
+            resources.GetString("MAX_WINDOW.Items28"),
+            resources.GetString("MAX_WINDOW.Items29"),
+            resources.GetString("MAX_WINDOW.Items30")});
+            this.MAX_WINDOW.Name = "MAX_WINDOW";
             // 
             // RGPO1_3SBUSIN
             // 
@@ -951,97 +1025,21 @@
             // 
             // groupBoxLocal
             // 
-            this.groupBoxLocal.Controls.Add(this.btnLoadFromFile);
-            this.groupBoxLocal.Controls.Add(this.btnSaveToFile);
-            this.groupBoxLocal.Controls.Add(this.label54);
-            this.groupBoxLocal.Controls.Add(this.FSFRAMELOSS);
-            this.groupBoxLocal.Controls.Add(this.GPO1_3AUXOUT);
-            this.groupBoxLocal.Controls.Add(this.lblGPO1_3AUXOUT);
-            this.groupBoxLocal.Controls.Add(this.GPI1_2AUXIN);
-            this.groupBoxLocal.Controls.Add(this.lblGPI1_2AUXIN);
-            this.groupBoxLocal.Controls.Add(this.lblGPIO1_1FUNC);
-            this.groupBoxLocal.Controls.Add(this.GPIO1_1FUNC);
-            this.groupBoxLocal.Controls.Add(this.ENCRYPTION_LEVEL);
-            this.groupBoxLocal.Controls.Add(this.GPO1_0TXEN485);
-            this.groupBoxLocal.Controls.Add(this.lblGPO1_0TXEN485);
-            this.groupBoxLocal.Controls.Add(this.GPO1_3STATLED);
-            this.groupBoxLocal.Controls.Add(this.lblGPO1_3STATLED);
-            this.groupBoxLocal.Controls.Add(this.GPO1_3SBUSOUT);
-            this.groupBoxLocal.Controls.Add(this.label49);
-            this.groupBoxLocal.Controls.Add(this.BUT_SetPPMFailSafe);
-            this.groupBoxLocal.Controls.Add(this.txtCountry);
-            this.groupBoxLocal.Controls.Add(this.label45);
-            this.groupBoxLocal.Controls.Add(this.RATE_FREQBAND);
-            this.groupBoxLocal.Controls.Add(this.lblSBUSOUT);
-            this.groupBoxLocal.Controls.Add(this.lblSBUSIN);
-            this.groupBoxLocal.Controls.Add(this.GPO1_3SBUSIN);
-            this.groupBoxLocal.Controls.Add(this.btnRandom);
-            this.groupBoxLocal.Controls.Add(this.lblRX_ENCAP_METHOD);
-            this.groupBoxLocal.Controls.Add(this.RX_ENCAP_METHOD);
-            this.groupBoxLocal.Controls.Add(this.lblTX_ENCAP_METHOD);
-            this.groupBoxLocal.Controls.Add(this.TX_ENCAP_METHOD);
-            this.groupBoxLocal.Controls.Add(this.lblDESTID);
-            this.groupBoxLocal.Controls.Add(this.lblNODEID);
-            this.groupBoxLocal.Controls.Add(this.DESTID);
-            this.groupBoxLocal.Controls.Add(this.NODEID);
-            this.groupBoxLocal.Controls.Add(this.lblGPO1_1R_COUT);
-            this.groupBoxLocal.Controls.Add(this.GPO1_1R_COUT);
-            this.groupBoxLocal.Controls.Add(this.lblGPI1_1R_CIN);
-            this.groupBoxLocal.Controls.Add(this.GPI1_1R_CIN);
-            this.groupBoxLocal.Controls.Add(this.MAVLINK);
-            this.groupBoxLocal.Controls.Add(this.label2);
-            this.groupBoxLocal.Controls.Add(this.SERIAL_SPEED);
-            this.groupBoxLocal.Controls.Add(this.label1);
-            this.groupBoxLocal.Controls.Add(this.FORMAT);
-            this.groupBoxLocal.Controls.Add(this.AIR_SPEED);
-            this.groupBoxLocal.Controls.Add(this.label3);
-            this.groupBoxLocal.Controls.Add(this.NETID);
-            this.groupBoxLocal.Controls.Add(this.lblNETID);
-            this.groupBoxLocal.Controls.Add(this.TXPOWER);
-            this.groupBoxLocal.Controls.Add(this.lblTXPOWER);
-            this.groupBoxLocal.Controls.Add(this.ECC);
-            this.groupBoxLocal.Controls.Add(this.lblECC);
-            this.groupBoxLocal.Controls.Add(this.lblOPPRESEND);
-            this.groupBoxLocal.Controls.Add(this.OPPRESEND);
-            this.groupBoxLocal.Controls.Add(this.lblMAVLINK);
-            this.groupBoxLocal.Controls.Add(this.lblANT_MODE);
-            this.groupBoxLocal.Controls.Add(this.ANT_MODE);
-            this.groupBoxLocal.Controls.Add(this.lblSER_BRK_DETMS);
-            this.groupBoxLocal.Controls.Add(this.lblGLOBAL_RETRIES);
-            this.groupBoxLocal.Controls.Add(this.lblMAX_RETRIES);
-            this.groupBoxLocal.Controls.Add(this.SER_BRK_DETMS);
-            this.groupBoxLocal.Controls.Add(this.GLOBAL_RETRIES);
-            this.groupBoxLocal.Controls.Add(this.MAX_RETRIES);
-            this.groupBoxLocal.Controls.Add(this.MAX_DATA);
-            this.groupBoxLocal.Controls.Add(this.lblMAX_DATA);
-            this.groupBoxLocal.Controls.Add(this.lblENCRYPTION_LEVEL);
-            this.groupBoxLocal.Controls.Add(this.label35);
-            this.groupBoxLocal.Controls.Add(this.AESKEY);
-            this.groupBoxLocal.Controls.Add(this.RTSCTS);
-            this.groupBoxLocal.Controls.Add(this.lblRTSCTS);
-            this.groupBoxLocal.Controls.Add(this.linkLabel_mavlink);
-            this.groupBoxLocal.Controls.Add(this.linkLabel_lowlatency);
-            this.groupBoxLocal.Controls.Add(this.lblMAX_WINDOW);
-            this.groupBoxLocal.Controls.Add(this.MAX_WINDOW);
-            this.groupBoxLocal.Controls.Add(this.lblMIN_FREQ);
-            this.groupBoxLocal.Controls.Add(this.MAX_FREQ);
-            this.groupBoxLocal.Controls.Add(this.NUM_CHANNELS);
-            this.groupBoxLocal.Controls.Add(this.lblLBT_RSSI);
-            this.groupBoxLocal.Controls.Add(this.LBT_RSSI);
-            this.groupBoxLocal.Controls.Add(this.lblDUTY_CYCLE);
-            this.groupBoxLocal.Controls.Add(this.MIN_FREQ);
-            this.groupBoxLocal.Controls.Add(this.lblNUM_CHANNELS);
-            this.groupBoxLocal.Controls.Add(this.lblMAX_FREQ);
-            this.groupBoxLocal.Controls.Add(this.DUTY_CYCLE);
-            this.groupBoxLocal.Controls.Add(this.ATI2);
-            this.groupBoxLocal.Controls.Add(this.ATI3);
-            this.groupBoxLocal.Controls.Add(this.label11);
-            this.groupBoxLocal.Controls.Add(this.ATI);
-            this.groupBoxLocal.Controls.Add(this.RSSI);
-            this.groupBoxLocal.Controls.Add(this.label12);
             resources.ApplyResources(this.groupBoxLocal, "groupBoxLocal");
             this.groupBoxLocal.Name = "groupBoxLocal";
             this.groupBoxLocal.TabStop = false;
+            // 
+            // linkLabel_mavlink
+            // 
+            resources.ApplyResources(this.linkLabel_mavlink, "linkLabel_mavlink");
+            this.linkLabel_mavlink.Name = "linkLabel_mavlink";
+            this.linkLabel_mavlink.TabStop = true;
+            // 
+            // linkLabel_lowlatency
+            // 
+            resources.ApplyResources(this.linkLabel_lowlatency, "linkLabel_lowlatency");
+            this.linkLabel_lowlatency.Name = "linkLabel_lowlatency";
+            this.linkLabel_lowlatency.TabStop = true;
             // 
             // label54
             // 
@@ -1090,13 +1088,6 @@
             resources.ApplyResources(this.lblGPO1_3STATLED, "lblGPO1_3STATLED");
             this.lblGPO1_3STATLED.Name = "lblGPO1_3STATLED";
             // 
-            // GPO1_3SBUSOUT
-            // 
-            this.GPO1_3SBUSOUT.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            resources.ApplyResources(this.GPO1_3SBUSOUT, "GPO1_3SBUSOUT");
-            this.GPO1_3SBUSOUT.FormattingEnabled = true;
-            this.GPO1_3SBUSOUT.Name = "GPO1_3SBUSOUT";
-            // 
             // label49
             // 
             resources.ApplyResources(this.label49, "label49");
@@ -1119,16 +1110,6 @@
             resources.ApplyResources(this.RATE_FREQBAND, "RATE_FREQBAND");
             this.RATE_FREQBAND.FormattingEnabled = true;
             this.RATE_FREQBAND.Name = "RATE_FREQBAND";
-            // 
-            // lblSBUSOUT
-            // 
-            resources.ApplyResources(this.lblSBUSOUT, "lblSBUSOUT");
-            this.lblSBUSOUT.Name = "lblSBUSOUT";
-            // 
-            // lblSBUSIN
-            // 
-            resources.ApplyResources(this.lblSBUSIN, "lblSBUSIN");
-            this.lblSBUSIN.Name = "lblSBUSIN";
             // 
             // btnRandom
             // 
@@ -1204,12 +1185,6 @@
             // 
             resources.ApplyResources(this.label1, "label1");
             this.label1.Name = "label1";
-            // 
-            // FORMAT
-            // 
-            resources.ApplyResources(this.FORMAT, "FORMAT");
-            this.FORMAT.Name = "FORMAT";
-            this.FORMAT.ReadOnly = true;
             // 
             // label3
             // 
@@ -1311,27 +1286,15 @@
             resources.ApplyResources(this.label35, "label35");
             this.label35.Name = "label35";
             // 
-            // txt_aeskeyraeskey
+            // AESKEY
             // 
-            resources.ApplyResources(this.AESKEY, "txt_aeskey");
+            resources.ApplyResources(this.AESKEY, "AESKEY");
             this.AESKEY.Name = "AESKEY";
             // 
             // lblRTSCTS
             // 
             resources.ApplyResources(this.lblRTSCTS, "lblRTSCTS");
             this.lblRTSCTS.Name = "lblRTSCTS";
-            // 
-            // linkLabel_mavlink
-            // 
-            resources.ApplyResources(this.linkLabel_mavlink, "linkLabel_mavlink");
-            this.linkLabel_mavlink.Name = "linkLabel_mavlink";
-            this.linkLabel_mavlink.TabStop = true;
-            // 
-            // linkLabel_lowlatency
-            // 
-            resources.ApplyResources(this.linkLabel_lowlatency, "linkLabel_lowlatency");
-            this.linkLabel_lowlatency.Name = "linkLabel_lowlatency";
-            this.linkLabel_lowlatency.TabStop = true;
             // 
             // lblMAX_WINDOW
             // 
@@ -1713,9 +1676,9 @@
             resources.ApplyResources(this.label38, "label38");
             this.label38.Name = "label38";
             // 
-            // txt_Raeskey
+            // RAESKEY
             // 
-            resources.ApplyResources(this.RAESKEY, "txt_Raeskey");
+            resources.ApplyResources(this.RAESKEY, "RAESKEY");
             this.RAESKEY.Name = "RAESKEY";
             // 
             // lblRENCRYPTION_LEVEL
@@ -1784,33 +1747,214 @@
             this.dlgOpen.FileName = "*.ini";
             resources.ApplyResources(this.dlgOpen, "dlgOpen");
             // 
-            // BUT_loadcustom
+            // radioLocal
             // 
-            resources.ApplyResources(this.BUT_loadcustom, "BUT_loadcustom");
-            this.BUT_loadcustom.Name = "BUT_loadcustom";
-            this.BUT_loadcustom.UseVisualStyleBackColor = true;
-            this.BUT_loadcustom.Click += new System.EventHandler(this.BUT_loadcustom_Click);
+            resources.ApplyResources(this.radioLocal, "radioLocal");
+            this.radioLocal.Name = "radioLocal";
+            this.radioLocal.TabStop = true;
+            this.radioLocal.UseVisualStyleBackColor = true;
             // 
-            // BUT_resettodefault
+            // radioRemote
             // 
-            resources.ApplyResources(this.BUT_resettodefault, "BUT_resettodefault");
-            this.BUT_resettodefault.Name = "BUT_resettodefault";
-            this.BUT_resettodefault.UseVisualStyleBackColor = true;
-            this.BUT_resettodefault.Click += new System.EventHandler(this.BUT_resettodefault_Click);
+            resources.ApplyResources(this.radioRemote, "radioRemote");
+            this.radioRemote.Name = "radioRemote";
+            this.radioRemote.TabStop = true;
+            this.radioRemote.UseVisualStyleBackColor = true;
             // 
-            // btnRemoteLoadFromFile
+            // panel1
             // 
-            resources.ApplyResources(this.btnRemoteLoadFromFile, "btnRemoteLoadFromFile");
-            this.btnRemoteLoadFromFile.Name = "btnRemoteLoadFromFile";
-            this.btnRemoteLoadFromFile.UseVisualStyleBackColor = true;
-            this.btnRemoteLoadFromFile.Click += new System.EventHandler(this.btnRemoteLoadFromFile_Click);
+            this.panel1.Controls.Add(this.label4);
+            this.panel1.Controls.Add(this.comboSyncMode);
+            this.panel1.Controls.Add(this.radioLocal);
+            this.panel1.Controls.Add(this.radioRemote);
+            this.panel1.Controls.Add(this.label12);
+            this.panel1.Controls.Add(this.RSSI);
+            resources.ApplyResources(this.panel1, "panel1");
+            this.panel1.Name = "panel1";
             // 
-            // btnRemoteSaveToFile
+            // label4
             // 
-            resources.ApplyResources(this.btnRemoteSaveToFile, "btnRemoteSaveToFile");
-            this.btnRemoteSaveToFile.Name = "btnRemoteSaveToFile";
-            this.btnRemoteSaveToFile.UseVisualStyleBackColor = true;
-            this.btnRemoteSaveToFile.Click += new System.EventHandler(this.btnRemoteSaveToFile_Click);
+            resources.ApplyResources(this.label4, "label4");
+            this.label4.Name = "label4";
+            // 
+            // groupFirmware
+            // 
+            this.groupFirmware.Controls.Add(this.label7);
+            this.groupFirmware.Controls.Add(this.label6);
+            this.groupFirmware.Controls.Add(this.BUT_loadcustom);
+            this.groupFirmware.Controls.Add(this.ATI2);
+            this.groupFirmware.Controls.Add(this.ATI);
+            this.groupFirmware.Controls.Add(this.label11);
+            this.groupFirmware.Controls.Add(this.ATI3);
+            this.groupFirmware.Controls.Add(this.txtCountry);
+            this.groupFirmware.Controls.Add(this.label49);
+            this.groupFirmware.Controls.Add(this.label2);
+            this.groupFirmware.Controls.Add(this.Progressbar);
+            this.groupFirmware.Controls.Add(this.FORMAT);
+            resources.ApplyResources(this.groupFirmware, "groupFirmware");
+            this.groupFirmware.Name = "groupFirmware";
+            this.groupFirmware.TabStop = false;
+            // 
+            // label7
+            // 
+            resources.ApplyResources(this.label7, "label7");
+            this.label7.Name = "label7";
+            // 
+            // label6
+            // 
+            resources.ApplyResources(this.label6, "label6");
+            this.label6.Name = "label6";
+            // 
+            // groupRadio
+            // 
+            this.groupRadio.Controls.Add(this.RSSI_IN_DBM);
+            this.groupRadio.Controls.Add(this.label15);
+            this.groupRadio.Controls.Add(this.AIR_FRAMELEN);
+            this.groupRadio.Controls.Add(this.label14);
+            this.groupRadio.Controls.Add(this.MAVLINK);
+            this.groupRadio.Controls.Add(this.lblMAVLINK);
+            this.groupRadio.Controls.Add(this.MAX_WINDOW);
+            this.groupRadio.Controls.Add(this.LBT_RSSI);
+            this.groupRadio.Controls.Add(this.lblMAX_WINDOW);
+            this.groupRadio.Controls.Add(this.lblMIN_FREQ);
+            this.groupRadio.Controls.Add(this.lblLBT_RSSI);
+            this.groupRadio.Controls.Add(this.lblTXPOWER);
+            this.groupRadio.Controls.Add(this.DUTY_CYCLE);
+            this.groupRadio.Controls.Add(this.TXPOWER);
+            this.groupRadio.Controls.Add(this.lblMAX_FREQ);
+            this.groupRadio.Controls.Add(this.lblNETID);
+            this.groupRadio.Controls.Add(this.lblNUM_CHANNELS);
+            this.groupRadio.Controls.Add(this.NETID);
+            this.groupRadio.Controls.Add(this.MIN_FREQ);
+            this.groupRadio.Controls.Add(this.lblDUTY_CYCLE);
+            this.groupRadio.Controls.Add(this.NUM_CHANNELS);
+            this.groupRadio.Controls.Add(this.AIR_SPEED);
+            this.groupRadio.Controls.Add(this.MAX_FREQ);
+            this.groupRadio.Controls.Add(this.label45);
+            this.groupRadio.Controls.Add(this.label3);
+            this.groupRadio.Controls.Add(this.RATE_FREQBAND);
+            this.groupRadio.Controls.Add(this.ANT_MODE);
+            this.groupRadio.Controls.Add(this.lblANT_MODE);
+            resources.ApplyResources(this.groupRadio, "groupRadio");
+            this.groupRadio.Name = "groupRadio";
+            this.groupRadio.TabStop = false;
+            // 
+            // label15
+            // 
+            resources.ApplyResources(this.label15, "label15");
+            this.label15.Name = "label15";
+            // 
+            // label14
+            // 
+            resources.ApplyResources(this.label14, "label14");
+            this.label14.Name = "label14";
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.ECC);
+            this.groupBox1.Controls.Add(this.label5);
+            this.groupBox1.Controls.Add(this.AUXSER_SPEED);
+            this.groupBox1.Controls.Add(this.lblECC);
+            this.groupBox1.Controls.Add(this.lblRTSCTS);
+            this.groupBox1.Controls.Add(this.SERIAL_SPEED);
+            this.groupBox1.Controls.Add(this.RTSCTS);
+            this.groupBox1.Controls.Add(this.label1);
+            resources.ApplyResources(this.groupBox1, "groupBox1");
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.TabStop = false;
+            // 
+            // label5
+            // 
+            resources.ApplyResources(this.label5, "label5");
+            this.label5.Name = "label5";
+            // 
+            // groupData
+            // 
+            this.groupData.Controls.Add(this.lblTX_ENCAP_METHOD);
+            this.groupData.Controls.Add(this.lblMAX_DATA);
+            this.groupData.Controls.Add(this.MAX_DATA);
+            this.groupData.Controls.Add(this.MAX_RETRIES);
+            this.groupData.Controls.Add(this.GLOBAL_RETRIES);
+            this.groupData.Controls.Add(this.lblSER_BRK_DETMS);
+            this.groupData.Controls.Add(this.SER_BRK_DETMS);
+            this.groupData.Controls.Add(this.lblRX_ENCAP_METHOD);
+            this.groupData.Controls.Add(this.OPPRESEND);
+            this.groupData.Controls.Add(this.lblMAX_RETRIES);
+            this.groupData.Controls.Add(this.lblOPPRESEND);
+            this.groupData.Controls.Add(this.RX_ENCAP_METHOD);
+            this.groupData.Controls.Add(this.lblGLOBAL_RETRIES);
+            this.groupData.Controls.Add(this.TX_ENCAP_METHOD);
+            this.groupData.Controls.Add(this.DESTID);
+            this.groupData.Controls.Add(this.lblDESTID);
+            this.groupData.Controls.Add(this.NODEID);
+            this.groupData.Controls.Add(this.lblNODEID);
+            resources.ApplyResources(this.groupData, "groupData");
+            this.groupData.Name = "groupData";
+            this.groupData.TabStop = false;
+            // 
+            // groupGPIO
+            // 
+            this.groupGPIO.Controls.Add(this.GPO1_3SBUSIN);
+            this.groupGPIO.Controls.Add(this.lblSBUSIN);
+            this.groupGPIO.Controls.Add(this.lblSBUSOUT);
+            this.groupGPIO.Controls.Add(this.GPO1_3SBUSOUT);
+            this.groupGPIO.Controls.Add(this.BUT_SetPPMFailSafe);
+            this.groupGPIO.Controls.Add(this.FSFRAMELOSS);
+            this.groupGPIO.Controls.Add(this.label54);
+            this.groupGPIO.Controls.Add(this.GPO1_1SBUSIN);
+            this.groupGPIO.Controls.Add(this.label13);
+            this.groupGPIO.Controls.Add(this.label8);
+            this.groupGPIO.Controls.Add(this.GPO1_1SBUSOUT);
+            this.groupGPIO.Controls.Add(this.lblGPI1_1R_CIN);
+            this.groupGPIO.Controls.Add(this.GPI1_1R_CIN);
+            this.groupGPIO.Controls.Add(this.GPO1_1R_COUT);
+            this.groupGPIO.Controls.Add(this.lblGPO1_1R_COUT);
+            this.groupGPIO.Controls.Add(this.lblGPIO1_1FUNC);
+            this.groupGPIO.Controls.Add(this.GPO1_3AUXOUT);
+            this.groupGPIO.Controls.Add(this.GPIO1_1FUNC);
+            this.groupGPIO.Controls.Add(this.lblGPO1_3AUXOUT);
+            this.groupGPIO.Controls.Add(this.GPO1_0TXEN485);
+            this.groupGPIO.Controls.Add(this.lblGPO1_0TXEN485);
+            this.groupGPIO.Controls.Add(this.GPI1_2AUXIN);
+            this.groupGPIO.Controls.Add(this.lblGPO1_3STATLED);
+            this.groupGPIO.Controls.Add(this.lblGPI1_2AUXIN);
+            this.groupGPIO.Controls.Add(this.GPO1_3STATLED);
+            resources.ApplyResources(this.groupGPIO, "groupGPIO");
+            this.groupGPIO.Name = "groupGPIO";
+            this.groupGPIO.TabStop = false;
+            // 
+            // GPO1_1SBUSIN
+            // 
+            resources.ApplyResources(this.GPO1_1SBUSIN, "GPO1_1SBUSIN");
+            this.GPO1_1SBUSIN.Name = "GPO1_1SBUSIN";
+            // 
+            // label13
+            // 
+            resources.ApplyResources(this.label13, "label13");
+            this.label13.Name = "label13";
+            // 
+            // label8
+            // 
+            resources.ApplyResources(this.label8, "label8");
+            this.label8.Name = "label8";
+            // 
+            // GPO1_1SBUSOUT
+            // 
+            this.GPO1_1SBUSOUT.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            resources.ApplyResources(this.GPO1_1SBUSOUT, "GPO1_1SBUSOUT");
+            this.GPO1_1SBUSOUT.FormattingEnabled = true;
+            this.GPO1_1SBUSOUT.Name = "GPO1_1SBUSOUT";
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.AESKEY);
+            this.groupBox3.Controls.Add(this.label35);
+            this.groupBox3.Controls.Add(this.ENCRYPTION_LEVEL);
+            this.groupBox3.Controls.Add(this.lblENCRYPTION_LEVEL);
+            this.groupBox3.Controls.Add(this.btnRandom);
+            resources.ApplyResources(this.groupBox3, "groupBox3");
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.TabStop = false;
             // 
             // BUT_SetPPMFailSafeRemote
             // 
@@ -1827,6 +1971,48 @@
             this.toolTip1.SetToolTip(this.BUT_SetPPMFailSafe, resources.GetString("BUT_SetPPMFailSafe.ToolTip"));
             this.BUT_SetPPMFailSafe.UseVisualStyleBackColor = true;
             this.BUT_SetPPMFailSafe.Click += new System.EventHandler(this.BUT_SetPPMFailSafe_Click);
+            // 
+            // btnLoadFromFile
+            // 
+            resources.ApplyResources(this.btnLoadFromFile, "btnLoadFromFile");
+            this.btnLoadFromFile.Name = "btnLoadFromFile";
+            this.btnLoadFromFile.UseVisualStyleBackColor = true;
+            this.btnLoadFromFile.Click += new System.EventHandler(this.btnLoadFromFile_Click);
+            // 
+            // btnSaveToFile
+            // 
+            resources.ApplyResources(this.btnSaveToFile, "btnSaveToFile");
+            this.btnSaveToFile.Name = "btnSaveToFile";
+            this.btnSaveToFile.UseVisualStyleBackColor = true;
+            this.btnSaveToFile.Click += new System.EventHandler(this.btnSaveToFile_Click);
+            // 
+            // btnRemoteLoadFromFile
+            // 
+            resources.ApplyResources(this.btnRemoteLoadFromFile, "btnRemoteLoadFromFile");
+            this.btnRemoteLoadFromFile.Name = "btnRemoteLoadFromFile";
+            this.btnRemoteLoadFromFile.UseVisualStyleBackColor = true;
+            this.btnRemoteLoadFromFile.Click += new System.EventHandler(this.btnRemoteLoadFromFile_Click);
+            // 
+            // btnRemoteSaveToFile
+            // 
+            resources.ApplyResources(this.btnRemoteSaveToFile, "btnRemoteSaveToFile");
+            this.btnRemoteSaveToFile.Name = "btnRemoteSaveToFile";
+            this.btnRemoteSaveToFile.UseVisualStyleBackColor = true;
+            this.btnRemoteSaveToFile.Click += new System.EventHandler(this.btnRemoteSaveToFile_Click);
+            // 
+            // BUT_loadcustom
+            // 
+            resources.ApplyResources(this.BUT_loadcustom, "BUT_loadcustom");
+            this.BUT_loadcustom.Name = "BUT_loadcustom";
+            this.BUT_loadcustom.UseVisualStyleBackColor = true;
+            this.BUT_loadcustom.Click += new System.EventHandler(this.BUT_loadcustom_Click);
+            // 
+            // BUT_resettodefault
+            // 
+            resources.ApplyResources(this.BUT_resettodefault, "BUT_resettodefault");
+            this.BUT_resettodefault.Name = "BUT_resettodefault";
+            this.BUT_resettodefault.UseVisualStyleBackColor = true;
+            this.BUT_resettodefault.Click += new System.EventHandler(this.BUT_resettodefault_Click);
             // 
             // BUT_savesettings
             // 
@@ -1856,30 +2042,47 @@
             this.BUT_Syncoptions.UseVisualStyleBackColor = true;
             this.BUT_Syncoptions.Click += new System.EventHandler(this.BUT_Syncoptions_Click);
             // 
-            // btnSaveToFile
+            // GPO1_3SBUSIN
             // 
-            resources.ApplyResources(this.btnSaveToFile, "btnSaveToFile");
-            this.btnSaveToFile.Name = "btnSaveToFile";
-            this.btnSaveToFile.UseVisualStyleBackColor = true;
-            this.btnSaveToFile.Click += new System.EventHandler(this.btnSaveToFile_Click);
+            resources.ApplyResources(this.GPO1_3SBUSIN, "GPO1_3SBUSIN");
+            this.GPO1_3SBUSIN.Name = "GPO1_3SBUSIN";
             // 
-            // btnLoadFromFile
+            // lblSBUSIN
             // 
-            resources.ApplyResources(this.btnLoadFromFile, "btnLoadFromFile");
-            this.btnLoadFromFile.Name = "btnLoadFromFile";
-            this.btnLoadFromFile.UseVisualStyleBackColor = true;
-            this.btnLoadFromFile.Click += new System.EventHandler(this.btnLoadFromFile_Click);
+            resources.ApplyResources(this.lblSBUSIN, "lblSBUSIN");
+            this.lblSBUSIN.Name = "lblSBUSIN";
+            // 
+            // lblSBUSOUT
+            // 
+            resources.ApplyResources(this.lblSBUSOUT, "lblSBUSOUT");
+            this.lblSBUSOUT.Name = "lblSBUSOUT";
+            // 
+            // GPO1_3SBUSOUT
+            // 
+            this.GPO1_3SBUSOUT.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            resources.ApplyResources(this.GPO1_3SBUSOUT, "GPO1_3SBUSOUT");
+            this.GPO1_3SBUSOUT.FormattingEnabled = true;
+            this.GPO1_3SBUSOUT.Name = "GPO1_3SBUSOUT";
             // 
             // Sikradio
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.Controls.Add(this.Progressbar);
-            this.Controls.Add(this.BUT_loadcustom);
+            this.Controls.Add(this.linkLabel_mavlink);
+            this.Controls.Add(this.linkLabel_lowlatency);
+            this.Controls.Add(this.groupBox3);
+            this.Controls.Add(this.btnSaveToFile);
+            this.Controls.Add(this.btnLoadFromFile);
+            this.Controls.Add(this.groupBoxLocal);
+            this.Controls.Add(this.groupGPIO);
+            this.Controls.Add(this.groupData);
+            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.groupRadio);
+            this.Controls.Add(this.groupFirmware);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.BUT_resettodefault);
             this.Controls.Add(this.linkLabel1);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.groupBoxRemote);
-            this.Controls.Add(this.groupBoxLocal);
             this.Controls.Add(this.BUT_Syncoptions);
             this.Controls.Add(this.BUT_savesettings);
             this.Controls.Add(this.BUT_getcurrent);
@@ -1887,10 +2090,22 @@
             this.Controls.Add(this.BUT_upload);
             resources.ApplyResources(this, "$this");
             this.Name = "Sikradio";
-            this.groupBoxLocal.ResumeLayout(false);
-            this.groupBoxLocal.PerformLayout();
             this.groupBoxRemote.ResumeLayout(false);
             this.groupBoxRemote.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
+            this.groupFirmware.ResumeLayout(false);
+            this.groupFirmware.PerformLayout();
+            this.groupRadio.ResumeLayout(false);
+            this.groupRadio.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            this.groupData.ResumeLayout(false);
+            this.groupData.PerformLayout();
+            this.groupGPIO.ResumeLayout(false);
+            this.groupGPIO.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2034,9 +2249,6 @@
         private System.Windows.Forms.Label lblRDUTY_CYCLE;
         private System.Windows.Forms.Label lblRLBT_RSSI;
         private System.Windows.Forms.Button btnRandom;
-        private System.Windows.Forms.Label lblSBUSIN;
-        private System.Windows.Forms.CheckBox GPO1_3SBUSIN;
-        private System.Windows.Forms.Label lblSBUSOUT;
         private System.Windows.Forms.Label label45;
         private System.Windows.Forms.ComboBox RATE_FREQBAND;
         private System.Windows.Forms.Label label46;
@@ -2049,7 +2261,6 @@
         private System.Windows.Forms.Label label50;
         private System.Windows.Forms.TextBox txtRCountry;
         private Controls.MyButton BUT_SetPPMFailSafeRemote;
-        private System.Windows.Forms.ComboBox GPO1_3SBUSOUT;
         private System.Windows.Forms.ComboBox RGPO1_3SBUSOUT;
         private System.Windows.Forms.CheckBox GPO1_0TXEN485;
         private System.Windows.Forms.Label lblGPO1_0TXEN485;
@@ -2083,5 +2294,32 @@
         private Controls.MyButton btnLoadFromFile;
         private System.Windows.Forms.OpenFileDialog dlgOpen;
         private Controls.MyButton btnRemoteLoadFromFile;
+        private System.Windows.Forms.RadioButton radioLocal;
+        private System.Windows.Forms.RadioButton radioRemote;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.ComboBox comboSyncMode;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.GroupBox groupFirmware;
+        private System.Windows.Forms.GroupBox groupRadio;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.ComboBox AUXSER_SPEED;
+        private System.Windows.Forms.GroupBox groupData;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.GroupBox groupGPIO;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.ComboBox GPO1_1SBUSOUT;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.CheckBox GPO1_1SBUSIN;
+        private System.Windows.Forms.ComboBox AIR_FRAMELEN;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.CheckBox RSSI_IN_DBM;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.CheckBox GPO1_3SBUSIN;
+        private System.Windows.Forms.Label lblSBUSIN;
+        private System.Windows.Forms.Label lblSBUSOUT;
+        private System.Windows.Forms.ComboBox GPO1_3SBUSOUT;
     }
 }

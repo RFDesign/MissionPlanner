@@ -91,6 +91,8 @@ S15: MAX_WINDOW=131
                 new Control[] {
                 lblRGLOBAL_RETRIES, RGLOBAL_RETRIES, lblRSER_BRK_DETMS, RSER_BRK_DETMS}, true);
 
+            comboSyncMode.SelectedIndex = 0;
+
             // setup netid
             NETID.DataSource = Enumerable.Range(0, 500).ToArray();
             RNETID.DataSource = Enumerable.Range(0, 500).ToArray();
@@ -1355,7 +1357,9 @@ S15: MAX_WINDOW=131
                     string SettingName = values[1].Trim();
                     string EditorName = values[1].Replace("/", "_").Trim();
 
-                    var control = FindControlInGroupBox(GB, (Remote ? "R" : "") + EditorName);
+                    // refactoring to find globally, instead of in local or remote...
+                    //var control = FindControlInGroupBox(GB, (Remote ? "R" : "") + EditorName);
+                    var control = this.Controls.Find(EditorName, true).FirstOrDefault();
 
                     if (control == null)
                     {
@@ -1367,7 +1371,8 @@ S15: MAX_WINDOW=131
                                 control = GetSpareEditor((Remote ? "R" : "") + EditorName, Setting, Remote);
                             }
                         }
-                    }
+                    } 
+                    
 
                     if (control != null)
                     {
@@ -2678,6 +2683,8 @@ red LED solid - in firmware update mode");
         {
             SaveToFile(_RemoteSettings, groupBoxRemote, true);
         }
+
+        
 
         public string Header
         {
