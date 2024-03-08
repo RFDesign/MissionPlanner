@@ -4,6 +4,7 @@ using System.Threading;
 using System.IO;
 using System.Reflection;
 using uploader;
+using System.Configuration;
 
 namespace RFD.RFD900
 {
@@ -18,6 +19,7 @@ namespace RFD.RFD900
         RFD900 _ModemObject;
         public uploader.Uploader.Board Board = uploader.Uploader.Board.FAILED;
         int _MainFirmwareBaud;
+        private bool AllowDiffProg;
         /// <summary>
         /// This is a work-around for radio firmware bugs in which not all settings
         /// are described by an RTI5? command.
@@ -36,7 +38,7 @@ namespace RFD.RFD900
             _ATCClient.Terminator = "\r\n";
             _ATCClient.Timeout = 1000;
             _MainFirmwareBaud = MainFirmwareBaud;
-
+            
             // This is a work-around for radio firmware bugs in which not all settings
             // are described by an RTI5? command.
             AddDefaultSetting("S21:GPO1_3STATLED(N)[0..1]=0{Off,On,}\r\n");
@@ -1264,449 +1266,457 @@ namespace RFD.RFD900
         const string ENC_KEY_SETTING_NAME = "AESKEY";
     }
 
-    public class TSettings
-    {
-        Dictionary<string, TBaseSetting> _Settings = new Dictionary<string, TBaseSetting>();
-        const string MIN_FREQ = "MIN_FREQ";
-        const string MAX_FREQ = "MAX_FREQ";
+    //public class TSettings
+    //{
+    //    Dictionary<string, TBaseSetting> _Settings = new Dictionary<string, TBaseSetting>();
+    //    const string MIN_FREQ = "MIN_FREQ";
+    //    const string MAX_FREQ = "MAX_FREQ";
 
-        public TSettings(Dictionary<string, TBaseSetting> Settings)
-        {
-            _Settings = Settings;
-        }
+    //    public TSettings(Dictionary<string, TBaseSetting> Settings)
+    //    {
+    //        _Settings = Settings;
+    //    }
 
-        public Dictionary<string, TBaseSetting> Settings
-        {
-            get
-            {
-                return _Settings;
-            }
-        }
+    //    public Dictionary<string, TBaseSetting> Settings
+    //    {
+    //        get
+    //        {
+    //            return _Settings;
+    //        }
+    //    }
 
-        public TSettings Clone()
-        {
-            Dictionary<string, TBaseSetting> Temp = new Dictionary<string, TBaseSetting>();
+    //    public TSettings Clone()
+    //    {
+    //        Dictionary<string, TBaseSetting> Temp = new Dictionary<string, TBaseSetting>();
 
-            foreach (var kvp in _Settings)
-            {
-                Temp[kvp.Key] = (TBaseSetting)kvp.Value.Clone();
-            }
+    //        foreach (var kvp in _Settings)
+    //        {
+    //            Temp[kvp.Key] = (TBaseSetting)kvp.Value.Clone();
+    //        }
 
-            return new TSettings(Temp);
-        }
+    //        return new TSettings(Temp);
+    //    }
 
-        public bool SaveToFile(string Path)
-        {
-            try
-            {
-                using (StreamWriter Writer = File.CreateText(Path))
-                {
-                    //Save in alphabetical order...
-                    List<string> Names = new List<string>(_Settings.Keys);
-                    Names.Sort();
+    //    public bool SaveToFile(string Path)
+    //    {
+    //        try
+    //        {
+    //            using (StreamWriter Writer = File.CreateText(Path))
+    //            {
+    //                //Save in alphabetical order...
+    //                List<string> Names = new List<string>(_Settings.Keys);
+    //                Names.Sort();
 
-                    foreach (var N in Names)
-                    {
-                        Writer.WriteLine(N + " = " + _Settings[N].GetValueAsString());
-                    }
-                }
+    //                foreach (var N in Names)
+    //                {
+    //                    Writer.WriteLine(N + " = " + _Settings[N].GetValueAsString());
+    //                }
+    //            }
 
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
-        }
+    //            return true;
+    //        }
+    //        catch
+    //        {
+    //            return false;
+    //        }
+    //    }
 
-        TNameAndValue ParseINILine(string Line)
-        {
-            if (!Line.Trim().StartsWith(";") && !Line.Trim().StartsWith("#"))
-            {
-                string[] ContentAndComment = Line.Split(';', '#');
+    //    TNameAndValue ParseINILine(string Line)
+    //    {
+    //        if (!Line.Trim().StartsWith(";") && !Line.Trim().StartsWith("#"))
+    //        {
+    //            string[] ContentAndComment = Line.Split(';', '#');
 
-                if (ContentAndComment.Length >= 1)
-                {
-                    string Content = ContentAndComment[0];
+    //            if (ContentAndComment.Length >= 1)
+    //            {
+    //                string Content = ContentAndComment[0];
 
-                    if (Content.Contains("="))
-                    {
-                        string[] NameAndValue = Content.Split('=');
+    //                if (Content.Contains("="))
+    //                {
+    //                    string[] NameAndValue = Content.Split('=');
 
-                        if (NameAndValue.Length == 2)
-                        {
-                            string Name = NameAndValue[0].Trim();
+    //                    if (NameAndValue.Length == 2)
+    //                    {
+    //                        string Name = NameAndValue[0].Trim();
 
-                            return new TNameAndValue(Name, NameAndValue[1].Trim());
-                        }
-                    }
-                }
-            }
+    //                        return new TNameAndValue(Name, NameAndValue[1].Trim());
+    //                    }
+    //                }
+    //            }
+    //        }
 
-            return null;
-        }
+    //        return null;
+    //    }
 
-        /// <summary>
-        /// Update these settings from a file.
-        /// </summary>
-        /// <param name="Path">The path of the settings file.  Must not be null.</param>
-        /// <returns>The names and values loaded.  Null if failed.</returns>
-        public Dictionary<string, TNameAndValue> LoadFromFile(string Path)
-        {
-            Dictionary<string, TNameAndValue> Result = new Dictionary<string, TNameAndValue>();
+    //    /// <summary>
+    //    /// Update these settings from a file.
+    //    /// </summary>
+    //    /// <param name="Path">The path of the settings file.  Must not be null.</param>
+    //    /// <returns>The names and values loaded.  Null if failed.</returns>
+    //    public Dictionary<string, TNameAndValue> LoadFromFile(string Path)
+    //    {
+    //        Dictionary<string, TNameAndValue> Result = new Dictionary<string, TNameAndValue>();
 
-            try
-            {
-                using (StreamReader Reader = File.OpenText(Path))
-                {
-                    string Line;
+    //        try
+    //        {
+    //            using (StreamReader Reader = File.OpenText(Path))
+    //            {
+    //                string Line;
 
-                    while ((Line = Reader.ReadLine()) != null)
-                    {
-                        var NV = ParseINILine(Line);
-                        if (NV != null && _Settings.ContainsKey(NV.Name))
-                        {
-                            _Settings[NV.Name].SetValueFromString(NV.Value);
-                            Result[NV.Name] = NV;
-                        }
-                    }
-                }
+    //                while ((Line = Reader.ReadLine()) != null)
+    //                {
+    //                    var NV = ParseINILine(Line);
+    //                    if (NV != null && _Settings.ContainsKey(NV.Name))
+    //                    {
+    //                        _Settings[NV.Name].SetValueFromString(NV.Value);
+    //                        Result[NV.Name] = NV;
+    //                    }
+    //                }
+    //            }
 
-                return Result;
-            }
-            catch
-            {
-                return null;
-            }
-        }
+    //            return Result;
+    //        }
+    //        catch
+    //        {
+    //            return null;
+    //        }
+    //    }
 
-        /// <summary>
-        /// Check if this set of settings is valid.  Return a list of error descriptions.
-        /// If returned array is zero-length, settings are valid.  
-        /// </summary>
-        /// <returns></returns>
-        public string[] CheckValid()
-        {
-            List<string> Result = new List<string>();
+    //    /// <summary>
+    //    /// Check if this set of settings is valid.  Return a list of error descriptions.
+    //    /// If returned array is zero-length, settings are valid.  
+    //    /// </summary>
+    //    /// <returns></returns>
+    //    public string[] CheckValid()
+    //    {
+    //        List<string> Result = new List<string>();
 
-            if (_Settings.ContainsKey(MIN_FREQ) && _Settings.ContainsKey(MAX_FREQ))
-            {
-                var Min = _Settings[MIN_FREQ];
-                var Max = _Settings[MAX_FREQ];
+    //        if (_Settings.ContainsKey(MIN_FREQ) && _Settings.ContainsKey(MAX_FREQ))
+    //        {
+    //            var Min = _Settings[MIN_FREQ];
+    //            var Max = _Settings[MAX_FREQ];
 
-                if (Min is TShortSetting && Max is TShortSetting)
-                {
-                    if (((TShortSetting)Min).Value > ((TShortSetting)Max).Value)
-                    {
-                        Result.Add("MIN_FREQ can't be more than MAX_FREQ");
-                    }
-                }
-            }
+    //            if (Min is TShortSetting && Max is TShortSetting)
+    //            {
+    //                if (((TShortSetting)Min).Value > ((TShortSetting)Max).Value)
+    //                {
+    //                    Result.Add("MIN_FREQ can't be more than MAX_FREQ");
+    //                }
+    //            }
+    //        }
 
-            return Result.ToArray();
-        }
+    //        return Result.ToArray();
+    //    }
 
-        public class TNameAndValue
-        {
-            public readonly string Name;
-            public readonly string Value;
+    //    public class TNameAndValue
+    //    {
+    //        public readonly string Name;
+    //        public readonly string Value;
 
-            public TNameAndValue(string Name, string Value)
-            {
-                this.Name = Name;
-                this.Value = Value;
-            }
-        }
-    }
+    //        public TNameAndValue(string Name, string Value)
+    //        {
+    //            this.Name = Name;
+    //            this.Value = Value;
+    //        }
+    //    }
+    //}
 
-    public abstract class TBaseSetting : ICloneable
-    {
-        public string Designator;
-        public string Name;
+    //public abstract class TBaseSetting : ICloneable
+    //{
+    //    public string Designator;
+    //    public string Name;
 
-        public abstract string GetValueAsString();
-        public abstract void SetValueFromString(string Text);
-        public abstract object Clone();
-    }
+    //    public abstract string GetValueAsString();
+    //    public abstract void SetValueFromString(string Text);
+    //    public abstract object Clone();
+    //}
 
-    public class TTextSetting : TBaseSetting
-    {
-        public string Text;
+    //public class TTextSetting : TBaseSetting
+    //{
+    //    public string Text;
 
-        public override string GetValueAsString()
-        {
-            return Text;
-        }
+    //    public override string GetValueAsString()
+    //    {
+    //        return Text;
+    //    }
 
-        public override void SetValueFromString(string Text)
-        {
-            this.Text = Text;
-        }
+    //    public override void SetValueFromString(string Text)
+    //    {
+    //        this.Text = Text;
+    //    }
 
-        public override object Clone()
-        {
-            TTextSetting Result = new TTextSetting();
-            Result.Designator = Designator;
-            Result.Name = Name;
-            Result.Text = Text;
+    //    public override object Clone()
+    //    {
+    //        TTextSetting Result = new TTextSetting();
+    //        Result.Designator = Designator;
+    //        Result.Name = Name;
+    //        Result.Text = Text;
 
-            return Result;
-        }
-    }
+    //        return Result;
+    //    }
+    //}
 
 
-    public class TShortSetting : TBaseSetting
-    {
-        public int Value;
+    //public class TShortSetting : TBaseSetting
+    //{
+    //    public int Value;
 
-        public TShortSetting(string Designator, string Name, int Value)
-        {
-            this.Designator = Designator;
-            this.Name = Name;
-            this.Value = Value;
-        }
+    //    public TShortSetting(string Designator, string Name, int Value)
+    //    {
+    //        this.Designator = Designator;
+    //        this.Name = Name;
+    //        this.Value = Value;
+    //    }
 
-        public override object Clone()
-        {
-            return new TShortSetting(Designator, Name, Value);
-        }
+    //    public override object Clone()
+    //    {
+    //        return new TShortSetting(Designator, Name, Value);
+    //    }
 
-        public override string GetValueAsString()
-        {
-            return Value.ToString();
-        }
+    //    public override string GetValueAsString()
+    //    {
+    //        return Value.ToString();
+    //    }
 
-        public override void SetValueFromString(string Text)
-        {
-            int.TryParse(Text, out this.Value);
-        }
-    }
+    //    public override void SetValueFromString(string Text)
+    //    {
+    //        int.TryParse(Text, out this.Value);
+    //    }
+    //}
 
-    public class TSetting : TShortSetting
-    {
-        /// <summary>
-        /// null if range unknown
-        /// </summary>
-        public TRange Range;
-        /// <summary>
-        /// null if options unknown
-        /// </summary>
-        public TOption[] Options;
-        public int Increment;
+    //public class TSetting : TShortSetting
+    //{
+    //    /// <summary>
+    //    /// null if range unknown
+    //    /// </summary>
+    //    public TRange Range;
+    //    /// <summary>
+    //    /// null if options unknown
+    //    /// </summary>
+    //    public TOption[] Options;
+    //    public int Increment;
 
-        public TSetting(string Designator, string Name, TRange Range, int Value, TOption[] Options,
-            int Increment)
-            : base(Designator, Name, Value)
-        {
-            this.Designator = Designator;
-            this.Name = Name;
-            this.Range = Range;
-            this.Value = Value;
-            this.Options = Options;
-            this.Increment = Increment;
-        }
+    //    public TSetting(string Designator, string Name, TRange Range, int Value, TOption[] Options,
+    //        int Increment)
+    //        : base(Designator, Name, Value)
+    //    {
+    //        this.Designator = Designator;
+    //        this.Name = Name;
+    //        this.Range = Range;
+    //        this.Value = Value;
+    //        this.Options = Options;
+    //        this.Increment = Increment;
+    //    }
 
-        public override object Clone()
-        {
-            return new TSetting(Designator, Name, Range, Value, Options, Increment);
-        }
+    //    public override object Clone()
+    //    {
+    //        return new TSetting(Designator, Name, Range, Value, Options, Increment);
+    //    }
 
-        public string[] GetOptionNames()
-        {
-            if (Options == null)
-            {
-                return null;
-            }
-            else
-            {
-                return RFDLib.Array.CherryPickArray(Options, (x) => x.OptionName);
-            }
-        }
+    //    public string[] GetOptionNames()
+    //    {
+    //        if (Options == null)
+    //        {
+    //            return null;
+    //        }
+    //        else
+    //        {
+    //            return RFDLib.Array.CherryPickArray(Options, (x) => x.OptionName);
+    //        }
+    //    }
 
-        public string GetOptionNameForValue(string Value)
-        {
-            if (Options != null)
-            {
-                foreach (var O in Options)
-                {
-                    if (O.Value.ToString() == Value)
-                    {
-                        return O.OptionName;
-                    }
-                }
-            }
-            return null;
-        }
+    //    public string GetOptionNameForValue(string Value)
+    //    {
+    //        if (Options != null)
+    //        {
+    //            foreach (var O in Options)
+    //            {
+    //                if (O.Value.ToString() == Value)
+    //                {
+    //                    return O.OptionName;
+    //                }
+    //            }
+    //        }
+    //        return null;
+    //    }
 
-        /// <summary>
-        /// Returns whether this setting is a flag/boolean.
-        /// </summary>
-        /// <returns></returns>
-        public bool GetIsFlag()
-        {
-            return (Range != null) && Range.GetOptions().Length == 2 && 
-                Range.GetOptions()[0] == 0 && Range.GetOptions()[1] == 1;
-        }
+    //    /// <summary>
+    //    /// Returns whether this setting is a flag/boolean.
+    //    /// </summary>
+    //    /// <returns></returns>
+    //    public bool GetIsFlag()
+    //    {
+    //        return (Range != null) && Range.GetOptions().Length == 2 && 
+    //            Range.GetOptions()[0] == 0 && Range.GetOptions()[1] == 1;
+    //    }
 
-        public abstract class TRange
-        {
-            public abstract int[] GetOptions();
+    //    public abstract class TRange
+    //    {
+    //        public abstract int[] GetOptions();
             
-            /// <summary>
-            /// Get the list of options and include the option with the given value if it doesnt exist.
-            /// </summary>
-            /// <param name="Value">The value to include.</param>
-            /// <returns>The options.  Never null.</returns>
-            public int[] GetOptionsIncludingValue(int Value)
-            {
-                List<int> Result = new List<int>();
-                bool GotValue = false;
+    //        /// <summary>
+    //        /// Get the list of options and include the option with the given value if it doesnt exist.
+    //        /// </summary>
+    //        /// <param name="Value">The value to include.</param>
+    //        /// <returns>The options.  Never null.</returns>
+    //        public int[] GetOptionsIncludingValue(int Value)
+    //        {
+    //            List<int> Result = new List<int>();
+    //            bool GotValue = false;
 
-                foreach (var n in GetOptions())
-                {
-                    if (n == Value)
-                    {
-                        GotValue = true;
-                    }
-                    if (!GotValue)
-                    {
-                        if (n > Value)
-                        {
-                            Result.Add(Value);
-                            GotValue = true;
-                        }
-                    }
+    //            foreach (var n in GetOptions())
+    //            {
+    //                if (n == Value)
+    //                {
+    //                    GotValue = true;
+    //                }
+    //                if (!GotValue)
+    //                {
+    //                    if (n > Value)
+    //                    {
+    //                        Result.Add(Value);
+    //                        GotValue = true;
+    //                    }
+    //                }
 
-                    Result.Add(n);
-                }
+    //                Result.Add(n);
+    //            }
 
-                if (!GotValue)
-                {
-                    Result.Add(Value);
-                }
+    //            if (!GotValue)
+    //            {
+    //                Result.Add(Value);
+    //            }
 
-                return Result.ToArray();
-            }
-        }
+    //            return Result.ToArray();
+    //        }
+    //    }
 
-        public class TSimpleRange : TRange
-        {
-            public readonly int Min;
-            public readonly int Max;
-            public readonly int Increment;
+    //    public class TSimpleRange : TRange
+    //    {
+    //        public readonly int Min;
+    //        public readonly int Max;
+    //        public readonly int Increment;
 
-            public TSimpleRange(int Min, int Max, int Increment)
-            {
-                this.Min = Min;
-                this.Max = Max;
-                this.Increment = Increment;
-            }
+    //        public TSimpleRange(int Min, int Max, int Increment)
+    //        {
+    //            this.Min = Min;
+    //            this.Max = Max;
+    //            this.Increment = Increment;
+    //        }
 
-            public override int[] GetOptions()
-            {
-                int[] list;
-                int index = 0;
-                bool GotEnd = false;
+    //        public override int[] GetOptions()
+    //        {
+    //            int[] list;
+    //            int index = 0;
+    //            bool GotEnd = false;
 
-                int Min = this.Min;
-                int Max = this.Max;
+    //            int Min = this.Min;
+    //            int Max = this.Max;
 
-                //Prevent exception for the case of the modem firmware erroneously specifiying a range in which max is less than min.
-                if (Max < Min)
-                {
-                    Max = Min;
-                }
+    //            //Prevent exception for the case of the modem firmware erroneously specifiying a range in which max is less than min.
+    //            if (Max < Min)
+    //            {
+    //                Max = Min;
+    //            }
 
-                if (Min == Max)
-                {
-                    list = new int[1];
-                }
-                else
-                {
-                    list = new int[((Max - Min - 1) / Increment) + 2];
-                }
+    //            if (Min == Max)
+    //            {
+    //                list = new int[1];
+    //            }
+    //            else
+    //            {
+    //                list = new int[((Max - Min - 1) / Increment) + 2];
+    //            }
 
-                for (var a = Min; a <= Max; a += Increment)
-                {
-                    if (a == Max)
-                    {
-                        GotEnd = true;
-                    }
-                    list[index++] = a;
-                }
+    //            for (var a = Min; a <= Max; a += Increment)
+    //            {
+    //                if (a == Max)
+    //                {
+    //                    GotEnd = true;
+    //                }
+    //                list[index++] = a;
+    //            }
 
-                if (!GotEnd)
-                {
-                    list[index++] = Max;
-                }
+    //            if (!GotEnd)
+    //            {
+    //                list[index++] = Max;
+    //            }
 
-                return list;
-            }
-        }
+    //            return list;
+    //        }
+    //    }
 
-        public class TMultiRange : TRange
-        {
-            TSimpleRange[] _SimpleRanges;
+    //    public class TMultiRange : TRange
+    //    {
+    //        TSimpleRange[] _SimpleRanges;
 
-            public TMultiRange(TSimpleRange[] SimpleRanges)
-            {
-                _SimpleRanges = SimpleRanges;
-            }
+    //        public TMultiRange(TSimpleRange[] SimpleRanges)
+    //        {
+    //            _SimpleRanges = SimpleRanges;
+    //        }
 
-            public override int[] GetOptions()
-            {
-                int TotalLength = 0;
-                int SRIndex;
+    //        public override int[] GetOptions()
+    //        {
+    //            int TotalLength = 0;
+    //            int SRIndex;
 
-                for (SRIndex = 0; SRIndex < _SimpleRanges.Length; SRIndex++)
-                {
-                    TotalLength += _SimpleRanges[SRIndex].GetOptions().Length;
-                }
+    //            for (SRIndex = 0; SRIndex < _SimpleRanges.Length; SRIndex++)
+    //            {
+    //                TotalLength += _SimpleRanges[SRIndex].GetOptions().Length;
+    //            }
 
-                int[] Result = new int[TotalLength];
-                int ResultIndex = 0;
+    //            int[] Result = new int[TotalLength];
+    //            int ResultIndex = 0;
 
-                for (SRIndex = 0; SRIndex < _SimpleRanges.Length; SRIndex++)
-                {
-                    int[] SubResult = _SimpleRanges[SRIndex].GetOptions();
-                    Array.Copy(SubResult, 0, Result, ResultIndex, SubResult.Length);
-                    ResultIndex += SubResult.Length;
-                }
+    //            for (SRIndex = 0; SRIndex < _SimpleRanges.Length; SRIndex++)
+    //            {
+    //                int[] SubResult = _SimpleRanges[SRIndex].GetOptions();
+    //                Array.Copy(SubResult, 0, Result, ResultIndex, SubResult.Length);
+    //                ResultIndex += SubResult.Length;
+    //            }
 
-                return Result;
-            }
-        }
+    //            return Result;
+    //        }
+    //    }
 
-        public class TOption
-        {
-            public readonly int Value;
-            public readonly string OptionName;
+    //    public class TOption
+    //    {
+    //        public readonly int Value;
+    //        public readonly string OptionName;
 
-            public TOption(int Value, string OptionName)
-            {
-                this.Value = Value;
-                this.OptionName = OptionName;
-            }
-        }
-    }
+    //        public TOption(int Value, string OptionName)
+    //        {
+    //            this.Value = Value;
+    //            this.OptionName = OptionName;
+    //        }
+    //    }
+    //}
 
     public abstract class RFD900
     {
         protected TSession _Session;
         bool _IsDINIO = false;
+        
 
         public RFD900(TSession Session)
         {
-            _Session = Session;
+            _Session = Session;            
         }
 
+        
         /// <summary>
         /// Returns whether the firmware model is allowed to be different to the connected modem model.
         /// </summary>
         /// <returns></returns>
         bool FirmwareDiffExempt()
         {
-            if (SikRadio.Program.AllowDiffProg)
+            bool AllowDiffProg = false;
+            string setting = ConfigurationManager.AppSettings["AllowDiffProg"];
+            if (setting != null)
+            {
+                bool.TryParse(setting, out AllowDiffProg);
+            }
+            if (AllowDiffProg)
             {
                 switch (System.Windows.Forms.MessageBox.Show("The firmware you selected appears to be for a different modem model than the modem connected.  " +
                     "Are you sure you want to program this firmware into the modem?", "Firmware type different to modem type OK?", 
@@ -1883,7 +1893,13 @@ namespace RFD.RFD900
 
         protected void ShowWrongFirmwareMessageBox()
         {
-            if (!SikRadio.Program.AllowDiffProg)
+            bool AllowDiffProg = false;
+            string setting = ConfigurationManager.AppSettings["AllowDiffProg"];
+            if (setting != null)
+            {
+                bool.TryParse(setting, out AllowDiffProg);
+            }
+            if (!AllowDiffProg)
             {
                 string S = "File doesn't appear to be valid for this radio.  Could not find ";
                 var Tokens = GetFirmwareSearchTokens();

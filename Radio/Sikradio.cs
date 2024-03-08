@@ -16,10 +16,14 @@ using MissionPlanner.Radio;
 using MissionPlanner.Utilities;
 using uploader;
 using Microsoft.VisualBasic;
+using RFDCommon.Interface;
+using static RFD.RFD900.TSettings;
+using RFD.RFD900;
+using RFDCommon.Config;
 
 namespace MissionPlanner.Radio
 {
-    public partial class Sikradio : UserControl, SikRadio.ISikRadioForm
+    public partial class Sikradio : UserControl, ISikRadioForm
     {
         public delegate void LogEventHandler(string message, int level = 0);
 
@@ -47,7 +51,15 @@ namespace MissionPlanner.Radio
             {"AIR_FRAMELEN", "Air Frame Length"},
         };
 
-        RFD.RFD900.TSettings _LocalSettings, _RemoteSettings;
+        // Added a property to hold ICommsSerial to avoid need to access a hard coded parent control?
+        private ICommsSerial _comPort;
+
+        // Added a working config set for databinding approach
+        //RFD.RFD900.TSettings _LocalSettings, _LocalWorking, _RemoteSettings, _RemoteWorking;
+        SikConfig_v357 _sikSettings = new SikConfig_v357();
+        //MultiPointConfig _multiPointSettings;
+        //AsyncConfig _asyncSettings;
+
 
         public event Action DoDisconnectReconnect;
 
@@ -91,6 +103,7 @@ S15: MAX_WINDOW=131
                 new Control[] {
                 lblRGLOBAL_RETRIES, RGLOBAL_RETRIES, lblRSER_BRK_DETMS, RSER_BRK_DETMS}, true);
 
+            // Set sync mode to AUTO (Sync all recommended)
             comboSyncMode.SelectedIndex = 0;
 
             // setup netid
@@ -107,14 +120,16 @@ S15: MAX_WINDOW=131
             MAX_WINDOW.DataSource = Enumerable.Range(33, 131 - 32).ToArray();
             RMAX_WINDOW.DataSource = Enumerable.Range(33, 131 - 32).ToArray();
 
-            foreach (Control C in groupBoxLocal.Controls)
-            {
-                _DefaultLocalEnabled[C] = C.Enabled;
-            }
-            foreach (Control C in groupBoxRemote.Controls)
-            {
-                _DefaultLocalEnabled[C] = C.Enabled;
-            }
+            // Disable all children, instead of being selective?
+            SetEnabled(this.Controls, false, true);
+            //foreach (Control C in groupBoxLocal.Controls)
+            //{
+            //    _DefaultLocalEnabled[C] = C.Enabled;
+            //}
+            //foreach (Control C in groupBoxRemote.Controls)
+            //{
+            //    _DefaultLocalEnabled[C] = C.Enabled;
+            //}
 
             SaveDefaultCBObjects(SERIAL_SPEED);
             SaveDefaultCBObjects(RSERIAL_SPEED);
@@ -223,9 +238,14 @@ S15: MAX_WINDOW=131
             this.Disposed += DisposedEvtHdlr;
         }
 
-        public void Connect()
+        public void Connect(ICommsSerial comPort)
         {
+            _comPort = comPort;
             var S = GetSession();
+            // Should we load settings automatically here?
+            
+            // Have just connected, enable the form?
+            SetEnabled(this.Controls, true, true);
         }
 
         public void Disconnect()
@@ -236,6 +256,13 @@ S15: MAX_WINDOW=131
                 S.PutIntoTransparentMode();
             }
             EndSession();
+
+            
+            // 
+            _comPort = null;
+            // Have disconnected, disable the form?
+            SetEnabled(this.Controls, false, true);
+
         }
 
         void DisposedEvtHdlr(object sender, EventArgs e)
@@ -258,6 +285,19 @@ S15: MAX_WINDOW=131
             {
                 _DefaultCBObjects[CB] = CB.DataSource;
             }
+        }
+
+        private void SetEnabled(ControlCollection controls, bool setState, bool recursive)
+        {            
+            foreach (Control c in controls)
+            {
+                c.Enabled = setState;
+                if (c.Controls.Count > 0)
+                {
+                    if (recursive)
+                        SetEnabled(c.Controls, setState, recursive);
+                }
+            }            
         }
 
         private void RestoreAllDefaultCBObjects()
@@ -616,34 +656,21 @@ S15: MAX_WINDOW=131
             return Result;
         }
 
-        /// <summary>
-        /// Check that the settings in the given groupbox are valid.  If invalid, shows a message box listing the issues.
-        /// </summary>
-        /// <param name="GB"></param>
-        /// <param name="Remote">Whether it's for the remote modem.</param>
-        /// <param name="Orig">The settings read from the modem.  Must not be null.</param>
-        /// <returns>true if valid, false if invalid.  </returns>
-        bool CheckSettingsValid(GroupBox GB, bool Remote,
-            Dictionary<string, RFD.RFD900.TBaseSetting> Orig)
+
+        bool ValidateWorkingSettings(bool remote)
         {
-            var Changed = GetUpdatedSettingsFromGroupBox(Orig, GB, Remote);
-
-            Dictionary<string, RFD.RFD900.TBaseSetting> NewSettings = new Dictionary<string, RFD.RFD900.TBaseSetting>(Orig);
-            RFDLib.Collections.Update(NewSettings, Changed);
-
-            RFD.RFD900.TSettings Settings = new RFD.RFD900.TSettings(NewSettings);
-
-            var Errors = Settings.CheckValid();
-
-            if (Errors.Length == 0)
+            // Get the list of settings that are different in the Working settings compared to the _Settings settings.
+            var settings = _sikSettings.GetChangedSettings(remote);
+            var errors = settings.CheckValid();
+            if (errors.Length == 0)
             {
                 return true;
             }
             else
             {
-                string ErrorMsg = Remote ? "Remote" : "Local" + " settings invalid, operation aborted:";
+                string ErrorMsg = remote ? "Remote" : "Local" + " settings invalid, operation aborted:";
 
-                foreach (var em in Errors)
+                foreach (var em in errors)
                 {
                     ErrorMsg += "\n\t" + em;
                 }
@@ -653,6 +680,45 @@ S15: MAX_WINDOW=131
                 return false;
             }
         }
+        
+        ///// <summary>
+        ///// Check that the settings in the given groupbox are valid.  If invalid, shows a message box listing the issues.
+        ///// </summary>
+        ///// <param name="GB"></param>
+        ///// <param name="Remote">Whether it's for the remote modem.</param>
+        ///// <param name="Orig">The settings read from the modem.  Must not be null.</param>
+        ///// <returns>true if valid, false if invalid.  </returns>
+        //bool CheckSettingsValid(bool Remote,
+        //    Dictionary<string, RFD.RFD900.TBaseSetting> Orig)
+        //{
+            
+        //    var Changed = GetUpdatedSettingsFromGroupBox(Orig, GB, Remote);
+
+        //    Dictionary<string, RFD.RFD900.TBaseSetting> NewSettings = new Dictionary<string, RFD.RFD900.TBaseSetting>(Orig);
+        //    RFDLib.Collections.Update(NewSettings, Changed);
+
+        //    RFD.RFD900.TSettings Settings = new RFD.RFD900.TSettings(NewSettings);
+
+        //    var Errors = Settings.CheckValid();
+
+        //    if (Errors.Length == 0)
+        //    {
+        //        return true;
+        //    }
+        //    else
+        //    {
+        //        string ErrorMsg = Remote ? "Remote" : "Local" + " settings invalid, operation aborted:";
+
+        //        foreach (var em in Errors)
+        //        {
+        //            ErrorMsg += "\n\t" + em;
+        //        }
+
+        //        MsgBox.CustomMessageBox.Show(ErrorMsg);
+
+        //        return false;
+        //    }
+        //}
 
         /// <summary>
         /// Save settings from GUI to a modem.
@@ -800,22 +866,11 @@ S15: MAX_WINDOW=131
 
         private void BUT_savesettings_Click(object sender, EventArgs e)
         {
+            
             if (
-                    (
-                        (RTI.Text == "") || 
-                        CheckSettingsValid
-                            (
-                                groupBoxRemote, true,
-                                RFDLib.Collections.Translate(_RemoteSettings.Settings, (x) => (RFD.RFD900.TBaseSetting)x)
-                            )
-                    )
-                    &&
-                    CheckSettingsValid
-                    (
-                        groupBoxLocal, false,
-                        RFDLib.Collections.Translate(_LocalSettings.Settings, (x) => (RFD.RFD900.TBaseSetting)x)
-                    )
-                )
+                ((RTI.Text == "") || ValidateWorkingSettings(true)) // No remote, or remote is valid
+                && ValidateWorkingSettings(false)                   // Local is valid   
+            )
             {
 
                 //EndSession();
@@ -826,24 +881,27 @@ S15: MAX_WINDOW=131
                     return;
                 }
 
-                List<Control> EnabledControls = new List<Control>();
-                foreach (Control C in groupBoxLocal.Controls)
-                {
-                    if (C.Enabled)
-                    {
-                        EnabledControls.Add(C);
-                    }
-                }
-                foreach (Control C in groupBoxRemote.Controls)
-                {
-                    if (C.Enabled)
-                    {
-                        EnabledControls.Add(C);
-                    }
-                }
+                // Control state management?  Will remove for now, and revisit after binding is done...
+                //List<Control> EnabledControls = new List<Control>();
+                //foreach (Control C in groupBoxLocal.Controls)
+                //{
+                //    if (C.Enabled)
+                //    {
+                //        EnabledControls.Add(C);
+                //    }
+                //}
+                //foreach (Control C in groupBoxRemote.Controls)
+                //{
+                //    if (C.Enabled)
+                //    {
+                //        EnabledControls.Add(C);
+                //    }
+                //}
 
-                EnableConfigControls(false, false);
-                EnableProgrammingControls(false);
+                //EnableConfigControls(false, false);
+                //EnableProgrammingControls(false);
+                SetEnabled(this.Controls, false, true);
+
                 lbl_status.Text = "Connecting";
 
                 if (Session.PutIntoATCommandMode() == RFD.RFD900.TSession.TMode.AT_COMMAND)
@@ -861,8 +919,11 @@ S15: MAX_WINDOW=131
                         // remote
                         var answer = doCommand(Session.Port, "RTI5", true);
 
-                        SaveSettingsFromGroupBox(groupBoxRemote, true, Session.Port,
-                            RFDLib.Collections.Translate(_RemoteSettings.Settings, (x) => (RFD.RFD900.TBaseSetting)x));
+                        SaveChangedSettings(true);  // Save changed remote
+                        
+                        
+                        //SaveSettingsFromGroupBox(groupBoxRemote, true, Session.Port,
+                        //    RFDLib.Collections.Translate(_RemoteSettings.Settings, (x) => (RFD.RFD900.TBaseSetting)x));
 
                         Sleep(100);
                     }
@@ -880,8 +941,10 @@ S15: MAX_WINDOW=131
                             }
                         }
 
-                        SaveSettingsFromGroupBox(groupBoxLocal, false, Session.Port,
-                            RFDLib.Collections.Translate(_LocalSettings.Settings, (x) => (RFD.RFD900.TBaseSetting)x));
+                        SaveChangedSettings(false);  // Save local
+
+                        //SaveSettingsFromGroupBox(groupBoxLocal, false, Session.Port,
+                        //    RFDLib.Collections.Translate(_LocalSettings.Settings, (x) => (RFD.RFD900.TBaseSetting)x));
 
                         // set encryption keys at the same time, so if we are enabled we dont lose comms.
                         // we have set encryption to on for both radios, they will be using the default key atm
@@ -942,7 +1005,10 @@ S15: MAX_WINDOW=131
                     }
 
                     lbl_status.Text = "Done";
-                    EnableConfigControls(true, true);
+                    
+                    // Re-enable controls
+                    SetEnabled(this.Controls, true, true);
+                    //EnableConfigControls(true, true);
                 }
                 else
                 {
@@ -951,7 +1017,7 @@ S15: MAX_WINDOW=131
 
                     lbl_status.Text = "Fail";
                     MsgBox.CustomMessageBox.Show("Failed to enter command mode");
-                    EnableConfigControls(true, false);
+                    //EnableConfigControls(true, false);
                 }
 
                 //Need to do this because modem rebooted.
@@ -960,6 +1026,67 @@ S15: MAX_WINDOW=131
                 EnableProgrammingControls(true);
 
                 UpdateSetPPMFailSafeButtons();
+            }
+        }
+
+        // Method to only push settings that have changed
+        private void SaveChangedSettings(bool remote)
+        {
+            var changedSettings = _sikSettings.GetChangedSettings(remote);
+            string CommandPrefix = remote ? "R" : "A";
+
+            foreach (var kvp in changedSettings.Settings)
+            {
+                if (!kvp.Key.Contains("FORMAT"))
+                {
+                    var cmdanswer = doCommand(_comPort,
+                        CommandPrefix + "T" + kvp.Value.Designator + "=" + kvp.Value.GetValueAsString(),
+                        kvp.Value.Designator.Contains("&E"));
+
+                    if (cmdanswer.Contains("OK"))
+                    {
+                        if (kvp.Key.Contains("GPO1_1R_COUT") ||
+                            kvp.Key.Contains("GPO1_3SBUSOUT"))
+                        {
+                            if (kvp.Value is RFD.RFD900.TSetting && ((RFD.RFD900.TSetting)kvp.Value).Value == 1)
+                            {
+                                //Also need to set RTPO.
+                                cmdanswer = doCommand(_comPort,
+                                    CommandPrefix + "TPO=1");
+                            }
+                            else
+                            {
+                                cmdanswer = doCommand(_comPort,
+                                    CommandPrefix + "TPI=1");
+                            }
+                        }
+                        else if (kvp.Key.Contains("GPI1_1R_CIN") ||
+                            kvp.Key.Contains("GPO1_3SBUSIN"))
+                        {
+                            //Also need to set RTPI.
+                            cmdanswer = doCommand(_comPort,
+                                CommandPrefix + "TPI=1");
+                        }
+                        if (!cmdanswer.Contains("OK"))
+                        {
+                            MsgBox.CustomMessageBox.Show("Set Command error");
+                        }
+
+                    }
+                    else
+                    {
+                        if (remote && (kvp.Key == "ENCRYPTION_LEVEL"))
+                        {
+                            // set this on the local radio as well.
+                            doCommand(_comPort, "AT" + kvp.Value.Designator + "=" + kvp.Value.GetValueAsString());
+                            // both radios should now be using the default key
+                        }
+                        else
+                        {
+                            MsgBox.CustomMessageBox.Show("Set Command error");
+                        }
+                    }
+                }
             }
         }
 
@@ -1331,6 +1458,8 @@ S15: MAX_WINDOW=131
         /// <returns>true if at least one setting had an invalid value, otherwise false.</returns>
         bool SetUpControlsWithValues(GroupBox GB, bool Remote, string[] items, Dictionary<string, RFD.RFD900.TBaseSetting> Settings)
         {
+            // should be able to replace this method once databinding is complete?
+
             /*RFD900Tools.GUI.frmCfgTest frm = new RFD900Tools.GUI.frmCfgTest();
             RFD900Tools.GUI.TConfig Cfg = new RFD900Tools.GUI.TConfig(frm.GetControl());
             Cfg.Update(Settings, items);
@@ -1376,7 +1505,9 @@ S15: MAX_WINDOW=131
 
                     if (control != null)
                     {
-                        GB.Enabled = true;
+                        if (GB != null)
+                            GB.Enabled = true;
+
                         SomeSettingsInvalid |= UpdateControlWithValue(control, 
                             RFDLib.Collections.Translate(Settings, (x) => (RFD.RFD900.TBaseSetting)x),
                             SettingName, values[2].Trim(), Remote);
@@ -1435,12 +1566,412 @@ S15: MAX_WINDOW=131
             }
         }
 
+
+        private async void LoadSettings(TSession session, bool remote)
+        {
+            try
+            {
+                if (session.PutIntoATCommandMode() == RFD.RFD900.TSession.TMode.AT_COMMAND)
+                {
+                    //System.Diagnostics.Debug.WriteLine(SW.ElapsedMilliseconds.ToString() + ":  Done putting into AT CMD mode");
+
+                    bool SomeSettingsInvalid = false;
+                    // cleanup
+                    session.ATCClient.DoCommand("AT&T", false);
+                    /*Session.ATCClient.Timeout = 100;
+                    Session.ATCClient.DoCommand("AT&T");
+                    Session.ATCClient.Timeout = 1000;*/
+                    //System.Diagnostics.Debug.WriteLine(SW.ElapsedMilliseconds.ToString() + ":  Done AT&T cmd");
+
+                    session.Port.DiscardInBuffer();
+
+                    lbl_status.Text = "Doing Command ATI & RTI";
+
+                    //Set the text box to show the radio version
+                    int multipoint_fix = -1;    //If this radio has multipoint firmware, the index within returned strings to use for returned values, otherwise -1.
+                    var ati_str = DoQueryWithRetry("ATI", true).Trim();
+                    //System.Diagnostics.Debug.WriteLine(SW.ElapsedMilliseconds.ToString() + ":  Done ATI cmd");
+
+                    if (ati_str.StartsWith("["))
+                    {
+                        multipoint_fix = ati_str.IndexOf(']') + 1;
+                    }
+                    ATI.Text = ati_str;
+
+                    string LocalFWVer = RFD.RFD900.RFD900.ATIResponseToFWVersion(ati_str);
+
+                    NumberStyles style = NumberStyles.Any;
+
+                    //Get the board frequency.
+                    var freqstring = DoQueryWithRetry("ATI3", true).Trim();
+                    //System.Diagnostics.Debug.WriteLine(SW.ElapsedMilliseconds.ToString() + ":  Done ATI3 cmd");
+
+                    //Some multipoint firmware versions don't reply to ATI command with [n] at start of reply, but they do for ATI3 command, so check for [n] again...
+                    if (multipoint_fix < 0 && freqstring.StartsWith("["))
+                    {
+                        multipoint_fix = freqstring.IndexOf(']') + 1;
+                    }
+
+                    if (multipoint_fix > 0)
+                    {
+                        freqstring = freqstring.Substring(multipoint_fix).Trim();
+                    }
+
+                    if (freqstring.ToLower().Contains('x'))
+                        style = NumberStyles.AllowHexSpecifier;
+
+                    var freq =
+                        (Uploader.Frequency)
+                            Enum.Parse(typeof(Uploader.Frequency),
+                                int.Parse(freqstring.ToLower().Replace("x", ""), style).ToString());
+
+                    ATI3.Text = freq.ToString();
+
+                    style = NumberStyles.Any;
+
+                    var boardstring = DoQueryWithRetry("ATI2", true);
+                    //System.Diagnostics.Debug.WriteLine(SW.ElapsedMilliseconds.ToString() + ":  Done ATI2 cmd");
+
+                    if (multipoint_fix > 0)
+                    {
+                        boardstring = boardstring.Substring(multipoint_fix).Trim();
+                    }
+
+                    if (boardstring.ToLower().Contains('x'))
+                        style = NumberStyles.AllowHexSpecifier;
+
+                    session.Board =
+                        (Uploader.Board)
+                            Enum.Parse(typeof(Uploader.Board),
+                                int.Parse(boardstring.ToLower().Replace("x", ""), style).ToString());
+
+                    txtCountry.Text = GetCountryCodeFromSession(session,
+                                    (m) => m.GetCountryCode());
+
+                    ATI2.Text = session.Board.ToString();
+
+                    if (session.Board == Uploader.Board.DEVICE_ID_RFD900X)
+                    {
+                        //RFD900x has a new set of acceptable settings ranges...
+                        SERIAL_SPEED.DataSource = new int[] { 1, 2, 4, 9, 19, 38, 57, 115, 230, 460 };
+                        RSERIAL_SPEED.DataSource = new int[] { 1, 2, 4, 9, 19, 38, 57, 115, 230, 460 };
+
+                        AIR_SPEED.DataSource = new int[] { 4, 64, 125, 250, 500 };
+                        RAIR_SPEED.DataSource = new int[] { 4, 64, 125, 250, 500 };
+
+                        NETID.DataSource = Range(0, 1, 255);
+                        RNETID.DataSource = Range(0, 1, 255);
+
+                        MIN_FREQ.DataSource = Range(902000, 1000, 927000);
+                        RMIN_FREQ.DataSource = Range(902000, 1000, 927000);
+
+                        MAX_FREQ.DataSource = Range(903000, 1000, 928000);
+                        RMAX_FREQ.DataSource = Range(903000, 1000, 928000);
+
+                        NUM_CHANNELS.DataSource = Range(1, 1, 50);
+                        RNUM_CHANNELS.DataSource = Range(1, 1, 50);
+
+                        MAX_WINDOW.DataSource = Range(20, 1, 400);
+                        RMAX_WINDOW.DataSource = Range(20, 1, 400);
+
+                    }
+                    else
+                    {
+                        RestoreAllDefaultCBObjects();
+                    }
+
+                    // 8 and 9
+                    if (freq == Uploader.Frequency.FREQ_915)
+                    {
+                        MIN_FREQ.DataSource = Range(902000, 1000, 927000);
+                        RMIN_FREQ.DataSource = Range(902000, 1000, 927000);
+
+                        MAX_FREQ.DataSource = Range(903000, 1000, 928000);
+                        RMAX_FREQ.DataSource = Range(903000, 1000, 928000);
+                    }
+                    else if (freq == Uploader.Frequency.FREQ_433)
+                    {
+                        MIN_FREQ.DataSource = Range(414000, 50, 460000);
+                        RMIN_FREQ.DataSource = Range(414000, 50, 460000);
+
+                        MAX_FREQ.DataSource = Range(414000, 50, 460000);
+                        RMAX_FREQ.DataSource = Range(414000, 50, 460000);
+                    }
+                    else if (freq == Uploader.Frequency.FREQ_868)
+                    {
+                        MIN_FREQ.DataSource = Range(849000, 1000, 889000);
+                        RMIN_FREQ.DataSource = Range(849000, 1000, 889000);
+
+                        MAX_FREQ.DataSource = Range(849000, 1000, 889000);
+                        RMAX_FREQ.DataSource = Range(849000, 1000, 889000);
+                    }
+
+                    if (session.Board == Uploader.Board.DEVICE_ID_RFD900 ||
+                            session.Board == Uploader.Board.DEVICE_ID_RFD900A
+                            || session.Board == Uploader.Board.DEVICE_ID_RFD900P ||
+                            session.Board == Uploader.Board.DEVICE_ID_RFD900X)
+                    {
+                        TXPOWER.DataSource = Range(0, 1, 30);
+                        RTXPOWER.DataSource = Range(0, 1, 30);
+                    }
+                    else
+                    {
+                        TXPOWER.DataSource = Range(0, 1, 20);
+                        RTXPOWER.DataSource = Range(0, 1, 20);
+                    }
+
+                    if (session.Board == Uploader.Board.DEVICE_ID_RFD900X)
+                    {
+                        LBT_RSSI.DataSource = Range(0, 25, 220);
+                        RLBT_RSSI.DataSource = Range(0, 25, 220);
+                    }
+                    else
+                    {
+                        LBT_RSSI.DataSource = Range(0, 1, 1);
+                        RLBT_RSSI.DataSource = Range(0, 1, 1);
+                    }
+
+                    if (multipoint_fix == -1)
+                    {
+                        var AESKey = DoQueryWithRetry("AT&E?", true).Trim();// doCommand(Session.Port, "AT&E?").Trim();
+                        if (AESKey.Contains("ERROR"))
+                        {
+                            AESKEY.Text = "";
+                            AESKEY.Enabled = false;
+                        }
+                        else
+                        {
+                            AESKEY.Text = AESKey;
+                            AESKEY.Enabled = true;
+                        }
+                        SetupComboForMavlink(MAVLINK, false);
+                    }
+                    else
+                    {
+                        AESKEY.Text = "";
+                        AESKEY.Enabled = false;
+                        SetupComboForMavlink(MAVLINK, true);
+                    }
+
+                    RSSI.Text = DoQueryWithRetry("ATI7", true).Trim(); //Session.ATCClient.DoQuery("ATI7", true);// doCommand(Session.Port, "ATI7").Trim();
+                    //System.Diagnostics.Debug.WriteLine(SW.ElapsedMilliseconds.ToString() + ":  Done ATI7 cmd");
+
+
+                    lbl_status.Text = "Doing Command ATI5";
+
+                    var answer = session.ATCClient.DoQueryWithMultiLineResponse("ATI5", "ATI");
+
+                    bool Junk;
+
+                    //System.Diagnostics.Debug.WriteLine(SW.ElapsedMilliseconds.ToString() + ":  Parsing local settings");
+
+                    var Settings = session.GetSettings(false,
+                        session.Board, answer, null, out Junk);
+
+                    _sikSettings.Local = new RFD.RFD900.TSettings(
+                        RFDLib.Collections.Translate(
+                            Settings, (x) => (RFD.RFD900.TBaseSetting)x));
+
+                    DisableRFD900xControls();
+
+                    var items = answer.Split('\n');
+
+                    foreach (var kvp in _DefaultLocalEnabled)
+                    {
+                        kvp.Key.Enabled = kvp.Value;
+                    }
+
+                    btnSaveToFile.Enabled = true;
+                    btnLoadFromFile.Enabled = true;
+
+                    _LocalLabelEditorPairs.Reset();
+
+                    if (ATI.Text.Contains("ASYNC"))
+                    {
+                        _LocalExtraParams.SetModel(Model.ASYNC, Settings);
+                    }
+                    else
+                    {
+                        if (ATI.Text.Contains("MP on") && (session.Board == Uploader.Board.DEVICE_ID_RFD900X))
+                        {
+                            //This is multipoint firmware.
+                            _LocalExtraParams.SetModel(Model.MULTIPOINT_X, Settings);
+                        }
+                        else if ((items.Length > 0) && items[0].StartsWith("["))
+                        {
+                            _LocalExtraParams.SetModel(Model.MULTIPOINT, Settings);
+                        }
+                        else
+                        {
+                            //This is p2p firmware.
+                            _LocalExtraParams.SetModel(Model.P2P, Settings);
+                        }
+                    }
+
+                    //System.Diagnostics.Debug.WriteLine(SW.ElapsedMilliseconds.ToString() + ":  Done getting info out of local modem");
+
+                    //For each of the settings returned by the radio...
+                    SetUpControlsWithValues(null, false, ModifyReturnedStringsForMultipoint(items, multipoint_fix), Settings);
+                    //SetUpControlsWithValues(groupBoxLocal, false, ModifyReturnedStringsForMultipoint(items, multipoint_fix), Settings);
+
+                    btnRandom.Enabled = GetIsEncryptionEnabled(ENCRYPTION_LEVEL);
+                    //System.Diagnostics.Debug.WriteLine(SW.ElapsedMilliseconds.ToString() + ":  Done setting up controls for local modem");
+
+                    // remote
+                    //foreach (Control ctl in groupBoxRemote.Controls)
+                    //{
+                    //    if ((ctl.Name != "RSSI")&& (!(ctl is Label)) && !(ctl is Button))
+                    //    {
+                    //        ctl.ResetText();
+                    //    }
+                    //}
+
+                    session.Port.DiscardInBuffer();
+
+                    string RTIText = DoQueryWithRetry("RTI", true);
+
+                    if ((RTIText.Length < 5) || RTIText.Substring(0, 5) == "ERROR")
+                    {
+                        RTI.Text = "";
+                    }
+                    else
+                    {
+                        RTI.Text = RTIText;
+                    }
+
+                    string RemoteFWVer = RFD.RFD900.RFD900.ATIResponseToFWVersion(RTI.Text);
+
+                    txtRCountry.Text = GetCountryCodeFromSession(session, (m) => m.GetRemoteCountryCode());
+
+                    if (RTI.Text != "")
+                    {
+
+                        try
+                        {
+                            var resp = DoQueryWithRetry("RTI2", true);
+                            if (resp.Trim() != "")
+                                RTI2.Text =
+                                    ((Uploader.Board)Enum.Parse(typeof(Uploader.Board), resp)).ToString();
+                        }
+                        catch
+                        {
+                        }
+
+                        if (multipoint_fix == -1)
+                        {
+                            var AESKey = DoQueryWithRetry("RT&E?", true).Trim();
+                            if (AESKey.Contains("ERROR"))
+                            {
+                                RAESKEY.Text = "";
+                                RAESKEY.Enabled = false;
+                            }
+                            else
+                            {
+                                RAESKEY.Text = AESKey;
+                                RAESKEY.Enabled = true;
+                            }
+                            SetupComboForMavlink(RMAVLINK, false);
+                        }
+                        else
+                        {
+                            RAESKEY.Text = "";
+                            RAESKEY.Enabled = false;
+                            SetupComboForMavlink(RMAVLINK, true);
+                        }
+
+                        lbl_status.Text = "Doing Command RTI5";
+
+                        answer = DoQueryWithRetry("RTI5", true);
+
+                        bool UsedAltRanges;
+
+                        var RemoteSettings = session.GetSettings(true, session.Board, answer, (LocalFWVer == RemoteFWVer) ? Settings : null, out UsedAltRanges);
+
+                        _sikSettings.Remote = new RFD.RFD900.TSettings(
+                            RFDLib.Collections.Translate(
+                                RemoteSettings, (x) => (RFD.RFD900.TBaseSetting)x));
+
+                        if ((RemoteFWVer != null) && (LocalFWVer != RemoteFWVer) && UsedAltRanges)
+                        {
+                            MsgBox.CustomMessageBox.Show("The ranges and options shown for the remote modem may not be accurate.  To ensure accurate, use the same firmware version in both the local and remote modems");
+                        }
+
+                        items = answer.Split('\n');
+                        _RemoteLabelEditorPairs.Reset();
+
+                        btnRemoteSaveToFile.Enabled = true;
+                        btnRemoteLoadFromFile.Enabled = true;
+
+                        if (RTI.Text.Contains("ASYNC"))
+                        {
+                            _RemoteExtraParams.SetModel(Model.ASYNC, RemoteSettings);
+                        }
+                        else
+                        {
+                            if (RTI.Text.Contains("MP on") && (session.Board == Uploader.Board.DEVICE_ID_RFD900X))
+                            {
+                                _RemoteExtraParams.SetModel(Model.MULTIPOINT_X, RemoteSettings);
+                            }
+                            else if ((items.Length > 0) && items[0].StartsWith("["))
+                            {
+                                //This is multipoint firmware.
+                                _RemoteExtraParams.SetModel(Model.MULTIPOINT, RemoteSettings);
+                            }
+                            else
+                            {
+                                //This is 2-point firmware.
+                                _RemoteExtraParams.SetModel(Model.P2P, RemoteSettings);
+                            }
+                        }
+
+                        //System.Diagnostics.Debug.WriteLine(SW.ElapsedMilliseconds.ToString() + ":  Done getting info from remote modem");
+
+                        SomeSettingsInvalid |= SetUpControlsWithValues(groupBoxRemote, true, items, RemoteSettings);
+
+                        //System.Diagnostics.Debug.WriteLine(SW.ElapsedMilliseconds.ToString() + ":  Done setting up controls for remote modem");
+
+                    }
+
+                    // off hook
+                    session.PutIntoTransparentMode();
+
+                    if (SomeSettingsInvalid)
+                    {
+                        lbl_status.Text = "Done.  Some settings in modem were invalid.";
+                    }
+                    else
+                    {
+                        lbl_status.Text = "Done";
+                    }
+                    //EnableConfigControls(true, true);
+
+
+                }
+                else
+                {
+                    // off hook
+                    session.PutIntoTransparentMode();
+
+                    lbl_status.Text = "Fail";
+                    MsgBox.CustomMessageBox.Show("Failed to enter command mode.  Try power-cycling modem.");
+                    //EnableConfigControls(true, false);
+                }
+            }
+            catch (Exception e)
+            {
+                string emsg = remote
+                    ? "Error loading remote settings"
+                    : "Error loading local settings";
+                log.Error(emsg, e);
+            }
+        }
+
         /// <summary>
         /// Load settings button evt hdlr
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void BUT_getcurrent_Click(object sender, EventArgs e)
+        private async void BUT_getcurrent_Click(object sender, EventArgs e)
         {
             //System.Diagnostics.Stopwatch SW = new System.Diagnostics.Stopwatch();
             //SW.Start();
@@ -1454,13 +1985,30 @@ S15: MAX_WINDOW=131
 
             _AlreadyInEncCheckChangedEvtHdlr = true;
 
-            ResetAllControls(groupBoxLocal);
-            ResetAllControls(groupBoxRemote);
+            // Disable Action Buttons
+            SetEnabled(flowLayoutActions.Controls, false, recursive: false);
+            // Disable all settings groups
+            SetEnabled(flowLayoutSettings.Controls, false, recursive: false);
+
+            lbl_status.Text = "Connecting";
+
+            // Load local
+            LoadSettings(Session, false);
+
+            // Load remote
+            LoadSettings(Session, true);
+
+            _AlreadyInEncCheckChangedEvtHdlr = false;
+
+            UpdateSetPPMFailSafeButtons();
+            return;
+
+            //ResetAllControls(groupBoxRemote);
             SetupCBWithDefaultEncryptionOptions(ENCRYPTION_LEVEL);
             SetupCBWithDefaultEncryptionOptions(RENCRYPTION_LEVEL);
 
-            EnableConfigControls(false, false);
-            EnableProgrammingControls(false);
+            //EnableConfigControls(false, false);
+            //EnableProgrammingControls(false);
             lbl_status.Text = "Connecting";
 
             //System.Diagnostics.Debug.WriteLine(SW.ElapsedMilliseconds.ToString() + ":  Putting into AT CMD mode");
@@ -1664,9 +2212,10 @@ S15: MAX_WINDOW=131
                     var Settings = Session.GetSettings(false,
                         Session.Board, answer, null, out Junk);
 
-                    _LocalSettings = new RFD.RFD900.TSettings(
+                    _sikSettings.Local = new RFD.RFD900.TSettings(
                         RFDLib.Collections.Translate(
                             Settings, (x) => (RFD.RFD900.TBaseSetting)x));
+                                        
 
                     DisableRFD900xControls();
 
@@ -1707,19 +2256,20 @@ S15: MAX_WINDOW=131
                     //System.Diagnostics.Debug.WriteLine(SW.ElapsedMilliseconds.ToString() + ":  Done getting info out of local modem");
 
                     //For each of the settings returned by the radio...
-                    SetUpControlsWithValues(groupBoxLocal, false, ModifyReturnedStringsForMultipoint(items, multipoint_fix), Settings);
+                    SetUpControlsWithValues(null, false, ModifyReturnedStringsForMultipoint(items, multipoint_fix), Settings);
+                    //SetUpControlsWithValues(groupBoxLocal, false, ModifyReturnedStringsForMultipoint(items, multipoint_fix), Settings);
 
                     btnRandom.Enabled = GetIsEncryptionEnabled(ENCRYPTION_LEVEL);
                     //System.Diagnostics.Debug.WriteLine(SW.ElapsedMilliseconds.ToString() + ":  Done setting up controls for local modem");
 
                     // remote
-                    foreach (Control ctl in groupBoxRemote.Controls)
-                    {
-                        if ((ctl.Name != "RSSI")&& (!(ctl is Label)) && !(ctl is Button))
-                        {
-                            ctl.ResetText();
-                        }
-                    }
+                    //foreach (Control ctl in groupBoxRemote.Controls)
+                    //{
+                    //    if ((ctl.Name != "RSSI")&& (!(ctl is Label)) && !(ctl is Button))
+                    //    {
+                    //        ctl.ResetText();
+                    //    }
+                    //}
 
                     Session.Port.DiscardInBuffer();
 
@@ -1782,9 +2332,10 @@ S15: MAX_WINDOW=131
 
                         var RemoteSettings = Session.GetSettings(true, Session.Board, answer, (LocalFWVer == RemoteFWVer) ? Settings : null, out UsedAltRanges);
 
-                        _RemoteSettings = new RFD.RFD900.TSettings(
+                        // Does this also set working config?
+                        _sikSettings.Remote = new RFD.RFD900.TSettings(
                             RFDLib.Collections.Translate(
-                                RemoteSettings, (x) => (RFD.RFD900.TBaseSetting)x));
+                                RemoteSettings, (x) => (RFD.RFD900.TBaseSetting)x));                      
 
                         if ((RemoteFWVer != null) &&  (LocalFWVer != RemoteFWVer) && UsedAltRanges)
                         {
@@ -1838,7 +2389,7 @@ S15: MAX_WINDOW=131
                     {
                         lbl_status.Text = "Done";
                     }
-                    EnableConfigControls(true, true);
+                    //EnableConfigControls(true, true);
 
 
                 }
@@ -1849,7 +2400,7 @@ S15: MAX_WINDOW=131
 
                     lbl_status.Text = "Fail";
                     MsgBox.CustomMessageBox.Show("Failed to enter command mode.  Try power-cycling modem.");
-                    EnableConfigControls(true, false);
+                    //EnableConfigControls(true, false);
                 }
 
                 //BUT_Syncoptions.Enabled = true;
@@ -1858,7 +2409,7 @@ S15: MAX_WINDOW=131
 
                 //BUT_SetPPMFailSafe.Enabled = true;
                 
-                EnableProgrammingControls(true);
+                //EnableProgrammingControls(true);
             }
             catch (Exception ex)
             {
@@ -1869,6 +2420,9 @@ S15: MAX_WINDOW=131
 
             UpdateSetPPMFailSafeButtons();
         }
+
+        
+
 
         void UpdateSetPPMFailSafeButtons()
         {
@@ -2151,16 +2705,16 @@ red LED solid - in firmware update mode");
             }
         }
 
-        void EnableConfigControls(bool Enable, bool SaveSettingsEnable)
-        {
-            groupBoxLocal.Enabled = SaveSettingsEnable;
-            groupBoxRemote.Enabled = SaveSettingsEnable;
-            BUT_Syncoptions.Enabled = Enable;
-            BUT_SetPPMFailSafe.Enabled = Enable;
-            BUT_getcurrent.Enabled = Enable;
-            BUT_savesettings.Enabled = SaveSettingsEnable;
-            BUT_resettodefault.Enabled = Enable;
-        }
+        //void EnableConfigControls(bool Enable, bool SaveSettingsEnable)
+        //{
+        //    //groupBoxLocal.Enabled = SaveSettingsEnable;
+        //    groupBoxRemote.Enabled = SaveSettingsEnable;
+        //    BUT_Syncoptions.Enabled = Enable;
+        //    BUT_SetPPMFailSafe.Enabled = Enable;
+        //    BUT_getcurrent.Enabled = Enable;
+        //    BUT_savesettings.Enabled = SaveSettingsEnable;
+        //    BUT_resettodefault.Enabled = Enable;
+        //}
         public static void ResetAllControls(Control form)
         {
             {
@@ -2195,6 +2749,9 @@ red LED solid - in firmware update mode");
             }
         }
 
+        
+
+
         void EnableProgrammingControls(bool Enable)
         {
             BUT_loadcustom.Enabled = Enable;
@@ -2215,8 +2772,8 @@ red LED solid - in firmware update mode");
 
         void ProgramFirmware(bool Custom)
         {
-            EnableProgrammingControls(false);
-            EnableConfigControls(false, false);
+            //EnableProgrammingControls(false);
+            //EnableConfigControls(false, false);
 
             try
             {
@@ -2276,8 +2833,8 @@ red LED solid - in firmware update mode");
                 {
                 }
             }
-            EnableProgrammingControls(true);
-            EnableConfigControls(true, false);
+            //EnableProgrammingControls(true);
+            //EnableConfigControls(true, false);
             //UploadFW(true);
         }
 
@@ -2404,10 +2961,10 @@ red LED solid - in firmware update mode");
             if (_Session == null)
             {
                 try
-                {
-                    if (SikRadio.Config.comPort != null)
+                {                    
+                    if (_comPort != null)
                     {
-                        _Session = new RFD.RFD900.TSession(SikRadio.Config.comPort, MainV2.comPort.BaseStream.BaudRate);
+                        _Session = new RFD.RFD900.TSession(_comPort, MainV2.comPort.BaseStream.BaudRate);
                     }
                 }
                 catch
@@ -2627,9 +3184,25 @@ red LED solid - in firmware update mode");
             }
         }
 
+        void SaveWorkingConfig(RFD.RFD900.TSettings config)
+        {
+            if (dlgSave.ShowDialog() == DialogResult.OK)
+            {
+                if (config.SaveToFile(dlgSave.FileName))
+                {
+                    System.Windows.Forms.MessageBox.Show("Saved settings to " + dlgSave.FileName + " OK");
+                }
+                else
+                {
+                    System.Windows.Forms.MessageBox.Show("Failed to save settings to " + dlgSave.FileName);
+                }
+            }
+        }
+
         private void btnSaveToFile_Click(object sender, EventArgs e)
         {
-            SaveToFile(_LocalSettings, groupBoxLocal, false);
+            SaveWorkingConfig(_sikSettings.UseLocalSettings ? _sikSettings.Local : _sikSettings.Remote);
+            //SaveToFile(_LocalSettings, groupBoxLocal, false);
         }
 
         /// <summary>
@@ -2668,23 +3241,74 @@ red LED solid - in firmware update mode");
             }
         }
 
+        private void LoadConfigFromFile()
+        {
+            if (dlgOpen.ShowDialog() == DialogResult.OK)
+            {
+                if (_sikSettings.UseLocalSettings)
+                {
+                    var loaded = _sikSettings.Local.LoadFromFile(dlgOpen.FileName);
+                    if (loaded == null)
+                    {
+                        System.Windows.Forms.MessageBox.Show("Failed to load settings from " + dlgOpen.FileName);
+                        return;
+                    }                    
+                    ShowLoadedSettings(dlgOpen.FileName, loaded);
+                } else
+                {
+                    var loaded = _sikSettings.Remote.LoadFromFile(dlgOpen.FileName);
+                    if (loaded == null)
+                    {
+                        System.Windows.Forms.MessageBox.Show("Failed to load settings from " + dlgOpen.FileName);
+                        return;
+                    }                    
+                    ShowLoadedSettings(dlgOpen.FileName, loaded);
+                }                
+            }
+        }
+
+        private void ShowLoadedSettings(string FileName, Dictionary<string, TNameAndValue> x)
+        {
+            string Temp = "Loaded\n";
+
+            foreach (var kvp in x)
+            {
+                Temp += kvp.Value.Name + " = " + kvp.Value.Value.ToString() + "\n";
+            }
+
+            Temp += "from " + dlgOpen.FileName + " OK";
+
+            System.Windows.Forms.MessageBox.Show(Temp);
+        }
+
 
         private void btnLoadFromFile_Click(object sender, EventArgs e)
         {
-            LoadFromFile(_LocalSettings, groupBoxLocal, false);
+            LoadConfigFromFile();
+            //LoadFromFile(_LocalSettings, groupBoxLocal, false);
         }
 
         private void btnRemoteLoadFromFile_Click(object sender, EventArgs e)
         {
-            LoadFromFile(_RemoteSettings, groupBoxRemote, true);
+            LoadConfigFromFile();
+            //LoadFromFile(_RemoteSettings, groupBoxRemote, true);
         }
 
         private void btnRemoteSaveToFile_Click(object sender, EventArgs e)
         {
-            SaveToFile(_RemoteSettings, groupBoxRemote, true);
+            //SaveToFile(_RemoteSettings, groupBoxRemote, true);
         }
 
-        
+        private void radioLocal_CheckedChanged(object sender, EventArgs e)
+        {
+            _sikSettings.UseLocalSettings = radioLocal.Checked;
+        }
+
+        private void radioRemote_CheckedChanged(object sender, EventArgs e)
+        {
+            // NO OP
+            // Should Only need one CheckChanged to be handled as this one and Local are mutex
+        }
 
         public string Header
         {

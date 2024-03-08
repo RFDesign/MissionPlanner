@@ -7,10 +7,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using RFDCommon.Interface;
+using MissionPlanner.Comms;
 
 namespace RFD900Tools
 {
-    public partial class Manufacturing : UserControl, SikRadio.ISikRadioForm
+    public partial class Manufacturing : UserControl, ISikRadioForm
     {
         object _Locker = new object();
 
@@ -19,7 +21,7 @@ namespace RFD900Tools
             InitializeComponent();
         }
 
-        public void Connect()
+        public void Connect(ICommsSerial comPort)
         {
             lock (_Locker)
             {

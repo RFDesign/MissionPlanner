@@ -7,6 +7,8 @@ using MissionPlanner;
 using MissionPlanner.MsgBox;
 using MissionPlanner.Radio;
 using ZedGraph;
+using RFDCommon.Interface;
+using MissionPlanner.Comms;
 
 namespace SikRadio
 {
@@ -35,7 +37,7 @@ namespace SikRadio
             Terminal.SetupStreamWriter();
         }
 
-        public void Connect()
+        public void Connect(ICommsSerial comPort)
         {
             if (_Session == null)
             {
@@ -43,7 +45,7 @@ namespace SikRadio
 
                 if (RFDLib.Utils.Retry(() =>
                 {
-                    Session = new RFD.RFD900.TSession(SikRadio.Config.comPort, MainV2.comPort.BaseStream.BaudRate);
+                    Session = new RFD.RFD900.TSession(comPort, MainV2.comPort.BaseStream.BaudRate);
                     return Session.PutIntoATCommandMode() == RFD.RFD900.TSession.TMode.AT_COMMAND;
                 }
                 , 3))

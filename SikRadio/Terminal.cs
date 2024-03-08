@@ -7,6 +7,8 @@ using System.Windows.Forms;
 using MissionPlanner;
 using MissionPlanner.Comms;
 using MissionPlanner.MsgBox;
+using RFDCommon.Interface;
+
 
 namespace SikRadio
 {
@@ -80,13 +82,13 @@ namespace SikRadio
             });
         }
 
-        public void Connect()
+        public void Connect(ICommsSerial comPort)
         {
             if (!_RunRxThread)
             {
                 if (RFDLib.Utils.Retry(() =>
                 {
-                    var Session = new RFD.RFD900.TSession(SikRadio.Config.comPort, MainV2.comPort.BaseStream.BaudRate);
+                    var Session = new RFD.RFD900.TSession(comPort, MainV2.comPort.BaseStream.BaudRate);
                     var Result = Session.PutIntoATCommandMode() == RFD.RFD900.TSession.TMode.AT_COMMAND;
                     Session.Dispose();
                     return Result;

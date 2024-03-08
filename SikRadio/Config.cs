@@ -6,6 +6,7 @@ using MissionPlanner.Comms;
 using MissionPlanner.Radio;
 using MissionPlanner.Utilities;
 using Microsoft.VisualBasic;
+using RFDCommon.Interface;
 
 namespace SikRadio
 {
@@ -196,7 +197,7 @@ namespace SikRadio
             _CurrentForm.Show();
             if (_Connected)
             {
-                _CurrentForm.Connect();
+                _CurrentForm.Connect(comPort);
             }
         }
 
@@ -300,13 +301,13 @@ namespace SikRadio
                 {
                     if (_CurrentForm != null)
                     {
-                        _CurrentForm.Connect();
+                        _CurrentForm.Connect(comPort);
                     }
                     _Connected = true;
                     btnConnect.Text = "Disconnect";
                     if (_CurrentForm != null)
                     {
-                        _CurrentForm.Enabled = true;
+                        _CurrentForm.Enabled = true;                        
                     }
                     CMB_Baudrate.Enabled = (_comPort is SerialPort);
                     CMB_SerialPort.Enabled = false;
@@ -321,14 +322,5 @@ namespace SikRadio
                 _CurrentForm.Disconnect();
             }
         }
-    }
-
-    public interface ISikRadioForm : IDisposable
-    {
-        void Connect();
-        void Disconnect();
-        void Show();
-        bool Enabled { get; set; }
-        string Header { get; }
     }
 }

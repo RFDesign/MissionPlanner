@@ -63,6 +63,7 @@
       <HintPath>..\packages\System.AppContext.4.3.0\lib\net46\System.AppContext.dll</HintPath>
     </Reference>
     <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Console, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Console.4.3.0\lib\net46\System.Console.dll</HintPath>
     </Reference>
@@ -153,9 +154,6 @@
     <Compile Include="..\ExtLibs\Comms\CommsTCPSerial.cs">
       <Link>Linked\CommsTCPSerial.cs</Link>
     </Compile>
-    <Compile Include="..\ExtLibs\Comms\ICommsSerial.cs">
-      <Link>Linked\ICommsSerial.cs</Link>
-    </Compile>
     <Compile Include="..\ExtLibs\Controls\CustomMessageBox.cs">
       <Link>Linked\CustomMessageBox.cs</Link>
     </Compile>
@@ -216,27 +214,6 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RFD900.cs" />
-    <Compile Include="RFDLib\Array.cs" />
-    <Compile Include="RFDLib\Collections.cs" />
-    <Compile Include="RFDLib\Config\Config.cs" />
-    <Compile Include="RFDLib\Config\GUI.cs" />
-    <Compile Include="RFDLib\GUI\CBWithBackground.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="RFDLib\GUI\CBWithBackground.Designer.cs">
-      <DependentUpon>CBWithBackground.cs</DependentUpon>
-    </Compile>
-    <Compile Include="RFDLib\GUI\ConfigArray.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="RFDLib\GUI\ConfigArray.designer.cs">
-      <DependentUpon>ConfigArray.cs</DependentUpon>
-    </Compile>
-    <Compile Include="RFDLib\GUI\Settings.cs" />
-    <Compile Include="RFDLib\IO\ATCommand.cs" />
-    <Compile Include="RFDLib\IO\SerialPort\SerialPort.cs" />
-    <Compile Include="RFDLib\RFDLib.cs" />
-    <Compile Include="RFDLib\Text.cs" />
     <Compile Include="Rssi.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -310,12 +287,6 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="RFDLib\GUI\CBWithBackground.resx">
-      <DependentUpon>CBWithBackground.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="RFDLib\GUI\ConfigArray.resx">
-      <DependentUpon>ConfigArray.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Rssi.resx">
       <DependentUpon>Rssi.cs</DependentUpon>
     </EmbeddedResource>
@@ -383,6 +354,14 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\RFDCommon\RFDCommon.csproj">
+      <Project>{8eb4f17c-c25b-4aca-98db-a98220e60815}</Project>
+      <Name>RFDCommon</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ExtLibs\Comms\MissionPlanner.Comms.csproj">
+      <Project>{825e7a10-390c-4a2b-b3a8-491d14966912}</Project>
+      <Name>MissionPlanner.Comms</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ExtLibs\ZedGraph\ZedGraph.csproj">
       <Project>{2541686b-1673-43bf-af89-3163945db009}</Project>
       <Name>ZedGraph</Name>

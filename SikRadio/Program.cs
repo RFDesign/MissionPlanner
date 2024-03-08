@@ -91,6 +91,7 @@
  */
 
 using System;
+using System.Configuration;
 using System.Windows.Forms;
 using log4net;
 using log4net.Config;
@@ -136,6 +137,7 @@ namespace SikRadio
                 if (RFDLib.Text.Contains(arg, ALLOW_DIFF_PROG))
                 {
                     _AllowDiffProg = true;
+                    ConfigurationManager.AppSettings["AllowDiffProg"] = "true";
                 }
             }
 

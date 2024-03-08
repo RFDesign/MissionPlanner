@@ -90,6 +90,7 @@
   </ItemGroup>
   
   <ItemGroup>
+    <ProjectReference Include="..\RFDCommon\RFDCommon.csproj" />
     <ProjectReference Include="ExtLibs\AltitudeAngelWings\AltitudeAngelWings.csproj">
       <Project>{098f542c-7c70-4b9c-b2e2-ac5dc5e0294b}</Project>
       <Name>AltitudeAngelWings</Name>
@@ -405,8 +406,6 @@
     <Compile Include="Log\Scan.cs" />
     <Compile Include="Log\test\MotorFailure.cs" />
     <Compile Include="SikRadio\RFD900.cs" />
-    <Compile Include="SikRadio\RFDLib\Array.cs" />
-    <Compile Include="SikRadio\RFDLib\Text.cs" />
     <Compile Include="Models\DelegateCommand.cs" />
     <Compile Include="Models\ICommand.cs" />
     <Compile Include="NoFly\NoFly.cs" />
@@ -2051,6 +2050,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Properties\app.manifest" />
+    <None Include="RFDCommon.ConfigManager.datasource" />
     <None Include="Scripts\datetime.py">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -2117,6 +2117,7 @@
 
   <ItemGroup>
     <Folder Include="Plugins\" />
+    <Folder Include="Resources\" />
     <Folder Include="RFD\" />
   </ItemGroup>
 
