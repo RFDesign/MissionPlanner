@@ -1246,6 +1246,8 @@
             // 
             // textConsole
             // 
+            this.textConsole.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.textConsole.ForeColor = System.Drawing.SystemColors.HighlightText;
             resources.ApplyResources(this.textConsole, "textConsole");
             this.textConsole.Name = "textConsole";
             this.textConsole.ReadOnly = true;

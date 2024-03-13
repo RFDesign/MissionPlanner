@@ -4102,6 +4102,9 @@ this ensures you wont lose radio link</value>
   <data name="textConsole.Multiline" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
+  <data name="textConsole.ScrollBars" type="System.Windows.Forms.ScrollBars, System.Windows.Forms">
+    <value>Vertical</value>
+  </data>
   <data name="textConsole.Size" type="System.Drawing.Size, System.Drawing">
     <value>811, 70</value>
   </data>
