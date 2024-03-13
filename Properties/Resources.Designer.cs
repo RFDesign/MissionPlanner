@@ -573,16 +573,6 @@ namespace MissionPlanner.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap download_icon {
-            get {
-                object obj = ResourceManager.GetObject("download_icon", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap frames_06 {
             get {
                 object obj = ResourceManager.GetObject("frames_06", resourceCulture);
@@ -1050,16 +1040,6 @@ namespace MissionPlanner.Properties {
         internal static System.Drawing.Bitmap light_tuningconfig_icon {
             get {
                 object obj = ResourceManager.GetObject("light_tuningconfig_icon", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap load_file {
-            get {
-                object obj = ResourceManager.GetObject("load_file", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -1592,16 +1572,6 @@ namespace MissionPlanner.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap save_file {
-            get {
-                object obj = ResourceManager.GetObject("save_file", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap selectvehicle {
             get {
                 object obj = ResourceManager.GetObject("selectvehicle", resourceCulture);
@@ -1675,16 +1645,6 @@ namespace MissionPlanner.Properties {
         internal static System.Drawing.Bitmap up {
             get {
                 object obj = ResourceManager.GetObject("up", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap upload_icon {
-            get {
-                object obj = ResourceManager.GetObject("upload_icon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

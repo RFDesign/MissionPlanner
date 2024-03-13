@@ -28,10 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Sikradio));
             this.Progressbar = new System.Windows.Forms.ProgressBar();
-            this.toolTip1 = new System.Windows.Forms.ToolTip();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.RSSI = new System.Windows.Forms.TextBox();
+            this.configManagerBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.RTSCTS = new System.Windows.Forms.CheckBox();
             this.MAX_FREQ = new System.Windows.Forms.ComboBox();
@@ -46,7 +48,6 @@
             this.AIR_SPEED = new System.Windows.Forms.ComboBox();
             this.NETID = new System.Windows.Forms.ComboBox();
             this.TXPOWER = new System.Windows.Forms.ComboBox();
-            this.ECC = new System.Windows.Forms.CheckBox();
             this.OPPRESEND = new System.Windows.Forms.CheckBox();
             this.ENCRYPTION_LEVEL = new System.Windows.Forms.ComboBox();
             this.FSFRAMELOSS = new System.Windows.Forms.ComboBox();
@@ -56,6 +57,8 @@
             this.AIR_FRAMELEN = new System.Windows.Forms.ComboBox();
             this.RSSI_IN_DBM = new System.Windows.Forms.CheckBox();
             this.BUT_SetPPMFailSafe = new MissionPlanner.Controls.MyButton();
+            this.BUT_savesettings = new MissionPlanner.Controls.MyButton();
+            this.BUT_getcurrent = new MissionPlanner.Controls.MyButton();
             this.MAX_WINDOW = new System.Windows.Forms.ComboBox();
             this.GPO1_3STATLED = new System.Windows.Forms.CheckBox();
             this.GPO1_0TXEN485 = new System.Windows.Forms.CheckBox();
@@ -95,7 +98,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.lblNETID = new System.Windows.Forms.Label();
             this.lblTXPOWER = new System.Windows.Forms.Label();
-            this.lblECC = new System.Windows.Forms.Label();
             this.lblOPPRESEND = new System.Windows.Forms.Label();
             this.lblMAVLINK = new System.Windows.Forms.Label();
             this.lblANT_MODE = new System.Windows.Forms.Label();
@@ -122,10 +124,10 @@
             this.label10 = new System.Windows.Forms.Label();
             this.dlgSave = new System.Windows.Forms.SaveFileDialog();
             this.dlgOpen = new System.Windows.Forms.OpenFileDialog();
-            this.radioLocal = new System.Windows.Forms.RadioButton();
-            this.radioRemote = new System.Windows.Forms.RadioButton();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label4 = new System.Windows.Forms.Label();
+            this.listDevices = new System.Windows.Forms.ListBox();
+            this.modemsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.groupFirmware = new System.Windows.Forms.GroupBox();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
@@ -151,94 +153,15 @@
             this.btnLoadFromFile = new MissionPlanner.Controls.MyButton();
             this.btnSaveToFile = new MissionPlanner.Controls.MyButton();
             this.BUT_resettodefault = new MissionPlanner.Controls.MyButton();
-            this.BUT_savesettings = new MissionPlanner.Controls.MyButton();
-            this.BUT_getcurrent = new MissionPlanner.Controls.MyButton();
             this.flowLayoutActions = new System.Windows.Forms.FlowLayoutPanel();
             this.flowLayoutSettings = new System.Windows.Forms.FlowLayoutPanel();
-            this.RTI = new System.Windows.Forms.TextBox();
-            this.label9 = new System.Windows.Forms.Label();
-            this.RTI2 = new System.Windows.Forms.TextBox();
-            this.lblRLBT_RSSI = new System.Windows.Forms.Label();
-            this.lblRDUTY_CYCLE = new System.Windows.Forms.Label();
-            this.lblRNUM_CHANNELS = new System.Windows.Forms.Label();
-            this.lblRMAX_FREQ = new System.Windows.Forms.Label();
-            this.RMIN_FREQ = new System.Windows.Forms.ComboBox();
-            this.RLBT_RSSI = new System.Windows.Forms.ComboBox();
-            this.RDUTY_CYCLE = new System.Windows.Forms.ComboBox();
-            this.RNUM_CHANNELS = new System.Windows.Forms.ComboBox();
-            this.RMAX_FREQ = new System.Windows.Forms.ComboBox();
-            this.lblRMIN_FREQ = new System.Windows.Forms.Label();
-            this.RMAX_WINDOW = new System.Windows.Forms.ComboBox();
-            this.lblRMAX_WINDOW = new System.Windows.Forms.Label();
-            this.lblRRTSCTS = new System.Windows.Forms.Label();
-            this.RRTSCTS = new System.Windows.Forms.CheckBox();
-            this.lblRENCRYPTION_LEVEL = new System.Windows.Forms.Label();
-            this.RAESKEY = new System.Windows.Forms.TextBox();
-            this.label38 = new System.Windows.Forms.Label();
-            this.lblRMAX_DATA = new System.Windows.Forms.Label();
-            this.RMAX_DATA = new System.Windows.Forms.ComboBox();
-            this.RMAX_RETRIES = new System.Windows.Forms.ComboBox();
-            this.RGLOBAL_RETRIES = new System.Windows.Forms.ComboBox();
-            this.RSER_BRK_DETMS = new System.Windows.Forms.ComboBox();
-            this.lblRMAX_RETRIES = new System.Windows.Forms.Label();
-            this.lblRGLOBAL_RETRIES = new System.Windows.Forms.Label();
-            this.lblRSER_BRK_DETMS = new System.Windows.Forms.Label();
-            this.RANT_MODE = new System.Windows.Forms.ComboBox();
-            this.lblRANT_MODE = new System.Windows.Forms.Label();
-            this.label31 = new System.Windows.Forms.Label();
-            this.label30 = new System.Windows.Forms.Label();
-            this.label32 = new System.Windows.Forms.Label();
-            this.lblRNETID = new System.Windows.Forms.Label();
-            this.ROPPRESEND = new System.Windows.Forms.CheckBox();
-            this.lblRTXPOWER = new System.Windows.Forms.Label();
-            this.lblRECC = new System.Windows.Forms.Label();
-            this.RECC = new System.Windows.Forms.CheckBox();
-            this.lblRMAVLINK = new System.Windows.Forms.Label();
-            this.RTXPOWER = new System.Windows.Forms.ComboBox();
-            this.lblROPPRESEND = new System.Windows.Forms.Label();
-            this.RNETID = new System.Windows.Forms.ComboBox();
-            this.RAIR_SPEED = new System.Windows.Forms.ComboBox();
-            this.RSERIAL_SPEED = new System.Windows.Forms.ComboBox();
-            this.RGPI1_1R_CIN = new System.Windows.Forms.CheckBox();
-            this.lblRGPI1_1R_CIN = new System.Windows.Forms.Label();
-            this.RFORMAT = new System.Windows.Forms.TextBox();
-            this.RGPO1_1R_COUT = new System.Windows.Forms.CheckBox();
-            this.RMAVLINK = new System.Windows.Forms.ComboBox();
-            this.lblRGPO1_1R_COUT = new System.Windows.Forms.Label();
-            this.RNODEID = new System.Windows.Forms.ComboBox();
-            this.RDESTID = new System.Windows.Forms.ComboBox();
-            this.lblRNODEID = new System.Windows.Forms.Label();
-            this.lblRDESTID = new System.Windows.Forms.Label();
-            this.RTX_ENCAP_METHOD = new System.Windows.Forms.ComboBox();
-            this.lblRTX_ENCAP_METHOD = new System.Windows.Forms.Label();
-            this.RRX_ENCAP_METHOD = new System.Windows.Forms.ComboBox();
-            this.lblRRX_ENCAP_METHOD = new System.Windows.Forms.Label();
-            this.RRATE_FREQBAND = new System.Windows.Forms.ComboBox();
-            this.label46 = new System.Windows.Forms.Label();
-            this.RGPO1_3SBUSIN = new System.Windows.Forms.CheckBox();
-            this.lblRSBUSIN = new System.Windows.Forms.Label();
-            this.lblRSBUSOUT = new System.Windows.Forms.Label();
-            this.txtRCountry = new System.Windows.Forms.TextBox();
-            this.label50 = new System.Windows.Forms.Label();
-            this.BUT_SetPPMFailSafeRemote = new MissionPlanner.Controls.MyButton();
-            this.RGPO1_3SBUSOUT = new System.Windows.Forms.ComboBox();
-            this.lblRGPO1_3STATLED = new System.Windows.Forms.Label();
-            this.RGPO1_3STATLED = new System.Windows.Forms.CheckBox();
-            this.lblRGPO1_0TXEN485 = new System.Windows.Forms.Label();
-            this.RGPO1_0TXEN485 = new System.Windows.Forms.CheckBox();
-            this.RENCRYPTION_LEVEL = new System.Windows.Forms.ComboBox();
-            this.RGPIO1_1FUNC = new System.Windows.Forms.ComboBox();
-            this.lblRGPIO1_1FUNC = new System.Windows.Forms.Label();
-            this.lblRGPI1_2AUXIN = new System.Windows.Forms.Label();
-            this.RGPI1_2AUXIN = new System.Windows.Forms.CheckBox();
-            this.lblRGPO1_3AUXOUT = new System.Windows.Forms.Label();
-            this.RGPO1_3AUXOUT = new System.Windows.Forms.CheckBox();
-            this.RFSFRAMELOSS = new System.Windows.Forms.ComboBox();
-            this.lblRFSFRAMELOSS = new System.Windows.Forms.Label();
-            this.btnRemoteSaveToFile = new MissionPlanner.Controls.MyButton();
-            this.btnRemoteLoadFromFile = new MissionPlanner.Controls.MyButton();
-            this.groupBoxRemote = new System.Windows.Forms.GroupBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.flowLayoutMain = new System.Windows.Forms.FlowLayoutPanel();
+            this.textConsole = new System.Windows.Forms.TextBox();
+            this.button1 = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.configManagerBindingSource)).BeginInit();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.modemsBindingSource)).BeginInit();
             this.groupFirmware.SuspendLayout();
             this.groupRadio.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -247,7 +170,8 @@
             this.groupBox3.SuspendLayout();
             this.flowLayoutActions.SuspendLayout();
             this.flowLayoutSettings.SuspendLayout();
-            this.groupBoxRemote.SuspendLayout();
+            this.groupBox2.SuspendLayout();
+            this.flowLayoutMain.SuspendLayout();
             this.SuspendLayout();
             // 
             // Progressbar
@@ -258,10 +182,15 @@
             // 
             // RSSI
             // 
+            this.RSSI.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.configManagerBindingSource, "RSSI", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             resources.ApplyResources(this.RSSI, "RSSI");
             this.RSSI.Name = "RSSI";
             this.RSSI.ReadOnly = true;
             this.toolTip1.SetToolTip(this.RSSI, resources.GetString("RSSI.ToolTip"));
+            // 
+            // configManagerBindingSource
+            // 
+            this.configManagerBindingSource.DataSource = typeof(RFDCommon.ConfigManager);
             // 
             // linkLabel1
             // 
@@ -344,19 +273,6 @@
             this.MIN_FREQ.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             resources.ApplyResources(this.MIN_FREQ, "MIN_FREQ");
             this.MIN_FREQ.FormattingEnabled = true;
-            this.MIN_FREQ.Items.AddRange(new object[] {
-            resources.GetString("MIN_FREQ.Items"),
-            resources.GetString("MIN_FREQ.Items1"),
-            resources.GetString("MIN_FREQ.Items2"),
-            resources.GetString("MIN_FREQ.Items3"),
-            resources.GetString("MIN_FREQ.Items4"),
-            resources.GetString("MIN_FREQ.Items5"),
-            resources.GetString("MIN_FREQ.Items6"),
-            resources.GetString("MIN_FREQ.Items7"),
-            resources.GetString("MIN_FREQ.Items8"),
-            resources.GetString("MIN_FREQ.Items9"),
-            resources.GetString("MIN_FREQ.Items10"),
-            resources.GetString("MIN_FREQ.Items11")});
             this.MIN_FREQ.Name = "MIN_FREQ";
             this.toolTip1.SetToolTip(this.MIN_FREQ, resources.GetString("MIN_FREQ.ToolTip"));
             // 
@@ -495,12 +411,6 @@
             this.TXPOWER.Name = "TXPOWER";
             this.toolTip1.SetToolTip(this.TXPOWER, resources.GetString("TXPOWER.ToolTip"));
             // 
-            // ECC
-            // 
-            resources.ApplyResources(this.ECC, "ECC");
-            this.ECC.Name = "ECC";
-            this.toolTip1.SetToolTip(this.ECC, resources.GetString("ECC.ToolTip"));
-            // 
             // OPPRESEND
             // 
             resources.ApplyResources(this.OPPRESEND, "OPPRESEND");
@@ -546,7 +456,6 @@
             resources.GetString("ENCRYPTION_LEVEL.Items30")});
             this.ENCRYPTION_LEVEL.Name = "ENCRYPTION_LEVEL";
             this.toolTip1.SetToolTip(this.ENCRYPTION_LEVEL, resources.GetString("ENCRYPTION_LEVEL.ToolTip"));
-            this.ENCRYPTION_LEVEL.SelectedValueChanged += new System.EventHandler(this.ENCRYPTION_LEVEL_CheckedChanged);
             // 
             // FSFRAMELOSS
             // 
@@ -614,6 +523,22 @@
             this.BUT_SetPPMFailSafe.UseVisualStyleBackColor = true;
             this.BUT_SetPPMFailSafe.Click += new System.EventHandler(this.BUT_SetPPMFailSafe_Click);
             // 
+            // BUT_savesettings
+            // 
+            resources.ApplyResources(this.BUT_savesettings, "BUT_savesettings");
+            this.BUT_savesettings.Name = "BUT_savesettings";
+            this.toolTip1.SetToolTip(this.BUT_savesettings, resources.GetString("BUT_savesettings.ToolTip"));
+            this.BUT_savesettings.UseVisualStyleBackColor = true;
+            this.BUT_savesettings.Click += new System.EventHandler(this.BUT_savesettings_Click);
+            // 
+            // BUT_getcurrent
+            // 
+            resources.ApplyResources(this.BUT_getcurrent, "BUT_getcurrent");
+            this.BUT_getcurrent.Name = "BUT_getcurrent";
+            this.toolTip1.SetToolTip(this.BUT_getcurrent, resources.GetString("BUT_getcurrent.ToolTip"));
+            this.BUT_getcurrent.UseVisualStyleBackColor = true;
+            this.BUT_getcurrent.Click += new System.EventHandler(this.BUT_getcurrent_Click);
+            // 
             // MAX_WINDOW
             // 
             this.MAX_WINDOW.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -665,6 +590,7 @@
             // 
             // ATI
             // 
+            this.ATI.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.configManagerBindingSource, "ATI", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             resources.ApplyResources(this.ATI, "ATI");
             this.ATI.Name = "ATI";
             this.ATI.ReadOnly = true;
@@ -688,6 +614,7 @@
             // 
             // ATI3
             // 
+            this.ATI3.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.configManagerBindingSource, "FREQ", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             resources.ApplyResources(this.ATI3, "ATI3");
             this.ATI3.Name = "ATI3";
             this.ATI3.ReadOnly = true;
@@ -758,6 +685,7 @@
             // 
             // txtCountry
             // 
+            this.txtCountry.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.configManagerBindingSource, "COUNTRY", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             resources.ApplyResources(this.txtCountry, "txtCountry");
             this.txtCountry.Name = "txtCountry";
             this.txtCountry.ReadOnly = true;
@@ -864,11 +792,6 @@
             resources.ApplyResources(this.lblTXPOWER, "lblTXPOWER");
             this.lblTXPOWER.Name = "lblTXPOWER";
             // 
-            // lblECC
-            // 
-            resources.ApplyResources(this.lblECC, "lblECC");
-            this.lblECC.Name = "lblECC";
-            // 
             // lblOPPRESEND
             // 
             resources.ApplyResources(this.lblOPPRESEND, "lblOPPRESEND");
@@ -951,6 +874,7 @@
             // 
             // AESKEY
             // 
+            this.AESKEY.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.configManagerBindingSource, "AESKEY", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             resources.ApplyResources(this.AESKEY, "AESKEY");
             this.AESKEY.Name = "AESKEY";
             // 
@@ -991,6 +915,7 @@
             // 
             // ATI2
             // 
+            this.ATI2.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.configManagerBindingSource, "BOARD", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             resources.ApplyResources(this.ATI2, "ATI2");
             this.ATI2.Name = "ATI2";
             this.ATI2.ReadOnly = true;
@@ -1010,31 +935,11 @@
             this.dlgOpen.FileName = "*.ini";
             resources.ApplyResources(this.dlgOpen, "dlgOpen");
             // 
-            // radioLocal
-            // 
-            resources.ApplyResources(this.radioLocal, "radioLocal");
-            this.radioLocal.Checked = true;
-            this.radioLocal.Name = "radioLocal";
-            this.radioLocal.TabStop = true;
-            this.radioLocal.UseVisualStyleBackColor = true;
-            this.radioLocal.CheckedChanged += new System.EventHandler(this.radioLocal_CheckedChanged);
-            // 
-            // radioRemote
-            // 
-            resources.ApplyResources(this.radioRemote, "radioRemote");
-            this.radioRemote.Name = "radioRemote";
-            this.radioRemote.TabStop = true;
-            this.radioRemote.UseVisualStyleBackColor = true;
-            this.radioRemote.CheckedChanged += new System.EventHandler(this.radioRemote_CheckedChanged);
-            // 
             // panel1
             // 
             this.panel1.Controls.Add(this.comboSyncMode);
-            this.panel1.Controls.Add(this.radioLocal);
-            this.panel1.Controls.Add(this.radioRemote);
-            this.panel1.Controls.Add(this.label12);
-            this.panel1.Controls.Add(this.RSSI);
             this.panel1.Controls.Add(this.label4);
+            this.panel1.Controls.Add(this.listDevices);
             resources.ApplyResources(this.panel1, "panel1");
             this.panel1.Name = "panel1";
             // 
@@ -1043,19 +948,32 @@
             resources.ApplyResources(this.label4, "label4");
             this.label4.Name = "label4";
             // 
+            // listDevices
+            // 
+            this.listDevices.DataBindings.Add(new System.Windows.Forms.Binding("SelectedItem", this.configManagerBindingSource, "Current", true));
+            this.listDevices.DataSource = this.modemsBindingSource;
+            this.listDevices.DisplayMember = "DisplayName";
+            this.listDevices.FormattingEnabled = true;
+            resources.ApplyResources(this.listDevices, "listDevices");
+            this.listDevices.Name = "listDevices";
+            // 
+            // modemsBindingSource
+            // 
+            this.modemsBindingSource.DataMember = "Modems";
+            this.modemsBindingSource.DataSource = this.configManagerBindingSource;
+            // 
             // groupFirmware
             // 
             this.groupFirmware.Controls.Add(this.label7);
             this.groupFirmware.Controls.Add(this.label6);
-            this.groupFirmware.Controls.Add(this.BUT_loadcustom);
             this.groupFirmware.Controls.Add(this.ATI2);
+            this.groupFirmware.Controls.Add(this.Progressbar);
             this.groupFirmware.Controls.Add(this.ATI);
             this.groupFirmware.Controls.Add(this.label11);
             this.groupFirmware.Controls.Add(this.ATI3);
             this.groupFirmware.Controls.Add(this.txtCountry);
             this.groupFirmware.Controls.Add(this.label49);
             this.groupFirmware.Controls.Add(this.label2);
-            this.groupFirmware.Controls.Add(this.Progressbar);
             this.groupFirmware.Controls.Add(this.FORMAT);
             resources.ApplyResources(this.groupFirmware, "groupFirmware");
             this.groupFirmware.Name = "groupFirmware";
@@ -1081,6 +999,8 @@
             // groupRadio
             // 
             this.groupRadio.Controls.Add(this.RSSI_IN_DBM);
+            this.groupRadio.Controls.Add(this.label12);
+            this.groupRadio.Controls.Add(this.RSSI);
             this.groupRadio.Controls.Add(this.label15);
             this.groupRadio.Controls.Add(this.AIR_FRAMELEN);
             this.groupRadio.Controls.Add(this.label14);
@@ -1088,8 +1008,10 @@
             this.groupRadio.Controls.Add(this.lblMAVLINK);
             this.groupRadio.Controls.Add(this.MAX_WINDOW);
             this.groupRadio.Controls.Add(this.LBT_RSSI);
+            this.groupRadio.Controls.Add(this.OPPRESEND);
             this.groupRadio.Controls.Add(this.lblMAX_WINDOW);
             this.groupRadio.Controls.Add(this.lblMIN_FREQ);
+            this.groupRadio.Controls.Add(this.lblOPPRESEND);
             this.groupRadio.Controls.Add(this.lblLBT_RSSI);
             this.groupRadio.Controls.Add(this.lblTXPOWER);
             this.groupRadio.Controls.Add(this.DUTY_CYCLE);
@@ -1124,10 +1046,8 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.ECC);
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.AUXSER_SPEED);
-            this.groupBox1.Controls.Add(this.lblECC);
             this.groupBox1.Controls.Add(this.lblRTSCTS);
             this.groupBox1.Controls.Add(this.SERIAL_SPEED);
             this.groupBox1.Controls.Add(this.RTSCTS);
@@ -1151,9 +1071,7 @@
             this.groupData.Controls.Add(this.lblSER_BRK_DETMS);
             this.groupData.Controls.Add(this.SER_BRK_DETMS);
             this.groupData.Controls.Add(this.lblRX_ENCAP_METHOD);
-            this.groupData.Controls.Add(this.OPPRESEND);
             this.groupData.Controls.Add(this.lblMAX_RETRIES);
-            this.groupData.Controls.Add(this.lblOPPRESEND);
             this.groupData.Controls.Add(this.RX_ENCAP_METHOD);
             this.groupData.Controls.Add(this.lblGLOBAL_RETRIES);
             this.groupData.Controls.Add(this.TX_ENCAP_METHOD);
@@ -1286,22 +1204,6 @@
             this.BUT_resettodefault.UseVisualStyleBackColor = true;
             this.BUT_resettodefault.Click += new System.EventHandler(this.BUT_resettodefault_Click);
             // 
-            // BUT_savesettings
-            // 
-            resources.ApplyResources(this.BUT_savesettings, "BUT_savesettings");
-            this.BUT_savesettings.Name = "BUT_savesettings";
-            this.toolTip1.SetToolTip(this.BUT_savesettings, resources.GetString("BUT_savesettings.ToolTip"));
-            this.BUT_savesettings.UseVisualStyleBackColor = true;
-            this.BUT_savesettings.Click += new System.EventHandler(this.BUT_savesettings_Click);
-            // 
-            // BUT_getcurrent
-            // 
-            resources.ApplyResources(this.BUT_getcurrent, "BUT_getcurrent");
-            this.BUT_getcurrent.Name = "BUT_getcurrent";
-            this.toolTip1.SetToolTip(this.BUT_getcurrent, resources.GetString("BUT_getcurrent.ToolTip"));
-            this.BUT_getcurrent.UseVisualStyleBackColor = true;
-            this.BUT_getcurrent.Click += new System.EventHandler(this.BUT_getcurrent_Click);
-            // 
             // flowLayoutActions
             // 
             this.flowLayoutActions.Controls.Add(this.BUT_getcurrent);
@@ -1309,801 +1211,69 @@
             this.flowLayoutActions.Controls.Add(this.btnLoadFromFile);
             this.flowLayoutActions.Controls.Add(this.btnSaveToFile);
             this.flowLayoutActions.Controls.Add(this.BUT_resettodefault);
+            this.flowLayoutActions.Controls.Add(this.BUT_loadcustom);
             this.flowLayoutActions.Controls.Add(this.BUT_upload);
             resources.ApplyResources(this.flowLayoutActions, "flowLayoutActions");
             this.flowLayoutActions.Name = "flowLayoutActions";
             // 
             // flowLayoutSettings
             // 
-            this.flowLayoutSettings.Controls.Add(this.panel1);
             this.flowLayoutSettings.Controls.Add(this.groupFirmware);
-            this.flowLayoutSettings.Controls.Add(this.groupRadio);
-            this.flowLayoutSettings.Controls.Add(this.groupBox1);
-            this.flowLayoutSettings.Controls.Add(this.groupData);
-            this.flowLayoutSettings.Controls.Add(this.groupGPIO);
-            this.flowLayoutSettings.Controls.Add(this.groupBox3);
-            this.flowLayoutSettings.Controls.Add(this.lbl_status);
-            this.flowLayoutSettings.Controls.Add(this.BUT_Syncoptions);
             resources.ApplyResources(this.flowLayoutSettings, "flowLayoutSettings");
             this.flowLayoutSettings.Name = "flowLayoutSettings";
             // 
-            // RTI
-            // 
-            resources.ApplyResources(this.RTI, "RTI");
-            this.RTI.Name = "RTI";
-            this.RTI.ReadOnly = true;
-            // 
-            // label9
-            // 
-            resources.ApplyResources(this.label9, "label9");
-            this.label9.Name = "label9";
-            // 
-            // RTI2
-            // 
-            resources.ApplyResources(this.RTI2, "RTI2");
-            this.RTI2.Name = "RTI2";
-            this.RTI2.ReadOnly = true;
-            // 
-            // lblRLBT_RSSI
-            // 
-            resources.ApplyResources(this.lblRLBT_RSSI, "lblRLBT_RSSI");
-            this.lblRLBT_RSSI.Name = "lblRLBT_RSSI";
-            // 
-            // lblRDUTY_CYCLE
-            // 
-            resources.ApplyResources(this.lblRDUTY_CYCLE, "lblRDUTY_CYCLE");
-            this.lblRDUTY_CYCLE.Name = "lblRDUTY_CYCLE";
-            // 
-            // lblRNUM_CHANNELS
-            // 
-            resources.ApplyResources(this.lblRNUM_CHANNELS, "lblRNUM_CHANNELS");
-            this.lblRNUM_CHANNELS.Name = "lblRNUM_CHANNELS";
-            // 
-            // lblRMAX_FREQ
-            // 
-            resources.ApplyResources(this.lblRMAX_FREQ, "lblRMAX_FREQ");
-            this.lblRMAX_FREQ.Name = "lblRMAX_FREQ";
-            // 
-            // RMIN_FREQ
-            // 
-            this.RMIN_FREQ.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            resources.ApplyResources(this.RMIN_FREQ, "RMIN_FREQ");
-            this.RMIN_FREQ.FormattingEnabled = true;
-            this.RMIN_FREQ.Items.AddRange(new object[] {
-            resources.GetString("RMIN_FREQ.Items"),
-            resources.GetString("RMIN_FREQ.Items1"),
-            resources.GetString("RMIN_FREQ.Items2"),
-            resources.GetString("RMIN_FREQ.Items3"),
-            resources.GetString("RMIN_FREQ.Items4"),
-            resources.GetString("RMIN_FREQ.Items5"),
-            resources.GetString("RMIN_FREQ.Items6"),
-            resources.GetString("RMIN_FREQ.Items7"),
-            resources.GetString("RMIN_FREQ.Items8")});
-            this.RMIN_FREQ.Name = "RMIN_FREQ";
-            this.toolTip1.SetToolTip(this.RMIN_FREQ, resources.GetString("RMIN_FREQ.ToolTip"));
-            // 
-            // RLBT_RSSI
-            // 
-            this.RLBT_RSSI.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            resources.ApplyResources(this.RLBT_RSSI, "RLBT_RSSI");
-            this.RLBT_RSSI.FormattingEnabled = true;
-            this.RLBT_RSSI.Items.AddRange(new object[] {
-            resources.GetString("RLBT_RSSI.Items"),
-            resources.GetString("RLBT_RSSI.Items1"),
-            resources.GetString("RLBT_RSSI.Items2"),
-            resources.GetString("RLBT_RSSI.Items3"),
-            resources.GetString("RLBT_RSSI.Items4"),
-            resources.GetString("RLBT_RSSI.Items5"),
-            resources.GetString("RLBT_RSSI.Items6")});
-            this.RLBT_RSSI.Name = "RLBT_RSSI";
-            this.toolTip1.SetToolTip(this.RLBT_RSSI, resources.GetString("RLBT_RSSI.ToolTip"));
-            // 
-            // RDUTY_CYCLE
-            // 
-            this.RDUTY_CYCLE.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            resources.ApplyResources(this.RDUTY_CYCLE, "RDUTY_CYCLE");
-            this.RDUTY_CYCLE.FormattingEnabled = true;
-            this.RDUTY_CYCLE.Items.AddRange(new object[] {
-            resources.GetString("RDUTY_CYCLE.Items"),
-            resources.GetString("RDUTY_CYCLE.Items1"),
-            resources.GetString("RDUTY_CYCLE.Items2"),
-            resources.GetString("RDUTY_CYCLE.Items3"),
-            resources.GetString("RDUTY_CYCLE.Items4"),
-            resources.GetString("RDUTY_CYCLE.Items5"),
-            resources.GetString("RDUTY_CYCLE.Items6"),
-            resources.GetString("RDUTY_CYCLE.Items7"),
-            resources.GetString("RDUTY_CYCLE.Items8"),
-            resources.GetString("RDUTY_CYCLE.Items9")});
-            this.RDUTY_CYCLE.Name = "RDUTY_CYCLE";
-            this.toolTip1.SetToolTip(this.RDUTY_CYCLE, resources.GetString("RDUTY_CYCLE.ToolTip"));
-            // 
-            // RNUM_CHANNELS
-            // 
-            this.RNUM_CHANNELS.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            resources.ApplyResources(this.RNUM_CHANNELS, "RNUM_CHANNELS");
-            this.RNUM_CHANNELS.FormattingEnabled = true;
-            this.RNUM_CHANNELS.Items.AddRange(new object[] {
-            resources.GetString("RNUM_CHANNELS.Items"),
-            resources.GetString("RNUM_CHANNELS.Items1"),
-            resources.GetString("RNUM_CHANNELS.Items2"),
-            resources.GetString("RNUM_CHANNELS.Items3"),
-            resources.GetString("RNUM_CHANNELS.Items4"),
-            resources.GetString("RNUM_CHANNELS.Items5"),
-            resources.GetString("RNUM_CHANNELS.Items6"),
-            resources.GetString("RNUM_CHANNELS.Items7"),
-            resources.GetString("RNUM_CHANNELS.Items8"),
-            resources.GetString("RNUM_CHANNELS.Items9"),
-            resources.GetString("RNUM_CHANNELS.Items10"),
-            resources.GetString("RNUM_CHANNELS.Items11"),
-            resources.GetString("RNUM_CHANNELS.Items12"),
-            resources.GetString("RNUM_CHANNELS.Items13"),
-            resources.GetString("RNUM_CHANNELS.Items14"),
-            resources.GetString("RNUM_CHANNELS.Items15"),
-            resources.GetString("RNUM_CHANNELS.Items16"),
-            resources.GetString("RNUM_CHANNELS.Items17"),
-            resources.GetString("RNUM_CHANNELS.Items18")});
-            this.RNUM_CHANNELS.Name = "RNUM_CHANNELS";
-            this.toolTip1.SetToolTip(this.RNUM_CHANNELS, resources.GetString("RNUM_CHANNELS.ToolTip"));
-            // 
-            // RMAX_FREQ
-            // 
-            this.RMAX_FREQ.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            resources.ApplyResources(this.RMAX_FREQ, "RMAX_FREQ");
-            this.RMAX_FREQ.FormattingEnabled = true;
-            this.RMAX_FREQ.Items.AddRange(new object[] {
-            resources.GetString("RMAX_FREQ.Items"),
-            resources.GetString("RMAX_FREQ.Items1"),
-            resources.GetString("RMAX_FREQ.Items2"),
-            resources.GetString("RMAX_FREQ.Items3"),
-            resources.GetString("RMAX_FREQ.Items4"),
-            resources.GetString("RMAX_FREQ.Items5"),
-            resources.GetString("RMAX_FREQ.Items6"),
-            resources.GetString("RMAX_FREQ.Items7"),
-            resources.GetString("RMAX_FREQ.Items8")});
-            this.RMAX_FREQ.Name = "RMAX_FREQ";
-            this.toolTip1.SetToolTip(this.RMAX_FREQ, resources.GetString("RMAX_FREQ.ToolTip"));
-            // 
-            // lblRMIN_FREQ
-            // 
-            resources.ApplyResources(this.lblRMIN_FREQ, "lblRMIN_FREQ");
-            this.lblRMIN_FREQ.Name = "lblRMIN_FREQ";
-            // 
-            // RMAX_WINDOW
-            // 
-            this.RMAX_WINDOW.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            resources.ApplyResources(this.RMAX_WINDOW, "RMAX_WINDOW");
-            this.RMAX_WINDOW.FormattingEnabled = true;
-            this.RMAX_WINDOW.Items.AddRange(new object[] {
-            resources.GetString("RMAX_WINDOW.Items"),
-            resources.GetString("RMAX_WINDOW.Items1"),
-            resources.GetString("RMAX_WINDOW.Items2"),
-            resources.GetString("RMAX_WINDOW.Items3"),
-            resources.GetString("RMAX_WINDOW.Items4"),
-            resources.GetString("RMAX_WINDOW.Items5"),
-            resources.GetString("RMAX_WINDOW.Items6"),
-            resources.GetString("RMAX_WINDOW.Items7"),
-            resources.GetString("RMAX_WINDOW.Items8"),
-            resources.GetString("RMAX_WINDOW.Items9"),
-            resources.GetString("RMAX_WINDOW.Items10"),
-            resources.GetString("RMAX_WINDOW.Items11"),
-            resources.GetString("RMAX_WINDOW.Items12"),
-            resources.GetString("RMAX_WINDOW.Items13"),
-            resources.GetString("RMAX_WINDOW.Items14"),
-            resources.GetString("RMAX_WINDOW.Items15"),
-            resources.GetString("RMAX_WINDOW.Items16"),
-            resources.GetString("RMAX_WINDOW.Items17"),
-            resources.GetString("RMAX_WINDOW.Items18"),
-            resources.GetString("RMAX_WINDOW.Items19"),
-            resources.GetString("RMAX_WINDOW.Items20"),
-            resources.GetString("RMAX_WINDOW.Items21"),
-            resources.GetString("RMAX_WINDOW.Items22"),
-            resources.GetString("RMAX_WINDOW.Items23"),
-            resources.GetString("RMAX_WINDOW.Items24"),
-            resources.GetString("RMAX_WINDOW.Items25"),
-            resources.GetString("RMAX_WINDOW.Items26"),
-            resources.GetString("RMAX_WINDOW.Items27"),
-            resources.GetString("RMAX_WINDOW.Items28"),
-            resources.GetString("RMAX_WINDOW.Items29"),
-            resources.GetString("RMAX_WINDOW.Items30")});
-            this.RMAX_WINDOW.Name = "RMAX_WINDOW";
-            // 
-            // lblRMAX_WINDOW
-            // 
-            resources.ApplyResources(this.lblRMAX_WINDOW, "lblRMAX_WINDOW");
-            this.lblRMAX_WINDOW.Name = "lblRMAX_WINDOW";
-            // 
-            // lblRRTSCTS
-            // 
-            resources.ApplyResources(this.lblRRTSCTS, "lblRRTSCTS");
-            this.lblRRTSCTS.Name = "lblRRTSCTS";
-            // 
-            // RRTSCTS
-            // 
-            resources.ApplyResources(this.RRTSCTS, "RRTSCTS");
-            this.RRTSCTS.Name = "RRTSCTS";
-            this.toolTip1.SetToolTip(this.RRTSCTS, resources.GetString("RRTSCTS.ToolTip"));
-            // 
-            // lblRENCRYPTION_LEVEL
-            // 
-            resources.ApplyResources(this.lblRENCRYPTION_LEVEL, "lblRENCRYPTION_LEVEL");
-            this.lblRENCRYPTION_LEVEL.Name = "lblRENCRYPTION_LEVEL";
-            // 
-            // RAESKEY
-            // 
-            resources.ApplyResources(this.RAESKEY, "RAESKEY");
-            this.RAESKEY.Name = "RAESKEY";
-            // 
-            // label38
-            // 
-            resources.ApplyResources(this.label38, "label38");
-            this.label38.Name = "label38";
-            // 
-            // lblRMAX_DATA
-            // 
-            resources.ApplyResources(this.lblRMAX_DATA, "lblRMAX_DATA");
-            this.lblRMAX_DATA.Name = "lblRMAX_DATA";
-            // 
-            // RMAX_DATA
-            // 
-            this.RMAX_DATA.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.RMAX_DATA.FormattingEnabled = true;
-            resources.ApplyResources(this.RMAX_DATA, "RMAX_DATA");
-            this.RMAX_DATA.Name = "RMAX_DATA";
-            // 
-            // RMAX_RETRIES
-            // 
-            this.RMAX_RETRIES.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.RMAX_RETRIES.FormattingEnabled = true;
-            resources.ApplyResources(this.RMAX_RETRIES, "RMAX_RETRIES");
-            this.RMAX_RETRIES.Name = "RMAX_RETRIES";
-            // 
-            // RGLOBAL_RETRIES
-            // 
-            this.RGLOBAL_RETRIES.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.RGLOBAL_RETRIES.FormattingEnabled = true;
-            resources.ApplyResources(this.RGLOBAL_RETRIES, "RGLOBAL_RETRIES");
-            this.RGLOBAL_RETRIES.Name = "RGLOBAL_RETRIES";
-            // 
-            // RSER_BRK_DETMS
-            // 
-            this.RSER_BRK_DETMS.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.RSER_BRK_DETMS.FormattingEnabled = true;
-            resources.ApplyResources(this.RSER_BRK_DETMS, "RSER_BRK_DETMS");
-            this.RSER_BRK_DETMS.Name = "RSER_BRK_DETMS";
-            // 
-            // lblRMAX_RETRIES
-            // 
-            resources.ApplyResources(this.lblRMAX_RETRIES, "lblRMAX_RETRIES");
-            this.lblRMAX_RETRIES.Name = "lblRMAX_RETRIES";
-            // 
-            // lblRGLOBAL_RETRIES
-            // 
-            resources.ApplyResources(this.lblRGLOBAL_RETRIES, "lblRGLOBAL_RETRIES");
-            this.lblRGLOBAL_RETRIES.Name = "lblRGLOBAL_RETRIES";
-            // 
-            // lblRSER_BRK_DETMS
-            // 
-            resources.ApplyResources(this.lblRSER_BRK_DETMS, "lblRSER_BRK_DETMS");
-            this.lblRSER_BRK_DETMS.Name = "lblRSER_BRK_DETMS";
-            // 
-            // RANT_MODE
-            // 
-            this.RANT_MODE.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            resources.ApplyResources(this.RANT_MODE, "RANT_MODE");
-            this.RANT_MODE.FormattingEnabled = true;
-            this.RANT_MODE.Name = "RANT_MODE";
-            // 
-            // lblRANT_MODE
-            // 
-            resources.ApplyResources(this.lblRANT_MODE, "lblRANT_MODE");
-            this.lblRANT_MODE.Name = "lblRANT_MODE";
-            // 
-            // label31
-            // 
-            resources.ApplyResources(this.label31, "label31");
-            this.label31.Name = "label31";
-            // 
-            // label30
-            // 
-            resources.ApplyResources(this.label30, "label30");
-            this.label30.Name = "label30";
-            // 
-            // label32
-            // 
-            resources.ApplyResources(this.label32, "label32");
-            this.label32.Name = "label32";
-            // 
-            // lblRNETID
-            // 
-            resources.ApplyResources(this.lblRNETID, "lblRNETID");
-            this.lblRNETID.Name = "lblRNETID";
-            // 
-            // ROPPRESEND
-            // 
-            resources.ApplyResources(this.ROPPRESEND, "ROPPRESEND");
-            this.ROPPRESEND.Name = "ROPPRESEND";
-            this.toolTip1.SetToolTip(this.ROPPRESEND, resources.GetString("ROPPRESEND.ToolTip"));
-            // 
-            // lblRTXPOWER
-            // 
-            resources.ApplyResources(this.lblRTXPOWER, "lblRTXPOWER");
-            this.lblRTXPOWER.Name = "lblRTXPOWER";
-            // 
-            // lblRECC
-            // 
-            resources.ApplyResources(this.lblRECC, "lblRECC");
-            this.lblRECC.Name = "lblRECC";
-            // 
-            // RECC
-            // 
-            resources.ApplyResources(this.RECC, "RECC");
-            this.RECC.Name = "RECC";
-            this.toolTip1.SetToolTip(this.RECC, resources.GetString("RECC.ToolTip"));
-            // 
-            // lblRMAVLINK
-            // 
-            resources.ApplyResources(this.lblRMAVLINK, "lblRMAVLINK");
-            this.lblRMAVLINK.Name = "lblRMAVLINK";
-            // 
-            // RTXPOWER
-            // 
-            this.RTXPOWER.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            resources.ApplyResources(this.RTXPOWER, "RTXPOWER");
-            this.RTXPOWER.FormattingEnabled = true;
-            this.RTXPOWER.Items.AddRange(new object[] {
-            resources.GetString("RTXPOWER.Items"),
-            resources.GetString("RTXPOWER.Items1"),
-            resources.GetString("RTXPOWER.Items2"),
-            resources.GetString("RTXPOWER.Items3"),
-            resources.GetString("RTXPOWER.Items4"),
-            resources.GetString("RTXPOWER.Items5"),
-            resources.GetString("RTXPOWER.Items6"),
-            resources.GetString("RTXPOWER.Items7")});
-            this.RTXPOWER.Name = "RTXPOWER";
-            this.toolTip1.SetToolTip(this.RTXPOWER, resources.GetString("RTXPOWER.ToolTip"));
-            // 
-            // lblROPPRESEND
-            // 
-            resources.ApplyResources(this.lblROPPRESEND, "lblROPPRESEND");
-            this.lblROPPRESEND.Name = "lblROPPRESEND";
-            // 
-            // RNETID
-            // 
-            this.RNETID.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            resources.ApplyResources(this.RNETID, "RNETID");
-            this.RNETID.FormattingEnabled = true;
-            this.RNETID.Items.AddRange(new object[] {
-            resources.GetString("RNETID.Items"),
-            resources.GetString("RNETID.Items1"),
-            resources.GetString("RNETID.Items2"),
-            resources.GetString("RNETID.Items3"),
-            resources.GetString("RNETID.Items4"),
-            resources.GetString("RNETID.Items5"),
-            resources.GetString("RNETID.Items6"),
-            resources.GetString("RNETID.Items7"),
-            resources.GetString("RNETID.Items8"),
-            resources.GetString("RNETID.Items9"),
-            resources.GetString("RNETID.Items10"),
-            resources.GetString("RNETID.Items11"),
-            resources.GetString("RNETID.Items12"),
-            resources.GetString("RNETID.Items13"),
-            resources.GetString("RNETID.Items14"),
-            resources.GetString("RNETID.Items15"),
-            resources.GetString("RNETID.Items16"),
-            resources.GetString("RNETID.Items17"),
-            resources.GetString("RNETID.Items18"),
-            resources.GetString("RNETID.Items19"),
-            resources.GetString("RNETID.Items20"),
-            resources.GetString("RNETID.Items21"),
-            resources.GetString("RNETID.Items22"),
-            resources.GetString("RNETID.Items23"),
-            resources.GetString("RNETID.Items24"),
-            resources.GetString("RNETID.Items25"),
-            resources.GetString("RNETID.Items26"),
-            resources.GetString("RNETID.Items27"),
-            resources.GetString("RNETID.Items28"),
-            resources.GetString("RNETID.Items29")});
-            this.RNETID.Name = "RNETID";
-            this.toolTip1.SetToolTip(this.RNETID, resources.GetString("RNETID.ToolTip"));
-            // 
-            // RAIR_SPEED
-            // 
-            this.RAIR_SPEED.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            resources.ApplyResources(this.RAIR_SPEED, "RAIR_SPEED");
-            this.RAIR_SPEED.FormattingEnabled = true;
-            this.RAIR_SPEED.Items.AddRange(new object[] {
-            resources.GetString("RAIR_SPEED.Items"),
-            resources.GetString("RAIR_SPEED.Items1"),
-            resources.GetString("RAIR_SPEED.Items2"),
-            resources.GetString("RAIR_SPEED.Items3"),
-            resources.GetString("RAIR_SPEED.Items4"),
-            resources.GetString("RAIR_SPEED.Items5"),
-            resources.GetString("RAIR_SPEED.Items6"),
-            resources.GetString("RAIR_SPEED.Items7"),
-            resources.GetString("RAIR_SPEED.Items8"),
-            resources.GetString("RAIR_SPEED.Items9"),
-            resources.GetString("RAIR_SPEED.Items10"),
-            resources.GetString("RAIR_SPEED.Items11"),
-            resources.GetString("RAIR_SPEED.Items12")});
-            this.RAIR_SPEED.Name = "RAIR_SPEED";
-            this.toolTip1.SetToolTip(this.RAIR_SPEED, resources.GetString("RAIR_SPEED.ToolTip"));
-            // 
-            // RSERIAL_SPEED
-            // 
-            this.RSERIAL_SPEED.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            resources.ApplyResources(this.RSERIAL_SPEED, "RSERIAL_SPEED");
-            this.RSERIAL_SPEED.FormattingEnabled = true;
-            this.RSERIAL_SPEED.Items.AddRange(new object[] {
-            resources.GetString("RSERIAL_SPEED.Items"),
-            resources.GetString("RSERIAL_SPEED.Items1"),
-            resources.GetString("RSERIAL_SPEED.Items2"),
-            resources.GetString("RSERIAL_SPEED.Items3"),
-            resources.GetString("RSERIAL_SPEED.Items4"),
-            resources.GetString("RSERIAL_SPEED.Items5"),
-            resources.GetString("RSERIAL_SPEED.Items6"),
-            resources.GetString("RSERIAL_SPEED.Items7"),
-            resources.GetString("RSERIAL_SPEED.Items8")});
-            this.RSERIAL_SPEED.Name = "RSERIAL_SPEED";
-            this.toolTip1.SetToolTip(this.RSERIAL_SPEED, resources.GetString("RSERIAL_SPEED.ToolTip"));
-            // 
-            // RGPI1_1R_CIN
-            // 
-            resources.ApplyResources(this.RGPI1_1R_CIN, "RGPI1_1R_CIN");
-            this.RGPI1_1R_CIN.Name = "RGPI1_1R_CIN";
-            this.toolTip1.SetToolTip(this.RGPI1_1R_CIN, resources.GetString("RGPI1_1R_CIN.ToolTip"));
-            // 
-            // lblRGPI1_1R_CIN
-            // 
-            resources.ApplyResources(this.lblRGPI1_1R_CIN, "lblRGPI1_1R_CIN");
-            this.lblRGPI1_1R_CIN.Name = "lblRGPI1_1R_CIN";
-            // 
-            // RFORMAT
-            // 
-            resources.ApplyResources(this.RFORMAT, "RFORMAT");
-            this.RFORMAT.Name = "RFORMAT";
-            this.RFORMAT.ReadOnly = true;
-            // 
-            // RGPO1_1R_COUT
-            // 
-            resources.ApplyResources(this.RGPO1_1R_COUT, "RGPO1_1R_COUT");
-            this.RGPO1_1R_COUT.Name = "RGPO1_1R_COUT";
-            this.toolTip1.SetToolTip(this.RGPO1_1R_COUT, resources.GetString("RGPO1_1R_COUT.ToolTip"));
-            // 
-            // RMAVLINK
-            // 
-            this.RMAVLINK.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            resources.ApplyResources(this.RMAVLINK, "RMAVLINK");
-            this.RMAVLINK.FormattingEnabled = true;
-            this.RMAVLINK.Name = "RMAVLINK";
-            // 
-            // lblRGPO1_1R_COUT
-            // 
-            resources.ApplyResources(this.lblRGPO1_1R_COUT, "lblRGPO1_1R_COUT");
-            this.lblRGPO1_1R_COUT.Name = "lblRGPO1_1R_COUT";
-            // 
-            // RNODEID
-            // 
-            this.RNODEID.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.RNODEID.FormattingEnabled = true;
-            resources.ApplyResources(this.RNODEID, "RNODEID");
-            this.RNODEID.Name = "RNODEID";
-            // 
-            // RDESTID
-            // 
-            this.RDESTID.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.RDESTID.FormattingEnabled = true;
-            resources.ApplyResources(this.RDESTID, "RDESTID");
-            this.RDESTID.Name = "RDESTID";
-            // 
-            // lblRNODEID
-            // 
-            resources.ApplyResources(this.lblRNODEID, "lblRNODEID");
-            this.lblRNODEID.Name = "lblRNODEID";
-            // 
-            // lblRDESTID
-            // 
-            resources.ApplyResources(this.lblRDESTID, "lblRDESTID");
-            this.lblRDESTID.Name = "lblRDESTID";
-            // 
-            // RTX_ENCAP_METHOD
-            // 
-            this.RTX_ENCAP_METHOD.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.RTX_ENCAP_METHOD.FormattingEnabled = true;
-            resources.ApplyResources(this.RTX_ENCAP_METHOD, "RTX_ENCAP_METHOD");
-            this.RTX_ENCAP_METHOD.Name = "RTX_ENCAP_METHOD";
-            // 
-            // lblRTX_ENCAP_METHOD
-            // 
-            resources.ApplyResources(this.lblRTX_ENCAP_METHOD, "lblRTX_ENCAP_METHOD");
-            this.lblRTX_ENCAP_METHOD.Name = "lblRTX_ENCAP_METHOD";
-            // 
-            // RRX_ENCAP_METHOD
-            // 
-            this.RRX_ENCAP_METHOD.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.RRX_ENCAP_METHOD.FormattingEnabled = true;
-            resources.ApplyResources(this.RRX_ENCAP_METHOD, "RRX_ENCAP_METHOD");
-            this.RRX_ENCAP_METHOD.Name = "RRX_ENCAP_METHOD";
-            // 
-            // lblRRX_ENCAP_METHOD
-            // 
-            resources.ApplyResources(this.lblRRX_ENCAP_METHOD, "lblRRX_ENCAP_METHOD");
-            this.lblRRX_ENCAP_METHOD.Name = "lblRRX_ENCAP_METHOD";
-            // 
-            // RRATE_FREQBAND
-            // 
-            this.RRATE_FREQBAND.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            resources.ApplyResources(this.RRATE_FREQBAND, "RRATE_FREQBAND");
-            this.RRATE_FREQBAND.FormattingEnabled = true;
-            this.RRATE_FREQBAND.Name = "RRATE_FREQBAND";
-            // 
-            // label46
-            // 
-            resources.ApplyResources(this.label46, "label46");
-            this.label46.Name = "label46";
-            // 
-            // RGPO1_3SBUSIN
-            // 
-            resources.ApplyResources(this.RGPO1_3SBUSIN, "RGPO1_3SBUSIN");
-            this.RGPO1_3SBUSIN.Name = "RGPO1_3SBUSIN";
-            // 
-            // lblRSBUSIN
-            // 
-            resources.ApplyResources(this.lblRSBUSIN, "lblRSBUSIN");
-            this.lblRSBUSIN.Name = "lblRSBUSIN";
-            // 
-            // lblRSBUSOUT
-            // 
-            resources.ApplyResources(this.lblRSBUSOUT, "lblRSBUSOUT");
-            this.lblRSBUSOUT.Name = "lblRSBUSOUT";
-            // 
-            // txtRCountry
-            // 
-            resources.ApplyResources(this.txtRCountry, "txtRCountry");
-            this.txtRCountry.Name = "txtRCountry";
-            this.txtRCountry.ReadOnly = true;
-            // 
-            // label50
-            // 
-            resources.ApplyResources(this.label50, "label50");
-            this.label50.Name = "label50";
-            // 
-            // BUT_SetPPMFailSafeRemote
-            // 
-            resources.ApplyResources(this.BUT_SetPPMFailSafeRemote, "BUT_SetPPMFailSafeRemote");
-            this.BUT_SetPPMFailSafeRemote.Name = "BUT_SetPPMFailSafeRemote";
-            this.toolTip1.SetToolTip(this.BUT_SetPPMFailSafeRemote, resources.GetString("BUT_SetPPMFailSafeRemote.ToolTip"));
-            this.BUT_SetPPMFailSafeRemote.UseVisualStyleBackColor = true;
-            this.BUT_SetPPMFailSafeRemote.Click += new System.EventHandler(this.BUT_SetPPMFailSafeRemote_Click);
-            // 
-            // RGPO1_3SBUSOUT
-            // 
-            this.RGPO1_3SBUSOUT.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            resources.ApplyResources(this.RGPO1_3SBUSOUT, "RGPO1_3SBUSOUT");
-            this.RGPO1_3SBUSOUT.FormattingEnabled = true;
-            this.RGPO1_3SBUSOUT.Name = "RGPO1_3SBUSOUT";
-            // 
-            // lblRGPO1_3STATLED
-            // 
-            resources.ApplyResources(this.lblRGPO1_3STATLED, "lblRGPO1_3STATLED");
-            this.lblRGPO1_3STATLED.Name = "lblRGPO1_3STATLED";
-            // 
-            // RGPO1_3STATLED
-            // 
-            resources.ApplyResources(this.RGPO1_3STATLED, "RGPO1_3STATLED");
-            this.RGPO1_3STATLED.Name = "RGPO1_3STATLED";
-            // 
-            // lblRGPO1_0TXEN485
-            // 
-            resources.ApplyResources(this.lblRGPO1_0TXEN485, "lblRGPO1_0TXEN485");
-            this.lblRGPO1_0TXEN485.Name = "lblRGPO1_0TXEN485";
-            // 
-            // RGPO1_0TXEN485
-            // 
-            resources.ApplyResources(this.RGPO1_0TXEN485, "RGPO1_0TXEN485");
-            this.RGPO1_0TXEN485.Name = "RGPO1_0TXEN485";
-            // 
-            // RENCRYPTION_LEVEL
-            // 
-            this.RENCRYPTION_LEVEL.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            resources.ApplyResources(this.RENCRYPTION_LEVEL, "RENCRYPTION_LEVEL");
-            this.RENCRYPTION_LEVEL.FormattingEnabled = true;
-            this.RENCRYPTION_LEVEL.Items.AddRange(new object[] {
-            resources.GetString("RENCRYPTION_LEVEL.Items"),
-            resources.GetString("RENCRYPTION_LEVEL.Items1"),
-            resources.GetString("RENCRYPTION_LEVEL.Items2"),
-            resources.GetString("RENCRYPTION_LEVEL.Items3"),
-            resources.GetString("RENCRYPTION_LEVEL.Items4"),
-            resources.GetString("RENCRYPTION_LEVEL.Items5"),
-            resources.GetString("RENCRYPTION_LEVEL.Items6"),
-            resources.GetString("RENCRYPTION_LEVEL.Items7"),
-            resources.GetString("RENCRYPTION_LEVEL.Items8"),
-            resources.GetString("RENCRYPTION_LEVEL.Items9"),
-            resources.GetString("RENCRYPTION_LEVEL.Items10"),
-            resources.GetString("RENCRYPTION_LEVEL.Items11"),
-            resources.GetString("RENCRYPTION_LEVEL.Items12"),
-            resources.GetString("RENCRYPTION_LEVEL.Items13"),
-            resources.GetString("RENCRYPTION_LEVEL.Items14"),
-            resources.GetString("RENCRYPTION_LEVEL.Items15"),
-            resources.GetString("RENCRYPTION_LEVEL.Items16"),
-            resources.GetString("RENCRYPTION_LEVEL.Items17"),
-            resources.GetString("RENCRYPTION_LEVEL.Items18"),
-            resources.GetString("RENCRYPTION_LEVEL.Items19"),
-            resources.GetString("RENCRYPTION_LEVEL.Items20"),
-            resources.GetString("RENCRYPTION_LEVEL.Items21"),
-            resources.GetString("RENCRYPTION_LEVEL.Items22"),
-            resources.GetString("RENCRYPTION_LEVEL.Items23"),
-            resources.GetString("RENCRYPTION_LEVEL.Items24"),
-            resources.GetString("RENCRYPTION_LEVEL.Items25"),
-            resources.GetString("RENCRYPTION_LEVEL.Items26"),
-            resources.GetString("RENCRYPTION_LEVEL.Items27"),
-            resources.GetString("RENCRYPTION_LEVEL.Items28"),
-            resources.GetString("RENCRYPTION_LEVEL.Items29"),
-            resources.GetString("RENCRYPTION_LEVEL.Items30")});
-            this.RENCRYPTION_LEVEL.Name = "RENCRYPTION_LEVEL";
-            this.toolTip1.SetToolTip(this.RENCRYPTION_LEVEL, resources.GetString("RENCRYPTION_LEVEL.ToolTip"));
-            this.RENCRYPTION_LEVEL.SelectedValueChanged += new System.EventHandler(this.RENCRYPTION_LEVEL_CheckedChanged);
-            // 
-            // RGPIO1_1FUNC
-            // 
-            this.RGPIO1_1FUNC.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            resources.ApplyResources(this.RGPIO1_1FUNC, "RGPIO1_1FUNC");
-            this.RGPIO1_1FUNC.FormattingEnabled = true;
-            this.RGPIO1_1FUNC.Name = "RGPIO1_1FUNC";
-            // 
-            // lblRGPIO1_1FUNC
-            // 
-            resources.ApplyResources(this.lblRGPIO1_1FUNC, "lblRGPIO1_1FUNC");
-            this.lblRGPIO1_1FUNC.Name = "lblRGPIO1_1FUNC";
-            // 
-            // lblRGPI1_2AUXIN
-            // 
-            resources.ApplyResources(this.lblRGPI1_2AUXIN, "lblRGPI1_2AUXIN");
-            this.lblRGPI1_2AUXIN.Name = "lblRGPI1_2AUXIN";
-            // 
-            // RGPI1_2AUXIN
-            // 
-            resources.ApplyResources(this.RGPI1_2AUXIN, "RGPI1_2AUXIN");
-            this.RGPI1_2AUXIN.Name = "RGPI1_2AUXIN";
-            // 
-            // lblRGPO1_3AUXOUT
-            // 
-            resources.ApplyResources(this.lblRGPO1_3AUXOUT, "lblRGPO1_3AUXOUT");
-            this.lblRGPO1_3AUXOUT.Name = "lblRGPO1_3AUXOUT";
-            // 
-            // RGPO1_3AUXOUT
-            // 
-            resources.ApplyResources(this.RGPO1_3AUXOUT, "RGPO1_3AUXOUT");
-            this.RGPO1_3AUXOUT.Name = "RGPO1_3AUXOUT";
-            // 
-            // RFSFRAMELOSS
-            // 
-            this.RFSFRAMELOSS.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            resources.ApplyResources(this.RFSFRAMELOSS, "RFSFRAMELOSS");
-            this.RFSFRAMELOSS.FormattingEnabled = true;
-            this.RFSFRAMELOSS.Name = "RFSFRAMELOSS";
-            this.toolTip1.SetToolTip(this.RFSFRAMELOSS, resources.GetString("RFSFRAMELOSS.ToolTip"));
-            // 
-            // lblRFSFRAMELOSS
-            // 
-            resources.ApplyResources(this.lblRFSFRAMELOSS, "lblRFSFRAMELOSS");
-            this.lblRFSFRAMELOSS.Name = "lblRFSFRAMELOSS";
-            // 
-            // btnRemoteSaveToFile
-            // 
-            resources.ApplyResources(this.btnRemoteSaveToFile, "btnRemoteSaveToFile");
-            this.btnRemoteSaveToFile.Name = "btnRemoteSaveToFile";
-            this.btnRemoteSaveToFile.UseVisualStyleBackColor = true;
-            this.btnRemoteSaveToFile.Click += new System.EventHandler(this.btnRemoteSaveToFile_Click);
-            // 
-            // btnRemoteLoadFromFile
-            // 
-            resources.ApplyResources(this.btnRemoteLoadFromFile, "btnRemoteLoadFromFile");
-            this.btnRemoteLoadFromFile.Name = "btnRemoteLoadFromFile";
-            this.btnRemoteLoadFromFile.UseVisualStyleBackColor = true;
-            this.btnRemoteLoadFromFile.Click += new System.EventHandler(this.btnRemoteLoadFromFile_Click);
-            // 
-            // groupBoxRemote
-            // 
-            this.groupBoxRemote.Controls.Add(this.btnRemoteLoadFromFile);
-            this.groupBoxRemote.Controls.Add(this.btnRemoteSaveToFile);
-            this.groupBoxRemote.Controls.Add(this.lblRFSFRAMELOSS);
-            this.groupBoxRemote.Controls.Add(this.RFSFRAMELOSS);
-            this.groupBoxRemote.Controls.Add(this.RGPO1_3AUXOUT);
-            this.groupBoxRemote.Controls.Add(this.lblRGPO1_3AUXOUT);
-            this.groupBoxRemote.Controls.Add(this.RGPI1_2AUXIN);
-            this.groupBoxRemote.Controls.Add(this.lblRGPI1_2AUXIN);
-            this.groupBoxRemote.Controls.Add(this.lblRGPIO1_1FUNC);
-            this.groupBoxRemote.Controls.Add(this.RGPIO1_1FUNC);
-            this.groupBoxRemote.Controls.Add(this.RENCRYPTION_LEVEL);
-            this.groupBoxRemote.Controls.Add(this.RGPO1_0TXEN485);
-            this.groupBoxRemote.Controls.Add(this.lblRGPO1_0TXEN485);
-            this.groupBoxRemote.Controls.Add(this.RGPO1_3STATLED);
-            this.groupBoxRemote.Controls.Add(this.lblRGPO1_3STATLED);
-            this.groupBoxRemote.Controls.Add(this.RGPO1_3SBUSOUT);
-            this.groupBoxRemote.Controls.Add(this.BUT_SetPPMFailSafeRemote);
-            this.groupBoxRemote.Controls.Add(this.label50);
-            this.groupBoxRemote.Controls.Add(this.txtRCountry);
-            this.groupBoxRemote.Controls.Add(this.lblRSBUSOUT);
-            this.groupBoxRemote.Controls.Add(this.lblRSBUSIN);
-            this.groupBoxRemote.Controls.Add(this.RGPO1_3SBUSIN);
-            this.groupBoxRemote.Controls.Add(this.label46);
-            this.groupBoxRemote.Controls.Add(this.RRATE_FREQBAND);
-            this.groupBoxRemote.Controls.Add(this.lblRRX_ENCAP_METHOD);
-            this.groupBoxRemote.Controls.Add(this.RRX_ENCAP_METHOD);
-            this.groupBoxRemote.Controls.Add(this.lblRTX_ENCAP_METHOD);
-            this.groupBoxRemote.Controls.Add(this.RTX_ENCAP_METHOD);
-            this.groupBoxRemote.Controls.Add(this.lblRDESTID);
-            this.groupBoxRemote.Controls.Add(this.lblRNODEID);
-            this.groupBoxRemote.Controls.Add(this.RDESTID);
-            this.groupBoxRemote.Controls.Add(this.RNODEID);
-            this.groupBoxRemote.Controls.Add(this.lblRGPO1_1R_COUT);
-            this.groupBoxRemote.Controls.Add(this.RMAVLINK);
-            this.groupBoxRemote.Controls.Add(this.RGPO1_1R_COUT);
-            this.groupBoxRemote.Controls.Add(this.RFORMAT);
-            this.groupBoxRemote.Controls.Add(this.lblRGPI1_1R_CIN);
-            this.groupBoxRemote.Controls.Add(this.RGPI1_1R_CIN);
-            this.groupBoxRemote.Controls.Add(this.RSERIAL_SPEED);
-            this.groupBoxRemote.Controls.Add(this.RAIR_SPEED);
-            this.groupBoxRemote.Controls.Add(this.RNETID);
-            this.groupBoxRemote.Controls.Add(this.lblROPPRESEND);
-            this.groupBoxRemote.Controls.Add(this.RTXPOWER);
-            this.groupBoxRemote.Controls.Add(this.lblRMAVLINK);
-            this.groupBoxRemote.Controls.Add(this.RECC);
-            this.groupBoxRemote.Controls.Add(this.lblRECC);
-            this.groupBoxRemote.Controls.Add(this.lblRTXPOWER);
-            this.groupBoxRemote.Controls.Add(this.ROPPRESEND);
-            this.groupBoxRemote.Controls.Add(this.lblRNETID);
-            this.groupBoxRemote.Controls.Add(this.label32);
-            this.groupBoxRemote.Controls.Add(this.label30);
-            this.groupBoxRemote.Controls.Add(this.label31);
-            this.groupBoxRemote.Controls.Add(this.lblRANT_MODE);
-            this.groupBoxRemote.Controls.Add(this.RANT_MODE);
-            this.groupBoxRemote.Controls.Add(this.lblRSER_BRK_DETMS);
-            this.groupBoxRemote.Controls.Add(this.lblRGLOBAL_RETRIES);
-            this.groupBoxRemote.Controls.Add(this.lblRMAX_RETRIES);
-            this.groupBoxRemote.Controls.Add(this.RSER_BRK_DETMS);
-            this.groupBoxRemote.Controls.Add(this.RGLOBAL_RETRIES);
-            this.groupBoxRemote.Controls.Add(this.RMAX_RETRIES);
-            this.groupBoxRemote.Controls.Add(this.RMAX_DATA);
-            this.groupBoxRemote.Controls.Add(this.lblRMAX_DATA);
-            this.groupBoxRemote.Controls.Add(this.label38);
-            this.groupBoxRemote.Controls.Add(this.RAESKEY);
-            this.groupBoxRemote.Controls.Add(this.lblRENCRYPTION_LEVEL);
-            this.groupBoxRemote.Controls.Add(this.RRTSCTS);
-            this.groupBoxRemote.Controls.Add(this.lblRRTSCTS);
-            this.groupBoxRemote.Controls.Add(this.lblRMAX_WINDOW);
-            this.groupBoxRemote.Controls.Add(this.RMAX_WINDOW);
-            this.groupBoxRemote.Controls.Add(this.lblRMIN_FREQ);
-            this.groupBoxRemote.Controls.Add(this.RMAX_FREQ);
-            this.groupBoxRemote.Controls.Add(this.RNUM_CHANNELS);
-            this.groupBoxRemote.Controls.Add(this.RDUTY_CYCLE);
-            this.groupBoxRemote.Controls.Add(this.RLBT_RSSI);
-            this.groupBoxRemote.Controls.Add(this.RMIN_FREQ);
-            this.groupBoxRemote.Controls.Add(this.lblRMAX_FREQ);
-            this.groupBoxRemote.Controls.Add(this.lblRNUM_CHANNELS);
-            this.groupBoxRemote.Controls.Add(this.lblRDUTY_CYCLE);
-            this.groupBoxRemote.Controls.Add(this.lblRLBT_RSSI);
-            this.groupBoxRemote.Controls.Add(this.RTI2);
-            this.groupBoxRemote.Controls.Add(this.label9);
-            this.groupBoxRemote.Controls.Add(this.RTI);
-            resources.ApplyResources(this.groupBoxRemote, "groupBoxRemote");
-            this.groupBoxRemote.Name = "groupBoxRemote";
-            this.groupBoxRemote.TabStop = false;
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.lbl_status);
+            this.groupBox2.Controls.Add(this.BUT_Syncoptions);
+            this.groupBox2.Controls.Add(this.linkLabel_lowlatency);
+            this.groupBox2.Controls.Add(this.linkLabel_mavlink);
+            this.groupBox2.Controls.Add(this.linkLabel1);
+            resources.ApplyResources(this.groupBox2, "groupBox2");
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.TabStop = false;
+            // 
+            // flowLayoutMain
+            // 
+            this.flowLayoutMain.Controls.Add(this.groupRadio);
+            this.flowLayoutMain.Controls.Add(this.groupBox1);
+            this.flowLayoutMain.Controls.Add(this.groupGPIO);
+            this.flowLayoutMain.Controls.Add(this.groupData);
+            this.flowLayoutMain.Controls.Add(this.groupBox3);
+            this.flowLayoutMain.Controls.Add(this.textConsole);
+            resources.ApplyResources(this.flowLayoutMain, "flowLayoutMain");
+            this.flowLayoutMain.Name = "flowLayoutMain";
+            // 
+            // textConsole
+            // 
+            resources.ApplyResources(this.textConsole, "textConsole");
+            this.textConsole.Name = "textConsole";
+            this.textConsole.ReadOnly = true;
+            // 
+            // button1
+            // 
+            resources.ApplyResources(this.button1, "button1");
+            this.button1.Name = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // Sikradio
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.flowLayoutMain);
             this.Controls.Add(this.flowLayoutSettings);
             this.Controls.Add(this.flowLayoutActions);
-            this.Controls.Add(this.linkLabel_mavlink);
-            this.Controls.Add(this.linkLabel_lowlatency);
-            this.Controls.Add(this.linkLabel1);
             this.Controls.Add(this.label10);
-            this.Controls.Add(this.groupBoxRemote);
+            this.Controls.Add(this.groupBox2);
             resources.ApplyResources(this, "$this");
             this.Name = "Sikradio";
+            this.Load += new System.EventHandler(this.Sikradio_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.configManagerBindingSource)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.modemsBindingSource)).EndInit();
             this.groupFirmware.ResumeLayout(false);
             this.groupFirmware.PerformLayout();
             this.groupRadio.ResumeLayout(false);
@@ -2118,8 +1288,10 @@
             this.groupBox3.PerformLayout();
             this.flowLayoutActions.ResumeLayout(false);
             this.flowLayoutSettings.ResumeLayout(false);
-            this.groupBoxRemote.ResumeLayout(false);
-            this.groupBoxRemote.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
+            this.flowLayoutMain.ResumeLayout(false);
+            this.flowLayoutMain.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2165,8 +1337,6 @@
         private System.Windows.Forms.Label lblNETID;
         private System.Windows.Forms.ComboBox TXPOWER;
         private System.Windows.Forms.Label lblTXPOWER;
-        private System.Windows.Forms.CheckBox ECC;
-        private System.Windows.Forms.Label lblECC;
         private System.Windows.Forms.Label lblOPPRESEND;
         private System.Windows.Forms.CheckBox OPPRESEND;
         private System.Windows.Forms.Label lblMAVLINK;
@@ -2219,8 +1389,6 @@
         private System.Windows.Forms.ComboBox FSFRAMELOSS;
         private System.Windows.Forms.SaveFileDialog dlgSave;
         private System.Windows.Forms.OpenFileDialog dlgOpen;
-        private System.Windows.Forms.RadioButton radioLocal;
-        private System.Windows.Forms.RadioButton radioRemote;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.ComboBox comboSyncMode;
         private System.Windows.Forms.Label label4;
@@ -2253,88 +1421,12 @@
         private Controls.MyButton BUT_getcurrent;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutActions;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutSettings;
-        private System.Windows.Forms.TextBox RTI;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.TextBox RTI2;
-        private System.Windows.Forms.Label lblRLBT_RSSI;
-        private System.Windows.Forms.Label lblRDUTY_CYCLE;
-        private System.Windows.Forms.Label lblRNUM_CHANNELS;
-        private System.Windows.Forms.Label lblRMAX_FREQ;
-        private System.Windows.Forms.ComboBox RMIN_FREQ;
-        private System.Windows.Forms.ComboBox RLBT_RSSI;
-        private System.Windows.Forms.ComboBox RDUTY_CYCLE;
-        private System.Windows.Forms.ComboBox RNUM_CHANNELS;
-        private System.Windows.Forms.ComboBox RMAX_FREQ;
-        private System.Windows.Forms.Label lblRMIN_FREQ;
-        private System.Windows.Forms.ComboBox RMAX_WINDOW;
-        private System.Windows.Forms.Label lblRMAX_WINDOW;
-        private System.Windows.Forms.Label lblRRTSCTS;
-        private System.Windows.Forms.CheckBox RRTSCTS;
-        private System.Windows.Forms.Label lblRENCRYPTION_LEVEL;
-        private System.Windows.Forms.TextBox RAESKEY;
-        private System.Windows.Forms.Label label38;
-        private System.Windows.Forms.Label lblRMAX_DATA;
-        private System.Windows.Forms.ComboBox RMAX_DATA;
-        private System.Windows.Forms.ComboBox RMAX_RETRIES;
-        private System.Windows.Forms.ComboBox RGLOBAL_RETRIES;
-        private System.Windows.Forms.ComboBox RSER_BRK_DETMS;
-        private System.Windows.Forms.Label lblRMAX_RETRIES;
-        private System.Windows.Forms.Label lblRGLOBAL_RETRIES;
-        private System.Windows.Forms.Label lblRSER_BRK_DETMS;
-        private System.Windows.Forms.ComboBox RANT_MODE;
-        private System.Windows.Forms.Label lblRANT_MODE;
-        private System.Windows.Forms.Label label31;
-        private System.Windows.Forms.Label label30;
-        private System.Windows.Forms.Label label32;
-        private System.Windows.Forms.Label lblRNETID;
-        private System.Windows.Forms.CheckBox ROPPRESEND;
-        private System.Windows.Forms.Label lblRTXPOWER;
-        private System.Windows.Forms.Label lblRECC;
-        private System.Windows.Forms.CheckBox RECC;
-        private System.Windows.Forms.Label lblRMAVLINK;
-        private System.Windows.Forms.ComboBox RTXPOWER;
-        private System.Windows.Forms.Label lblROPPRESEND;
-        private System.Windows.Forms.ComboBox RNETID;
-        private System.Windows.Forms.ComboBox RAIR_SPEED;
-        private System.Windows.Forms.ComboBox RSERIAL_SPEED;
-        private System.Windows.Forms.CheckBox RGPI1_1R_CIN;
-        private System.Windows.Forms.Label lblRGPI1_1R_CIN;
-        private System.Windows.Forms.TextBox RFORMAT;
-        private System.Windows.Forms.CheckBox RGPO1_1R_COUT;
-        private System.Windows.Forms.ComboBox RMAVLINK;
-        private System.Windows.Forms.Label lblRGPO1_1R_COUT;
-        private System.Windows.Forms.ComboBox RNODEID;
-        private System.Windows.Forms.ComboBox RDESTID;
-        private System.Windows.Forms.Label lblRNODEID;
-        private System.Windows.Forms.Label lblRDESTID;
-        private System.Windows.Forms.ComboBox RTX_ENCAP_METHOD;
-        private System.Windows.Forms.Label lblRTX_ENCAP_METHOD;
-        private System.Windows.Forms.ComboBox RRX_ENCAP_METHOD;
-        private System.Windows.Forms.Label lblRRX_ENCAP_METHOD;
-        private System.Windows.Forms.ComboBox RRATE_FREQBAND;
-        private System.Windows.Forms.Label label46;
-        private System.Windows.Forms.CheckBox RGPO1_3SBUSIN;
-        private System.Windows.Forms.Label lblRSBUSIN;
-        private System.Windows.Forms.Label lblRSBUSOUT;
-        private System.Windows.Forms.TextBox txtRCountry;
-        private System.Windows.Forms.Label label50;
-        private Controls.MyButton BUT_SetPPMFailSafeRemote;
-        private System.Windows.Forms.ComboBox RGPO1_3SBUSOUT;
-        private System.Windows.Forms.Label lblRGPO1_3STATLED;
-        private System.Windows.Forms.CheckBox RGPO1_3STATLED;
-        private System.Windows.Forms.Label lblRGPO1_0TXEN485;
-        private System.Windows.Forms.CheckBox RGPO1_0TXEN485;
-        private System.Windows.Forms.ComboBox RENCRYPTION_LEVEL;
-        private System.Windows.Forms.ComboBox RGPIO1_1FUNC;
-        private System.Windows.Forms.Label lblRGPIO1_1FUNC;
-        private System.Windows.Forms.Label lblRGPI1_2AUXIN;
-        private System.Windows.Forms.CheckBox RGPI1_2AUXIN;
-        private System.Windows.Forms.Label lblRGPO1_3AUXOUT;
-        private System.Windows.Forms.CheckBox RGPO1_3AUXOUT;
-        private System.Windows.Forms.ComboBox RFSFRAMELOSS;
-        private System.Windows.Forms.Label lblRFSFRAMELOSS;
-        private Controls.MyButton btnRemoteSaveToFile;
-        private Controls.MyButton btnRemoteLoadFromFile;
-        private System.Windows.Forms.GroupBox groupBoxRemote;
+        private System.Windows.Forms.BindingSource configManagerBindingSource;
+        private System.Windows.Forms.ListBox listDevices;
+        private System.Windows.Forms.BindingSource modemsBindingSource;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutMain;
+        private System.Windows.Forms.TextBox textConsole;
+        private System.Windows.Forms.Button button1;
     }
 }

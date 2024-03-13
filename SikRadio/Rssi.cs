@@ -90,7 +90,7 @@ namespace SikRadio
                 if (_Session.PutIntoATCommandMode() == RFD.RFD900.TSession.TMode.AT_COMMAND)
                 {
                     System.Diagnostics.Debug.WriteLine("Doing AT&T command");
-                    inter.doCommand(Config.comPort, "AT&T");
+                    inter.configManager.doCommand(Config.comPort, "AT&T");
                     System.Diagnostics.Debug.WriteLine("Putting into transparent mode");
                     _Session.PutIntoTransparentMode();
 

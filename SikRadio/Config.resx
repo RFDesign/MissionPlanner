@@ -208,7 +208,7 @@
     <value>781, 433</value>
   </data>
   <data name="panel1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1104, 606</value>
+    <value>1235, 624</value>
   </data>
   <data name="panel1.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -316,13 +316,13 @@
     <value>12, 108</value>
   </data>
   <data name="GB.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1109, 631</value>
+    <value>1240, 649</value>
   </data>
   <data name="GB.TabIndex" type="System.Int32, mscorlib">
     <value>8</value>
   </data>
   <data name="GB.Text" xml:space="preserve">
-    <value>Settings</value>
+    <value>Devices</value>
   </data>
   <data name="&gt;&gt;GB.Name" xml:space="preserve">
     <value>GB</value>
@@ -399,7 +399,7 @@
     <value>NoControl</value>
   </data>
   <data name="pictureBox1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>768, 35</value>
+    <value>899, 35</value>
   </data>
   <data name="pictureBox1.Size" type="System.Drawing.Size, System.Drawing">
     <value>353, 67</value>
@@ -444,7 +444,7 @@
     <value>0, 0</value>
   </data>
   <data name="menuStrip1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1133, 24</value>
+    <value>1264, 24</value>
   </data>
   <data name="menuStrip1.TabIndex" type="System.Int32, mscorlib">
     <value>9</value>
@@ -495,7 +495,7 @@
     <value>42</value>
   </metadata>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>1133, 743</value>
+    <value>1264, 761</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>

@@ -191,7 +191,7 @@ namespace SikRadio
                 _CurrentForm.Disconnect();
                 _CurrentForm.Dispose();
             }
-            _CurrentForm = Constructor();
+            _CurrentForm = Constructor();            
             _CurrentForm.Enabled = _Connected;
             GB.Text = _CurrentForm.Header;
             _CurrentForm.Show();

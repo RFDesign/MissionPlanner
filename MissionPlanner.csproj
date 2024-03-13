@@ -405,7 +405,6 @@
     <Compile Include="Log\MavlinkLog.cs" />
     <Compile Include="Log\Scan.cs" />
     <Compile Include="Log\test\MotorFailure.cs" />
-    <Compile Include="SikRadio\RFD900.cs" />
     <Compile Include="Models\DelegateCommand.cs" />
     <Compile Include="Models\ICommand.cs" />
     <Compile Include="NoFly\NoFly.cs" />
@@ -414,7 +413,6 @@
     <Compile Include="Plugin\PluginUI.cs" />
     <Compile Include="Radio\IHex.cs" />
     <Compile Include="Radio\Sikradio.cs" />
-    <Compile Include="Radio\Uploader.cs" />
     <Compile Include="Radio\XModem.cs" />
     <Compile Include="Swarm\DroneBase.cs" />
     <Compile Include="Swarm\FollowPath.cs" />
@@ -2119,6 +2117,7 @@
     <Folder Include="Plugins\" />
     <Folder Include="Resources\" />
     <Folder Include="RFD\" />
+    <Folder Include="SikRadio\" />
   </ItemGroup>
 
   <ItemGroup>

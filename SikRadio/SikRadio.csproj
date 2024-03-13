@@ -181,12 +181,6 @@
       <Link>Linked\Sikradio.designer.cs</Link>
       <DependentUpon>Sikradio.cs</DependentUpon>
     </Compile>
-    <Compile Include="..\Radio\Uploader.cs">
-      <Link>Linked\Uploader.cs</Link>
-    </Compile>
-    <Compile Include="..\Radio\XModem.cs">
-      <Link>Linked\XModem.cs</Link>
-    </Compile>
     <Compile Include="Common.cs" />
     <Compile Include="Config.cs">
       <SubType>Form</SubType>
@@ -213,7 +207,6 @@
     <Compile Include="MainV2.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RFD900.cs" />
     <Compile Include="Rssi.cs">
       <SubType>UserControl</SubType>
     </Compile>
