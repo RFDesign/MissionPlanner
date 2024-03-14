@@ -950,7 +950,7 @@
             // 
             // listDevices
             // 
-            this.listDevices.DataBindings.Add(new System.Windows.Forms.Binding("SelectedItem", this.configManagerBindingSource, "Current", true));
+            this.listDevices.DataBindings.Add(new System.Windows.Forms.Binding("SelectedItem", this.configManagerBindingSource, "Current", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.listDevices.DataSource = this.modemsBindingSource;
             this.listDevices.DisplayMember = "DisplayName";
             this.listDevices.FormattingEnabled = true;
@@ -1240,15 +1240,14 @@
             this.flowLayoutMain.Controls.Add(this.groupGPIO);
             this.flowLayoutMain.Controls.Add(this.groupData);
             this.flowLayoutMain.Controls.Add(this.groupBox3);
-            this.flowLayoutMain.Controls.Add(this.textConsole);
             resources.ApplyResources(this.flowLayoutMain, "flowLayoutMain");
             this.flowLayoutMain.Name = "flowLayoutMain";
             // 
             // textConsole
             // 
+            resources.ApplyResources(this.textConsole, "textConsole");
             this.textConsole.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.textConsole.ForeColor = System.Drawing.SystemColors.HighlightText;
-            resources.ApplyResources(this.textConsole, "textConsole");
             this.textConsole.Name = "textConsole";
             this.textConsole.ReadOnly = true;
             // 
@@ -1267,6 +1266,7 @@
             this.Controls.Add(this.flowLayoutMain);
             this.Controls.Add(this.flowLayoutSettings);
             this.Controls.Add(this.flowLayoutActions);
+            this.Controls.Add(this.textConsole);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.groupBox2);
             resources.ApplyResources(this, "$this");
@@ -1293,7 +1293,6 @@
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.flowLayoutMain.ResumeLayout(false);
-            this.flowLayoutMain.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1425,10 +1424,10 @@
         private System.Windows.Forms.FlowLayoutPanel flowLayoutSettings;
         private System.Windows.Forms.BindingSource configManagerBindingSource;
         private System.Windows.Forms.ListBox listDevices;
-        private System.Windows.Forms.BindingSource modemsBindingSource;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutMain;
         private System.Windows.Forms.TextBox textConsole;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.BindingSource modemsBindingSource;
     }
 }

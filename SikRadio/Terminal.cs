@@ -12,7 +12,7 @@ using RFDCommon.Interface;
 
 namespace SikRadio
 {
-    public partial class Terminal : UserControl, ISikRadioForm
+    public partial class Terminal : UserControl
     {
         internal static StreamWriter sw;
         private StringBuilder cmd = new StringBuilder();
@@ -35,7 +35,7 @@ namespace SikRadio
 
         private void comPort_DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
-            var comPort = SikRadio.Config.comPort;
+            var comPort = SikRadio.Config._modemComms.GetSession().Port;
 
             if ((comPort == null) || !comPort.IsOpen)
             {
@@ -100,7 +100,7 @@ namespace SikRadio
                 }
                 else
                 {
-                    MissionPlanner.MsgBox.CustomMessageBox.Show("Failed to enter AT command mode.");
+                    CustomMessageBox.Show("Failed to enter AT command mode.");
                 }
             }
         }
@@ -123,8 +123,8 @@ namespace SikRadio
                 {
                     try
                     {
-                        Thread.Sleep(10);
-                        if (SikRadio.Config.comPort.BytesToRead > 0)
+                        Thread.Sleep(10);                        
+                        if (SikRadio.Config._modemComms.GetSession().Port.BytesToRead > 0)
                         {
                             comPort_DataReceived(null, null);
                         }
@@ -267,7 +267,7 @@ namespace SikRadio
         {
             if (e.KeyChar == '\r')
             {
-                var comPort = SikRadio.Config.comPort;
+                var comPort = SikRadio.Config._modemComms.GetSession().Port; //comPort;
 
                 if ((comPort != null) && comPort.IsOpen)
                 {

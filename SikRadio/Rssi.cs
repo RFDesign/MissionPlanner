@@ -12,9 +12,9 @@ using MissionPlanner.Comms;
 
 namespace SikRadio
 {
-    public partial class Rssi : UserControl, ISikRadioForm
+    public partial class Rssi : UserControl
     {
-        private readonly Sikradio inter = new Sikradio();
+        
         private readonly RollingPointPairList plotdatanoicel = new RollingPointPairList(1200);
         private readonly RollingPointPairList plotdatanoicer = new RollingPointPairList(1200);
 
@@ -22,10 +22,10 @@ namespace SikRadio
         private readonly RollingPointPairList plotdatarssir = new RollingPointPairList(1200);
         private int tickStart;
         RFD.RFD900.TSession _Session;
-
+        private IModemComms _comms;
         public Rssi()
         {
-            InitializeComponent();
+            InitializeComponent();            
 
             zedGraphControl1.GraphPane.AddCurve("RSSI Local", plotdatarssil, Color.Red, SymbolType.None);
             zedGraphControl1.GraphPane.AddCurve("RSSI Remote", plotdatarssir, Color.Green, SymbolType.None);
@@ -35,6 +35,11 @@ namespace SikRadio
             zedGraphControl1.GraphPane.Title.Text = "RSSI";
 
             Terminal.SetupStreamWriter();
+        }
+
+        public void Init(IModemComms comms)
+        {
+            _comms = comms;
         }
 
         public void Connect(ICommsSerial comPort)
@@ -90,7 +95,7 @@ namespace SikRadio
                 if (_Session.PutIntoATCommandMode() == RFD.RFD900.TSession.TMode.AT_COMMAND)
                 {
                     System.Diagnostics.Debug.WriteLine("Doing AT&T command");
-                    inter.configManager.doCommand(Config.comPort, "AT&T");
+                    _comms.DoCommand("AT&T");
                     System.Diagnostics.Debug.WriteLine("Putting into transparent mode");
                     _Session.PutIntoTransparentMode();
 
@@ -102,7 +107,7 @@ namespace SikRadio
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            var comPort = SikRadio.Config.comPort;
+            var comPort = _comms.GetSession().Port;// SikRadio.Config.comPort;
 
             if ((comPort != null) && comPort.IsOpen)
             {

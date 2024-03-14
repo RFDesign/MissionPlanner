@@ -12,7 +12,7 @@ using MissionPlanner.Comms;
 
 namespace RFD900Tools
 {
-    public partial class Manufacturing : UserControl, ISikRadioForm
+    public partial class Manufacturing : UserControl
     {
         object _Locker = new object();
 
@@ -67,7 +67,7 @@ namespace RFD900Tools
                 LogStringNonMainThread("Locking down for " + Country.ToString() + "...");
                 //Switch to AT command mode.
                 LogStringNonMainThread("Putting into AT command mode...");
-                var Session = new RFD.RFD900.TSession(SikRadio.Config.comPort, MissionPlanner.MainV2.comPort.BaseStream.BaudRate);
+                var Session = new RFD.RFD900.TSession(SikRadio.Config._modemComms.GetSession().Port, MissionPlanner.MainV2.comPort.BaseStream.BaudRate);
                 var Mode = Session.PutIntoATCommandMode();
                 if (Mode == RFD.RFD900.TSession.TMode.AT_COMMAND)
                 {
@@ -178,7 +178,7 @@ namespace RFD900Tools
                 LogStringNonMainThread("Querying lockdown status...");
                 //Switch to AT command mode.
                 LogStringNonMainThread("Putting into AT command mode...");
-                var Session = new RFD.RFD900.TSession(SikRadio.Config.comPort, MissionPlanner.MainV2.comPort.BaseStream.BaudRate);
+                var Session = new RFD.RFD900.TSession(SikRadio.Config._modemComms.GetSession().Port, MissionPlanner.MainV2.comPort.BaseStream.BaudRate);
                 var Mode = Session.PutIntoATCommandMode();
                 if (Mode == RFD.RFD900.TSession.TMode.AT_COMMAND)
                 {

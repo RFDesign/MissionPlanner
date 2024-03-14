@@ -31,21 +31,32 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Config));
             this.CMB_SerialPort = new System.Windows.Forms.ComboBox();
             this.CMB_Baudrate = new System.Windows.Forms.ComboBox();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.GB = new System.Windows.Forms.GroupBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.terminalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.rssiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuSaveFile = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuLoadFile = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuExit = new System.Windows.Forms.ToolStripMenuItem();
             this.btnConnect = new System.Windows.Forms.Button();
+            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabPageSettings = new System.Windows.Forms.TabPage();
+            this.tabPageTerminal = new System.Windows.Forms.TabPage();
+            this.tabPageRSSI = new System.Windows.Forms.TabPage();
+            this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.terminal1 = new SikRadio.Terminal();
+            this.sikradio1 = new MissionPlanner.Radio.Sikradio();
+            this.rssi1 = new SikRadio.Rssi();
             this.groupBox1.SuspendLayout();
-            this.GB.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.menuStrip1.SuspendLayout();
+            this.tabControl1.SuspendLayout();
+            this.tabPageSettings.SuspendLayout();
+            this.tabPageTerminal.SuspendLayout();
+            this.tabPageRSSI.SuspendLayout();
             this.SuspendLayout();
             // 
             // CMB_SerialPort
@@ -75,11 +86,6 @@
             this.CMB_Baudrate.Name = "CMB_Baudrate";
             this.CMB_Baudrate.SelectedIndexChanged += new System.EventHandler(this.CMB_Baudrate_SelectedIndexChanged);
             // 
-            // panel1
-            // 
-            resources.ApplyResources(this.panel1, "panel1");
-            this.panel1.Name = "panel1";
-            // 
             // label1
             // 
             resources.ApplyResources(this.label1, "label1");
@@ -100,13 +106,6 @@
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.TabStop = false;
             // 
-            // GB
-            // 
-            resources.ApplyResources(this.GB, "GB");
-            this.GB.Controls.Add(this.panel1);
-            this.GB.Name = "GB";
-            this.GB.TabStop = false;
-            // 
             // pictureBox1
             // 
             resources.ApplyResources(this.pictureBox1, "pictureBox1");
@@ -117,29 +116,35 @@
             // 
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.settingsToolStripMenuItem,
-            this.terminalToolStripMenuItem,
-            this.rssiToolStripMenuItem});
+            this.fileToolStripMenuItem,
+            this.helpToolStripMenuItem});
             resources.ApplyResources(this.menuStrip1, "menuStrip1");
             this.menuStrip1.Name = "menuStrip1";
             // 
-            // settingsToolStripMenuItem
+            // fileToolStripMenuItem
             // 
-            this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
-            resources.ApplyResources(this.settingsToolStripMenuItem, "settingsToolStripMenuItem");
-            this.settingsToolStripMenuItem.Click += new System.EventHandler(this.settingsToolStripMenuItem_Click);
+            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuSaveFile,
+            this.toolStripMenuLoadFile,
+            this.toolStripMenuExit});
+            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
+            resources.ApplyResources(this.fileToolStripMenuItem, "fileToolStripMenuItem");
             // 
-            // terminalToolStripMenuItem
+            // toolStripMenuSaveFile
             // 
-            this.terminalToolStripMenuItem.Name = "terminalToolStripMenuItem";
-            resources.ApplyResources(this.terminalToolStripMenuItem, "terminalToolStripMenuItem");
-            this.terminalToolStripMenuItem.Click += new System.EventHandler(this.terminalToolStripMenuItem_Click);
+            this.toolStripMenuSaveFile.Name = "toolStripMenuSaveFile";
+            resources.ApplyResources(this.toolStripMenuSaveFile, "toolStripMenuSaveFile");
             // 
-            // rssiToolStripMenuItem
+            // toolStripMenuLoadFile
             // 
-            this.rssiToolStripMenuItem.Name = "rssiToolStripMenuItem";
-            resources.ApplyResources(this.rssiToolStripMenuItem, "rssiToolStripMenuItem");
-            this.rssiToolStripMenuItem.Click += new System.EventHandler(this.rssiToolStripMenuItem_Click);
+            this.toolStripMenuLoadFile.Name = "toolStripMenuLoadFile";
+            resources.ApplyResources(this.toolStripMenuLoadFile, "toolStripMenuLoadFile");
+            // 
+            // toolStripMenuExit
+            // 
+            this.toolStripMenuExit.Name = "toolStripMenuExit";
+            resources.ApplyResources(this.toolStripMenuExit, "toolStripMenuExit");
+            this.toolStripMenuExit.Click += new System.EventHandler(this.toolStripMenuItem3_Click);
             // 
             // btnConnect
             // 
@@ -148,12 +153,69 @@
             this.btnConnect.UseVisualStyleBackColor = true;
             this.btnConnect.Click += new System.EventHandler(this.btnConnect_Click);
             // 
+            // tabControl1
+            // 
+            resources.ApplyResources(this.tabControl1, "tabControl1");
+            this.tabControl1.Controls.Add(this.tabPageSettings);
+            this.tabControl1.Controls.Add(this.tabPageTerminal);
+            this.tabControl1.Controls.Add(this.tabPageRSSI);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            // 
+            // tabPageSettings
+            // 
+            resources.ApplyResources(this.tabPageSettings, "tabPageSettings");
+            this.tabPageSettings.Controls.Add(this.sikradio1);
+            this.tabPageSettings.Name = "tabPageSettings";
+            this.tabPageSettings.UseVisualStyleBackColor = true;
+            // 
+            // tabPageTerminal
+            // 
+            this.tabPageTerminal.Controls.Add(this.terminal1);
+            resources.ApplyResources(this.tabPageTerminal, "tabPageTerminal");
+            this.tabPageTerminal.Name = "tabPageTerminal";
+            this.tabPageTerminal.UseVisualStyleBackColor = true;
+            // 
+            // tabPageRSSI
+            // 
+            this.tabPageRSSI.Controls.Add(this.rssi1);
+            resources.ApplyResources(this.tabPageRSSI, "tabPageRSSI");
+            this.tabPageRSSI.Name = "tabPageRSSI";
+            this.tabPageRSSI.UseVisualStyleBackColor = true;
+            // 
+            // helpToolStripMenuItem
+            // 
+            this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.aboutToolStripMenuItem});
+            this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
+            resources.ApplyResources(this.helpToolStripMenuItem, "helpToolStripMenuItem");
+            // 
+            // aboutToolStripMenuItem
+            // 
+            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
+            resources.ApplyResources(this.aboutToolStripMenuItem, "aboutToolStripMenuItem");
+            // 
+            // terminal1
+            // 
+            resources.ApplyResources(this.terminal1, "terminal1");
+            this.terminal1.Name = "terminal1";
+            // 
+            // sikradio1
+            // 
+            resources.ApplyResources(this.sikradio1, "sikradio1");
+            this.sikradio1.Name = "sikradio1";
+            // 
+            // rssi1
+            // 
+            resources.ApplyResources(this.rssi1, "rssi1");
+            this.rssi1.Name = "rssi1";
+            // 
             // Config
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             resources.ApplyResources(this, "$this");
+            this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.btnConnect);
-            this.Controls.Add(this.GB);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.menuStrip1);
@@ -162,10 +224,13 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Config_FormClosing);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            this.GB.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            this.tabControl1.ResumeLayout(false);
+            this.tabPageSettings.ResumeLayout(false);
+            this.tabPageTerminal.ResumeLayout(false);
+            this.tabPageRSSI.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -175,17 +240,25 @@
 
         private System.Windows.Forms.ComboBox CMB_SerialPort;
         private System.Windows.Forms.ComboBox CMB_Baudrate;
-        private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.GroupBox GB;
         private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem terminalToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem settingsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem rssiToolStripMenuItem;
         private System.Windows.Forms.Button btnConnect;
+        private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuSaveFile;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuLoadFile;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuExit;
+        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabPage tabPageSettings;
+        private System.Windows.Forms.TabPage tabPageTerminal;
+        private System.Windows.Forms.TabPage tabPageRSSI;
+        private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
+        private Terminal terminal1;
+        private MissionPlanner.Radio.Sikradio sikradio1;
+        private Rssi rssi1;
     }
 }
 

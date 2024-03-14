@@ -28,7 +28,7 @@ using RFDCommon.RFDLib;
 
 namespace MissionPlanner.Radio
 {
-    public partial class Sikradio : UserControl, ISikRadioForm
+    public partial class Sikradio : UserControl
     {
         public delegate void LogEventHandler(string message, int level = 0);
 
@@ -61,13 +61,13 @@ namespace MissionPlanner.Radio
 
         // Added a working config set for databinding approach
         //RFD.RFD900.TSettings _LocalSettings, _LocalWorking, _RemoteSettings, _RemoteWorking;
-        public ConfigManager configManager = new ConfigManager();
+        private ConfigManager _configManager = new ConfigManager();
         //_configManager.ShowMessageBox += ShowMessageBox;
         //MultiPointConfig _multiPointSettings;
         //AsyncConfig _asyncSettings;
 
 
-        public event Action DoDisconnectReconnect;
+        //public event Action DoDisconnectReconnect;
 
         /*
 ATI5
@@ -93,6 +93,10 @@ S15: MAX_WINDOW=131
         {
             InitializeComponent();
 
+            // Handle events coming from _configManager
+            _configManager.ShowMessageBox += (sender, args) => MsgBox.CustomMessageBox.Show(args.Text, args.Title);
+            _configManager.WriteConsole += (sender, args) => WriteConsole(args.Text);
+
             // hide advanced view
             //SPLIT_local.Panel2Collapsed = true;
             //SPLIT_remote.Panel2Collapsed = true;
@@ -103,9 +107,7 @@ S15: MAX_WINDOW=131
                 new Control[] {
                 lblGLOBAL_RETRIES, GLOBAL_RETRIES, lblSER_BRK_DETMS, SER_BRK_DETMS}, false);
 
-            // Handle events coming from _configManager
-            configManager.ShowMessageBox += (sender,args) => MsgBox.CustomMessageBox.Show(args.Text, args.Title);
-            configManager.WriteConsole += (sender, args) => WriteConsole(args.Text);
+            
 
             // Set sync mode to AUTO (Sync all recommended)
             comboSyncMode.SelectedIndex = 0;
@@ -188,19 +190,22 @@ S15: MAX_WINDOW=131
             _LocalLabelEditorPairs.Add(lblGPO1_0TXEN485, GPO1_0TXEN485, toolTip1);
             _LocalLabelEditorPairs.Add(lblGPIO1_1FUNC, GPIO1_1FUNC, toolTip1);
                   
-            this.Disposed += DisposedEvtHdlr;
+            //this.Disposed += DisposedEvtHdlr;
 
             // Set DataBinding source...
-            this.configManagerBindingSource.DataSource = configManager;
+            this.configManagerBindingSource.DataSource = _configManager;
         }
 
-        public void Connect(ICommsSerial comPort)
+        public void Connect(ICommsSerial comPort, IModemComms modemComms)
         {
             _comPort = comPort;
-            var S = GetSession();
-
-            configManager.SetSession(S);
             
+            _configManager.Init(modemComms);
+            
+
+            //// Set DataBinding source...
+            //this.configManagerBindingSource.DataSource = _configManager;
+
             // Have just connected, enable the form?
             SetEnabled(this.Controls, true, true);
 
@@ -208,27 +213,25 @@ S15: MAX_WINDOW=131
             //_configManager.Load(S);
         }
 
-        public void Disconnect()
-        {
-            var S = _Session;
-            if ((S != null) && S.Port.IsOpen)
-            {
-                S.PutIntoTransparentMode();
-            }
-            EndSession();
+        //public void Disconnect()
+        //{
+        //    var S = _Session;
+        //    if ((S != null) && S.Port.IsOpen)
+        //    {
+        //        S.PutIntoTransparentMode();
+        //    }
+        //    EndSession();
 
-            
-            // 
-            _comPort = null;
-            // Have disconnected, disable the form?
-            //SetEnabled(this.Controls, false, true);
+        //    _comPort = null;
+        //    // Have disconnected, disable the form?
+        //    //SetEnabled(this.Controls, false, true);
 
-        }
+        //}
 
-        void DisposedEvtHdlr(object sender, EventArgs e)
-        {
-            Disconnect();
-        }
+        //void DisposedEvtHdlr(object sender, EventArgs e)
+        //{
+        //    Disconnect();
+        //}
 
         private void SaveDefaultCBObjects(ComboBox CB)
         {
@@ -610,7 +613,7 @@ S15: MAX_WINDOW=131
         private async void BUT_savesettings_Click(object sender, EventArgs e)
         {
             // Validate the working Settings            
-            await configManager.Save();
+            await _configManager.Save();
         }
 
         
@@ -908,43 +911,12 @@ S15: MAX_WINDOW=131
         }
         
         /// <summary>
-        /// AT command query the modem, if that fails, try the query again.
-        /// If wait for terminator, returns the result minus
-        /// the terminator.
-        /// </summary>
-        /// <param name="Query">The query.  Must not be null.</param>
-        /// <param name="WaitForTerminator">true to wait for terminator.</param>
-        /// <returns>The reply, except for the echo.</returns>
-        string DoQueryWithRetry(string Query, bool WaitForTerminator)
-        {
-            string Result = _Session.ATCClient.DoQuery(Query, WaitForTerminator);
-            if (Result == "")
-            {
-                return _Session.ATCClient.DoQuery(Query, WaitForTerminator);
-            }
-            else
-            {
-                return Result;
-            }
-        }
-
-        /// <summary>
         /// Load settings button evt hdlr
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private async void BUT_getcurrent_Click(object sender, EventArgs e)
         {
-            //System.Diagnostics.Stopwatch SW = new System.Diagnostics.Stopwatch();
-            //SW.Start();
-            //EndSession();
-            var Session = GetSession();
-
-            if (Session == null)
-            {
-                return;
-            }
-
             _AlreadyInEncCheckChangedEvtHdlr = true;
 
             // Disable Action Buttons
@@ -955,10 +927,15 @@ S15: MAX_WINDOW=131
 
             textConsole.AppendText("Loading settings..." + Environment.NewLine);
             
-            configManager.Load();
+            var loaded = await _configManager.Load();
+            if (!loaded)
+            {
+                ShowMessageBox("An error occured while trying to load settings...", "Load Failed");
+                return;
+            }
 
             // Setup Control Bindings
-            foreach (var item in configManager.Local.Settings.Settings)
+            foreach (var item in _configManager.Local.Settings.Settings)
             {
                 if (item.Value == null)
                     continue;
@@ -1115,86 +1092,20 @@ red LED flashing - transmitting data
 red LED solid - in firmware update mode");
         }
 
-        void DoCommandShowErrorIfNotOK(ICommsSerial Port, string cmd, string ErrorMsg)
-        {
-            string Result = configManager.doCommand(Port, cmd);
-            if (!Result.Contains("OK"))
-            {
-                MsgBox.CustomMessageBox.Show(ErrorMsg);
-            }
+        
+
+        private async void BUT_resettodefault_Click(object sender, EventArgs e)
+        {   
+            WriteConsole($"Initiating Config Reset{Environment.NewLine}");
+
+            await _configManager.ResetDefaults();
         }
-
-        private void BUT_resettodefault_Click(object sender, EventArgs e)
-        {
-            //EndSession();
-            var Session = GetSession();
-            if (Session == null)
-            {
-                return;
-            }
-
-            lbl_status.Text = "Connecting";
-
-            if (Session.PutIntoATCommandMode() == RFD.RFD900.TSession.TMode.AT_COMMAND)
-            {
-                // cleanup
-                if (configManager.Remote?.ATI != null)
-                {
-                    configManager.doCommand(Session.Port, "RT&T");
-
-                    Session.Port.DiscardInBuffer();
-
-                    lbl_status.Text = "Doing Command RTI & AT&F";
-
-                    configManager.doCommand(Session.Port, "RT&F");
-
-                    configManager.doCommand(Session.Port, "RT&W");
-
-                    lbl_status.Text = "Reset";
-
-                    configManager.doCommand(Session.Port, "RTZ");
-
-                    configManager.doCommand(Session.Port, "RT&T");
-                }
-
-                configManager.doCommand(Session.Port, "AT&T", false, 1);
-
-                Session.Port.DiscardInBuffer();
-
-                lbl_status.Text = "Doing Command ATI & AT&F";
-
-                DoCommandShowErrorIfNotOK(Session.Port, "AT&F", "Failed to reset parameters to factory defaults");
-
-                DoCommandShowErrorIfNotOK(Session.Port, "AT&W", "Failed to write parameters to EEPROM");
-
-                WriteConsole("Reset");
-                configManager.doCommand(Session.Port, "ATZ");
-
-                //Session must be ended because modem rebooted.
-                Session.PutIntoATCommandModeAssumingInTransparentMode();
-            }
-            else
-            {
-                // off hook
-                Session.PutIntoTransparentMode();
-
-                lbl_status.Text = "Fail";
-                MsgBox.CustomMessageBox.Show("Failed to enter command mode.  Try power-cycling modem.");
-            }
-        }
-
-        void UpdateStatus(string Status)
-        {
-            //lblStatus.Text = Status;
-            lbl_status.Text = Status;
-            Application.DoEvents();
-        }
-
+                
         void UpdateStatusCallback(string Status, double Progress)
         {
             if (Status != null)
             {
-                UpdateStatus(Status);
+                WriteConsole(Status);
             }
             if (!double.IsNaN(Progress))
             {
@@ -1274,48 +1185,44 @@ red LED solid - in firmware update mode");
 
             try
             {
-                //EndSession();
-                var Session = GetSession();
-                UpdateStatus("Determining mode...");
-                var Mode = Session.GetMode();
-                UpdateStatus("Mode is " + Mode.ToString());
-                //Console.WriteLine("Mode is " + Mode.ToString());
-                //port.Close();
-
+                WriteConsole("Determining mode...");
+                WriteConsole("Mode is " + _configManager.Local.Mode.ToString());
+                
                 RFD.RFD900.RFD900 RFD900 = _Session.GetModemObject();
 
                 if (RFD900 == null)
                 {
-                    UpdateStatus("Unknown modem");
+                    WriteConsole("Unknown modem");
                     MsgBox.CustomMessageBox.Show("Couldn't communicate with modem.  Try power-cycling modem.");
-                    EndSession();
+                    
+                    _configManager.EndSession();
                 }
                 else
                 {
                     if (Custom)
                     {
-                        UpdateStatus("Asking user for firmware file");
+                        WriteConsole("Asking user for firmware file");
                     }
                     else
                     {
-                        UpdateStatus("Getting firmware from internet");
+                        WriteConsole("Getting firmware from internet");
                     }
                     if (getFirmware(RFD900.Board, RFD900, Custom))
                     {
-                        UpdateStatus("Programming firmware into device");
+                        WriteConsole("Programming firmware into device");
                         if (RFD900.ProgramFirmware(firmwarefile, UpdateStatusCallback))
                         {
-                            UpdateStatus("Programmed firmware into device");
+                            WriteConsole("Programmed firmware into device");
                         }
                         else
                         {
-                            UpdateStatus("Programming failed.  (Try again?)");
+                            WriteConsole("Programming failed.  (Try again?)");
                         }
-                        EndSession();
+                        _configManager.EndSession();
                     }
                     else
                     {
-                        UpdateStatus("Firmware file selection cancelled");
+                        WriteConsole("Firmware file selection cancelled");
                     }
                 }
             }
@@ -1323,8 +1230,8 @@ red LED solid - in firmware update mode");
             {
                 try
                 {
-                    UpdateStatus("Programming failed.  (Try again?)");
-                    EndSession();
+                    WriteConsole("Programming failed.  (Try again?)");
+                    _configManager.EndSession();
                 }
                 catch
                 {
@@ -1401,112 +1308,54 @@ red LED solid - in firmware update mode");
             }
         }
 
-        private void SetPPMFailSafe(string SetCmd, string SaveCmd)
-        {
-            lbl_status.Text = "Connecting";
-            TSession Session = GetSession();
-
-            if (Session == null)
-            {
-                return;
-            }
-
-            if (Session.PutIntoATCommandMode() == TSession.TMode.AT_COMMAND)
-            {
-                // cleanup
-                //Session.Port.DiscardInBuffer();
-                //doCommand(Session.Port, "AT&T", false, 1);
-
-                lbl_status.Text = "Doing Command";
-
-                Session.Port.DiscardInBuffer();
-                bool Result = Session.ATCClient.DoCommand(SetCmd);
-
-                Session.Port.DiscardInBuffer();
-                Session.ATCClient.DoCommand(SaveCmd);
-
-                // off hook
-                //doCommand(Session.Port, "ATO");
-
-                if (Result)
-                {
-                    lbl_status.Text = "Done";
-                }
-                else
-                {
-                    lbl_status.Text = "Fail";
-                }
-            }
-            else
-            {
-                // off hook
-                //doCommand(Session.Port, "ATO");
-
-                lbl_status.Text = "Fail";
-                MsgBox.CustomMessageBox.Show("Failed to enter command mode");
-            }
-        }
-
-
+        
         private void BUT_SetPPMFailSafe_Click(object sender, EventArgs e)
         {
-            SetPPMFailSafe("AT&R", "AT&W");
+            _configManager.SetPPMFailSafe("AT&R", "AT&W");
         }
 
-        TSession GetSession()
-        {
-            if (_Session == null)
-            {
-                try
-                {                    
-                    if (_comPort != null)
-                    {
-                        _Session = new RFD.RFD900.TSession(_comPort, MainV2.comPort.BaseStream.BaudRate);
-                    }
-                }
-                catch
-                {
-                    MsgBox.CustomMessageBox.Show("Invalid ComPort or in use");
-                    return null;
-                }
-            }
-            else if (_Session.Port.BaudRate != MainV2.comPort.BaseStream.BaudRate ||
-                (MainV2.comPort.BaseStream.PortName != "TCP" && (_Session.Port.PortName != MainV2.comPort.BaseStream.PortName)))
-            {
-                _Session.Dispose();
-                _Session = null;
-                GetSession();
-            }
-            return _Session;
-        }
+        //TSession GetSession()
+        //{
+        //    if (_Session == null)
+        //    {
+        //        try
+        //        {                    
+        //            if (_comPort != null)
+        //            {
+        //                _Session = new RFD.RFD900.TSession(_comPort, MainV2.comPort.BaseStream.BaudRate);
+        //            }
+        //        }
+        //        catch
+        //        {
+        //            MsgBox.CustomMessageBox.Show("Invalid ComPort or in use");
+        //            return null;
+        //        }
+        //    }
+        //    else if (_Session.Port.BaudRate != MainV2.comPort.BaseStream.BaudRate ||
+        //        (MainV2.comPort.BaseStream.PortName != "TCP" && (_Session.Port.PortName != MainV2.comPort.BaseStream.PortName)))
+        //    {
+        //        _Session.Dispose();
+        //        _Session = null;
+        //        GetSession();
+        //    }
+        //    return _Session;
+        //}
 
-        private void EndSession()
-        {
-            if (_Session != null)
-            {
-                _Session.Dispose();
-                _Session = null;
-            }
-            if (DoDisconnectReconnect != null)
-            {
-                DoDisconnectReconnect();
-            }
-        }
+        
+        //bool SetSetting(string Designator, int Value, bool Remote)
+        //{
+        //    var Session = GetSession();
 
-        bool SetSetting(string Designator, int Value, bool Remote)
-        {
-            var Session = GetSession();
-
-            if (Session == null)
-            {
-                return false;
-            }
-            else
-            {
-                var answer = configManager.doCommand(Session.Port, (Remote ? "RT" : "AT")+Designator+"="+Value.ToString(), false);
-                return answer.Contains("OK");
-            }
-        }
+        //    if (Session == null)
+        //    {
+        //        return false;
+        //    }
+        //    else
+        //    {
+        //        var answer = _configManager..doCommand(Session.Port, (Remote ? "RT" : "AT")+Designator+"="+Value.ToString(), false);
+        //        return answer.Contains("OK");
+        //    }
+        //}
 
         /// <summary>
         /// Handles a change of the local encryption level check box.
@@ -1601,17 +1450,12 @@ red LED solid - in firmware update mode");
 
         private void btnRandom_Click(object sender, EventArgs e)
         {
-            configManager.RandomizeEncryptionKey();            
+            _configManager.RandomizeEncryptionKey();            
         }
 
         private void btnCommsLog_Click(object sender, EventArgs e)
         {
             
-        }
-
-        private void BUT_SetPPMFailSafeRemote_Click(object sender, EventArgs e)
-        {
-            SetPPMFailSafe("RT&R", "RT&W");
         }
 
         /// <summary>
@@ -1670,7 +1514,7 @@ red LED solid - in firmware update mode");
 
         private void btnSaveToFile_Click(object sender, EventArgs e)
         {
-            SaveWorkingConfig(configManager.Current.Settings);
+            SaveWorkingConfig(_configManager.Current.Settings);
             //SaveToFile(_LocalSettings, groupBoxLocal, false);
         }
 
@@ -1717,7 +1561,7 @@ red LED solid - in firmware update mode");
         {
             if (dlgOpen.ShowDialog() == DialogResult.OK)
             {
-                var loaded = configManager.Current.Settings.LoadFromFile(dlgOpen.FileName);
+                var loaded = _configManager.Current.Settings.LoadFromFile(dlgOpen.FileName);
                 if (loaded == null)
                 {
                     System.Windows.Forms.MessageBox.Show("Failed to load settings from " + dlgOpen.FileName);
@@ -1772,7 +1616,7 @@ red LED solid - in firmware update mode");
         
         private void button1_Click(object sender, EventArgs e)
         {
-            configManager.ANT_MODE = 1;
+            _configManager.ANT_MODE = 1;
         }
     }
 }
