@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net461</TargetFramework>
+    <TargetFramework>net472</TargetFramework>
     <ApplicationIcon>mpdesktop.ico</ApplicationIcon>
     <OutputType>Exe</OutputType>
     <StartupObject></StartupObject>
@@ -73,6 +73,7 @@
       <HintPath>ExtLibs\OpenTK.GLControl.dll</HintPath>
     </Reference>
     <Reference Include="System.Configuration" />
+    <Reference Include="System.IO.Compression" />
     <Reference Include="System.Management" />
     <Reference Include="System.Speech" />
 
@@ -212,7 +213,7 @@
     <PackageReference Include="GeoJSON.Net" version="1.1.64" targetFramework="net462" />
     <PackageReference Include="IronPython" version="2.7.7" targetFramework="net462" />
     <PackageReference Include="IronPython.StdLib" version="2.7.7" targetFramework="net462" />
-    <PackageReference Include="log4net" version="2.0.8" targetFramework="net462" />
+    <PackageReference Include="log4net" version="2.0.16" targetFramework="net462" />
     <PackageReference Include="Microsoft.Win32.Registry" Version="4.4.0" />
     <PackageReference Include="MP.GDAL.Native" Version="2.2.3" />
 
@@ -225,7 +226,7 @@
     <PackageReference Include="SharpZipLib" version="0.86.0" targetFramework="net40" />
     <PackageReference Include="SkiaSharp" Version="1.60.0" />
     <PackageReference Include="SSH.NET" version="2016.1.0" targetFramework="net40" />
-    <PackageReference Include="System.Drawing.Common" Version="4.5.0-preview1-26216-02" />
+    <PackageReference Include="System.Drawing.Common" Version="4.7.2" />
     <PackageReference Include="System.IO.Ports" Version="4.4.0" />
     <PackageReference Include="System.Reactive" Version="3.1.1" />
     <PackageReference Include="System.Reactive.Core" Version="3.1.1" />
