@@ -40,15 +40,15 @@
             this.toolStripMenuSaveFile = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuLoadFile = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuExit = new System.Windows.Forms.ToolStripMenuItem();
+            this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.btnConnect = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPageSettings = new System.Windows.Forms.TabPage();
+            this.sikradio1 = new MissionPlanner.Radio.Sikradio(ConfigManager);
             this.tabPageTerminal = new System.Windows.Forms.TabPage();
-            this.tabPageRSSI = new System.Windows.Forms.TabPage();
-            this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.terminal1 = new SikRadio.Terminal();
-            this.sikradio1 = new MissionPlanner.Radio.Sikradio();
+            this.tabPageRSSI = new System.Windows.Forms.TabPage();
             this.rssi1 = new SikRadio.Rssi();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -146,6 +146,18 @@
             resources.ApplyResources(this.toolStripMenuExit, "toolStripMenuExit");
             this.toolStripMenuExit.Click += new System.EventHandler(this.toolStripMenuItem3_Click);
             // 
+            // helpToolStripMenuItem
+            // 
+            this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.aboutToolStripMenuItem});
+            this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
+            resources.ApplyResources(this.helpToolStripMenuItem, "helpToolStripMenuItem");
+            // 
+            // aboutToolStripMenuItem
+            // 
+            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
+            resources.ApplyResources(this.aboutToolStripMenuItem, "aboutToolStripMenuItem");
+            // 
             // btnConnect
             // 
             resources.ApplyResources(this.btnConnect, "btnConnect");
@@ -169,6 +181,11 @@
             this.tabPageSettings.Name = "tabPageSettings";
             this.tabPageSettings.UseVisualStyleBackColor = true;
             // 
+            // sikradio1
+            // 
+            resources.ApplyResources(this.sikradio1, "sikradio1");
+            this.sikradio1.Name = "sikradio1";
+            // 
             // tabPageTerminal
             // 
             this.tabPageTerminal.Controls.Add(this.terminal1);
@@ -176,34 +193,17 @@
             this.tabPageTerminal.Name = "tabPageTerminal";
             this.tabPageTerminal.UseVisualStyleBackColor = true;
             // 
+            // terminal1
+            // 
+            resources.ApplyResources(this.terminal1, "terminal1");
+            this.terminal1.Name = "terminal1";
+            // 
             // tabPageRSSI
             // 
             this.tabPageRSSI.Controls.Add(this.rssi1);
             resources.ApplyResources(this.tabPageRSSI, "tabPageRSSI");
             this.tabPageRSSI.Name = "tabPageRSSI";
             this.tabPageRSSI.UseVisualStyleBackColor = true;
-            // 
-            // helpToolStripMenuItem
-            // 
-            this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.aboutToolStripMenuItem});
-            this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            resources.ApplyResources(this.helpToolStripMenuItem, "helpToolStripMenuItem");
-            // 
-            // aboutToolStripMenuItem
-            // 
-            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            resources.ApplyResources(this.aboutToolStripMenuItem, "aboutToolStripMenuItem");
-            // 
-            // terminal1
-            // 
-            resources.ApplyResources(this.terminal1, "terminal1");
-            this.terminal1.Name = "terminal1";
-            // 
-            // sikradio1
-            // 
-            resources.ApplyResources(this.sikradio1, "sikradio1");
-            this.sikradio1.Name = "sikradio1";
             // 
             // rssi1
             // 

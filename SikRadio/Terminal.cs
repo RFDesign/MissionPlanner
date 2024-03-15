@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.Eventing.Reader;
 using System.IO;
 using System.IO.Ports;
 using System.Text;
@@ -7,18 +8,21 @@ using System.Windows.Forms;
 using MissionPlanner;
 using MissionPlanner.Comms;
 using MissionPlanner.MsgBox;
+using RFD.RFD900;
 using RFDCommon.Interface;
 
 
 namespace SikRadio
 {
-    public partial class Terminal : UserControl
+    public partial class Terminal : UserControl, IRFDConfigForm
     {
         internal static StreamWriter sw;
         private StringBuilder cmd = new StringBuilder();
         private readonly object thisLock = new object();
         bool _RunRxThread = false;
         Thread _RxThread;
+        IModemComms _comms;
+        
 
         public Terminal()
         {
@@ -35,9 +39,9 @@ namespace SikRadio
 
         private void comPort_DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
-            var comPort = SikRadio.Config._modemComms.GetSession().Port;
+            var session = _comms.GetSession(); //;.Port;
 
-            if ((comPort == null) || !comPort.IsOpen)
+            if ((session.Port == null) || !session.Port.IsOpen)
             {
                 return;
             }
@@ -46,7 +50,7 @@ namespace SikRadio
             {
                 lock (thisLock)
                 {
-                    var data = comPort.ReadExisting();
+                    var data = session.Port.ReadExisting();
                     //Console.Write(data);
 
                     if (sw != null)
@@ -82,18 +86,48 @@ namespace SikRadio
             });
         }
 
-        public void Connect(ICommsSerial comPort)
+        public void Start(IModemComms comms)
+        {
+            _comms = comms;
+
+            // Listen to connection state changes
+            _comms.ConnectionStateChanged += _comms_ConnectionStateChanged;
+
+            if (_comms.IsConnected())
+                StartTerminal();            
+        }
+
+        public void Stop()
+        {
+            //
+            _comms.ConnectionStateChanged -= _comms_ConnectionStateChanged;
+            if (_comms.IsConnected())
+                StopTerminal();
+        }
+
+
+        private void _comms_ConnectionStateChanged(object sender, EventArgs e)
+        {
+            if (_comms.IsConnected())
+            {
+                StartTerminal();
+            } 
+            else
+            {
+                StopTerminal();
+            }
+        }
+
+        private void StartTerminal()
         {
             if (!_RunRxThread)
             {
                 if (RFDLib.Utils.Retry(() =>
                 {
-                    var Session = new RFD.RFD900.TSession(comPort, MainV2.comPort.BaseStream.BaudRate);
-                    var Result = Session.PutIntoATCommandMode() == RFD.RFD900.TSession.TMode.AT_COMMAND;
-                    Session.Dispose();
-                    return Result;
+                    return _comms.PutIntoATCommandMode() == TSession.TMode.AT_COMMAND;
                 }, 3))
                 {
+                    _comms.GetSession().ATCClient.DoCommand("AT&T", true);
                     _RunRxThread = true;
                     _RxThread = new Thread(RxWorker);
                     _RxThread.Start();
@@ -105,7 +139,7 @@ namespace SikRadio
             }
         }
 
-        public void Disconnect()
+        public void StopTerminal()
         {
             if (_RunRxThread)
             {
@@ -124,7 +158,7 @@ namespace SikRadio
                     try
                     {
                         Thread.Sleep(10);                        
-                        if (SikRadio.Config._modemComms.GetSession().Port.BytesToRead > 0)
+                        if (_comms.GetSession().Port.BytesToRead > 0)
                         {
                             comPort_DataReceived(null, null);
                         }
@@ -267,7 +301,7 @@ namespace SikRadio
         {
             if (e.KeyChar == '\r')
             {
-                var comPort = SikRadio.Config._modemComms.GetSession().Port; //comPort;
+                var comPort = _comms.GetSession().Port; //comPort;
 
                 if ((comPort != null) && comPort.IsOpen)
                 {
@@ -304,12 +338,7 @@ namespace SikRadio
             }
         }
 
-        public string Header
-        {
-            get
-            {
-                return "Terminal";
-            }
-        }
+       
+        
     }
 }

@@ -9,10 +9,11 @@ using MissionPlanner.Radio;
 using ZedGraph;
 using RFDCommon.Interface;
 using MissionPlanner.Comms;
+using RFDCommon;
 
 namespace SikRadio
 {
-    public partial class Rssi : UserControl
+    public partial class Rssi : UserControl, IRFDConfigForm
     {
         
         private readonly RollingPointPairList plotdatanoicel = new RollingPointPairList(1200);
@@ -21,7 +22,7 @@ namespace SikRadio
         private readonly RollingPointPairList plotdatarssil = new RollingPointPairList(1200);
         private readonly RollingPointPairList plotdatarssir = new RollingPointPairList(1200);
         private int tickStart;
-        RFD.RFD900.TSession _Session;
+        //RFD.RFD900.TSession _Session;
         private IModemComms _comms;
         public Rssi()
         {
@@ -37,72 +38,89 @@ namespace SikRadio
             Terminal.SetupStreamWriter();
         }
 
-        public void Init(IModemComms comms)
-        {
-            _comms = comms;
+       
+
+        public void Start(IModemComms modemComms)
+        {            
+            _comms = modemComms;
+
+            // Listen to connection state changes
+            _comms.ConnectionStateChanged += ModemComms_ConnectionStateChanged;
+
+            if (!_comms.IsConnected())
+            {
+                //_comms.Connect();
+                // Connect to begin?
+
+                return;
+            } 
+            else
+            {
+                StartRSSI();
+            }
         }
 
-        public void Connect(ICommsSerial comPort)
+        
+        private void ModemComms_ConnectionStateChanged(object sender, EventArgs e)
         {
-            if (_Session == null)
+            if (_comms.IsConnected())
             {
-                RFD.RFD900.TSession Session = null;
+                // start up rssi?
+                StartRSSI();
+            } 
+            else
+            {
 
-                if (RFDLib.Utils.Retry(() =>
-                {
-                    Session = new RFD.RFD900.TSession(comPort, MainV2.comPort.BaseStream.BaudRate);
-                    return Session.PutIntoATCommandMode() == RFD.RFD900.TSession.TMode.AT_COMMAND;
-                }
+            }
+        }
+
+        private void StartRSSI()
+        {
+            zedGraphControl1.Refresh();
+            if (RFDLib.Utils.Retry(() =>
+            {
+                
+                return _comms.PutIntoATCommandMode() == RFD.RFD900.TSession.TMode.AT_COMMAND;
+            }
                 , 3))
+            {
+                var session = _comms.GetSession();
+                if (RFDLib.Utils.Retry(() => session.ATCClient.DoQuery("AT&T=RSSI", true).Contains("RSSI"), 3))
                 {
-                    if (RFDLib.Utils.Retry(() => Session.ATCClient.DoQuery("AT&T=RSSI", true).Contains("RSSI"), 3))
-                    {
-                        Session.AssumeMode(RFD.RFD900.TSession.TMode.TRANSPARENT);
+                    session.AssumeMode(RFD.RFD900.TSession.TMode.TRANSPARENT);
 
-                        tickStart = Environment.TickCount;
+                    tickStart = Environment.TickCount;
 
-                        timer1.Start();
-
-                        _Session = Session;
-                    }
-                    else
-                    {
-                        var ATIReply = Session.ATCClient.DoQuery("ATI", true);
-                        if (RFDLib.Text.Contains(ATIReply, "async"))
-                        {
-                            MissionPlanner.MsgBox.CustomMessageBox.Show("Firmware doesn't support RSSI reporting");
-                        }
-                        else
-                        {
-                            MissionPlanner.MsgBox.CustomMessageBox.Show("Failed to enter RSSI reporting mode.");
-                        }
-                    }
+                    timer1.Start();
                 }
                 else
                 {
-                    MissionPlanner.MsgBox.CustomMessageBox.Show("Failed to put modem into AT command mode.");
+                    var ATIReply = session.ATCClient.DoQuery("ATI", true);
+                    if (RFDLib.Text.Contains(ATIReply, "async"))
+                    {
+                        MissionPlanner.MsgBox.CustomMessageBox.Show("Firmware doesn't support RSSI reporting");
+                    }
+                    else
+                    {
+                        MissionPlanner.MsgBox.CustomMessageBox.Show("Failed to enter RSSI reporting mode.");
+                    }
                 }
+            }
+            else
+            {
+                MissionPlanner.MsgBox.CustomMessageBox.Show("Failed to put modem into AT command mode.");
             }
         }
 
-        public void Disconnect()
+        public void Stop()
         {
-            if (_Session != null)
+            timer1.Stop();
+            if (_comms.IsConnected())
             {
-                timer1.Stop();
-
-                System.Diagnostics.Debug.WriteLine("Putting into AT command mode");
-                if (_Session.PutIntoATCommandMode() == RFD.RFD900.TSession.TMode.AT_COMMAND)
-                {
-                    System.Diagnostics.Debug.WriteLine("Doing AT&T command");
-                    _comms.DoCommand("AT&T");
-                    System.Diagnostics.Debug.WriteLine("Putting into transparent mode");
-                    _Session.PutIntoTransparentMode();
-
-                    _Session.Dispose();
-                    _Session = null;
-                }
+                _comms.GetSession().ATCClient.DoQuery("AT&T",true);
             }
+            // Unsub to connection state changes
+            _comms.ConnectionStateChanged -= ModemComms_ConnectionStateChanged;
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -157,14 +175,6 @@ namespace SikRadio
                 {
                 }
             }
-        }
-
-        public string Header
-        {
-            get
-            {
-                return "RSSI";
-            }
-        }
+        }        
     }
 }

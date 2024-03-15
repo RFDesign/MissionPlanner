@@ -31,7 +31,11 @@ namespace RFDCommon
             
         }
 
-
+        public event EventHandler<EventArgs> ConnectionStateChanged;
+        protected virtual void ConnectionChanged()
+        {
+            ConnectionStateChanged?.Invoke(this, new EventArgs());
+        }
 
         /// <summary>
         /// Send a command to the radio, wait for a response.
@@ -182,8 +186,6 @@ namespace RFDCommon
             GetSession().Port.DiscardInBuffer();
         }
 
-
-
         public void EndSession()
         {
             if (session != null)
@@ -200,19 +202,71 @@ namespace RFDCommon
             Connect();
         }
 
-        public void Connect()
+        public bool Connect()
         {
-            throw new NotImplementedException();
+            try
+            {
+                if (MainV2.comPort.BaseStream.PortName.Contains("TCP"))
+                {
+                    _comPort = new TcpSerial();
+                    _comPort.BaudRate = MainV2.comPort.BaseStream.BaudRate;
+                    _comPort.ReadTimeout = 4000;
+                    _comPort.Open();                   
+                }
+                else
+                {
+                    _comPort = new SerialPort();
+
+                    if (MainV2.comPort.BaseStream.IsOpen)
+                    {
+                        getTelemPortWithRadio(ref _comPort);
+                    }
+                    else
+                    {
+                        _comPort.PortName = MainV2.comPort.BaseStream.PortName;
+                        _comPort.BaudRate = MainV2.comPort.BaseStream.BaudRate;
+                    }
+
+                    _comPort.ReadTimeout = 4000;
+
+                    _comPort.Open();
+                }
+                _connected = true;
+                ConnectionChanged();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
 
-        public void Disconnect()
+        public bool Disconnect()
         {
-            throw new NotImplementedException();
+            if (_comPort != null)
+            {
+                _comPort.Close();
+                _comPort = null;
+                _connected = false;
+                ConnectionChanged();
+            }            
+            return true;
         }
 
         public bool IsConnected()
         {
             return _connected;
+        }
+
+        void getTelemPortWithRadio(ref ICommsSerial comPort)
+        {
+            // try telem1
+
+            comPort = new MAVLinkSerialPort(MainV2.comPort, (int)MAVLink.SERIAL_CONTROL_DEV.TELEM1);
+
+            comPort.ReadTimeout = 4000;
+
+            comPort.Open();
         }
     }
 }

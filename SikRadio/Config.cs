@@ -15,18 +15,21 @@ namespace SikRadio
 {
     public partial class Config : Form
     {
-        //bool _Connected = false;
+        
         //ISikRadioForm _CurrentForm;
         static ICommsSerial _comPort;        
         public static IModemComms _modemComms = new ModemComms();
-        
+        public ConfigManager ConfigManager = new ConfigManager(_modemComms);
+        private int _selectedTabIndex = 0;
 
         public Config()
         {
             InitializeComponent();
-
             
             tabControl1.SelectedIndexChanged += TabControl1_SelectedIndexChanged;
+
+            // Handle connection state changes
+            _modemComms.ConnectionStateChanged += _modemComms_ConnectionStateChanged;
 
             var Version = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
 
@@ -57,22 +60,34 @@ namespace SikRadio
             tabControl1.SelectedIndex = 0;            
         }
 
+        private void _modemComms_ConnectionStateChanged(object sender, EventArgs e)
+        {
+            if (_modemComms.IsConnected())
+            {
+                // Just Connected - Find out who is home?
+                ConfigManager.QueryModems();
+            } 
+            else
+            {
+
+            }
+        }
+
         private async void TabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //bool wasConnected = _Connected;
-            //if (_Connected)
-            //    await ToggleConnect();
+            var previousForm = tabControl1.TabPages[_selectedTabIndex].Controls[0] as IRFDConfigForm;
+            if (previousForm != null)
+                previousForm.Stop();
 
-            //var child = tabControl1.SelectedTab.Controls[0];
-            //var form = child as ISikRadioForm;
-            
-            //if (form != null) {
-            //    _CurrentForm = form;
-            //    if (wasConnected)
-            //    {
-            //        await ToggleConnect();
-            //    }
-            //}
+            // Update index for next time...
+            _selectedTabIndex = tabControl1.SelectedIndex;
+
+            // Start new form
+            var selectedForm = tabControl1.SelectedTab.Controls[0] as IRFDConfigForm;
+            if (selectedForm == null)
+                return;
+
+            selectedForm.Start(_modemComms);            
         }
 
         /// <summary>
@@ -254,117 +269,40 @@ namespace SikRadio
         //    ShowForm(loadRssi);
         //}
 
-        void getTelemPortWithRadio(ref ICommsSerial comPort)
-        {
-            // try telem1
-
-            comPort = new MAVLinkSerialPort(MainV2.comPort, (int)MAVLink.SERIAL_CONTROL_DEV.TELEM1);
-
-            comPort.ReadTimeout = 4000;
-
-            comPort.Open();
-        }
-
-        bool Connect()
-        {
-            try
-            {
-                if (MainV2.comPort.BaseStream.PortName.Contains("TCP"))
-                {
-                    _comPort = new TcpSerial();
-                    _comPort.BaudRate = MainV2.comPort.BaseStream.BaudRate;
-                    _comPort.ReadTimeout = 4000;
-                    _comPort.Open();
-                }
-                else
-                {
-                    _comPort = new SerialPort();
-
-                    if (MainV2.comPort.BaseStream.IsOpen)
-                    {
-                        getTelemPortWithRadio(ref _comPort);
-                    }
-                    else
-                    {
-                        _comPort.PortName = MainV2.comPort.BaseStream.PortName;
-                        _comPort.BaudRate = MainV2.comPort.BaseStream.BaudRate;
-                    }
-
-                    _comPort.ReadTimeout = 4000;
-
-                    _comPort.Open();
-                }                
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
-        }
-
-        bool Disconnect()
-        {
-            _comPort.Close();
-            _comPort = null;
-            return true;
-        }
 
         private async Task ToggleConnect()
         {
             // NOW to make connect work globally!
-
             if (_modemComms.IsConnected())
             {
-                //if (_CurrentForm != null)
-                //{
-                //    _CurrentForm.Disconnect();
-                //}
-                Disconnect();
-                //_Connected = false;
-                btnConnect.Text = "Connect";
-                //if (_CurrentForm != null)
-                //{
-                //    _CurrentForm.Enabled = false;
-                //}
+                _modemComms.Disconnect();   
+                
+                // Update local control state
+                btnConnect.Text = "Connect";                
                 CMB_Baudrate.Enabled = true;
                 CMB_SerialPort.Enabled = true;
-                
-                _modemComms = new ModemComms();
-                //sikradio1.Disconnect();
-                //terminal1.Disconnect();
-
             }
             else
             {
-                if (Connect())
-                {
-                    //if (_CurrentForm != null)
-                    //{
-                    //    _CurrentForm.Connect(comPort);
-                    //}
-                    //_Connected = true;
+                if (_modemComms.Connect())
+                {        
+                    // Update local control state
                     btnConnect.Text = "Disconnect";
-                    //if (_CurrentForm != null)
-                    //{
-                    //    _CurrentForm.Enabled = true;
-                    //}
                     CMB_Baudrate.Enabled = (_comPort is SerialPort);
                     CMB_SerialPort.Enabled = false;
-
-                    //sikradio1.Connect(_comPort, _modemComms);
-                    //_modemComms.Connect();
                 }
             }
         }
 
         private async void btnConnect_Click(object sender, EventArgs e)
-        {
+        {            
             await ToggleConnect();            
         }
 
         private void Config_FormClosing(object sender, FormClosingEventArgs e)
         {
-            //_modemComms.Disconnect();            
+            _modemComms.ConnectionStateChanged -= _modemComms_ConnectionStateChanged;
+            _modemComms.Disconnect();            
         }
 
         

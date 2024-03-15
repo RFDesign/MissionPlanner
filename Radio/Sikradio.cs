@@ -28,7 +28,7 @@ using RFDCommon.RFDLib;
 
 namespace MissionPlanner.Radio
 {
-    public partial class Sikradio : UserControl
+    public partial class Sikradio : UserControl, IRFDConfigForm
     {
         public delegate void LogEventHandler(string message, int level = 0);
 
@@ -57,12 +57,16 @@ namespace MissionPlanner.Radio
         };
 
         // Added a property to hold ICommsSerial to avoid need to access a hard coded parent control?
-        private ICommsSerial _comPort;
+        //private ICommsSerial _comPort;
+
+        // Property for interacting with the modem connection and commands
+        //private IModemComms _modemComms;
 
         // Added a working config set for databinding approach
         //RFD.RFD900.TSettings _LocalSettings, _LocalWorking, _RemoteSettings, _RemoteWorking;
-        private ConfigManager _configManager = new ConfigManager();
-        //_configManager.ShowMessageBox += ShowMessageBox;
+        private ConfigManager _configManager;// = new ConfigManager();
+        private IModemComms _comms;
+
         //MultiPointConfig _multiPointSettings;
         //AsyncConfig _asyncSettings;
 
@@ -89,10 +93,12 @@ S14: RTSCTS=0
 S15: MAX_WINDOW=131
          */
 
-        public Sikradio()
+        public Sikradio(ConfigManager configManager)
         {
+            
             InitializeComponent();
 
+            _configManager = configManager;
             // Handle events coming from _configManager
             _configManager.ShowMessageBox += (sender, args) => MsgBox.CustomMessageBox.Show(args.Text, args.Title);
             _configManager.WriteConsole += (sender, args) => WriteConsole(args.Text);
@@ -196,16 +202,15 @@ S15: MAX_WINDOW=131
             this.configManagerBindingSource.DataSource = _configManager;
         }
 
-        public void Connect(ICommsSerial comPort, IModemComms modemComms)
+        
+
+        public void Start(IModemComms comms)
         {
-            _comPort = comPort;
-            
-            _configManager.Init(modemComms);
-            
-
-            //// Set DataBinding source...
-            //this.configManagerBindingSource.DataSource = _configManager;
-
+            //_modemComms = modemComms;
+            //_configManager.Init(modemComms);
+            _comms = comms;
+            _comms.ConnectionStateChanged += _comms_ConnectionStateChanged;
+                        
             // Have just connected, enable the form?
             SetEnabled(this.Controls, true, true);
 
@@ -213,25 +218,28 @@ S15: MAX_WINDOW=131
             //_configManager.Load(S);
         }
 
-        //public void Disconnect()
-        //{
-        //    var S = _Session;
-        //    if ((S != null) && S.Port.IsOpen)
-        //    {
-        //        S.PutIntoTransparentMode();
-        //    }
-        //    EndSession();
+        private async void _comms_ConnectionStateChanged(object sender, EventArgs e)
+        {
+            if (_comms.IsConnected())
+            {
+                // Just connected... pull config?
+                //await _configManager.Load();
+            } 
+            else
+            {
 
-        //    _comPort = null;
-        //    // Have disconnected, disable the form?
-        //    //SetEnabled(this.Controls, false, true);
+            }
+            // Init or De-Init the form?
 
-        //}
+        }
 
-        //void DisposedEvtHdlr(object sender, EventArgs e)
-        //{
-        //    Disconnect();
-        //}
+        public void Stop()
+        {
+            // ??
+            if (_comms != null)
+                _comms.ConnectionStateChanged -= _comms_ConnectionStateChanged;
+        }
+                
 
         private void SaveDefaultCBObjects(ComboBox CB)
         {
