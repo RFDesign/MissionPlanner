@@ -92,7 +92,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MissionPlanner\ExtLibs\Comms\MissionPlanner.Comms.csproj">
+    <ProjectReference Include="..\ExtLibs\Comms\MissionPlanner.Comms.csproj">
       <Project>{825e7a10-390c-4a2b-b3a8-491d14966912}</Project>
       <Name>MissionPlanner.Comms</Name>
     </ProjectReference>

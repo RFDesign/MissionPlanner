@@ -24,6 +24,8 @@ namespace SikRadio
         private int tickStart;
         //RFD.RFD900.TSession _Session;
         private IModemComms _comms;
+        private bool _started = false;
+
         public Rssi()
         {
             InitializeComponent();            
@@ -41,12 +43,15 @@ namespace SikRadio
        
 
         public void Start(IModemComms modemComms)
-        {            
+        {
+            Visible = true;
+            _started = true;
             _comms = modemComms;
 
             // Listen to connection state changes
             _comms.ConnectionStateChanged += ModemComms_ConnectionStateChanged;
 
+            
             if (!_comms.IsConnected())
             {
                 //_comms.Connect();
@@ -114,13 +119,19 @@ namespace SikRadio
 
         public void Stop()
         {
-            timer1.Stop();
-            if (_comms.IsConnected())
+            Visible = false;
+
+            if (_started)
             {
-                _comms.GetSession().ATCClient.DoQuery("AT&T",true);
+                _started = false;
+                timer1.Stop();
+                if (_comms.IsConnected())
+                {
+                    _comms.GetSession().ATCClient.DoQuery("AT&T", true);
+                }
+                // Unsub to connection state changes
+                _comms.ConnectionStateChanged -= ModemComms_ConnectionStateChanged;
             }
-            // Unsub to connection state changes
-            _comms.ConnectionStateChanged -= ModemComms_ConnectionStateChanged;
         }
 
         private void timer1_Tick(object sender, EventArgs e)

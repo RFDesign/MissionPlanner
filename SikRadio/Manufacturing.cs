@@ -12,7 +12,7 @@ using MissionPlanner.Comms;
 
 namespace RFD900Tools
 {
-    public partial class Manufacturing : UserControl
+    public partial class Manufacturing : UserControl, IRFDConfigForm
     {
         object _Locker = new object();
 
@@ -267,6 +267,16 @@ namespace RFD900Tools
         private void BtnLockdownIndia_Click(object sender, EventArgs e)
         {
             DoLockdown(RFD.RFD900.RFD900xux.TCountry.India);
+        }
+
+        public void Start(IModemComms modemComms)
+        {
+            Visible = true;
+        }
+
+        public void Stop()
+        {
+            Visible = false;
         }
     }
 }

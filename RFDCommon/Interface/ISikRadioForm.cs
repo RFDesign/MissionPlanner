@@ -17,7 +17,7 @@ namespace RFDCommon.Interface
     }
 
     public interface IRFDConfigForm
-    {
+    {        
         void Start(IModemComms modemComms);
         void Stop();
     }

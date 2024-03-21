@@ -22,6 +22,7 @@ namespace SikRadio
         bool _RunRxThread = false;
         Thread _RxThread;
         IModemComms _comms;
+        private bool _started = false;
         
 
         public Terminal()
@@ -88,6 +89,9 @@ namespace SikRadio
 
         public void Start(IModemComms comms)
         {
+            Visible = true;
+            _started = true;
+
             _comms = comms;
 
             // Listen to connection state changes
@@ -99,10 +103,15 @@ namespace SikRadio
 
         public void Stop()
         {
-            //
-            _comms.ConnectionStateChanged -= _comms_ConnectionStateChanged;
-            if (_comms.IsConnected())
-                StopTerminal();
+            Visible = false;
+            if (_started)
+            {
+                _started = false;
+
+                _comms.ConnectionStateChanged -= _comms_ConnectionStateChanged;
+                if (_comms.IsConnected())
+                    StopTerminal();
+            }            
         }
 
 

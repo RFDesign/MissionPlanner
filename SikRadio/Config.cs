@@ -10,6 +10,8 @@ using RFDCommon.Interface;
 using RFDCommon;
 using System.Threading.Tasks;
 using RFD.RFD900;
+using System.Drawing;
+using FontAwesome.Sharp;
 
 namespace SikRadio
 {
@@ -20,7 +22,9 @@ namespace SikRadio
         static ICommsSerial _comPort;        
         public static IModemComms _modemComms = new ModemComms();
         public ConfigManager ConfigManager = new ConfigManager(_modemComms);
-        private int _selectedTabIndex = 0;
+        private int _selectedTabIndex = 0;   
+        Color btnBackDefault = Color.FromArgb(255, 21, 29, 46);
+        Color btnBackSelected = Color.FromArgb(255, 73, 82, 110);
 
         public Config()
         {
@@ -28,8 +32,6 @@ namespace SikRadio
 
             sikradio1.Init(ConfigManager);
             
-            tabControl1.SelectedIndexChanged += TabControl1_SelectedIndexChanged;
-
             // Handle connection state changes
             _modemComms.ConnectionStateChanged += _modemComms_ConnectionStateChanged;
 
@@ -59,9 +61,9 @@ namespace SikRadio
                 //menuStrip1.Items.Add(ManItem);
             }
 
-            tabControl1.SelectedIndex = 0;
-
             this.configManagerBindingSource.DataSource = ConfigManager;
+
+            SwitchForms(sikradio1, btnConfigPage);
         }
 
         private async void _modemComms_ConnectionStateChanged(object sender, EventArgs e)
@@ -79,19 +81,19 @@ namespace SikRadio
 
         private async void TabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var previousForm = tabControl1.TabPages[_selectedTabIndex].Controls[0] as IRFDConfigForm;
-            if (previousForm != null)
-                previousForm.Stop();
+            //var previousForm = tabControl1.TabPages[_selectedTabIndex].Controls[0] as IRFDConfigForm;
+            //if (previousForm != null)
+            //    previousForm.Stop();
 
-            // Update index for next time...
-            _selectedTabIndex = tabControl1.SelectedIndex;
+            //// Update index for next time...
+            //_selectedTabIndex = tabControl1.SelectedIndex;
 
-            // Start new form
-            var selectedForm = tabControl1.SelectedTab.Controls[0] as IRFDConfigForm;
-            if (selectedForm == null)
-                return;
+            //// Start new form
+            //var selectedForm = tabControl1.SelectedTab.Controls[0] as IRFDConfigForm;
+            //if (selectedForm == null)
+            //    return;
 
-            selectedForm.Start(_modemComms);            
+            //selectedForm.Start(_modemComms);            
         }
 
         /// <summary>
@@ -315,16 +317,62 @@ namespace SikRadio
             await ToggleConnect();
         }
 
-        private void toolStripMenuItem3_Click(object sender, EventArgs e)
+        private async void SwitchForms(IRFDConfigForm showForm, IconButton button)
         {
-            Application.Exit();
+            foreach (var item in panelMain.Controls)
+            {
+                var form = item as IRFDConfigForm;
+                if (form == null)
+                    continue;
+                
+                if (form == showForm)
+                {
+                    form.Start(_modemComms);
+                } else
+                {
+                    form.Stop();
+                }                
+            }
+            foreach (var item in flowLayoutButtonPanel.Controls)
+            {
+                var btn = item as FontAwesome.Sharp.IconButton;
+                if (btn == null)
+                    continue;
+
+                if (btn == button)
+                {
+                    
+                    btn.BackColor = btnBackSelected;
+                    //btn.IconColor = btnSelected;
+                    //btn.ForeColor = btnSelected;
+                } 
+                else
+                {
+                    btn.BackColor = btnBackDefault;
+                    //btn.IconColor = btnDefault;
+                    //btn.ForeColor = btnDefault;
+                }
+            }
         }
 
-        private void btnMainMenu_Click(object sender, EventArgs e)
-        {
-
+        private void btnConfigPage_Click(object sender, EventArgs e)
+        {            
+            SwitchForms(sikradio1, sender as IconButton);
         }
 
-        
+        private void btnTerminal_Click(object sender, EventArgs e)
+        {
+            SwitchForms(terminal1, sender as IconButton);
+        }
+
+        private void btnRSSI_Click(object sender, EventArgs e)
+        {
+            SwitchForms(rssi1, sender as IconButton);
+        }
+
+        private void btnManufacturer_Click(object sender, EventArgs e)
+        {
+            //SwitchForms()
+        }
     }
 }

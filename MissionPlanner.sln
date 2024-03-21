@@ -96,7 +96,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MissionPlanner.ArduPilot", 
 EndProject
 Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "RFD900ToolsSetup", "RFD900ToolsSetup\RFD900ToolsSetup.vdproj", "{5AC09F59-23CB-46B4-8E51-1384B1317030}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RFDCommon", "..\RFDCommon\RFDCommon.csproj", "{8EB4F17C-C25B-4ACA-98DB-A98220E60815}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RFDCommon", "RFDCommon\RFDCommon.csproj", "{8EB4F17C-C25B-4ACA-98DB-A98220E60815}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

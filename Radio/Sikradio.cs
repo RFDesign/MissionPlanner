@@ -37,6 +37,7 @@ namespace MissionPlanner.Radio
         private static readonly ILog log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 
         private bool beta;
+        private bool _started = false;
 
         private string firmwarefile = Path.GetTempFileName();
         private Dictionary<Control, bool> _DefaultLocalEnabled = new Dictionary<Control, bool>();
@@ -213,6 +214,8 @@ S15: MAX_WINDOW=131
 
         public void Start(IModemComms comms)
         {
+            Visible = true;
+            _started = true;
             //_modemComms = modemComms;
             //_configManager.Init(modemComms);
             _comms = comms;
@@ -242,9 +245,14 @@ S15: MAX_WINDOW=131
 
         public void Stop()
         {
+            Visible = false;
             // ??
-            if (_comms != null)
-                _comms.ConnectionStateChanged -= _comms_ConnectionStateChanged;
+            if (_started)
+            {
+                _started = false;
+                if (_comms != null)
+                    _comms.ConnectionStateChanged -= _comms_ConnectionStateChanged;
+            }
         }
                 
 

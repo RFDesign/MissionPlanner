@@ -90,8 +90,7 @@
 
   </ItemGroup>
   
-  <ItemGroup>
-    <ProjectReference Include="..\RFDCommon\RFDCommon.csproj" />
+  <ItemGroup>    
     <ProjectReference Include="ExtLibs\AltitudeAngelWings\AltitudeAngelWings.csproj">
       <Project>{098f542c-7c70-4b9c-b2e2-ac5dc5e0294b}</Project>
       <Name>AltitudeAngelWings</Name>
@@ -184,6 +183,7 @@
       <EmbedInteropTypes>False</EmbedInteropTypes>
     </ProjectReference>
     <ProjectReference Include="ExtLibs\Zeroconf\Zeroconf\Zeroconf.csproj" />
+    <ProjectReference Include="RFDCommon\RFDCommon.csproj" />
     <ProjectReference Include="Updater\Updater.csproj" />
   </ItemGroup>
 
