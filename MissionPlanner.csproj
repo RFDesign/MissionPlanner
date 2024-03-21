@@ -209,6 +209,7 @@
 
     <PackageReference Include="Flurl" version="2.5.0" targetFramework="net462" />
     <PackageReference Include="Flurl.Http" version="2.0.1" targetFramework="net462" />
+    <PackageReference Include="FontAwesome.Sharp" Version="6.3.0" />
     <PackageReference Include="GDAL" Version="1.11.1" />
     <PackageReference Include="GeoJSON.Net" version="1.1.64" targetFramework="net462" />
     <PackageReference Include="IronPython" version="2.7.7" targetFramework="net462" />

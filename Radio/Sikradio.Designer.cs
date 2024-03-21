@@ -157,8 +157,6 @@
             this.flowLayoutSettings = new System.Windows.Forms.FlowLayoutPanel();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.flowLayoutMain = new System.Windows.Forms.FlowLayoutPanel();
-            this.textConsole = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.configManagerBindingSource)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.modemsBindingSource)).BeginInit();
@@ -1243,30 +1241,13 @@
             resources.ApplyResources(this.flowLayoutMain, "flowLayoutMain");
             this.flowLayoutMain.Name = "flowLayoutMain";
             // 
-            // textConsole
-            // 
-            resources.ApplyResources(this.textConsole, "textConsole");
-            this.textConsole.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.textConsole.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.textConsole.Name = "textConsole";
-            this.textConsole.ReadOnly = true;
-            // 
-            // button1
-            // 
-            resources.ApplyResources(this.button1, "button1");
-            this.button1.Name = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
             // Sikradio
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.flowLayoutMain);
             this.Controls.Add(this.flowLayoutSettings);
             this.Controls.Add(this.flowLayoutActions);
-            this.Controls.Add(this.textConsole);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.groupBox2);
             resources.ApplyResources(this, "$this");
@@ -1426,8 +1407,6 @@
         private System.Windows.Forms.ListBox listDevices;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutMain;
-        private System.Windows.Forms.TextBox textConsole;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.BindingSource modemsBindingSource;
     }
 }

@@ -93,15 +93,15 @@ S14: RTSCTS=0
 S15: MAX_WINDOW=131
          */
 
-        public Sikradio(ConfigManager configManager)
+        public Sikradio()
         {
             
             InitializeComponent();
 
-            _configManager = configManager;
-            // Handle events coming from _configManager
-            _configManager.ShowMessageBox += (sender, args) => MsgBox.CustomMessageBox.Show(args.Text, args.Title);
-            _configManager.WriteConsole += (sender, args) => WriteConsole(args.Text);
+            //_configManager = configManager;
+            //// Handle events coming from _configManager
+            //_configManager.ShowMessageBox += (sender, args) => MsgBox.CustomMessageBox.Show(args.Text, args.Title);
+            //_configManager._configManager.AddLog += (sender, args) => _configManager.AddLog(args.Text);
 
             // hide advanced view
             //SPLIT_local.Panel2Collapsed = true;
@@ -198,11 +198,18 @@ S15: MAX_WINDOW=131
                   
             //this.Disposed += DisposedEvtHdlr;
 
+            
+        }
+
+        public void Init(ConfigManager configManager)
+        {
+            _configManager = configManager;
+            // Handle events coming from _configManager
+            _configManager.ShowMessageBox += (sender, args) => MsgBox.CustomMessageBox.Show(args.Text, args.Title);            
+
             // Set DataBinding source...
             this.configManagerBindingSource.DataSource = _configManager;
         }
-
-        
 
         public void Start(IModemComms comms)
         {
@@ -609,10 +616,7 @@ S15: MAX_WINDOW=131
             return Result;
         }
         
-        private void WriteConsole(string message)
-        {
-            textConsole.AppendText($"{message}{Environment.NewLine}");
-        }
+        
         private void ShowMessageBox(string message, string caption)
         {
 
@@ -933,7 +937,7 @@ S15: MAX_WINDOW=131
             //SetEnabled(flowLayoutSettings.Controls, false, recursive: false);
             //SetEnabled(flowLayoutMain.Controls, false, recursive: false);
 
-            textConsole.AppendText("Loading settings..." + Environment.NewLine);
+            _configManager.AddLog("Loading settings...");
             
             var loaded = await _configManager.Load();
             if (!loaded)
@@ -950,7 +954,7 @@ S15: MAX_WINDOW=131
                 var ctrl = this.Controls.Find(item.Key.Replace("/", "_"), true).FirstOrDefault();
                 if (ctrl == null)
                 {
-                    textConsole.AppendText($"Control not found: {item.Key}{Environment.NewLine}");
+                    _configManager.AddLog($"Control not found: {item.Key}");
                     continue;
                 }
 
@@ -975,7 +979,7 @@ S15: MAX_WINDOW=131
                 {
                     BindSettingToCheckBox(item.Value as TSetting, ctrl as CheckBox);                    
                 }
-                textConsole.AppendText($"Setting: {item.Key}: {item.Value.GetValueAsString()}{Environment.NewLine}");
+                _configManager.AddLog($"Setting: {item.Key}: {item.Value.GetValueAsString()}");
             }
 
             _AlreadyInEncCheckChangedEvtHdlr = false;
@@ -1104,7 +1108,7 @@ red LED solid - in firmware update mode");
 
         private async void BUT_resettodefault_Click(object sender, EventArgs e)
         {   
-            WriteConsole($"Initiating Config Reset{Environment.NewLine}");
+            _configManager.AddLog($"Initiating Config Reset");
 
             await _configManager.ResetDefaults();
         }
@@ -1113,7 +1117,7 @@ red LED solid - in firmware update mode");
         {
             if (Status != null)
             {
-                WriteConsole(Status);
+                _configManager.AddLog(Status);
             }
             if (!double.IsNaN(Progress))
             {
@@ -1193,14 +1197,14 @@ red LED solid - in firmware update mode");
 
             try
             {
-                WriteConsole("Determining mode...");
-                WriteConsole("Mode is " + _configManager.Local.Mode.ToString());
+                _configManager.AddLog("Determining mode...");
+                _configManager.AddLog("Mode is " + _configManager.Local.Mode.ToString());
                 
                 RFD.RFD900.RFD900 RFD900 = _Session.GetModemObject();
 
                 if (RFD900 == null)
                 {
-                    WriteConsole("Unknown modem");
+                    _configManager.AddLog("Unknown modem");
                     MsgBox.CustomMessageBox.Show("Couldn't communicate with modem.  Try power-cycling modem.");
                     
                     _configManager.EndSession();
@@ -1209,28 +1213,28 @@ red LED solid - in firmware update mode");
                 {
                     if (Custom)
                     {
-                        WriteConsole("Asking user for firmware file");
+                        _configManager.AddLog("Asking user for firmware file");
                     }
                     else
                     {
-                        WriteConsole("Getting firmware from internet");
+                        _configManager.AddLog("Getting firmware from internet");
                     }
                     if (getFirmware(RFD900.Board, RFD900, Custom))
                     {
-                        WriteConsole("Programming firmware into device");
+                        _configManager.AddLog("Programming firmware into device");
                         if (RFD900.ProgramFirmware(firmwarefile, UpdateStatusCallback))
                         {
-                            WriteConsole("Programmed firmware into device");
+                            _configManager.AddLog("Programmed firmware into device");
                         }
                         else
                         {
-                            WriteConsole("Programming failed.  (Try again?)");
+                            _configManager.AddLog("Programming failed.  (Try again?)");
                         }
                         _configManager.EndSession();
                     }
                     else
                     {
-                        WriteConsole("Firmware file selection cancelled");
+                        _configManager.AddLog("Firmware file selection cancelled");
                     }
                 }
             }
@@ -1238,7 +1242,7 @@ red LED solid - in firmware update mode");
             {
                 try
                 {
-                    WriteConsole("Programming failed.  (Try again?)");
+                    _configManager.AddLog("Programming failed.  (Try again?)");
                     _configManager.EndSession();
                 }
                 catch

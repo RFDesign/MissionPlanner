@@ -25,6 +25,8 @@ namespace SikRadio
         public Config()
         {
             InitializeComponent();
+
+            sikradio1.Init(ConfigManager);
             
             tabControl1.SelectedIndexChanged += TabControl1_SelectedIndexChanged;
 
@@ -57,10 +59,12 @@ namespace SikRadio
                 //menuStrip1.Items.Add(ManItem);
             }
 
-            tabControl1.SelectedIndex = 0;            
+            tabControl1.SelectedIndex = 0;
+
+            this.configManagerBindingSource.DataSource = ConfigManager;
         }
 
-        private void _modemComms_ConnectionStateChanged(object sender, EventArgs e)
+        private async void _modemComms_ConnectionStateChanged(object sender, EventArgs e)
         {
             if (_modemComms.IsConnected())
             {
@@ -275,12 +279,15 @@ namespace SikRadio
             // NOW to make connect work globally!
             if (_modemComms.IsConnected())
             {
-                _modemComms.Disconnect();   
-                
-                // Update local control state
-                btnConnect.Text = "Connect";                
-                CMB_Baudrate.Enabled = true;
-                CMB_SerialPort.Enabled = true;
+                if (_modemComms.Disconnect())
+                {
+                    // Update local control state
+                    btnConnect.Text = "Connect";
+                    CMB_Baudrate.Enabled = true;
+                    CMB_SerialPort.Enabled = true;
+
+                    ConfigManager.AddLog($"Disconnected");
+                }
             }
             else
             {
@@ -290,14 +297,12 @@ namespace SikRadio
                     btnConnect.Text = "Disconnect";
                     CMB_Baudrate.Enabled = (_comPort is SerialPort);
                     CMB_SerialPort.Enabled = false;
+                    ConfigManager.AddLog($"Connected");
                 }
             }
         }
 
-        private async void btnConnect_Click(object sender, EventArgs e)
-        {            
-            await ToggleConnect();            
-        }
+        
 
         private void Config_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -305,11 +310,21 @@ namespace SikRadio
             _modemComms.Disconnect();            
         }
 
-        
-        
+        private async void btnConnect_Click_1(object sender, EventArgs e)
+        {
+            await ToggleConnect();
+        }
+
         private void toolStripMenuItem3_Click(object sender, EventArgs e)
         {
             Application.Exit();
         }
+
+        private void btnMainMenu_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        
     }
 }

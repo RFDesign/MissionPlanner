@@ -28,36 +28,175 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Config));
-            this.CMB_SerialPort = new System.Windows.Forms.ComboBox();
-            this.CMB_Baudrate = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuSaveFile = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuLoadFile = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuExit = new System.Windows.Forms.ToolStripMenuItem();
-            this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.btnConnect = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPageSettings = new System.Windows.Forms.TabPage();
-            this.sikradio1 = new MissionPlanner.Radio.Sikradio(ConfigManager);
+            this.sikradio1 = new MissionPlanner.Radio.Sikradio();
             this.tabPageTerminal = new System.Windows.Forms.TabPage();
             this.terminal1 = new SikRadio.Terminal();
             this.tabPageRSSI = new System.Windows.Forms.TabPage();
             this.rssi1 = new SikRadio.Rssi();
-            this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.menuStrip1.SuspendLayout();
+            this.configManagerBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.modemsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.label9 = new System.Windows.Forms.Label();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnConnect = new FontAwesome.Sharp.IconButton();
+            this.CMB_SerialPort = new System.Windows.Forms.ComboBox();
+            this.CMB_Baudrate = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.btnConfigPage = new FontAwesome.Sharp.IconButton();
+            this.btnTerminal = new FontAwesome.Sharp.IconButton();
+            this.btnRSSI = new FontAwesome.Sharp.IconButton();
+            this.btnManufacturer = new FontAwesome.Sharp.IconButton();
+            this.flowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
+            this.textConsole = new System.Windows.Forms.TextBox();
             this.tabControl1.SuspendLayout();
             this.tabPageSettings.SuspendLayout();
             this.tabPageTerminal.SuspendLayout();
             this.tabPageRSSI.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.configManagerBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.modemsBindingSource)).BeginInit();
+            this.panel1.SuspendLayout();
+            this.flowLayoutPanel1.SuspendLayout();
+            this.panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            this.groupBox1.SuspendLayout();
+            this.flowLayoutPanel.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // tabControl1
+            // 
+            resources.ApplyResources(this.tabControl1, "tabControl1");
+            this.tabControl1.Controls.Add(this.tabPageSettings);
+            this.tabControl1.Controls.Add(this.tabPageTerminal);
+            this.tabControl1.Controls.Add(this.tabPageRSSI);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            // 
+            // tabPageSettings
+            // 
+            resources.ApplyResources(this.tabPageSettings, "tabPageSettings");
+            this.tabPageSettings.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(49)))), ((int)(((byte)(66)))));
+            this.tabPageSettings.Controls.Add(this.sikradio1);
+            this.tabPageSettings.ForeColor = System.Drawing.Color.White;
+            this.tabPageSettings.Name = "tabPageSettings";
+            // 
+            // sikradio1
+            // 
+            resources.ApplyResources(this.sikradio1, "sikradio1");
+            this.sikradio1.Name = "sikradio1";
+            // 
+            // tabPageTerminal
+            // 
+            this.tabPageTerminal.Controls.Add(this.terminal1);
+            resources.ApplyResources(this.tabPageTerminal, "tabPageTerminal");
+            this.tabPageTerminal.Name = "tabPageTerminal";
+            this.tabPageTerminal.UseVisualStyleBackColor = true;
+            // 
+            // terminal1
+            // 
+            resources.ApplyResources(this.terminal1, "terminal1");
+            this.terminal1.Name = "terminal1";
+            // 
+            // tabPageRSSI
+            // 
+            this.tabPageRSSI.Controls.Add(this.rssi1);
+            resources.ApplyResources(this.tabPageRSSI, "tabPageRSSI");
+            this.tabPageRSSI.Name = "tabPageRSSI";
+            this.tabPageRSSI.UseVisualStyleBackColor = true;
+            // 
+            // rssi1
+            // 
+            resources.ApplyResources(this.rssi1, "rssi1");
+            this.rssi1.Name = "rssi1";
+            // 
+            // configManagerBindingSource
+            // 
+            this.configManagerBindingSource.DataSource = typeof(RFDCommon.ConfigManager);
+            // 
+            // modemsBindingSource
+            // 
+            this.modemsBindingSource.DataMember = "Modems";
+            this.modemsBindingSource.DataSource = this.configManagerBindingSource;
+            // 
+            // textBox1
+            // 
+            resources.ApplyResources(this.textBox1, "textBox1");
+            this.textBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(49)))), ((int)(((byte)(66)))));
+            this.textBox1.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.configManagerBindingSource, "Log", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.textBox1.ForeColor = System.Drawing.Color.White;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.ReadOnly = true;
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(29)))), ((int)(((byte)(46)))));
+            this.panel1.Controls.Add(this.flowLayoutPanel1);
+            this.panel1.Controls.Add(this.panel3);
+            resources.ApplyResources(this.panel1, "panel1");
+            this.panel1.Name = "panel1";
+            // 
+            // flowLayoutPanel1
+            // 
+            this.flowLayoutPanel1.Controls.Add(this.btnConfigPage);
+            this.flowLayoutPanel1.Controls.Add(this.btnTerminal);
+            this.flowLayoutPanel1.Controls.Add(this.btnRSSI);
+            this.flowLayoutPanel1.Controls.Add(this.btnManufacturer);
+            resources.ApplyResources(this.flowLayoutPanel1, "flowLayoutPanel1");
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            // 
+            // panel3
+            // 
+            this.panel3.Controls.Add(this.label9);
+            this.panel3.Controls.Add(this.pictureBox2);
+            this.panel3.Controls.Add(this.groupBox1);
+            resources.ApplyResources(this.panel3, "panel3");
+            this.panel3.Name = "panel3";
+            // 
+            // label9
+            // 
+            resources.ApplyResources(this.label9, "label9");
+            this.label9.ForeColor = System.Drawing.Color.White;
+            this.label9.Name = "label9";
+            // 
+            // pictureBox2
+            // 
+            resources.ApplyResources(this.pictureBox2, "pictureBox2");
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.TabStop = false;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.btnConnect);
+            this.groupBox1.Controls.Add(this.CMB_SerialPort);
+            this.groupBox1.Controls.Add(this.CMB_Baudrate);
+            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.ForeColor = System.Drawing.Color.White;
+            resources.ApplyResources(this.groupBox1, "groupBox1");
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.TabStop = false;
+            // 
+            // btnConnect
+            // 
+            resources.ApplyResources(this.btnConnect, "btnConnect");
+            this.btnConnect.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(73)))), ((int)(((byte)(82)))), ((int)(((byte)(110)))));
+            this.btnConnect.FlatAppearance.BorderSize = 0;
+            this.btnConnect.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.btnConnect.IconChar = FontAwesome.Sharp.IconChar.SatelliteDish;
+            this.btnConnect.IconColor = System.Drawing.Color.WhiteSmoke;
+            this.btnConnect.IconFont = FontAwesome.Sharp.IconFont.Solid;
+            this.btnConnect.IconSize = 32;
+            this.btnConnect.Name = "btnConnect";
+            this.btnConnect.UseVisualStyleBackColor = false;
+            this.btnConnect.Click += new System.EventHandler(this.btnConnect_Click_1);
             // 
             // CMB_SerialPort
             // 
@@ -96,169 +235,122 @@
             resources.ApplyResources(this.label2, "label2");
             this.label2.Name = "label2";
             // 
-            // groupBox1
+            // btnConfigPage
             // 
-            this.groupBox1.Controls.Add(this.CMB_SerialPort);
-            this.groupBox1.Controls.Add(this.CMB_Baudrate);
-            this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.label2);
-            resources.ApplyResources(this.groupBox1, "groupBox1");
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.TabStop = false;
+            resources.ApplyResources(this.btnConfigPage, "btnConfigPage");
+            this.btnConfigPage.FlatAppearance.BorderSize = 0;
+            this.btnConfigPage.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.btnConfigPage.IconChar = FontAwesome.Sharp.IconChar.Gear;
+            this.btnConfigPage.IconColor = System.Drawing.Color.WhiteSmoke;
+            this.btnConfigPage.IconFont = FontAwesome.Sharp.IconFont.Solid;
+            this.btnConfigPage.Name = "btnConfigPage";
+            this.btnConfigPage.UseVisualStyleBackColor = true;
             // 
-            // pictureBox1
+            // btnTerminal
             // 
-            resources.ApplyResources(this.pictureBox1, "pictureBox1");
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.TabStop = false;
+            resources.ApplyResources(this.btnTerminal, "btnTerminal");
+            this.btnTerminal.FlatAppearance.BorderSize = 0;
+            this.btnTerminal.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.btnTerminal.IconChar = FontAwesome.Sharp.IconChar.Gear;
+            this.btnTerminal.IconColor = System.Drawing.Color.WhiteSmoke;
+            this.btnTerminal.IconFont = FontAwesome.Sharp.IconFont.Solid;
+            this.btnTerminal.Name = "btnTerminal";
+            this.btnTerminal.UseVisualStyleBackColor = true;
             // 
-            // menuStrip1
+            // btnRSSI
             // 
-            this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.fileToolStripMenuItem,
-            this.helpToolStripMenuItem});
-            resources.ApplyResources(this.menuStrip1, "menuStrip1");
-            this.menuStrip1.Name = "menuStrip1";
+            resources.ApplyResources(this.btnRSSI, "btnRSSI");
+            this.btnRSSI.FlatAppearance.BorderSize = 0;
+            this.btnRSSI.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.btnRSSI.IconChar = FontAwesome.Sharp.IconChar.Gear;
+            this.btnRSSI.IconColor = System.Drawing.Color.WhiteSmoke;
+            this.btnRSSI.IconFont = FontAwesome.Sharp.IconFont.Solid;
+            this.btnRSSI.Name = "btnRSSI";
+            this.btnRSSI.UseVisualStyleBackColor = true;
             // 
-            // fileToolStripMenuItem
+            // btnManufacturer
             // 
-            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuSaveFile,
-            this.toolStripMenuLoadFile,
-            this.toolStripMenuExit});
-            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            resources.ApplyResources(this.fileToolStripMenuItem, "fileToolStripMenuItem");
+            resources.ApplyResources(this.btnManufacturer, "btnManufacturer");
+            this.btnManufacturer.FlatAppearance.BorderSize = 0;
+            this.btnManufacturer.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.btnManufacturer.IconChar = FontAwesome.Sharp.IconChar.Gear;
+            this.btnManufacturer.IconColor = System.Drawing.Color.WhiteSmoke;
+            this.btnManufacturer.IconFont = FontAwesome.Sharp.IconFont.Solid;
+            this.btnManufacturer.Name = "btnManufacturer";
+            this.btnManufacturer.UseVisualStyleBackColor = true;
             // 
-            // toolStripMenuSaveFile
+            // flowLayoutPanel
             // 
-            this.toolStripMenuSaveFile.Name = "toolStripMenuSaveFile";
-            resources.ApplyResources(this.toolStripMenuSaveFile, "toolStripMenuSaveFile");
+            this.flowLayoutPanel.Controls.Add(this.textConsole);
+            resources.ApplyResources(this.flowLayoutPanel, "flowLayoutPanel");
+            this.flowLayoutPanel.Name = "flowLayoutPanel";
             // 
-            // toolStripMenuLoadFile
+            // textConsole
             // 
-            this.toolStripMenuLoadFile.Name = "toolStripMenuLoadFile";
-            resources.ApplyResources(this.toolStripMenuLoadFile, "toolStripMenuLoadFile");
-            // 
-            // toolStripMenuExit
-            // 
-            this.toolStripMenuExit.Name = "toolStripMenuExit";
-            resources.ApplyResources(this.toolStripMenuExit, "toolStripMenuExit");
-            this.toolStripMenuExit.Click += new System.EventHandler(this.toolStripMenuItem3_Click);
-            // 
-            // helpToolStripMenuItem
-            // 
-            this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.aboutToolStripMenuItem});
-            this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            resources.ApplyResources(this.helpToolStripMenuItem, "helpToolStripMenuItem");
-            // 
-            // aboutToolStripMenuItem
-            // 
-            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            resources.ApplyResources(this.aboutToolStripMenuItem, "aboutToolStripMenuItem");
-            // 
-            // btnConnect
-            // 
-            resources.ApplyResources(this.btnConnect, "btnConnect");
-            this.btnConnect.Name = "btnConnect";
-            this.btnConnect.UseVisualStyleBackColor = true;
-            this.btnConnect.Click += new System.EventHandler(this.btnConnect_Click);
-            // 
-            // tabControl1
-            // 
-            resources.ApplyResources(this.tabControl1, "tabControl1");
-            this.tabControl1.Controls.Add(this.tabPageSettings);
-            this.tabControl1.Controls.Add(this.tabPageTerminal);
-            this.tabControl1.Controls.Add(this.tabPageRSSI);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            // 
-            // tabPageSettings
-            // 
-            resources.ApplyResources(this.tabPageSettings, "tabPageSettings");
-            this.tabPageSettings.Controls.Add(this.sikradio1);
-            this.tabPageSettings.Name = "tabPageSettings";
-            this.tabPageSettings.UseVisualStyleBackColor = true;
-            // 
-            // sikradio1
-            // 
-            resources.ApplyResources(this.sikradio1, "sikradio1");
-            this.sikradio1.Name = "sikradio1";
-            // 
-            // tabPageTerminal
-            // 
-            this.tabPageTerminal.Controls.Add(this.terminal1);
-            resources.ApplyResources(this.tabPageTerminal, "tabPageTerminal");
-            this.tabPageTerminal.Name = "tabPageTerminal";
-            this.tabPageTerminal.UseVisualStyleBackColor = true;
-            // 
-            // terminal1
-            // 
-            resources.ApplyResources(this.terminal1, "terminal1");
-            this.terminal1.Name = "terminal1";
-            // 
-            // tabPageRSSI
-            // 
-            this.tabPageRSSI.Controls.Add(this.rssi1);
-            resources.ApplyResources(this.tabPageRSSI, "tabPageRSSI");
-            this.tabPageRSSI.Name = "tabPageRSSI";
-            this.tabPageRSSI.UseVisualStyleBackColor = true;
-            // 
-            // rssi1
-            // 
-            resources.ApplyResources(this.rssi1, "rssi1");
-            this.rssi1.Name = "rssi1";
+            this.textConsole.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(49)))), ((int)(((byte)(66)))));
+            resources.ApplyResources(this.textConsole, "textConsole");
+            this.textConsole.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.textConsole.Name = "textConsole";
             // 
             // Config
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(29)))), ((int)(((byte)(46)))));
             resources.ApplyResources(this, "$this");
+            this.Controls.Add(this.flowLayoutPanel);
             this.Controls.Add(this.tabControl1);
-            this.Controls.Add(this.btnConnect);
-            this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.menuStrip1);
-            this.MainMenuStrip = this.menuStrip1;
+            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.textBox1);
             this.Name = "Config";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Config_FormClosing);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
             this.tabControl1.ResumeLayout(false);
             this.tabPageSettings.ResumeLayout(false);
             this.tabPageTerminal.ResumeLayout(false);
             this.tabPageRSSI.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.configManagerBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.modemsBindingSource)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.flowLayoutPanel1.ResumeLayout(false);
+            this.panel3.ResumeLayout(false);
+            this.panel3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            this.flowLayoutPanel.ResumeLayout(false);
+            this.flowLayoutPanel.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.ComboBox CMB_SerialPort;
-        private System.Windows.Forms.ComboBox CMB_Baudrate;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.Button btnConnect;
-        private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuSaveFile;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuLoadFile;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuExit;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPageSettings;
         private System.Windows.Forms.TabPage tabPageTerminal;
         private System.Windows.Forms.TabPage tabPageRSSI;
-        private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
         private Terminal terminal1;
         private MissionPlanner.Radio.Sikradio sikradio1;
         private Rssi rssi1;
+        private System.Windows.Forms.BindingSource configManagerBindingSource;
+        private System.Windows.Forms.BindingSource modemsBindingSource;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.PictureBox pictureBox2;
+        private FontAwesome.Sharp.IconButton btnConnect;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.ComboBox CMB_SerialPort;
+        private System.Windows.Forms.ComboBox CMB_Baudrate;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private FontAwesome.Sharp.IconButton btnConfigPage;
+        private FontAwesome.Sharp.IconButton btnTerminal;
+        private FontAwesome.Sharp.IconButton btnRSSI;
+        private FontAwesome.Sharp.IconButton btnManufacturer;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel;
+        private System.Windows.Forms.TextBox textConsole;
     }
 }
 
