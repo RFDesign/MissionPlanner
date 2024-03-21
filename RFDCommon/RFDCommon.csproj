@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{8EB4F17C-C25B-4ACA-98DB-A98220E60815}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>RFDCommon</RootNamespace>
+    <AssemblyName>RFDCommon</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Config\ConfigManager.cs" />
+    <Compile Include="Config\AsyncConfig.cs" />
+    <Compile Include="Config\MultiPointConfig.cs" />
+    <Compile Include="Config\SikConfig.cs" />
+    <Compile Include="EventArgs.cs" />
+    <Compile Include="Interface\IModemComms.cs" />
+    <Compile Include="Interface\IModemConfig.cs" />
+    <Compile Include="Interface\ISikRadioForm.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Radio\FirmwareMode.cs" />
+    <Compile Include="Radio\XModem.cs" />
+    <Compile Include="RFDLib\Array.cs" />
+    <Compile Include="RFDLib\Collections.cs" />
+    <Compile Include="RFDLib\Config\Config.cs" />
+    <Compile Include="RFDLib\Config\GUI.cs" />
+    <Compile Include="RFDLib\GUI\CBWithBackground.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="RFDLib\GUI\CBWithBackground.Designer.cs">
+      <DependentUpon>CBWithBackground.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RFDLib\GUI\ConfigArray.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="RFDLib\GUI\ConfigArray.designer.cs">
+      <DependentUpon>ConfigArray.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RFDLib\GUI\Settings.cs" />
+    <Compile Include="Radio\IHex.cs" />
+    <Compile Include="RFDLib\IO\ATCommand.cs" />
+    <Compile Include="RFDLib\IO\SerialPort\SerialPort.cs" />
+    <Compile Include="RFDLib\RFD900.cs" />
+    <Compile Include="RFDLib\RFDLib.cs" />
+    <Compile Include="RFDLib\RFDModem.cs" />
+    <Compile Include="RFDLib\Text.cs" />
+    <Compile Include="RFDLib\TSettings.cs" />
+    <Compile Include="Radio\Uploader.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="RFDLib\GUI\CBWithBackground.resx">
+      <DependentUpon>CBWithBackground.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RFDLib\GUI\ConfigArray.resx">
+      <DependentUpon>ConfigArray.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MissionPlanner\ExtLibs\Comms\MissionPlanner.Comms.csproj">
+      <Project>{825e7a10-390c-4a2b-b3a8-491d14966912}</Project>
+      <Name>MissionPlanner.Comms</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
