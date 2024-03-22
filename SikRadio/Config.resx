@@ -117,16 +117,12 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="terminal1.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Bottom, Left, Right</value>
-  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="terminal1.Location" type="System.Drawing.Point, System.Drawing">
     <value>8, 8</value>
   </data>
   <data name="terminal1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1472, 815</value>
+    <value>1201, 754</value>
   </data>
   <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="terminal1.TabIndex" type="System.Int32, mscorlib">
@@ -147,6 +143,7 @@
   <data name="&gt;&gt;terminal1.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="rssi1.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>
   </data>
@@ -154,7 +151,7 @@
     <value>8, 8</value>
   </data>
   <data name="rssi1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1467, 810</value>
+    <value>1201, 754</value>
   </data>
   <data name="rssi1.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -180,6 +177,42 @@
   <metadata name="modemsBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>344, 17</value>
   </metadata>
+  <data name="btnConfigPage.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Top</value>
+  </data>
+  <data name="btnConfigPage.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="btnConfigPage.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 10.2pt</value>
+  </data>
+  <data name="btnConfigPage.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="btnConfigPage.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 2</value>
+  </data>
+  <data name="btnConfigPage.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 2, 3, 2</value>
+  </data>
+  <data name="btnConfigPage.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>11, 0, 20, 0</value>
+  </data>
+  <data name="btnConfigPage.Size" type="System.Drawing.Size, System.Drawing">
+    <value>296, 64</value>
+  </data>
+  <data name="btnConfigPage.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="btnConfigPage.Text" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="btnConfigPage.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="btnConfigPage.TextImageRelation" type="System.Windows.Forms.TextImageRelation, System.Windows.Forms">
+    <value>ImageBeforeText</value>
+  </data>
   <data name="&gt;&gt;btnConfigPage.Name" xml:space="preserve">
     <value>btnConfigPage</value>
   </data>
@@ -191,6 +224,42 @@
   </data>
   <data name="&gt;&gt;btnConfigPage.ZOrder" xml:space="preserve">
     <value>0</value>
+  </data>
+  <data name="btnTerminal.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Top</value>
+  </data>
+  <data name="btnTerminal.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="btnTerminal.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 10.2pt</value>
+  </data>
+  <data name="btnTerminal.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="btnTerminal.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 70</value>
+  </data>
+  <data name="btnTerminal.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 2, 3, 2</value>
+  </data>
+  <data name="btnTerminal.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>11, 0, 20, 0</value>
+  </data>
+  <data name="btnTerminal.Size" type="System.Drawing.Size, System.Drawing">
+    <value>296, 64</value>
+  </data>
+  <data name="btnTerminal.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="btnTerminal.Text" xml:space="preserve">
+    <value>Terminal</value>
+  </data>
+  <data name="btnTerminal.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="btnTerminal.TextImageRelation" type="System.Windows.Forms.TextImageRelation, System.Windows.Forms">
+    <value>ImageBeforeText</value>
   </data>
   <data name="&gt;&gt;btnTerminal.Name" xml:space="preserve">
     <value>btnTerminal</value>
@@ -204,6 +273,42 @@
   <data name="&gt;&gt;btnTerminal.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
+  <data name="btnRSSI.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Top</value>
+  </data>
+  <data name="btnRSSI.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="btnRSSI.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 10.2pt</value>
+  </data>
+  <data name="btnRSSI.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="btnRSSI.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 138</value>
+  </data>
+  <data name="btnRSSI.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 2, 3, 2</value>
+  </data>
+  <data name="btnRSSI.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>11, 0, 20, 0</value>
+  </data>
+  <data name="btnRSSI.Size" type="System.Drawing.Size, System.Drawing">
+    <value>296, 64</value>
+  </data>
+  <data name="btnRSSI.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="btnRSSI.Text" xml:space="preserve">
+    <value>RSSI</value>
+  </data>
+  <data name="btnRSSI.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="btnRSSI.TextImageRelation" type="System.Windows.Forms.TextImageRelation, System.Windows.Forms">
+    <value>ImageBeforeText</value>
+  </data>
   <data name="&gt;&gt;btnRSSI.Name" xml:space="preserve">
     <value>btnRSSI</value>
   </data>
@@ -215,6 +320,48 @@
   </data>
   <data name="&gt;&gt;btnRSSI.ZOrder" xml:space="preserve">
     <value>2</value>
+  </data>
+  <data name="btnManufacturer.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Top</value>
+  </data>
+  <data name="btnManufacturer.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="btnManufacturer.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="btnManufacturer.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 10.2pt</value>
+  </data>
+  <data name="btnManufacturer.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="btnManufacturer.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 206</value>
+  </data>
+  <data name="btnManufacturer.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 2, 3, 2</value>
+  </data>
+  <data name="btnManufacturer.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>11, 0, 20, 0</value>
+  </data>
+  <data name="btnManufacturer.Size" type="System.Drawing.Size, System.Drawing">
+    <value>296, 64</value>
+  </data>
+  <data name="btnManufacturer.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="btnManufacturer.Text" xml:space="preserve">
+    <value>Manufacturer</value>
+  </data>
+  <data name="btnManufacturer.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="btnManufacturer.TextImageRelation" type="System.Windows.Forms.TextImageRelation, System.Windows.Forms">
+    <value>ImageBeforeText</value>
+  </data>
+  <data name="btnManufacturer.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
   <data name="&gt;&gt;btnManufacturer.Name" xml:space="preserve">
     <value>btnManufacturer</value>
@@ -232,7 +379,7 @@
     <value>9, 304</value>
   </data>
   <data name="flowLayoutButtonPanel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>300, 615</value>
+    <value>300, 527</value>
   </data>
   <data name="flowLayoutButtonPanel.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -753,7 +900,7 @@
     <value>3, 2, 3, 2</value>
   </data>
   <data name="panel1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>312, 941</value>
+    <value>312, 837</value>
   </data>
   <data name="panel1.TabIndex" type="System.Int32, mscorlib">
     <value>31</value>
@@ -770,199 +917,52 @@
   <data name="&gt;&gt;panel1.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="btnConfigPage.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Top</value>
+  <data name="textConsole.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Bottom</value>
   </data>
-  <data name="btnConfigPage.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Flat</value>
+  <data name="textConsole.Location" type="System.Drawing.Point, System.Drawing">
+    <value>8, 768</value>
   </data>
-  <data name="btnConfigPage.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Segoe UI, 10.2pt</value>
+  <data name="textConsole.MaxLength" type="System.Int32, mscorlib">
+    <value>64556</value>
   </data>
-  <data name="btnConfigPage.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleLeft</value>
+  <data name="textConsole.Multiline" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
-  <data name="btnConfigPage.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 2</value>
+  <data name="textConsole.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1201, 61</value>
   </data>
-  <data name="btnConfigPage.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 2, 3, 2</value>
-  </data>
-  <data name="btnConfigPage.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>11, 0, 20, 0</value>
-  </data>
-  <data name="btnConfigPage.Size" type="System.Drawing.Size, System.Drawing">
-    <value>296, 64</value>
-  </data>
-  <data name="btnConfigPage.TabIndex" type="System.Int32, mscorlib">
+  <data name="textConsole.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
   </data>
-  <data name="btnConfigPage.Text" xml:space="preserve">
-    <value>Settings</value>
+  <data name="&gt;&gt;textConsole.Name" xml:space="preserve">
+    <value>textConsole</value>
   </data>
-  <data name="btnConfigPage.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleLeft</value>
+  <data name="&gt;&gt;textConsole.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="btnConfigPage.TextImageRelation" type="System.Windows.Forms.TextImageRelation, System.Windows.Forms">
-    <value>ImageBeforeText</value>
+  <data name="&gt;&gt;textConsole.Parent" xml:space="preserve">
+    <value>panelMain</value>
   </data>
-  <data name="&gt;&gt;btnConfigPage.Name" xml:space="preserve">
-    <value>btnConfigPage</value>
-  </data>
-  <data name="&gt;&gt;btnConfigPage.Type" xml:space="preserve">
-    <value>FontAwesome.Sharp.IconButton, FontAwesome.Sharp, Version=6.3.0.0, Culture=neutral, PublicKeyToken=d16d1e4e568ec10f</value>
-  </data>
-  <data name="&gt;&gt;btnConfigPage.Parent" xml:space="preserve">
-    <value>flowLayoutButtonPanel</value>
-  </data>
-  <data name="&gt;&gt;btnConfigPage.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;textConsole.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="btnTerminal.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Top</value>
+  <data name="sikradio1.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Left, Right</value>
   </data>
-  <data name="btnTerminal.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Flat</value>
+  <data name="sikradio1.AutoScroll" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
-  <data name="btnTerminal.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Segoe UI, 10.2pt</value>
+  <data name="sikradio1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>8, 8</value>
   </data>
-  <data name="btnTerminal.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleLeft</value>
+  <data name="sikradio1.MinimumSize" type="System.Drawing.Size, System.Drawing">
+    <value>1200, 720</value>
   </data>
-  <data name="btnTerminal.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 70</value>
+  <data name="sikradio1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1201, 754</value>
   </data>
-  <data name="btnTerminal.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 2, 3, 2</value>
-  </data>
-  <data name="btnTerminal.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>11, 0, 20, 0</value>
-  </data>
-  <data name="btnTerminal.Size" type="System.Drawing.Size, System.Drawing">
-    <value>296, 64</value>
-  </data>
-  <data name="btnTerminal.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
-  </data>
-  <data name="btnTerminal.Text" xml:space="preserve">
-    <value>Terminal</value>
-  </data>
-  <data name="btnTerminal.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleLeft</value>
-  </data>
-  <data name="btnTerminal.TextImageRelation" type="System.Windows.Forms.TextImageRelation, System.Windows.Forms">
-    <value>ImageBeforeText</value>
-  </data>
-  <data name="&gt;&gt;btnTerminal.Name" xml:space="preserve">
-    <value>btnTerminal</value>
-  </data>
-  <data name="&gt;&gt;btnTerminal.Type" xml:space="preserve">
-    <value>FontAwesome.Sharp.IconButton, FontAwesome.Sharp, Version=6.3.0.0, Culture=neutral, PublicKeyToken=d16d1e4e568ec10f</value>
-  </data>
-  <data name="&gt;&gt;btnTerminal.Parent" xml:space="preserve">
-    <value>flowLayoutButtonPanel</value>
-  </data>
-  <data name="&gt;&gt;btnTerminal.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="btnRSSI.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Top</value>
-  </data>
-  <data name="btnRSSI.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Flat</value>
-  </data>
-  <data name="btnRSSI.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Segoe UI, 10.2pt</value>
-  </data>
-  <data name="btnRSSI.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleLeft</value>
-  </data>
-  <data name="btnRSSI.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 138</value>
-  </data>
-  <data name="btnRSSI.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 2, 3, 2</value>
-  </data>
-  <data name="btnRSSI.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>11, 0, 20, 0</value>
-  </data>
-  <data name="btnRSSI.Size" type="System.Drawing.Size, System.Drawing">
-    <value>296, 64</value>
-  </data>
-  <data name="btnRSSI.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
-  </data>
-  <data name="btnRSSI.Text" xml:space="preserve">
-    <value>RSSI</value>
-  </data>
-  <data name="btnRSSI.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleLeft</value>
-  </data>
-  <data name="btnRSSI.TextImageRelation" type="System.Windows.Forms.TextImageRelation, System.Windows.Forms">
-    <value>ImageBeforeText</value>
-  </data>
-  <data name="&gt;&gt;btnRSSI.Name" xml:space="preserve">
-    <value>btnRSSI</value>
-  </data>
-  <data name="&gt;&gt;btnRSSI.Type" xml:space="preserve">
-    <value>FontAwesome.Sharp.IconButton, FontAwesome.Sharp, Version=6.3.0.0, Culture=neutral, PublicKeyToken=d16d1e4e568ec10f</value>
-  </data>
-  <data name="&gt;&gt;btnRSSI.Parent" xml:space="preserve">
-    <value>flowLayoutButtonPanel</value>
-  </data>
-  <data name="&gt;&gt;btnRSSI.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="btnManufacturer.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Top</value>
-  </data>
-  <data name="btnManufacturer.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="btnManufacturer.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Flat</value>
-  </data>
-  <data name="btnManufacturer.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Segoe UI, 10.2pt</value>
-  </data>
-  <data name="btnManufacturer.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleLeft</value>
-  </data>
-  <data name="btnManufacturer.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 206</value>
-  </data>
-  <data name="btnManufacturer.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 2, 3, 2</value>
-  </data>
-  <data name="btnManufacturer.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>11, 0, 20, 0</value>
-  </data>
-  <data name="btnManufacturer.Size" type="System.Drawing.Size, System.Drawing">
-    <value>296, 64</value>
-  </data>
-  <data name="btnManufacturer.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
-  </data>
-  <data name="btnManufacturer.Text" xml:space="preserve">
-    <value>Manufacturer</value>
-  </data>
-  <data name="btnManufacturer.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleLeft</value>
-  </data>
-  <data name="btnManufacturer.TextImageRelation" type="System.Windows.Forms.TextImageRelation, System.Windows.Forms">
-    <value>ImageBeforeText</value>
-  </data>
-  <data name="&gt;&gt;btnManufacturer.Name" xml:space="preserve">
-    <value>btnManufacturer</value>
-  </data>
-  <data name="&gt;&gt;btnManufacturer.Type" xml:space="preserve">
-    <value>FontAwesome.Sharp.IconButton, FontAwesome.Sharp, Version=6.3.0.0, Culture=neutral, PublicKeyToken=d16d1e4e568ec10f</value>
-  </data>
-  <data name="&gt;&gt;btnManufacturer.Parent" xml:space="preserve">
-    <value>flowLayoutButtonPanel</value>
-  </data>
-  <data name="&gt;&gt;btnManufacturer.ZOrder" xml:space="preserve">
+  <data name="sikradio1.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
   </data>
   <data name="&gt;&gt;sikradio1.Name" xml:space="preserve">
@@ -975,28 +975,19 @@
     <value>panelMain</value>
   </data>
   <data name="&gt;&gt;sikradio1.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;textConsole.Name" xml:space="preserve">
-    <value>textConsole</value>
-  </data>
-  <data name="&gt;&gt;textConsole.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;textConsole.Parent" xml:space="preserve">
-    <value>panelMain</value>
-  </data>
-  <data name="&gt;&gt;textConsole.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
+  <data name="panelMain.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
   <data name="panelMain.Location" type="System.Drawing.Point, System.Drawing">
-    <value>325, 26</value>
+    <value>312, 0</value>
   </data>
   <data name="panelMain.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>8, 8, 8, 8</value>
   </data>
   <data name="panelMain.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1483, 893</value>
+    <value>1217, 837</value>
   </data>
   <data name="panelMain.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -1013,71 +1004,14 @@
   <data name="&gt;&gt;panelMain.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="sikradio1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Top</value>
-  </data>
-  <data name="sikradio1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>8, 8</value>
-  </data>
-  <data name="sikradio1.MinimumSize" type="System.Drawing.Size, System.Drawing">
-    <value>1200, 720</value>
-  </data>
-  <data name="sikradio1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1467, 807</value>
-  </data>
-  <data name="sikradio1.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
-  </data>
-  <data name="&gt;&gt;sikradio1.Name" xml:space="preserve">
-    <value>sikradio1</value>
-  </data>
-  <data name="&gt;&gt;sikradio1.Type" xml:space="preserve">
-    <value>MissionPlanner.Radio.Sikradio, RFD900Tools, Version=0.2.67.0, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;sikradio1.Parent" xml:space="preserve">
-    <value>panelMain</value>
-  </data>
-  <data name="&gt;&gt;sikradio1.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="textConsole.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Bottom</value>
-  </data>
-  <data name="textConsole.Location" type="System.Drawing.Point, System.Drawing">
-    <value>8, 824</value>
-  </data>
-  <data name="textConsole.MaxLength" type="System.Int32, mscorlib">
-    <value>64556</value>
-  </data>
-  <data name="textConsole.Multiline" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="textConsole.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1467, 61</value>
-  </data>
-  <data name="textConsole.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;textConsole.Name" xml:space="preserve">
-    <value>textConsole</value>
-  </data>
-  <data name="&gt;&gt;textConsole.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;textConsole.Parent" xml:space="preserve">
-    <value>panelMain</value>
-  </data>
-  <data name="&gt;&gt;textConsole.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
   <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>42</value>
+    <value>58</value>
   </metadata>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>1816, 941</value>
+    <value>1529, 837</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>

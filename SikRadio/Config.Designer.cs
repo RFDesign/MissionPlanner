@@ -50,8 +50,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.panelMain = new System.Windows.Forms.Panel();
-            this.sikradio1 = new MissionPlanner.Radio.Sikradio();
             this.textConsole = new System.Windows.Forms.TextBox();
+            this.sikradio1 = new MissionPlanner.Radio.Sikradio();
             ((System.ComponentModel.ISupportInitialize)(this.configManagerBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.modemsBindingSource)).BeginInit();
             this.panel1.SuspendLayout();
@@ -117,7 +117,7 @@
             resources.ApplyResources(this.btnTerminal, "btnTerminal");
             this.btnTerminal.FlatAppearance.BorderSize = 0;
             this.btnTerminal.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.btnTerminal.IconChar = FontAwesome.Sharp.IconChar.Gear;
+            this.btnTerminal.IconChar = FontAwesome.Sharp.IconChar.Terminal;
             this.btnTerminal.IconColor = System.Drawing.Color.WhiteSmoke;
             this.btnTerminal.IconFont = FontAwesome.Sharp.IconFont.Solid;
             this.btnTerminal.Name = "btnTerminal";
@@ -130,7 +130,7 @@
             resources.ApplyResources(this.btnRSSI, "btnRSSI");
             this.btnRSSI.FlatAppearance.BorderSize = 0;
             this.btnRSSI.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.btnRSSI.IconChar = FontAwesome.Sharp.IconChar.Gear;
+            this.btnRSSI.IconChar = FontAwesome.Sharp.IconChar.LineChart;
             this.btnRSSI.IconColor = System.Drawing.Color.WhiteSmoke;
             this.btnRSSI.IconFont = FontAwesome.Sharp.IconFont.Solid;
             this.btnRSSI.Name = "btnRSSI";
@@ -142,7 +142,7 @@
             resources.ApplyResources(this.btnManufacturer, "btnManufacturer");
             this.btnManufacturer.FlatAppearance.BorderSize = 0;
             this.btnManufacturer.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.btnManufacturer.IconChar = FontAwesome.Sharp.IconChar.Gear;
+            this.btnManufacturer.IconChar = FontAwesome.Sharp.IconChar.Industry;
             this.btnManufacturer.IconColor = System.Drawing.Color.WhiteSmoke;
             this.btnManufacturer.IconFont = FontAwesome.Sharp.IconFont.Solid;
             this.btnManufacturer.Name = "btnManufacturer";
@@ -235,18 +235,12 @@
             // 
             // panelMain
             // 
-            this.panelMain.Controls.Add(this.sikradio1);
             this.panelMain.Controls.Add(this.textConsole);
+            this.panelMain.Controls.Add(this.sikradio1);
             this.panelMain.Controls.Add(this.terminal1);
             this.panelMain.Controls.Add(this.rssi1);
             resources.ApplyResources(this.panelMain, "panelMain");
             this.panelMain.Name = "panelMain";
-            // 
-            // sikradio1
-            // 
-            resources.ApplyResources(this.sikradio1, "sikradio1");
-            this.sikradio1.ForeColor = System.Drawing.Color.White;
-            this.sikradio1.Name = "sikradio1";
             // 
             // textConsole
             // 
@@ -255,6 +249,14 @@
             resources.ApplyResources(this.textConsole, "textConsole");
             this.textConsole.ForeColor = System.Drawing.Color.WhiteSmoke;
             this.textConsole.Name = "textConsole";
+            this.textConsole.ReadOnly = true;
+            this.textConsole.TabStop = false;
+            // 
+            // sikradio1
+            // 
+            resources.ApplyResources(this.sikradio1, "sikradio1");
+            this.sikradio1.ForeColor = System.Drawing.Color.White;
+            this.sikradio1.Name = "sikradio1";
             // 
             // Config
             // 
@@ -301,8 +303,8 @@
         private FontAwesome.Sharp.IconButton btnRSSI;
         private FontAwesome.Sharp.IconButton btnManufacturer;
         private System.Windows.Forms.Panel panelMain;
-        private System.Windows.Forms.TextBox textConsole;
         private MissionPlanner.Radio.Sikradio sikradio1;
+        private System.Windows.Forms.TextBox textConsole;
     }
 }
 

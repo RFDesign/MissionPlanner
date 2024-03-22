@@ -32,8 +32,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Sikradio));
             this.Progressbar = new System.Windows.Forms.ProgressBar();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.RSSI = new System.Windows.Forms.TextBox();
-            this.configManagerBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.RTSCTS = new System.Windows.Forms.CheckBox();
             this.MAX_FREQ = new System.Windows.Forms.ComboBox();
@@ -57,13 +55,12 @@
             this.AIR_FRAMELEN = new System.Windows.Forms.ComboBox();
             this.RSSI_IN_DBM = new System.Windows.Forms.CheckBox();
             this.BUT_SetPPMFailSafe = new MissionPlanner.Controls.MyButton();
-            this.BUT_savesettings = new MissionPlanner.Controls.MyButton();
-            this.BUT_getcurrent = new MissionPlanner.Controls.MyButton();
+            this.btn_LoadSetting = new FontAwesome.Sharp.IconButton();
+            this.RSSI = new System.Windows.Forms.TextBox();
+            this.configManagerBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.MAX_WINDOW = new System.Windows.Forms.ComboBox();
             this.GPO1_3STATLED = new System.Windows.Forms.CheckBox();
             this.GPO1_0TXEN485 = new System.Windows.Forms.CheckBox();
-            this.ATI = new System.Windows.Forms.TextBox();
-            this.label11 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.lbl_status = new System.Windows.Forms.Label();
             this.ATI3 = new System.Windows.Forms.TextBox();
@@ -82,7 +79,6 @@
             this.txtCountry = new System.Windows.Forms.TextBox();
             this.label45 = new System.Windows.Forms.Label();
             this.RATE_FREQBAND = new System.Windows.Forms.ComboBox();
-            this.btnRandom = new System.Windows.Forms.Button();
             this.lblRX_ENCAP_METHOD = new System.Windows.Forms.Label();
             this.RX_ENCAP_METHOD = new System.Windows.Forms.ComboBox();
             this.lblTX_ENCAP_METHOD = new System.Windows.Forms.Label();
@@ -124,18 +120,22 @@
             this.label10 = new System.Windows.Forms.Label();
             this.dlgSave = new System.Windows.Forms.SaveFileDialog();
             this.dlgOpen = new System.Windows.Forms.OpenFileDialog();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.label4 = new System.Windows.Forms.Label();
-            this.listDevices = new System.Windows.Forms.ListBox();
-            this.modemsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.groupFirmware = new System.Windows.Forms.GroupBox();
-            this.label7 = new System.Windows.Forms.Label();
+            this.tableLayoutDevice = new System.Windows.Forms.TableLayoutPanel();
+            this.label9 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.BUT_loadcustom = new MissionPlanner.Controls.MyButton();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.ATI = new System.Windows.Forms.TextBox();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.modemsBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.groupRadio = new System.Windows.Forms.GroupBox();
-            this.label15 = new System.Windows.Forms.Label();
+            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.label14 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.label5 = new System.Windows.Forms.Label();
             this.groupData = new System.Windows.Forms.GroupBox();
             this.groupGPIO = new System.Windows.Forms.GroupBox();
@@ -150,26 +150,32 @@
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.BUT_upload = new MissionPlanner.Controls.MyButton();
             this.BUT_Syncoptions = new MissionPlanner.Controls.MyButton();
-            this.btnLoadFromFile = new MissionPlanner.Controls.MyButton();
-            this.btnSaveToFile = new MissionPlanner.Controls.MyButton();
-            this.BUT_resettodefault = new MissionPlanner.Controls.MyButton();
             this.flowLayoutActions = new System.Windows.Forms.FlowLayoutPanel();
-            this.flowLayoutSettings = new System.Windows.Forms.FlowLayoutPanel();
+            this.btn_SaveSetting = new FontAwesome.Sharp.IconButton();
+            this.btn_LoadFile = new FontAwesome.Sharp.IconButton();
+            this.btn_SaveFile = new FontAwesome.Sharp.IconButton();
+            this.btn_Reset = new FontAwesome.Sharp.IconButton();
+            this.btn_Firmware = new FontAwesome.Sharp.IconButton();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.flowLayoutMain = new System.Windows.Forms.FlowLayoutPanel();
+            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
+            this.iconButton1 = new FontAwesome.Sharp.IconButton();
+            this.btnRandom = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.configManagerBindingSource)).BeginInit();
-            this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.modemsBindingSource)).BeginInit();
             this.groupFirmware.SuspendLayout();
+            this.tableLayoutDevice.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.modemsBindingSource1)).BeginInit();
             this.groupRadio.SuspendLayout();
+            this.tableLayoutPanel2.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.tableLayoutPanel1.SuspendLayout();
             this.groupData.SuspendLayout();
             this.groupGPIO.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.flowLayoutActions.SuspendLayout();
-            this.flowLayoutSettings.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.flowLayoutMain.SuspendLayout();
+            this.tableLayoutPanel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // Progressbar
@@ -177,18 +183,6 @@
             resources.ApplyResources(this.Progressbar, "Progressbar");
             this.Progressbar.Name = "Progressbar";
             this.Progressbar.Click += new System.EventHandler(this.Progressbar_Click);
-            // 
-            // RSSI
-            // 
-            this.RSSI.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.configManagerBindingSource, "RSSI", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            resources.ApplyResources(this.RSSI, "RSSI");
-            this.RSSI.Name = "RSSI";
-            this.RSSI.ReadOnly = true;
-            this.toolTip1.SetToolTip(this.RSSI, resources.GetString("RSSI.ToolTip"));
-            // 
-            // configManagerBindingSource
-            // 
-            this.configManagerBindingSource.DataSource = typeof(RFDCommon.ConfigManager);
             // 
             // linkLabel1
             // 
@@ -206,8 +200,8 @@
             // 
             // MAX_FREQ
             // 
-            this.MAX_FREQ.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             resources.ApplyResources(this.MAX_FREQ, "MAX_FREQ");
+            this.MAX_FREQ.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.MAX_FREQ.FormattingEnabled = true;
             this.MAX_FREQ.Items.AddRange(new object[] {
             resources.GetString("MAX_FREQ.Items"),
@@ -224,8 +218,8 @@
             // 
             // NUM_CHANNELS
             // 
-            this.NUM_CHANNELS.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             resources.ApplyResources(this.NUM_CHANNELS, "NUM_CHANNELS");
+            this.NUM_CHANNELS.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.NUM_CHANNELS.FormattingEnabled = true;
             this.NUM_CHANNELS.Items.AddRange(new object[] {
             resources.GetString("NUM_CHANNELS.Items"),
@@ -252,8 +246,8 @@
             // 
             // LBT_RSSI
             // 
-            this.LBT_RSSI.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             resources.ApplyResources(this.LBT_RSSI, "LBT_RSSI");
+            this.LBT_RSSI.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.LBT_RSSI.FormattingEnabled = true;
             this.LBT_RSSI.Items.AddRange(new object[] {
             resources.GetString("LBT_RSSI.Items"),
@@ -268,16 +262,16 @@
             // 
             // MIN_FREQ
             // 
-            this.MIN_FREQ.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             resources.ApplyResources(this.MIN_FREQ, "MIN_FREQ");
+            this.MIN_FREQ.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.MIN_FREQ.FormattingEnabled = true;
             this.MIN_FREQ.Name = "MIN_FREQ";
             this.toolTip1.SetToolTip(this.MIN_FREQ, resources.GetString("MIN_FREQ.ToolTip"));
             // 
             // DUTY_CYCLE
             // 
-            this.DUTY_CYCLE.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             resources.ApplyResources(this.DUTY_CYCLE, "DUTY_CYCLE");
+            this.DUTY_CYCLE.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.DUTY_CYCLE.FormattingEnabled = true;
             this.DUTY_CYCLE.Items.AddRange(new object[] {
             resources.GetString("DUTY_CYCLE.Items"),
@@ -307,16 +301,16 @@
             // 
             // MAVLINK
             // 
-            this.MAVLINK.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             resources.ApplyResources(this.MAVLINK, "MAVLINK");
+            this.MAVLINK.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.MAVLINK.FormattingEnabled = true;
             this.MAVLINK.Name = "MAVLINK";
             this.toolTip1.SetToolTip(this.MAVLINK, resources.GetString("MAVLINK.ToolTip"));
             // 
             // SERIAL_SPEED
             // 
-            this.SERIAL_SPEED.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             resources.ApplyResources(this.SERIAL_SPEED, "SERIAL_SPEED");
+            this.SERIAL_SPEED.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.SERIAL_SPEED.FormattingEnabled = true;
             this.SERIAL_SPEED.Items.AddRange(new object[] {
             resources.GetString("SERIAL_SPEED.Items"),
@@ -333,8 +327,8 @@
             // 
             // AIR_SPEED
             // 
-            this.AIR_SPEED.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             resources.ApplyResources(this.AIR_SPEED, "AIR_SPEED");
+            this.AIR_SPEED.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.AIR_SPEED.FormattingEnabled = true;
             this.AIR_SPEED.Items.AddRange(new object[] {
             resources.GetString("AIR_SPEED.Items"),
@@ -355,8 +349,8 @@
             // 
             // NETID
             // 
-            this.NETID.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             resources.ApplyResources(this.NETID, "NETID");
+            this.NETID.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.NETID.FormattingEnabled = true;
             this.NETID.Items.AddRange(new object[] {
             resources.GetString("NETID.Items"),
@@ -394,8 +388,8 @@
             // 
             // TXPOWER
             // 
-            this.TXPOWER.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             resources.ApplyResources(this.TXPOWER, "TXPOWER");
+            this.TXPOWER.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.TXPOWER.FormattingEnabled = true;
             this.TXPOWER.Items.AddRange(new object[] {
             resources.GetString("TXPOWER.Items"),
@@ -417,8 +411,8 @@
             // 
             // ENCRYPTION_LEVEL
             // 
-            this.ENCRYPTION_LEVEL.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             resources.ApplyResources(this.ENCRYPTION_LEVEL, "ENCRYPTION_LEVEL");
+            this.ENCRYPTION_LEVEL.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ENCRYPTION_LEVEL.FormattingEnabled = true;
             this.ENCRYPTION_LEVEL.Items.AddRange(new object[] {
             resources.GetString("ENCRYPTION_LEVEL.Items"),
@@ -483,8 +477,8 @@
             // 
             // AUXSER_SPEED
             // 
-            this.AUXSER_SPEED.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             resources.ApplyResources(this.AUXSER_SPEED, "AUXSER_SPEED");
+            this.AUXSER_SPEED.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.AUXSER_SPEED.FormattingEnabled = true;
             this.AUXSER_SPEED.Items.AddRange(new object[] {
             resources.GetString("AUXSER_SPEED.Items"),
@@ -501,8 +495,8 @@
             // 
             // AIR_FRAMELEN
             // 
-            this.AIR_FRAMELEN.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             resources.ApplyResources(this.AIR_FRAMELEN, "AIR_FRAMELEN");
+            this.AIR_FRAMELEN.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.AIR_FRAMELEN.FormattingEnabled = true;
             this.AIR_FRAMELEN.Name = "AIR_FRAMELEN";
             this.toolTip1.SetToolTip(this.AIR_FRAMELEN, resources.GetString("AIR_FRAMELEN.ToolTip"));
@@ -521,26 +515,34 @@
             this.BUT_SetPPMFailSafe.UseVisualStyleBackColor = true;
             this.BUT_SetPPMFailSafe.Click += new System.EventHandler(this.BUT_SetPPMFailSafe_Click);
             // 
-            // BUT_savesettings
+            // btn_LoadSetting
             // 
-            resources.ApplyResources(this.BUT_savesettings, "BUT_savesettings");
-            this.BUT_savesettings.Name = "BUT_savesettings";
-            this.toolTip1.SetToolTip(this.BUT_savesettings, resources.GetString("BUT_savesettings.ToolTip"));
-            this.BUT_savesettings.UseVisualStyleBackColor = true;
-            this.BUT_savesettings.Click += new System.EventHandler(this.BUT_savesettings_Click);
+            this.btn_LoadSetting.ForeColor = System.Drawing.Color.Black;
+            this.btn_LoadSetting.IconChar = FontAwesome.Sharp.IconChar.Upload;
+            this.btn_LoadSetting.IconColor = System.Drawing.Color.Black;
+            this.btn_LoadSetting.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btn_LoadSetting.IconSize = 32;
+            resources.ApplyResources(this.btn_LoadSetting, "btn_LoadSetting");
+            this.btn_LoadSetting.Name = "btn_LoadSetting";
+            this.toolTip1.SetToolTip(this.btn_LoadSetting, resources.GetString("btn_LoadSetting.ToolTip"));
+            this.btn_LoadSetting.UseVisualStyleBackColor = true;
             // 
-            // BUT_getcurrent
+            // RSSI
             // 
-            resources.ApplyResources(this.BUT_getcurrent, "BUT_getcurrent");
-            this.BUT_getcurrent.Name = "BUT_getcurrent";
-            this.toolTip1.SetToolTip(this.BUT_getcurrent, resources.GetString("BUT_getcurrent.ToolTip"));
-            this.BUT_getcurrent.UseVisualStyleBackColor = true;
-            this.BUT_getcurrent.Click += new System.EventHandler(this.BUT_getcurrent_Click);
+            this.tableLayoutPanel2.SetColumnSpan(this.RSSI, 3);
+            this.RSSI.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.configManagerBindingSource, "RSSI", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            resources.ApplyResources(this.RSSI, "RSSI");
+            this.RSSI.Name = "RSSI";
+            this.RSSI.ReadOnly = true;
+            // 
+            // configManagerBindingSource
+            // 
+            this.configManagerBindingSource.DataSource = typeof(RFDCommon.ConfigManager);
             // 
             // MAX_WINDOW
             // 
-            this.MAX_WINDOW.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             resources.ApplyResources(this.MAX_WINDOW, "MAX_WINDOW");
+            this.MAX_WINDOW.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.MAX_WINDOW.FormattingEnabled = true;
             this.MAX_WINDOW.Items.AddRange(new object[] {
             resources.GetString("MAX_WINDOW.Items"),
@@ -585,18 +587,6 @@
             // 
             resources.ApplyResources(this.GPO1_0TXEN485, "GPO1_0TXEN485");
             this.GPO1_0TXEN485.Name = "GPO1_0TXEN485";
-            // 
-            // ATI
-            // 
-            this.ATI.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.configManagerBindingSource, "ATI", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            resources.ApplyResources(this.ATI, "ATI");
-            this.ATI.Name = "ATI";
-            this.ATI.ReadOnly = true;
-            // 
-            // label11
-            // 
-            resources.ApplyResources(this.label11, "label11");
-            this.label11.Name = "label11";
             // 
             // label12
             // 
@@ -695,17 +685,11 @@
             // 
             // RATE_FREQBAND
             // 
-            this.RATE_FREQBAND.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.tableLayoutPanel2.SetColumnSpan(this.RATE_FREQBAND, 3);
             resources.ApplyResources(this.RATE_FREQBAND, "RATE_FREQBAND");
+            this.RATE_FREQBAND.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.RATE_FREQBAND.FormattingEnabled = true;
             this.RATE_FREQBAND.Name = "RATE_FREQBAND";
-            // 
-            // btnRandom
-            // 
-            resources.ApplyResources(this.btnRandom, "btnRandom");
-            this.btnRandom.Name = "btnRandom";
-            this.btnRandom.UseVisualStyleBackColor = true;
-            this.btnRandom.Click += new System.EventHandler(this.btnRandom_Click);
             // 
             // lblRX_ENCAP_METHOD
             // 
@@ -807,8 +791,8 @@
             // 
             // ANT_MODE
             // 
-            this.ANT_MODE.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             resources.ApplyResources(this.ANT_MODE, "ANT_MODE");
+            this.ANT_MODE.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ANT_MODE.FormattingEnabled = true;
             this.ANT_MODE.Name = "ANT_MODE";
             // 
@@ -872,6 +856,7 @@
             // 
             // AESKEY
             // 
+            this.tableLayoutPanel3.SetColumnSpan(this.AESKEY, 3);
             this.AESKEY.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.configManagerBindingSource, "AESKEY", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             resources.ApplyResources(this.AESKEY, "AESKEY");
             this.AESKEY.Name = "AESKEY";
@@ -933,126 +918,154 @@
             this.dlgOpen.FileName = "*.ini";
             resources.ApplyResources(this.dlgOpen, "dlgOpen");
             // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.comboSyncMode);
-            this.panel1.Controls.Add(this.label4);
-            this.panel1.Controls.Add(this.listDevices);
-            resources.ApplyResources(this.panel1, "panel1");
-            this.panel1.Name = "panel1";
-            // 
             // label4
             // 
             resources.ApplyResources(this.label4, "label4");
             this.label4.Name = "label4";
             // 
-            // listDevices
-            // 
-            this.listDevices.DataBindings.Add(new System.Windows.Forms.Binding("SelectedItem", this.configManagerBindingSource, "Current", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.listDevices.DataSource = this.modemsBindingSource;
-            this.listDevices.DisplayMember = "DisplayName";
-            this.listDevices.FormattingEnabled = true;
-            resources.ApplyResources(this.listDevices, "listDevices");
-            this.listDevices.Name = "listDevices";
-            // 
-            // modemsBindingSource
-            // 
-            this.modemsBindingSource.DataMember = "Modems";
-            this.modemsBindingSource.DataSource = this.configManagerBindingSource;
-            // 
             // groupFirmware
             // 
-            this.groupFirmware.Controls.Add(this.label7);
-            this.groupFirmware.Controls.Add(this.label6);
-            this.groupFirmware.Controls.Add(this.ATI2);
-            this.groupFirmware.Controls.Add(this.Progressbar);
-            this.groupFirmware.Controls.Add(this.ATI);
-            this.groupFirmware.Controls.Add(this.label11);
-            this.groupFirmware.Controls.Add(this.ATI3);
-            this.groupFirmware.Controls.Add(this.txtCountry);
-            this.groupFirmware.Controls.Add(this.label49);
-            this.groupFirmware.Controls.Add(this.label2);
-            this.groupFirmware.Controls.Add(this.FORMAT);
+            this.groupFirmware.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(29)))), ((int)(((byte)(46)))));
+            this.groupFirmware.Controls.Add(this.tableLayoutDevice);
+            this.groupFirmware.ForeColor = System.Drawing.Color.White;
             resources.ApplyResources(this.groupFirmware, "groupFirmware");
             this.groupFirmware.Name = "groupFirmware";
             this.groupFirmware.TabStop = false;
             // 
-            // label7
+            // tableLayoutDevice
             // 
-            resources.ApplyResources(this.label7, "label7");
-            this.label7.Name = "label7";
+            resources.ApplyResources(this.tableLayoutDevice, "tableLayoutDevice");
+            this.tableLayoutDevice.Controls.Add(this.label9, 0, 0);
+            this.tableLayoutDevice.Controls.Add(this.txtCountry, 3, 2);
+            this.tableLayoutDevice.Controls.Add(this.ATI2, 3, 1);
+            this.tableLayoutDevice.Controls.Add(this.label49, 2, 2);
+            this.tableLayoutDevice.Controls.Add(this.label6, 2, 1);
+            this.tableLayoutDevice.Controls.Add(this.label7, 0, 2);
+            this.tableLayoutDevice.Controls.Add(this.label11, 0, 1);
+            this.tableLayoutDevice.Controls.Add(this.ATI3, 1, 2);
+            this.tableLayoutDevice.Controls.Add(this.ATI, 1, 1);
+            this.tableLayoutDevice.Controls.Add(this.FORMAT, 1, 3);
+            this.tableLayoutDevice.Controls.Add(this.label2, 0, 3);
+            this.tableLayoutDevice.Controls.Add(this.comboBox1, 1, 0);
+            this.tableLayoutDevice.Name = "tableLayoutDevice";
+            // 
+            // label9
+            // 
+            resources.ApplyResources(this.label9, "label9");
+            this.label9.Name = "label9";
             // 
             // label6
             // 
             resources.ApplyResources(this.label6, "label6");
             this.label6.Name = "label6";
             // 
-            // BUT_loadcustom
+            // label7
             // 
-            resources.ApplyResources(this.BUT_loadcustom, "BUT_loadcustom");
-            this.BUT_loadcustom.Name = "BUT_loadcustom";
-            this.BUT_loadcustom.UseVisualStyleBackColor = true;
-            this.BUT_loadcustom.Click += new System.EventHandler(this.BUT_loadcustom_Click);
+            resources.ApplyResources(this.label7, "label7");
+            this.label7.Name = "label7";
+            // 
+            // label11
+            // 
+            resources.ApplyResources(this.label11, "label11");
+            this.label11.Name = "label11";
+            // 
+            // ATI
+            // 
+            this.ATI.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.configManagerBindingSource, "ATI", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            resources.ApplyResources(this.ATI, "ATI");
+            this.ATI.Name = "ATI";
+            this.ATI.ReadOnly = true;
+            // 
+            // comboBox1
+            // 
+            this.tableLayoutDevice.SetColumnSpan(this.comboBox1, 3);
+            this.comboBox1.DataBindings.Add(new System.Windows.Forms.Binding("SelectedItem", this.configManagerBindingSource, "Current", true));
+            this.comboBox1.DataSource = this.modemsBindingSource1;
+            this.comboBox1.DisplayMember = "DisplayName";
+            resources.ApplyResources(this.comboBox1, "comboBox1");
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Name = "comboBox1";
+            // 
+            // modemsBindingSource1
+            // 
+            this.modemsBindingSource1.DataMember = "Modems";
+            this.modemsBindingSource1.DataSource = this.configManagerBindingSource;
             // 
             // groupRadio
             // 
-            this.groupRadio.Controls.Add(this.RSSI_IN_DBM);
-            this.groupRadio.Controls.Add(this.label12);
-            this.groupRadio.Controls.Add(this.RSSI);
-            this.groupRadio.Controls.Add(this.label15);
-            this.groupRadio.Controls.Add(this.AIR_FRAMELEN);
-            this.groupRadio.Controls.Add(this.label14);
-            this.groupRadio.Controls.Add(this.MAVLINK);
-            this.groupRadio.Controls.Add(this.lblMAVLINK);
-            this.groupRadio.Controls.Add(this.MAX_WINDOW);
-            this.groupRadio.Controls.Add(this.LBT_RSSI);
-            this.groupRadio.Controls.Add(this.OPPRESEND);
-            this.groupRadio.Controls.Add(this.lblMAX_WINDOW);
-            this.groupRadio.Controls.Add(this.lblMIN_FREQ);
-            this.groupRadio.Controls.Add(this.lblOPPRESEND);
-            this.groupRadio.Controls.Add(this.lblLBT_RSSI);
-            this.groupRadio.Controls.Add(this.lblTXPOWER);
-            this.groupRadio.Controls.Add(this.DUTY_CYCLE);
-            this.groupRadio.Controls.Add(this.TXPOWER);
-            this.groupRadio.Controls.Add(this.lblMAX_FREQ);
-            this.groupRadio.Controls.Add(this.lblNETID);
-            this.groupRadio.Controls.Add(this.lblNUM_CHANNELS);
-            this.groupRadio.Controls.Add(this.NETID);
-            this.groupRadio.Controls.Add(this.MIN_FREQ);
-            this.groupRadio.Controls.Add(this.lblDUTY_CYCLE);
-            this.groupRadio.Controls.Add(this.NUM_CHANNELS);
-            this.groupRadio.Controls.Add(this.AIR_SPEED);
-            this.groupRadio.Controls.Add(this.MAX_FREQ);
-            this.groupRadio.Controls.Add(this.label45);
-            this.groupRadio.Controls.Add(this.label3);
-            this.groupRadio.Controls.Add(this.RATE_FREQBAND);
-            this.groupRadio.Controls.Add(this.ANT_MODE);
-            this.groupRadio.Controls.Add(this.lblANT_MODE);
+            this.groupRadio.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(29)))), ((int)(((byte)(46)))));
+            this.groupRadio.Controls.Add(this.tableLayoutPanel2);
+            this.groupRadio.ForeColor = System.Drawing.Color.White;
             resources.ApplyResources(this.groupRadio, "groupRadio");
             this.groupRadio.Name = "groupRadio";
             this.groupRadio.TabStop = false;
             // 
-            // label15
+            // tableLayoutPanel2
             // 
-            resources.ApplyResources(this.label15, "label15");
-            this.label15.Name = "label15";
+            resources.ApplyResources(this.tableLayoutPanel2, "tableLayoutPanel2");
+            this.tableLayoutPanel2.Controls.Add(this.ANT_MODE, 3, 1);
+            this.tableLayoutPanel2.Controls.Add(this.NETID, 3, 2);
+            this.tableLayoutPanel2.Controls.Add(this.LBT_RSSI, 3, 3);
+            this.tableLayoutPanel2.Controls.Add(this.MAX_WINDOW, 3, 4);
+            this.tableLayoutPanel2.Controls.Add(this.MAVLINK, 3, 5);
+            this.tableLayoutPanel2.Controls.Add(this.AIR_FRAMELEN, 3, 6);
+            this.tableLayoutPanel2.Controls.Add(this.RSSI, 1, 8);
+            this.tableLayoutPanel2.Controls.Add(this.label14, 2, 6);
+            this.tableLayoutPanel2.Controls.Add(this.RSSI_IN_DBM, 1, 7);
+            this.tableLayoutPanel2.Controls.Add(this.label45, 0, 0);
+            this.tableLayoutPanel2.Controls.Add(this.OPPRESEND, 3, 7);
+            this.tableLayoutPanel2.Controls.Add(this.lblMAVLINK, 2, 5);
+            this.tableLayoutPanel2.Controls.Add(this.lblOPPRESEND, 2, 7);
+            this.tableLayoutPanel2.Controls.Add(this.label12, 0, 8);
+            this.tableLayoutPanel2.Controls.Add(this.lblMIN_FREQ, 0, 1);
+            this.tableLayoutPanel2.Controls.Add(this.lblMAX_FREQ, 0, 2);
+            this.tableLayoutPanel2.Controls.Add(this.label15, 0, 7);
+            this.tableLayoutPanel2.Controls.Add(this.lblMAX_WINDOW, 2, 4);
+            this.tableLayoutPanel2.Controls.Add(this.lblNUM_CHANNELS, 0, 3);
+            this.tableLayoutPanel2.Controls.Add(this.lblDUTY_CYCLE, 0, 4);
+            this.tableLayoutPanel2.Controls.Add(this.lblLBT_RSSI, 2, 3);
+            this.tableLayoutPanel2.Controls.Add(this.lblTXPOWER, 0, 5);
+            this.tableLayoutPanel2.Controls.Add(this.lblNETID, 2, 2);
+            this.tableLayoutPanel2.Controls.Add(this.label3, 0, 6);
+            this.tableLayoutPanel2.Controls.Add(this.RATE_FREQBAND, 1, 0);
+            this.tableLayoutPanel2.Controls.Add(this.MIN_FREQ, 1, 1);
+            this.tableLayoutPanel2.Controls.Add(this.lblANT_MODE, 2, 1);
+            this.tableLayoutPanel2.Controls.Add(this.MAX_FREQ, 1, 2);
+            this.tableLayoutPanel2.Controls.Add(this.TXPOWER, 1, 5);
+            this.tableLayoutPanel2.Controls.Add(this.DUTY_CYCLE, 1, 4);
+            this.tableLayoutPanel2.Controls.Add(this.AIR_SPEED, 1, 6);
+            this.tableLayoutPanel2.Controls.Add(this.NUM_CHANNELS, 1, 3);
+            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             // 
             // label14
             // 
             resources.ApplyResources(this.label14, "label14");
             this.label14.Name = "label14";
             // 
+            // label15
+            // 
+            resources.ApplyResources(this.label15, "label15");
+            this.label15.Name = "label15";
+            // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.label5);
-            this.groupBox1.Controls.Add(this.AUXSER_SPEED);
-            this.groupBox1.Controls.Add(this.lblRTSCTS);
-            this.groupBox1.Controls.Add(this.SERIAL_SPEED);
-            this.groupBox1.Controls.Add(this.RTSCTS);
-            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(29)))), ((int)(((byte)(46)))));
+            this.groupBox1.Controls.Add(this.tableLayoutPanel1);
+            this.groupBox1.ForeColor = System.Drawing.Color.White;
             resources.ApplyResources(this.groupBox1, "groupBox1");
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.TabStop = false;
+            // 
+            // tableLayoutPanel1
+            // 
+            resources.ApplyResources(this.tableLayoutPanel1, "tableLayoutPanel1");
+            this.tableLayoutPanel1.Controls.Add(this.label1, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.RTSCTS, 1, 2);
+            this.tableLayoutPanel1.Controls.Add(this.lblRTSCTS, 0, 2);
+            this.tableLayoutPanel1.Controls.Add(this.AUXSER_SPEED, 1, 1);
+            this.tableLayoutPanel1.Controls.Add(this.label5, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.SERIAL_SPEED, 1, 0);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             // 
             // label5
             // 
@@ -1061,6 +1074,7 @@
             // 
             // groupData
             // 
+            this.groupData.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(29)))), ((int)(((byte)(46)))));
             this.groupData.Controls.Add(this.lblTX_ENCAP_METHOD);
             this.groupData.Controls.Add(this.lblMAX_DATA);
             this.groupData.Controls.Add(this.MAX_DATA);
@@ -1077,12 +1091,14 @@
             this.groupData.Controls.Add(this.lblDESTID);
             this.groupData.Controls.Add(this.NODEID);
             this.groupData.Controls.Add(this.lblNODEID);
+            this.groupData.ForeColor = System.Drawing.Color.White;
             resources.ApplyResources(this.groupData, "groupData");
             this.groupData.Name = "groupData";
             this.groupData.TabStop = false;
             // 
             // groupGPIO
             // 
+            this.groupGPIO.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(29)))), ((int)(((byte)(46)))));
             this.groupGPIO.Controls.Add(this.GPO1_3SBUSIN);
             this.groupGPIO.Controls.Add(this.lblSBUSIN);
             this.groupGPIO.Controls.Add(this.lblSBUSOUT);
@@ -1108,6 +1124,7 @@
             this.groupGPIO.Controls.Add(this.lblGPO1_3STATLED);
             this.groupGPIO.Controls.Add(this.lblGPI1_2AUXIN);
             this.groupGPIO.Controls.Add(this.GPO1_3STATLED);
+            this.groupGPIO.ForeColor = System.Drawing.Color.White;
             resources.ApplyResources(this.groupGPIO, "groupGPIO");
             this.groupGPIO.Name = "groupGPIO";
             this.groupGPIO.TabStop = false;
@@ -1158,11 +1175,9 @@
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.AESKEY);
-            this.groupBox3.Controls.Add(this.label35);
-            this.groupBox3.Controls.Add(this.ENCRYPTION_LEVEL);
-            this.groupBox3.Controls.Add(this.lblENCRYPTION_LEVEL);
-            this.groupBox3.Controls.Add(this.btnRandom);
+            this.groupBox3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(29)))), ((int)(((byte)(46)))));
+            this.groupBox3.Controls.Add(this.tableLayoutPanel3);
+            this.groupBox3.ForeColor = System.Drawing.Color.White;
             resources.ApplyResources(this.groupBox3, "groupBox3");
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.TabStop = false;
@@ -1181,72 +1196,138 @@
             this.BUT_Syncoptions.UseVisualStyleBackColor = true;
             this.BUT_Syncoptions.Click += new System.EventHandler(this.BUT_Syncoptions_Click);
             // 
-            // btnLoadFromFile
-            // 
-            resources.ApplyResources(this.btnLoadFromFile, "btnLoadFromFile");
-            this.btnLoadFromFile.Name = "btnLoadFromFile";
-            this.btnLoadFromFile.UseVisualStyleBackColor = true;
-            this.btnLoadFromFile.Click += new System.EventHandler(this.btnLoadFromFile_Click);
-            // 
-            // btnSaveToFile
-            // 
-            resources.ApplyResources(this.btnSaveToFile, "btnSaveToFile");
-            this.btnSaveToFile.Name = "btnSaveToFile";
-            this.btnSaveToFile.UseVisualStyleBackColor = true;
-            this.btnSaveToFile.Click += new System.EventHandler(this.btnSaveToFile_Click);
-            // 
-            // BUT_resettodefault
-            // 
-            resources.ApplyResources(this.BUT_resettodefault, "BUT_resettodefault");
-            this.BUT_resettodefault.Name = "BUT_resettodefault";
-            this.BUT_resettodefault.UseVisualStyleBackColor = true;
-            this.BUT_resettodefault.Click += new System.EventHandler(this.BUT_resettodefault_Click);
-            // 
             // flowLayoutActions
             // 
-            this.flowLayoutActions.Controls.Add(this.BUT_getcurrent);
-            this.flowLayoutActions.Controls.Add(this.BUT_savesettings);
-            this.flowLayoutActions.Controls.Add(this.btnLoadFromFile);
-            this.flowLayoutActions.Controls.Add(this.btnSaveToFile);
-            this.flowLayoutActions.Controls.Add(this.BUT_resettodefault);
-            this.flowLayoutActions.Controls.Add(this.BUT_loadcustom);
+            this.flowLayoutActions.Controls.Add(this.btn_LoadSetting);
+            this.flowLayoutActions.Controls.Add(this.btn_SaveSetting);
+            this.flowLayoutActions.Controls.Add(this.btn_LoadFile);
+            this.flowLayoutActions.Controls.Add(this.btn_SaveFile);
+            this.flowLayoutActions.Controls.Add(this.btn_Reset);
+            this.flowLayoutActions.Controls.Add(this.btn_Firmware);
             this.flowLayoutActions.Controls.Add(this.BUT_upload);
             resources.ApplyResources(this.flowLayoutActions, "flowLayoutActions");
             this.flowLayoutActions.Name = "flowLayoutActions";
             // 
-            // flowLayoutSettings
+            // btn_SaveSetting
             // 
-            this.flowLayoutSettings.Controls.Add(this.groupFirmware);
-            resources.ApplyResources(this.flowLayoutSettings, "flowLayoutSettings");
-            this.flowLayoutSettings.Name = "flowLayoutSettings";
+            this.btn_SaveSetting.ForeColor = System.Drawing.Color.Black;
+            this.btn_SaveSetting.IconChar = FontAwesome.Sharp.IconChar.Download;
+            this.btn_SaveSetting.IconColor = System.Drawing.Color.Black;
+            this.btn_SaveSetting.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btn_SaveSetting.IconSize = 32;
+            resources.ApplyResources(this.btn_SaveSetting, "btn_SaveSetting");
+            this.btn_SaveSetting.Name = "btn_SaveSetting";
+            this.btn_SaveSetting.UseVisualStyleBackColor = true;
+            // 
+            // btn_LoadFile
+            // 
+            this.btn_LoadFile.ForeColor = System.Drawing.Color.Black;
+            this.btn_LoadFile.IconChar = FontAwesome.Sharp.IconChar.ArrowRightFromFile;
+            this.btn_LoadFile.IconColor = System.Drawing.Color.Black;
+            this.btn_LoadFile.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btn_LoadFile.IconSize = 32;
+            resources.ApplyResources(this.btn_LoadFile, "btn_LoadFile");
+            this.btn_LoadFile.Name = "btn_LoadFile";
+            this.btn_LoadFile.UseVisualStyleBackColor = true;
+            this.btn_LoadFile.Click += new System.EventHandler(this.btn_LoadFile_Click);
+            // 
+            // btn_SaveFile
+            // 
+            this.btn_SaveFile.ForeColor = System.Drawing.Color.Black;
+            this.btn_SaveFile.IconChar = FontAwesome.Sharp.IconChar.FileImport;
+            this.btn_SaveFile.IconColor = System.Drawing.Color.Black;
+            this.btn_SaveFile.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btn_SaveFile.IconSize = 32;
+            resources.ApplyResources(this.btn_SaveFile, "btn_SaveFile");
+            this.btn_SaveFile.Name = "btn_SaveFile";
+            this.btn_SaveFile.UseVisualStyleBackColor = true;
+            this.btn_SaveFile.Click += new System.EventHandler(this.btn_SaveFile_Click);
+            // 
+            // btn_Reset
+            // 
+            this.btn_Reset.ForeColor = System.Drawing.Color.Black;
+            this.btn_Reset.IconChar = FontAwesome.Sharp.IconChar.ArrowRotateBackward;
+            this.btn_Reset.IconColor = System.Drawing.Color.Black;
+            this.btn_Reset.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btn_Reset.IconSize = 32;
+            resources.ApplyResources(this.btn_Reset, "btn_Reset");
+            this.btn_Reset.Name = "btn_Reset";
+            this.btn_Reset.UseVisualStyleBackColor = true;
+            this.btn_Reset.Click += new System.EventHandler(this.btn_Reset_Click);
+            // 
+            // btn_Firmware
+            // 
+            this.btn_Firmware.ForeColor = System.Drawing.Color.Black;
+            this.btn_Firmware.IconChar = FontAwesome.Sharp.IconChar.Wrench;
+            this.btn_Firmware.IconColor = System.Drawing.Color.Black;
+            this.btn_Firmware.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btn_Firmware.IconSize = 32;
+            resources.ApplyResources(this.btn_Firmware, "btn_Firmware");
+            this.btn_Firmware.Name = "btn_Firmware";
+            this.btn_Firmware.UseVisualStyleBackColor = true;
+            this.btn_Firmware.Click += new System.EventHandler(this.btn_Firmware_Click);
             // 
             // groupBox2
             // 
+            this.groupBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(29)))), ((int)(((byte)(46)))));
             this.groupBox2.Controls.Add(this.lbl_status);
             this.groupBox2.Controls.Add(this.BUT_Syncoptions);
             this.groupBox2.Controls.Add(this.linkLabel_lowlatency);
             this.groupBox2.Controls.Add(this.linkLabel_mavlink);
             this.groupBox2.Controls.Add(this.linkLabel1);
+            this.groupBox2.ForeColor = System.Drawing.Color.White;
             resources.ApplyResources(this.groupBox2, "groupBox2");
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.TabStop = false;
             // 
             // flowLayoutMain
             // 
-            this.flowLayoutMain.Controls.Add(this.groupRadio);
-            this.flowLayoutMain.Controls.Add(this.groupBox1);
-            this.flowLayoutMain.Controls.Add(this.groupGPIO);
             this.flowLayoutMain.Controls.Add(this.groupData);
-            this.flowLayoutMain.Controls.Add(this.groupBox3);
+            this.flowLayoutMain.Controls.Add(this.btnRandom);
             resources.ApplyResources(this.flowLayoutMain, "flowLayoutMain");
             this.flowLayoutMain.Name = "flowLayoutMain";
+            // 
+            // tableLayoutPanel3
+            // 
+            resources.ApplyResources(this.tableLayoutPanel3, "tableLayoutPanel3");
+            this.tableLayoutPanel3.Controls.Add(this.AESKEY, 1, 1);
+            this.tableLayoutPanel3.Controls.Add(this.lblENCRYPTION_LEVEL, 0, 0);
+            this.tableLayoutPanel3.Controls.Add(this.label35, 0, 1);
+            this.tableLayoutPanel3.Controls.Add(this.ENCRYPTION_LEVEL, 1, 0);
+            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
+            // 
+            // iconButton1
+            // 
+            resources.ApplyResources(this.iconButton1, "iconButton1");
+            this.iconButton1.ForeColor = System.Drawing.Color.Black;
+            this.iconButton1.IconChar = FontAwesome.Sharp.IconChar.Key;
+            this.iconButton1.IconColor = System.Drawing.Color.Black;
+            this.iconButton1.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.iconButton1.IconSize = 16;
+            this.iconButton1.Name = "iconButton1";
+            this.iconButton1.UseVisualStyleBackColor = true;
+            this.iconButton1.Click += new System.EventHandler(this.iconButton1_Click);
+            // 
+            // btnRandom
+            // 
+            resources.ApplyResources(this.btnRandom, "btnRandom");
+            this.btnRandom.Name = "btnRandom";
+            this.btnRandom.UseVisualStyleBackColor = true;
+            this.btnRandom.Click += new System.EventHandler(this.btnRandom_Click);
             // 
             // Sikradio
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.Controls.Add(this.panel1);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(29)))), ((int)(((byte)(46)))));
+            this.Controls.Add(this.groupRadio);
+            this.Controls.Add(this.comboSyncMode);
+            this.Controls.Add(this.groupBox3);
+            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.groupFirmware);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.flowLayoutMain);
-            this.Controls.Add(this.flowLayoutSettings);
+            this.Controls.Add(this.groupGPIO);
+            this.Controls.Add(this.Progressbar);
             this.Controls.Add(this.flowLayoutActions);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.groupBox2);
@@ -1254,26 +1335,26 @@
             this.Name = "Sikradio";
             this.Load += new System.EventHandler(this.Sikradio_Load);
             ((System.ComponentModel.ISupportInitialize)(this.configManagerBindingSource)).EndInit();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.modemsBindingSource)).EndInit();
             this.groupFirmware.ResumeLayout(false);
-            this.groupFirmware.PerformLayout();
+            this.tableLayoutDevice.ResumeLayout(false);
+            this.tableLayoutDevice.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.modemsBindingSource1)).EndInit();
             this.groupRadio.ResumeLayout(false);
-            this.groupRadio.PerformLayout();
+            this.tableLayoutPanel2.ResumeLayout(false);
+            this.tableLayoutPanel2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.tableLayoutPanel1.ResumeLayout(false);
             this.groupData.ResumeLayout(false);
             this.groupData.PerformLayout();
             this.groupGPIO.ResumeLayout(false);
             this.groupGPIO.PerformLayout();
             this.groupBox3.ResumeLayout(false);
-            this.groupBox3.PerformLayout();
             this.flowLayoutActions.ResumeLayout(false);
-            this.flowLayoutSettings.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.flowLayoutMain.ResumeLayout(false);
+            this.tableLayoutPanel3.ResumeLayout(false);
+            this.tableLayoutPanel3.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1285,16 +1366,13 @@
         private System.Windows.Forms.ProgressBar Progressbar;
         private System.Windows.Forms.Label lbl_status;
         private System.Windows.Forms.ToolTip toolTip1;
-        private System.Windows.Forms.TextBox ATI;
         private System.Windows.Forms.TextBox RSSI;
-        private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label12;
         private Controls.MyButton BUT_Syncoptions;
         private System.Windows.Forms.TextBox ATI3;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.LinkLabel linkLabel1;
         private System.Windows.Forms.TextBox ATI2;
-        private Controls.MyButton BUT_loadcustom;
         private Controls.MyButton BUT_SetPPMFailSafe;
         private System.Windows.Forms.Label lblRX_ENCAP_METHOD;
         private System.Windows.Forms.ComboBox RX_ENCAP_METHOD;
@@ -1351,7 +1429,6 @@
         private System.Windows.Forms.Label lblNUM_CHANNELS;
         private System.Windows.Forms.Label lblMAX_FREQ;
         private System.Windows.Forms.ComboBox DUTY_CYCLE;
-        private System.Windows.Forms.Button btnRandom;
         private System.Windows.Forms.Label label45;
         private System.Windows.Forms.ComboBox RATE_FREQBAND;
         private System.Windows.Forms.TextBox txtCountry;
@@ -1371,7 +1448,6 @@
         private System.Windows.Forms.ComboBox FSFRAMELOSS;
         private System.Windows.Forms.SaveFileDialog dlgSave;
         private System.Windows.Forms.OpenFileDialog dlgOpen;
-        private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.ComboBox comboSyncMode;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.GroupBox groupFirmware;
@@ -1396,17 +1472,26 @@
         private System.Windows.Forms.Label lblSBUSIN;
         private System.Windows.Forms.Label lblSBUSOUT;
         private System.Windows.Forms.ComboBox GPO1_3SBUSOUT;
-        private Controls.MyButton btnLoadFromFile;
-        private Controls.MyButton btnSaveToFile;
-        private Controls.MyButton BUT_resettodefault;
-        private Controls.MyButton BUT_savesettings;
-        private Controls.MyButton BUT_getcurrent;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutActions;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutSettings;
         private System.Windows.Forms.BindingSource configManagerBindingSource;
-        private System.Windows.Forms.ListBox listDevices;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutMain;
-        private System.Windows.Forms.BindingSource modemsBindingSource;
+        private FontAwesome.Sharp.IconButton btn_LoadSetting;
+        private FontAwesome.Sharp.IconButton btn_SaveSetting;
+        private FontAwesome.Sharp.IconButton btn_LoadFile;
+        private FontAwesome.Sharp.IconButton btn_SaveFile;
+        private FontAwesome.Sharp.IconButton btn_Reset;
+        private FontAwesome.Sharp.IconButton btn_Firmware;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutDevice;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.TextBox ATI;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.BindingSource modemsBindingSource1;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
+        private FontAwesome.Sharp.IconButton iconButton1;
+        private System.Windows.Forms.Button btnRandom;
     }
 }

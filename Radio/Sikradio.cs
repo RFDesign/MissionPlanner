@@ -1182,7 +1182,7 @@ red LED solid - in firmware update mode");
 
         void EnableProgrammingControls(bool Enable)
         {
-            BUT_loadcustom.Enabled = Enable;
+            btn_Firmware.Enabled = Enable;            
         }
 
         void DisableRFD900xControls()
@@ -1637,6 +1637,33 @@ red LED solid - in firmware update mode");
         private void button1_Click(object sender, EventArgs e)
         {
             _configManager.ANT_MODE = 1;
+        }
+
+        private void btn_LoadFile_Click(object sender, EventArgs e)
+        {
+            LoadConfigFromFile();
+        }
+
+        private void btn_SaveFile_Click(object sender, EventArgs e)
+        {
+            SaveWorkingConfig(_configManager.Current.Settings);
+        }
+
+        private async void btn_Reset_Click(object sender, EventArgs e)
+        {
+            _configManager.AddLog($"Initiating Config Reset");
+
+            await _configManager.ResetDefaults();
+        }
+
+        private void btn_Firmware_Click(object sender, EventArgs e)
+        {
+            ProgramFirmware(true);
+        }
+
+        private void iconButton1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
