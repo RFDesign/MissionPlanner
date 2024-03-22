@@ -938,8 +938,8 @@
             // 
             // ATI2
             // 
-            this.ATI2.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.configManagerBindingSource, "BOARD", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             resources.ApplyResources(this.ATI2, "ATI2");
+            this.ATI2.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.configManagerBindingSource, "BOARD", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.ATI2.Name = "ATI2";
             this.ATI2.ReadOnly = true;
             this.ATI2.Click += new System.EventHandler(this.Control_Clicked_ShowHelp);
@@ -1012,8 +1012,8 @@
             // 
             // ATI
             // 
-            this.ATI.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.configManagerBindingSource, "ATI", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             resources.ApplyResources(this.ATI, "ATI");
+            this.ATI.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.configManagerBindingSource, "ATI", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.ATI.Name = "ATI";
             this.ATI.ReadOnly = true;
             this.ATI.Click += new System.EventHandler(this.Control_Clicked_ShowHelp);
@@ -1445,16 +1445,16 @@
             // 
             this.richTextHelp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(29)))), ((int)(((byte)(46)))));
             this.richTextHelp.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.richTextHelp.ForeColor = System.Drawing.Color.White;
             resources.ApplyResources(this.richTextHelp, "richTextHelp");
+            this.richTextHelp.ForeColor = System.Drawing.Color.White;
             this.richTextHelp.Name = "richTextHelp";
             this.richTextHelp.ReadOnly = true;
             // 
             // groupBox3
             // 
+            resources.ApplyResources(this.groupBox3, "groupBox3");
             this.groupBox3.Controls.Add(this.richTextHelp);
             this.groupBox3.ForeColor = System.Drawing.Color.White;
-            resources.ApplyResources(this.groupBox3, "groupBox3");
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.TabStop = false;
             // 
@@ -1466,8 +1466,8 @@
             this.Controls.Add(this.flowLayoutConfig);
             this.Controls.Add(this.flowLayoutActions);
             this.Controls.Add(this.label10);
-            resources.ApplyResources(this, "$this");
             this.Name = "Sikradio";
+            resources.ApplyResources(this, "$this");
             this.Load += new System.EventHandler(this.Sikradio_Load);
             ((System.ComponentModel.ISupportInitialize)(this.configManagerBindingSource)).EndInit();
             this.groupFirmware.ResumeLayout(false);

@@ -3249,8 +3249,8 @@ this ensures you wont lose radio link</value>
   <data name="&gt;&gt;lblMAX_FREQ.ZOrder" xml:space="preserve">
     <value>15</value>
   </data>
-  <data name="ATI2.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
+  <data name="ATI2.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Left, Right</value>
   </data>
   <data name="ATI2.Location" type="System.Drawing.Point, System.Drawing">
     <value>360, 35</value>
@@ -3624,8 +3624,8 @@ this ensures you wont lose radio link</value>
   <data name="&gt;&gt;label11.ZOrder" xml:space="preserve">
     <value>6</value>
   </data>
-  <data name="ATI.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
+  <data name="ATI.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Left, Right</value>
   </data>
   <data name="ATI.Location" type="System.Drawing.Point, System.Drawing">
     <value>96, 35</value>
@@ -5244,11 +5244,14 @@ this ensures you wont lose radio link</value>
   <data name="&gt;&gt;flowLayoutConfig.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
+  <data name="richTextHelp.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
   <data name="richTextHelp.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 19</value>
+    <value>3, 16</value>
   </data>
   <data name="richTextHelp.Size" type="System.Drawing.Size, System.Drawing">
-    <value>250, 699</value>
+    <value>366, 717</value>
   </data>
   <data name="richTextHelp.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -5268,11 +5271,14 @@ this ensures you wont lose radio link</value>
   <data name="&gt;&gt;richTextHelp.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
+  <data name="groupBox3.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Left, Right</value>
+  </data>
   <data name="groupBox3.Location" type="System.Drawing.Point, System.Drawing">
     <value>850, 63</value>
   </data>
   <data name="groupBox3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>262, 736</value>
+    <value>372, 736</value>
   </data>
   <data name="groupBox3.TabIndex" type="System.Int32, mscorlib">
     <value>169</value>
@@ -5298,11 +5304,8 @@ this ensures you wont lose radio link</value>
   <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>70</value>
   </metadata>
-  <data name="$this.MinimumSize" type="System.Drawing.Size, System.Drawing">
-    <value>1200, 720</value>
-  </data>
   <data name="$this.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1200, 932</value>
+    <value>1229, 960</value>
   </data>
   <data name="&gt;&gt;toolTip1.Name" xml:space="preserve">
     <value>toolTip1</value>

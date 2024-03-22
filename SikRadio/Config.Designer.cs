@@ -42,11 +42,12 @@
             this.label9 = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.btnConnect = new FontAwesome.Sharp.IconButton();
-            this.CMB_SerialPort = new System.Windows.Forms.ComboBox();
-            this.CMB_Baudrate = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.CMB_Baudrate = new System.Windows.Forms.ComboBox();
+            this.CMB_SerialPort = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.panelMain = new System.Windows.Forms.Panel();
             this.textConsole = new System.Windows.Forms.TextBox();
             this.sikradio1 = new MissionPlanner.Radio.Sikradio();
@@ -59,6 +60,7 @@
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.groupBox1.SuspendLayout();
+            this.tableLayoutPanel1.SuspendLayout();
             this.panelMain.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -90,8 +92,8 @@
             // 
             // btnConfigPage
             // 
-            this.btnConfigPage.Cursor = System.Windows.Forms.Cursors.Hand;
             resources.ApplyResources(this.btnConfigPage, "btnConfigPage");
+            this.btnConfigPage.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnConfigPage.FlatAppearance.BorderSize = 0;
             this.btnConfigPage.ForeColor = System.Drawing.SystemColors.ControlLight;
             this.btnConfigPage.IconChar = FontAwesome.Sharp.IconChar.Gear;
@@ -103,8 +105,8 @@
             // 
             // btnTerminal
             // 
-            this.btnTerminal.Cursor = System.Windows.Forms.Cursors.Hand;
             resources.ApplyResources(this.btnTerminal, "btnTerminal");
+            this.btnTerminal.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnTerminal.FlatAppearance.BorderSize = 0;
             this.btnTerminal.ForeColor = System.Drawing.SystemColors.ControlLight;
             this.btnTerminal.IconChar = FontAwesome.Sharp.IconChar.Terminal;
@@ -116,8 +118,8 @@
             // 
             // btnRSSI
             // 
-            this.btnRSSI.Cursor = System.Windows.Forms.Cursors.Hand;
             resources.ApplyResources(this.btnRSSI, "btnRSSI");
+            this.btnRSSI.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnRSSI.FlatAppearance.BorderSize = 0;
             this.btnRSSI.ForeColor = System.Drawing.SystemColors.ControlLight;
             this.btnRSSI.IconChar = FontAwesome.Sharp.IconChar.LineChart;
@@ -161,41 +163,46 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.btnConnect);
-            this.groupBox1.Controls.Add(this.CMB_SerialPort);
-            this.groupBox1.Controls.Add(this.CMB_Baudrate);
-            this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Controls.Add(this.tableLayoutPanel1);
             this.groupBox1.ForeColor = System.Drawing.Color.White;
             resources.ApplyResources(this.groupBox1, "groupBox1");
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.TabStop = false;
             // 
+            // tableLayoutPanel1
+            // 
+            resources.ApplyResources(this.tableLayoutPanel1, "tableLayoutPanel1");
+            this.tableLayoutPanel1.Controls.Add(this.btnConnect, 0, 2);
+            this.tableLayoutPanel1.Controls.Add(this.label2, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.CMB_Baudrate, 1, 1);
+            this.tableLayoutPanel1.Controls.Add(this.CMB_SerialPort, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.label1, 0, 1);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            // 
             // btnConnect
             // 
             resources.ApplyResources(this.btnConnect, "btnConnect");
-            this.btnConnect.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(73)))), ((int)(((byte)(82)))), ((int)(((byte)(110)))));
+            this.btnConnect.BackColor = System.Drawing.Color.White;
+            this.tableLayoutPanel1.SetColumnSpan(this.btnConnect, 2);
             this.btnConnect.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnConnect.FlatAppearance.BorderSize = 0;
-            this.btnConnect.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.btnConnect.ForeColor = System.Drawing.Color.Black;
             this.btnConnect.IconChar = FontAwesome.Sharp.IconChar.SatelliteDish;
-            this.btnConnect.IconColor = System.Drawing.Color.WhiteSmoke;
+            this.btnConnect.IconColor = System.Drawing.Color.Black;
             this.btnConnect.IconFont = FontAwesome.Sharp.IconFont.Solid;
             this.btnConnect.IconSize = 32;
             this.btnConnect.Name = "btnConnect";
             this.btnConnect.UseVisualStyleBackColor = false;
             this.btnConnect.Click += new System.EventHandler(this.btnConnect_Click_1);
             // 
-            // CMB_SerialPort
+            // label2
             // 
-            this.CMB_SerialPort.FormattingEnabled = true;
-            resources.ApplyResources(this.CMB_SerialPort, "CMB_SerialPort");
-            this.CMB_SerialPort.Name = "CMB_SerialPort";
-            this.CMB_SerialPort.SelectedIndexChanged += new System.EventHandler(this.CMB_SerialPort_SelectedIndexChanged);
-            this.CMB_SerialPort.Click += new System.EventHandler(this.CMB_SerialPort_Click);
+            resources.ApplyResources(this.label2, "label2");
+            this.label2.Name = "label2";
             // 
             // CMB_Baudrate
             // 
+            resources.ApplyResources(this.CMB_Baudrate, "CMB_Baudrate");
             this.CMB_Baudrate.FormattingEnabled = true;
             this.CMB_Baudrate.Items.AddRange(new object[] {
             resources.GetString("CMB_Baudrate.Items"),
@@ -209,19 +216,21 @@
             resources.GetString("CMB_Baudrate.Items8"),
             resources.GetString("CMB_Baudrate.Items9"),
             resources.GetString("CMB_Baudrate.Items10")});
-            resources.ApplyResources(this.CMB_Baudrate, "CMB_Baudrate");
             this.CMB_Baudrate.Name = "CMB_Baudrate";
             this.CMB_Baudrate.SelectedIndexChanged += new System.EventHandler(this.CMB_Baudrate_SelectedIndexChanged);
+            // 
+            // CMB_SerialPort
+            // 
+            resources.ApplyResources(this.CMB_SerialPort, "CMB_SerialPort");
+            this.CMB_SerialPort.FormattingEnabled = true;
+            this.CMB_SerialPort.Name = "CMB_SerialPort";
+            this.CMB_SerialPort.SelectedIndexChanged += new System.EventHandler(this.CMB_SerialPort_SelectedIndexChanged);
+            this.CMB_SerialPort.Click += new System.EventHandler(this.CMB_SerialPort_Click);
             // 
             // label1
             // 
             resources.ApplyResources(this.label1, "label1");
             this.label1.Name = "label1";
-            // 
-            // label2
-            // 
-            resources.ApplyResources(this.label2, "label2");
-            this.label2.Name = "label2";
             // 
             // panelMain
             // 
@@ -234,9 +243,9 @@
             // 
             // textConsole
             // 
+            resources.ApplyResources(this.textConsole, "textConsole");
             this.textConsole.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(49)))), ((int)(((byte)(66)))));
             this.textConsole.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.configManagerBindingSource, "Log", true));
-            resources.ApplyResources(this.textConsole, "textConsole");
             this.textConsole.ForeColor = System.Drawing.Color.WhiteSmoke;
             this.textConsole.Name = "textConsole";
             this.textConsole.ReadOnly = true;
@@ -273,10 +282,9 @@
             this.panel1.ResumeLayout(false);
             this.flowLayoutButtonPanel.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
-            this.panel3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.tableLayoutPanel1.ResumeLayout(false);
             this.panelMain.ResumeLayout(false);
             this.panelMain.PerformLayout();
             this.ResumeLayout(false);
@@ -306,6 +314,7 @@
         private System.Windows.Forms.TextBox textConsole;
         private Terminal terminal1;
         private Rssi rssi1;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
     }
 }
 
