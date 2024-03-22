@@ -123,7 +123,7 @@
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="Progressbar.Location" type="System.Drawing.Point, System.Drawing">
-    <value>894, 292</value>
+    <value>878, 668</value>
   </data>
   <data name="Progressbar.Size" type="System.Drawing.Size, System.Drawing">
     <value>240, 26</value>
@@ -194,10 +194,10 @@ red LED solid - in firmware update mode</value>
     <value>NoControl</value>
   </data>
   <data name="RTSCTS.Location" type="System.Drawing.Point, System.Drawing">
-    <value>109, 69</value>
+    <value>109, 67</value>
   </data>
   <data name="RTSCTS.Size" type="System.Drawing.Size, System.Drawing">
-    <value>155, 28</value>
+    <value>155, 26</value>
   </data>
   <data name="RTSCTS.TabIndex" type="System.Int32, mscorlib">
     <value>96</value>
@@ -251,7 +251,7 @@ red LED solid - in firmware update mode</value>
     <value>435000</value>
   </data>
   <data name="MAX_FREQ.Location" type="System.Drawing.Point, System.Drawing">
-    <value>109, 63</value>
+    <value>109, 67</value>
   </data>
   <data name="MAX_FREQ.Size" type="System.Drawing.Size, System.Drawing">
     <value>153, 21</value>
@@ -338,7 +338,7 @@ red LED solid - in firmware update mode</value>
     <value>50</value>
   </data>
   <data name="NUM_CHANNELS.Location" type="System.Drawing.Point, System.Drawing">
-    <value>109, 93</value>
+    <value>109, 99</value>
   </data>
   <data name="NUM_CHANNELS.Size" type="System.Drawing.Size, System.Drawing">
     <value>153, 21</value>
@@ -389,7 +389,7 @@ red LED solid - in firmware update mode</value>
     <value>250</value>
   </data>
   <data name="LBT_RSSI.Location" type="System.Drawing.Point, System.Drawing">
-    <value>374, 93</value>
+    <value>374, 99</value>
   </data>
   <data name="LBT_RSSI.Size" type="System.Drawing.Size, System.Drawing">
     <value>153, 21</value>
@@ -419,7 +419,7 @@ red LED solid - in firmware update mode</value>
     <value>False</value>
   </data>
   <data name="MIN_FREQ.Location" type="System.Drawing.Point, System.Drawing">
-    <value>109, 33</value>
+    <value>109, 35</value>
   </data>
   <data name="MIN_FREQ.Size" type="System.Drawing.Size, System.Drawing">
     <value>153, 21</value>
@@ -479,7 +479,7 @@ red LED solid - in firmware update mode</value>
     <value>100</value>
   </data>
   <data name="DUTY_CYCLE.Location" type="System.Drawing.Point, System.Drawing">
-    <value>109, 123</value>
+    <value>109, 131</value>
   </data>
   <data name="DUTY_CYCLE.Size" type="System.Drawing.Size, System.Drawing">
     <value>153, 21</value>
@@ -509,7 +509,7 @@ red LED solid - in firmware update mode</value>
     <value>NoControl</value>
   </data>
   <data name="GPO1_1R_COUT.Location" type="System.Drawing.Point, System.Drawing">
-    <value>391, 24</value>
+    <value>401, 197</value>
   </data>
   <data name="GPO1_1R_COUT.Size" type="System.Drawing.Size, System.Drawing">
     <value>23, 20</value>
@@ -530,7 +530,7 @@ red LED solid - in firmware update mode</value>
     <value>groupGPIO</value>
   </data>
   <data name="&gt;&gt;GPO1_1R_COUT.ZOrder" xml:space="preserve">
-    <value>13</value>
+    <value>14</value>
   </data>
   <data name="GPI1_1R_CIN.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -539,7 +539,7 @@ red LED solid - in firmware update mode</value>
     <value>NoControl</value>
   </data>
   <data name="GPI1_1R_CIN.Location" type="System.Drawing.Point, System.Drawing">
-    <value>146, 23</value>
+    <value>156, 196</value>
   </data>
   <data name="GPI1_1R_CIN.Size" type="System.Drawing.Size, System.Drawing">
     <value>23, 20</value>
@@ -560,7 +560,7 @@ red LED solid - in firmware update mode</value>
     <value>groupGPIO</value>
   </data>
   <data name="&gt;&gt;GPI1_1R_CIN.ZOrder" xml:space="preserve">
-    <value>12</value>
+    <value>13</value>
   </data>
   <data name="MAVLINK.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -569,7 +569,7 @@ red LED solid - in firmware update mode</value>
     <value>False</value>
   </data>
   <data name="MAVLINK.Location" type="System.Drawing.Point, System.Drawing">
-    <value>374, 153</value>
+    <value>374, 163</value>
   </data>
   <data name="MAVLINK.Size" type="System.Drawing.Size, System.Drawing">
     <value>153, 21</value>
@@ -696,7 +696,7 @@ red LED solid - in firmware update mode</value>
     <value>2</value>
   </data>
   <data name="AIR_SPEED.Location" type="System.Drawing.Point, System.Drawing">
-    <value>109, 183</value>
+    <value>109, 195</value>
   </data>
   <data name="AIR_SPEED.Size" type="System.Drawing.Size, System.Drawing">
     <value>153, 21</value>
@@ -816,7 +816,7 @@ red LED solid - in firmware update mode</value>
     <value>30</value>
   </data>
   <data name="NETID.Location" type="System.Drawing.Point, System.Drawing">
-    <value>374, 63</value>
+    <value>374, 67</value>
   </data>
   <data name="NETID.Size" type="System.Drawing.Size, System.Drawing">
     <value>153, 21</value>
@@ -870,7 +870,7 @@ red LED solid - in firmware update mode</value>
     <value>20</value>
   </data>
   <data name="TXPOWER.Location" type="System.Drawing.Point, System.Drawing">
-    <value>109, 153</value>
+    <value>109, 163</value>
   </data>
   <data name="TXPOWER.Size" type="System.Drawing.Size, System.Drawing">
     <value>153, 21</value>
@@ -904,10 +904,10 @@ red LED solid - in firmware update mode</value>
     <value>NoControl</value>
   </data>
   <data name="OPPRESEND.Location" type="System.Drawing.Point, System.Drawing">
-    <value>374, 213</value>
+    <value>374, 227</value>
   </data>
   <data name="OPPRESEND.Size" type="System.Drawing.Size, System.Drawing">
-    <value>153, 24</value>
+    <value>153, 26</value>
   </data>
   <data name="OPPRESEND.TabIndex" type="System.Int32, mscorlib">
     <value>124</value>
@@ -1055,7 +1055,7 @@ red LED solid - in firmware update mode</value>
     <value>False</value>
   </data>
   <data name="FSFRAMELOSS.Location" type="System.Drawing.Point, System.Drawing">
-    <value>146, 196</value>
+    <value>156, 369</value>
   </data>
   <data name="FSFRAMELOSS.Size" type="System.Drawing.Size, System.Drawing">
     <value>95, 21</value>
@@ -1076,13 +1076,13 @@ red LED solid - in firmware update mode</value>
     <value>groupGPIO</value>
   </data>
   <data name="&gt;&gt;FSFRAMELOSS.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>6</value>
   </data>
   <data name="FORMAT.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
   </data>
   <data name="FORMAT.Location" type="System.Drawing.Point, System.Drawing">
-    <value>109, 90</value>
+    <value>109, 99</value>
   </data>
   <data name="FORMAT.Size" type="System.Drawing.Size, System.Drawing">
     <value>153, 20</value>
@@ -1106,16 +1106,16 @@ red LED solid - in firmware update mode</value>
     <value>9</value>
   </data>
   <data name="comboSyncMode.Items" xml:space="preserve">
-    <value>Auto</value>
+    <value>Required</value>
   </data>
   <data name="comboSyncMode.Items1" xml:space="preserve">
-    <value>Required Only</value>
+    <value>Auto</value>
   </data>
   <data name="comboSyncMode.Items2" xml:space="preserve">
     <value>Off</value>
   </data>
   <data name="comboSyncMode.Location" type="System.Drawing.Point, System.Drawing">
-    <value>948, 204</value>
+    <value>911, 708</value>
   </data>
   <data name="comboSyncMode.MaxDropDownItems" type="System.Int32, mscorlib">
     <value>3</value>
@@ -1175,7 +1175,7 @@ red LED solid - in firmware update mode</value>
     <value>1</value>
   </data>
   <data name="AUXSER_SPEED.Location" type="System.Drawing.Point, System.Drawing">
-    <value>109, 36</value>
+    <value>109, 35</value>
   </data>
   <data name="AUXSER_SPEED.Size" type="System.Drawing.Size, System.Drawing">
     <value>155, 21</value>
@@ -1206,7 +1206,7 @@ red LED solid - in firmware update mode</value>
     <value>False</value>
   </data>
   <data name="AIR_FRAMELEN.Location" type="System.Drawing.Point, System.Drawing">
-    <value>374, 183</value>
+    <value>374, 195</value>
   </data>
   <data name="AIR_FRAMELEN.Size" type="System.Drawing.Size, System.Drawing">
     <value>153, 21</value>
@@ -1239,10 +1239,10 @@ red LED solid - in firmware update mode</value>
     <value>NoControl</value>
   </data>
   <data name="RSSI_IN_DBM.Location" type="System.Drawing.Point, System.Drawing">
-    <value>109, 213</value>
+    <value>109, 227</value>
   </data>
   <data name="RSSI_IN_DBM.Size" type="System.Drawing.Size, System.Drawing">
-    <value>153, 24</value>
+    <value>153, 26</value>
   </data>
   <data name="RSSI_IN_DBM.TabIndex" type="System.Int32, mscorlib">
     <value>165</value>
@@ -1269,7 +1269,7 @@ red LED solid - in firmware update mode</value>
     <value>NoControl</value>
   </data>
   <data name="BUT_SetPPMFailSafe.Location" type="System.Drawing.Point, System.Drawing">
-    <value>425, 191</value>
+    <value>435, 364</value>
   </data>
   <data name="BUT_SetPPMFailSafe.Size" type="System.Drawing.Size, System.Drawing">
     <value>100, 30</value>
@@ -1293,7 +1293,7 @@ red LED solid - in firmware update mode</value>
     <value>groupGPIO</value>
   </data>
   <data name="&gt;&gt;BUT_SetPPMFailSafe.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>5</value>
   </data>
   <data name="btn_LoadSetting.Location" type="System.Drawing.Point, System.Drawing">
     <value>3, 3</value>
@@ -1328,36 +1328,30 @@ red LED solid - in firmware update mode</value>
   <data name="&gt;&gt;btn_LoadSetting.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="tableLayoutPanel2.ColumnCount" type="System.Int32, mscorlib">
-    <value>4</value>
+  <data name="RSSI.Location" type="System.Drawing.Point, System.Drawing">
+    <value>109, 259</value>
   </data>
-  <data name="ANT_MODE.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
+  <data name="RSSI.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 20</value>
   </data>
-  <data name="ANT_MODE.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
+  <data name="RSSI.TabIndex" type="System.Int32, mscorlib">
+    <value>149</value>
   </data>
-  <data name="ANT_MODE.Location" type="System.Drawing.Point, System.Drawing">
-    <value>374, 33</value>
+  <data name="&gt;&gt;RSSI.Name" xml:space="preserve">
+    <value>RSSI</value>
   </data>
-  <data name="ANT_MODE.Size" type="System.Drawing.Size, System.Drawing">
-    <value>153, 21</value>
+  <data name="&gt;&gt;RSSI.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="ANT_MODE.TabIndex" type="System.Int32, mscorlib">
-    <value>109</value>
-  </data>
-  <data name="&gt;&gt;ANT_MODE.Name" xml:space="preserve">
-    <value>ANT_MODE</value>
-  </data>
-  <data name="&gt;&gt;ANT_MODE.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;ANT_MODE.Parent" xml:space="preserve">
+  <data name="&gt;&gt;RSSI.Parent" xml:space="preserve">
     <value>tableLayoutPanel2</value>
   </data>
-  <data name="&gt;&gt;ANT_MODE.ZOrder" xml:space="preserve">
-    <value>0</value>
+  <data name="&gt;&gt;RSSI.ZOrder" xml:space="preserve">
+    <value>6</value>
   </data>
+  <metadata name="configManagerBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>308, 17</value>
+  </metadata>
   <data name="MAX_WINDOW.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
   </data>
@@ -1458,7 +1452,7 @@ red LED solid - in firmware update mode</value>
     <value>30</value>
   </data>
   <data name="MAX_WINDOW.Location" type="System.Drawing.Point, System.Drawing">
-    <value>374, 123</value>
+    <value>374, 131</value>
   </data>
   <data name="MAX_WINDOW.Size" type="System.Drawing.Size, System.Drawing">
     <value>153, 21</value>
@@ -1478,137 +1472,59 @@ red LED solid - in firmware update mode</value>
   <data name="&gt;&gt;MAX_WINDOW.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
-  <data name="label14.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
+  <data name="GPO1_3STATLED.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
-  <data name="label14.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+  <data name="GPO1_3STATLED.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="label14.Location" type="System.Drawing.Point, System.Drawing">
-    <value>268, 180</value>
+  <data name="GPO1_3STATLED.Location" type="System.Drawing.Point, System.Drawing">
+    <value>156, 323</value>
   </data>
-  <data name="label14.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 30</value>
+  <data name="GPO1_3STATLED.Size" type="System.Drawing.Size, System.Drawing">
+    <value>23, 20</value>
   </data>
-  <data name="label14.TabIndex" type="System.Int32, mscorlib">
-    <value>147</value>
+  <data name="GPO1_3STATLED.TabIndex" type="System.Int32, mscorlib">
+    <value>151</value>
   </data>
-  <data name="label14.Text" xml:space="preserve">
-    <value>Air Frame Length</value>
+  <data name="&gt;&gt;GPO1_3STATLED.Name" xml:space="preserve">
+    <value>GPO1_3STATLED</value>
   </data>
-  <data name="label14.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleLeft</value>
+  <data name="&gt;&gt;GPO1_3STATLED.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;label14.Name" xml:space="preserve">
-    <value>label14</value>
+  <data name="&gt;&gt;GPO1_3STATLED.Parent" xml:space="preserve">
+    <value>groupGPIO</value>
   </data>
-  <data name="&gt;&gt;label14.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;GPO1_3STATLED.ZOrder" xml:space="preserve">
+    <value>25</value>
   </data>
-  <data name="&gt;&gt;label14.Parent" xml:space="preserve">
-    <value>tableLayoutPanel2</value>
+  <data name="GPO1_0TXEN485.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
-  <data name="&gt;&gt;label14.ZOrder" xml:space="preserve">
-    <value>7</value>
-  </data>
-  <data name="label45.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="label45.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+  <data name="GPO1_0TXEN485.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="label45.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 0</value>
+  <data name="GPO1_0TXEN485.Location" type="System.Drawing.Point, System.Drawing">
+    <value>156, 297</value>
   </data>
-  <data name="label45.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 30</value>
+  <data name="GPO1_0TXEN485.Size" type="System.Drawing.Size, System.Drawing">
+    <value>23, 20</value>
   </data>
-  <data name="label45.TabIndex" type="System.Int32, mscorlib">
-    <value>146</value>
+  <data name="GPO1_0TXEN485.TabIndex" type="System.Int32, mscorlib">
+    <value>153</value>
   </data>
-  <data name="label45.Text" xml:space="preserve">
-    <value>Rate/FreqBand</value>
+  <data name="&gt;&gt;GPO1_0TXEN485.Name" xml:space="preserve">
+    <value>GPO1_0TXEN485</value>
   </data>
-  <data name="label45.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleLeft</value>
+  <data name="&gt;&gt;GPO1_0TXEN485.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;label45.Name" xml:space="preserve">
-    <value>label45</value>
+  <data name="&gt;&gt;GPO1_0TXEN485.Parent" xml:space="preserve">
+    <value>groupGPIO</value>
   </data>
-  <data name="&gt;&gt;label45.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label45.Parent" xml:space="preserve">
-    <value>tableLayoutPanel2</value>
-  </data>
-  <data name="&gt;&gt;label45.ZOrder" xml:space="preserve">
-    <value>9</value>
-  </data>
-  <data name="lblMAVLINK.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="lblMAVLINK.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="lblMAVLINK.Location" type="System.Drawing.Point, System.Drawing">
-    <value>268, 150</value>
-  </data>
-  <data name="lblMAVLINK.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 30</value>
-  </data>
-  <data name="lblMAVLINK.TabIndex" type="System.Int32, mscorlib">
-    <value>123</value>
-  </data>
-  <data name="lblMAVLINK.Text" xml:space="preserve">
-    <value>Mavlink</value>
-  </data>
-  <data name="lblMAVLINK.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleLeft</value>
-  </data>
-  <data name="&gt;&gt;lblMAVLINK.Name" xml:space="preserve">
-    <value>lblMAVLINK</value>
-  </data>
-  <data name="&gt;&gt;lblMAVLINK.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblMAVLINK.Parent" xml:space="preserve">
-    <value>tableLayoutPanel2</value>
-  </data>
-  <data name="&gt;&gt;lblMAVLINK.ZOrder" xml:space="preserve">
-    <value>11</value>
-  </data>
-  <data name="lblOPPRESEND.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="lblOPPRESEND.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="lblOPPRESEND.Location" type="System.Drawing.Point, System.Drawing">
-    <value>268, 210</value>
-  </data>
-  <data name="lblOPPRESEND.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 30</value>
-  </data>
-  <data name="lblOPPRESEND.TabIndex" type="System.Int32, mscorlib">
-    <value>125</value>
-  </data>
-  <data name="lblOPPRESEND.Text" xml:space="preserve">
-    <value>Op Resend</value>
-  </data>
-  <data name="lblOPPRESEND.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleLeft</value>
-  </data>
-  <data name="&gt;&gt;lblOPPRESEND.Name" xml:space="preserve">
-    <value>lblOPPRESEND</value>
-  </data>
-  <data name="&gt;&gt;lblOPPRESEND.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblOPPRESEND.Parent" xml:space="preserve">
-    <value>tableLayoutPanel2</value>
-  </data>
-  <data name="&gt;&gt;lblOPPRESEND.ZOrder" xml:space="preserve">
-    <value>12</value>
+  <data name="&gt;&gt;GPO1_0TXEN485.ZOrder" xml:space="preserve">
+    <value>20</value>
   </data>
   <data name="label12.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -1617,10 +1533,10 @@ red LED solid - in firmware update mode</value>
     <value>NoControl</value>
   </data>
   <data name="label12.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 240</value>
+    <value>3, 256</value>
   </data>
   <data name="label12.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 35</value>
+    <value>100, 32</value>
   </data>
   <data name="label12.TabIndex" type="System.Int32, mscorlib">
     <value>37</value>
@@ -1642,501 +1558,6 @@ red LED solid - in firmware update mode</value>
   </data>
   <data name="&gt;&gt;label12.ZOrder" xml:space="preserve">
     <value>13</value>
-  </data>
-  <data name="lblMIN_FREQ.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="lblMIN_FREQ.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="lblMIN_FREQ.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 30</value>
-  </data>
-  <data name="lblMIN_FREQ.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 30</value>
-  </data>
-  <data name="lblMIN_FREQ.TabIndex" type="System.Int32, mscorlib">
-    <value>87</value>
-  </data>
-  <data name="lblMIN_FREQ.Text" xml:space="preserve">
-    <value>Min Freq</value>
-  </data>
-  <data name="lblMIN_FREQ.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleLeft</value>
-  </data>
-  <data name="&gt;&gt;lblMIN_FREQ.Name" xml:space="preserve">
-    <value>lblMIN_FREQ</value>
-  </data>
-  <data name="&gt;&gt;lblMIN_FREQ.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblMIN_FREQ.Parent" xml:space="preserve">
-    <value>tableLayoutPanel2</value>
-  </data>
-  <data name="&gt;&gt;lblMIN_FREQ.ZOrder" xml:space="preserve">
-    <value>14</value>
-  </data>
-  <data name="lblMAX_FREQ.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="lblMAX_FREQ.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="lblMAX_FREQ.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 60</value>
-  </data>
-  <data name="lblMAX_FREQ.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 30</value>
-  </data>
-  <data name="lblMAX_FREQ.TabIndex" type="System.Int32, mscorlib">
-    <value>88</value>
-  </data>
-  <data name="lblMAX_FREQ.Text" xml:space="preserve">
-    <value>Max Freq</value>
-  </data>
-  <data name="lblMAX_FREQ.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleLeft</value>
-  </data>
-  <data name="&gt;&gt;lblMAX_FREQ.Name" xml:space="preserve">
-    <value>lblMAX_FREQ</value>
-  </data>
-  <data name="&gt;&gt;lblMAX_FREQ.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblMAX_FREQ.Parent" xml:space="preserve">
-    <value>tableLayoutPanel2</value>
-  </data>
-  <data name="&gt;&gt;lblMAX_FREQ.ZOrder" xml:space="preserve">
-    <value>15</value>
-  </data>
-  <data name="label15.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="label15.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="label15.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 210</value>
-  </data>
-  <data name="label15.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 30</value>
-  </data>
-  <data name="label15.TabIndex" type="System.Int32, mscorlib">
-    <value>149</value>
-  </data>
-  <data name="label15.Text" xml:space="preserve">
-    <value>RSSI in dBm</value>
-  </data>
-  <data name="label15.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleLeft</value>
-  </data>
-  <data name="&gt;&gt;label15.Name" xml:space="preserve">
-    <value>label15</value>
-  </data>
-  <data name="&gt;&gt;label15.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label15.Parent" xml:space="preserve">
-    <value>tableLayoutPanel2</value>
-  </data>
-  <data name="&gt;&gt;label15.ZOrder" xml:space="preserve">
-    <value>16</value>
-  </data>
-  <data name="lblMAX_WINDOW.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="lblMAX_WINDOW.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="lblMAX_WINDOW.Location" type="System.Drawing.Point, System.Drawing">
-    <value>268, 120</value>
-  </data>
-  <data name="lblMAX_WINDOW.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 30</value>
-  </data>
-  <data name="lblMAX_WINDOW.TabIndex" type="System.Int32, mscorlib">
-    <value>93</value>
-  </data>
-  <data name="lblMAX_WINDOW.Text" xml:space="preserve">
-    <value>Max Window (ms)</value>
-  </data>
-  <data name="lblMAX_WINDOW.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleLeft</value>
-  </data>
-  <data name="&gt;&gt;lblMAX_WINDOW.Name" xml:space="preserve">
-    <value>lblMAX_WINDOW</value>
-  </data>
-  <data name="&gt;&gt;lblMAX_WINDOW.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblMAX_WINDOW.Parent" xml:space="preserve">
-    <value>tableLayoutPanel2</value>
-  </data>
-  <data name="&gt;&gt;lblMAX_WINDOW.ZOrder" xml:space="preserve">
-    <value>17</value>
-  </data>
-  <data name="lblNUM_CHANNELS.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="lblNUM_CHANNELS.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="lblNUM_CHANNELS.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 90</value>
-  </data>
-  <data name="lblNUM_CHANNELS.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 30</value>
-  </data>
-  <data name="lblNUM_CHANNELS.TabIndex" type="System.Int32, mscorlib">
-    <value>89</value>
-  </data>
-  <data name="lblNUM_CHANNELS.Text" xml:space="preserve">
-    <value># of Channels</value>
-  </data>
-  <data name="lblNUM_CHANNELS.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleLeft</value>
-  </data>
-  <data name="&gt;&gt;lblNUM_CHANNELS.Name" xml:space="preserve">
-    <value>lblNUM_CHANNELS</value>
-  </data>
-  <data name="&gt;&gt;lblNUM_CHANNELS.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblNUM_CHANNELS.Parent" xml:space="preserve">
-    <value>tableLayoutPanel2</value>
-  </data>
-  <data name="&gt;&gt;lblNUM_CHANNELS.ZOrder" xml:space="preserve">
-    <value>18</value>
-  </data>
-  <data name="lblDUTY_CYCLE.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="lblDUTY_CYCLE.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="lblDUTY_CYCLE.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 120</value>
-  </data>
-  <data name="lblDUTY_CYCLE.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 30</value>
-  </data>
-  <data name="lblDUTY_CYCLE.TabIndex" type="System.Int32, mscorlib">
-    <value>90</value>
-  </data>
-  <data name="lblDUTY_CYCLE.Text" xml:space="preserve">
-    <value>Duty Cycle</value>
-  </data>
-  <data name="lblDUTY_CYCLE.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleLeft</value>
-  </data>
-  <data name="&gt;&gt;lblDUTY_CYCLE.Name" xml:space="preserve">
-    <value>lblDUTY_CYCLE</value>
-  </data>
-  <data name="&gt;&gt;lblDUTY_CYCLE.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblDUTY_CYCLE.Parent" xml:space="preserve">
-    <value>tableLayoutPanel2</value>
-  </data>
-  <data name="&gt;&gt;lblDUTY_CYCLE.ZOrder" xml:space="preserve">
-    <value>19</value>
-  </data>
-  <data name="lblLBT_RSSI.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="lblLBT_RSSI.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="lblLBT_RSSI.Location" type="System.Drawing.Point, System.Drawing">
-    <value>268, 90</value>
-  </data>
-  <data name="lblLBT_RSSI.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 30</value>
-  </data>
-  <data name="lblLBT_RSSI.TabIndex" type="System.Int32, mscorlib">
-    <value>91</value>
-  </data>
-  <data name="lblLBT_RSSI.Text" xml:space="preserve">
-    <value>LBT Rssi</value>
-  </data>
-  <data name="lblLBT_RSSI.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleLeft</value>
-  </data>
-  <data name="&gt;&gt;lblLBT_RSSI.Name" xml:space="preserve">
-    <value>lblLBT_RSSI</value>
-  </data>
-  <data name="&gt;&gt;lblLBT_RSSI.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblLBT_RSSI.Parent" xml:space="preserve">
-    <value>tableLayoutPanel2</value>
-  </data>
-  <data name="&gt;&gt;lblLBT_RSSI.ZOrder" xml:space="preserve">
-    <value>20</value>
-  </data>
-  <data name="lblTXPOWER.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="lblTXPOWER.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="lblTXPOWER.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 150</value>
-  </data>
-  <data name="lblTXPOWER.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 30</value>
-  </data>
-  <data name="lblTXPOWER.TabIndex" type="System.Int32, mscorlib">
-    <value>120</value>
-  </data>
-  <data name="lblTXPOWER.Text" xml:space="preserve">
-    <value>Tx Power (dBm)</value>
-  </data>
-  <data name="lblTXPOWER.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleLeft</value>
-  </data>
-  <data name="&gt;&gt;lblTXPOWER.Name" xml:space="preserve">
-    <value>lblTXPOWER</value>
-  </data>
-  <data name="&gt;&gt;lblTXPOWER.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblTXPOWER.Parent" xml:space="preserve">
-    <value>tableLayoutPanel2</value>
-  </data>
-  <data name="&gt;&gt;lblTXPOWER.ZOrder" xml:space="preserve">
-    <value>21</value>
-  </data>
-  <data name="lblNETID.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="lblNETID.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="lblNETID.Location" type="System.Drawing.Point, System.Drawing">
-    <value>268, 60</value>
-  </data>
-  <data name="lblNETID.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 30</value>
-  </data>
-  <data name="lblNETID.TabIndex" type="System.Int32, mscorlib">
-    <value>118</value>
-  </data>
-  <data name="lblNETID.Text" xml:space="preserve">
-    <value>Net ID</value>
-  </data>
-  <data name="lblNETID.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleLeft</value>
-  </data>
-  <data name="&gt;&gt;lblNETID.Name" xml:space="preserve">
-    <value>lblNETID</value>
-  </data>
-  <data name="&gt;&gt;lblNETID.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblNETID.Parent" xml:space="preserve">
-    <value>tableLayoutPanel2</value>
-  </data>
-  <data name="&gt;&gt;lblNETID.ZOrder" xml:space="preserve">
-    <value>22</value>
-  </data>
-  <data name="label3.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="label3.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="label3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 180</value>
-  </data>
-  <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 30</value>
-  </data>
-  <data name="label3.TabIndex" type="System.Int32, mscorlib">
-    <value>116</value>
-  </data>
-  <data name="label3.Text" xml:space="preserve">
-    <value>Air Speed (kbps)</value>
-  </data>
-  <data name="label3.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleLeft</value>
-  </data>
-  <data name="&gt;&gt;label3.Name" xml:space="preserve">
-    <value>label3</value>
-  </data>
-  <data name="&gt;&gt;label3.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label3.Parent" xml:space="preserve">
-    <value>tableLayoutPanel2</value>
-  </data>
-  <data name="&gt;&gt;label3.ZOrder" xml:space="preserve">
-    <value>23</value>
-  </data>
-  <data name="RATE_FREQBAND.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="RATE_FREQBAND.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="RATE_FREQBAND.Location" type="System.Drawing.Point, System.Drawing">
-    <value>109, 3</value>
-  </data>
-  <data name="RATE_FREQBAND.Size" type="System.Drawing.Size, System.Drawing">
-    <value>418, 21</value>
-  </data>
-  <data name="RATE_FREQBAND.TabIndex" type="System.Int32, mscorlib">
-    <value>145</value>
-  </data>
-  <data name="&gt;&gt;RATE_FREQBAND.Name" xml:space="preserve">
-    <value>RATE_FREQBAND</value>
-  </data>
-  <data name="&gt;&gt;RATE_FREQBAND.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;RATE_FREQBAND.Parent" xml:space="preserve">
-    <value>tableLayoutPanel2</value>
-  </data>
-  <data name="&gt;&gt;RATE_FREQBAND.ZOrder" xml:space="preserve">
-    <value>24</value>
-  </data>
-  <data name="lblANT_MODE.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="lblANT_MODE.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="lblANT_MODE.Location" type="System.Drawing.Point, System.Drawing">
-    <value>268, 30</value>
-  </data>
-  <data name="lblANT_MODE.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 30</value>
-  </data>
-  <data name="lblANT_MODE.TabIndex" type="System.Int32, mscorlib">
-    <value>110</value>
-  </data>
-  <data name="lblANT_MODE.Text" xml:space="preserve">
-    <value>Antenna Mode</value>
-  </data>
-  <data name="lblANT_MODE.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleLeft</value>
-  </data>
-  <data name="&gt;&gt;lblANT_MODE.Name" xml:space="preserve">
-    <value>lblANT_MODE</value>
-  </data>
-  <data name="&gt;&gt;lblANT_MODE.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblANT_MODE.Parent" xml:space="preserve">
-    <value>tableLayoutPanel2</value>
-  </data>
-  <data name="&gt;&gt;lblANT_MODE.ZOrder" xml:space="preserve">
-    <value>26</value>
-  </data>
-  <data name="tableLayoutPanel2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 17</value>
-  </data>
-  <data name="tableLayoutPanel2.RowCount" type="System.Int32, mscorlib">
-    <value>9</value>
-  </data>
-  <data name="tableLayoutPanel2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>530, 275</value>
-  </data>
-  <data name="tableLayoutPanel2.TabIndex" type="System.Int32, mscorlib">
-    <value>171</value>
-  </data>
-  <data name="&gt;&gt;tableLayoutPanel2.Name" xml:space="preserve">
-    <value>tableLayoutPanel2</value>
-  </data>
-  <data name="&gt;&gt;tableLayoutPanel2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TableLayoutPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tableLayoutPanel2.Parent" xml:space="preserve">
-    <value>groupRadio</value>
-  </data>
-  <data name="&gt;&gt;tableLayoutPanel2.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="tableLayoutPanel2.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
-    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="ANT_MODE" Row="1" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="NETID" Row="2" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="LBT_RSSI" Row="3" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="MAX_WINDOW" Row="4" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="MAVLINK" Row="5" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="AIR_FRAMELEN" Row="6" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="RSSI" Row="8" RowSpan="1" Column="1" ColumnSpan="3" /&gt;&lt;Control Name="label14" Row="6" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="RSSI_IN_DBM" Row="7" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="label45" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="OPPRESEND" Row="7" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="lblMAVLINK" Row="5" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="lblOPPRESEND" Row="7" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="label12" Row="8" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lblMIN_FREQ" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lblMAX_FREQ" Row="2" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="label15" Row="7" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lblMAX_WINDOW" Row="4" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="lblNUM_CHANNELS" Row="3" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lblDUTY_CYCLE" Row="4" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lblLBT_RSSI" Row="3" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="lblTXPOWER" Row="5" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lblNETID" Row="2" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="label3" Row="6" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="RATE_FREQBAND" Row="0" RowSpan="1" Column="1" ColumnSpan="3" /&gt;&lt;Control Name="MIN_FREQ" Row="1" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lblANT_MODE" Row="1" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="MAX_FREQ" Row="2" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="TXPOWER" Row="5" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="DUTY_CYCLE" Row="4" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="AIR_SPEED" Row="6" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="NUM_CHANNELS" Row="3" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,20,Percent,30,Percent,20,Percent,30" /&gt;&lt;Rows Styles="Percent,11.11111,Percent,11.11111,Percent,11.11111,Percent,11.11111,Percent,11.11111,Percent,11.11111,Percent,11.11111,Percent,11.11111,Percent,11.11111" /&gt;&lt;/TableLayoutSettings&gt;</value>
-  </data>
-  <metadata name="configManagerBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>308, 17</value>
-  </metadata>
-  <data name="RSSI.Location" type="System.Drawing.Point, System.Drawing">
-    <value>109, 243</value>
-  </data>
-  <data name="RSSI.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 20</value>
-  </data>
-  <data name="RSSI.TabIndex" type="System.Int32, mscorlib">
-    <value>149</value>
-  </data>
-  <data name="&gt;&gt;RSSI.Name" xml:space="preserve">
-    <value>RSSI</value>
-  </data>
-  <data name="&gt;&gt;RSSI.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;RSSI.Parent" xml:space="preserve">
-    <value>tableLayoutPanel2</value>
-  </data>
-  <data name="&gt;&gt;RSSI.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <data name="GPO1_3STATLED.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="GPO1_3STATLED.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="GPO1_3STATLED.Location" type="System.Drawing.Point, System.Drawing">
-    <value>146, 150</value>
-  </data>
-  <data name="GPO1_3STATLED.Size" type="System.Drawing.Size, System.Drawing">
-    <value>23, 20</value>
-  </data>
-  <data name="GPO1_3STATLED.TabIndex" type="System.Int32, mscorlib">
-    <value>151</value>
-  </data>
-  <data name="&gt;&gt;GPO1_3STATLED.Name" xml:space="preserve">
-    <value>GPO1_3STATLED</value>
-  </data>
-  <data name="&gt;&gt;GPO1_3STATLED.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;GPO1_3STATLED.Parent" xml:space="preserve">
-    <value>groupGPIO</value>
-  </data>
-  <data name="&gt;&gt;GPO1_3STATLED.ZOrder" xml:space="preserve">
-    <value>24</value>
-  </data>
-  <data name="GPO1_0TXEN485.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="GPO1_0TXEN485.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="GPO1_0TXEN485.Location" type="System.Drawing.Point, System.Drawing">
-    <value>146, 124</value>
-  </data>
-  <data name="GPO1_0TXEN485.Size" type="System.Drawing.Size, System.Drawing">
-    <value>23, 20</value>
-  </data>
-  <data name="GPO1_0TXEN485.TabIndex" type="System.Int32, mscorlib">
-    <value>153</value>
-  </data>
-  <data name="&gt;&gt;GPO1_0TXEN485.Name" xml:space="preserve">
-    <value>GPO1_0TXEN485</value>
-  </data>
-  <data name="&gt;&gt;GPO1_0TXEN485.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;GPO1_0TXEN485.Parent" xml:space="preserve">
-    <value>groupGPIO</value>
-  </data>
-  <data name="&gt;&gt;GPO1_0TXEN485.ZOrder" xml:space="preserve">
-    <value>19</value>
   </data>
   <data name="lbl_status.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -2170,7 +1591,7 @@ this ensures you wont lose radio link</value>
     <value>Fill</value>
   </data>
   <data name="ATI3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>109, 61</value>
+    <value>109, 67</value>
   </data>
   <data name="ATI3.Size" type="System.Drawing.Size, System.Drawing">
     <value>153, 20</value>
@@ -2257,7 +1678,7 @@ this ensures you wont lose radio link</value>
     <value>NoControl</value>
   </data>
   <data name="label54.Location" type="System.Drawing.Point, System.Drawing">
-    <value>10, 199</value>
+    <value>20, 372</value>
   </data>
   <data name="label54.Size" type="System.Drawing.Size, System.Drawing">
     <value>100, 13</value>
@@ -2278,7 +1699,7 @@ this ensures you wont lose radio link</value>
     <value>groupGPIO</value>
   </data>
   <data name="&gt;&gt;label54.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>7</value>
   </data>
   <data name="GPO1_3AUXOUT.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -2287,7 +1708,7 @@ this ensures you wont lose radio link</value>
     <value>NoControl</value>
   </data>
   <data name="GPO1_3AUXOUT.Location" type="System.Drawing.Point, System.Drawing">
-    <value>391, 49</value>
+    <value>401, 222</value>
   </data>
   <data name="GPO1_3AUXOUT.Size" type="System.Drawing.Size, System.Drawing">
     <value>23, 20</value>
@@ -2305,7 +1726,7 @@ this ensures you wont lose radio link</value>
     <value>groupGPIO</value>
   </data>
   <data name="&gt;&gt;GPO1_3AUXOUT.ZOrder" xml:space="preserve">
-    <value>16</value>
+    <value>17</value>
   </data>
   <data name="lblGPO1_3AUXOUT.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -2314,7 +1735,7 @@ this ensures you wont lose radio link</value>
     <value>NoControl</value>
   </data>
   <data name="lblGPO1_3AUXOUT.Location" type="System.Drawing.Point, System.Drawing">
-    <value>289, 52</value>
+    <value>299, 225</value>
   </data>
   <data name="lblGPO1_3AUXOUT.Size" type="System.Drawing.Size, System.Drawing">
     <value>93, 13</value>
@@ -2335,7 +1756,7 @@ this ensures you wont lose radio link</value>
     <value>groupGPIO</value>
   </data>
   <data name="&gt;&gt;lblGPO1_3AUXOUT.ZOrder" xml:space="preserve">
-    <value>18</value>
+    <value>19</value>
   </data>
   <data name="GPI1_2AUXIN.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -2344,7 +1765,7 @@ this ensures you wont lose radio link</value>
     <value>NoControl</value>
   </data>
   <data name="GPI1_2AUXIN.Location" type="System.Drawing.Point, System.Drawing">
-    <value>146, 49</value>
+    <value>156, 222</value>
   </data>
   <data name="GPI1_2AUXIN.Size" type="System.Drawing.Size, System.Drawing">
     <value>23, 20</value>
@@ -2362,7 +1783,7 @@ this ensures you wont lose radio link</value>
     <value>groupGPIO</value>
   </data>
   <data name="&gt;&gt;GPI1_2AUXIN.ZOrder" xml:space="preserve">
-    <value>21</value>
+    <value>22</value>
   </data>
   <data name="lblGPI1_2AUXIN.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -2371,7 +1792,7 @@ this ensures you wont lose radio link</value>
     <value>NoControl</value>
   </data>
   <data name="lblGPI1_2AUXIN.Location" type="System.Drawing.Point, System.Drawing">
-    <value>10, 52</value>
+    <value>20, 225</value>
   </data>
   <data name="lblGPI1_2AUXIN.Size" type="System.Drawing.Size, System.Drawing">
     <value>76, 13</value>
@@ -2392,7 +1813,7 @@ this ensures you wont lose radio link</value>
     <value>groupGPIO</value>
   </data>
   <data name="&gt;&gt;lblGPI1_2AUXIN.ZOrder" xml:space="preserve">
-    <value>23</value>
+    <value>24</value>
   </data>
   <data name="lblGPIO1_1FUNC.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -2401,7 +1822,7 @@ this ensures you wont lose radio link</value>
     <value>NoControl</value>
   </data>
   <data name="lblGPIO1_1FUNC.Location" type="System.Drawing.Point, System.Drawing">
-    <value>289, 127</value>
+    <value>299, 300</value>
   </data>
   <data name="lblGPIO1_1FUNC.Size" type="System.Drawing.Size, System.Drawing">
     <value>80, 13</value>
@@ -2422,13 +1843,13 @@ this ensures you wont lose radio link</value>
     <value>groupGPIO</value>
   </data>
   <data name="&gt;&gt;lblGPIO1_1FUNC.ZOrder" xml:space="preserve">
-    <value>15</value>
+    <value>16</value>
   </data>
   <data name="GPIO1_1FUNC.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
   <data name="GPIO1_1FUNC.Location" type="System.Drawing.Point, System.Drawing">
-    <value>392, 127</value>
+    <value>402, 300</value>
   </data>
   <data name="GPIO1_1FUNC.Size" type="System.Drawing.Size, System.Drawing">
     <value>135, 21</value>
@@ -2446,7 +1867,7 @@ this ensures you wont lose radio link</value>
     <value>groupGPIO</value>
   </data>
   <data name="&gt;&gt;GPIO1_1FUNC.ZOrder" xml:space="preserve">
-    <value>17</value>
+    <value>18</value>
   </data>
   <data name="lblGPO1_0TXEN485.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -2455,7 +1876,7 @@ this ensures you wont lose radio link</value>
     <value>NoControl</value>
   </data>
   <data name="lblGPO1_0TXEN485.Location" type="System.Drawing.Point, System.Drawing">
-    <value>10, 127</value>
+    <value>20, 300</value>
   </data>
   <data name="lblGPO1_0TXEN485.Size" type="System.Drawing.Size, System.Drawing">
     <value>95, 13</value>
@@ -2476,7 +1897,7 @@ this ensures you wont lose radio link</value>
     <value>groupGPIO</value>
   </data>
   <data name="&gt;&gt;lblGPO1_0TXEN485.ZOrder" xml:space="preserve">
-    <value>20</value>
+    <value>21</value>
   </data>
   <data name="lblGPO1_3STATLED.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -2485,7 +1906,7 @@ this ensures you wont lose radio link</value>
     <value>NoControl</value>
   </data>
   <data name="lblGPO1_3STATLED.Location" type="System.Drawing.Point, System.Drawing">
-    <value>10, 153</value>
+    <value>20, 326</value>
   </data>
   <data name="lblGPO1_3STATLED.Size" type="System.Drawing.Size, System.Drawing">
     <value>97, 13</value>
@@ -2506,7 +1927,7 @@ this ensures you wont lose radio link</value>
     <value>groupGPIO</value>
   </data>
   <data name="&gt;&gt;lblGPO1_3STATLED.ZOrder" xml:space="preserve">
-    <value>22</value>
+    <value>23</value>
   </data>
   <data name="label49.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -2518,10 +1939,10 @@ this ensures you wont lose radio link</value>
     <value>NoControl</value>
   </data>
   <data name="label49.Location" type="System.Drawing.Point, System.Drawing">
-    <value>268, 58</value>
+    <value>268, 64</value>
   </data>
   <data name="label49.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 29</value>
+    <value>100, 32</value>
   </data>
   <data name="label49.TabIndex" type="System.Int32, mscorlib">
     <value>148</value>
@@ -2548,13 +1969,13 @@ this ensures you wont lose radio link</value>
     <value>Fill</value>
   </data>
   <data name="txtCountry.Location" type="System.Drawing.Point, System.Drawing">
-    <value>374, 61</value>
+    <value>374, 67</value>
   </data>
   <data name="txtCountry.Multiline" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="txtCountry.Size" type="System.Drawing.Size, System.Drawing">
-    <value>153, 23</value>
+    <value>153, 26</value>
   </data>
   <data name="txtCountry.TabIndex" type="System.Int32, mscorlib">
     <value>147</value>
@@ -2570,6 +1991,60 @@ this ensures you wont lose radio link</value>
   </data>
   <data name="&gt;&gt;txtCountry.ZOrder" xml:space="preserve">
     <value>1</value>
+  </data>
+  <data name="label45.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="label45.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label45.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 0</value>
+  </data>
+  <data name="label45.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 32</value>
+  </data>
+  <data name="label45.TabIndex" type="System.Int32, mscorlib">
+    <value>146</value>
+  </data>
+  <data name="label45.Text" xml:space="preserve">
+    <value>Rate/FreqBand</value>
+  </data>
+  <data name="label45.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="&gt;&gt;label45.Name" xml:space="preserve">
+    <value>label45</value>
+  </data>
+  <data name="&gt;&gt;label45.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label45.Parent" xml:space="preserve">
+    <value>tableLayoutPanel2</value>
+  </data>
+  <data name="&gt;&gt;label45.ZOrder" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <data name="RATE_FREQBAND.Location" type="System.Drawing.Point, System.Drawing">
+    <value>109, 3</value>
+  </data>
+  <data name="RATE_FREQBAND.Size" type="System.Drawing.Size, System.Drawing">
+    <value>121, 21</value>
+  </data>
+  <data name="RATE_FREQBAND.TabIndex" type="System.Int32, mscorlib">
+    <value>166</value>
+  </data>
+  <data name="&gt;&gt;RATE_FREQBAND.Name" xml:space="preserve">
+    <value>RATE_FREQBAND</value>
+  </data>
+  <data name="&gt;&gt;RATE_FREQBAND.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;RATE_FREQBAND.Parent" xml:space="preserve">
+    <value>tableLayoutPanel2</value>
+  </data>
+  <data name="&gt;&gt;RATE_FREQBAND.ZOrder" xml:space="preserve">
+    <value>24</value>
   </data>
   <data name="lblRX_ENCAP_METHOD.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -2818,7 +2293,7 @@ this ensures you wont lose radio link</value>
     <value>NoControl</value>
   </data>
   <data name="lblGPO1_1R_COUT.Location" type="System.Drawing.Point, System.Drawing">
-    <value>289, 27</value>
+    <value>299, 200</value>
   </data>
   <data name="lblGPO1_1R_COUT.Size" type="System.Drawing.Size, System.Drawing">
     <value>91, 13</value>
@@ -2839,7 +2314,7 @@ this ensures you wont lose radio link</value>
     <value>groupGPIO</value>
   </data>
   <data name="&gt;&gt;lblGPO1_1R_COUT.ZOrder" xml:space="preserve">
-    <value>14</value>
+    <value>15</value>
   </data>
   <data name="lblGPI1_1R_CIN.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -2848,7 +2323,7 @@ this ensures you wont lose radio link</value>
     <value>NoControl</value>
   </data>
   <data name="lblGPI1_1R_CIN.Location" type="System.Drawing.Point, System.Drawing">
-    <value>10, 27</value>
+    <value>20, 200</value>
   </data>
   <data name="lblGPI1_1R_CIN.Size" type="System.Drawing.Size, System.Drawing">
     <value>74, 13</value>
@@ -2869,7 +2344,7 @@ this ensures you wont lose radio link</value>
     <value>groupGPIO</value>
   </data>
   <data name="&gt;&gt;lblGPI1_1R_CIN.ZOrder" xml:space="preserve">
-    <value>11</value>
+    <value>12</value>
   </data>
   <data name="label2.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -2881,10 +2356,10 @@ this ensures you wont lose radio link</value>
     <value>NoControl</value>
   </data>
   <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 87</value>
+    <value>3, 96</value>
   </data>
   <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 31</value>
+    <value>100, 32</value>
   </data>
   <data name="label2.TabIndex" type="System.Int32, mscorlib">
     <value>114</value>
@@ -2917,7 +2392,7 @@ this ensures you wont lose radio link</value>
     <value>3, 0</value>
   </data>
   <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 33</value>
+    <value>100, 32</value>
   </data>
   <data name="label1.TabIndex" type="System.Int32, mscorlib">
     <value>112</value>
@@ -2938,6 +2413,231 @@ this ensures you wont lose radio link</value>
     <value>tableLayoutPanel1</value>
   </data>
   <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="label3.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="label3.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 192</value>
+  </data>
+  <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 32</value>
+  </data>
+  <data name="label3.TabIndex" type="System.Int32, mscorlib">
+    <value>116</value>
+  </data>
+  <data name="label3.Text" xml:space="preserve">
+    <value>Air Speed (kbps)</value>
+  </data>
+  <data name="label3.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="&gt;&gt;label3.Name" xml:space="preserve">
+    <value>label3</value>
+  </data>
+  <data name="&gt;&gt;label3.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label3.Parent" xml:space="preserve">
+    <value>tableLayoutPanel2</value>
+  </data>
+  <data name="&gt;&gt;label3.ZOrder" xml:space="preserve">
+    <value>23</value>
+  </data>
+  <data name="lblNETID.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="lblNETID.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lblNETID.Location" type="System.Drawing.Point, System.Drawing">
+    <value>268, 64</value>
+  </data>
+  <data name="lblNETID.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 32</value>
+  </data>
+  <data name="lblNETID.TabIndex" type="System.Int32, mscorlib">
+    <value>118</value>
+  </data>
+  <data name="lblNETID.Text" xml:space="preserve">
+    <value>Net ID</value>
+  </data>
+  <data name="lblNETID.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="&gt;&gt;lblNETID.Name" xml:space="preserve">
+    <value>lblNETID</value>
+  </data>
+  <data name="&gt;&gt;lblNETID.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblNETID.Parent" xml:space="preserve">
+    <value>tableLayoutPanel2</value>
+  </data>
+  <data name="&gt;&gt;lblNETID.ZOrder" xml:space="preserve">
+    <value>22</value>
+  </data>
+  <data name="lblTXPOWER.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="lblTXPOWER.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lblTXPOWER.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 160</value>
+  </data>
+  <data name="lblTXPOWER.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 32</value>
+  </data>
+  <data name="lblTXPOWER.TabIndex" type="System.Int32, mscorlib">
+    <value>120</value>
+  </data>
+  <data name="lblTXPOWER.Text" xml:space="preserve">
+    <value>Tx Power (dBm)</value>
+  </data>
+  <data name="lblTXPOWER.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="&gt;&gt;lblTXPOWER.Name" xml:space="preserve">
+    <value>lblTXPOWER</value>
+  </data>
+  <data name="&gt;&gt;lblTXPOWER.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblTXPOWER.Parent" xml:space="preserve">
+    <value>tableLayoutPanel2</value>
+  </data>
+  <data name="&gt;&gt;lblTXPOWER.ZOrder" xml:space="preserve">
+    <value>21</value>
+  </data>
+  <data name="lblOPPRESEND.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="lblOPPRESEND.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lblOPPRESEND.Location" type="System.Drawing.Point, System.Drawing">
+    <value>268, 224</value>
+  </data>
+  <data name="lblOPPRESEND.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 32</value>
+  </data>
+  <data name="lblOPPRESEND.TabIndex" type="System.Int32, mscorlib">
+    <value>125</value>
+  </data>
+  <data name="lblOPPRESEND.Text" xml:space="preserve">
+    <value>Op Resend</value>
+  </data>
+  <data name="lblOPPRESEND.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="&gt;&gt;lblOPPRESEND.Name" xml:space="preserve">
+    <value>lblOPPRESEND</value>
+  </data>
+  <data name="&gt;&gt;lblOPPRESEND.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblOPPRESEND.Parent" xml:space="preserve">
+    <value>tableLayoutPanel2</value>
+  </data>
+  <data name="&gt;&gt;lblOPPRESEND.ZOrder" xml:space="preserve">
+    <value>12</value>
+  </data>
+  <data name="lblMAVLINK.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="lblMAVLINK.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lblMAVLINK.Location" type="System.Drawing.Point, System.Drawing">
+    <value>268, 160</value>
+  </data>
+  <data name="lblMAVLINK.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 32</value>
+  </data>
+  <data name="lblMAVLINK.TabIndex" type="System.Int32, mscorlib">
+    <value>123</value>
+  </data>
+  <data name="lblMAVLINK.Text" xml:space="preserve">
+    <value>Mavlink</value>
+  </data>
+  <data name="lblMAVLINK.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="&gt;&gt;lblMAVLINK.Name" xml:space="preserve">
+    <value>lblMAVLINK</value>
+  </data>
+  <data name="&gt;&gt;lblMAVLINK.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblMAVLINK.Parent" xml:space="preserve">
+    <value>tableLayoutPanel2</value>
+  </data>
+  <data name="&gt;&gt;lblMAVLINK.ZOrder" xml:space="preserve">
+    <value>11</value>
+  </data>
+  <data name="lblANT_MODE.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="lblANT_MODE.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lblANT_MODE.Location" type="System.Drawing.Point, System.Drawing">
+    <value>268, 32</value>
+  </data>
+  <data name="lblANT_MODE.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 32</value>
+  </data>
+  <data name="lblANT_MODE.TabIndex" type="System.Int32, mscorlib">
+    <value>110</value>
+  </data>
+  <data name="lblANT_MODE.Text" xml:space="preserve">
+    <value>Antenna Mode</value>
+  </data>
+  <data name="lblANT_MODE.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="&gt;&gt;lblANT_MODE.Name" xml:space="preserve">
+    <value>lblANT_MODE</value>
+  </data>
+  <data name="&gt;&gt;lblANT_MODE.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblANT_MODE.Parent" xml:space="preserve">
+    <value>tableLayoutPanel2</value>
+  </data>
+  <data name="&gt;&gt;lblANT_MODE.ZOrder" xml:space="preserve">
+    <value>26</value>
+  </data>
+  <data name="ANT_MODE.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="ANT_MODE.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="ANT_MODE.Location" type="System.Drawing.Point, System.Drawing">
+    <value>374, 35</value>
+  </data>
+  <data name="ANT_MODE.Size" type="System.Drawing.Size, System.Drawing">
+    <value>153, 21</value>
+  </data>
+  <data name="ANT_MODE.TabIndex" type="System.Int32, mscorlib">
+    <value>109</value>
+  </data>
+  <data name="&gt;&gt;ANT_MODE.Name" xml:space="preserve">
+    <value>ANT_MODE</value>
+  </data>
+  <data name="&gt;&gt;ANT_MODE.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;ANT_MODE.Parent" xml:space="preserve">
+    <value>tableLayoutPanel2</value>
+  </data>
+  <data name="&gt;&gt;ANT_MODE.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
   <data name="lblSER_BRK_DETMS.AutoSize" type="System.Boolean, mscorlib">
@@ -3190,7 +2890,7 @@ this ensures you wont lose radio link</value>
     <value>3, 0</value>
   </data>
   <data name="lblENCRYPTION_LEVEL.Size" type="System.Drawing.Size, System.Drawing">
-    <value>126, 30</value>
+    <value>126, 32</value>
   </data>
   <data name="lblENCRYPTION_LEVEL.TabIndex" type="System.Int32, mscorlib">
     <value>100</value>
@@ -3220,10 +2920,10 @@ this ensures you wont lose radio link</value>
     <value>NoControl</value>
   </data>
   <data name="label35.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 30</value>
+    <value>3, 32</value>
   </data>
   <data name="label35.Size" type="System.Drawing.Size, System.Drawing">
-    <value>126, 30</value>
+    <value>126, 32</value>
   </data>
   <data name="label35.TabIndex" type="System.Int32, mscorlib">
     <value>98</value>
@@ -3246,44 +2946,11 @@ this ensures you wont lose radio link</value>
   <data name="&gt;&gt;label35.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
-  <data name="tableLayoutPanel3.ColumnCount" type="System.Int32, mscorlib">
-    <value>4</value>
-  </data>
-  <data name="tableLayoutPanel3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>5, 19</value>
-  </data>
-  <data name="tableLayoutPanel3.RowCount" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="tableLayoutPanel3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>531, 60</value>
-  </data>
-  <data name="tableLayoutPanel3.TabIndex" type="System.Int32, mscorlib">
-    <value>171</value>
-  </data>
-  <data name="&gt;&gt;tableLayoutPanel3.Name" xml:space="preserve">
-    <value>tableLayoutPanel3</value>
-  </data>
-  <data name="&gt;&gt;tableLayoutPanel3.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TableLayoutPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tableLayoutPanel3.Parent" xml:space="preserve">
-    <value>groupBox3</value>
-  </data>
-  <data name="&gt;&gt;tableLayoutPanel3.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="tableLayoutPanel3.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
-    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="AESKEY" Row="1" RowSpan="1" Column="1" ColumnSpan="3" /&gt;&lt;Control Name="lblENCRYPTION_LEVEL" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="label35" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="ENCRYPTION_LEVEL" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,25,Percent,25,Percent,25,Percent,25" /&gt;&lt;Rows Styles="Percent,50,Percent,50,Absolute,20" /&gt;&lt;/TableLayoutSettings&gt;</value>
-  </data>
-  <data name="AESKEY.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
   <data name="AESKEY.Location" type="System.Drawing.Point, System.Drawing">
-    <value>135, 33</value>
+    <value>135, 35</value>
   </data>
   <data name="AESKEY.Size" type="System.Drawing.Size, System.Drawing">
-    <value>393, 20</value>
+    <value>100, 20</value>
   </data>
   <data name="AESKEY.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -3307,10 +2974,10 @@ this ensures you wont lose radio link</value>
     <value>NoControl</value>
   </data>
   <data name="lblRTSCTS.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 66</value>
+    <value>3, 64</value>
   </data>
   <data name="lblRTSCTS.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 34</value>
+    <value>100, 32</value>
   </data>
   <data name="lblRTSCTS.TabIndex" type="System.Int32, mscorlib">
     <value>97</value>
@@ -3333,17 +3000,215 @@ this ensures you wont lose radio link</value>
   <data name="&gt;&gt;lblRTSCTS.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
+  <data name="lblMAX_WINDOW.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="lblMAX_WINDOW.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lblMAX_WINDOW.Location" type="System.Drawing.Point, System.Drawing">
+    <value>268, 128</value>
+  </data>
+  <data name="lblMAX_WINDOW.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 32</value>
+  </data>
+  <data name="lblMAX_WINDOW.TabIndex" type="System.Int32, mscorlib">
+    <value>93</value>
+  </data>
+  <data name="lblMAX_WINDOW.Text" xml:space="preserve">
+    <value>Max Window (ms)</value>
+  </data>
+  <data name="lblMAX_WINDOW.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="&gt;&gt;lblMAX_WINDOW.Name" xml:space="preserve">
+    <value>lblMAX_WINDOW</value>
+  </data>
+  <data name="&gt;&gt;lblMAX_WINDOW.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblMAX_WINDOW.Parent" xml:space="preserve">
+    <value>tableLayoutPanel2</value>
+  </data>
+  <data name="&gt;&gt;lblMAX_WINDOW.ZOrder" xml:space="preserve">
+    <value>17</value>
+  </data>
+  <data name="lblMIN_FREQ.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="lblMIN_FREQ.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lblMIN_FREQ.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 32</value>
+  </data>
+  <data name="lblMIN_FREQ.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 32</value>
+  </data>
+  <data name="lblMIN_FREQ.TabIndex" type="System.Int32, mscorlib">
+    <value>87</value>
+  </data>
+  <data name="lblMIN_FREQ.Text" xml:space="preserve">
+    <value>Min Freq</value>
+  </data>
+  <data name="lblMIN_FREQ.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="&gt;&gt;lblMIN_FREQ.Name" xml:space="preserve">
+    <value>lblMIN_FREQ</value>
+  </data>
+  <data name="&gt;&gt;lblMIN_FREQ.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblMIN_FREQ.Parent" xml:space="preserve">
+    <value>tableLayoutPanel2</value>
+  </data>
+  <data name="&gt;&gt;lblMIN_FREQ.ZOrder" xml:space="preserve">
+    <value>14</value>
+  </data>
+  <data name="lblLBT_RSSI.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="lblLBT_RSSI.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lblLBT_RSSI.Location" type="System.Drawing.Point, System.Drawing">
+    <value>268, 96</value>
+  </data>
+  <data name="lblLBT_RSSI.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 32</value>
+  </data>
+  <data name="lblLBT_RSSI.TabIndex" type="System.Int32, mscorlib">
+    <value>91</value>
+  </data>
+  <data name="lblLBT_RSSI.Text" xml:space="preserve">
+    <value>LBT Rssi</value>
+  </data>
+  <data name="lblLBT_RSSI.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="&gt;&gt;lblLBT_RSSI.Name" xml:space="preserve">
+    <value>lblLBT_RSSI</value>
+  </data>
+  <data name="&gt;&gt;lblLBT_RSSI.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblLBT_RSSI.Parent" xml:space="preserve">
+    <value>tableLayoutPanel2</value>
+  </data>
+  <data name="&gt;&gt;lblLBT_RSSI.ZOrder" xml:space="preserve">
+    <value>20</value>
+  </data>
+  <data name="lblDUTY_CYCLE.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="lblDUTY_CYCLE.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lblDUTY_CYCLE.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 128</value>
+  </data>
+  <data name="lblDUTY_CYCLE.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 32</value>
+  </data>
+  <data name="lblDUTY_CYCLE.TabIndex" type="System.Int32, mscorlib">
+    <value>90</value>
+  </data>
+  <data name="lblDUTY_CYCLE.Text" xml:space="preserve">
+    <value>Duty Cycle</value>
+  </data>
+  <data name="lblDUTY_CYCLE.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="&gt;&gt;lblDUTY_CYCLE.Name" xml:space="preserve">
+    <value>lblDUTY_CYCLE</value>
+  </data>
+  <data name="&gt;&gt;lblDUTY_CYCLE.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblDUTY_CYCLE.Parent" xml:space="preserve">
+    <value>tableLayoutPanel2</value>
+  </data>
+  <data name="&gt;&gt;lblDUTY_CYCLE.ZOrder" xml:space="preserve">
+    <value>19</value>
+  </data>
+  <data name="lblNUM_CHANNELS.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="lblNUM_CHANNELS.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lblNUM_CHANNELS.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 96</value>
+  </data>
+  <data name="lblNUM_CHANNELS.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 32</value>
+  </data>
+  <data name="lblNUM_CHANNELS.TabIndex" type="System.Int32, mscorlib">
+    <value>89</value>
+  </data>
+  <data name="lblNUM_CHANNELS.Text" xml:space="preserve">
+    <value># of Channels</value>
+  </data>
+  <data name="lblNUM_CHANNELS.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="&gt;&gt;lblNUM_CHANNELS.Name" xml:space="preserve">
+    <value>lblNUM_CHANNELS</value>
+  </data>
+  <data name="&gt;&gt;lblNUM_CHANNELS.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblNUM_CHANNELS.Parent" xml:space="preserve">
+    <value>tableLayoutPanel2</value>
+  </data>
+  <data name="&gt;&gt;lblNUM_CHANNELS.ZOrder" xml:space="preserve">
+    <value>18</value>
+  </data>
+  <data name="lblMAX_FREQ.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="lblMAX_FREQ.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lblMAX_FREQ.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 64</value>
+  </data>
+  <data name="lblMAX_FREQ.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 32</value>
+  </data>
+  <data name="lblMAX_FREQ.TabIndex" type="System.Int32, mscorlib">
+    <value>88</value>
+  </data>
+  <data name="lblMAX_FREQ.Text" xml:space="preserve">
+    <value>Max Freq</value>
+  </data>
+  <data name="lblMAX_FREQ.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="&gt;&gt;lblMAX_FREQ.Name" xml:space="preserve">
+    <value>lblMAX_FREQ</value>
+  </data>
+  <data name="&gt;&gt;lblMAX_FREQ.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblMAX_FREQ.Parent" xml:space="preserve">
+    <value>tableLayoutPanel2</value>
+  </data>
+  <data name="&gt;&gt;lblMAX_FREQ.ZOrder" xml:space="preserve">
+    <value>15</value>
+  </data>
   <data name="ATI2.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
   </data>
   <data name="ATI2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>374, 32</value>
+    <value>374, 35</value>
   </data>
   <data name="ATI2.Multiline" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="ATI2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>153, 23</value>
+    <value>153, 26</value>
   </data>
   <data name="ATI2.TabIndex" type="System.Int32, mscorlib">
     <value>80</value>
@@ -3406,7 +3271,7 @@ this ensures you wont lose radio link</value>
     <value>NoControl</value>
   </data>
   <data name="label4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>878, 207</value>
+    <value>841, 711</value>
   </data>
   <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
     <value>64, 13</value>
@@ -3442,7 +3307,7 @@ this ensures you wont lose radio link</value>
     <value>3, 0</value>
   </data>
   <data name="label9.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 29</value>
+    <value>100, 32</value>
   </data>
   <data name="label9.TabIndex" type="System.Int32, mscorlib">
     <value>151</value>
@@ -3475,10 +3340,10 @@ this ensures you wont lose radio link</value>
     <value>NoControl</value>
   </data>
   <data name="label6.Location" type="System.Drawing.Point, System.Drawing">
-    <value>268, 29</value>
+    <value>268, 32</value>
   </data>
   <data name="label6.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 29</value>
+    <value>100, 32</value>
   </data>
   <data name="label6.TabIndex" type="System.Int32, mscorlib">
     <value>149</value>
@@ -3511,10 +3376,10 @@ this ensures you wont lose radio link</value>
     <value>NoControl</value>
   </data>
   <data name="label7.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 58</value>
+    <value>3, 64</value>
   </data>
   <data name="label7.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 29</value>
+    <value>100, 32</value>
   </data>
   <data name="label7.TabIndex" type="System.Int32, mscorlib">
     <value>150</value>
@@ -3544,10 +3409,10 @@ this ensures you wont lose radio link</value>
     <value>NoControl</value>
   </data>
   <data name="label11.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 29</value>
+    <value>3, 32</value>
   </data>
   <data name="label11.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 29</value>
+    <value>100, 32</value>
   </data>
   <data name="label11.TabIndex" type="System.Int32, mscorlib">
     <value>37</value>
@@ -3574,7 +3439,7 @@ this ensures you wont lose radio link</value>
     <value>Fill</value>
   </data>
   <data name="ATI.Location" type="System.Drawing.Point, System.Drawing">
-    <value>109, 32</value>
+    <value>109, 35</value>
   </data>
   <data name="ATI.Size" type="System.Drawing.Size, System.Drawing">
     <value>153, 20</value>
@@ -3628,7 +3493,7 @@ this ensures you wont lose radio link</value>
     <value>4</value>
   </data>
   <data name="tableLayoutDevice.Size" type="System.Drawing.Size, System.Drawing">
-    <value>530, 118</value>
+    <value>530, 128</value>
   </data>
   <data name="tableLayoutDevice.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -3646,13 +3511,13 @@ this ensures you wont lose radio link</value>
     <value>0</value>
   </data>
   <data name="tableLayoutDevice.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
-    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="label9" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="txtCountry" Row="2" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="ATI2" Row="1" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="label49" Row="2" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="label6" Row="1" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="label7" Row="2" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="label11" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="ATI3" Row="2" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="ATI" Row="1" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="FORMAT" Row="3" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="label2" Row="3" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="comboBox1" Row="0" RowSpan="1" Column="1" ColumnSpan="3" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,20,Percent,30,Percent,20,Percent,30" /&gt;&lt;Rows Styles="Percent,25,Percent,25,Percent,25,Percent,25" /&gt;&lt;/TableLayoutSettings&gt;</value>
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="label9" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="txtCountry" Row="2" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="ATI2" Row="1" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="label49" Row="2" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="label6" Row="1" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="label7" Row="2" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="label11" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="ATI3" Row="2" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="ATI" Row="1" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="FORMAT" Row="3" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="label2" Row="3" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="comboBox1" Row="0" RowSpan="1" Column="1" ColumnSpan="3" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,20,Percent,30,Percent,20,Percent,30" /&gt;&lt;Rows Styles="Absolute,32,Absolute,32,Absolute,32,Absolute,32" /&gt;&lt;/TableLayoutSettings&gt;</value>
   </data>
   <data name="groupFirmware.Location" type="System.Drawing.Point, System.Drawing">
     <value>7, 60</value>
   </data>
   <data name="groupFirmware.Size" type="System.Drawing.Size, System.Drawing">
-    <value>542, 143</value>
+    <value>542, 153</value>
   </data>
   <data name="groupFirmware.TabIndex" type="System.Int32, mscorlib">
     <value>89</value>
@@ -3672,11 +3537,107 @@ this ensures you wont lose radio link</value>
   <data name="&gt;&gt;groupFirmware.ZOrder" xml:space="preserve">
     <value>4</value>
   </data>
+  <data name="tableLayoutPanel2.ColumnCount" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="label14.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="label14.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label14.Location" type="System.Drawing.Point, System.Drawing">
+    <value>268, 192</value>
+  </data>
+  <data name="label14.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 32</value>
+  </data>
+  <data name="label14.TabIndex" type="System.Int32, mscorlib">
+    <value>147</value>
+  </data>
+  <data name="label14.Text" xml:space="preserve">
+    <value>Air Frame Length</value>
+  </data>
+  <data name="label14.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="&gt;&gt;label14.Name" xml:space="preserve">
+    <value>label14</value>
+  </data>
+  <data name="&gt;&gt;label14.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label14.Parent" xml:space="preserve">
+    <value>tableLayoutPanel2</value>
+  </data>
+  <data name="&gt;&gt;label14.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="label15.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="label15.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label15.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 224</value>
+  </data>
+  <data name="label15.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 32</value>
+  </data>
+  <data name="label15.TabIndex" type="System.Int32, mscorlib">
+    <value>149</value>
+  </data>
+  <data name="label15.Text" xml:space="preserve">
+    <value>RSSI in dBm</value>
+  </data>
+  <data name="label15.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="&gt;&gt;label15.Name" xml:space="preserve">
+    <value>label15</value>
+  </data>
+  <data name="&gt;&gt;label15.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label15.Parent" xml:space="preserve">
+    <value>tableLayoutPanel2</value>
+  </data>
+  <data name="&gt;&gt;label15.ZOrder" xml:space="preserve">
+    <value>16</value>
+  </data>
+  <data name="tableLayoutPanel2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 17</value>
+  </data>
+  <data name="tableLayoutPanel2.RowCount" type="System.Int32, mscorlib">
+    <value>9</value>
+  </data>
+  <data name="tableLayoutPanel2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>530, 288</value>
+  </data>
+  <data name="tableLayoutPanel2.TabIndex" type="System.Int32, mscorlib">
+    <value>171</value>
+  </data>
+  <data name="&gt;&gt;tableLayoutPanel2.Name" xml:space="preserve">
+    <value>tableLayoutPanel2</value>
+  </data>
+  <data name="&gt;&gt;tableLayoutPanel2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TableLayoutPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tableLayoutPanel2.Parent" xml:space="preserve">
+    <value>groupRadio</value>
+  </data>
+  <data name="&gt;&gt;tableLayoutPanel2.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="tableLayoutPanel2.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="ANT_MODE" Row="1" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="NETID" Row="2" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="LBT_RSSI" Row="3" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="MAX_WINDOW" Row="4" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="MAVLINK" Row="5" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="AIR_FRAMELEN" Row="6" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="RSSI" Row="8" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="label14" Row="6" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="RSSI_IN_DBM" Row="7" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="label45" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="OPPRESEND" Row="7" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="lblMAVLINK" Row="5" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="lblOPPRESEND" Row="7" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="label12" Row="8" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lblMIN_FREQ" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lblMAX_FREQ" Row="2" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="label15" Row="7" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lblMAX_WINDOW" Row="4" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="lblNUM_CHANNELS" Row="3" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lblDUTY_CYCLE" Row="4" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lblLBT_RSSI" Row="3" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="lblTXPOWER" Row="5" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lblNETID" Row="2" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="label3" Row="6" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="RATE_FREQBAND" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="MIN_FREQ" Row="1" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lblANT_MODE" Row="1" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="MAX_FREQ" Row="2" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="TXPOWER" Row="5" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="DUTY_CYCLE" Row="4" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="AIR_SPEED" Row="6" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="NUM_CHANNELS" Row="3" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,20,Percent,30,Percent,20,Percent,30" /&gt;&lt;Rows Styles="Absolute,32,Absolute,32,Absolute,32,Absolute,32,Absolute,32,Absolute,32,Absolute,32,Absolute,32,Absolute,32" /&gt;&lt;/TableLayoutSettings&gt;</value>
+  </data>
   <data name="groupRadio.Location" type="System.Drawing.Point, System.Drawing">
-    <value>7, 209</value>
+    <value>7, 219</value>
   </data>
   <data name="groupRadio.Size" type="System.Drawing.Size, System.Drawing">
-    <value>542, 301</value>
+    <value>542, 313</value>
   </data>
   <data name="groupRadio.TabIndex" type="System.Int32, mscorlib">
     <value>149</value>
@@ -3706,10 +3667,10 @@ this ensures you wont lose radio link</value>
     <value>NoControl</value>
   </data>
   <data name="label5.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 33</value>
+    <value>3, 32</value>
   </data>
   <data name="label5.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 33</value>
+    <value>100, 32</value>
   </data>
   <data name="label5.TabIndex" type="System.Int32, mscorlib">
     <value>114</value>
@@ -3736,10 +3697,10 @@ this ensures you wont lose radio link</value>
     <value>6, 17</value>
   </data>
   <data name="tableLayoutPanel1.RowCount" type="System.Int32, mscorlib">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="tableLayoutPanel1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>267, 100</value>
+    <value>267, 128</value>
   </data>
   <data name="tableLayoutPanel1.TabIndex" type="System.Int32, mscorlib">
     <value>115</value>
@@ -3757,13 +3718,13 @@ this ensures you wont lose radio link</value>
     <value>0</value>
   </data>
   <data name="tableLayoutPanel1.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
-    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="label1" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="RTSCTS" Row="2" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lblRTSCTS" Row="2" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="AUXSER_SPEED" Row="1" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="label5" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="SERIAL_SPEED" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,40,Percent,60" /&gt;&lt;Rows Styles="Percent,33.33333,Percent,33.33333,Percent,33.33333" /&gt;&lt;/TableLayoutSettings&gt;</value>
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="label1" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="RTSCTS" Row="2" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lblRTSCTS" Row="2" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="AUXSER_SPEED" Row="1" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="label5" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="SERIAL_SPEED" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,40,Percent,60" /&gt;&lt;Rows Styles="Absolute,32,Absolute,32,Absolute,32,Absolute,32" /&gt;&lt;/TableLayoutSettings&gt;</value>
   </data>
   <data name="groupBox1.Location" type="System.Drawing.Point, System.Drawing">
     <value>555, 60</value>
   </data>
   <data name="groupBox1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>279, 143</value>
+    <value>279, 153</value>
   </data>
   <data name="groupBox1.TabIndex" type="System.Int32, mscorlib">
     <value>150</value>
@@ -3807,6 +3768,66 @@ this ensures you wont lose radio link</value>
   <data name="&gt;&gt;groupData.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
+  <data name="tableLayoutPanel4.ColumnCount" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="label16.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label16.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label16.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 50</value>
+  </data>
+  <data name="label16.Size" type="System.Drawing.Size, System.Drawing">
+    <value>80, 13</value>
+  </data>
+  <data name="label16.TabIndex" type="System.Int32, mscorlib">
+    <value>170</value>
+  </data>
+  <data name="label16.Text" xml:space="preserve">
+    <value>GPIO1_1FUNC</value>
+  </data>
+  <data name="&gt;&gt;label16.Name" xml:space="preserve">
+    <value>label16</value>
+  </data>
+  <data name="&gt;&gt;label16.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label16.Parent" xml:space="preserve">
+    <value>tableLayoutPanel4</value>
+  </data>
+  <data name="&gt;&gt;label16.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="tableLayoutPanel4.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 17</value>
+  </data>
+  <data name="tableLayoutPanel4.RowCount" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="tableLayoutPanel4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>267, 100</value>
+  </data>
+  <data name="tableLayoutPanel4.TabIndex" type="System.Int32, mscorlib">
+    <value>169</value>
+  </data>
+  <data name="&gt;&gt;tableLayoutPanel4.Name" xml:space="preserve">
+    <value>tableLayoutPanel4</value>
+  </data>
+  <data name="&gt;&gt;tableLayoutPanel4.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TableLayoutPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tableLayoutPanel4.Parent" xml:space="preserve">
+    <value>groupGPIO</value>
+  </data>
+  <data name="&gt;&gt;tableLayoutPanel4.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="tableLayoutPanel4.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="label16" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,50,Percent,50" /&gt;&lt;Rows Styles="Percent,50,Percent,50" /&gt;&lt;/TableLayoutSettings&gt;</value>
+  </data>
   <data name="GPO1_3SBUSIN.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
@@ -3814,7 +3835,7 @@ this ensures you wont lose radio link</value>
     <value>NoControl</value>
   </data>
   <data name="GPO1_3SBUSIN.Location" type="System.Drawing.Point, System.Drawing">
-    <value>146, 102</value>
+    <value>156, 275</value>
   </data>
   <data name="GPO1_3SBUSIN.Size" type="System.Drawing.Size, System.Drawing">
     <value>23, 20</value>
@@ -3832,7 +3853,7 @@ this ensures you wont lose radio link</value>
     <value>groupGPIO</value>
   </data>
   <data name="&gt;&gt;GPO1_3SBUSIN.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <data name="lblSBUSIN.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -3841,7 +3862,7 @@ this ensures you wont lose radio link</value>
     <value>NoControl</value>
   </data>
   <data name="lblSBUSIN.Location" type="System.Drawing.Point, System.Drawing">
-    <value>10, 105</value>
+    <value>20, 278</value>
   </data>
   <data name="lblSBUSIN.Size" type="System.Drawing.Size, System.Drawing">
     <value>88, 13</value>
@@ -3862,7 +3883,7 @@ this ensures you wont lose radio link</value>
     <value>groupGPIO</value>
   </data>
   <data name="&gt;&gt;lblSBUSIN.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="lblSBUSOUT.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -3871,7 +3892,7 @@ this ensures you wont lose radio link</value>
     <value>NoControl</value>
   </data>
   <data name="lblSBUSOUT.Location" type="System.Drawing.Point, System.Drawing">
-    <value>289, 105</value>
+    <value>299, 278</value>
   </data>
   <data name="lblSBUSOUT.Size" type="System.Drawing.Size, System.Drawing">
     <value>100, 13</value>
@@ -3892,13 +3913,13 @@ this ensures you wont lose radio link</value>
     <value>groupGPIO</value>
   </data>
   <data name="&gt;&gt;lblSBUSOUT.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="GPO1_3SBUSOUT.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
   <data name="GPO1_3SBUSOUT.Location" type="System.Drawing.Point, System.Drawing">
-    <value>392, 102</value>
+    <value>402, 275</value>
   </data>
   <data name="GPO1_3SBUSOUT.Size" type="System.Drawing.Size, System.Drawing">
     <value>135, 21</value>
@@ -3916,7 +3937,7 @@ this ensures you wont lose radio link</value>
     <value>groupGPIO</value>
   </data>
   <data name="&gt;&gt;GPO1_3SBUSOUT.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="GPO1_1SBUSIN.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -3925,7 +3946,7 @@ this ensures you wont lose radio link</value>
     <value>NoControl</value>
   </data>
   <data name="GPO1_1SBUSIN.Location" type="System.Drawing.Point, System.Drawing">
-    <value>146, 75</value>
+    <value>156, 248</value>
   </data>
   <data name="GPO1_1SBUSIN.Size" type="System.Drawing.Size, System.Drawing">
     <value>23, 20</value>
@@ -3943,7 +3964,7 @@ this ensures you wont lose radio link</value>
     <value>groupGPIO</value>
   </data>
   <data name="&gt;&gt;GPO1_1SBUSIN.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>8</value>
   </data>
   <data name="label13.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -3952,7 +3973,7 @@ this ensures you wont lose radio link</value>
     <value>NoControl</value>
   </data>
   <data name="label13.Location" type="System.Drawing.Point, System.Drawing">
-    <value>10, 78</value>
+    <value>20, 251</value>
   </data>
   <data name="label13.Size" type="System.Drawing.Size, System.Drawing">
     <value>88, 13</value>
@@ -3973,7 +3994,7 @@ this ensures you wont lose radio link</value>
     <value>groupGPIO</value>
   </data>
   <data name="&gt;&gt;label13.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>9</value>
   </data>
   <data name="label8.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -3982,7 +4003,7 @@ this ensures you wont lose radio link</value>
     <value>NoControl</value>
   </data>
   <data name="label8.Location" type="System.Drawing.Point, System.Drawing">
-    <value>289, 78</value>
+    <value>299, 251</value>
   </data>
   <data name="label8.Size" type="System.Drawing.Size, System.Drawing">
     <value>100, 13</value>
@@ -4003,13 +4024,13 @@ this ensures you wont lose radio link</value>
     <value>groupGPIO</value>
   </data>
   <data name="&gt;&gt;label8.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>10</value>
   </data>
   <data name="GPO1_1SBUSOUT.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
   <data name="GPO1_1SBUSOUT.Location" type="System.Drawing.Point, System.Drawing">
-    <value>392, 75</value>
+    <value>402, 248</value>
   </data>
   <data name="GPO1_1SBUSOUT.Size" type="System.Drawing.Size, System.Drawing">
     <value>135, 21</value>
@@ -4027,13 +4048,13 @@ this ensures you wont lose radio link</value>
     <value>groupGPIO</value>
   </data>
   <data name="&gt;&gt;GPO1_1SBUSOUT.ZOrder" xml:space="preserve">
-    <value>10</value>
+    <value>11</value>
   </data>
   <data name="groupGPIO.Location" type="System.Drawing.Point, System.Drawing">
-    <value>832, 344</value>
+    <value>555, 219</value>
   </data>
   <data name="groupGPIO.Size" type="System.Drawing.Size, System.Drawing">
-    <value>542, 232</value>
+    <value>542, 408</value>
   </data>
   <data name="groupGPIO.TabIndex" type="System.Int32, mscorlib">
     <value>153</value>
@@ -4053,11 +4074,41 @@ this ensures you wont lose radio link</value>
   <data name="&gt;&gt;groupGPIO.ZOrder" xml:space="preserve">
     <value>7</value>
   </data>
+  <data name="tableLayoutPanel3.ColumnCount" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="tableLayoutPanel3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>5, 19</value>
+  </data>
+  <data name="tableLayoutPanel3.RowCount" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="tableLayoutPanel3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>531, 64</value>
+  </data>
+  <data name="tableLayoutPanel3.TabIndex" type="System.Int32, mscorlib">
+    <value>171</value>
+  </data>
+  <data name="&gt;&gt;tableLayoutPanel3.Name" xml:space="preserve">
+    <value>tableLayoutPanel3</value>
+  </data>
+  <data name="&gt;&gt;tableLayoutPanel3.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TableLayoutPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tableLayoutPanel3.Parent" xml:space="preserve">
+    <value>groupBox3</value>
+  </data>
+  <data name="&gt;&gt;tableLayoutPanel3.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="tableLayoutPanel3.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="AESKEY" Row="1" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lblENCRYPTION_LEVEL" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="label35" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="ENCRYPTION_LEVEL" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,25,Percent,25,Percent,25,Percent,25" /&gt;&lt;Rows Styles="Absolute,32,Absolute,32" /&gt;&lt;/TableLayoutSettings&gt;</value>
+  </data>
   <data name="groupBox3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>7, 516</value>
+    <value>7, 538</value>
   </data>
   <data name="groupBox3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>542, 86</value>
+    <value>542, 89</value>
   </data>
   <data name="groupBox3.TabIndex" type="System.Int32, mscorlib">
     <value>165</value>
@@ -4378,10 +4429,10 @@ this ensures you wont lose radio link</value>
     <value>1</value>
   </data>
   <data name="flowLayoutMain.Location" type="System.Drawing.Point, System.Drawing">
-    <value>7, 629</value>
+    <value>7, 633</value>
   </data>
   <data name="flowLayoutMain.Size" type="System.Drawing.Size, System.Drawing">
-    <value>814, 599</value>
+    <value>814, 262</value>
   </data>
   <data name="flowLayoutMain.TabIndex" type="System.Int32, mscorlib">
     <value>170</value>

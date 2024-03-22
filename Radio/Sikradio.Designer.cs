@@ -139,6 +139,8 @@
             this.label5 = new System.Windows.Forms.Label();
             this.groupData = new System.Windows.Forms.GroupBox();
             this.groupGPIO = new System.Windows.Forms.GroupBox();
+            this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
+            this.label16 = new System.Windows.Forms.Label();
             this.GPO1_3SBUSIN = new System.Windows.Forms.CheckBox();
             this.lblSBUSIN = new System.Windows.Forms.Label();
             this.lblSBUSOUT = new System.Windows.Forms.Label();
@@ -148,6 +150,7 @@
             this.label8 = new System.Windows.Forms.Label();
             this.GPO1_1SBUSOUT = new System.Windows.Forms.ComboBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.BUT_upload = new MissionPlanner.Controls.MyButton();
             this.BUT_Syncoptions = new MissionPlanner.Controls.MyButton();
             this.flowLayoutActions = new System.Windows.Forms.FlowLayoutPanel();
@@ -158,9 +161,8 @@
             this.btn_Firmware = new FontAwesome.Sharp.IconButton();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.flowLayoutMain = new System.Windows.Forms.FlowLayoutPanel();
-            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
-            this.iconButton1 = new FontAwesome.Sharp.IconButton();
             this.btnRandom = new System.Windows.Forms.Button();
+            this.iconButton1 = new FontAwesome.Sharp.IconButton();
             ((System.ComponentModel.ISupportInitialize)(this.configManagerBindingSource)).BeginInit();
             this.groupFirmware.SuspendLayout();
             this.tableLayoutDevice.SuspendLayout();
@@ -171,11 +173,12 @@
             this.tableLayoutPanel1.SuspendLayout();
             this.groupData.SuspendLayout();
             this.groupGPIO.SuspendLayout();
+            this.tableLayoutPanel4.SuspendLayout();
             this.groupBox3.SuspendLayout();
+            this.tableLayoutPanel3.SuspendLayout();
             this.flowLayoutActions.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.flowLayoutMain.SuspendLayout();
-            this.tableLayoutPanel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // Progressbar
@@ -529,11 +532,8 @@
             // 
             // RSSI
             // 
-            this.tableLayoutPanel2.SetColumnSpan(this.RSSI, 3);
-            this.RSSI.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.configManagerBindingSource, "RSSI", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             resources.ApplyResources(this.RSSI, "RSSI");
             this.RSSI.Name = "RSSI";
-            this.RSSI.ReadOnly = true;
             // 
             // configManagerBindingSource
             // 
@@ -685,10 +685,7 @@
             // 
             // RATE_FREQBAND
             // 
-            this.tableLayoutPanel2.SetColumnSpan(this.RATE_FREQBAND, 3);
             resources.ApplyResources(this.RATE_FREQBAND, "RATE_FREQBAND");
-            this.RATE_FREQBAND.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.RATE_FREQBAND.FormattingEnabled = true;
             this.RATE_FREQBAND.Name = "RATE_FREQBAND";
             // 
             // lblRX_ENCAP_METHOD
@@ -856,8 +853,6 @@
             // 
             // AESKEY
             // 
-            this.tableLayoutPanel3.SetColumnSpan(this.AESKEY, 3);
-            this.AESKEY.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.configManagerBindingSource, "AESKEY", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             resources.ApplyResources(this.AESKEY, "AESKEY");
             this.AESKEY.Name = "AESKEY";
             // 
@@ -1099,6 +1094,7 @@
             // groupGPIO
             // 
             this.groupGPIO.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(29)))), ((int)(((byte)(46)))));
+            this.groupGPIO.Controls.Add(this.tableLayoutPanel4);
             this.groupGPIO.Controls.Add(this.GPO1_3SBUSIN);
             this.groupGPIO.Controls.Add(this.lblSBUSIN);
             this.groupGPIO.Controls.Add(this.lblSBUSOUT);
@@ -1128,6 +1124,17 @@
             resources.ApplyResources(this.groupGPIO, "groupGPIO");
             this.groupGPIO.Name = "groupGPIO";
             this.groupGPIO.TabStop = false;
+            // 
+            // tableLayoutPanel4
+            // 
+            resources.ApplyResources(this.tableLayoutPanel4, "tableLayoutPanel4");
+            this.tableLayoutPanel4.Controls.Add(this.label16, 0, 1);
+            this.tableLayoutPanel4.Name = "tableLayoutPanel4";
+            // 
+            // label16
+            // 
+            resources.ApplyResources(this.label16, "label16");
+            this.label16.Name = "label16";
             // 
             // GPO1_3SBUSIN
             // 
@@ -1181,6 +1188,15 @@
             resources.ApplyResources(this.groupBox3, "groupBox3");
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.TabStop = false;
+            // 
+            // tableLayoutPanel3
+            // 
+            resources.ApplyResources(this.tableLayoutPanel3, "tableLayoutPanel3");
+            this.tableLayoutPanel3.Controls.Add(this.AESKEY, 1, 1);
+            this.tableLayoutPanel3.Controls.Add(this.lblENCRYPTION_LEVEL, 0, 0);
+            this.tableLayoutPanel3.Controls.Add(this.label35, 0, 1);
+            this.tableLayoutPanel3.Controls.Add(this.ENCRYPTION_LEVEL, 1, 0);
+            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             // 
             // BUT_upload
             // 
@@ -1287,14 +1303,12 @@
             resources.ApplyResources(this.flowLayoutMain, "flowLayoutMain");
             this.flowLayoutMain.Name = "flowLayoutMain";
             // 
-            // tableLayoutPanel3
+            // btnRandom
             // 
-            resources.ApplyResources(this.tableLayoutPanel3, "tableLayoutPanel3");
-            this.tableLayoutPanel3.Controls.Add(this.AESKEY, 1, 1);
-            this.tableLayoutPanel3.Controls.Add(this.lblENCRYPTION_LEVEL, 0, 0);
-            this.tableLayoutPanel3.Controls.Add(this.label35, 0, 1);
-            this.tableLayoutPanel3.Controls.Add(this.ENCRYPTION_LEVEL, 1, 0);
-            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
+            resources.ApplyResources(this.btnRandom, "btnRandom");
+            this.btnRandom.Name = "btnRandom";
+            this.btnRandom.UseVisualStyleBackColor = true;
+            this.btnRandom.Click += new System.EventHandler(this.btnRandom_Click);
             // 
             // iconButton1
             // 
@@ -1307,13 +1321,6 @@
             this.iconButton1.Name = "iconButton1";
             this.iconButton1.UseVisualStyleBackColor = true;
             this.iconButton1.Click += new System.EventHandler(this.iconButton1_Click);
-            // 
-            // btnRandom
-            // 
-            resources.ApplyResources(this.btnRandom, "btnRandom");
-            this.btnRandom.Name = "btnRandom";
-            this.btnRandom.UseVisualStyleBackColor = true;
-            this.btnRandom.Click += new System.EventHandler(this.btnRandom_Click);
             // 
             // Sikradio
             // 
@@ -1348,13 +1355,15 @@
             this.groupData.PerformLayout();
             this.groupGPIO.ResumeLayout(false);
             this.groupGPIO.PerformLayout();
+            this.tableLayoutPanel4.ResumeLayout(false);
+            this.tableLayoutPanel4.PerformLayout();
             this.groupBox3.ResumeLayout(false);
+            this.tableLayoutPanel3.ResumeLayout(false);
+            this.tableLayoutPanel3.PerformLayout();
             this.flowLayoutActions.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.flowLayoutMain.ResumeLayout(false);
-            this.tableLayoutPanel3.ResumeLayout(false);
-            this.tableLayoutPanel3.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1493,5 +1502,7 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
         private FontAwesome.Sharp.IconButton iconButton1;
         private System.Windows.Forms.Button btnRandom;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
+        private System.Windows.Forms.Label label16;
     }
 }

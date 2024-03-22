@@ -1665,5 +1665,10 @@ red LED solid - in firmware update mode");
         {
 
         }
+
+        private void ENCRYPTION_LEVEL_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
