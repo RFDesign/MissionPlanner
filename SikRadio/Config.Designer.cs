@@ -43,11 +43,11 @@
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.btnConnect = new FontAwesome.Sharp.IconButton();
             this.label2 = new System.Windows.Forms.Label();
             this.CMB_Baudrate = new System.Windows.Forms.ComboBox();
             this.CMB_SerialPort = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.btnConnect = new FontAwesome.Sharp.IconButton();
             this.panelMain = new System.Windows.Forms.Panel();
             this.textConsole = new System.Windows.Forms.TextBox();
             this.sikradio1 = new MissionPlanner.Radio.Sikradio();
@@ -99,6 +99,7 @@
             this.btnConfigPage.IconChar = FontAwesome.Sharp.IconChar.Gear;
             this.btnConfigPage.IconColor = System.Drawing.Color.WhiteSmoke;
             this.btnConfigPage.IconFont = FontAwesome.Sharp.IconFont.Solid;
+            this.btnConfigPage.IconSize = 32;
             this.btnConfigPage.Name = "btnConfigPage";
             this.btnConfigPage.UseVisualStyleBackColor = true;
             this.btnConfigPage.Click += new System.EventHandler(this.btnConfigPage_Click);
@@ -112,6 +113,7 @@
             this.btnTerminal.IconChar = FontAwesome.Sharp.IconChar.Terminal;
             this.btnTerminal.IconColor = System.Drawing.Color.WhiteSmoke;
             this.btnTerminal.IconFont = FontAwesome.Sharp.IconFont.Solid;
+            this.btnTerminal.IconSize = 32;
             this.btnTerminal.Name = "btnTerminal";
             this.btnTerminal.UseVisualStyleBackColor = true;
             this.btnTerminal.Click += new System.EventHandler(this.btnTerminal_Click);
@@ -125,6 +127,7 @@
             this.btnRSSI.IconChar = FontAwesome.Sharp.IconChar.LineChart;
             this.btnRSSI.IconColor = System.Drawing.Color.WhiteSmoke;
             this.btnRSSI.IconFont = FontAwesome.Sharp.IconFont.Solid;
+            this.btnRSSI.IconSize = 32;
             this.btnRSSI.Name = "btnRSSI";
             this.btnRSSI.UseVisualStyleBackColor = true;
             this.btnRSSI.Click += new System.EventHandler(this.btnRSSI_Click);
@@ -137,6 +140,7 @@
             this.btnManufacturer.IconChar = FontAwesome.Sharp.IconChar.Industry;
             this.btnManufacturer.IconColor = System.Drawing.Color.WhiteSmoke;
             this.btnManufacturer.IconFont = FontAwesome.Sharp.IconFont.Solid;
+            this.btnManufacturer.IconSize = 32;
             this.btnManufacturer.Name = "btnManufacturer";
             this.btnManufacturer.UseVisualStyleBackColor = true;
             this.btnManufacturer.Click += new System.EventHandler(this.btnManufacturer_Click);
@@ -164,6 +168,7 @@
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.tableLayoutPanel1);
+            this.groupBox1.Controls.Add(this.btnConnect);
             this.groupBox1.ForeColor = System.Drawing.Color.White;
             resources.ApplyResources(this.groupBox1, "groupBox1");
             this.groupBox1.Name = "groupBox1";
@@ -172,28 +177,11 @@
             // tableLayoutPanel1
             // 
             resources.ApplyResources(this.tableLayoutPanel1, "tableLayoutPanel1");
-            this.tableLayoutPanel1.Controls.Add(this.btnConnect, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.label2, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.CMB_Baudrate, 1, 1);
             this.tableLayoutPanel1.Controls.Add(this.CMB_SerialPort, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.label1, 0, 1);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            // 
-            // btnConnect
-            // 
-            resources.ApplyResources(this.btnConnect, "btnConnect");
-            this.btnConnect.BackColor = System.Drawing.Color.White;
-            this.tableLayoutPanel1.SetColumnSpan(this.btnConnect, 2);
-            this.btnConnect.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnConnect.FlatAppearance.BorderSize = 0;
-            this.btnConnect.ForeColor = System.Drawing.Color.Black;
-            this.btnConnect.IconChar = FontAwesome.Sharp.IconChar.SatelliteDish;
-            this.btnConnect.IconColor = System.Drawing.Color.Black;
-            this.btnConnect.IconFont = FontAwesome.Sharp.IconFont.Solid;
-            this.btnConnect.IconSize = 32;
-            this.btnConnect.Name = "btnConnect";
-            this.btnConnect.UseVisualStyleBackColor = false;
-            this.btnConnect.Click += new System.EventHandler(this.btnConnect_Click_1);
             // 
             // label2
             // 
@@ -232,8 +220,24 @@
             resources.ApplyResources(this.label1, "label1");
             this.label1.Name = "label1";
             // 
+            // btnConnect
+            // 
+            resources.ApplyResources(this.btnConnect, "btnConnect");
+            this.btnConnect.BackColor = System.Drawing.Color.White;
+            this.btnConnect.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnConnect.FlatAppearance.BorderSize = 0;
+            this.btnConnect.ForeColor = System.Drawing.Color.Black;
+            this.btnConnect.IconChar = FontAwesome.Sharp.IconChar.SatelliteDish;
+            this.btnConnect.IconColor = System.Drawing.Color.Black;
+            this.btnConnect.IconFont = FontAwesome.Sharp.IconFont.Solid;
+            this.btnConnect.IconSize = 24;
+            this.btnConnect.Name = "btnConnect";
+            this.btnConnect.UseVisualStyleBackColor = false;
+            this.btnConnect.Click += new System.EventHandler(this.btnConnect_Click_1);
+            // 
             // panelMain
             // 
+            this.panelMain.BackColor = System.Drawing.Color.Transparent;
             this.panelMain.Controls.Add(this.textConsole);
             this.panelMain.Controls.Add(this.sikradio1);
             this.panelMain.Controls.Add(this.terminal1);

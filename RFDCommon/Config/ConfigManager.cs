@@ -80,7 +80,7 @@ namespace RFDCommon
         public string COUNTRY => Current.COUNTRY;
         public bool AES_ENABLED => Current.AES_ENABLED;
         public string RSSI => Current.RSSI;
-        public string FORMAT => Current?.Get<TSetting>("FORMAT")?.GetValueAsString();
+        public string FORMAT => Current?.Get<TSetting>("FORMAT")?.GetValueAsString();        
         #endregion
 
         #region // Full properties for the editable properties     
@@ -458,7 +458,11 @@ namespace RFDCommon
             }
         }
 
-        #endregion        
+        #endregion
+
+        #region Equality
+        public bool FORMAT_Equal => Remote == null ? false : Local.Get<TSetting>("FORMAT") == Remote.Get<TSetting>("FORMAT");
+        #endregion
 
         public RFD900 Modem { get; set; }        
 

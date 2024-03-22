@@ -1695,44 +1695,44 @@ red LED solid - in firmware update mode");
             // Clear current help
             richTextHelp.Clear();
 
+
             StringBuilder rtf = new StringBuilder();
+            await Task.Run(() => {
+                // Append the RTF header and document preamble.
+                rtf.Append(@"{\rtf1\ansi");
 
-            // Append the RTF header and document preamble.
-            rtf.Append(@"{\rtf1\ansi");
-
-            // Define the color table (if you want to use colors).
-            rtf.Append(@"{\colortbl ;\red255\green255\blue255;}"); // Entry 0 is the default; Entry 1 is white.
+                // Define the color table (if you want to use colors).
+                rtf.Append(@"{\colortbl ;\red255\green255\blue255;}"); // Entry 0 is the default; Entry 1 is white.
 
 
-            // Define a font table if you want specific fonts (optional).
-            rtf.Append(@"{\fonttbl {\f0 Microsoft Sans Serif;}}");
+                // Define a font table if you want specific fonts (optional).
+                rtf.Append(@"{\fonttbl {\f0 Microsoft Sans Serif;}}");
 
-            // Start the body group.
-            rtf.Append(@"\pard"); // Reset to default paragraph properties.
-
-            // Get all tooltips, and add then to display help?            
-            foreach (var item in groupBox.Controls[0].Controls)
-            {
-                if (item is Control)
+                // Start the body group.
+                rtf.Append(@"\pard"); // Reset to default paragraph properties.
+                foreach (var item in groupBox.Controls[0].Controls)
                 {
-                    var ic = item as Control;
-                    if (ic == null)
-                        continue;
-                    var toolTip = toolTip1.GetToolTip(ic);
-                    if (string.IsNullOrWhiteSpace(toolTip))
-                        continue;
+                    if (item is Control)
+                    {
+                        var ic = item as Control;
+                        if (ic == null)
+                            continue;
+                        var toolTip = toolTip1.GetToolTip(ic);
+                        if (string.IsNullOrWhiteSpace(toolTip))
+                            continue;
 
-                    // Add the control and tooltip to help?
-                    // Define the heading.
-                    rtf.Append($@"\b\f0\fs24\cf1 {ic.Name}\par"); // Bold, Font Size 24
+                        // Add the control and tooltip to help?
+                        // Define the heading.
+                        rtf.Append($@"\b\f0\fs24\cf1 {ic.Name}\par"); // Bold, Font Size 24
 
-                    // Reset the font and size for normal text and define the paragraph.
-                    rtf.Append($@"\b0\f0\fs16\cf1 {toolTip}.\par\par"); // Not bold, Font 0 (Microsoft Sans Serif), Font Size 16                    
+                        // Reset the font and size for normal text and define the paragraph.
+                        rtf.Append($@"\b0\f0\fs16\cf1 {toolTip}.\par\par"); // Not bold, Font 0 (Microsoft Sans Serif), Font Size 16                    
+                    }
                 }
-            }
-            // Close the RTF control group.
-            rtf.Append(@"}");
-
+                // Close the RTF control group.
+                rtf.Append(@"}");
+            });
+            // Get all tooltips, and add then to display help?            
             richTextHelp.Rtf = rtf.ToString();
         }
 
