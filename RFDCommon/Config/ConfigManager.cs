@@ -564,6 +564,25 @@ namespace RFDCommon
             return false;
         }
 
+        public async Task<bool> RestartModem()
+        {
+            try
+            {
+                if (!_modemComms.IsConnected())
+                    return false;
+
+                // Restart All?
+                _modemComms.DoCommand("RTZ");
+                _modemComms.DoCommand("ATZ");
+                return true;
+            }
+            catch (Exception e)
+            {
+                AddLog(e.Message);
+                return false;
+            }
+        }
+
         private async Task<bool> LoadSettings(bool isLocal)
         {
             var session = _modemComms.GetSession();

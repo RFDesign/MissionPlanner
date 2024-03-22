@@ -25,6 +25,7 @@ using RFDCommon.Radio;
 using System.Runtime.CompilerServices;
 using RFDLib;
 using RFDCommon.RFDLib;
+using System.Threading.Tasks;
 
 namespace MissionPlanner.Radio
 {
@@ -38,6 +39,7 @@ namespace MissionPlanner.Radio
 
         private bool beta;
         private bool _started = false;
+        private GroupBox _helpDisplay = null;
 
         private string firmwarefile = Path.GetTempFileName();
         private Dictionary<Control, bool> _DefaultLocalEnabled = new Dictionary<Control, bool>();
@@ -1317,18 +1319,10 @@ red LED solid - in firmware update mode");
 
         private void txt_aeskey_TextChanged(object sender, EventArgs e)
         {
-            var txt = (TextBox)sender;
 
-            string item = txt.Text;
-            if (!(Regex.IsMatch(item, "^[0-9a-fA-F]+$")))
-            {
-                if(item.Length != 0)
-                    txt.Text = item.Remove(item.Length - 1, 1);
-                txt.SelectionStart = txt.Text.Length;
-            }
         }
 
-        
+
         private void BUT_SetPPMFailSafe_Click(object sender, EventArgs e)
         {
             _configManager.SetPPMFailSafe("AT&R", "AT&W");
@@ -1660,15 +1654,87 @@ red LED solid - in firmware update mode");
         {
             ProgramFirmware(true);
         }
-
-        private void iconButton1_Click(object sender, EventArgs e)
+        
+        private void btnGenerateKey_Click(object sender, EventArgs e)
         {
-
+            _configManager.RandomizeEncryptionKey();
         }
 
-        private void ENCRYPTION_LEVEL_SelectedIndexChanged(object sender, EventArgs e)
+        private async void btnReboot_Click(object sender, EventArgs e)
         {
-
+            // TODO: Do restart?
+            await _configManager.RestartModem();
         }
+
+        private void btn_LoadSetting_Click(object sender, EventArgs e)
+        {
+            _configManager.Load();
+        }
+
+        private async void Control_Clicked_ShowHelp(object sender, EventArgs e)
+        {
+            // Get controls group parent
+            var ctrl = sender as Control;
+            var groupBox = ctrl.Parent?.Parent as GroupBox;
+            if (groupBox == null)
+                return;
+            await DisplayHelp(groupBox);
+        }
+
+        private async Task DisplayHelp(GroupBox groupBox)
+        {
+            if (groupBox == null || groupBox.Controls.Count != 1)
+                return;
+
+            // No need to redraw if its the same
+            if (groupBox == _helpDisplay)
+                return;
+
+            _helpDisplay = groupBox;
+
+            // Clear current help
+            richTextHelp.Clear();
+
+            StringBuilder rtf = new StringBuilder();
+
+            // Append the RTF header and document preamble.
+            rtf.Append(@"{\rtf1\ansi");
+
+            // Define the color table (if you want to use colors).
+            rtf.Append(@"{\colortbl ;\red255\green255\blue255;}"); // Entry 0 is the default; Entry 1 is white.
+
+
+            // Define a font table if you want specific fonts (optional).
+            rtf.Append(@"{\fonttbl {\f0 Microsoft Sans Serif;}}");
+
+            // Start the body group.
+            rtf.Append(@"\pard"); // Reset to default paragraph properties.
+
+            // Get all tooltips, and add then to display help?            
+            foreach (var item in groupBox.Controls[0].Controls)
+            {
+                if (item is Control)
+                {
+                    var ic = item as Control;
+                    if (ic == null)
+                        continue;
+                    var toolTip = toolTip1.GetToolTip(ic);
+                    if (string.IsNullOrWhiteSpace(toolTip))
+                        continue;
+
+                    // Add the control and tooltip to help?
+                    // Define the heading.
+                    rtf.Append($@"\b\f0\fs24\cf1 {ic.Name}\par"); // Bold, Font Size 24
+
+                    // Reset the font and size for normal text and define the paragraph.
+                    rtf.Append($@"\b0\f0\fs16\cf1 {toolTip}.\par\par"); // Not bold, Font 0 (Microsoft Sans Serif), Font Size 16                    
+                }
+            }
+            // Close the RTF control group.
+            rtf.Append(@"}");
+
+            richTextHelp.Rtf = rtf.ToString();
+        }
+
     }
 }

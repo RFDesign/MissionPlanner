@@ -30,8 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Config));
-            this.terminal1 = new SikRadio.Terminal();
-            this.rssi1 = new SikRadio.Rssi();
             this.configManagerBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.modemsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.panel1 = new System.Windows.Forms.Panel();
@@ -52,6 +50,8 @@
             this.panelMain = new System.Windows.Forms.Panel();
             this.textConsole = new System.Windows.Forms.TextBox();
             this.sikradio1 = new MissionPlanner.Radio.Sikradio();
+            this.terminal1 = new SikRadio.Terminal();
+            this.rssi1 = new SikRadio.Rssi();
             ((System.ComponentModel.ISupportInitialize)(this.configManagerBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.modemsBindingSource)).BeginInit();
             this.panel1.SuspendLayout();
@@ -61,16 +61,6 @@
             this.groupBox1.SuspendLayout();
             this.panelMain.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // terminal1
-            // 
-            resources.ApplyResources(this.terminal1, "terminal1");
-            this.terminal1.Name = "terminal1";
-            // 
-            // rssi1
-            // 
-            resources.ApplyResources(this.rssi1, "rssi1");
-            this.rssi1.Name = "rssi1";
             // 
             // configManagerBindingSource
             // 
@@ -255,8 +245,19 @@
             // sikradio1
             // 
             resources.ApplyResources(this.sikradio1, "sikradio1");
+            this.sikradio1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(29)))), ((int)(((byte)(46)))));
             this.sikradio1.ForeColor = System.Drawing.Color.White;
             this.sikradio1.Name = "sikradio1";
+            // 
+            // terminal1
+            // 
+            resources.ApplyResources(this.terminal1, "terminal1");
+            this.terminal1.Name = "terminal1";
+            // 
+            // rssi1
+            // 
+            resources.ApplyResources(this.rssi1, "rssi1");
+            this.rssi1.Name = "rssi1";
             // 
             // Config
             // 
@@ -283,8 +284,6 @@
         }
 
         #endregion
-        private Terminal terminal1;
-        private Rssi rssi1;
         private System.Windows.Forms.BindingSource configManagerBindingSource;
         private System.Windows.Forms.BindingSource modemsBindingSource;
         private System.Windows.Forms.Panel panel1;
@@ -305,6 +304,8 @@
         private System.Windows.Forms.Panel panelMain;
         private MissionPlanner.Radio.Sikradio sikradio1;
         private System.Windows.Forms.TextBox textConsole;
+        private Terminal terminal1;
+        private Rssi rssi1;
     }
 }
 
