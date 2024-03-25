@@ -375,5 +375,10 @@ namespace SikRadio
             //SwitchForms()
         }
 
+        private void textConsole_TextChanged(object sender, EventArgs e)
+        {
+            textConsole.SelectionStart = textConsole.Text.Length;
+            textConsole.ScrollToCaret();
+        }
     }
 }

@@ -70,6 +70,7 @@ namespace MissionPlanner.Radio
         private ConfigManager _configManager;// = new ConfigManager();
         private IModemComms _comms;
 
+
         //MultiPointConfig _multiPointSettings;
         //AsyncConfig _asyncSettings;
 
@@ -198,10 +199,9 @@ S15: MAX_WINDOW=131
             _LocalLabelEditorPairs.Add(lblENCRYPTION_LEVEL, ENCRYPTION_LEVEL, toolTip1);
             _LocalLabelEditorPairs.Add(lblGPO1_0TXEN485, GPO1_0TXEN485, toolTip1);
             _LocalLabelEditorPairs.Add(lblGPIO1_1FUNC, GPIO1_1FUNC, toolTip1);
-                  
+
             //this.Disposed += DisposedEvtHdlr;
 
-            
         }
 
         public void Init(ConfigManager configManager)
@@ -212,6 +212,8 @@ S15: MAX_WINDOW=131
 
             // Set DataBinding source...
             this.configManagerBindingSource.DataSource = _configManager;
+
+            CheckControlStates();
         }
 
         public void Start(IModemComms comms)
@@ -224,7 +226,7 @@ S15: MAX_WINDOW=131
             _comms.ConnectionStateChanged += _comms_ConnectionStateChanged;
                         
             // Have just connected, enable the form?
-            SetEnabled(this.Controls, true, true);
+            //SetEnabled(this.Controls, true, true);
 
             // AutoLoad?
             //_configManager.Load(S);
@@ -234,15 +236,16 @@ S15: MAX_WINDOW=131
         {
             if (_comms.IsConnected())
             {
+                
                 // Just connected... pull config?
                 //await _configManager.Load();
             } 
             else
             {
-
+                
             }
             // Init or De-Init the form?
-
+            CheckControlStates();
         }
 
         public void Stop()
@@ -631,14 +634,7 @@ S15: MAX_WINDOW=131
         {
 
         }
-
-        private async void BUT_savesettings_Click(object sender, EventArgs e)
-        {
-            // Validate the working Settings            
-            await _configManager.Save();
-        }
-
-        
+               
 
         /// <summary>
         /// Return an array of ints in a linear progression, but end is always included as the end.
@@ -1135,16 +1131,41 @@ red LED solid - in firmware update mode");
             }
         }
 
-        //void EnableConfigControls(bool Enable, bool SaveSettingsEnable)
-        //{
-        //    //groupBoxLocal.Enabled = SaveSettingsEnable;
-        //    groupBoxRemote.Enabled = SaveSettingsEnable;
-        //    BUT_Syncoptions.Enabled = Enable;
-        //    BUT_SetPPMFailSafe.Enabled = Enable;
-        //    BUT_getcurrent.Enabled = Enable;
-        //    BUT_savesettings.Enabled = SaveSettingsEnable;
-        //    BUT_resettodefault.Enabled = Enable;
-        //}
+        void CheckControlStates()
+        {
+            //groupData.Enabled = _configManager.DataEnabled;
+            //groupFirmware.Enabled = _configManager.DeviceGroupEnabled;
+            //groupRadio.Enabled = _configManager.RadioEnabled;
+            //groupSerial.Enabled = _configManager.SerialEnabled;
+            //groupSecurity.Enabled = _configManager.SecurityEnabled;
+            //groupGPIO.Enabled = _configManager.PinEnabled;
+            
+            // Apparently the order is important inside a flow layout /sigh
+            groupFirmware.Visible = _configManager.DeviceGroupEnabled;
+            groupSerial.Visible = _configManager.SerialEnabled;
+            groupRadio.Visible = _configManager.RadioEnabled;            
+            groupSecurity.Visible = _configManager.SecurityEnabled;
+            groupGPIO.Visible = _configManager.PinEnabled;
+            groupData.Visible = _configManager.DataEnabled;
+            groupInfo.Visible = _configManager.InfoEnabled;
+
+            SetEnabled(groupFirmware.Controls, _configManager.DeviceGroupEnabled, true);
+            SetEnabled(groupSerial.Controls, _configManager.SerialEnabled, true);
+            SetEnabled(groupRadio.Controls, _configManager.RadioEnabled, true);
+            SetEnabled(groupSecurity.Controls, _configManager.SecurityEnabled, true);
+            SetEnabled(groupGPIO.Controls, _configManager.PinEnabled, true);
+            SetEnabled(groupData.Controls, _configManager.DataEnabled, true);
+            SetEnabled(groupInfo.Controls, _configManager.InfoEnabled, true);
+
+            btn_LoadSetting.Enabled = _configManager.LoadEnabled;
+            btn_SaveSetting.Enabled = _configManager.SaveEnabled;
+            btn_LoadFile.Enabled = _configManager.ImportEnabled;
+            btn_SaveFile.Enabled = _configManager.ExportEnabled;
+            btn_Reset.Enabled = _configManager.ResetEnabled;
+            btn_Firmware.Enabled = _configManager.FirmwareEnabled;
+            btn_Reboot.Enabled = _configManager.ResetEnabled;
+        }
+
         public static void ResetAllControls(Control form)
         {
             {
@@ -1177,23 +1198,7 @@ red LED solid - in firmware update mode");
                     }
                 }
             }
-        }
-
-        
-
-
-        void EnableProgrammingControls(bool Enable)
-        {
-            btn_Firmware.Enabled = Enable;            
-        }
-
-        void DisableRFD900xControls()
-        {
-            GPI1_1R_CIN.Enabled = false;
-            //RGPI1_1R_CIN.Enabled = false;
-            GPO1_1R_COUT.Enabled = false;
-            //RGPO1_1R_COUT.Enabled = false;
-        }
+        }        
 
         private void BUT_loadcustom_Click(object sender, EventArgs e)
         {
@@ -1532,6 +1537,11 @@ red LED solid - in firmware update mode");
             //SaveToFile(_LocalSettings, groupBoxLocal, false);
         }
 
+        private async void btn_SaveSetting_Click(object sender, EventArgs e)
+        {
+            await _configManager.Save();
+        }
+
         /// <summary>
         /// Load settings from file into the GUI.
         /// </summary>
@@ -1607,12 +1617,7 @@ red LED solid - in firmware update mode");
         {
             LoadConfigFromFile();
             //LoadFromFile(_LocalSettings, groupBoxLocal, false);
-        }
-
-        private void btnRemoteSaveToFile_Click(object sender, EventArgs e)
-        {
-            //SaveToFile(_RemoteSettings, groupBoxRemote, true);
-        }
+        }      
 
         public string Header
         {
@@ -1621,13 +1626,7 @@ red LED solid - in firmware update mode");
                 return "Settings";
             }
         }
-
-        private void Sikradio_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        
+                
         private void button1_Click(object sender, EventArgs e)
         {
             _configManager.ANT_MODE = 1;
@@ -1666,9 +1665,54 @@ red LED solid - in firmware update mode");
             await _configManager.RestartModem();
         }
 
-        private void btn_LoadSetting_Click(object sender, EventArgs e)
+        private async void btn_LoadSetting_Click(object sender, EventArgs e)
         {
-            _configManager.Load();
+            _configManager.AddLog("Loading settings...");
+            
+            var loaded = await _configManager.Load();
+            if (!loaded)
+            {
+                ShowMessageBox("An error occured while trying to load settings...", "Load Failed");
+                return;
+            }
+
+            // Setup Control Bindings
+            foreach (var item in _configManager.Local.Settings.Settings)
+            {
+                if (item.Value == null)
+                    continue;
+                var ctrl = this.Controls.Find(item.Key.Replace("/", "_"), true).FirstOrDefault();
+                if (ctrl == null)
+                {
+                    _configManager.AddLog($"Control not found: {item.Key}");
+                    continue;
+                }
+
+                if (!(item.Value is TSetting))
+                {
+                    var ttext = item.Value as TTextSetting;
+                    if (ttext == null)
+                        continue;
+
+                    ctrl.DataBindings.Clear();
+                    ctrl.DataBindings.Add("Text", configManagerBindingSource, ttext.Name, false, DataSourceUpdateMode.OnPropertyChanged);
+                }
+                else if (ctrl is ComboBox)
+                {
+                    BindSettingOptionsToComboBox(item.Value as TSetting, ctrl as ComboBox);
+                }
+                else if (ctrl is TextBox)
+                {
+                    BindSettingToTextBox(item.Value as TSetting, ctrl as TextBox);
+                }
+                else if (ctrl is CheckBox)
+                {
+                    BindSettingToCheckBox(item.Value as TSetting, ctrl as CheckBox);
+                }
+                _configManager.AddLog($"Setting: {item.Key}: {item.Value.GetValueAsString()}");
+            }
+
+            CheckControlStates();                       
         }
 
         private async void Control_Clicked_ShowHelp(object sender, EventArgs e)
@@ -1736,5 +1780,6 @@ red LED solid - in firmware update mode");
             richTextHelp.Rtf = rtf.ToString();
         }
 
+        
     }
 }

@@ -15,6 +15,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Web;
 using System.Windows.Forms;
 
 namespace RFDCommon
@@ -33,7 +34,7 @@ namespace RFDCommon
             get { return _currentModem; }
             set { 
                 _currentModem = value; 
-                OnPropertyChanged(null); 
+                OnPropertyChanged(null);
             }
         }
 
@@ -47,9 +48,11 @@ namespace RFDCommon
 
         public event PropertyChangedEventHandler PropertyChanged;
         public event EventHandler<MessageBoxEventArgs> ShowMessageBox;
+        //public event EventHandler<EventArgs> ConfigLoaded;
+
         
 
-       
+
         // Method to invoke the PropertyChanged event
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
@@ -59,8 +62,31 @@ namespace RFDCommon
         {
             ShowMessageBox?.Invoke(this, new MessageBoxEventArgs(title, text));
         }
-               
-        
+        //protected virtual void ConfigLoadCompleted()
+        //{
+        //    ConfigLoaded?.Invoke(this, null);
+        //}
+
+        #region Button Enabled Properties
+        public bool LoadEnabled => _modemComms.IsConnected();
+        public bool SaveEnabled => _modemComms.IsConnected() && Current?.Settings != null;
+        public bool ImportEnabled => _modemComms.IsConnected() && Current?.Settings != null;
+        public bool ExportEnabled => _modemComms.IsConnected() && Current?.Settings != null;
+        public bool ResetEnabled => _modemComms.IsConnected();
+        public bool FirmwareEnabled => _modemComms.IsConnected();
+        public bool RebootEnabled => _modemComms.IsConnected();
+        #endregion
+
+        #region GroupBox Enabled Properties
+        public bool DeviceGroupEnabled => _modemComms.IsConnected() && Current?.Settings != null;
+        public bool SerialEnabled => _modemComms.IsConnected() && Current?.Settings != null;
+        public bool RadioEnabled => _modemComms.IsConnected() && Current?.Settings != null;
+        public bool SecurityEnabled => _modemComms.IsConnected() && Current?.Settings != null;
+        public bool PinEnabled => _modemComms.IsConnected() && Current?.Settings != null;
+        public bool InfoEnabled => _modemComms.IsConnected() && Current?.Settings != null;
+        public bool DataEnabled => _modemComms.IsConnected() && Current != null && (Current.Mode == FirmwareMode.MULTIPOINT || Current.Mode == FirmwareMode.ASYNC);
+        #endregion
+
 
         public RFDModem Local
         {
@@ -73,14 +99,140 @@ namespace RFDCommon
 
 
         #region // Getters for read only properties
-        public string ATI => Current.ATI;
+        public string ATI => Current?.ATI;
 
-        public string FREQ => Current.FREQ;
-        public string BOARD => Current.BOARD;
-        public string COUNTRY => Current.COUNTRY;
-        public bool AES_ENABLED => Current.AES_ENABLED;
-        public string RSSI => Current.RSSI;
-        public string FORMAT => Current?.Get<TSetting>("FORMAT")?.GetValueAsString();        
+        public string FREQ => Current?.FREQ;
+        public string BOARD => Current?.BOARD;
+        public string COUNTRY => Current?.COUNTRY;
+        public bool AES_ENABLED => Current?.AES_ENABLED ?? false;
+        public string RSSI => Current?.RSSI;
+        public string FORMAT => Current?.Get<TSetting>("FORMAT")?.GetValueAsString();
+        #endregion
+
+        #region Pin Function Abstractions   
+        public class PinFunction
+        {
+            public string Name { get; set; }
+            public string Value { get; set; }
+        }
+
+        private PinFunction[] _pin12Items = {
+            new PinFunction() { Name= "None", Value = ""},
+            new PinFunction() { Name = "AUXOUT", Value = "GPO1_3AUXOUT" },
+            new PinFunction() { Name = "STATLED", Value = "GPO1_3STATLED" } };
+        public PinFunction[] Pin12Items => _pin12Items;
+
+        private PinFunction[] _pin13Items = {
+            new PinFunction() { Name= "None", Value = ""},
+            new PinFunction() { Name = "TXEN485", Value = "GPO1_0TXEN485" }
+        };
+        public PinFunction[] Pin13Items => _pin13Items;
+
+        private PinFunction[] _pin14Items = {
+            new PinFunction() { Name= "None", Value = ""},
+            new PinFunction() { Name = "AUXIN", Value = "GPI1_2AUXIN" }
+        };
+        public PinFunction[] Pin14Items => _pin14Items;
+
+        private PinFunction[] _pin15Items = {
+            new PinFunction() { Name= "None", Value = ""},
+            new PinFunction() { Name = "R/CIN", Value = "GPI1_1R/CIN" },
+            new PinFunction() { Name = "R/COUT", Value = "GPO1_1R/COUT" },
+            new PinFunction() { Name = "SBUSIN", Value = "GPO1_1SBUSIN" },
+            new PinFunction() { Name = "SBUSOUT", Value = "GPO1_1SBUSOUT" },
+        };
+        public PinFunction[] Pin15Items => _pin15Items;
+
+        
+        public string PIN12
+        {            
+            get
+            {
+                return GetPinSetting(_pin12Items);
+            }
+            set
+            {
+                if (value == GetPinSetting(Pin12Items)) return;
+
+                SetPin(Pin12Items, value);
+                //OnPropertyChanged(nameof(PIN12));
+            }
+        }
+
+        public string PIN13
+        {
+            get
+            {
+                return GetPinSetting(_pin13Items);
+            }
+            set
+            {
+                if (value == GetPinSetting(_pin13Items)) return;
+
+                SetPin(Pin13Items, value);
+                //OnPropertyChanged();
+            }
+        }
+                
+        public string PIN14
+        {
+            get
+            {
+                return GetPinSetting(_pin14Items);
+            }
+            set
+            {
+                if (value == GetPinSetting(_pin14Items)) return;
+
+                SetPin(Pin14Items, value);
+                //OnPropertyChanged();
+            }
+        }
+
+        public string PIN15
+        {
+            get
+            {
+                return GetPinSetting(_pin15Items);
+            }
+            set
+            {
+                if (value == GetPinSetting(_pin15Items)) return;
+
+                SetPin(Pin15Items, value);
+                //OnPropertyChanged();
+            }
+        }
+
+        private string GetPinSetting(PinFunction[] settings)
+        {
+            if (Current?.Settings == null)
+                return string.Empty;
+
+            foreach (var item in settings)
+            {
+                // Ignore 'None'
+                if (item.Value == "")
+                    continue;
+                if (Current.Get<TSetting>(item.Value)?.Value == 1)
+                    return item.Value;
+            }
+            return string.Empty;
+        }
+        private void SetPin(PinFunction[] settings, string value)
+        {
+            if (Current?.Settings == null)
+                return;
+
+            foreach (var item in settings)
+            {
+                // Ignore 'None'
+                if (item.Value == "")
+                    continue;
+                // Get Current
+                Current.Get<TSetting>(item.Value).Value = item.Value == value ? 1 : 0;                
+            }            
+        }
         #endregion
 
         #region // Full properties for the editable properties     
@@ -559,7 +711,7 @@ namespace RFDCommon
             {
                 if (!_modemComms.IsConnected())
                     return false;
-                return await Load();                
+                //return await Load();                
             }
             catch (Exception e)
             {
@@ -598,7 +750,8 @@ namespace RFDCommon
             string hexId = _modemComms.DoQueryWithRetry($"{commandPrefix}TI8", false).Trim();
             if (string.IsNullOrWhiteSpace(hexId) || hexId.Contains("ERROR"))
             {
-                AddLog("No device found");
+                string deviceType = isLocal ? "local" : "remote";
+                AddLog($"No {deviceType} device found");
                 return false;
             }
             var deviceId = Convert.ToInt64(hexId, 16);
@@ -838,6 +991,7 @@ namespace RFDCommon
             }
             catch (Exception e)
             {
+                AddLog($"Error loading settings: {e.Message}");
                 return false;                    
             }
             finally
@@ -890,6 +1044,7 @@ namespace RFDCommon
                 if (!valid)
                 {
                     // Early bail on invalid config?
+                    AddLog($"Failed to validate config - save aborted");
                     return false;
                 }
             }
@@ -910,6 +1065,7 @@ namespace RFDCommon
                     if (changes.Settings.Count == 0)
                         continue; // No changes in this modem's config...
 
+                    AddLog($"{changes.Settings.Count} modified settings found.");
                     
                     // Make sure Modem is ready for commands?
                     string response = _modemComms.DoCommand(modem.IsLocal ? "ATI" : "RTI");
@@ -953,7 +1109,7 @@ namespace RFDCommon
                                 
                 
 
-                AddLog($"Config Save Complete.{Environment.NewLine}");
+                AddLog($"Save Complete.{Environment.NewLine}");
                 ShowBox("Success", "Settings have been saved to the device successfully");
             }
             else

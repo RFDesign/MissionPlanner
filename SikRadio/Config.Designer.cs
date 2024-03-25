@@ -254,6 +254,7 @@
             this.textConsole.Name = "textConsole";
             this.textConsole.ReadOnly = true;
             this.textConsole.TabStop = false;
+            this.textConsole.TextChanged += new System.EventHandler(this.textConsole_TextChanged);
             // 
             // sikradio1
             // 

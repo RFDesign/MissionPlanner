@@ -42,7 +42,6 @@
             this.FORMAT = new System.Windows.Forms.TextBox();
             this.comboSyncMode = new System.Windows.Forms.ComboBox();
             this.AUXSER_SPEED = new System.Windows.Forms.ComboBox();
-            this.BUT_SetPPMFailSafe = new MissionPlanner.Controls.MyButton();
             this.btn_LoadSetting = new FontAwesome.Sharp.IconButton();
             this.NUM_CHANNELS = new System.Windows.Forms.ComboBox();
             this.AIR_SPEED = new System.Windows.Forms.ComboBox();
@@ -56,7 +55,16 @@
             this.MAVLINK = new System.Windows.Forms.ComboBox();
             this.LBT_RSSI = new System.Windows.Forms.ComboBox();
             this.NETID = new System.Windows.Forms.ComboBox();
+            this.comboPin14 = new System.Windows.Forms.ComboBox();
             this.configManagerBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.pin14ItemsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.comboPin13 = new System.Windows.Forms.ComboBox();
+            this.pin13ItemsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.comboPin12 = new System.Windows.Forms.ComboBox();
+            this.pin12ItemsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.comboPin15 = new System.Windows.Forms.ComboBox();
+            this.pin15ItemsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.BUT_SetPPMFailSafe = new MissionPlanner.Controls.MyButton();
             this.GPO1_3STATLED = new System.Windows.Forms.CheckBox();
             this.GPO1_0TXEN485 = new System.Windows.Forms.CheckBox();
             this.lbl_status = new System.Windows.Forms.Label();
@@ -115,7 +123,7 @@
             this.ATI_CHECK = new FontAwesome.Sharp.IconPictureBox();
             this.FORMAT_CHECK = new FontAwesome.Sharp.IconPictureBox();
             this.groupRadio = new System.Windows.Forms.GroupBox();
-            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.tableRadio = new System.Windows.Forms.TableLayoutPanel();
             this.OPPRESEND_CHECK = new FontAwesome.Sharp.IconPictureBox();
             this.RSSI_IN_DBM_CHECK = new FontAwesome.Sharp.IconPictureBox();
             this.AIR_FRAMELEN_CHECK = new FontAwesome.Sharp.IconPictureBox();
@@ -150,34 +158,30 @@
             this.label3 = new System.Windows.Forms.Label();
             this.RATE_FREQBAND = new System.Windows.Forms.ComboBox();
             this.lblANT_MODE = new System.Windows.Forms.Label();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.groupSerial = new System.Windows.Forms.GroupBox();
+            this.tableLayoutSerial = new System.Windows.Forms.TableLayoutPanel();
             this.AUXSER_SPEED_CHECK = new FontAwesome.Sharp.IconPictureBox();
             this.SERIAL_SPEED_CHECK = new FontAwesome.Sharp.IconPictureBox();
             this.RTSCTS_CHECK = new FontAwesome.Sharp.IconPictureBox();
             this.label5 = new System.Windows.Forms.Label();
             this.groupData = new System.Windows.Forms.GroupBox();
-            this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
-            this.SER_BRK_DETMS_CHECK = new FontAwesome.Sharp.IconPictureBox();
-            this.GLOBAL_RETRIES_CHECK = new FontAwesome.Sharp.IconPictureBox();
-            this.MAX_RETRIES_CHECK = new FontAwesome.Sharp.IconPictureBox();
-            this.MAX_DATA_CHECK = new FontAwesome.Sharp.IconPictureBox();
-            this.RX_ENCAP_METHOD_CHECK = new FontAwesome.Sharp.IconPictureBox();
-            this.TX_ENCAP_METHOD_CHECK = new FontAwesome.Sharp.IconPictureBox();
+            this.tableLayoutData = new System.Windows.Forms.TableLayoutPanel();
             this.DESTID_CHECK = new FontAwesome.Sharp.IconPictureBox();
             this.NODEID_CHECK = new FontAwesome.Sharp.IconPictureBox();
+            this.TX_ENCAP_METHOD_CHECK = new FontAwesome.Sharp.IconPictureBox();
+            this.RX_ENCAP_METHOD_CHECK = new FontAwesome.Sharp.IconPictureBox();
+            this.MAX_DATA_CHECK = new FontAwesome.Sharp.IconPictureBox();
+            this.MAX_RETRIES_CHECK = new FontAwesome.Sharp.IconPictureBox();
+            this.GLOBAL_RETRIES_CHECK = new FontAwesome.Sharp.IconPictureBox();
+            this.SER_BRK_DETMS_CHECK = new FontAwesome.Sharp.IconPictureBox();
             this.groupGPIO = new System.Windows.Forms.GroupBox();
-            this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutGPIO = new System.Windows.Forms.TableLayoutPanel();
             this.PIN_13_CHECK = new FontAwesome.Sharp.IconPictureBox();
             this.PIN_12_CHECK = new FontAwesome.Sharp.IconPictureBox();
-            this.comboPin14 = new System.Windows.Forms.ComboBox();
-            this.comboPin13 = new System.Windows.Forms.ComboBox();
-            this.comboPin12 = new System.Windows.Forms.ComboBox();
             this.label19 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
-            this.comboPin15 = new System.Windows.Forms.ComboBox();
             this.PIN_14_CHECK = new FontAwesome.Sharp.IconPictureBox();
             this.PIN_15_CHECK = new FontAwesome.Sharp.IconPictureBox();
             this.GPO1_3SBUSIN = new System.Windows.Forms.CheckBox();
@@ -203,11 +207,15 @@
             this.btn_Firmware = new FontAwesome.Sharp.IconButton();
             this.btn_Reboot = new FontAwesome.Sharp.IconButton();
             this.flowLayoutConfig = new System.Windows.Forms.FlowLayoutPanel();
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.richTextHelp = new System.Windows.Forms.RichTextBox();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.flowLayoutSerialPin = new System.Windows.Forms.FlowLayoutPanel();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.richTextHelp = new System.Windows.Forms.RichTextBox();
+            this.groupInfo = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.configManagerBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pin14ItemsBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pin13ItemsBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pin12ItemsBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pin15ItemsBindingSource)).BeginInit();
             this.groupFirmware.SuspendLayout();
             this.tableLayoutDevice.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ATI3_CHECK)).BeginInit();
@@ -215,7 +223,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.ATI_CHECK)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.FORMAT_CHECK)).BeginInit();
             this.groupRadio.SuspendLayout();
-            this.tableLayoutPanel2.SuspendLayout();
+            this.tableRadio.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.OPPRESEND_CHECK)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.RSSI_IN_DBM_CHECK)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.AIR_FRAMELEN_CHECK)).BeginInit();
@@ -230,23 +238,23 @@
             ((System.ComponentModel.ISupportInitialize)(this.MAX_FREQ_CHECK)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ANT_MODE_CHECK)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.MIN_FREQ_CHECK)).BeginInit();
-            this.groupBox1.SuspendLayout();
-            this.tableLayoutPanel1.SuspendLayout();
+            this.groupSerial.SuspendLayout();
+            this.tableLayoutSerial.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.AUXSER_SPEED_CHECK)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SERIAL_SPEED_CHECK)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.RTSCTS_CHECK)).BeginInit();
             this.groupData.SuspendLayout();
-            this.tableLayoutPanel5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.SER_BRK_DETMS_CHECK)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.GLOBAL_RETRIES_CHECK)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.MAX_RETRIES_CHECK)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.MAX_DATA_CHECK)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.RX_ENCAP_METHOD_CHECK)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TX_ENCAP_METHOD_CHECK)).BeginInit();
+            this.tableLayoutData.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DESTID_CHECK)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.NODEID_CHECK)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TX_ENCAP_METHOD_CHECK)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.RX_ENCAP_METHOD_CHECK)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MAX_DATA_CHECK)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MAX_RETRIES_CHECK)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.GLOBAL_RETRIES_CHECK)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SER_BRK_DETMS_CHECK)).BeginInit();
             this.groupGPIO.SuspendLayout();
-            this.tableLayoutPanel4.SuspendLayout();
+            this.tableLayoutGPIO.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PIN_13_CHECK)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PIN_12_CHECK)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PIN_14_CHECK)).BeginInit();
@@ -257,9 +265,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.AESKEY_CHECK)).BeginInit();
             this.flowLayoutActions.SuspendLayout();
             this.flowLayoutConfig.SuspendLayout();
-            this.flowLayoutPanel1.SuspendLayout();
-            this.groupBox3.SuspendLayout();
+            this.flowLayoutSerialPin.SuspendLayout();
             this.groupBox4.SuspendLayout();
+            this.groupInfo.SuspendLayout();
             this.SuspendLayout();
             // 
             // Progressbar
@@ -366,6 +374,7 @@
             // FORMAT
             // 
             resources.ApplyResources(this.FORMAT, "FORMAT");
+            this.FORMAT.BackColor = System.Drawing.SystemColors.ControlDark;
             this.FORMAT.Name = "FORMAT";
             this.FORMAT.ReadOnly = true;
             this.toolTip1.SetToolTip(this.FORMAT, resources.GetString("FORMAT.ToolTip"));
@@ -401,22 +410,16 @@
             this.toolTip1.SetToolTip(this.AUXSER_SPEED, resources.GetString("AUXSER_SPEED.ToolTip"));
             this.AUXSER_SPEED.Click += new System.EventHandler(this.Control_Clicked_ShowHelp);
             // 
-            // BUT_SetPPMFailSafe
-            // 
-            resources.ApplyResources(this.BUT_SetPPMFailSafe, "BUT_SetPPMFailSafe");
-            this.BUT_SetPPMFailSafe.Name = "BUT_SetPPMFailSafe";
-            this.toolTip1.SetToolTip(this.BUT_SetPPMFailSafe, resources.GetString("BUT_SetPPMFailSafe.ToolTip"));
-            this.BUT_SetPPMFailSafe.UseVisualStyleBackColor = true;
-            this.BUT_SetPPMFailSafe.Click += new System.EventHandler(this.BUT_SetPPMFailSafe_Click);
-            // 
             // btn_LoadSetting
             // 
-            this.btn_LoadSetting.ForeColor = System.Drawing.Color.Black;
+            this.btn_LoadSetting.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(73)))), ((int)(((byte)(82)))), ((int)(((byte)(110)))));
+            this.btn_LoadSetting.FlatAppearance.BorderSize = 2;
+            resources.ApplyResources(this.btn_LoadSetting, "btn_LoadSetting");
+            this.btn_LoadSetting.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(73)))), ((int)(((byte)(82)))), ((int)(((byte)(110)))));
             this.btn_LoadSetting.IconChar = FontAwesome.Sharp.IconChar.Upload;
-            this.btn_LoadSetting.IconColor = System.Drawing.Color.Black;
+            this.btn_LoadSetting.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(73)))), ((int)(((byte)(82)))), ((int)(((byte)(110)))));
             this.btn_LoadSetting.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btn_LoadSetting.IconSize = 24;
-            resources.ApplyResources(this.btn_LoadSetting, "btn_LoadSetting");
             this.btn_LoadSetting.Name = "btn_LoadSetting";
             this.toolTip1.SetToolTip(this.btn_LoadSetting, resources.GetString("btn_LoadSetting.ToolTip"));
             this.btn_LoadSetting.UseVisualStyleBackColor = true;
@@ -629,9 +632,84 @@
             this.toolTip1.SetToolTip(this.NETID, resources.GetString("NETID.ToolTip"));
             this.NETID.Click += new System.EventHandler(this.Control_Clicked_ShowHelp);
             // 
+            // comboPin14
+            // 
+            resources.ApplyResources(this.comboPin14, "comboPin14");
+            this.comboPin14.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.configManagerBindingSource, "PIN14", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.comboPin14.DataSource = this.pin14ItemsBindingSource;
+            this.comboPin14.DisplayMember = "Name";
+            this.comboPin14.FormattingEnabled = true;
+            this.comboPin14.Name = "comboPin14";
+            this.toolTip1.SetToolTip(this.comboPin14, resources.GetString("comboPin14.ToolTip"));
+            this.comboPin14.ValueMember = "Value";
+            this.comboPin14.Click += new System.EventHandler(this.Control_Clicked_ShowHelp);
+            // 
             // configManagerBindingSource
             // 
             this.configManagerBindingSource.DataSource = typeof(RFDCommon.ConfigManager);
+            // 
+            // pin14ItemsBindingSource
+            // 
+            this.pin14ItemsBindingSource.DataMember = "Pin14Items";
+            this.pin14ItemsBindingSource.DataSource = this.configManagerBindingSource;
+            // 
+            // comboPin13
+            // 
+            resources.ApplyResources(this.comboPin13, "comboPin13");
+            this.comboPin13.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.configManagerBindingSource, "PIN13", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.comboPin13.DataSource = this.pin13ItemsBindingSource;
+            this.comboPin13.DisplayMember = "Name";
+            this.comboPin13.FormattingEnabled = true;
+            this.comboPin13.Name = "comboPin13";
+            this.toolTip1.SetToolTip(this.comboPin13, resources.GetString("comboPin13.ToolTip"));
+            this.comboPin13.ValueMember = "Value";
+            this.comboPin13.Click += new System.EventHandler(this.Control_Clicked_ShowHelp);
+            // 
+            // pin13ItemsBindingSource
+            // 
+            this.pin13ItemsBindingSource.DataMember = "Pin13Items";
+            this.pin13ItemsBindingSource.DataSource = this.configManagerBindingSource;
+            // 
+            // comboPin12
+            // 
+            resources.ApplyResources(this.comboPin12, "comboPin12");
+            this.comboPin12.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.configManagerBindingSource, "PIN12", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.comboPin12.DataSource = this.pin12ItemsBindingSource;
+            this.comboPin12.DisplayMember = "Name";
+            this.comboPin12.FormattingEnabled = true;
+            this.comboPin12.Name = "comboPin12";
+            this.toolTip1.SetToolTip(this.comboPin12, resources.GetString("comboPin12.ToolTip"));
+            this.comboPin12.ValueMember = "Value";
+            this.comboPin12.Click += new System.EventHandler(this.Control_Clicked_ShowHelp);
+            // 
+            // pin12ItemsBindingSource
+            // 
+            this.pin12ItemsBindingSource.DataMember = "Pin12Items";
+            this.pin12ItemsBindingSource.DataSource = this.configManagerBindingSource;
+            // 
+            // comboPin15
+            // 
+            resources.ApplyResources(this.comboPin15, "comboPin15");
+            this.comboPin15.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.configManagerBindingSource, "PIN15", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.comboPin15.DataSource = this.pin15ItemsBindingSource;
+            this.comboPin15.DisplayMember = "Name";
+            this.comboPin15.FormattingEnabled = true;
+            this.comboPin15.Name = "comboPin15";
+            this.toolTip1.SetToolTip(this.comboPin15, resources.GetString("comboPin15.ToolTip"));
+            this.comboPin15.ValueMember = "Value";
+            this.comboPin15.Click += new System.EventHandler(this.Control_Clicked_ShowHelp);
+            // 
+            // pin15ItemsBindingSource
+            // 
+            this.pin15ItemsBindingSource.DataMember = "Pin15Items";
+            this.pin15ItemsBindingSource.DataSource = this.configManagerBindingSource;
+            // 
+            // BUT_SetPPMFailSafe
+            // 
+            resources.ApplyResources(this.BUT_SetPPMFailSafe, "BUT_SetPPMFailSafe");
+            this.BUT_SetPPMFailSafe.Name = "BUT_SetPPMFailSafe";
+            this.BUT_SetPPMFailSafe.UseVisualStyleBackColor = true;
+            this.BUT_SetPPMFailSafe.Click += new System.EventHandler(this.BUT_SetPPMFailSafe_Click);
             // 
             // GPO1_3STATLED
             // 
@@ -653,6 +731,7 @@
             // ATI3
             // 
             resources.ApplyResources(this.ATI3, "ATI3");
+            this.ATI3.BackColor = System.Drawing.SystemColors.ControlDark;
             this.ATI3.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.configManagerBindingSource, "FREQ", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.ATI3.Name = "ATI3";
             this.ATI3.ReadOnly = true;
@@ -725,6 +804,7 @@
             // txtCountry
             // 
             resources.ApplyResources(this.txtCountry, "txtCountry");
+            this.txtCountry.BackColor = System.Drawing.SystemColors.ControlDark;
             this.txtCountry.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.configManagerBindingSource, "COUNTRY", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.txtCountry.Name = "txtCountry";
             this.txtCountry.ReadOnly = true;
@@ -877,6 +957,7 @@
             // ATI2
             // 
             resources.ApplyResources(this.ATI2, "ATI2");
+            this.ATI2.BackColor = System.Drawing.SystemColors.ControlDark;
             this.ATI2.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.configManagerBindingSource, "BOARD", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.ATI2.Name = "ATI2";
             this.ATI2.ReadOnly = true;
@@ -911,10 +992,10 @@
             resources.ApplyResources(this.tableLayoutDevice, "tableLayoutDevice");
             this.tableLayoutDevice.Controls.Add(this.ATI3_CHECK, 2, 2);
             this.tableLayoutDevice.Controls.Add(this.label9, 0, 0);
-            this.tableLayoutDevice.Controls.Add(this.txtCountry, 4, 2);
-            this.tableLayoutDevice.Controls.Add(this.ATI2, 4, 1);
-            this.tableLayoutDevice.Controls.Add(this.label49, 3, 2);
-            this.tableLayoutDevice.Controls.Add(this.label6, 3, 1);
+            this.tableLayoutDevice.Controls.Add(this.txtCountry, 4, 3);
+            this.tableLayoutDevice.Controls.Add(this.ATI2, 4, 2);
+            this.tableLayoutDevice.Controls.Add(this.label49, 3, 3);
+            this.tableLayoutDevice.Controls.Add(this.label6, 3, 2);
             this.tableLayoutDevice.Controls.Add(this.label7, 0, 2);
             this.tableLayoutDevice.Controls.Add(this.label11, 0, 1);
             this.tableLayoutDevice.Controls.Add(this.ATI3, 1, 2);
@@ -922,19 +1003,19 @@
             this.tableLayoutDevice.Controls.Add(this.FORMAT, 1, 3);
             this.tableLayoutDevice.Controls.Add(this.label2, 0, 3);
             this.tableLayoutDevice.Controls.Add(this.comboBox1, 1, 0);
-            this.tableLayoutDevice.Controls.Add(this.ATI_CHECK, 2, 1);
+            this.tableLayoutDevice.Controls.Add(this.ATI_CHECK, 5, 1);
             this.tableLayoutDevice.Controls.Add(this.FORMAT_CHECK, 2, 3);
             this.tableLayoutDevice.Name = "tableLayoutDevice";
             // 
             // ATI3_CHECK
             // 
+            resources.ApplyResources(this.ATI3_CHECK, "ATI3_CHECK");
             this.ATI3_CHECK.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(29)))), ((int)(((byte)(46)))));
             this.ATI3_CHECK.ForeColor = System.Drawing.Color.Gray;
             this.ATI3_CHECK.IconChar = FontAwesome.Sharp.IconChar.Check;
             this.ATI3_CHECK.IconColor = System.Drawing.Color.Gray;
             this.ATI3_CHECK.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.ATI3_CHECK.IconSize = 18;
-            resources.ApplyResources(this.ATI3_CHECK, "ATI3_CHECK");
             this.ATI3_CHECK.Name = "ATI3_CHECK";
             this.ATI3_CHECK.TabStop = false;
             // 
@@ -961,6 +1042,8 @@
             // ATI
             // 
             resources.ApplyResources(this.ATI, "ATI");
+            this.ATI.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.tableLayoutDevice.SetColumnSpan(this.ATI, 4);
             this.ATI.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.configManagerBindingSource, "ATI", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.ATI.Name = "ATI";
             this.ATI.ReadOnly = true;
@@ -984,253 +1067,253 @@
             // 
             // ATI_CHECK
             // 
+            resources.ApplyResources(this.ATI_CHECK, "ATI_CHECK");
             this.ATI_CHECK.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(29)))), ((int)(((byte)(46)))));
             this.ATI_CHECK.ForeColor = System.Drawing.Color.Gray;
             this.ATI_CHECK.IconChar = FontAwesome.Sharp.IconChar.Check;
             this.ATI_CHECK.IconColor = System.Drawing.Color.Gray;
             this.ATI_CHECK.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.ATI_CHECK.IconSize = 18;
-            resources.ApplyResources(this.ATI_CHECK, "ATI_CHECK");
             this.ATI_CHECK.Name = "ATI_CHECK";
             this.ATI_CHECK.TabStop = false;
             // 
             // FORMAT_CHECK
             // 
+            resources.ApplyResources(this.FORMAT_CHECK, "FORMAT_CHECK");
             this.FORMAT_CHECK.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(29)))), ((int)(((byte)(46)))));
             this.FORMAT_CHECK.ForeColor = System.Drawing.Color.Gray;
             this.FORMAT_CHECK.IconChar = FontAwesome.Sharp.IconChar.Check;
             this.FORMAT_CHECK.IconColor = System.Drawing.Color.Gray;
             this.FORMAT_CHECK.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.FORMAT_CHECK.IconSize = 18;
-            resources.ApplyResources(this.FORMAT_CHECK, "FORMAT_CHECK");
             this.FORMAT_CHECK.Name = "FORMAT_CHECK";
             this.FORMAT_CHECK.TabStop = false;
             // 
             // groupRadio
             // 
             this.groupRadio.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(29)))), ((int)(((byte)(46)))));
-            this.groupRadio.Controls.Add(this.tableLayoutPanel2);
+            this.groupRadio.Controls.Add(this.tableRadio);
             this.groupRadio.ForeColor = System.Drawing.Color.White;
             resources.ApplyResources(this.groupRadio, "groupRadio");
             this.groupRadio.Name = "groupRadio";
             this.groupRadio.TabStop = false;
             // 
-            // tableLayoutPanel2
+            // tableRadio
             // 
-            resources.ApplyResources(this.tableLayoutPanel2, "tableLayoutPanel2");
-            this.tableLayoutPanel2.Controls.Add(this.OPPRESEND_CHECK, 5, 7);
-            this.tableLayoutPanel2.Controls.Add(this.RSSI_IN_DBM_CHECK, 2, 7);
-            this.tableLayoutPanel2.Controls.Add(this.AIR_FRAMELEN_CHECK, 5, 6);
-            this.tableLayoutPanel2.Controls.Add(this.AIR_SPEED_CHECK, 2, 6);
-            this.tableLayoutPanel2.Controls.Add(this.MAVLINK_CHECK, 5, 5);
-            this.tableLayoutPanel2.Controls.Add(this.TXPOWER_CHECK, 2, 5);
-            this.tableLayoutPanel2.Controls.Add(this.iconPictureBox15, 5, 4);
-            this.tableLayoutPanel2.Controls.Add(this.iconPictureBox14, 2, 4);
-            this.tableLayoutPanel2.Controls.Add(this.LBT_RSSI_CHECK, 5, 3);
-            this.tableLayoutPanel2.Controls.Add(this.NUM_CHANNELS_CHECK, 2, 3);
-            this.tableLayoutPanel2.Controls.Add(this.NETID_CHECK, 5, 2);
-            this.tableLayoutPanel2.Controls.Add(this.MAX_FREQ_CHECK, 2, 2);
-            this.tableLayoutPanel2.Controls.Add(this.ANT_MODE_CHECK, 5, 1);
-            this.tableLayoutPanel2.Controls.Add(this.MIN_FREQ_CHECK, 2, 1);
-            this.tableLayoutPanel2.Controls.Add(this.ANT_MODE, 4, 1);
-            this.tableLayoutPanel2.Controls.Add(this.NETID, 4, 2);
-            this.tableLayoutPanel2.Controls.Add(this.LBT_RSSI, 4, 3);
-            this.tableLayoutPanel2.Controls.Add(this.MAX_WINDOW, 4, 4);
-            this.tableLayoutPanel2.Controls.Add(this.MAVLINK, 4, 5);
-            this.tableLayoutPanel2.Controls.Add(this.AIR_FRAMELEN, 4, 6);
-            this.tableLayoutPanel2.Controls.Add(this.RSSI, 1, 8);
-            this.tableLayoutPanel2.Controls.Add(this.label14, 3, 6);
-            this.tableLayoutPanel2.Controls.Add(this.RSSI_IN_DBM, 1, 7);
-            this.tableLayoutPanel2.Controls.Add(this.label45, 0, 0);
-            this.tableLayoutPanel2.Controls.Add(this.OPPRESEND, 4, 7);
-            this.tableLayoutPanel2.Controls.Add(this.lblMAVLINK, 3, 5);
-            this.tableLayoutPanel2.Controls.Add(this.lblOPPRESEND, 3, 7);
-            this.tableLayoutPanel2.Controls.Add(this.label12, 0, 8);
-            this.tableLayoutPanel2.Controls.Add(this.lblMIN_FREQ, 0, 1);
-            this.tableLayoutPanel2.Controls.Add(this.lblMAX_FREQ, 0, 2);
-            this.tableLayoutPanel2.Controls.Add(this.label15, 0, 7);
-            this.tableLayoutPanel2.Controls.Add(this.lblMAX_WINDOW, 3, 4);
-            this.tableLayoutPanel2.Controls.Add(this.lblNUM_CHANNELS, 0, 3);
-            this.tableLayoutPanel2.Controls.Add(this.lblDUTY_CYCLE, 0, 4);
-            this.tableLayoutPanel2.Controls.Add(this.lblLBT_RSSI, 3, 3);
-            this.tableLayoutPanel2.Controls.Add(this.lblTXPOWER, 0, 5);
-            this.tableLayoutPanel2.Controls.Add(this.lblNETID, 3, 2);
-            this.tableLayoutPanel2.Controls.Add(this.label3, 0, 6);
-            this.tableLayoutPanel2.Controls.Add(this.RATE_FREQBAND, 1, 0);
-            this.tableLayoutPanel2.Controls.Add(this.MIN_FREQ, 1, 1);
-            this.tableLayoutPanel2.Controls.Add(this.lblANT_MODE, 3, 1);
-            this.tableLayoutPanel2.Controls.Add(this.MAX_FREQ, 1, 2);
-            this.tableLayoutPanel2.Controls.Add(this.TXPOWER, 1, 5);
-            this.tableLayoutPanel2.Controls.Add(this.DUTY_CYCLE, 1, 4);
-            this.tableLayoutPanel2.Controls.Add(this.AIR_SPEED, 1, 6);
-            this.tableLayoutPanel2.Controls.Add(this.NUM_CHANNELS, 1, 3);
-            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
+            resources.ApplyResources(this.tableRadio, "tableRadio");
+            this.tableRadio.Controls.Add(this.OPPRESEND_CHECK, 5, 7);
+            this.tableRadio.Controls.Add(this.RSSI_IN_DBM_CHECK, 2, 7);
+            this.tableRadio.Controls.Add(this.AIR_FRAMELEN_CHECK, 5, 6);
+            this.tableRadio.Controls.Add(this.AIR_SPEED_CHECK, 2, 6);
+            this.tableRadio.Controls.Add(this.MAVLINK_CHECK, 5, 5);
+            this.tableRadio.Controls.Add(this.TXPOWER_CHECK, 2, 5);
+            this.tableRadio.Controls.Add(this.iconPictureBox15, 5, 4);
+            this.tableRadio.Controls.Add(this.iconPictureBox14, 2, 4);
+            this.tableRadio.Controls.Add(this.LBT_RSSI_CHECK, 5, 3);
+            this.tableRadio.Controls.Add(this.NUM_CHANNELS_CHECK, 2, 3);
+            this.tableRadio.Controls.Add(this.NETID_CHECK, 5, 2);
+            this.tableRadio.Controls.Add(this.MAX_FREQ_CHECK, 2, 2);
+            this.tableRadio.Controls.Add(this.ANT_MODE_CHECK, 5, 1);
+            this.tableRadio.Controls.Add(this.MIN_FREQ_CHECK, 2, 1);
+            this.tableRadio.Controls.Add(this.ANT_MODE, 4, 1);
+            this.tableRadio.Controls.Add(this.NETID, 4, 2);
+            this.tableRadio.Controls.Add(this.LBT_RSSI, 4, 3);
+            this.tableRadio.Controls.Add(this.MAX_WINDOW, 4, 4);
+            this.tableRadio.Controls.Add(this.MAVLINK, 4, 5);
+            this.tableRadio.Controls.Add(this.AIR_FRAMELEN, 4, 6);
+            this.tableRadio.Controls.Add(this.RSSI, 1, 8);
+            this.tableRadio.Controls.Add(this.label14, 3, 6);
+            this.tableRadio.Controls.Add(this.RSSI_IN_DBM, 1, 7);
+            this.tableRadio.Controls.Add(this.label45, 0, 0);
+            this.tableRadio.Controls.Add(this.OPPRESEND, 4, 7);
+            this.tableRadio.Controls.Add(this.lblMAVLINK, 3, 5);
+            this.tableRadio.Controls.Add(this.lblOPPRESEND, 3, 7);
+            this.tableRadio.Controls.Add(this.label12, 0, 8);
+            this.tableRadio.Controls.Add(this.lblMIN_FREQ, 0, 1);
+            this.tableRadio.Controls.Add(this.lblMAX_FREQ, 0, 2);
+            this.tableRadio.Controls.Add(this.label15, 0, 7);
+            this.tableRadio.Controls.Add(this.lblMAX_WINDOW, 3, 4);
+            this.tableRadio.Controls.Add(this.lblNUM_CHANNELS, 0, 3);
+            this.tableRadio.Controls.Add(this.lblDUTY_CYCLE, 0, 4);
+            this.tableRadio.Controls.Add(this.lblLBT_RSSI, 3, 3);
+            this.tableRadio.Controls.Add(this.lblTXPOWER, 0, 5);
+            this.tableRadio.Controls.Add(this.lblNETID, 3, 2);
+            this.tableRadio.Controls.Add(this.label3, 0, 6);
+            this.tableRadio.Controls.Add(this.RATE_FREQBAND, 1, 0);
+            this.tableRadio.Controls.Add(this.MIN_FREQ, 1, 1);
+            this.tableRadio.Controls.Add(this.lblANT_MODE, 3, 1);
+            this.tableRadio.Controls.Add(this.MAX_FREQ, 1, 2);
+            this.tableRadio.Controls.Add(this.TXPOWER, 1, 5);
+            this.tableRadio.Controls.Add(this.DUTY_CYCLE, 1, 4);
+            this.tableRadio.Controls.Add(this.AIR_SPEED, 1, 6);
+            this.tableRadio.Controls.Add(this.NUM_CHANNELS, 1, 3);
+            this.tableRadio.Name = "tableRadio";
             // 
             // OPPRESEND_CHECK
             // 
+            resources.ApplyResources(this.OPPRESEND_CHECK, "OPPRESEND_CHECK");
             this.OPPRESEND_CHECK.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(29)))), ((int)(((byte)(46)))));
             this.OPPRESEND_CHECK.ForeColor = System.Drawing.Color.Gray;
             this.OPPRESEND_CHECK.IconChar = FontAwesome.Sharp.IconChar.Check;
             this.OPPRESEND_CHECK.IconColor = System.Drawing.Color.Gray;
             this.OPPRESEND_CHECK.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.OPPRESEND_CHECK.IconSize = 18;
-            resources.ApplyResources(this.OPPRESEND_CHECK, "OPPRESEND_CHECK");
             this.OPPRESEND_CHECK.Name = "OPPRESEND_CHECK";
             this.OPPRESEND_CHECK.TabStop = false;
             // 
             // RSSI_IN_DBM_CHECK
             // 
+            resources.ApplyResources(this.RSSI_IN_DBM_CHECK, "RSSI_IN_DBM_CHECK");
             this.RSSI_IN_DBM_CHECK.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(29)))), ((int)(((byte)(46)))));
             this.RSSI_IN_DBM_CHECK.ForeColor = System.Drawing.Color.Gray;
             this.RSSI_IN_DBM_CHECK.IconChar = FontAwesome.Sharp.IconChar.Check;
             this.RSSI_IN_DBM_CHECK.IconColor = System.Drawing.Color.Gray;
             this.RSSI_IN_DBM_CHECK.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.RSSI_IN_DBM_CHECK.IconSize = 18;
-            resources.ApplyResources(this.RSSI_IN_DBM_CHECK, "RSSI_IN_DBM_CHECK");
             this.RSSI_IN_DBM_CHECK.Name = "RSSI_IN_DBM_CHECK";
             this.RSSI_IN_DBM_CHECK.TabStop = false;
             // 
             // AIR_FRAMELEN_CHECK
             // 
+            resources.ApplyResources(this.AIR_FRAMELEN_CHECK, "AIR_FRAMELEN_CHECK");
             this.AIR_FRAMELEN_CHECK.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(29)))), ((int)(((byte)(46)))));
             this.AIR_FRAMELEN_CHECK.ForeColor = System.Drawing.Color.Gray;
             this.AIR_FRAMELEN_CHECK.IconChar = FontAwesome.Sharp.IconChar.Check;
             this.AIR_FRAMELEN_CHECK.IconColor = System.Drawing.Color.Gray;
             this.AIR_FRAMELEN_CHECK.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.AIR_FRAMELEN_CHECK.IconSize = 18;
-            resources.ApplyResources(this.AIR_FRAMELEN_CHECK, "AIR_FRAMELEN_CHECK");
             this.AIR_FRAMELEN_CHECK.Name = "AIR_FRAMELEN_CHECK";
             this.AIR_FRAMELEN_CHECK.TabStop = false;
             // 
             // AIR_SPEED_CHECK
             // 
+            resources.ApplyResources(this.AIR_SPEED_CHECK, "AIR_SPEED_CHECK");
             this.AIR_SPEED_CHECK.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(29)))), ((int)(((byte)(46)))));
             this.AIR_SPEED_CHECK.ForeColor = System.Drawing.Color.Gray;
             this.AIR_SPEED_CHECK.IconChar = FontAwesome.Sharp.IconChar.Check;
             this.AIR_SPEED_CHECK.IconColor = System.Drawing.Color.Gray;
             this.AIR_SPEED_CHECK.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.AIR_SPEED_CHECK.IconSize = 18;
-            resources.ApplyResources(this.AIR_SPEED_CHECK, "AIR_SPEED_CHECK");
             this.AIR_SPEED_CHECK.Name = "AIR_SPEED_CHECK";
             this.AIR_SPEED_CHECK.TabStop = false;
             // 
             // MAVLINK_CHECK
             // 
+            resources.ApplyResources(this.MAVLINK_CHECK, "MAVLINK_CHECK");
             this.MAVLINK_CHECK.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(29)))), ((int)(((byte)(46)))));
             this.MAVLINK_CHECK.ForeColor = System.Drawing.Color.Gray;
             this.MAVLINK_CHECK.IconChar = FontAwesome.Sharp.IconChar.Check;
             this.MAVLINK_CHECK.IconColor = System.Drawing.Color.Gray;
             this.MAVLINK_CHECK.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.MAVLINK_CHECK.IconSize = 18;
-            resources.ApplyResources(this.MAVLINK_CHECK, "MAVLINK_CHECK");
             this.MAVLINK_CHECK.Name = "MAVLINK_CHECK";
             this.MAVLINK_CHECK.TabStop = false;
             // 
             // TXPOWER_CHECK
             // 
+            resources.ApplyResources(this.TXPOWER_CHECK, "TXPOWER_CHECK");
             this.TXPOWER_CHECK.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(29)))), ((int)(((byte)(46)))));
             this.TXPOWER_CHECK.ForeColor = System.Drawing.Color.Gray;
             this.TXPOWER_CHECK.IconChar = FontAwesome.Sharp.IconChar.Check;
             this.TXPOWER_CHECK.IconColor = System.Drawing.Color.Gray;
             this.TXPOWER_CHECK.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.TXPOWER_CHECK.IconSize = 18;
-            resources.ApplyResources(this.TXPOWER_CHECK, "TXPOWER_CHECK");
             this.TXPOWER_CHECK.Name = "TXPOWER_CHECK";
             this.TXPOWER_CHECK.TabStop = false;
             // 
             // iconPictureBox15
             // 
+            resources.ApplyResources(this.iconPictureBox15, "iconPictureBox15");
             this.iconPictureBox15.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(29)))), ((int)(((byte)(46)))));
             this.iconPictureBox15.ForeColor = System.Drawing.Color.Gray;
             this.iconPictureBox15.IconChar = FontAwesome.Sharp.IconChar.Check;
             this.iconPictureBox15.IconColor = System.Drawing.Color.Gray;
             this.iconPictureBox15.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconPictureBox15.IconSize = 18;
-            resources.ApplyResources(this.iconPictureBox15, "iconPictureBox15");
             this.iconPictureBox15.Name = "iconPictureBox15";
             this.iconPictureBox15.TabStop = false;
             // 
             // iconPictureBox14
             // 
+            resources.ApplyResources(this.iconPictureBox14, "iconPictureBox14");
             this.iconPictureBox14.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(29)))), ((int)(((byte)(46)))));
             this.iconPictureBox14.ForeColor = System.Drawing.Color.Gray;
             this.iconPictureBox14.IconChar = FontAwesome.Sharp.IconChar.Check;
             this.iconPictureBox14.IconColor = System.Drawing.Color.Gray;
             this.iconPictureBox14.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconPictureBox14.IconSize = 18;
-            resources.ApplyResources(this.iconPictureBox14, "iconPictureBox14");
             this.iconPictureBox14.Name = "iconPictureBox14";
             this.iconPictureBox14.TabStop = false;
             // 
             // LBT_RSSI_CHECK
             // 
+            resources.ApplyResources(this.LBT_RSSI_CHECK, "LBT_RSSI_CHECK");
             this.LBT_RSSI_CHECK.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(29)))), ((int)(((byte)(46)))));
             this.LBT_RSSI_CHECK.ForeColor = System.Drawing.Color.Gray;
             this.LBT_RSSI_CHECK.IconChar = FontAwesome.Sharp.IconChar.Check;
             this.LBT_RSSI_CHECK.IconColor = System.Drawing.Color.Gray;
             this.LBT_RSSI_CHECK.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.LBT_RSSI_CHECK.IconSize = 18;
-            resources.ApplyResources(this.LBT_RSSI_CHECK, "LBT_RSSI_CHECK");
             this.LBT_RSSI_CHECK.Name = "LBT_RSSI_CHECK";
             this.LBT_RSSI_CHECK.TabStop = false;
             // 
             // NUM_CHANNELS_CHECK
             // 
+            resources.ApplyResources(this.NUM_CHANNELS_CHECK, "NUM_CHANNELS_CHECK");
             this.NUM_CHANNELS_CHECK.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(29)))), ((int)(((byte)(46)))));
             this.NUM_CHANNELS_CHECK.ForeColor = System.Drawing.Color.Gray;
             this.NUM_CHANNELS_CHECK.IconChar = FontAwesome.Sharp.IconChar.Check;
             this.NUM_CHANNELS_CHECK.IconColor = System.Drawing.Color.Gray;
             this.NUM_CHANNELS_CHECK.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.NUM_CHANNELS_CHECK.IconSize = 18;
-            resources.ApplyResources(this.NUM_CHANNELS_CHECK, "NUM_CHANNELS_CHECK");
             this.NUM_CHANNELS_CHECK.Name = "NUM_CHANNELS_CHECK";
             this.NUM_CHANNELS_CHECK.TabStop = false;
             // 
             // NETID_CHECK
             // 
+            resources.ApplyResources(this.NETID_CHECK, "NETID_CHECK");
             this.NETID_CHECK.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(29)))), ((int)(((byte)(46)))));
             this.NETID_CHECK.ForeColor = System.Drawing.Color.Gray;
             this.NETID_CHECK.IconChar = FontAwesome.Sharp.IconChar.Check;
             this.NETID_CHECK.IconColor = System.Drawing.Color.Gray;
             this.NETID_CHECK.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.NETID_CHECK.IconSize = 18;
-            resources.ApplyResources(this.NETID_CHECK, "NETID_CHECK");
             this.NETID_CHECK.Name = "NETID_CHECK";
             this.NETID_CHECK.TabStop = false;
             // 
             // MAX_FREQ_CHECK
             // 
+            resources.ApplyResources(this.MAX_FREQ_CHECK, "MAX_FREQ_CHECK");
             this.MAX_FREQ_CHECK.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(29)))), ((int)(((byte)(46)))));
             this.MAX_FREQ_CHECK.ForeColor = System.Drawing.Color.Gray;
             this.MAX_FREQ_CHECK.IconChar = FontAwesome.Sharp.IconChar.Check;
             this.MAX_FREQ_CHECK.IconColor = System.Drawing.Color.Gray;
             this.MAX_FREQ_CHECK.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.MAX_FREQ_CHECK.IconSize = 18;
-            resources.ApplyResources(this.MAX_FREQ_CHECK, "MAX_FREQ_CHECK");
             this.MAX_FREQ_CHECK.Name = "MAX_FREQ_CHECK";
             this.MAX_FREQ_CHECK.TabStop = false;
             // 
             // ANT_MODE_CHECK
             // 
+            resources.ApplyResources(this.ANT_MODE_CHECK, "ANT_MODE_CHECK");
             this.ANT_MODE_CHECK.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(29)))), ((int)(((byte)(46)))));
             this.ANT_MODE_CHECK.ForeColor = System.Drawing.Color.Gray;
             this.ANT_MODE_CHECK.IconChar = FontAwesome.Sharp.IconChar.Check;
             this.ANT_MODE_CHECK.IconColor = System.Drawing.Color.Gray;
             this.ANT_MODE_CHECK.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.ANT_MODE_CHECK.IconSize = 18;
-            resources.ApplyResources(this.ANT_MODE_CHECK, "ANT_MODE_CHECK");
             this.ANT_MODE_CHECK.Name = "ANT_MODE_CHECK";
             this.ANT_MODE_CHECK.TabStop = false;
             // 
             // MIN_FREQ_CHECK
             // 
+            resources.ApplyResources(this.MIN_FREQ_CHECK, "MIN_FREQ_CHECK");
             this.MIN_FREQ_CHECK.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(29)))), ((int)(((byte)(46)))));
             this.MIN_FREQ_CHECK.ForeColor = System.Drawing.Color.Gray;
             this.MIN_FREQ_CHECK.IconChar = FontAwesome.Sharp.IconChar.Check;
             this.MIN_FREQ_CHECK.IconColor = System.Drawing.Color.Gray;
             this.MIN_FREQ_CHECK.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.MIN_FREQ_CHECK.IconSize = 18;
-            resources.ApplyResources(this.MIN_FREQ_CHECK, "MIN_FREQ_CHECK");
             this.MIN_FREQ_CHECK.Name = "MIN_FREQ_CHECK";
             this.MIN_FREQ_CHECK.TabStop = false;
             // 
@@ -1285,7 +1368,7 @@
             // RSSI
             // 
             resources.ApplyResources(this.RSSI, "RSSI");
-            this.tableLayoutPanel2.SetColumnSpan(this.RSSI, 4);
+            this.tableRadio.SetColumnSpan(this.RSSI, 4);
             this.RSSI.Name = "RSSI";
             this.RSSI.Click += new System.EventHandler(this.Control_Clicked_ShowHelp);
             // 
@@ -1367,7 +1450,7 @@
             // RATE_FREQBAND
             // 
             resources.ApplyResources(this.RATE_FREQBAND, "RATE_FREQBAND");
-            this.tableLayoutPanel2.SetColumnSpan(this.RATE_FREQBAND, 4);
+            this.tableRadio.SetColumnSpan(this.RATE_FREQBAND, 4);
             this.RATE_FREQBAND.Name = "RATE_FREQBAND";
             this.RATE_FREQBAND.Click += new System.EventHandler(this.Control_Clicked_ShowHelp);
             // 
@@ -1376,62 +1459,62 @@
             resources.ApplyResources(this.lblANT_MODE, "lblANT_MODE");
             this.lblANT_MODE.Name = "lblANT_MODE";
             // 
-            // groupBox1
+            // groupSerial
             // 
-            this.groupBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(29)))), ((int)(((byte)(46)))));
-            this.groupBox1.Controls.Add(this.tableLayoutPanel1);
-            this.groupBox1.ForeColor = System.Drawing.Color.White;
-            resources.ApplyResources(this.groupBox1, "groupBox1");
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.TabStop = false;
+            this.groupSerial.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(29)))), ((int)(((byte)(46)))));
+            this.groupSerial.Controls.Add(this.tableLayoutSerial);
+            this.groupSerial.ForeColor = System.Drawing.Color.White;
+            resources.ApplyResources(this.groupSerial, "groupSerial");
+            this.groupSerial.Name = "groupSerial";
+            this.groupSerial.TabStop = false;
             // 
-            // tableLayoutPanel1
+            // tableLayoutSerial
             // 
-            resources.ApplyResources(this.tableLayoutPanel1, "tableLayoutPanel1");
-            this.tableLayoutPanel1.Controls.Add(this.AUXSER_SPEED_CHECK, 2, 1);
-            this.tableLayoutPanel1.Controls.Add(this.SERIAL_SPEED_CHECK, 2, 0);
-            this.tableLayoutPanel1.Controls.Add(this.RTSCTS_CHECK, 2, 2);
-            this.tableLayoutPanel1.Controls.Add(this.label1, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.RTSCTS, 1, 2);
-            this.tableLayoutPanel1.Controls.Add(this.lblRTSCTS, 0, 2);
-            this.tableLayoutPanel1.Controls.Add(this.AUXSER_SPEED, 1, 1);
-            this.tableLayoutPanel1.Controls.Add(this.label5, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.SERIAL_SPEED, 1, 0);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            resources.ApplyResources(this.tableLayoutSerial, "tableLayoutSerial");
+            this.tableLayoutSerial.Controls.Add(this.AUXSER_SPEED_CHECK, 2, 1);
+            this.tableLayoutSerial.Controls.Add(this.SERIAL_SPEED_CHECK, 2, 0);
+            this.tableLayoutSerial.Controls.Add(this.RTSCTS_CHECK, 2, 2);
+            this.tableLayoutSerial.Controls.Add(this.label1, 0, 0);
+            this.tableLayoutSerial.Controls.Add(this.RTSCTS, 1, 2);
+            this.tableLayoutSerial.Controls.Add(this.lblRTSCTS, 0, 2);
+            this.tableLayoutSerial.Controls.Add(this.AUXSER_SPEED, 1, 1);
+            this.tableLayoutSerial.Controls.Add(this.label5, 0, 1);
+            this.tableLayoutSerial.Controls.Add(this.SERIAL_SPEED, 1, 0);
+            this.tableLayoutSerial.Name = "tableLayoutSerial";
             // 
             // AUXSER_SPEED_CHECK
             // 
+            resources.ApplyResources(this.AUXSER_SPEED_CHECK, "AUXSER_SPEED_CHECK");
             this.AUXSER_SPEED_CHECK.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(29)))), ((int)(((byte)(46)))));
             this.AUXSER_SPEED_CHECK.ForeColor = System.Drawing.Color.Gray;
             this.AUXSER_SPEED_CHECK.IconChar = FontAwesome.Sharp.IconChar.Check;
             this.AUXSER_SPEED_CHECK.IconColor = System.Drawing.Color.Gray;
             this.AUXSER_SPEED_CHECK.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.AUXSER_SPEED_CHECK.IconSize = 18;
-            resources.ApplyResources(this.AUXSER_SPEED_CHECK, "AUXSER_SPEED_CHECK");
             this.AUXSER_SPEED_CHECK.Name = "AUXSER_SPEED_CHECK";
             this.AUXSER_SPEED_CHECK.TabStop = false;
             // 
             // SERIAL_SPEED_CHECK
             // 
+            resources.ApplyResources(this.SERIAL_SPEED_CHECK, "SERIAL_SPEED_CHECK");
             this.SERIAL_SPEED_CHECK.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(29)))), ((int)(((byte)(46)))));
             this.SERIAL_SPEED_CHECK.ForeColor = System.Drawing.Color.Gray;
             this.SERIAL_SPEED_CHECK.IconChar = FontAwesome.Sharp.IconChar.Check;
             this.SERIAL_SPEED_CHECK.IconColor = System.Drawing.Color.Gray;
             this.SERIAL_SPEED_CHECK.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.SERIAL_SPEED_CHECK.IconSize = 18;
-            resources.ApplyResources(this.SERIAL_SPEED_CHECK, "SERIAL_SPEED_CHECK");
             this.SERIAL_SPEED_CHECK.Name = "SERIAL_SPEED_CHECK";
             this.SERIAL_SPEED_CHECK.TabStop = false;
             // 
             // RTSCTS_CHECK
             // 
+            resources.ApplyResources(this.RTSCTS_CHECK, "RTSCTS_CHECK");
             this.RTSCTS_CHECK.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(29)))), ((int)(((byte)(46)))));
             this.RTSCTS_CHECK.ForeColor = System.Drawing.Color.Gray;
             this.RTSCTS_CHECK.IconChar = FontAwesome.Sharp.IconChar.Check;
             this.RTSCTS_CHECK.IconColor = System.Drawing.Color.Gray;
             this.RTSCTS_CHECK.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.RTSCTS_CHECK.IconSize = 18;
-            resources.ApplyResources(this.RTSCTS_CHECK, "RTSCTS_CHECK");
             this.RTSCTS_CHECK.Name = "RTSCTS_CHECK";
             this.RTSCTS_CHECK.TabStop = false;
             // 
@@ -1443,207 +1526,186 @@
             // groupData
             // 
             this.groupData.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(29)))), ((int)(((byte)(46)))));
-            this.groupData.Controls.Add(this.tableLayoutPanel5);
+            this.groupData.Controls.Add(this.tableLayoutData);
             this.groupData.ForeColor = System.Drawing.Color.White;
             resources.ApplyResources(this.groupData, "groupData");
             this.groupData.Name = "groupData";
             this.groupData.TabStop = false;
             // 
-            // tableLayoutPanel5
+            // tableLayoutData
             // 
-            resources.ApplyResources(this.tableLayoutPanel5, "tableLayoutPanel5");
-            this.tableLayoutPanel5.Controls.Add(this.DESTID_CHECK, 2, 1);
-            this.tableLayoutPanel5.Controls.Add(this.NODEID_CHECK, 2, 0);
-            this.tableLayoutPanel5.Controls.Add(this.lblNODEID, 0, 0);
-            this.tableLayoutPanel5.Controls.Add(this.lblDESTID, 0, 1);
-            this.tableLayoutPanel5.Controls.Add(this.NODEID, 1, 0);
-            this.tableLayoutPanel5.Controls.Add(this.DESTID, 1, 1);
-            this.tableLayoutPanel5.Controls.Add(this.lblTX_ENCAP_METHOD, 3, 0);
-            this.tableLayoutPanel5.Controls.Add(this.TX_ENCAP_METHOD, 4, 0);
-            this.tableLayoutPanel5.Controls.Add(this.TX_ENCAP_METHOD_CHECK, 5, 0);
-            this.tableLayoutPanel5.Controls.Add(this.RX_ENCAP_METHOD, 4, 1);
-            this.tableLayoutPanel5.Controls.Add(this.lblRX_ENCAP_METHOD, 3, 1);
-            this.tableLayoutPanel5.Controls.Add(this.RX_ENCAP_METHOD_CHECK, 5, 1);
-            this.tableLayoutPanel5.Controls.Add(this.lblMAX_DATA, 0, 2);
-            this.tableLayoutPanel5.Controls.Add(this.MAX_DATA, 1, 2);
-            this.tableLayoutPanel5.Controls.Add(this.MAX_DATA_CHECK, 2, 2);
-            this.tableLayoutPanel5.Controls.Add(this.lblMAX_RETRIES, 3, 2);
-            this.tableLayoutPanel5.Controls.Add(this.MAX_RETRIES, 4, 2);
-            this.tableLayoutPanel5.Controls.Add(this.MAX_RETRIES_CHECK, 5, 2);
-            this.tableLayoutPanel5.Controls.Add(this.lblGLOBAL_RETRIES, 3, 3);
-            this.tableLayoutPanel5.Controls.Add(this.GLOBAL_RETRIES, 4, 3);
-            this.tableLayoutPanel5.Controls.Add(this.GLOBAL_RETRIES_CHECK, 5, 3);
-            this.tableLayoutPanel5.Controls.Add(this.lblSER_BRK_DETMS, 0, 3);
-            this.tableLayoutPanel5.Controls.Add(this.SER_BRK_DETMS, 1, 3);
-            this.tableLayoutPanel5.Controls.Add(this.SER_BRK_DETMS_CHECK, 2, 3);
-            this.tableLayoutPanel5.Name = "tableLayoutPanel5";
-            // 
-            // SER_BRK_DETMS_CHECK
-            // 
-            this.SER_BRK_DETMS_CHECK.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(29)))), ((int)(((byte)(46)))));
-            this.SER_BRK_DETMS_CHECK.ForeColor = System.Drawing.Color.Gray;
-            this.SER_BRK_DETMS_CHECK.IconChar = FontAwesome.Sharp.IconChar.Check;
-            this.SER_BRK_DETMS_CHECK.IconColor = System.Drawing.Color.Gray;
-            this.SER_BRK_DETMS_CHECK.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.SER_BRK_DETMS_CHECK.IconSize = 18;
-            resources.ApplyResources(this.SER_BRK_DETMS_CHECK, "SER_BRK_DETMS_CHECK");
-            this.SER_BRK_DETMS_CHECK.Name = "SER_BRK_DETMS_CHECK";
-            this.SER_BRK_DETMS_CHECK.TabStop = false;
-            // 
-            // GLOBAL_RETRIES_CHECK
-            // 
-            this.GLOBAL_RETRIES_CHECK.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(29)))), ((int)(((byte)(46)))));
-            this.GLOBAL_RETRIES_CHECK.ForeColor = System.Drawing.Color.Gray;
-            this.GLOBAL_RETRIES_CHECK.IconChar = FontAwesome.Sharp.IconChar.Check;
-            this.GLOBAL_RETRIES_CHECK.IconColor = System.Drawing.Color.Gray;
-            this.GLOBAL_RETRIES_CHECK.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.GLOBAL_RETRIES_CHECK.IconSize = 18;
-            resources.ApplyResources(this.GLOBAL_RETRIES_CHECK, "GLOBAL_RETRIES_CHECK");
-            this.GLOBAL_RETRIES_CHECK.Name = "GLOBAL_RETRIES_CHECK";
-            this.GLOBAL_RETRIES_CHECK.TabStop = false;
-            // 
-            // MAX_RETRIES_CHECK
-            // 
-            this.MAX_RETRIES_CHECK.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(29)))), ((int)(((byte)(46)))));
-            this.MAX_RETRIES_CHECK.ForeColor = System.Drawing.Color.Gray;
-            this.MAX_RETRIES_CHECK.IconChar = FontAwesome.Sharp.IconChar.Check;
-            this.MAX_RETRIES_CHECK.IconColor = System.Drawing.Color.Gray;
-            this.MAX_RETRIES_CHECK.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.MAX_RETRIES_CHECK.IconSize = 18;
-            resources.ApplyResources(this.MAX_RETRIES_CHECK, "MAX_RETRIES_CHECK");
-            this.MAX_RETRIES_CHECK.Name = "MAX_RETRIES_CHECK";
-            this.MAX_RETRIES_CHECK.TabStop = false;
-            // 
-            // MAX_DATA_CHECK
-            // 
-            this.MAX_DATA_CHECK.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(29)))), ((int)(((byte)(46)))));
-            this.MAX_DATA_CHECK.ForeColor = System.Drawing.Color.Gray;
-            this.MAX_DATA_CHECK.IconChar = FontAwesome.Sharp.IconChar.Check;
-            this.MAX_DATA_CHECK.IconColor = System.Drawing.Color.Gray;
-            this.MAX_DATA_CHECK.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.MAX_DATA_CHECK.IconSize = 18;
-            resources.ApplyResources(this.MAX_DATA_CHECK, "MAX_DATA_CHECK");
-            this.MAX_DATA_CHECK.Name = "MAX_DATA_CHECK";
-            this.MAX_DATA_CHECK.TabStop = false;
-            // 
-            // RX_ENCAP_METHOD_CHECK
-            // 
-            this.RX_ENCAP_METHOD_CHECK.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(29)))), ((int)(((byte)(46)))));
-            this.RX_ENCAP_METHOD_CHECK.ForeColor = System.Drawing.Color.Gray;
-            this.RX_ENCAP_METHOD_CHECK.IconChar = FontAwesome.Sharp.IconChar.Check;
-            this.RX_ENCAP_METHOD_CHECK.IconColor = System.Drawing.Color.Gray;
-            this.RX_ENCAP_METHOD_CHECK.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.RX_ENCAP_METHOD_CHECK.IconSize = 18;
-            resources.ApplyResources(this.RX_ENCAP_METHOD_CHECK, "RX_ENCAP_METHOD_CHECK");
-            this.RX_ENCAP_METHOD_CHECK.Name = "RX_ENCAP_METHOD_CHECK";
-            this.RX_ENCAP_METHOD_CHECK.TabStop = false;
-            // 
-            // TX_ENCAP_METHOD_CHECK
-            // 
-            this.TX_ENCAP_METHOD_CHECK.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(29)))), ((int)(((byte)(46)))));
-            this.TX_ENCAP_METHOD_CHECK.ForeColor = System.Drawing.Color.Gray;
-            this.TX_ENCAP_METHOD_CHECK.IconChar = FontAwesome.Sharp.IconChar.Check;
-            this.TX_ENCAP_METHOD_CHECK.IconColor = System.Drawing.Color.Gray;
-            this.TX_ENCAP_METHOD_CHECK.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.TX_ENCAP_METHOD_CHECK.IconSize = 18;
-            resources.ApplyResources(this.TX_ENCAP_METHOD_CHECK, "TX_ENCAP_METHOD_CHECK");
-            this.TX_ENCAP_METHOD_CHECK.Name = "TX_ENCAP_METHOD_CHECK";
-            this.TX_ENCAP_METHOD_CHECK.TabStop = false;
+            resources.ApplyResources(this.tableLayoutData, "tableLayoutData");
+            this.tableLayoutData.Controls.Add(this.DESTID_CHECK, 2, 1);
+            this.tableLayoutData.Controls.Add(this.NODEID_CHECK, 2, 0);
+            this.tableLayoutData.Controls.Add(this.lblNODEID, 0, 0);
+            this.tableLayoutData.Controls.Add(this.lblDESTID, 0, 1);
+            this.tableLayoutData.Controls.Add(this.NODEID, 1, 0);
+            this.tableLayoutData.Controls.Add(this.DESTID, 1, 1);
+            this.tableLayoutData.Controls.Add(this.lblTX_ENCAP_METHOD, 3, 0);
+            this.tableLayoutData.Controls.Add(this.TX_ENCAP_METHOD, 4, 0);
+            this.tableLayoutData.Controls.Add(this.TX_ENCAP_METHOD_CHECK, 5, 0);
+            this.tableLayoutData.Controls.Add(this.RX_ENCAP_METHOD, 4, 1);
+            this.tableLayoutData.Controls.Add(this.lblRX_ENCAP_METHOD, 3, 1);
+            this.tableLayoutData.Controls.Add(this.RX_ENCAP_METHOD_CHECK, 5, 1);
+            this.tableLayoutData.Controls.Add(this.lblMAX_DATA, 0, 2);
+            this.tableLayoutData.Controls.Add(this.MAX_DATA, 1, 2);
+            this.tableLayoutData.Controls.Add(this.MAX_DATA_CHECK, 2, 2);
+            this.tableLayoutData.Controls.Add(this.lblMAX_RETRIES, 3, 2);
+            this.tableLayoutData.Controls.Add(this.MAX_RETRIES, 4, 2);
+            this.tableLayoutData.Controls.Add(this.MAX_RETRIES_CHECK, 5, 2);
+            this.tableLayoutData.Controls.Add(this.lblGLOBAL_RETRIES, 3, 3);
+            this.tableLayoutData.Controls.Add(this.GLOBAL_RETRIES, 4, 3);
+            this.tableLayoutData.Controls.Add(this.GLOBAL_RETRIES_CHECK, 5, 3);
+            this.tableLayoutData.Controls.Add(this.lblSER_BRK_DETMS, 0, 3);
+            this.tableLayoutData.Controls.Add(this.SER_BRK_DETMS, 1, 3);
+            this.tableLayoutData.Controls.Add(this.SER_BRK_DETMS_CHECK, 2, 3);
+            this.tableLayoutData.Name = "tableLayoutData";
             // 
             // DESTID_CHECK
             // 
+            resources.ApplyResources(this.DESTID_CHECK, "DESTID_CHECK");
             this.DESTID_CHECK.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(29)))), ((int)(((byte)(46)))));
             this.DESTID_CHECK.ForeColor = System.Drawing.Color.Gray;
             this.DESTID_CHECK.IconChar = FontAwesome.Sharp.IconChar.Check;
             this.DESTID_CHECK.IconColor = System.Drawing.Color.Gray;
             this.DESTID_CHECK.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.DESTID_CHECK.IconSize = 18;
-            resources.ApplyResources(this.DESTID_CHECK, "DESTID_CHECK");
             this.DESTID_CHECK.Name = "DESTID_CHECK";
             this.DESTID_CHECK.TabStop = false;
             // 
             // NODEID_CHECK
             // 
+            resources.ApplyResources(this.NODEID_CHECK, "NODEID_CHECK");
             this.NODEID_CHECK.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(29)))), ((int)(((byte)(46)))));
             this.NODEID_CHECK.ForeColor = System.Drawing.Color.Gray;
             this.NODEID_CHECK.IconChar = FontAwesome.Sharp.IconChar.Check;
             this.NODEID_CHECK.IconColor = System.Drawing.Color.Gray;
             this.NODEID_CHECK.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.NODEID_CHECK.IconSize = 18;
-            resources.ApplyResources(this.NODEID_CHECK, "NODEID_CHECK");
             this.NODEID_CHECK.Name = "NODEID_CHECK";
             this.NODEID_CHECK.TabStop = false;
+            // 
+            // TX_ENCAP_METHOD_CHECK
+            // 
+            resources.ApplyResources(this.TX_ENCAP_METHOD_CHECK, "TX_ENCAP_METHOD_CHECK");
+            this.TX_ENCAP_METHOD_CHECK.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(29)))), ((int)(((byte)(46)))));
+            this.TX_ENCAP_METHOD_CHECK.ForeColor = System.Drawing.Color.Gray;
+            this.TX_ENCAP_METHOD_CHECK.IconChar = FontAwesome.Sharp.IconChar.Check;
+            this.TX_ENCAP_METHOD_CHECK.IconColor = System.Drawing.Color.Gray;
+            this.TX_ENCAP_METHOD_CHECK.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.TX_ENCAP_METHOD_CHECK.IconSize = 18;
+            this.TX_ENCAP_METHOD_CHECK.Name = "TX_ENCAP_METHOD_CHECK";
+            this.TX_ENCAP_METHOD_CHECK.TabStop = false;
+            // 
+            // RX_ENCAP_METHOD_CHECK
+            // 
+            resources.ApplyResources(this.RX_ENCAP_METHOD_CHECK, "RX_ENCAP_METHOD_CHECK");
+            this.RX_ENCAP_METHOD_CHECK.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(29)))), ((int)(((byte)(46)))));
+            this.RX_ENCAP_METHOD_CHECK.ForeColor = System.Drawing.Color.Gray;
+            this.RX_ENCAP_METHOD_CHECK.IconChar = FontAwesome.Sharp.IconChar.Check;
+            this.RX_ENCAP_METHOD_CHECK.IconColor = System.Drawing.Color.Gray;
+            this.RX_ENCAP_METHOD_CHECK.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.RX_ENCAP_METHOD_CHECK.IconSize = 18;
+            this.RX_ENCAP_METHOD_CHECK.Name = "RX_ENCAP_METHOD_CHECK";
+            this.RX_ENCAP_METHOD_CHECK.TabStop = false;
+            // 
+            // MAX_DATA_CHECK
+            // 
+            resources.ApplyResources(this.MAX_DATA_CHECK, "MAX_DATA_CHECK");
+            this.MAX_DATA_CHECK.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(29)))), ((int)(((byte)(46)))));
+            this.MAX_DATA_CHECK.ForeColor = System.Drawing.Color.Gray;
+            this.MAX_DATA_CHECK.IconChar = FontAwesome.Sharp.IconChar.Check;
+            this.MAX_DATA_CHECK.IconColor = System.Drawing.Color.Gray;
+            this.MAX_DATA_CHECK.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.MAX_DATA_CHECK.IconSize = 18;
+            this.MAX_DATA_CHECK.Name = "MAX_DATA_CHECK";
+            this.MAX_DATA_CHECK.TabStop = false;
+            // 
+            // MAX_RETRIES_CHECK
+            // 
+            resources.ApplyResources(this.MAX_RETRIES_CHECK, "MAX_RETRIES_CHECK");
+            this.MAX_RETRIES_CHECK.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(29)))), ((int)(((byte)(46)))));
+            this.MAX_RETRIES_CHECK.ForeColor = System.Drawing.Color.Gray;
+            this.MAX_RETRIES_CHECK.IconChar = FontAwesome.Sharp.IconChar.Check;
+            this.MAX_RETRIES_CHECK.IconColor = System.Drawing.Color.Gray;
+            this.MAX_RETRIES_CHECK.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.MAX_RETRIES_CHECK.IconSize = 18;
+            this.MAX_RETRIES_CHECK.Name = "MAX_RETRIES_CHECK";
+            this.MAX_RETRIES_CHECK.TabStop = false;
+            // 
+            // GLOBAL_RETRIES_CHECK
+            // 
+            resources.ApplyResources(this.GLOBAL_RETRIES_CHECK, "GLOBAL_RETRIES_CHECK");
+            this.GLOBAL_RETRIES_CHECK.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(29)))), ((int)(((byte)(46)))));
+            this.GLOBAL_RETRIES_CHECK.ForeColor = System.Drawing.Color.Gray;
+            this.GLOBAL_RETRIES_CHECK.IconChar = FontAwesome.Sharp.IconChar.Check;
+            this.GLOBAL_RETRIES_CHECK.IconColor = System.Drawing.Color.Gray;
+            this.GLOBAL_RETRIES_CHECK.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.GLOBAL_RETRIES_CHECK.IconSize = 18;
+            this.GLOBAL_RETRIES_CHECK.Name = "GLOBAL_RETRIES_CHECK";
+            this.GLOBAL_RETRIES_CHECK.TabStop = false;
+            // 
+            // SER_BRK_DETMS_CHECK
+            // 
+            resources.ApplyResources(this.SER_BRK_DETMS_CHECK, "SER_BRK_DETMS_CHECK");
+            this.SER_BRK_DETMS_CHECK.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(29)))), ((int)(((byte)(46)))));
+            this.SER_BRK_DETMS_CHECK.ForeColor = System.Drawing.Color.Gray;
+            this.SER_BRK_DETMS_CHECK.IconChar = FontAwesome.Sharp.IconChar.Check;
+            this.SER_BRK_DETMS_CHECK.IconColor = System.Drawing.Color.Gray;
+            this.SER_BRK_DETMS_CHECK.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.SER_BRK_DETMS_CHECK.IconSize = 18;
+            this.SER_BRK_DETMS_CHECK.Name = "SER_BRK_DETMS_CHECK";
+            this.SER_BRK_DETMS_CHECK.TabStop = false;
             // 
             // groupGPIO
             // 
             this.groupGPIO.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(29)))), ((int)(((byte)(46)))));
-            this.groupGPIO.Controls.Add(this.tableLayoutPanel4);
+            this.groupGPIO.Controls.Add(this.tableLayoutGPIO);
             this.groupGPIO.ForeColor = System.Drawing.Color.White;
             resources.ApplyResources(this.groupGPIO, "groupGPIO");
             this.groupGPIO.Name = "groupGPIO";
             this.groupGPIO.TabStop = false;
             // 
-            // tableLayoutPanel4
+            // tableLayoutGPIO
             // 
-            resources.ApplyResources(this.tableLayoutPanel4, "tableLayoutPanel4");
-            this.tableLayoutPanel4.Controls.Add(this.PIN_13_CHECK, 2, 1);
-            this.tableLayoutPanel4.Controls.Add(this.PIN_12_CHECK, 2, 0);
-            this.tableLayoutPanel4.Controls.Add(this.comboPin14, 1, 2);
-            this.tableLayoutPanel4.Controls.Add(this.comboPin13, 1, 1);
-            this.tableLayoutPanel4.Controls.Add(this.comboPin12, 1, 0);
-            this.tableLayoutPanel4.Controls.Add(this.label19, 0, 3);
-            this.tableLayoutPanel4.Controls.Add(this.label16, 0, 1);
-            this.tableLayoutPanel4.Controls.Add(this.label17, 0, 0);
-            this.tableLayoutPanel4.Controls.Add(this.label18, 0, 2);
-            this.tableLayoutPanel4.Controls.Add(this.comboPin15, 1, 3);
-            this.tableLayoutPanel4.Controls.Add(this.PIN_14_CHECK, 2, 2);
-            this.tableLayoutPanel4.Controls.Add(this.PIN_15_CHECK, 2, 3);
-            this.tableLayoutPanel4.Name = "tableLayoutPanel4";
+            resources.ApplyResources(this.tableLayoutGPIO, "tableLayoutGPIO");
+            this.tableLayoutGPIO.Controls.Add(this.PIN_13_CHECK, 2, 1);
+            this.tableLayoutGPIO.Controls.Add(this.PIN_12_CHECK, 2, 0);
+            this.tableLayoutGPIO.Controls.Add(this.comboPin14, 1, 2);
+            this.tableLayoutGPIO.Controls.Add(this.comboPin13, 1, 1);
+            this.tableLayoutGPIO.Controls.Add(this.comboPin12, 1, 0);
+            this.tableLayoutGPIO.Controls.Add(this.label19, 0, 3);
+            this.tableLayoutGPIO.Controls.Add(this.label16, 0, 1);
+            this.tableLayoutGPIO.Controls.Add(this.label17, 0, 0);
+            this.tableLayoutGPIO.Controls.Add(this.label18, 0, 2);
+            this.tableLayoutGPIO.Controls.Add(this.comboPin15, 1, 3);
+            this.tableLayoutGPIO.Controls.Add(this.PIN_14_CHECK, 2, 2);
+            this.tableLayoutGPIO.Controls.Add(this.PIN_15_CHECK, 2, 3);
+            this.tableLayoutGPIO.Name = "tableLayoutGPIO";
             // 
             // PIN_13_CHECK
             // 
+            resources.ApplyResources(this.PIN_13_CHECK, "PIN_13_CHECK");
             this.PIN_13_CHECK.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(29)))), ((int)(((byte)(46)))));
             this.PIN_13_CHECK.ForeColor = System.Drawing.Color.Gray;
             this.PIN_13_CHECK.IconChar = FontAwesome.Sharp.IconChar.Check;
             this.PIN_13_CHECK.IconColor = System.Drawing.Color.Gray;
             this.PIN_13_CHECK.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.PIN_13_CHECK.IconSize = 18;
-            resources.ApplyResources(this.PIN_13_CHECK, "PIN_13_CHECK");
             this.PIN_13_CHECK.Name = "PIN_13_CHECK";
             this.PIN_13_CHECK.TabStop = false;
             // 
             // PIN_12_CHECK
             // 
+            resources.ApplyResources(this.PIN_12_CHECK, "PIN_12_CHECK");
             this.PIN_12_CHECK.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(29)))), ((int)(((byte)(46)))));
             this.PIN_12_CHECK.ForeColor = System.Drawing.Color.Gray;
             this.PIN_12_CHECK.IconChar = FontAwesome.Sharp.IconChar.Check;
             this.PIN_12_CHECK.IconColor = System.Drawing.Color.Gray;
             this.PIN_12_CHECK.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.PIN_12_CHECK.IconSize = 18;
-            resources.ApplyResources(this.PIN_12_CHECK, "PIN_12_CHECK");
             this.PIN_12_CHECK.Name = "PIN_12_CHECK";
             this.PIN_12_CHECK.TabStop = false;
-            // 
-            // comboPin14
-            // 
-            resources.ApplyResources(this.comboPin14, "comboPin14");
-            this.comboPin14.FormattingEnabled = true;
-            this.comboPin14.Name = "comboPin14";
-            this.comboPin14.Click += new System.EventHandler(this.Control_Clicked_ShowHelp);
-            // 
-            // comboPin13
-            // 
-            resources.ApplyResources(this.comboPin13, "comboPin13");
-            this.comboPin13.FormattingEnabled = true;
-            this.comboPin13.Name = "comboPin13";
-            this.comboPin13.Click += new System.EventHandler(this.Control_Clicked_ShowHelp);
-            // 
-            // comboPin12
-            // 
-            resources.ApplyResources(this.comboPin12, "comboPin12");
-            this.comboPin12.FormattingEnabled = true;
-            this.comboPin12.Name = "comboPin12";
-            this.comboPin12.Click += new System.EventHandler(this.Control_Clicked_ShowHelp);
             // 
             // label19
             // 
@@ -1665,34 +1727,27 @@
             resources.ApplyResources(this.label18, "label18");
             this.label18.Name = "label18";
             // 
-            // comboPin15
-            // 
-            resources.ApplyResources(this.comboPin15, "comboPin15");
-            this.comboPin15.FormattingEnabled = true;
-            this.comboPin15.Name = "comboPin15";
-            this.comboPin15.Click += new System.EventHandler(this.Control_Clicked_ShowHelp);
-            // 
             // PIN_14_CHECK
             // 
+            resources.ApplyResources(this.PIN_14_CHECK, "PIN_14_CHECK");
             this.PIN_14_CHECK.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(29)))), ((int)(((byte)(46)))));
             this.PIN_14_CHECK.ForeColor = System.Drawing.Color.Gray;
             this.PIN_14_CHECK.IconChar = FontAwesome.Sharp.IconChar.Check;
             this.PIN_14_CHECK.IconColor = System.Drawing.Color.Gray;
             this.PIN_14_CHECK.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.PIN_14_CHECK.IconSize = 18;
-            resources.ApplyResources(this.PIN_14_CHECK, "PIN_14_CHECK");
             this.PIN_14_CHECK.Name = "PIN_14_CHECK";
             this.PIN_14_CHECK.TabStop = false;
             // 
             // PIN_15_CHECK
             // 
+            resources.ApplyResources(this.PIN_15_CHECK, "PIN_15_CHECK");
             this.PIN_15_CHECK.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(29)))), ((int)(((byte)(46)))));
             this.PIN_15_CHECK.ForeColor = System.Drawing.Color.Gray;
             this.PIN_15_CHECK.IconChar = FontAwesome.Sharp.IconChar.Check;
             this.PIN_15_CHECK.IconColor = System.Drawing.Color.Gray;
             this.PIN_15_CHECK.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.PIN_15_CHECK.IconSize = 18;
-            resources.ApplyResources(this.PIN_15_CHECK, "PIN_15_CHECK");
             this.PIN_15_CHECK.Name = "PIN_15_CHECK";
             this.PIN_15_CHECK.TabStop = false;
             // 
@@ -1763,25 +1818,25 @@
             // 
             // ENCRYPTION_LEVEL_CHECK
             // 
+            resources.ApplyResources(this.ENCRYPTION_LEVEL_CHECK, "ENCRYPTION_LEVEL_CHECK");
             this.ENCRYPTION_LEVEL_CHECK.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(29)))), ((int)(((byte)(46)))));
             this.ENCRYPTION_LEVEL_CHECK.ForeColor = System.Drawing.Color.Gray;
             this.ENCRYPTION_LEVEL_CHECK.IconChar = FontAwesome.Sharp.IconChar.Check;
             this.ENCRYPTION_LEVEL_CHECK.IconColor = System.Drawing.Color.Gray;
             this.ENCRYPTION_LEVEL_CHECK.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.ENCRYPTION_LEVEL_CHECK.IconSize = 18;
-            resources.ApplyResources(this.ENCRYPTION_LEVEL_CHECK, "ENCRYPTION_LEVEL_CHECK");
             this.ENCRYPTION_LEVEL_CHECK.Name = "ENCRYPTION_LEVEL_CHECK";
             this.ENCRYPTION_LEVEL_CHECK.TabStop = false;
             // 
             // AESKEY_CHECK
             // 
+            resources.ApplyResources(this.AESKEY_CHECK, "AESKEY_CHECK");
             this.AESKEY_CHECK.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(29)))), ((int)(((byte)(46)))));
             this.AESKEY_CHECK.ForeColor = System.Drawing.Color.Gray;
             this.AESKEY_CHECK.IconChar = FontAwesome.Sharp.IconChar.Check;
             this.AESKEY_CHECK.IconColor = System.Drawing.Color.Gray;
             this.AESKEY_CHECK.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.AESKEY_CHECK.IconSize = 18;
-            resources.ApplyResources(this.AESKEY_CHECK, "AESKEY_CHECK");
             this.AESKEY_CHECK.Name = "AESKEY_CHECK";
             this.AESKEY_CHECK.TabStop = false;
             // 
@@ -1826,71 +1881,84 @@
             // 
             // btn_SaveSetting
             // 
-            this.btn_SaveSetting.ForeColor = System.Drawing.Color.Black;
+            this.btn_SaveSetting.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(73)))), ((int)(((byte)(82)))), ((int)(((byte)(110)))));
+            this.btn_SaveSetting.FlatAppearance.BorderSize = 2;
+            resources.ApplyResources(this.btn_SaveSetting, "btn_SaveSetting");
+            this.btn_SaveSetting.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(73)))), ((int)(((byte)(82)))), ((int)(((byte)(110)))));
             this.btn_SaveSetting.IconChar = FontAwesome.Sharp.IconChar.Download;
-            this.btn_SaveSetting.IconColor = System.Drawing.Color.Black;
+            this.btn_SaveSetting.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(73)))), ((int)(((byte)(82)))), ((int)(((byte)(110)))));
             this.btn_SaveSetting.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btn_SaveSetting.IconSize = 24;
-            resources.ApplyResources(this.btn_SaveSetting, "btn_SaveSetting");
             this.btn_SaveSetting.Name = "btn_SaveSetting";
             this.btn_SaveSetting.UseVisualStyleBackColor = true;
+            this.btn_SaveSetting.Click += new System.EventHandler(this.btn_SaveSetting_Click);
             // 
             // btn_LoadFile
             // 
-            this.btn_LoadFile.ForeColor = System.Drawing.Color.Black;
+            this.btn_LoadFile.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(73)))), ((int)(((byte)(82)))), ((int)(((byte)(110)))));
+            this.btn_LoadFile.FlatAppearance.BorderSize = 2;
+            resources.ApplyResources(this.btn_LoadFile, "btn_LoadFile");
+            this.btn_LoadFile.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(73)))), ((int)(((byte)(82)))), ((int)(((byte)(110)))));
             this.btn_LoadFile.IconChar = FontAwesome.Sharp.IconChar.ArrowRightFromFile;
-            this.btn_LoadFile.IconColor = System.Drawing.Color.Black;
+            this.btn_LoadFile.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(73)))), ((int)(((byte)(82)))), ((int)(((byte)(110)))));
             this.btn_LoadFile.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btn_LoadFile.IconSize = 24;
-            resources.ApplyResources(this.btn_LoadFile, "btn_LoadFile");
             this.btn_LoadFile.Name = "btn_LoadFile";
             this.btn_LoadFile.UseVisualStyleBackColor = true;
             this.btn_LoadFile.Click += new System.EventHandler(this.btn_LoadFile_Click);
             // 
             // btn_SaveFile
             // 
-            this.btn_SaveFile.ForeColor = System.Drawing.Color.Black;
+            this.btn_SaveFile.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(73)))), ((int)(((byte)(82)))), ((int)(((byte)(110)))));
+            this.btn_SaveFile.FlatAppearance.BorderSize = 2;
+            resources.ApplyResources(this.btn_SaveFile, "btn_SaveFile");
+            this.btn_SaveFile.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(73)))), ((int)(((byte)(82)))), ((int)(((byte)(110)))));
             this.btn_SaveFile.IconChar = FontAwesome.Sharp.IconChar.FileImport;
-            this.btn_SaveFile.IconColor = System.Drawing.Color.Black;
+            this.btn_SaveFile.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(73)))), ((int)(((byte)(82)))), ((int)(((byte)(110)))));
             this.btn_SaveFile.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btn_SaveFile.IconSize = 24;
-            resources.ApplyResources(this.btn_SaveFile, "btn_SaveFile");
             this.btn_SaveFile.Name = "btn_SaveFile";
             this.btn_SaveFile.UseVisualStyleBackColor = true;
             this.btn_SaveFile.Click += new System.EventHandler(this.btn_SaveFile_Click);
             // 
             // btn_Reset
             // 
-            this.btn_Reset.ForeColor = System.Drawing.Color.Black;
+            this.btn_Reset.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(73)))), ((int)(((byte)(82)))), ((int)(((byte)(110)))));
+            this.btn_Reset.FlatAppearance.BorderSize = 2;
+            resources.ApplyResources(this.btn_Reset, "btn_Reset");
+            this.btn_Reset.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(73)))), ((int)(((byte)(82)))), ((int)(((byte)(110)))));
             this.btn_Reset.IconChar = FontAwesome.Sharp.IconChar.ArrowRotateBackward;
-            this.btn_Reset.IconColor = System.Drawing.Color.Black;
+            this.btn_Reset.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(73)))), ((int)(((byte)(82)))), ((int)(((byte)(110)))));
             this.btn_Reset.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btn_Reset.IconSize = 24;
-            resources.ApplyResources(this.btn_Reset, "btn_Reset");
             this.btn_Reset.Name = "btn_Reset";
             this.btn_Reset.UseVisualStyleBackColor = true;
             this.btn_Reset.Click += new System.EventHandler(this.btn_Reset_Click);
             // 
             // btn_Firmware
             // 
-            this.btn_Firmware.ForeColor = System.Drawing.Color.Black;
+            this.btn_Firmware.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(73)))), ((int)(((byte)(82)))), ((int)(((byte)(110)))));
+            this.btn_Firmware.FlatAppearance.BorderSize = 2;
+            resources.ApplyResources(this.btn_Firmware, "btn_Firmware");
+            this.btn_Firmware.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(73)))), ((int)(((byte)(82)))), ((int)(((byte)(110)))));
             this.btn_Firmware.IconChar = FontAwesome.Sharp.IconChar.Wrench;
-            this.btn_Firmware.IconColor = System.Drawing.Color.Black;
+            this.btn_Firmware.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(73)))), ((int)(((byte)(82)))), ((int)(((byte)(110)))));
             this.btn_Firmware.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btn_Firmware.IconSize = 24;
-            resources.ApplyResources(this.btn_Firmware, "btn_Firmware");
             this.btn_Firmware.Name = "btn_Firmware";
             this.btn_Firmware.UseVisualStyleBackColor = true;
             this.btn_Firmware.Click += new System.EventHandler(this.btn_Firmware_Click);
             // 
             // btn_Reboot
             // 
-            this.btn_Reboot.ForeColor = System.Drawing.Color.Black;
+            this.btn_Reboot.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(73)))), ((int)(((byte)(82)))), ((int)(((byte)(110)))));
+            this.btn_Reboot.FlatAppearance.BorderSize = 2;
+            resources.ApplyResources(this.btn_Reboot, "btn_Reboot");
+            this.btn_Reboot.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(73)))), ((int)(((byte)(82)))), ((int)(((byte)(110)))));
             this.btn_Reboot.IconChar = FontAwesome.Sharp.IconChar.PowerOff;
-            this.btn_Reboot.IconColor = System.Drawing.Color.Black;
+            this.btn_Reboot.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(73)))), ((int)(((byte)(82)))), ((int)(((byte)(110)))));
             this.btn_Reboot.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btn_Reboot.IconSize = 24;
-            resources.ApplyResources(this.btn_Reboot, "btn_Reboot");
             this.btn_Reboot.Name = "btn_Reboot";
             this.btn_Reboot.UseVisualStyleBackColor = true;
             this.btn_Reboot.Click += new System.EventHandler(this.btnReboot_Click);
@@ -1899,37 +1967,19 @@
             // 
             resources.ApplyResources(this.flowLayoutConfig, "flowLayoutConfig");
             this.flowLayoutConfig.Controls.Add(this.groupFirmware);
-            this.flowLayoutConfig.Controls.Add(this.groupBox1);
+            this.flowLayoutConfig.Controls.Add(this.groupSerial);
             this.flowLayoutConfig.Controls.Add(this.groupRadio);
-            this.flowLayoutConfig.Controls.Add(this.flowLayoutPanel1);
+            this.flowLayoutConfig.Controls.Add(this.flowLayoutSerialPin);
             this.flowLayoutConfig.Controls.Add(this.groupData);
             this.flowLayoutConfig.Controls.Add(this.groupBox4);
             this.flowLayoutConfig.Name = "flowLayoutConfig";
             // 
-            // flowLayoutPanel1
+            // flowLayoutSerialPin
             // 
-            this.flowLayoutPanel1.Controls.Add(this.groupSecurity);
-            this.flowLayoutPanel1.Controls.Add(this.groupGPIO);
-            resources.ApplyResources(this.flowLayoutPanel1, "flowLayoutPanel1");
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            // 
-            // richTextHelp
-            // 
-            this.richTextHelp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(29)))), ((int)(((byte)(46)))));
-            this.richTextHelp.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            resources.ApplyResources(this.richTextHelp, "richTextHelp");
-            this.richTextHelp.ForeColor = System.Drawing.Color.White;
-            this.richTextHelp.Name = "richTextHelp";
-            this.richTextHelp.ReadOnly = true;
-            this.richTextHelp.TabStop = false;
-            // 
-            // groupBox3
-            // 
-            resources.ApplyResources(this.groupBox3, "groupBox3");
-            this.groupBox3.Controls.Add(this.richTextHelp);
-            this.groupBox3.ForeColor = System.Drawing.Color.White;
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.TabStop = false;
+            this.flowLayoutSerialPin.Controls.Add(this.groupSecurity);
+            this.flowLayoutSerialPin.Controls.Add(this.groupGPIO);
+            resources.ApplyResources(this.flowLayoutSerialPin, "flowLayoutSerialPin");
+            this.flowLayoutSerialPin.Name = "flowLayoutSerialPin";
             // 
             // groupBox4
             // 
@@ -1966,22 +2016,44 @@
             this.groupBox4.Controls.Add(this.lblGPO1_1R_COUT);
             this.groupBox4.Controls.Add(this.GPO1_1R_COUT);
             this.groupBox4.Controls.Add(this.GPI1_1R_CIN);
-            this.groupBox4.ForeColor = System.Drawing.Color.White;
             resources.ApplyResources(this.groupBox4, "groupBox4");
+            this.groupBox4.ForeColor = System.Drawing.Color.White;
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.TabStop = false;
+            // 
+            // richTextHelp
+            // 
+            this.richTextHelp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(29)))), ((int)(((byte)(46)))));
+            this.richTextHelp.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            resources.ApplyResources(this.richTextHelp, "richTextHelp");
+            this.richTextHelp.ForeColor = System.Drawing.Color.White;
+            this.richTextHelp.Name = "richTextHelp";
+            this.richTextHelp.ReadOnly = true;
+            this.richTextHelp.TabStop = false;
+            // 
+            // groupInfo
+            // 
+            resources.ApplyResources(this.groupInfo, "groupInfo");
+            this.groupInfo.Controls.Add(this.richTextHelp);
+            this.groupInfo.ForeColor = System.Drawing.Color.White;
+            this.groupInfo.Name = "groupInfo";
+            this.groupInfo.TabStop = false;
             // 
             // Sikradio
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(29)))), ((int)(((byte)(46)))));
-            this.Controls.Add(this.groupBox3);
+            this.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.Controls.Add(this.groupInfo);
             this.Controls.Add(this.flowLayoutConfig);
             this.Controls.Add(this.flowLayoutActions);
             resources.ApplyResources(this, "$this");
             this.Name = "Sikradio";
-            this.Load += new System.EventHandler(this.Sikradio_Load);
             ((System.ComponentModel.ISupportInitialize)(this.configManagerBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pin14ItemsBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pin13ItemsBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pin12ItemsBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pin15ItemsBindingSource)).EndInit();
             this.groupFirmware.ResumeLayout(false);
             this.tableLayoutDevice.ResumeLayout(false);
             this.tableLayoutDevice.PerformLayout();
@@ -1990,8 +2062,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.ATI_CHECK)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.FORMAT_CHECK)).EndInit();
             this.groupRadio.ResumeLayout(false);
-            this.tableLayoutPanel2.ResumeLayout(false);
-            this.tableLayoutPanel2.PerformLayout();
+            this.groupRadio.PerformLayout();
+            this.tableRadio.ResumeLayout(false);
+            this.tableRadio.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.OPPRESEND_CHECK)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.RSSI_IN_DBM_CHECK)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.AIR_FRAMELEN_CHECK)).EndInit();
@@ -2006,23 +2079,24 @@
             ((System.ComponentModel.ISupportInitialize)(this.MAX_FREQ_CHECK)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ANT_MODE_CHECK)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.MIN_FREQ_CHECK)).EndInit();
-            this.groupBox1.ResumeLayout(false);
-            this.tableLayoutPanel1.ResumeLayout(false);
+            this.groupSerial.ResumeLayout(false);
+            this.groupSerial.PerformLayout();
+            this.tableLayoutSerial.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.AUXSER_SPEED_CHECK)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.SERIAL_SPEED_CHECK)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.RTSCTS_CHECK)).EndInit();
             this.groupData.ResumeLayout(false);
-            this.tableLayoutPanel5.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.SER_BRK_DETMS_CHECK)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.GLOBAL_RETRIES_CHECK)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.MAX_RETRIES_CHECK)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.MAX_DATA_CHECK)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.RX_ENCAP_METHOD_CHECK)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TX_ENCAP_METHOD_CHECK)).EndInit();
+            this.tableLayoutData.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.DESTID_CHECK)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.NODEID_CHECK)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TX_ENCAP_METHOD_CHECK)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.RX_ENCAP_METHOD_CHECK)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MAX_DATA_CHECK)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MAX_RETRIES_CHECK)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.GLOBAL_RETRIES_CHECK)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SER_BRK_DETMS_CHECK)).EndInit();
             this.groupGPIO.ResumeLayout(false);
-            this.tableLayoutPanel4.ResumeLayout(false);
+            this.tableLayoutGPIO.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.PIN_13_CHECK)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PIN_12_CHECK)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PIN_14_CHECK)).EndInit();
@@ -2034,11 +2108,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.AESKEY_CHECK)).EndInit();
             this.flowLayoutActions.ResumeLayout(false);
             this.flowLayoutConfig.ResumeLayout(false);
-            this.flowLayoutPanel1.ResumeLayout(false);
-            this.groupBox3.ResumeLayout(false);
+            this.flowLayoutSerialPin.ResumeLayout(false);
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
+            this.groupInfo.ResumeLayout(false);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -2105,7 +2180,7 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.GroupBox groupFirmware;
         private System.Windows.Forms.GroupBox groupRadio;
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox groupSerial;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ComboBox AUXSER_SPEED;
         private System.Windows.Forms.GroupBox groupData;
@@ -2135,10 +2210,10 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.BindingSource modemsBindingSource;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutSerial;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
         private FontAwesome.Sharp.IconButton iconButton1;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutGPIO;
         private FontAwesome.Sharp.IconButton btnGenerateKey;
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Label label16;
@@ -2149,14 +2224,14 @@
         private System.Windows.Forms.ComboBox comboPin13;
         private System.Windows.Forms.ComboBox comboPin12;
         private FontAwesome.Sharp.IconButton btn_Reboot;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutData;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutConfig;
         private System.Windows.Forms.RichTextBox richTextHelp;
-        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.GroupBox groupInfo;
         private FontAwesome.Sharp.IconPictureBox ATI_CHECK;
         private FontAwesome.Sharp.IconPictureBox ATI3_CHECK;
         private FontAwesome.Sharp.IconPictureBox FORMAT_CHECK;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
+        private System.Windows.Forms.TableLayoutPanel tableRadio;
         private FontAwesome.Sharp.IconPictureBox OPPRESEND_CHECK;
         private FontAwesome.Sharp.IconPictureBox RSSI_IN_DBM_CHECK;
         private FontAwesome.Sharp.IconPictureBox AIR_FRAMELEN_CHECK;
@@ -2220,7 +2295,11 @@
         private FontAwesome.Sharp.IconPictureBox TX_ENCAP_METHOD_CHECK;
         private FontAwesome.Sharp.IconPictureBox DESTID_CHECK;
         private FontAwesome.Sharp.IconPictureBox NODEID_CHECK;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutSerialPin;
+        private System.Windows.Forms.BindingSource pin14ItemsBindingSource;
+        private System.Windows.Forms.BindingSource pin13ItemsBindingSource;
+        private System.Windows.Forms.BindingSource pin12ItemsBindingSource;
+        private System.Windows.Forms.BindingSource pin15ItemsBindingSource;
     }
 }
