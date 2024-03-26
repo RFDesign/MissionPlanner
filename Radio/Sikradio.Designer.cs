@@ -64,11 +64,12 @@
             this.pin12ItemsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.comboPin15 = new System.Windows.Forms.ComboBox();
             this.pin15ItemsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.checkBoxSync = new System.Windows.Forms.CheckBox();
             this.BUT_SetPPMFailSafe = new MissionPlanner.Controls.MyButton();
             this.GPO1_3STATLED = new System.Windows.Forms.CheckBox();
             this.GPO1_0TXEN485 = new System.Windows.Forms.CheckBox();
             this.lbl_status = new System.Windows.Forms.Label();
-            this.ATI3 = new System.Windows.Forms.TextBox();
+            this.FREQ = new System.Windows.Forms.TextBox();
             this.linkLabel_mavlink = new System.Windows.Forms.LinkLabel();
             this.linkLabel_lowlatency = new System.Windows.Forms.LinkLabel();
             this.label54 = new System.Windows.Forms.Label();
@@ -112,13 +113,13 @@
             this.label4 = new System.Windows.Forms.Label();
             this.groupFirmware = new System.Windows.Forms.GroupBox();
             this.tableLayoutDevice = new System.Windows.Forms.TableLayoutPanel();
-            this.ATI3_CHECK = new FontAwesome.Sharp.IconPictureBox();
+            this.FREQ_CHECK = new FontAwesome.Sharp.IconPictureBox();
             this.label9 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.ATI = new System.Windows.Forms.TextBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.comboModemSelection = new System.Windows.Forms.ComboBox();
             this.modemsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.ATI_CHECK = new FontAwesome.Sharp.IconPictureBox();
             this.FORMAT_CHECK = new FontAwesome.Sharp.IconPictureBox();
@@ -130,8 +131,8 @@
             this.AIR_SPEED_CHECK = new FontAwesome.Sharp.IconPictureBox();
             this.MAVLINK_CHECK = new FontAwesome.Sharp.IconPictureBox();
             this.TXPOWER_CHECK = new FontAwesome.Sharp.IconPictureBox();
-            this.iconPictureBox15 = new FontAwesome.Sharp.IconPictureBox();
-            this.iconPictureBox14 = new FontAwesome.Sharp.IconPictureBox();
+            this.MAX_WINDOW_CHECK = new FontAwesome.Sharp.IconPictureBox();
+            this.DUTY_CYCLE_CHECK = new FontAwesome.Sharp.IconPictureBox();
             this.LBT_RSSI_CHECK = new FontAwesome.Sharp.IconPictureBox();
             this.NUM_CHANNELS_CHECK = new FontAwesome.Sharp.IconPictureBox();
             this.NETID_CHECK = new FontAwesome.Sharp.IconPictureBox();
@@ -197,7 +198,6 @@
             this.ENCRYPTION_LEVEL_CHECK = new FontAwesome.Sharp.IconPictureBox();
             this.AESKEY_CHECK = new FontAwesome.Sharp.IconPictureBox();
             this.btnGenerateKey = new FontAwesome.Sharp.IconButton();
-            this.BUT_upload = new MissionPlanner.Controls.MyButton();
             this.BUT_Syncoptions = new MissionPlanner.Controls.MyButton();
             this.flowLayoutActions = new System.Windows.Forms.FlowLayoutPanel();
             this.btn_SaveSetting = new FontAwesome.Sharp.IconButton();
@@ -218,7 +218,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pin15ItemsBindingSource)).BeginInit();
             this.groupFirmware.SuspendLayout();
             this.tableLayoutDevice.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ATI3_CHECK)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.FREQ_CHECK)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.modemsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ATI_CHECK)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.FORMAT_CHECK)).BeginInit();
@@ -230,8 +230,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.AIR_SPEED_CHECK)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.MAVLINK_CHECK)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TXPOWER_CHECK)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox15)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox14)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MAX_WINDOW_CHECK)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DUTY_CYCLE_CHECK)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.LBT_RSSI_CHECK)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.NUM_CHANNELS_CHECK)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.NETID_CHECK)).BeginInit();
@@ -704,6 +704,15 @@
             this.pin15ItemsBindingSource.DataMember = "Pin15Items";
             this.pin15ItemsBindingSource.DataSource = this.configManagerBindingSource;
             // 
+            // checkBoxSync
+            // 
+            resources.ApplyResources(this.checkBoxSync, "checkBoxSync");
+            this.checkBoxSync.DataBindings.Add(new System.Windows.Forms.Binding("Checked", this.configManagerBindingSource, "AutoSync", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.checkBoxSync.ForeColor = System.Drawing.Color.White;
+            this.checkBoxSync.Name = "checkBoxSync";
+            this.toolTip1.SetToolTip(this.checkBoxSync, resources.GetString("checkBoxSync.ToolTip"));
+            this.checkBoxSync.UseVisualStyleBackColor = true;
+            // 
             // BUT_SetPPMFailSafe
             // 
             resources.ApplyResources(this.BUT_SetPPMFailSafe, "BUT_SetPPMFailSafe");
@@ -728,14 +737,14 @@
             this.lbl_status.Name = "lbl_status";
             this.lbl_status.UseMnemonic = false;
             // 
-            // ATI3
+            // FREQ
             // 
-            resources.ApplyResources(this.ATI3, "ATI3");
-            this.ATI3.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.ATI3.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.configManagerBindingSource, "FREQ", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.ATI3.Name = "ATI3";
-            this.ATI3.ReadOnly = true;
-            this.ATI3.Click += new System.EventHandler(this.Control_Clicked_ShowHelp);
+            resources.ApplyResources(this.FREQ, "FREQ");
+            this.FREQ.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.FREQ.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.configManagerBindingSource, "FREQ", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.FREQ.Name = "FREQ";
+            this.FREQ.ReadOnly = true;
+            this.FREQ.Click += new System.EventHandler(this.Control_Clicked_ShowHelp);
             // 
             // linkLabel_mavlink
             // 
@@ -990,7 +999,7 @@
             // tableLayoutDevice
             // 
             resources.ApplyResources(this.tableLayoutDevice, "tableLayoutDevice");
-            this.tableLayoutDevice.Controls.Add(this.ATI3_CHECK, 2, 2);
+            this.tableLayoutDevice.Controls.Add(this.FREQ_CHECK, 2, 2);
             this.tableLayoutDevice.Controls.Add(this.label9, 0, 0);
             this.tableLayoutDevice.Controls.Add(this.txtCountry, 4, 3);
             this.tableLayoutDevice.Controls.Add(this.ATI2, 4, 2);
@@ -998,26 +1007,26 @@
             this.tableLayoutDevice.Controls.Add(this.label6, 3, 2);
             this.tableLayoutDevice.Controls.Add(this.label7, 0, 2);
             this.tableLayoutDevice.Controls.Add(this.label11, 0, 1);
-            this.tableLayoutDevice.Controls.Add(this.ATI3, 1, 2);
+            this.tableLayoutDevice.Controls.Add(this.FREQ, 1, 2);
             this.tableLayoutDevice.Controls.Add(this.ATI, 1, 1);
             this.tableLayoutDevice.Controls.Add(this.FORMAT, 1, 3);
             this.tableLayoutDevice.Controls.Add(this.label2, 0, 3);
-            this.tableLayoutDevice.Controls.Add(this.comboBox1, 1, 0);
+            this.tableLayoutDevice.Controls.Add(this.comboModemSelection, 1, 0);
             this.tableLayoutDevice.Controls.Add(this.ATI_CHECK, 5, 1);
             this.tableLayoutDevice.Controls.Add(this.FORMAT_CHECK, 2, 3);
             this.tableLayoutDevice.Name = "tableLayoutDevice";
             // 
-            // ATI3_CHECK
+            // FREQ_CHECK
             // 
-            resources.ApplyResources(this.ATI3_CHECK, "ATI3_CHECK");
-            this.ATI3_CHECK.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(29)))), ((int)(((byte)(46)))));
-            this.ATI3_CHECK.ForeColor = System.Drawing.Color.Gray;
-            this.ATI3_CHECK.IconChar = FontAwesome.Sharp.IconChar.Check;
-            this.ATI3_CHECK.IconColor = System.Drawing.Color.Gray;
-            this.ATI3_CHECK.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.ATI3_CHECK.IconSize = 18;
-            this.ATI3_CHECK.Name = "ATI3_CHECK";
-            this.ATI3_CHECK.TabStop = false;
+            resources.ApplyResources(this.FREQ_CHECK, "FREQ_CHECK");
+            this.FREQ_CHECK.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(29)))), ((int)(((byte)(46)))));
+            this.FREQ_CHECK.ForeColor = System.Drawing.Color.Gray;
+            this.FREQ_CHECK.IconChar = FontAwesome.Sharp.IconChar.Check;
+            this.FREQ_CHECK.IconColor = System.Drawing.Color.Gray;
+            this.FREQ_CHECK.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.FREQ_CHECK.IconSize = 18;
+            this.FREQ_CHECK.Name = "FREQ_CHECK";
+            this.FREQ_CHECK.TabStop = false;
             // 
             // label9
             // 
@@ -1049,16 +1058,17 @@
             this.ATI.ReadOnly = true;
             this.ATI.Click += new System.EventHandler(this.Control_Clicked_ShowHelp);
             // 
-            // comboBox1
+            // comboModemSelection
             // 
-            resources.ApplyResources(this.comboBox1, "comboBox1");
-            this.tableLayoutDevice.SetColumnSpan(this.comboBox1, 4);
-            this.comboBox1.DataBindings.Add(new System.Windows.Forms.Binding("SelectedItem", this.configManagerBindingSource, "Current", true));
-            this.comboBox1.DataSource = this.modemsBindingSource;
-            this.comboBox1.DisplayMember = "DisplayName";
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Click += new System.EventHandler(this.Control_Clicked_ShowHelp);
+            resources.ApplyResources(this.comboModemSelection, "comboModemSelection");
+            this.tableLayoutDevice.SetColumnSpan(this.comboModemSelection, 4);
+            this.comboModemSelection.DataBindings.Add(new System.Windows.Forms.Binding("SelectedItem", this.configManagerBindingSource, "Current", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.comboModemSelection.DataSource = this.modemsBindingSource;
+            this.comboModemSelection.DisplayMember = "DisplayName";
+            this.comboModemSelection.FormattingEnabled = true;
+            this.comboModemSelection.Name = "comboModemSelection";
+            this.comboModemSelection.SelectedIndexChanged += new System.EventHandler(this.comboModemSelection_SelectedIndexChanged);
+            this.comboModemSelection.Click += new System.EventHandler(this.Control_Clicked_ShowHelp);
             // 
             // modemsBindingSource
             // 
@@ -1107,8 +1117,8 @@
             this.tableRadio.Controls.Add(this.AIR_SPEED_CHECK, 2, 6);
             this.tableRadio.Controls.Add(this.MAVLINK_CHECK, 5, 5);
             this.tableRadio.Controls.Add(this.TXPOWER_CHECK, 2, 5);
-            this.tableRadio.Controls.Add(this.iconPictureBox15, 5, 4);
-            this.tableRadio.Controls.Add(this.iconPictureBox14, 2, 4);
+            this.tableRadio.Controls.Add(this.MAX_WINDOW_CHECK, 5, 4);
+            this.tableRadio.Controls.Add(this.DUTY_CYCLE_CHECK, 2, 4);
             this.tableRadio.Controls.Add(this.LBT_RSSI_CHECK, 5, 3);
             this.tableRadio.Controls.Add(this.NUM_CHANNELS_CHECK, 2, 3);
             this.tableRadio.Controls.Add(this.NETID_CHECK, 5, 2);
@@ -1221,29 +1231,29 @@
             this.TXPOWER_CHECK.Name = "TXPOWER_CHECK";
             this.TXPOWER_CHECK.TabStop = false;
             // 
-            // iconPictureBox15
+            // MAX_WINDOW_CHECK
             // 
-            resources.ApplyResources(this.iconPictureBox15, "iconPictureBox15");
-            this.iconPictureBox15.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(29)))), ((int)(((byte)(46)))));
-            this.iconPictureBox15.ForeColor = System.Drawing.Color.Gray;
-            this.iconPictureBox15.IconChar = FontAwesome.Sharp.IconChar.Check;
-            this.iconPictureBox15.IconColor = System.Drawing.Color.Gray;
-            this.iconPictureBox15.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconPictureBox15.IconSize = 18;
-            this.iconPictureBox15.Name = "iconPictureBox15";
-            this.iconPictureBox15.TabStop = false;
+            resources.ApplyResources(this.MAX_WINDOW_CHECK, "MAX_WINDOW_CHECK");
+            this.MAX_WINDOW_CHECK.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(29)))), ((int)(((byte)(46)))));
+            this.MAX_WINDOW_CHECK.ForeColor = System.Drawing.Color.Gray;
+            this.MAX_WINDOW_CHECK.IconChar = FontAwesome.Sharp.IconChar.Check;
+            this.MAX_WINDOW_CHECK.IconColor = System.Drawing.Color.Gray;
+            this.MAX_WINDOW_CHECK.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.MAX_WINDOW_CHECK.IconSize = 18;
+            this.MAX_WINDOW_CHECK.Name = "MAX_WINDOW_CHECK";
+            this.MAX_WINDOW_CHECK.TabStop = false;
             // 
-            // iconPictureBox14
+            // DUTY_CYCLE_CHECK
             // 
-            resources.ApplyResources(this.iconPictureBox14, "iconPictureBox14");
-            this.iconPictureBox14.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(29)))), ((int)(((byte)(46)))));
-            this.iconPictureBox14.ForeColor = System.Drawing.Color.Gray;
-            this.iconPictureBox14.IconChar = FontAwesome.Sharp.IconChar.Check;
-            this.iconPictureBox14.IconColor = System.Drawing.Color.Gray;
-            this.iconPictureBox14.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconPictureBox14.IconSize = 18;
-            this.iconPictureBox14.Name = "iconPictureBox14";
-            this.iconPictureBox14.TabStop = false;
+            resources.ApplyResources(this.DUTY_CYCLE_CHECK, "DUTY_CYCLE_CHECK");
+            this.DUTY_CYCLE_CHECK.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(29)))), ((int)(((byte)(46)))));
+            this.DUTY_CYCLE_CHECK.ForeColor = System.Drawing.Color.Gray;
+            this.DUTY_CYCLE_CHECK.IconChar = FontAwesome.Sharp.IconChar.Check;
+            this.DUTY_CYCLE_CHECK.IconColor = System.Drawing.Color.Gray;
+            this.DUTY_CYCLE_CHECK.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.DUTY_CYCLE_CHECK.IconSize = 18;
+            this.DUTY_CYCLE_CHECK.Name = "DUTY_CYCLE_CHECK";
+            this.DUTY_CYCLE_CHECK.TabStop = false;
             // 
             // LBT_RSSI_CHECK
             // 
@@ -1369,6 +1379,7 @@
             // 
             resources.ApplyResources(this.RSSI, "RSSI");
             this.tableRadio.SetColumnSpan(this.RSSI, 4);
+            this.RSSI.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.configManagerBindingSource, "RSSI", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.RSSI.Name = "RSSI";
             this.RSSI.Click += new System.EventHandler(this.Control_Clicked_ShowHelp);
             // 
@@ -1852,13 +1863,6 @@
             this.btnGenerateKey.UseVisualStyleBackColor = true;
             this.btnGenerateKey.Click += new System.EventHandler(this.btnGenerateKey_Click);
             // 
-            // BUT_upload
-            // 
-            resources.ApplyResources(this.BUT_upload, "BUT_upload");
-            this.BUT_upload.Name = "BUT_upload";
-            this.BUT_upload.UseVisualStyleBackColor = true;
-            this.BUT_upload.Click += new System.EventHandler(this.BUT_upload_Click);
-            // 
             // BUT_Syncoptions
             // 
             resources.ApplyResources(this.BUT_Syncoptions, "BUT_Syncoptions");
@@ -1875,7 +1879,7 @@
             this.flowLayoutActions.Controls.Add(this.btn_Reset);
             this.flowLayoutActions.Controls.Add(this.btn_Firmware);
             this.flowLayoutActions.Controls.Add(this.btn_Reboot);
-            this.flowLayoutActions.Controls.Add(this.BUT_upload);
+            this.flowLayoutActions.Controls.Add(this.checkBoxSync);
             resources.ApplyResources(this.flowLayoutActions, "flowLayoutActions");
             this.flowLayoutActions.Name = "flowLayoutActions";
             // 
@@ -2057,7 +2061,7 @@
             this.groupFirmware.ResumeLayout(false);
             this.tableLayoutDevice.ResumeLayout(false);
             this.tableLayoutDevice.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ATI3_CHECK)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.FREQ_CHECK)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.modemsBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ATI_CHECK)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.FORMAT_CHECK)).EndInit();
@@ -2071,8 +2075,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.AIR_SPEED_CHECK)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.MAVLINK_CHECK)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.TXPOWER_CHECK)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox15)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox14)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MAX_WINDOW_CHECK)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DUTY_CYCLE_CHECK)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.LBT_RSSI_CHECK)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.NUM_CHANNELS_CHECK)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.NETID_CHECK)).EndInit();
@@ -2107,6 +2111,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.ENCRYPTION_LEVEL_CHECK)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.AESKEY_CHECK)).EndInit();
             this.flowLayoutActions.ResumeLayout(false);
+            this.flowLayoutActions.PerformLayout();
             this.flowLayoutConfig.ResumeLayout(false);
             this.flowLayoutSerialPin.ResumeLayout(false);
             this.groupBox4.ResumeLayout(false);
@@ -2118,13 +2123,11 @@
         }
 
         #endregion
-
-        private Controls.MyButton BUT_upload;
         private System.Windows.Forms.ProgressBar Progressbar;
         private System.Windows.Forms.Label lbl_status;
         private System.Windows.Forms.ToolTip toolTip1;
         private Controls.MyButton BUT_Syncoptions;
-        private System.Windows.Forms.TextBox ATI3;
+        private System.Windows.Forms.TextBox FREQ;
         private System.Windows.Forms.LinkLabel linkLabel1;
         private System.Windows.Forms.TextBox ATI2;
         private Controls.MyButton BUT_SetPPMFailSafe;
@@ -2208,7 +2211,7 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.TextBox ATI;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox comboModemSelection;
         private System.Windows.Forms.BindingSource modemsBindingSource;
         private System.Windows.Forms.TableLayoutPanel tableLayoutSerial;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
@@ -2229,7 +2232,7 @@
         private System.Windows.Forms.RichTextBox richTextHelp;
         private System.Windows.Forms.GroupBox groupInfo;
         private FontAwesome.Sharp.IconPictureBox ATI_CHECK;
-        private FontAwesome.Sharp.IconPictureBox ATI3_CHECK;
+        private FontAwesome.Sharp.IconPictureBox FREQ_CHECK;
         private FontAwesome.Sharp.IconPictureBox FORMAT_CHECK;
         private System.Windows.Forms.TableLayoutPanel tableRadio;
         private FontAwesome.Sharp.IconPictureBox OPPRESEND_CHECK;
@@ -2238,8 +2241,8 @@
         private FontAwesome.Sharp.IconPictureBox AIR_SPEED_CHECK;
         private FontAwesome.Sharp.IconPictureBox MAVLINK_CHECK;
         private FontAwesome.Sharp.IconPictureBox TXPOWER_CHECK;
-        private FontAwesome.Sharp.IconPictureBox iconPictureBox15;
-        private FontAwesome.Sharp.IconPictureBox iconPictureBox14;
+        private FontAwesome.Sharp.IconPictureBox MAX_WINDOW_CHECK;
+        private FontAwesome.Sharp.IconPictureBox DUTY_CYCLE_CHECK;
         private FontAwesome.Sharp.IconPictureBox LBT_RSSI_CHECK;
         private FontAwesome.Sharp.IconPictureBox NUM_CHANNELS_CHECK;
         private FontAwesome.Sharp.IconPictureBox NETID_CHECK;
@@ -2301,5 +2304,6 @@
         private System.Windows.Forms.BindingSource pin13ItemsBindingSource;
         private System.Windows.Forms.BindingSource pin12ItemsBindingSource;
         private System.Windows.Forms.BindingSource pin15ItemsBindingSource;
+        private System.Windows.Forms.CheckBox checkBoxSync;
     }
 }

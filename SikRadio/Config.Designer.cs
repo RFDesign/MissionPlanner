@@ -260,6 +260,7 @@
             // 
             resources.ApplyResources(this.sikradio1, "sikradio1");
             this.sikradio1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(29)))), ((int)(((byte)(46)))));
+            this.sikradio1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.sikradio1.ForeColor = System.Drawing.Color.White;
             this.sikradio1.Name = "sikradio1";
             // 

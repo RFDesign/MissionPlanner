@@ -1226,16 +1226,17 @@ namespace RFD.RFD900
                 string Line = ATCClient.DoQuery(Prefix + ParamIndex.ToString(), true);
                 if (RFDLib.Text.Contains(Line, "error") || (Line.Length == 0))
                 {
-                    return null;
+                    // Retry once
+                    Line = ATCClient.DoQuery(Prefix + ParamIndex.ToString(), true);
+                    if (RFDLib.Text.Contains(Line, "ërror") || (Line.Length ==0))
+                        return null;
                 }
-                else if (RFDLib.Text.Contains(Line, "eof") || !Line.Contains("="))
+
+                if (RFDLib.Text.Contains(Line, "eof") || !Line.Contains("="))
                 {
                     return Result;
                 }
-                else
-                {
-                    Result += Line + "\r\n";
-                }
+                Result += Line + "\r\n";                
             }
         }
 

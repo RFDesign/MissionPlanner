@@ -26,12 +26,17 @@ using System.Runtime.CompilerServices;
 using RFDLib;
 using RFDCommon.RFDLib;
 using System.Threading.Tasks;
+using FontAwesome.Sharp;
+using System.Windows.Media;
+
 
 namespace MissionPlanner.Radio
 {
     public partial class Sikradio : UserControl, IRFDConfigForm
     {
         public delegate void LogEventHandler(string message, int level = 0);
+
+        
 
         public delegate void ProgressEventHandler(double completed);
 
@@ -123,13 +128,13 @@ S15: MAX_WINDOW=131
             comboSyncMode.SelectedIndex = 0;
 
             // setup netid
-            NETID.DataSource = Enumerable.Range(0, 500).ToArray();
+            //NETID.DataSource = Enumerable.Range(0, 500).ToArray();
             
             MAVLINK.DisplayMember = "Value";
             MAVLINK.ValueMember = "Key";
             SetupComboForMavlink(MAVLINK, false);
             
-            MAX_WINDOW.DataSource = Enumerable.Range(33, 131 - 32).ToArray();
+            //MAX_WINDOW.DataSource = Enumerable.Range(33, 131 - 32).ToArray();
             
             // Disable all children, instead of being selective?
             //SetEnabled(this.Controls, false, true);
@@ -212,6 +217,7 @@ S15: MAX_WINDOW=131
 
             // Set DataBinding source...
             this.configManagerBindingSource.DataSource = _configManager;
+            
 
             CheckControlStates();
         }
@@ -224,12 +230,87 @@ S15: MAX_WINDOW=131
             //_configManager.Init(modemComms);
             _comms = comms;
             _comms.ConnectionStateChanged += _comms_ConnectionStateChanged;
-                        
+
+
+            // Property changed to do sync indicators?
+            _configManager.PropertyChanged += _configManager_PropertyChanged;
             // Have just connected, enable the form?
             //SetEnabled(this.Controls, true, true);
 
             // AutoLoad?
             //_configManager.Load(S);
+        }
+
+        private void _configManager_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == null || e.PropertyName == "Log")
+                return;
+
+            if (e.PropertyName == "Current")
+                _configManager.AddLog($"Changed device: {_configManager.Current.DisplayName}");
+            else
+                _configManager.AddLog($"Property Changed: {e.PropertyName}");            
+
+            // What should the indicator do?
+            UpdateIndicator(e.PropertyName);            
+        }
+
+        private void UpdateIndicator(string propertyName)
+        {
+            // If no remote, bail
+            if (_configManager.Remote == null)
+                return;
+
+            if (propertyName == "Current")
+            {
+                // Update ALL indicators...
+                foreach (var item in _configManager.Current.Settings.WorkingSettings)
+                {
+                    UpdateIndicator(item.Key);
+                }
+
+                UpdateIndicator("ATI");
+                UpdateIndicator("FREQ");
+
+                return;
+            }
+            
+
+            // Does this property have an indicator?
+            string indicatorName = $"{propertyName}_CHECK";
+            var indicator = this.Controls.Find(indicatorName, true).FirstOrDefault() as IconPictureBox;
+            if (indicator == null)
+                return;
+
+            string localValue;
+            string remoteValue;
+            if (propertyName == "ATI")
+            {
+                localValue = _configManager.Local.ATI;
+                remoteValue = _configManager.Remote.ATI;
+            } else if (propertyName == "FREQ")
+            {
+                localValue = _configManager.Local.FREQ;
+                remoteValue = _configManager.Remote.FREQ;
+            } else
+            {
+                localValue = _configManager.Local.Get<RFD.RFD900.TBaseSetting>(propertyName).GetValueAsString();
+                remoteValue = _configManager.Remote.Get<RFD.RFD900.TBaseSetting>(propertyName).GetValueAsString();
+            }
+
+            if (localValue == remoteValue)
+            {
+                // They are equal, so go green
+                indicator.IconColor = System.Drawing.Color.Green;
+                toolTip1.SetToolTip(indicator, "In Sync");
+            } 
+            else
+            {
+                // They are not equal
+                indicator.IconColor = System.Drawing.Color.OrangeRed;
+                var otherValue = _configManager.Current.IsLocal ? remoteValue : localValue;
+                toolTip1.SetToolTip(indicator, $"Other: {otherValue}");
+            }            
         }
 
         private async void _comms_ConnectionStateChanged(object sender, EventArgs e)
@@ -257,6 +338,8 @@ S15: MAX_WINDOW=131
                 _started = false;
                 if (_comms != null)
                     _comms.ConnectionStateChanged -= _comms_ConnectionStateChanged;
+                if (_configManager != null)
+                    _configManager.PropertyChanged -= _configManager_PropertyChanged;
             }
         }
                 
@@ -281,7 +364,15 @@ S15: MAX_WINDOW=131
         private void SetEnabled(ControlCollection controls, bool setState, bool recursive)
         {            
             foreach (Control c in controls)
-            {                
+            {
+                // Dont mess with this control...
+                if (c.Name == comboModemSelection.Name)
+                    continue;
+
+                // Dont mess with labels
+                if (c is Label)
+                    continue;
+
                 c.Enabled = setState;
                 if (c.Controls.Count > 0)
                 {                    
@@ -746,10 +837,15 @@ S15: MAX_WINDOW=131
             } 
             else if (setting.Range != null)
             {
+                // FIX to use Value instead?
                 comboBox.DataBindings.Clear();
-                comboBox.DataSource = setting.Range.GetOptionsIncludingValue(setting.Value);                
-                comboBox.Tag = null;
-                comboBox.DataBindings.Add("SelectedItem", configManagerBindingSource, setting.Name, false, DataSourceUpdateMode.OnPropertyChanged);
+                comboBox.DataSource = null;
+
+                var rangeOptions = setting.Range.GetOptionsIncludingValue(setting.Value).Select(s => new { Name= s.ToString(), Value = s }).ToList();
+                comboBox.DisplayMember = "Name";
+                comboBox.ValueMember = "Value";
+                comboBox.DataSource = rangeOptions;                
+                comboBox.DataBindings.Add("SelectedValue", configManagerBindingSource, setting.Name, false, DataSourceUpdateMode.OnPropertyChanged);
             }            
         }
 
@@ -928,77 +1024,79 @@ S15: MAX_WINDOW=131
             return Result;
         }
         
-        /// <summary>
-        /// Load settings button evt hdlr
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private async void BUT_getcurrent_Click(object sender, EventArgs e)
-        {
-            _AlreadyInEncCheckChangedEvtHdlr = true;
+        ///// <summary>
+        ///// Load settings button evt hdlr
+        ///// </summary>
+        ///// <param name="sender"></param>
+        ///// <param name="e"></param>
+        //private async void BUT_getcurrent_Click(object sender, EventArgs e)
+        //{
+        //    _AlreadyInEncCheckChangedEvtHdlr = true;
 
-            // Disable Action Buttons
-            //SetEnabled(flowLayoutActions.Controls, false, recursive: false);
-            // Disable device settings groups
-            //SetEnabled(flowLayoutSettings.Controls, false, recursive: false);
-            //SetEnabled(flowLayoutMain.Controls, false, recursive: false);
+        //    // Disable Action Buttons
+        //    //SetEnabled(flowLayoutActions.Controls, false, recursive: false);
+        //    // Disable device settings groups
+        //    //SetEnabled(flowLayoutSettings.Controls, false, recursive: false);
+        //    //SetEnabled(flowLayoutMain.Controls, false, recursive: false);
 
-            _configManager.AddLog("Loading settings...");
+        //    _configManager.AddLog("Loading settings...");
             
-            var loaded = await _configManager.Load();
-            if (!loaded)
-            {
-                ShowMessageBox("An error occured while trying to load settings...", "Load Failed");
-                return;
-            }
+        //    var loaded = await _configManager.Load();
+        //    if (!loaded)
+        //    {
+        //        ShowMessageBox("An error occured while trying to load settings...", "Load Failed");
+        //        return;
+        //    }
 
-            // Setup Control Bindings
-            foreach (var item in _configManager.Local.Settings.Settings)
-            {
-                if (item.Value == null)
-                    continue;
-                var ctrl = this.Controls.Find(item.Key.Replace("/", "_"), true).FirstOrDefault();
-                if (ctrl == null)
-                {
-                    _configManager.AddLog($"Control not found: {item.Key}");
-                    continue;
-                }
+        //    // Setup Control Bindings
+        //    foreach (var item in _configManager.Local.Settings.Settings)
+        //    {
+        //        if (item.Value == null)
+        //            continue;
+        //        var ctrl = this.Controls.Find(item.Key.Replace("/", "_"), true).FirstOrDefault();
+        //        if (ctrl == null)
+        //        {
+        //            _configManager.AddLog($"Control not found: {item.Key}");
+        //            continue;
+        //        }
 
-                if (!(item.Value is TSetting))
-                {
-                    var ttext = item.Value as TTextSetting;
-                    if (ttext == null)
-                        continue;
+        //        if (!(item.Value is TSetting))
+        //        {
+        //            var ttext = item.Value as TTextSetting;
+        //            if (ttext == null)
+        //                continue;
 
-                    ctrl.DataBindings.Clear();
-                    ctrl.DataBindings.Add("Text", configManagerBindingSource, ttext.Name, false, DataSourceUpdateMode.OnPropertyChanged);
-                } 
-                else if (ctrl is ComboBox)
-                {
-                    BindSettingOptionsToComboBox(item.Value as TSetting, ctrl as ComboBox);
-                }
-                else if (ctrl is TextBox)
-                {
-                    BindSettingToTextBox(item.Value as TSetting, ctrl as TextBox);
-                } 
-                else if (ctrl is CheckBox)
-                {
-                    BindSettingToCheckBox(item.Value as TSetting, ctrl as CheckBox);                    
-                }
-                _configManager.AddLog($"Setting: {item.Key}: {item.Value.GetValueAsString()}");
-            }
+        //            ctrl.DataBindings.Clear();
+        //            ctrl.DataBindings.Add("Text", configManagerBindingSource, ttext.Name, false, DataSourceUpdateMode.OnPropertyChanged);
+        //        } 
+        //        else if (ctrl is ComboBox)
+        //        {
+        //            BindSettingOptionsToComboBox(item.Value as TSetting, ctrl as ComboBox);
+        //        }
+        //        else if (ctrl is TextBox)
+        //        {
+        //            BindSettingToTextBox(item.Value as TSetting, ctrl as TextBox);
+        //        } 
+        //        else if (ctrl is CheckBox)
+        //        {
+        //            BindSettingToCheckBox(item.Value as TSetting, ctrl as CheckBox);                    
+        //        }
+        //        _configManager.AddLog($"Setting: {item.Key}: {item.Value.GetValueAsString()}");
+                
+        //        UpdateIndicator(item.Key);
+        //    }
 
-            _AlreadyInEncCheckChangedEvtHdlr = false;
+        //    _AlreadyInEncCheckChangedEvtHdlr = false;
 
-            UpdateSetPPMFailSafeButtons();
+        //    UpdateSetPPMFailSafeButtons();
 
-            // Disable Action Buttons
-            //SetEnabled(flowLayoutActions.Controls, true, recursive: false);
-            // Disable all settings groups
-            //SetEnabled(flowLayoutSettings.Controls, true, recursive: false);
-            //SetEnabled(flowLayoutMain.Controls, true, recursive: false);
-            //BUT_getcurrent.Focus();           
-        }
+        //    // Disable Action Buttons
+        //    //SetEnabled(flowLayoutActions.Controls, true, recursive: false);
+        //    // Disable all settings groups
+        //    //SetEnabled(flowLayoutSettings.Controls, true, recursive: false);
+        //    //SetEnabled(flowLayoutMain.Controls, true, recursive: false);
+        //    //BUT_getcurrent.Focus();           
+        //}
 
         
 
@@ -1110,15 +1208,6 @@ red LED flashing - transmitting data
 red LED solid - in firmware update mode");
         }
 
-        
-
-        private async void BUT_resettodefault_Click(object sender, EventArgs e)
-        {   
-            _configManager.AddLog($"Initiating Config Reset");
-
-            await _configManager.ResetDefaults();
-        }
-                
         void UpdateStatusCallback(string Status, double Progress)
         {
             if (Status != null)
@@ -1139,11 +1228,11 @@ red LED solid - in firmware update mode");
             //groupSerial.Enabled = _configManager.SerialEnabled;
             //groupSecurity.Enabled = _configManager.SecurityEnabled;
             //groupGPIO.Enabled = _configManager.PinEnabled;
-            
+
             // Apparently the order is important inside a flow layout /sigh
             groupFirmware.Visible = _configManager.DeviceGroupEnabled;
             groupSerial.Visible = _configManager.SerialEnabled;
-            groupRadio.Visible = _configManager.RadioEnabled;            
+            groupRadio.Visible = _configManager.RadioEnabled;
             groupSecurity.Visible = _configManager.SecurityEnabled;
             groupGPIO.Visible = _configManager.PinEnabled;
             groupData.Visible = _configManager.DataEnabled;
@@ -1166,44 +1255,39 @@ red LED solid - in firmware update mode");
             btn_Reboot.Enabled = _configManager.ResetEnabled;
         }
 
-        public static void ResetAllControls(Control form)
-        {
-            {
-                foreach (Control control in form.Controls)
-                {
-                    control.Enabled = false;
-                    if (control is TextBox)
-                    {
-                        TextBox textBox = (TextBox)control;
-                        textBox.Text = null;
-                    }
+        //public static void ResetAllControls(Control form)
+        //{
+        //    {
+        //        foreach (Control control in form.Controls)
+        //        {
+        //            control.Enabled = false;
+        //            if (control is TextBox)
+        //            {
+        //                TextBox textBox = (TextBox)control;
+        //                textBox.Text = null;
+        //            }
 
-                    if (control is ComboBox)
-                    {
-                        ComboBox comboBox = (ComboBox)control;
-                        if (comboBox.Items.Count > 0)
-                            comboBox.SelectedIndex = 0;
-                    }
+        //            if (control is ComboBox)
+        //            {
+        //                ComboBox comboBox = (ComboBox)control;
+        //                if (comboBox.Items.Count > 0)
+        //                    comboBox.SelectedIndex = 0;
+        //            }
 
-                    if (control is CheckBox)
-                    {
-                        CheckBox checkBox = (CheckBox)control;
-                        checkBox.Checked = false;
-                    }
+        //            if (control is CheckBox)
+        //            {
+        //                CheckBox checkBox = (CheckBox)control;
+        //                checkBox.Checked = false;
+        //            }
 
-                    if (control is ListBox)
-                    {
-                        ListBox listBox = (ListBox)control;
-                        listBox.ClearSelected();
-                    }
-                }
-            }
-        }        
-
-        private void BUT_loadcustom_Click(object sender, EventArgs e)
-        {
-            ProgramFirmware(true);
-        }
+        //            if (control is ListBox)
+        //            {
+        //                ListBox listBox = (ListBox)control;
+        //                listBox.ClearSelected();
+        //            }
+        //        }
+        //    }
+        //}        
 
         void ProgramFirmware(bool Custom)
         {
@@ -1214,8 +1298,8 @@ red LED solid - in firmware update mode");
             {
                 _configManager.AddLog("Determining mode...");
                 _configManager.AddLog("Mode is " + _configManager.Local.Mode.ToString());
-                
-                RFD.RFD900.RFD900 RFD900 = _Session.GetModemObject();
+
+                RFD.RFD900.RFD900 RFD900 = _configManager.Modem;// _Session.GetModemObject();
 
                 if (RFD900 == null)
                 {
@@ -1483,38 +1567,38 @@ red LED solid - in firmware update mode");
         /// <param name="S">The settings read from the modem.  Must not be null.</param>
         /// <param name="GB">The relevant GUI groupbox.</param>
         /// <param name="Remote">true if remote modem, false if local modem.</param>
-        void SaveToFile(RFD.RFD900.TSettings S, GroupBox GB,
-            bool Remote)
-        {
-            //Get the settings which have changed in the GUI, and their values.
-            var Updated = GetUpdatedSettingsFromGroupBox(
-                RFDLib.Collections.Translate(S.Settings, (x) => (RFD.RFD900.TBaseSetting)x),
-                GB, Remote);
+        //void SaveToFile(RFD.RFD900.TSettings S, GroupBox GB,
+        //    bool Remote)
+        //{
+        //    //Get the settings which have changed in the GUI, and their values.
+        //    var Updated = GetUpdatedSettingsFromGroupBox(
+        //        RFDLib.Collections.Translate(S.Settings, (x) => (RFD.RFD900.TBaseSetting)x),
+        //        GB, Remote);
 
-            //Include the settings which haven't changed.
-            foreach (var kvp in S.Settings)
-            {
-                if (!Updated.ContainsKey(kvp.Key))
-                {
-                    Updated[kvp.Key] = kvp.Value;
-                }
-            }
+        //    //Include the settings which haven't changed.
+        //    foreach (var kvp in S.Settings)
+        //    {
+        //        if (!Updated.ContainsKey(kvp.Key))
+        //        {
+        //            Updated[kvp.Key] = kvp.Value;
+        //        }
+        //    }
 
-            //Save to file...
-            RFD.RFD900.TSettings ToSave = new RFD.RFD900.TSettings(Updated);
+        //    //Save to file...
+        //    RFD.RFD900.TSettings ToSave = new RFD.RFD900.TSettings(Updated);
 
-            if (dlgSave.ShowDialog() == DialogResult.OK)
-            {
-                if (ToSave.SaveToFile(dlgSave.FileName))
-                {
-                    System.Windows.Forms.MessageBox.Show("Saved settings to " + dlgSave.FileName + " OK");
-                }
-                else
-                {
-                    System.Windows.Forms.MessageBox.Show("Failed to save settings to " + dlgSave.FileName);
-                }
-            }
-        }
+        //    if (dlgSave.ShowDialog() == DialogResult.OK)
+        //    {
+        //        if (ToSave.SaveToFile(dlgSave.FileName))
+        //        {
+        //            System.Windows.Forms.MessageBox.Show("Saved settings to " + dlgSave.FileName + " OK");
+        //        }
+        //        else
+        //        {
+        //            System.Windows.Forms.MessageBox.Show("Failed to save settings to " + dlgSave.FileName);
+        //        }
+        //    }
+        //}
 
         void SaveWorkingConfig(TSettings config)
         {
@@ -1548,38 +1632,38 @@ red LED solid - in firmware update mode");
         /// <param name="S">The settings loaded from the modem.  These aren't modified by this function.  Must not be null.</param>
         /// <param name="GB">The relevant GUI groupbox.  Must not be null.</param>
         /// <param name="Remote">true if for the remote modem, false if for the local modem.</param>
-        private void LoadFromFile(RFD.RFD900.TSettings S, GroupBox GB, bool Remote)
-        {
-            throw new NotImplementedException();
-            if (dlgOpen.ShowDialog() == DialogResult.OK)
-            {
-                S = S.Clone();
+        //private void LoadFromFile(RFD.RFD900.TSettings S, GroupBox GB, bool Remote)
+        //{
+        //    throw new NotImplementedException();
+        //    if (dlgOpen.ShowDialog() == DialogResult.OK)
+        //    {
+        //        S = S.Clone();
 
-                var x = S.LoadFromFile(dlgOpen.FileName);
+        //        var x = S.LoadFromFile(dlgOpen.FileName);
 
-                if (x == null)
-                {
-                    System.Windows.Forms.MessageBox.Show("Failed to load settings from " + dlgOpen.FileName);
-                }
-                else
-                {
+        //        if (x == null)
+        //        {
+        //            System.Windows.Forms.MessageBox.Show("Failed to load settings from " + dlgOpen.FileName);
+        //        }
+        //        else
+        //        {
                    
 
-                    //UpdateControlsWithValues(GB, Remote, S.Settings);
+        //            //UpdateControlsWithValues(GB, Remote, S.Settings);
 
-                    string Temp = "Loaded\n";
+        //            string Temp = "Loaded\n";
 
-                    foreach (var kvp in x)
-                    {
-                        Temp += kvp.Value.Name + " = " + kvp.Value.Value.ToString() + "\n";
-                    }
+        //            foreach (var kvp in x)
+        //            {
+        //                Temp += kvp.Value.Name + " = " + kvp.Value.Value.ToString() + "\n";
+        //            }
 
-                    Temp += "from " + dlgOpen.FileName + " OK";
+        //            Temp += "from " + dlgOpen.FileName + " OK";
 
-                    System.Windows.Forms.MessageBox.Show(Temp);
-                }
-            }
-        }
+        //            System.Windows.Forms.MessageBox.Show(Temp);
+        //        }
+        //    }
+        //}
 
         private void LoadConfigFromFile()
         {
@@ -1618,19 +1702,7 @@ red LED solid - in firmware update mode");
             LoadConfigFromFile();
             //LoadFromFile(_LocalSettings, groupBoxLocal, false);
         }      
-
-        public string Header
-        {
-            get
-            {
-                return "Settings";
-            }
-        }
-                
-        private void button1_Click(object sender, EventArgs e)
-        {
-            _configManager.ANT_MODE = 1;
-        }
+        
 
         private void btn_LoadFile_Click(object sender, EventArgs e)
         {
@@ -1710,6 +1782,9 @@ red LED solid - in firmware update mode");
                     BindSettingToCheckBox(item.Value as TSetting, ctrl as CheckBox);
                 }
                 _configManager.AddLog($"Setting: {item.Key}: {item.Value.GetValueAsString()}");
+
+                // Not needed as changing Current now performs this?
+                //UpdateIndicator(item.Key);
             }
 
             CheckControlStates();                       
@@ -1759,7 +1834,7 @@ red LED solid - in firmware update mode");
                     if (item is Control)
                     {
                         var ic = item as Control;
-                        if (ic == null)
+                        if (ic == null || ic.GetType() == typeof(IconPictureBox))
                             continue;
                         var toolTip = toolTip1.GetToolTip(ic);
                         if (string.IsNullOrWhiteSpace(toolTip))
@@ -1780,6 +1855,11 @@ red LED solid - in firmware update mode");
             richTextHelp.Rtf = rtf.ToString();
         }
 
-        
+        private void comboModemSelection_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            _configManager.Current = comboModemSelection.SelectedItem as RFDModem;
+            // All indicators need to be updated?
+
+        }
     }
 }

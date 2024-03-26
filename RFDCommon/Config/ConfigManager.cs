@@ -32,9 +32,42 @@ namespace RFDCommon
         public RFDModem Current
         {
             get { return _currentModem; }
-            set { 
-                _currentModem = value; 
+            set {
+                if (_currentModem?.DeviceId == value?.DeviceId)
+                    return;
+                _currentModem = value;
+                OnPropertyChanged(nameof(Current));
                 OnPropertyChanged(null);
+            }
+        }
+
+        private bool _autoSync = true;
+        public bool AutoSync
+        {
+            get { return _autoSync; }
+            set {
+                if (value == _autoSync) return;
+                _autoSync = value;
+                OnPropertyChanged(nameof(AutoSync));
+            }
+        }
+        public string[] AutoSyncProperties = { "AIR_SPEED", "NETID", "MAVLINK", "MIN_FREQ", "MAX_FREQ", "NUM_CHANNELS", "MAX_WINDOW", "ENCRYPTION_LEVEL", "AESKEY" };
+        private void DoAutoSync<T>(T setting) where T : TBaseSetting
+        {
+            if (!AutoSync)
+                return;
+
+            if (AutoSyncProperties.Contains(setting.Name) && Remote?.ATI != null)
+            {
+                AddLog($"Auto-Sync trigger on {setting.Name}: {setting.GetValueAsString()}");
+                // Sync other?
+                if (_currentModem.IsLocal)
+                {
+                    Remote.Get<T>(setting.Name).SetValueFromString(setting.GetValueAsString());
+                } else
+                {
+                    Local.Get<T>(setting.Name).SetValueFromString(setting.GetValueAsString());
+                }
             }
         }
 
@@ -56,6 +89,7 @@ namespace RFDCommon
         // Method to invoke the PropertyChanged event
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
+            
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
         protected virtual void ShowBox(string title, string text)
@@ -69,22 +103,22 @@ namespace RFDCommon
 
         #region Button Enabled Properties
         public bool LoadEnabled => _modemComms.IsConnected();
-        public bool SaveEnabled => _modemComms.IsConnected() && Current?.Settings != null;
-        public bool ImportEnabled => _modemComms.IsConnected() && Current?.Settings != null;
-        public bool ExportEnabled => _modemComms.IsConnected() && Current?.Settings != null;
+        public bool SaveEnabled => _modemComms.IsConnected() && _currentModem?.Settings != null;
+        public bool ImportEnabled => _modemComms.IsConnected() && _currentModem?.Settings != null;
+        public bool ExportEnabled => _modemComms.IsConnected() && _currentModem?.Settings != null;
         public bool ResetEnabled => _modemComms.IsConnected();
         public bool FirmwareEnabled => _modemComms.IsConnected();
         public bool RebootEnabled => _modemComms.IsConnected();
         #endregion
 
         #region GroupBox Enabled Properties
-        public bool DeviceGroupEnabled => _modemComms.IsConnected() && Current?.Settings != null;
-        public bool SerialEnabled => _modemComms.IsConnected() && Current?.Settings != null;
-        public bool RadioEnabled => _modemComms.IsConnected() && Current?.Settings != null;
-        public bool SecurityEnabled => _modemComms.IsConnected() && Current?.Settings != null;
-        public bool PinEnabled => _modemComms.IsConnected() && Current?.Settings != null;
-        public bool InfoEnabled => _modemComms.IsConnected() && Current?.Settings != null;
-        public bool DataEnabled => _modemComms.IsConnected() && Current != null && (Current.Mode == FirmwareMode.MULTIPOINT || Current.Mode == FirmwareMode.ASYNC);
+        public bool DeviceGroupEnabled => _modemComms.IsConnected() && _currentModem?.Settings != null;
+        public bool SerialEnabled => _modemComms.IsConnected() && _currentModem?.Settings != null;
+        public bool RadioEnabled => _modemComms.IsConnected() && _currentModem?.Settings != null;
+        public bool SecurityEnabled => _modemComms.IsConnected() && _currentModem?.Settings != null;
+        public bool PinEnabled => _modemComms.IsConnected() && _currentModem?.Settings != null;
+        public bool InfoEnabled => _modemComms.IsConnected() && _currentModem?.Settings != null;
+        public bool DataEnabled => _modemComms.IsConnected() && _currentModem != null && (_currentModem.Mode == FirmwareMode.MULTIPOINT || _currentModem.Mode == FirmwareMode.ASYNC);
         #endregion
 
 
@@ -99,14 +133,14 @@ namespace RFDCommon
 
 
         #region // Getters for read only properties
-        public string ATI => Current?.ATI;
+        public string ATI => _currentModem?.ATI;
 
-        public string FREQ => Current?.FREQ;
-        public string BOARD => Current?.BOARD;
-        public string COUNTRY => Current?.COUNTRY;
-        public bool AES_ENABLED => Current?.AES_ENABLED ?? false;
-        public string RSSI => Current?.RSSI;
-        public string FORMAT => Current?.Get<TSetting>("FORMAT")?.GetValueAsString();
+        public string FREQ => _currentModem?.FREQ;
+        public string BOARD => _currentModem?.BOARD;
+        public string COUNTRY => _currentModem?.COUNTRY;
+        public bool AES_ENABLED => _currentModem?.AES_ENABLED ?? false;
+        public string RSSI => _currentModem?.RSSI;
+        public string FORMAT => _currentModem?.Get<TSetting>("FORMAT")?.GetValueAsString();
         #endregion
 
         #region Pin Function Abstractions   
@@ -206,7 +240,7 @@ namespace RFDCommon
 
         private string GetPinSetting(PinFunction[] settings)
         {
-            if (Current?.Settings == null)
+            if (_currentModem?.Settings == null)
                 return string.Empty;
 
             foreach (var item in settings)
@@ -214,14 +248,14 @@ namespace RFDCommon
                 // Ignore 'None'
                 if (item.Value == "")
                     continue;
-                if (Current.Get<TSetting>(item.Value)?.Value == 1)
+                if (_currentModem.Get<TSetting>(item.Value)?.Value == 1)
                     return item.Value;
             }
             return string.Empty;
         }
         private void SetPin(PinFunction[] settings, string value)
         {
-            if (Current?.Settings == null)
+            if (_currentModem?.Settings == null)
                 return;
 
             foreach (var item in settings)
@@ -230,7 +264,7 @@ namespace RFDCommon
                 if (item.Value == "")
                     continue;
                 // Get Current
-                Current.Get<TSetting>(item.Value).Value = item.Value == value ? 1 : 0;                
+                _currentModem.Get<TSetting>(item.Value).Value = item.Value == value ? 1 : 0;                
             }            
         }
         #endregion
@@ -271,141 +305,159 @@ namespace RFDCommon
          */
         public int SERIAL_SPEED
         {
-            get => Current.Get<TSetting>("SERIAL_SPEED").Value; 
+            get => _currentModem.Get<TSetting>(nameof(SERIAL_SPEED)).Value; 
             set
             {
-                Current.Get<TSetting>("SERIAL_SPEED").Value = value;
+                _currentModem.Get<TSetting>(nameof(SERIAL_SPEED)).Value = value;
+                DoAutoSync<TSetting>(_currentModem.Get<TSetting>(nameof(SERIAL_SPEED)));
                 OnPropertyChanged(nameof(SERIAL_SPEED));                
             }
         }
         public int AIR_SPEED
         {
-            get => Current.Get<TSetting>("AIR_SPEED").Value;
+            get => _currentModem.Get<TSetting>("AIR_SPEED").Value;
             set
             {
-                Current.Get<TSetting>("AIR_SPEED").Value = value;
+                _currentModem.Get<TSetting>("AIR_SPEED").Value = value;
+                DoAutoSync<TSetting>(_currentModem.Get<TSetting>(nameof(AIR_SPEED)));
                 OnPropertyChanged(nameof(AIR_SPEED));
             }
         }
         public int NETID
         {
-            get => Current.Get<TSetting>("NETID").Value;
+            get => _currentModem.Get<TSetting>("NETID").Value;
             set
             {
-                Current.Get<TSetting>("NETID").Value = value;                
+                _currentModem.Get<TSetting>("NETID").Value = value;
+                DoAutoSync<TSetting>(_currentModem.Get<TSetting>(nameof(NETID)));
                 OnPropertyChanged(nameof(NETID));
             }
         }
         public int TXPOWER
         {
-            get => Current.Get<TSetting>("TXPOWER").Value;
+            get => _currentModem.Get<TSetting>("TXPOWER").Value;
             set
             {
-                Current.Get<TSetting>("TXPOWER").Value = value;                
+                _currentModem.Get<TSetting>("TXPOWER").Value = value;
+                DoAutoSync<TSetting>(_currentModem.Get<TSetting>(nameof(TXPOWER)));
                 OnPropertyChanged(nameof(TXPOWER));
             }
         }        
 
         public int RTSCTS
         {
-            get => Current.Get<TSetting>("RTSCTS").Value;
+            get => _currentModem.Get<TSetting>("RTSCTS").Value;
             set
             {
-                Current.Get<TSetting>("RTSCTS").Value = value;
+                _currentModem.Get<TSetting>("RTSCTS").Value = value;
+                DoAutoSync<TSetting>(_currentModem.Get<TSetting>(nameof(RTSCTS)));
                 OnPropertyChanged(nameof(RTSCTS));
             }
         }
 
         public int MAVLINK
         {
-            get => Current.Get<TSetting>("MAVLINK").Value;
+            get => _currentModem.Get<TSetting>("MAVLINK").Value;
             set
             {
-                Current.Get<TSetting>("MAVLINK").Value = value;
+                _currentModem.Get<TSetting>("MAVLINK").Value = value;
+                DoAutoSync<TSetting>(_currentModem.Get<TSetting>(nameof(MAVLINK)));
                 OnPropertyChanged(nameof(MAVLINK));
             }
         }
 
         public int OPPRESEND
         {
-            get => Current.Get<TSetting>("OPPRESEND").Value;
+            get => _currentModem.Get<TSetting>("OPPRESEND").Value;
             set
             {
-                Current.Get<TSetting>("OPPRESEND").Value = value;
+                _currentModem.Get<TSetting>("OPPRESEND").Value = value;
+                DoAutoSync<TSetting>(_currentModem.Get<TSetting>(nameof(OPPRESEND)));
                 OnPropertyChanged(nameof(OPPRESEND));
             }
         }
 
         public int MIN_FREQ
         {
-            get => Current.Get<TSetting>("MIN_FREQ").Value;
+            get => _currentModem.Get<TSetting>("MIN_FREQ").Value;
             set
             {
-                Current.Get<TSetting>("MIN_FREQ").Value = value;
+                _currentModem.Get<TSetting>("MIN_FREQ").Value = value;
+                DoAutoSync<TSetting>(_currentModem.Get<TSetting>(nameof(MIN_FREQ)));
                 OnPropertyChanged(nameof(MIN_FREQ));
             }
         }
 
         public int MAX_FREQ
         {
-            get => Current.Get<TSetting>("MAX_FREQ").Value;
+            get => _currentModem.Get<TSetting>("MAX_FREQ").Value;
             set
             {
-                Current.Get<TSetting>("MAX_FREQ").Value = value;
+                _currentModem.Get<TSetting>("MAX_FREQ").Value = value;
+                DoAutoSync<TSetting>(_currentModem.Get<TSetting>(nameof(MAX_FREQ)));
                 OnPropertyChanged(nameof(MAX_FREQ));
             }
         }
 
         public int NUM_CHANNELS
         {
-            get => Current.Get<TSetting>("NUM_CHANNELS").Value;
+            get => _currentModem.Get<TSetting>("NUM_CHANNELS").Value;
             set
             {
-                Current.Get<TSetting>("NUM_CHANNELS").Value = value;
+                _currentModem.Get<TSetting>("NUM_CHANNELS").Value = value;
+                DoAutoSync<TSetting>(_currentModem.Get<TSetting>(nameof(NUM_CHANNELS)));
                 OnPropertyChanged(nameof(NUM_CHANNELS));
             }
         }
 
         public int DUTY_CYCLE
         {
-            get => Current.Get<TSetting>("DUTY_CYCLE").Value;
+            get => _currentModem.Get<TSetting>("DUTY_CYCLE").Value;
             set
             {
-                Current.Get<TSetting>("DUTY_CYCLE").Value = value;
+                _currentModem.Get<TSetting>("DUTY_CYCLE").Value = value;
+                DoAutoSync<TSetting>(_currentModem.Get<TSetting>(nameof(DUTY_CYCLE)));
+                OnPropertyChanged(nameof(DUTY_CYCLE));
             }
         }
 
         public int LBT_RSSI
         {
-            get => Current.Get<TSetting>("LBT_RSSI").Value;
+            get => _currentModem.Get<TSetting>("LBT_RSSI").Value;
             set
             {
-                Current.Get<TSetting>("LBT_RSSI").Value = value;
+                _currentModem.Get<TSetting>("LBT_RSSI").Value = value;
+                DoAutoSync<TSetting>(_currentModem.Get<TSetting>(nameof(LBT_RSSI)));
                 OnPropertyChanged(nameof(LBT_RSSI));
             }
         }
 
         public int MAX_WINDOW
         {
-            get => Current.Get<TSetting>("MAX_WINDOW").Value;
+            get => _currentModem.Get<TSetting>("MAX_WINDOW").Value;
             set
             {
-                Current.Get<TSetting>("MAX_WINDOW").Value = value;
+                _currentModem.Get<TSetting>("MAX_WINDOW").Value = value;
+                DoAutoSync<TSetting>(_currentModem.Get<TSetting>(nameof(MAX_WINDOW)));
                 OnPropertyChanged(nameof(MAX_WINDOW));
             }
         }
 
         public int ENCRYPTION_LEVEL
         {
-            get => Current.Get<TSetting>("ENCRYPTION_LEVEL").Value;
+            get => _currentModem.Get<TSetting>("ENCRYPTION_LEVEL").Value;
             set
             {
-                var currentLevel = Current.Get<TSetting>("ENCRYPTION_LEVEL");
+                var currentLevel = _currentModem.Get<TSetting>("ENCRYPTION_LEVEL");
                 if (currentLevel.Value == value)
                     return;
 
                 bool getKeyRequired = currentLevel.Value == 0 && value > 0;
-                Current.Get<TSetting>("ENCRYPTION_LEVEL").Value = value;                             
+                _currentModem.Get<TSetting>("ENCRYPTION_LEVEL").Value = value;
+                
+                // Does this need to be set immediateyl too?
+                DoAutoSync<TSetting>(_currentModem.Get<TSetting>(nameof(ENCRYPTION_LEVEL)));
+                
                 OnPropertyChanged(nameof(ENCRYPTION_LEVEL));
                 OnPropertyChanged(nameof(EncryptionEnabled));
                 OnPropertyChanged(nameof(Encryption_Max_Key_Length));
@@ -422,13 +474,13 @@ namespace RFDCommon
                     _modemComms.PutIntoATCommandMode();
 
                     // Enable Encryption on modem to retrieve key
-                    string command = $"{(Current.IsLocal ? "AT" : "RT")}{currentLevel.Designator}={value}";
+                    string command = $"{(_currentModem.IsLocal ? "AT" : "RT")}{currentLevel.Designator}={value}";
                     var answer = _modemComms.DoCommand(command, true);
                     AddLog($"Command Response: {answer}");
                     if (answer.Contains("OK"))
                     {
                         // Read Existing Key
-                        AESKEY = _modemComms.DoQueryWithRetry(Current.IsLocal ? "AT&E?" : "RT&E", true).Trim();
+                        AESKEY = _modemComms.DoQueryWithRetry(_currentModem.IsLocal ? "AT&E?" : "RT&E", true).Trim();
                     }
                     _modemComms.PutIntoTransparentMode();   
                 }
@@ -438,7 +490,7 @@ namespace RFDCommon
         public bool EncryptionEnabled
         {
             get {
-                if (Current?.Settings == null)
+                if (_currentModem?.Settings == null)
                     return false;
                 return ENCRYPTION_LEVEL > 0; 
             }
@@ -462,150 +514,157 @@ namespace RFDCommon
 
         public int GPI1_1R_CIN
         {
-            get => Current.Get<TSetting>("GPI1_1R/CIN").Value;
+            get => _currentModem.Get<TSetting>("GPI1_1R/CIN").Value;
             set
             {
-                Current.Get<TSetting>("GPI1_1R/CIN").Value = value;
+                _currentModem.Get<TSetting>("GPI1_1R/CIN").Value = value;
                 OnPropertyChanged(nameof(GPI1_1R_CIN));
             }
         }
 
         public int GPO1_1R_COUT
         {
-            get => Current.Get<TSetting>("GPO1_1R/COUT").Value;
+            get => _currentModem.Get<TSetting>("GPO1_1R/COUT").Value;
             set
             {
-                Current.Get<TSetting>("GPO1_1R/COUT").Value = value;
+                _currentModem.Get<TSetting>("GPO1_1R/COUT").Value = value;
                 OnPropertyChanged(nameof(GPO1_1R_COUT));
             }
         }   
 
         public int GPO1_1SBUSIN
         {
-            get => Current.Get<TSetting>("GPO1_1SBUSIN").Value;
+            get => _currentModem.Get<TSetting>("GPO1_1SBUSIN").Value;
             set
             {
-                Current.Get<TSetting>("GPO1_1SBUSIN").Value = value;
+                _currentModem.Get<TSetting>("GPO1_1SBUSIN").Value = value;
                 OnPropertyChanged(nameof(GPO1_1SBUSIN));
             }
         }
 
         public int GPO1_1SBUSOUT
         {
-            get => Current.Get<TSetting>("GPO1_1SBUSOUT").Value;
+            get => _currentModem.Get<TSetting>("GPO1_1SBUSOUT").Value;
             set
             {
-                Current.Get<TSetting>("GPO1_1SBUSOUT").Value = value;
+                _currentModem.Get<TSetting>("GPO1_1SBUSOUT").Value = value;
                 OnPropertyChanged(nameof(GPO1_1SBUSOUT));
             }
         }
 
         public int ANT_MODE
         {
-            get => Current.Get<TSetting>("ANT_MODE").Value;
+            get => _currentModem.Get<TSetting>("ANT_MODE").Value;
             set
             {
-                Current.Get<TSetting>("ANT_MODE").Value = value;
+                _currentModem.Get<TSetting>("ANT_MODE").Value = value;
+                DoAutoSync<TSetting>(_currentModem.Get<TSetting>(nameof(ANT_MODE)));
                 OnPropertyChanged(nameof(ANT_MODE));
             }
         }
         // NEED an options binding property?
         public int GPO1_3STATLED
         {
-            get => Current.Get<TSetting>("GPO1_3STATLED").Value;
+            get => _currentModem.Get<TSetting>("GPO1_3STATLED").Value;
             set
             {
-                Current.Get<TSetting>("GPO1_3STATLED").Value = value;
+                _currentModem.Get<TSetting>("GPO1_3STATLED").Value = value;
                 OnPropertyChanged(nameof(GPO1_3STATLED));
             }
         }
 
         public int GPO1_0TXEN485
         {
-            get => Current.Get<TSetting>("GPO1_0TXEN485").Value;
+            get => _currentModem.Get<TSetting>("GPO1_0TXEN485").Value;
             set
             {
-                Current.Get<TSetting>("GPO1_0TXEN485").Value = value;
+                _currentModem.Get<TSetting>("GPO1_0TXEN485").Value = value;
                 OnPropertyChanged(nameof(GPO1_0TXEN485));
             }
         }
 
         public int RATE_FREQBAND
         {
-            get => Current.Get<TSetting>("RATE/FREQBAND").Value;
+            get => _currentModem.Get<TSetting>("RATE/FREQBAND").Value;
             set
             {
-                Current.Get<TSetting>("RATE/FREQBAND").Value = value;
+                _currentModem.Get<TSetting>("RATE/FREQBAND").Value = value;
+                DoAutoSync<TSetting>(_currentModem.Get<TSetting>("RATE/FREQBAND"));
                 OnPropertyChanged(nameof(RATE_FREQBAND));
             }
         }
 
         public int GPI1_2AUXIN
         {
-            get => Current.Get<TSetting>("GPI1_2AUXIN").Value;
+            get => _currentModem.Get<TSetting>("GPI1_2AUXIN").Value;
             set
             {
-                Current.Get<TSetting>("GPI1_2AUXIN").Value = value;
+                _currentModem.Get<TSetting>("GPI1_2AUXIN").Value = value;
                 OnPropertyChanged(nameof(GPI1_2AUXIN));
             }
         }
 
         public int GPO1_3AUXOUT
         {
-            get => Current.Get<TSetting>("GPO1_3AUXOUT").Value;
+            get => _currentModem.Get<TSetting>("GPO1_3AUXOUT").Value;
             set
             {
-                Current.Get<TSetting>("GPO1_3AUXOUT").Value = value;
+                _currentModem.Get<TSetting>("GPO1_3AUXOUT").Value = value;
                 OnPropertyChanged(nameof(GPO1_3AUXOUT));
             }
         }
 
         public int AIR_FRAMELEN
         {
-            get => Current.Get<TSetting>("AIR_FRAMELEN").Value;
+            get => _currentModem.Get<TSetting>("AIR_FRAMELEN").Value;
             set
             {
-                Current.Get<TSetting>("AIR_FRAMELEN").Value = value;
+                _currentModem.Get<TSetting>("AIR_FRAMELEN").Value = value;
+                DoAutoSync<TSetting>(_currentModem.Get<TSetting>(nameof(AIR_FRAMELEN)));
                 OnPropertyChanged(nameof(AIR_FRAMELEN));
             }
         }
 
         public int RSSI_IN_DBM
         {
-            get => Current.Get<TSetting>("RSSI_IN_DBM").Value;
+            get => _currentModem.Get<TSetting>("RSSI_IN_DBM").Value;
             set
             {
-                Current.Get<TSetting>("RSSI_IN_DBM").Value = value;
+                _currentModem.Get<TSetting>("RSSI_IN_DBM").Value = value;
+                DoAutoSync<TSetting>(_currentModem.Get<TSetting>(nameof(RSSI_IN_DBM)));
                 OnPropertyChanged(nameof(RSSI_IN_DBM));
             }
         }
 
         public int FSFRAMELOSS
         {
-            get => Current.Get<TSetting>("FSFRAMELOSS").Value;
+            get => _currentModem.Get<TSetting>("FSFRAMELOSS").Value;
             set
             {
-                Current.Get<TSetting>("FSFRAMELOSS").Value = value;
+                _currentModem.Get<TSetting>("FSFRAMELOSS").Value = value;
+                DoAutoSync<TSetting>(_currentModem.Get<TSetting>(nameof(FSFRAMELOSS)));
                 OnPropertyChanged(nameof(FSFRAMELOSS));
             }
         }
 
         public int AUXSER_SPEED
         {
-            get => Current.Get<TSetting>("AUXSER_SPEED").Value;
+            get => _currentModem.Get<TSetting>("AUXSER_SPEED").Value;
             set
             {
-                Current.Get<TSetting>("AUXSER_SPEED").Value = value;
+                _currentModem.Get<TSetting>("AUXSER_SPEED").Value = value;
+                DoAutoSync<TSetting>(_currentModem.Get<TSetting>(nameof(AUXSER_SPEED)));
                 OnPropertyChanged(nameof(AUXSER_SPEED));
             }
         }
 
         public string AESKEY
         {
-            get => Current.Get<TTextSetting>("AESKEY")?.GetValueAsString();
+            get => _currentModem.Get<TTextSetting>("AESKEY")?.GetValueAsString();
             set
             {
-                Current.Get<TTextSetting>("AESKEY").SetValueFromString(value);
+                _currentModem.Get<TTextSetting>("AESKEY").SetValueFromString(value);
+                DoAutoSync<TTextSetting>(_currentModem.Get<TTextSetting>(nameof(AESKEY)));
                 OnPropertyChanged(nameof(AESKEY));                
             }
         }
@@ -624,6 +683,8 @@ namespace RFDCommon
             TSettings settings = new TSettings(updatedSettings);
             return settings;
         }
+
+
 
         //private int[] serial_speed_range;
         //public int[] SERIAL_SPEED_RANGE
@@ -999,9 +1060,9 @@ namespace RFDCommon
                 // off hook
                 _modemComms.PutIntoTransparentMode();
 
-                AddLog("Config Load Complete");
+                AddLog($"Load Complete - {_modems.Count} devices found");
                 // Update all
-                OnPropertyChanged(null);                
+                //OnPropertyChanged(null);                
             }
         }
 
@@ -1065,11 +1126,12 @@ namespace RFDCommon
                     if (changes.Settings.Count == 0)
                         continue; // No changes in this modem's config...
 
-                    AddLog($"{changes.Settings.Count} modified settings found.");
+                    AddLog($"{changes.Settings.Count} modified settings found for {modem.DisplayName}.");
                     
                     // Make sure Modem is ready for commands?
                     string response = _modemComms.DoCommand(modem.IsLocal ? "ATI" : "RTI");
-                    
+
+                    AddLog($"Sending changes...");
                     // Save the changed settings
                     SaveChangedSettings(changes, modem);
 
@@ -1086,9 +1148,11 @@ namespace RFDCommon
 
                 // Write and restart dirty remotes
                 if (dirtyConfigs.Any(x => !x.IsLocal)) {
+                    AddLog($"Writing Remotes...");
                     // write it
                     _modemComms.DoCommand("RT&W");
 
+                    AddLog($"Restarting Remotes...");
                     // return to normal mode
                     _modemComms.DoCommand("RTZ");
                 }
@@ -1096,6 +1160,7 @@ namespace RFDCommon
                 // Write and restart dirty local
                 if (dirtyConfigs.Any(x => x.IsLocal))
                 {
+                    AddLog($"Writing Local...");
                     // write it
                     var cmdwriteanswer = _modemComms.DoCommand("AT&W");
                     if (!cmdwriteanswer.Contains("OK"))
@@ -1103,13 +1168,15 @@ namespace RFDCommon
                         ShowBox("Command Failure", "Failed to save config parameters");
                     }
 
+
+                    AddLog($"Restarting Local...");
                     // return to normal mode
                     _modemComms.DoCommand("ATZ");
                 }
                                 
                 
 
-                AddLog($"Save Complete.{Environment.NewLine}");
+                AddLog("Save Complete");
                 ShowBox("Success", "Settings have been saved to the device successfully");
             }
             else
@@ -1503,5 +1570,7 @@ namespace RFDCommon
                 throw e;
             }
         }
+
+        
     }
 }
