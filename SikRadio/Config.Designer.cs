@@ -30,9 +30,8 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Config));
-            this.configManagerBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.modemsBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.panelNavigation = new System.Windows.Forms.Panel();
             this.flowLayoutButtonPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.btnConfigPage = new FontAwesome.Sharp.IconButton();
             this.btnTerminal = new FontAwesome.Sharp.IconButton();
@@ -50,36 +49,33 @@
             this.btnConnect = new FontAwesome.Sharp.IconButton();
             this.panelMain = new System.Windows.Forms.Panel();
             this.textConsole = new System.Windows.Forms.TextBox();
+            this.configManagerBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.sikradio1 = new MissionPlanner.Radio.Sikradio();
             this.terminal1 = new SikRadio.Terminal();
             this.rssi1 = new SikRadio.Rssi();
-            ((System.ComponentModel.ISupportInitialize)(this.configManagerBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.modemsBindingSource)).BeginInit();
-            this.panel1.SuspendLayout();
+            this.panelNavigation.SuspendLayout();
             this.flowLayoutButtonPanel.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.panelMain.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.configManagerBindingSource)).BeginInit();
             this.SuspendLayout();
-            // 
-            // configManagerBindingSource
-            // 
-            this.configManagerBindingSource.DataSource = typeof(RFDCommon.ConfigManager);
             // 
             // modemsBindingSource
             // 
             this.modemsBindingSource.DataMember = "Modems";
             this.modemsBindingSource.DataSource = this.configManagerBindingSource;
             // 
-            // panel1
+            // panelNavigation
             // 
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(29)))), ((int)(((byte)(46)))));
-            this.panel1.Controls.Add(this.flowLayoutButtonPanel);
-            this.panel1.Controls.Add(this.panel3);
-            resources.ApplyResources(this.panel1, "panel1");
-            this.panel1.Name = "panel1";
+            this.panelNavigation.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(29)))), ((int)(((byte)(46)))));
+            this.panelNavigation.Controls.Add(this.flowLayoutButtonPanel);
+            this.panelNavigation.Controls.Add(this.panel3);
+            resources.ApplyResources(this.panelNavigation, "panelNavigation");
+            this.panelNavigation.Name = "panelNavigation";
             // 
             // flowLayoutButtonPanel
             // 
@@ -256,6 +252,10 @@
             this.textConsole.TabStop = false;
             this.textConsole.TextChanged += new System.EventHandler(this.textConsole_TextChanged);
             // 
+            // configManagerBindingSource
+            // 
+            this.configManagerBindingSource.DataSource = typeof(RFDCommon.ConfigManager);
+            // 
             // sikradio1
             // 
             resources.ApplyResources(this.sikradio1, "sikradio1");
@@ -280,12 +280,11 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(29)))), ((int)(((byte)(46)))));
             resources.ApplyResources(this, "$this");
             this.Controls.Add(this.panelMain);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.panelNavigation);
             this.Name = "Config";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Config_FormClosing);
-            ((System.ComponentModel.ISupportInitialize)(this.configManagerBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.modemsBindingSource)).EndInit();
-            this.panel1.ResumeLayout(false);
+            this.panelNavigation.ResumeLayout(false);
             this.flowLayoutButtonPanel.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
@@ -293,6 +292,7 @@
             this.tableLayoutPanel1.ResumeLayout(false);
             this.panelMain.ResumeLayout(false);
             this.panelMain.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.configManagerBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -300,7 +300,7 @@
         #endregion
         private System.Windows.Forms.BindingSource configManagerBindingSource;
         private System.Windows.Forms.BindingSource modemsBindingSource;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panelNavigation;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.PictureBox pictureBox2;

@@ -34,13 +34,10 @@
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.RTSCTS = new System.Windows.Forms.CheckBox();
-            this.GPO1_1R_COUT = new System.Windows.Forms.CheckBox();
-            this.GPI1_1R_CIN = new System.Windows.Forms.CheckBox();
             this.SERIAL_SPEED = new System.Windows.Forms.ComboBox();
             this.ENCRYPTION_LEVEL = new System.Windows.Forms.ComboBox();
             this.FSFRAMELOSS = new System.Windows.Forms.ComboBox();
             this.FORMAT = new System.Windows.Forms.TextBox();
-            this.comboSyncMode = new System.Windows.Forms.ComboBox();
             this.AUXSER_SPEED = new System.Windows.Forms.ComboBox();
             this.btn_LoadSetting = new FontAwesome.Sharp.IconButton();
             this.NUM_CHANNELS = new System.Windows.Forms.ComboBox();
@@ -65,22 +62,15 @@
             this.comboPin15 = new System.Windows.Forms.ComboBox();
             this.pin15ItemsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.checkBoxSync = new System.Windows.Forms.CheckBox();
+            this.btn_Firmware = new FontAwesome.Sharp.IconButton();
             this.BUT_SetPPMFailSafe = new MissionPlanner.Controls.MyButton();
-            this.GPO1_3STATLED = new System.Windows.Forms.CheckBox();
-            this.GPO1_0TXEN485 = new System.Windows.Forms.CheckBox();
             this.lbl_status = new System.Windows.Forms.Label();
             this.FREQ = new System.Windows.Forms.TextBox();
             this.linkLabel_mavlink = new System.Windows.Forms.LinkLabel();
             this.linkLabel_lowlatency = new System.Windows.Forms.LinkLabel();
             this.label54 = new System.Windows.Forms.Label();
-            this.GPO1_3AUXOUT = new System.Windows.Forms.CheckBox();
-            this.lblGPO1_3AUXOUT = new System.Windows.Forms.Label();
-            this.GPI1_2AUXIN = new System.Windows.Forms.CheckBox();
-            this.lblGPI1_2AUXIN = new System.Windows.Forms.Label();
             this.lblGPIO1_1FUNC = new System.Windows.Forms.Label();
             this.GPIO1_1FUNC = new System.Windows.Forms.ComboBox();
-            this.lblGPO1_0TXEN485 = new System.Windows.Forms.Label();
-            this.lblGPO1_3STATLED = new System.Windows.Forms.Label();
             this.label49 = new System.Windows.Forms.Label();
             this.txtCountry = new System.Windows.Forms.TextBox();
             this.lblRX_ENCAP_METHOD = new System.Windows.Forms.Label();
@@ -91,8 +81,6 @@
             this.lblNODEID = new System.Windows.Forms.Label();
             this.DESTID = new System.Windows.Forms.ComboBox();
             this.NODEID = new System.Windows.Forms.ComboBox();
-            this.lblGPO1_1R_COUT = new System.Windows.Forms.Label();
-            this.lblGPI1_1R_CIN = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.lblSER_BRK_DETMS = new System.Windows.Forms.Label();
@@ -110,7 +98,6 @@
             this.ATI2 = new System.Windows.Forms.TextBox();
             this.dlgSave = new System.Windows.Forms.SaveFileDialog();
             this.dlgOpen = new System.Windows.Forms.OpenFileDialog();
-            this.label4 = new System.Windows.Forms.Label();
             this.groupFirmware = new System.Windows.Forms.GroupBox();
             this.tableLayoutDevice = new System.Windows.Forms.TableLayoutPanel();
             this.FREQ_CHECK = new FontAwesome.Sharp.IconPictureBox();
@@ -185,12 +172,8 @@
             this.label18 = new System.Windows.Forms.Label();
             this.PIN_14_CHECK = new FontAwesome.Sharp.IconPictureBox();
             this.PIN_15_CHECK = new FontAwesome.Sharp.IconPictureBox();
-            this.GPO1_3SBUSIN = new System.Windows.Forms.CheckBox();
-            this.lblSBUSIN = new System.Windows.Forms.Label();
             this.lblSBUSOUT = new System.Windows.Forms.Label();
             this.GPO1_3SBUSOUT = new System.Windows.Forms.ComboBox();
-            this.GPO1_1SBUSIN = new System.Windows.Forms.CheckBox();
-            this.label13 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.GPO1_1SBUSOUT = new System.Windows.Forms.ComboBox();
             this.groupSecurity = new System.Windows.Forms.GroupBox();
@@ -198,13 +181,11 @@
             this.ENCRYPTION_LEVEL_CHECK = new FontAwesome.Sharp.IconPictureBox();
             this.AESKEY_CHECK = new FontAwesome.Sharp.IconPictureBox();
             this.btnGenerateKey = new FontAwesome.Sharp.IconButton();
-            this.BUT_Syncoptions = new MissionPlanner.Controls.MyButton();
             this.flowLayoutActions = new System.Windows.Forms.FlowLayoutPanel();
             this.btn_SaveSetting = new FontAwesome.Sharp.IconButton();
             this.btn_LoadFile = new FontAwesome.Sharp.IconButton();
             this.btn_SaveFile = new FontAwesome.Sharp.IconButton();
             this.btn_Reset = new FontAwesome.Sharp.IconButton();
-            this.btn_Firmware = new FontAwesome.Sharp.IconButton();
             this.btn_Reboot = new FontAwesome.Sharp.IconButton();
             this.flowLayoutConfig = new System.Windows.Forms.FlowLayoutPanel();
             this.flowLayoutSerialPin = new System.Windows.Forms.FlowLayoutPanel();
@@ -291,18 +272,6 @@
             this.toolTip1.SetToolTip(this.RTSCTS, resources.GetString("RTSCTS.ToolTip"));
             this.RTSCTS.Click += new System.EventHandler(this.Control_Clicked_ShowHelp);
             // 
-            // GPO1_1R_COUT
-            // 
-            resources.ApplyResources(this.GPO1_1R_COUT, "GPO1_1R_COUT");
-            this.GPO1_1R_COUT.Name = "GPO1_1R_COUT";
-            this.toolTip1.SetToolTip(this.GPO1_1R_COUT, resources.GetString("GPO1_1R_COUT.ToolTip"));
-            // 
-            // GPI1_1R_CIN
-            // 
-            resources.ApplyResources(this.GPI1_1R_CIN, "GPI1_1R_CIN");
-            this.GPI1_1R_CIN.Name = "GPI1_1R_CIN";
-            this.toolTip1.SetToolTip(this.GPI1_1R_CIN, resources.GetString("GPI1_1R_CIN.ToolTip"));
-            // 
             // SERIAL_SPEED
             // 
             resources.ApplyResources(this.SERIAL_SPEED, "SERIAL_SPEED");
@@ -379,17 +348,6 @@
             this.FORMAT.ReadOnly = true;
             this.toolTip1.SetToolTip(this.FORMAT, resources.GetString("FORMAT.ToolTip"));
             this.FORMAT.Click += new System.EventHandler(this.Control_Clicked_ShowHelp);
-            // 
-            // comboSyncMode
-            // 
-            this.comboSyncMode.FormattingEnabled = true;
-            this.comboSyncMode.Items.AddRange(new object[] {
-            resources.GetString("comboSyncMode.Items"),
-            resources.GetString("comboSyncMode.Items1"),
-            resources.GetString("comboSyncMode.Items2")});
-            resources.ApplyResources(this.comboSyncMode, "comboSyncMode");
-            this.comboSyncMode.Name = "comboSyncMode";
-            this.toolTip1.SetToolTip(this.comboSyncMode, resources.GetString("comboSyncMode.ToolTip"));
             // 
             // AUXSER_SPEED
             // 
@@ -713,22 +671,27 @@
             this.toolTip1.SetToolTip(this.checkBoxSync, resources.GetString("checkBoxSync.ToolTip"));
             this.checkBoxSync.UseVisualStyleBackColor = true;
             // 
+            // btn_Firmware
+            // 
+            this.btn_Firmware.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(73)))), ((int)(((byte)(82)))), ((int)(((byte)(110)))));
+            this.btn_Firmware.FlatAppearance.BorderSize = 2;
+            resources.ApplyResources(this.btn_Firmware, "btn_Firmware");
+            this.btn_Firmware.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(73)))), ((int)(((byte)(82)))), ((int)(((byte)(110)))));
+            this.btn_Firmware.IconChar = FontAwesome.Sharp.IconChar.Wrench;
+            this.btn_Firmware.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(73)))), ((int)(((byte)(82)))), ((int)(((byte)(110)))));
+            this.btn_Firmware.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btn_Firmware.IconSize = 24;
+            this.btn_Firmware.Name = "btn_Firmware";
+            this.toolTip1.SetToolTip(this.btn_Firmware, resources.GetString("btn_Firmware.ToolTip"));
+            this.btn_Firmware.UseVisualStyleBackColor = true;
+            this.btn_Firmware.Click += new System.EventHandler(this.btn_Firmware_Click);
+            // 
             // BUT_SetPPMFailSafe
             // 
             resources.ApplyResources(this.BUT_SetPPMFailSafe, "BUT_SetPPMFailSafe");
             this.BUT_SetPPMFailSafe.Name = "BUT_SetPPMFailSafe";
             this.BUT_SetPPMFailSafe.UseVisualStyleBackColor = true;
             this.BUT_SetPPMFailSafe.Click += new System.EventHandler(this.BUT_SetPPMFailSafe_Click);
-            // 
-            // GPO1_3STATLED
-            // 
-            resources.ApplyResources(this.GPO1_3STATLED, "GPO1_3STATLED");
-            this.GPO1_3STATLED.Name = "GPO1_3STATLED";
-            // 
-            // GPO1_0TXEN485
-            // 
-            resources.ApplyResources(this.GPO1_0TXEN485, "GPO1_0TXEN485");
-            this.GPO1_0TXEN485.Name = "GPO1_0TXEN485";
             // 
             // lbl_status
             // 
@@ -763,26 +726,6 @@
             resources.ApplyResources(this.label54, "label54");
             this.label54.Name = "label54";
             // 
-            // GPO1_3AUXOUT
-            // 
-            resources.ApplyResources(this.GPO1_3AUXOUT, "GPO1_3AUXOUT");
-            this.GPO1_3AUXOUT.Name = "GPO1_3AUXOUT";
-            // 
-            // lblGPO1_3AUXOUT
-            // 
-            resources.ApplyResources(this.lblGPO1_3AUXOUT, "lblGPO1_3AUXOUT");
-            this.lblGPO1_3AUXOUT.Name = "lblGPO1_3AUXOUT";
-            // 
-            // GPI1_2AUXIN
-            // 
-            resources.ApplyResources(this.GPI1_2AUXIN, "GPI1_2AUXIN");
-            this.GPI1_2AUXIN.Name = "GPI1_2AUXIN";
-            // 
-            // lblGPI1_2AUXIN
-            // 
-            resources.ApplyResources(this.lblGPI1_2AUXIN, "lblGPI1_2AUXIN");
-            this.lblGPI1_2AUXIN.Name = "lblGPI1_2AUXIN";
-            // 
             // lblGPIO1_1FUNC
             // 
             resources.ApplyResources(this.lblGPIO1_1FUNC, "lblGPIO1_1FUNC");
@@ -794,16 +737,6 @@
             resources.ApplyResources(this.GPIO1_1FUNC, "GPIO1_1FUNC");
             this.GPIO1_1FUNC.FormattingEnabled = true;
             this.GPIO1_1FUNC.Name = "GPIO1_1FUNC";
-            // 
-            // lblGPO1_0TXEN485
-            // 
-            resources.ApplyResources(this.lblGPO1_0TXEN485, "lblGPO1_0TXEN485");
-            this.lblGPO1_0TXEN485.Name = "lblGPO1_0TXEN485";
-            // 
-            // lblGPO1_3STATLED
-            // 
-            resources.ApplyResources(this.lblGPO1_3STATLED, "lblGPO1_3STATLED");
-            this.lblGPO1_3STATLED.Name = "lblGPO1_3STATLED";
             // 
             // label49
             // 
@@ -870,16 +803,6 @@
             this.NODEID.FormattingEnabled = true;
             this.NODEID.Name = "NODEID";
             this.NODEID.Click += new System.EventHandler(this.Control_Clicked_ShowHelp);
-            // 
-            // lblGPO1_1R_COUT
-            // 
-            resources.ApplyResources(this.lblGPO1_1R_COUT, "lblGPO1_1R_COUT");
-            this.lblGPO1_1R_COUT.Name = "lblGPO1_1R_COUT";
-            // 
-            // lblGPI1_1R_CIN
-            // 
-            resources.ApplyResources(this.lblGPI1_1R_CIN, "lblGPI1_1R_CIN");
-            this.lblGPI1_1R_CIN.Name = "lblGPI1_1R_CIN";
             // 
             // label2
             // 
@@ -981,11 +904,6 @@
             // 
             this.dlgOpen.FileName = "*.ini";
             resources.ApplyResources(this.dlgOpen, "dlgOpen");
-            // 
-            // label4
-            // 
-            resources.ApplyResources(this.label4, "label4");
-            this.label4.Name = "label4";
             // 
             // groupFirmware
             // 
@@ -1762,16 +1680,6 @@
             this.PIN_15_CHECK.Name = "PIN_15_CHECK";
             this.PIN_15_CHECK.TabStop = false;
             // 
-            // GPO1_3SBUSIN
-            // 
-            resources.ApplyResources(this.GPO1_3SBUSIN, "GPO1_3SBUSIN");
-            this.GPO1_3SBUSIN.Name = "GPO1_3SBUSIN";
-            // 
-            // lblSBUSIN
-            // 
-            resources.ApplyResources(this.lblSBUSIN, "lblSBUSIN");
-            this.lblSBUSIN.Name = "lblSBUSIN";
-            // 
             // lblSBUSOUT
             // 
             resources.ApplyResources(this.lblSBUSOUT, "lblSBUSOUT");
@@ -1783,16 +1691,6 @@
             resources.ApplyResources(this.GPO1_3SBUSOUT, "GPO1_3SBUSOUT");
             this.GPO1_3SBUSOUT.FormattingEnabled = true;
             this.GPO1_3SBUSOUT.Name = "GPO1_3SBUSOUT";
-            // 
-            // GPO1_1SBUSIN
-            // 
-            resources.ApplyResources(this.GPO1_1SBUSIN, "GPO1_1SBUSIN");
-            this.GPO1_1SBUSIN.Name = "GPO1_1SBUSIN";
-            // 
-            // label13
-            // 
-            resources.ApplyResources(this.label13, "label13");
-            this.label13.Name = "label13";
             // 
             // label8
             // 
@@ -1863,13 +1761,6 @@
             this.btnGenerateKey.UseVisualStyleBackColor = true;
             this.btnGenerateKey.Click += new System.EventHandler(this.btnGenerateKey_Click);
             // 
-            // BUT_Syncoptions
-            // 
-            resources.ApplyResources(this.BUT_Syncoptions, "BUT_Syncoptions");
-            this.BUT_Syncoptions.Name = "BUT_Syncoptions";
-            this.BUT_Syncoptions.UseVisualStyleBackColor = true;
-            this.BUT_Syncoptions.Click += new System.EventHandler(this.BUT_Syncoptions_Click);
-            // 
             // flowLayoutActions
             // 
             this.flowLayoutActions.Controls.Add(this.btn_LoadSetting);
@@ -1939,20 +1830,6 @@
             this.btn_Reset.UseVisualStyleBackColor = true;
             this.btn_Reset.Click += new System.EventHandler(this.btn_Reset_Click);
             // 
-            // btn_Firmware
-            // 
-            this.btn_Firmware.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(73)))), ((int)(((byte)(82)))), ((int)(((byte)(110)))));
-            this.btn_Firmware.FlatAppearance.BorderSize = 2;
-            resources.ApplyResources(this.btn_Firmware, "btn_Firmware");
-            this.btn_Firmware.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(73)))), ((int)(((byte)(82)))), ((int)(((byte)(110)))));
-            this.btn_Firmware.IconChar = FontAwesome.Sharp.IconChar.Wrench;
-            this.btn_Firmware.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(73)))), ((int)(((byte)(82)))), ((int)(((byte)(110)))));
-            this.btn_Firmware.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btn_Firmware.IconSize = 24;
-            this.btn_Firmware.Name = "btn_Firmware";
-            this.btn_Firmware.UseVisualStyleBackColor = true;
-            this.btn_Firmware.Click += new System.EventHandler(this.btn_Firmware_Click);
-            // 
             // btn_Reboot
             // 
             this.btn_Reboot.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(73)))), ((int)(((byte)(82)))), ((int)(((byte)(110)))));
@@ -1992,34 +1869,15 @@
             this.groupBox4.Controls.Add(this.linkLabel_lowlatency);
             this.groupBox4.Controls.Add(this.lbl_status);
             this.groupBox4.Controls.Add(this.linkLabel_mavlink);
-            this.groupBox4.Controls.Add(this.lblGPI1_1R_CIN);
-            this.groupBox4.Controls.Add(this.BUT_Syncoptions);
-            this.groupBox4.Controls.Add(this.comboSyncMode);
-            this.groupBox4.Controls.Add(this.GPO1_3SBUSIN);
-            this.groupBox4.Controls.Add(this.GPO1_3STATLED);
-            this.groupBox4.Controls.Add(this.label4);
-            this.groupBox4.Controls.Add(this.lblSBUSIN);
-            this.groupBox4.Controls.Add(this.lblGPI1_2AUXIN);
             this.groupBox4.Controls.Add(this.lblSBUSOUT);
-            this.groupBox4.Controls.Add(this.lblGPO1_3STATLED);
             this.groupBox4.Controls.Add(this.GPO1_3SBUSOUT);
-            this.groupBox4.Controls.Add(this.GPI1_2AUXIN);
             this.groupBox4.Controls.Add(this.BUT_SetPPMFailSafe);
-            this.groupBox4.Controls.Add(this.lblGPO1_0TXEN485);
             this.groupBox4.Controls.Add(this.FSFRAMELOSS);
-            this.groupBox4.Controls.Add(this.GPO1_0TXEN485);
             this.groupBox4.Controls.Add(this.label54);
-            this.groupBox4.Controls.Add(this.lblGPO1_3AUXOUT);
-            this.groupBox4.Controls.Add(this.GPO1_1SBUSIN);
             this.groupBox4.Controls.Add(this.GPIO1_1FUNC);
-            this.groupBox4.Controls.Add(this.label13);
-            this.groupBox4.Controls.Add(this.GPO1_3AUXOUT);
             this.groupBox4.Controls.Add(this.label8);
             this.groupBox4.Controls.Add(this.lblGPIO1_1FUNC);
             this.groupBox4.Controls.Add(this.GPO1_1SBUSOUT);
-            this.groupBox4.Controls.Add(this.lblGPO1_1R_COUT);
-            this.groupBox4.Controls.Add(this.GPO1_1R_COUT);
-            this.groupBox4.Controls.Add(this.GPI1_1R_CIN);
             resources.ApplyResources(this.groupBox4, "groupBox4");
             this.groupBox4.ForeColor = System.Drawing.Color.White;
             this.groupBox4.Name = "groupBox4";
@@ -2126,7 +1984,6 @@
         private System.Windows.Forms.ProgressBar Progressbar;
         private System.Windows.Forms.Label lbl_status;
         private System.Windows.Forms.ToolTip toolTip1;
-        private Controls.MyButton BUT_Syncoptions;
         private System.Windows.Forms.TextBox FREQ;
         private System.Windows.Forms.LinkLabel linkLabel1;
         private System.Windows.Forms.TextBox ATI2;
@@ -2139,10 +1996,6 @@
         private System.Windows.Forms.Label lblNODEID;
         private System.Windows.Forms.ComboBox DESTID;
         private System.Windows.Forms.ComboBox NODEID;
-        private System.Windows.Forms.Label lblGPO1_1R_COUT;
-        private System.Windows.Forms.CheckBox GPO1_1R_COUT;
-        private System.Windows.Forms.Label lblGPI1_1R_CIN;
-        private System.Windows.Forms.CheckBox GPI1_1R_CIN;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox SERIAL_SPEED;
         private System.Windows.Forms.Label label1;
@@ -2164,23 +2017,13 @@
         private System.Windows.Forms.LinkLabel linkLabel_lowlatency;
         private System.Windows.Forms.TextBox txtCountry;
         private System.Windows.Forms.Label label49;
-        private System.Windows.Forms.CheckBox GPO1_0TXEN485;
-        private System.Windows.Forms.Label lblGPO1_0TXEN485;
-        private System.Windows.Forms.CheckBox GPO1_3STATLED;
-        private System.Windows.Forms.Label lblGPO1_3STATLED;
         private System.Windows.Forms.ComboBox ENCRYPTION_LEVEL;
         private System.Windows.Forms.Label lblGPIO1_1FUNC;
         private System.Windows.Forms.ComboBox GPIO1_1FUNC;
-        private System.Windows.Forms.CheckBox GPO1_3AUXOUT;
-        private System.Windows.Forms.Label lblGPO1_3AUXOUT;
-        private System.Windows.Forms.CheckBox GPI1_2AUXIN;
-        private System.Windows.Forms.Label lblGPI1_2AUXIN;
         private System.Windows.Forms.Label label54;
         private System.Windows.Forms.ComboBox FSFRAMELOSS;
         private System.Windows.Forms.SaveFileDialog dlgSave;
         private System.Windows.Forms.OpenFileDialog dlgOpen;
-        private System.Windows.Forms.ComboBox comboSyncMode;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.GroupBox groupFirmware;
         private System.Windows.Forms.GroupBox groupRadio;
         private System.Windows.Forms.GroupBox groupSerial;
@@ -2193,10 +2036,6 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.ComboBox GPO1_1SBUSOUT;
         private System.Windows.Forms.GroupBox groupSecurity;
-        private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.CheckBox GPO1_1SBUSIN;
-        private System.Windows.Forms.CheckBox GPO1_3SBUSIN;
-        private System.Windows.Forms.Label lblSBUSIN;
         private System.Windows.Forms.Label lblSBUSOUT;
         private System.Windows.Forms.ComboBox GPO1_3SBUSOUT;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutActions;

@@ -41,6 +41,7 @@ namespace RFDCommon
             }
         }
 
+        #region AutoSync
         private bool _autoSync = true;
         public bool AutoSync
         {
@@ -70,6 +71,7 @@ namespace RFDCommon
                 }
             }
         }
+        #endregion
 
         private StringBuilder _log = new StringBuilder();
         public string Log => _log.ToString();        
@@ -107,7 +109,7 @@ namespace RFDCommon
         public bool ImportEnabled => _modemComms.IsConnected() && _currentModem?.Settings != null;
         public bool ExportEnabled => _modemComms.IsConnected() && _currentModem?.Settings != null;
         public bool ResetEnabled => _modemComms.IsConnected();
-        public bool FirmwareEnabled => _modemComms.IsConnected();
+        public bool FirmwareEnabled => _modemComms.IsConnected() && _currentModem?.Settings != null;
         public bool RebootEnabled => _modemComms.IsConnected();
         #endregion
 
@@ -666,6 +668,94 @@ namespace RFDCommon
                 _currentModem.Get<TTextSetting>("AESKEY").SetValueFromString(value);
                 DoAutoSync<TTextSetting>(_currentModem.Get<TTextSetting>(nameof(AESKEY)));
                 OnPropertyChanged(nameof(AESKEY));                
+            }
+        }
+
+        public int NODEID
+        {
+            get => _currentModem.Get<TSetting>(nameof(NODEID)).Value;
+            set
+            {
+                _currentModem.Get<TSetting>(nameof(NODEID)).Value = value;
+                DoAutoSync<TSetting>(_currentModem.Get<TSetting>(nameof(NODEID)));
+                OnPropertyChanged(nameof(NODEID));
+            }
+        }
+
+        public int DESTID
+        {
+            get => _currentModem.Get<TSetting>(nameof(DESTID)).Value;
+            set
+            {
+                _currentModem.Get<TSetting>(nameof(DESTID)).Value = value;
+                DoAutoSync<TSetting>(_currentModem.Get<TSetting>(nameof(DESTID)));
+                OnPropertyChanged(nameof(NODEID));
+            }
+        }
+
+        public int TX_ENCAP_METHOD
+        {
+            get => _currentModem.Get<TSetting>(nameof(TX_ENCAP_METHOD)).Value;
+            set
+            {
+                _currentModem.Get<TSetting>(nameof(TX_ENCAP_METHOD)).Value = value;
+                DoAutoSync<TSetting>(_currentModem.Get<TSetting>(nameof(TX_ENCAP_METHOD)));
+                OnPropertyChanged(nameof(TX_ENCAP_METHOD));
+            }
+        }
+
+        public int RX_ENCAP_METHOD
+        {
+            get => _currentModem.Get<TSetting>(nameof(RX_ENCAP_METHOD)).Value;
+            set
+            {
+                _currentModem.Get<TSetting>(nameof(RX_ENCAP_METHOD)).Value = value;
+                DoAutoSync<TSetting>(_currentModem.Get<TSetting>(nameof(RX_ENCAP_METHOD)));
+                OnPropertyChanged(nameof(RX_ENCAP_METHOD));
+            }
+        }
+
+        public int MAX_DATA
+        {
+            get => _currentModem.Get<TSetting>(nameof(MAX_DATA)).Value;
+            set
+            {
+                _currentModem.Get<TSetting>(nameof(MAX_DATA)).Value = value;
+                DoAutoSync<TSetting>(_currentModem.Get<TSetting>(nameof(MAX_DATA)));
+                OnPropertyChanged(nameof(MAX_DATA));
+            }
+        }
+
+        public int MAX_RETRIES
+        {
+            get => _currentModem.Get<TSetting>(nameof(MAX_RETRIES)).Value;
+            set
+            {
+                _currentModem.Get<TSetting>(nameof(MAX_RETRIES)).Value = value;
+                DoAutoSync<TSetting>(_currentModem.Get<TSetting>(nameof(MAX_RETRIES)));
+                OnPropertyChanged(nameof(MAX_RETRIES));
+            }
+        }
+
+        public int SER_BRK_DETMS
+        {
+            get => _currentModem.Get<TSetting>(nameof(SER_BRK_DETMS)).Value;
+            set
+            {
+                _currentModem.Get<TSetting>(nameof(SER_BRK_DETMS)).Value = value;
+                DoAutoSync<TSetting>(_currentModem.Get<TSetting>(nameof(SER_BRK_DETMS)));
+                OnPropertyChanged(nameof(SER_BRK_DETMS));
+            }
+        }
+
+        public int GLOBAL_RETRIES
+        {
+            get => _currentModem.Get<TSetting>(nameof(GLOBAL_RETRIES)).Value;
+            set
+            {
+                _currentModem.Get<TSetting>(nameof(GLOBAL_RETRIES)).Value = value;
+                DoAutoSync<TSetting>(_currentModem.Get<TSetting>(nameof(GLOBAL_RETRIES)));
+                OnPropertyChanged(nameof(GLOBAL_RETRIES));
             }
         }
 

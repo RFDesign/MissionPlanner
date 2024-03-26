@@ -47,40 +47,9 @@ namespace MissionPlanner.Radio
         private GroupBox _helpDisplay = null;
 
         private string firmwarefile = Path.GetTempFileName();
-        private Dictionary<Control, bool> _DefaultLocalEnabled = new Dictionary<Control, bool>();
-        private Dictionary<ComboBox, object> _DefaultCBObjects = new Dictionary<ComboBox, object>();
-        RFD.RFD900.TSession _Session;
-        ExtraParamControlsSet _LocalExtraParams;
-        ExtraParamControlsSet _RemoteExtraParams;
-
-        RFDLib.GUI.Settings.TDynamicLabelEditorPairRegister _DynamicLabelEditorPairRegister;
-
-        RFDLib.GUI.Settings.TLabelEditorPairRegister _LocalLabelEditorPairs = new RFDLib.GUI.Settings.TLabelEditorPairRegister();
-        RFDLib.GUI.Settings.TLabelEditorPairRegister _RemoteLabelEditorPairs = new RFDLib.GUI.Settings.TLabelEditorPairRegister();
-        Dictionary<string, string> _KnownNameDescriptions = new Dictionary<string, string>()
-        {
-            {"RSSI_IN_DBM", "RSSI in dBm"},
-            {"AUXSER_SPEED", "Aux Baud"},
-            {"AIR_FRAMELEN", "Air Frame Length"},
-        };
-
-        // Added a property to hold ICommsSerial to avoid need to access a hard coded parent control?
-        //private ICommsSerial _comPort;
-
-        // Property for interacting with the modem connection and commands
-        //private IModemComms _modemComms;
-
-        // Added a working config set for databinding approach
-        //RFD.RFD900.TSettings _LocalSettings, _LocalWorking, _RemoteSettings, _RemoteWorking;
+        
         private ConfigManager _configManager;// = new ConfigManager();
         private IModemComms _comms;
-
-
-        //MultiPointConfig _multiPointSettings;
-        //AsyncConfig _asyncSettings;
-
-
-        //public event Action DoDisconnectReconnect;
 
         /*
 ATI5
@@ -105,108 +74,7 @@ S15: MAX_WINDOW=131
         public Sikradio()
         {
             
-            InitializeComponent();
-
-            //_configManager = configManager;
-            //// Handle events coming from _configManager
-            //_configManager.ShowMessageBox += (sender, args) => MsgBox.CustomMessageBox.Show(args.Text, args.Title);
-            //_configManager._configManager.AddLog += (sender, args) => _configManager.AddLog(args.Text);
-
-            // hide advanced view
-            //SPLIT_local.Panel2Collapsed = true;
-            //SPLIT_remote.Panel2Collapsed = true;
-
-            _LocalExtraParams = new ExtraParamControlsSet(lblNODEID, NODEID,
-                lblDESTID, DESTID, lblTX_ENCAP_METHOD, TX_ENCAP_METHOD, lblRX_ENCAP_METHOD, RX_ENCAP_METHOD,
-                lblMAX_DATA, MAX_DATA, lblMAX_RETRIES, MAX_RETRIES,
-                new Control[] {
-                lblGLOBAL_RETRIES, GLOBAL_RETRIES, lblSER_BRK_DETMS, SER_BRK_DETMS}, false);
-
-            
-
-            // Set sync mode to AUTO (Sync all recommended)
-            comboSyncMode.SelectedIndex = 0;
-
-            // setup netid
-            //NETID.DataSource = Enumerable.Range(0, 500).ToArray();
-            
-            MAVLINK.DisplayMember = "Value";
-            MAVLINK.ValueMember = "Key";
-            SetupComboForMavlink(MAVLINK, false);
-            
-            //MAX_WINDOW.DataSource = Enumerable.Range(33, 131 - 32).ToArray();
-            
-            // Disable all children, instead of being selective?
-            //SetEnabled(this.Controls, false, true);
-            //foreach (Control C in groupBoxLocal.Controls)
-            //{
-            //    _DefaultLocalEnabled[C] = C.Enabled;
-            //}
-            //foreach (Control C in groupBoxRemote.Controls)
-            //{
-            //    _DefaultLocalEnabled[C] = C.Enabled;
-            //}
-
-            SaveDefaultCBObjects(SERIAL_SPEED);
-            
-            SaveDefaultCBObjects(AIR_SPEED);
-            
-            SaveDefaultCBObjects(NETID);
-            
-            SaveDefaultCBObjects(NUM_CHANNELS);
-            
-            SaveDefaultCBObjects(MAX_WINDOW);
-            
-            RFDLib.GUI.Settings.TDynamicLabelEditorPair SBUSIN = new RFDLib.GUI.Settings.TDynamicLabelEditorPair(lblSBUSIN, GPO1_3SBUSIN,
-                new RFDLib.GUI.Settings.TDynamicLabelEditorPair.TSettingNameLabelTextPair[]
-                {
-                    new RFDLib.GUI.Settings.TDynamicLabelEditorPair.TSettingNameLabelTextPair("GPO1_3SBUSIN", "GPO1_3SBUSIN"),
-                    new RFDLib.GUI.Settings.TDynamicLabelEditorPair.TSettingNameLabelTextPair("GPO1_1SBUSIN", "GPO1_1SBUSIN"),
-                });
-            
-            RFDLib.GUI.Settings.TDynamicLabelEditorPair SBUSOUT = new RFDLib.GUI.Settings.TDynamicLabelEditorPair(lblSBUSOUT, GPO1_3SBUSOUT,
-                new RFDLib.GUI.Settings.TDynamicLabelEditorPair.TSettingNameLabelTextPair[]
-                {
-                    new RFDLib.GUI.Settings.TDynamicLabelEditorPair.TSettingNameLabelTextPair("GPO1_3SBUSOUT", "GPO1_3SBUSOUT"),
-                    new RFDLib.GUI.Settings.TDynamicLabelEditorPair.TSettingNameLabelTextPair("GPO1_1SBUSOUT", "GPO1_1SBUSOUT"),
-                });
-            
-            _DynamicLabelEditorPairRegister = new RFDLib.GUI.Settings.TDynamicLabelEditorPairRegister(new RFDLib.GUI.Settings.TDynamicLabelEditorPair[]
-                {
-                    SBUSIN, SBUSOUT,
-                });
-
-            _LocalLabelEditorPairs.Add(lblNODEID, NODEID, toolTip1);
-            _LocalLabelEditorPairs.Add(lblDESTID, DESTID, toolTip1);
-            _LocalLabelEditorPairs.Add(lblTX_ENCAP_METHOD, TX_ENCAP_METHOD, toolTip1);
-            _LocalLabelEditorPairs.Add(lblRX_ENCAP_METHOD, RX_ENCAP_METHOD, toolTip1);
-            _LocalLabelEditorPairs.Add(lblMAX_DATA, MAX_DATA, toolTip1);
-            _LocalLabelEditorPairs.Add(lblMAX_RETRIES, MAX_RETRIES, toolTip1);
-            _LocalLabelEditorPairs.Add(lblGLOBAL_RETRIES, GLOBAL_RETRIES, toolTip1);
-            _LocalLabelEditorPairs.Add(lblSER_BRK_DETMS, SER_BRK_DETMS, toolTip1);
-            _LocalLabelEditorPairs.Add(label54, FSFRAMELOSS, toolTip1);
-            _LocalLabelEditorPairs.Add(lblNETID, NETID, toolTip1);
-            _LocalLabelEditorPairs.Add(lblTXPOWER, TXPOWER, toolTip1);
-            _LocalLabelEditorPairs.Add(lblMAVLINK, MAVLINK, toolTip1);
-            _LocalLabelEditorPairs.Add(lblOPPRESEND, OPPRESEND, toolTip1);
-            _LocalLabelEditorPairs.Add(lblGPI1_1R_CIN, GPI1_1R_CIN, toolTip1);
-            _LocalLabelEditorPairs.Add(lblGPO1_1R_COUT, GPO1_1R_COUT, toolTip1);
-            _LocalLabelEditorPairs.Add(lblGPO1_3STATLED, GPO1_3STATLED, toolTip1);
-            _LocalLabelEditorPairs.Add(lblGPI1_2AUXIN, GPI1_2AUXIN, toolTip1);
-            _LocalLabelEditorPairs.Add(lblGPO1_3AUXOUT, GPO1_3AUXOUT, toolTip1);
-            _LocalLabelEditorPairs.Add(lblMIN_FREQ, MIN_FREQ, toolTip1);
-            _LocalLabelEditorPairs.Add(lblMAX_FREQ, MAX_FREQ, toolTip1);
-            _LocalLabelEditorPairs.Add(lblNUM_CHANNELS, NUM_CHANNELS, toolTip1);
-            _LocalLabelEditorPairs.Add(lblDUTY_CYCLE, DUTY_CYCLE, toolTip1);
-            _LocalLabelEditorPairs.Add(lblLBT_RSSI, LBT_RSSI, toolTip1);
-            _LocalLabelEditorPairs.Add(lblRTSCTS, RTSCTS, toolTip1);
-            _LocalLabelEditorPairs.Add(lblMAX_WINDOW, MAX_WINDOW, toolTip1);
-            _LocalLabelEditorPairs.Add(lblENCRYPTION_LEVEL, ENCRYPTION_LEVEL, toolTip1);
-            _LocalLabelEditorPairs.Add(lblGPO1_0TXEN485, GPO1_0TXEN485, toolTip1);
-            _LocalLabelEditorPairs.Add(lblGPIO1_1FUNC, GPIO1_1FUNC, toolTip1);
-
-            //this.Disposed += DisposedEvtHdlr;
-
+            InitializeComponent();            
         }
 
         public void Init(ConfigManager configManager)
@@ -216,8 +84,7 @@ S15: MAX_WINDOW=131
             _configManager.ShowMessageBox += (sender, args) => MsgBox.CustomMessageBox.Show(args.Text, args.Title);            
 
             // Set DataBinding source...
-            this.configManagerBindingSource.DataSource = _configManager;
-            
+            this.configManagerBindingSource.DataSource = _configManager;            
 
             CheckControlStates();
         }
@@ -341,25 +208,7 @@ S15: MAX_WINDOW=131
                 if (_configManager != null)
                     _configManager.PropertyChanged -= _configManager_PropertyChanged;
             }
-        }
-                
-
-        private void SaveDefaultCBObjects(ComboBox CB)
-        {
-            if (CB.DataSource == null)
-            {
-                List<object> LO = new List<object>();
-                foreach (var O in CB.Items)
-                {
-                    LO.Add(O);
-                }
-                _DefaultCBObjects[CB] = LO;
-            }
-            else
-            {
-                _DefaultCBObjects[CB] = CB.DataSource;
-            }
-        }
+        }      
 
         private void SetEnabled(ControlCollection controls, bool setState, bool recursive)
         {            
@@ -380,28 +229,7 @@ S15: MAX_WINDOW=131
                         SetEnabled(c.Controls, setState, recursive);
                 }
             }            
-        }
-
-        private void RestoreAllDefaultCBObjects()
-        {
-            foreach (var kvp in _DefaultCBObjects)
-            {
-                if (kvp.Value is List<object>)
-                {
-                    kvp.Key.DataSource = null;
-                    kvp.Key.Items.Clear();
-                    List<object> LO = (List<object>)kvp.Value;
-                    foreach (var O in LO)
-                    {
-                        kvp.Key.Items.Add(O);
-                    }
-                }
-                else
-                {
-                    kvp.Key.DataSource = kvp.Value;
-                }
-            }
-        }
+        }        
 
         private bool getFirmware(Uploader.Board device, RFD.RFD900.RFD900 RFD900, bool custom = false)
         {
@@ -503,11 +331,6 @@ S15: MAX_WINDOW=131
             }
         }        
 
-        private void BUT_upload_Click(object sender, EventArgs e)
-        {
-            ProgramFirmware(false);
-        }
-
         private void iHex_ProgressEvent(double completed)
         {
             try
@@ -577,33 +400,6 @@ S15: MAX_WINDOW=131
             return Part1.Substring(S + 1);
         }
 
-        int GetValueFromControl(Control control)
-        {
-            if (control.GetType() == typeof(CheckBox))
-            {
-                return ((CheckBox)control).Checked ? 1 : 0;
-            }
-            else if (control is ComboBox)
-            {
-                string CBValue = GetCBValue((ComboBox)control);
-
-                int Result;
-
-                if (int.TryParse(CBValue, out Result))
-                {
-                    return Result;
-                }
-                else
-                {
-                    return 0;
-                }
-            }
-            else
-            {
-                return 0;
-            }
-        }
-
         class TBaseSetting
         {
         }
@@ -618,112 +414,11 @@ S15: MAX_WINDOW=131
             }
         }
 
-        TBaseSetting GetSettingFromControl(Control control)
-        {
-            if (control.GetType() == typeof(CheckBox))
-            {
-                return new TSetting<int>(((CheckBox)control).Checked ? 1 : 0);
-            }
-            else if (control is TextBox)
-            {
-                return new TSetting<string>(control.Text);
-            }
-            else if (control is ComboBox)
-            {
-                int x;
-
-                if (int.TryParse(GetCBValue((ComboBox)control), out x))
-                {
-                    return new TSetting<int>(x);
-                }
-            }
-
-            return null;
-        }
-
-        /// <summary>
-        /// Returns whether x is different to y.
-        /// </summary>
-        /// <param name="x"></param>
-        /// <param name="y"></param>
-        /// <returns></returns>
-        bool GetIsDifferent(RFD.RFD900.TBaseSetting x, TBaseSetting y)
-        {
-            if (y is TSetting<int>)
-            {
-                return x is RFD.RFD900.TSetting && ((RFD.RFD900.TSetting)x).Value != ((TSetting<int>)y).Value;
-            }
-            else if (y is TSetting<string>)
-            {
-                return x is RFD.RFD900.TTextSetting && ((RFD.RFD900.TTextSetting)x).Text != ((TSetting<string>)y).Value;
-            }
-            else
-            {
-                return false;
-            }
-        }
-
-        /// <summary>
-        /// Make a clone of the given original setting.  Update it's value with Value, and return it.
-        /// </summary>
-        /// <param name="Orig">The original setting.  Must not be null.</param>
-        /// <param name="Value">The new value for the setting.  Must not be null.</param>
-        /// <returns>The new cloned setting with updated value.  Never null.</returns>
-        RFD.RFD900.TBaseSetting UpdateSetting(RFD.RFD900.TBaseSetting Orig, TBaseSetting Value)
-        {
-            if (Value is TSetting<int>)
-            {
-                RFD.RFD900.TSetting y = (RFD.RFD900.TSetting)Orig.Clone();
-                y.Value = ((TSetting<int>)Value).Value;
-                return y;
-            }
-            else
-            {
-                RFD.RFD900.TTextSetting y = (RFD.RFD900.TTextSetting)Orig.Clone();
-                y.Text = ((TSetting<string>)Value).Value;
-                return y;
-            }
-        }
-
-        /// <summary>
-        /// Figure out which settings in the GUI have different values to the given original settings.
-        /// Return a list of the settings which have changed, and their new values.
-        /// </summary>
-        /// <param name="Orig">The original settings and their values.  Must not be null.</param>
-        /// <param name="GB">The relevant groupbox.  Must not be null.</param>
-        /// <param name="Remote">true if the remote modem, false if the local modem.</param>
-        /// <returns></returns>
-        Dictionary<string, RFD.RFD900.TBaseSetting> GetUpdatedSettingsFromGroupBox(
-            Dictionary<string, RFD.RFD900.TBaseSetting> Orig, GroupBox GB, 
-            bool Remote)
-        {
-            Dictionary<string, RFD.RFD900.TBaseSetting> Result = new Dictionary<string, RFD.RFD900.TBaseSetting>();
-
-            foreach (var kvp in Orig)
-            {
-                var control = FindControlInGroupBox(GB, (Remote ? "R" : "") + kvp.Key);
-
-                if (control != null)
-                {
-                    var S = GetSettingFromControl(control);
-
-                    if (S != null)
-                    {
-                        if (GetIsDifferent(kvp.Value, S))
-                        {
-                            Result[kvp.Key] = UpdateSetting(kvp.Value, S);
-                        }
-                    }
-                }
-            }
-
-            return Result;
-        }
         
         
         private void ShowMessageBox(string message, string caption)
         {
-
+            MsgBox.CustomMessageBox.Show(message, caption);
         }
                
 
@@ -854,61 +549,7 @@ S15: MAX_WINDOW=131
             textBox.DataBindings.Clear();
             textBox.DataBindings.Add("Text", configManagerBindingSource, setting.Name, false,  DataSourceUpdateMode.OnPropertyChanged);
         }
-
-        private void SetupCBWithDefaultEncryptionOptions(ComboBox CB)
-        {
-            CB.Tag = null;
-            CB.DataSource = Range(0, 1, 1);
-            CB.Text = "0";
-        }
-
-        private string GetCBValue(ComboBox CB)
-        {
-            if (CB.Tag != null)
-            {
-                RFD.RFD900.TSetting Setting = (RFD.RFD900.TSetting)CB.Tag;
-                foreach (var O in Setting.Options)
-                {
-                    if (O.OptionName == CB.Text)
-                    {
-                        return O.Value.ToString();
-                    }
-                }
-            }
-
-            //If got to here, and it's a MAVLink setting, revert back to the old method...
-            if (CB.Name.Contains("MAVLINK"))
-            {
-                var Value = CB.SelectedValue;
-                if (Value != null)
-                {
-                    return Value.ToString();
-                }
-            }
-
-            //If got here, just return the text.
-            return CB.Text;
-        }
-
-        void SetupComboForMavlink(ComboBox CB,  bool Simple)
-        {
-            Dictionary<int, string> dict;
-            if (Simple)
-            {
-                dict = Enum.GetValues(typeof(mavlink_option_simple))
-                    .Cast<mavlink_option>()
-                    .ToDictionary(t => (int)t, t => t.ToString());
-            }
-            else
-            {
-                dict = Enum.GetValues(typeof(mavlink_option))
-                    .Cast<mavlink_option>()
-                    .ToDictionary(t => (int)t, t => t.ToString());
-            }
-
-            CB.DataSource = dict.ToArray();
-        }
-
+               
         /// <summary>
         /// Given an array of lines returned from ATI5 command from a modem,
         /// remove the "[n]" from the start of the lines.  The "[n]" is returned
@@ -932,280 +573,16 @@ S15: MAX_WINDOW=131
             }
 
             return Result;
-        }
-
-        Control FindControlInGroupBox(GroupBox GB, string Name)
-        {
-            Control Result = _DynamicLabelEditorPairRegister.FindAndSetUpEditorWithSettingName(Name);
-            if (Result == null)
-            {
-                var Array = GB.Controls.Find(Name, true);
-
-                if (Array.Length == 0)
-                {
-                    return null;
-                }
-                else
-                {
-                    return Array[0];
-                }
-            }
-            else
-            {
-                return Result;
-            }
-        }
-
-        /// <summary>
-        /// Returns whether it can be determined that the setting (from the given Settings) with the given
-        /// SettingName only has one value/option available (i.e. setting can't be changed).
-        /// </summary>
-        /// <param name="Settings">The dictionary of settings for the modem.  Must not be null.</param>
-        /// <param name="SettingName">The setting name.  Must not be null.</param>
-        /// <returns>Returns true if it can be determined that the setting can only have one value, otherwise false.</returns>
-        bool GetDoesCheckboxHaveOnlyOneOption(Dictionary<string, RFD.RFD900.TBaseSetting> Settings, string SettingName)
-        {
-            if (Settings.ContainsKey(SettingName))
-            {
-                var BaseSetting = Settings[SettingName];
-
-                if (BaseSetting is RFD.RFD900.TSetting)
-                {
-                    RFD.RFD900.TSetting Setting = (RFD.RFD900.TSetting)BaseSetting;
-
-                    if (Setting.Options != null)
-                    {
-                        if (Setting.Options.Length == 1)
-                        {
-                            return true;
-                        }
-                    }
-                    if (Setting.Range != null)
-                    {
-                        if (Setting.Range.GetOptions().Length == 1)
-                        {
-                            return true;
-                        }
-                    }
-                }
-            }
-
-            return false;
-        }
-
-        /// <summary>
-        /// Configure and return a spare editor if one is available.
-        /// </summary>
-        /// <param name="ThisSetting">The name of the setting to get the editor for.  Must not be null.</param>
-        /// <param name="Setting">The setting to get the editor for.  Must not be null.</param>
-        /// <param name="Remote">Whether it is the remote set of settings.</param>
-        /// <returns>A control to use, or null if none available.</returns>
-        Control GetSpareEditor(string ThisSetting, RFD.RFD900.TSetting Setting, bool Remote)
-        {
-            RFDLib.GUI.Settings.TLabelEditorPairRegister Reg = Remote ? _RemoteLabelEditorPairs : _LocalLabelEditorPairs;
-            Control Result = null;
-            string Description = Remote ? ThisSetting.Substring(1) : ThisSetting;
-
-            if (_KnownNameDescriptions.ContainsKey(Description))
-            {
-                Description = _KnownNameDescriptions[Description];
-            }
-
-            if (Setting.GetIsFlag())
-            {
-                Result = Reg.GetSpareCheckbox(ThisSetting, Description);
-            }
-
-            if (Result == null)
-            {
-                Result = Reg.GetSpareComboBox(ThisSetting, Description);
-            }
-
-            return Result;
-        }
+        }      
         
-        ///// <summary>
-        ///// Load settings button evt hdlr
-        ///// </summary>
-        ///// <param name="sender"></param>
-        ///// <param name="e"></param>
-        //private async void BUT_getcurrent_Click(object sender, EventArgs e)
-        //{
-        //    _AlreadyInEncCheckChangedEvtHdlr = true;
-
-        //    // Disable Action Buttons
-        //    //SetEnabled(flowLayoutActions.Controls, false, recursive: false);
-        //    // Disable device settings groups
-        //    //SetEnabled(flowLayoutSettings.Controls, false, recursive: false);
-        //    //SetEnabled(flowLayoutMain.Controls, false, recursive: false);
-
-        //    _configManager.AddLog("Loading settings...");
-            
-        //    var loaded = await _configManager.Load();
-        //    if (!loaded)
-        //    {
-        //        ShowMessageBox("An error occured while trying to load settings...", "Load Failed");
-        //        return;
-        //    }
-
-        //    // Setup Control Bindings
-        //    foreach (var item in _configManager.Local.Settings.Settings)
-        //    {
-        //        if (item.Value == null)
-        //            continue;
-        //        var ctrl = this.Controls.Find(item.Key.Replace("/", "_"), true).FirstOrDefault();
-        //        if (ctrl == null)
-        //        {
-        //            _configManager.AddLog($"Control not found: {item.Key}");
-        //            continue;
-        //        }
-
-        //        if (!(item.Value is TSetting))
-        //        {
-        //            var ttext = item.Value as TTextSetting;
-        //            if (ttext == null)
-        //                continue;
-
-        //            ctrl.DataBindings.Clear();
-        //            ctrl.DataBindings.Add("Text", configManagerBindingSource, ttext.Name, false, DataSourceUpdateMode.OnPropertyChanged);
-        //        } 
-        //        else if (ctrl is ComboBox)
-        //        {
-        //            BindSettingOptionsToComboBox(item.Value as TSetting, ctrl as ComboBox);
-        //        }
-        //        else if (ctrl is TextBox)
-        //        {
-        //            BindSettingToTextBox(item.Value as TSetting, ctrl as TextBox);
-        //        } 
-        //        else if (ctrl is CheckBox)
-        //        {
-        //            BindSettingToCheckBox(item.Value as TSetting, ctrl as CheckBox);                    
-        //        }
-        //        _configManager.AddLog($"Setting: {item.Key}: {item.Value.GetValueAsString()}");
-                
-        //        UpdateIndicator(item.Key);
-        //    }
-
-        //    _AlreadyInEncCheckChangedEvtHdlr = false;
-
-        //    UpdateSetPPMFailSafeButtons();
-
-        //    // Disable Action Buttons
-        //    //SetEnabled(flowLayoutActions.Controls, true, recursive: false);
-        //    // Disable all settings groups
-        //    //SetEnabled(flowLayoutSettings.Controls, true, recursive: false);
-        //    //SetEnabled(flowLayoutMain.Controls, true, recursive: false);
-        //    //BUT_getcurrent.Focus();           
-        //}
-
-        
-
-        void UpdateSetPPMFailSafeButtons()
-        {
-            BUT_SetPPMFailSafe.Enabled = GPO1_1R_COUT.Enabled && GPO1_1R_COUT.Checked;
-            //BUT_SetPPMFailSafeRemote.Enabled = RGPO1_1R_COUT.Enabled && RGPO1_1R_COUT.Checked;
-        }
-
-        
-
-        
-        ///// <summary>
-        ///// Tries to put the radio into AT command mode.
-        ///// </summary>
-        ///// <param name="comPort"></param>
-        ///// <returns></returns>
-        //public bool doConnect(ICommsSerial comPort)
-        //{
-        //    try
-        //    {
-        //        Console.WriteLine("doConnect");
-
-        //        var trys = 1;
-
-        //        // setup a known enviroment
-        //        comPort.Write("ATO\r\n");
-
-        //        retry:
-
-        //        // wait
-        //        Sleep(1500, comPort);
-        //        comPort.DiscardInBuffer();
-        //        // send config string
-        //        comPort.Write("+");
-        //        Sleep(200, comPort);
-        //        comPort.Write("+");
-        //        Sleep(200, comPort);
-        //        comPort.Write("+");
-        //        Sleep(1500, comPort);
-        //        // check for config response "OK"
-        //        log.Info("Connect btr " + comPort.BytesToRead + " baud " + comPort.BaudRate);
-        //        // allow time for data/response
-
-        //        if (comPort.BytesToRead == 0 && trys <= 3)
-        //        {
-        //            trys++;
-        //            log.Info("doConnect retry");
-        //            goto retry;
-        //        }
-
-        //        var buffer = new byte[20];
-        //        var len = comPort.Read(buffer, 0, buffer.Length);
-        //        var conn = Encoding.ASCII.GetString(buffer, 0, len);
-        //        log.Info("Connect first response " + conn.Replace('\0', ' ') + " " + conn.Length);
-        //        if (conn.Contains("OK"))
-        //        {
-        //            //return true;
-        //        }
-        //        else
-        //        {
-        //            // cleanup incase we are already in cmd mode
-        //            comPort.Write("\r\n");
-        //        }
-
-        //        doCommand(comPort, "AT&T", false, 1);
-
-        //        var version = doCommand(comPort, "ATI");
-
-        //        log.Info("Connect Version: " + version.Trim() + "\n");
-
-        //        var regex = new Regex(@"SiK\s+(.*)\s+on\s+(.*)");
-
-        //        if (regex.IsMatch(version))
-        //        {
-        //            return true;
-        //        }
-
-        //        return false;
-        //    }
-        //    catch
-        //    {
-        //        return false;
-        //    }
-        //}
-
-        private void BUT_Syncoptions_Click(object sender, EventArgs e)
-        {
-            // TODO: Sync via ConfigMAnager, not UI controls
-
-            //RAIR_SPEED.Text = AIR_SPEED.Text;
-            //RNETID.Text = NETID.Text;
-            //RECC.Checked = ECC.Checked;
-            //RMAVLINK.Text = MAVLINK.Text;
-            //RMIN_FREQ.Text = MIN_FREQ.Text;
-            //RMAX_FREQ.Text = MAX_FREQ.Text;
-            //RNUM_CHANNELS.Text = NUM_CHANNELS.Text;
-            //RMAX_WINDOW.Text = MAX_WINDOW.Text;
-            //RENCRYPTION_LEVEL.SelectedIndex = ENCRYPTION_LEVEL.SelectedIndex;
-            //RAESKEY.Text = AESKEY.Text;
-        }
-
+       
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             MsgBox.CustomMessageBox.Show(@"The Sik Radios have 2 status LEDs, one red and one green.
-green LED blinking - searching for another radio 
-green LED solid - link is established with another radio 
-red LED flashing - transmitting data 
-red LED solid - in firmware update mode");
+                                        green LED blinking - searching for another radio 
+                                        green LED solid - link is established with another radio 
+                                        red LED flashing - transmitting data 
+                                        red LED solid - in firmware update mode");
         }
 
         void UpdateStatusCallback(string Status, double Progress)
@@ -1253,41 +630,7 @@ red LED solid - in firmware update mode");
             btn_Reset.Enabled = _configManager.ResetEnabled;
             btn_Firmware.Enabled = _configManager.FirmwareEnabled;
             btn_Reboot.Enabled = _configManager.ResetEnabled;
-        }
-
-        //public static void ResetAllControls(Control form)
-        //{
-        //    {
-        //        foreach (Control control in form.Controls)
-        //        {
-        //            control.Enabled = false;
-        //            if (control is TextBox)
-        //            {
-        //                TextBox textBox = (TextBox)control;
-        //                textBox.Text = null;
-        //            }
-
-        //            if (control is ComboBox)
-        //            {
-        //                ComboBox comboBox = (ComboBox)control;
-        //                if (comboBox.Items.Count > 0)
-        //                    comboBox.SelectedIndex = 0;
-        //            }
-
-        //            if (control is CheckBox)
-        //            {
-        //                CheckBox checkBox = (CheckBox)control;
-        //                checkBox.Checked = false;
-        //            }
-
-        //            if (control is ListBox)
-        //            {
-        //                ListBox listBox = (ListBox)control;
-        //                listBox.ClearSelected();
-        //            }
-        //        }
-        //    }
-        //}        
+        }        
 
         void ProgramFirmware(bool Custom)
         {
@@ -1378,20 +721,13 @@ red LED solid - in firmware update mode");
         private void linkLabel_mavlink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             MAVLINK.SelectedValue = 1;
-            MAX_WINDOW.Text = 131.ToString();
-
-            //RMAVLINK.SelectedValue = 1;
-            //RMAX_WINDOW.Text = 131.ToString();
+            MAX_WINDOW.Text = 131.ToString();            
         }
 
         private void linkLabel_lowlatency_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             MAVLINK.SelectedValue = 2;
-            MAX_WINDOW.Text = 33.ToString();
-
-            //RMAVLINK.SelectedValue = 2;
-            //RMAX_WINDOW.Text = 33.ToString();
-        }
+            MAX_WINDOW.Text = 33.ToString();        }
 
         public enum mavlink_option
         {
@@ -1415,67 +751,7 @@ red LED solid - in firmware update mode");
         private void BUT_SetPPMFailSafe_Click(object sender, EventArgs e)
         {
             _configManager.SetPPMFailSafe("AT&R", "AT&W");
-        }
-
-        //TSession GetSession()
-        //{
-        //    if (_Session == null)
-        //    {
-        //        try
-        //        {                    
-        //            if (_comPort != null)
-        //            {
-        //                _Session = new RFD.RFD900.TSession(_comPort, MainV2.comPort.BaseStream.BaudRate);
-        //            }
-        //        }
-        //        catch
-        //        {
-        //            MsgBox.CustomMessageBox.Show("Invalid ComPort or in use");
-        //            return null;
-        //        }
-        //    }
-        //    else if (_Session.Port.BaudRate != MainV2.comPort.BaseStream.BaudRate ||
-        //        (MainV2.comPort.BaseStream.PortName != "TCP" && (_Session.Port.PortName != MainV2.comPort.BaseStream.PortName)))
-        //    {
-        //        _Session.Dispose();
-        //        _Session = null;
-        //        GetSession();
-        //    }
-        //    return _Session;
-        //}
-
-        
-        //bool SetSetting(string Designator, int Value, bool Remote)
-        //{
-        //    var Session = GetSession();
-
-        //    if (Session == null)
-        //    {
-        //        return false;
-        //    }
-        //    else
-        //    {
-        //        var answer = _configManager..doCommand(Session.Port, (Remote ? "RT" : "AT")+Designator+"="+Value.ToString(), false);
-        //        return answer.Contains("OK");
-        //    }
-        //}
-
-        /// <summary>
-        /// Handles a change of the local encryption level check box.
-        /// </summary>
-        /// <param name="sender">ignored</param>
-        /// <param name="e">ignored</param>
-        //private void ENCRYPTION_LEVEL_CheckedChanged(object sender, EventArgs e)
-        //{
-        //    if (ENCRYPTION_LEVEL.Enabled)
-        //    {
-        //        EncryptionCheckChangedEvtHdlr(ENCRYPTION_LEVEL, "ATI5", "AT&E?", AESKEY, false, "ATI5");
-        //    }
-        //    btnRandom.Enabled = GetIsEncryptionEnabled(ENCRYPTION_LEVEL);
-
-        //    // TODO: Sync to all remotes?
-
-        //}
+        }        
 
         bool _AlreadyInEncCheckChangedEvtHdlr = false;
 
@@ -1495,62 +771,6 @@ red LED solid - in firmware update mode");
             }
         }
 
-        /// <summary>
-        /// Handles a change of an encryption level check box.
-        /// </summary>
-        /// <param name="CB">The checkbox which was changed.  Must not be null.</param>
-        /// <param name="ATCommand">The AT command to use to get the settings
-        /// from the relevant modem.  Must not be null.</param>
-        //void EncryptionCheckChangedEvtHdlr(ComboBox CB, string ATCommand, string EncKeyQuery,
-        //    TextBox EncKeyTextBox, bool Remote, string ATI5Command)
-        //{
-        //    if (_AlreadyInEncCheckChangedEvtHdlr)
-        //    {
-        //        return;
-        //    }
-        //    _AlreadyInEncCheckChangedEvtHdlr = true;
-        //    try
-        //    {
-        //        //Write setting to radio now.
-        //        var Session = GetSession();
-
-        //        if (Session == null)
-        //        {
-        //            return;
-        //        }
-        //        Session.PutIntoATCommandMode();
-        //        var ATI5answer = doCommand(Session.Port, ATI5Command, true);
-
-        //        bool Junk;
-
-        //        var Settings = Session.GetSettings(Remote, Session.Board, ATI5answer, null, out Junk);
-        //        if (Settings.ContainsKey("ENCRYPTION_LEVEL"))
-        //        {
-        //            var Setting = Settings["ENCRYPTION_LEVEL"];
-        //            if (!SetSetting(Setting.Designator, GetEncryptionLevelValue(CB), Remote))
-        //            {
-        //                return;
-        //            }
-        //        }
-        //        else
-        //        {
-        //            Console.WriteLine("Something wrong here");
-        //        }
-
-        //        //Read AES key back out of modem and display it.  
-        //        //BUT_getcurrent_Click(this, null);
-        //        //txt_aeskey.Text = doCommand(Session.Port, "AT&E?").Trim();
-        //        EncKeyTextBox.Text = RemoveMultiPointLocalNodeID(doCommand(Session.Port, EncKeyQuery).Trim()).Trim();
-        //        lbl_status.Text = "Done.";
-        //    }
-        //    finally
-        //    {
-        //        _AlreadyInEncCheckChangedEvtHdlr = false;
-        //    }
-        //}
-
-        
-
         private void btnRandom_Click(object sender, EventArgs e)
         {
             _configManager.RandomizeEncryptionKey();            
@@ -1560,45 +780,6 @@ red LED solid - in firmware update mode");
         {
             
         }
-
-        /// <summary>
-        /// Save settings from GUI to file.  
-        /// </summary>
-        /// <param name="S">The settings read from the modem.  Must not be null.</param>
-        /// <param name="GB">The relevant GUI groupbox.</param>
-        /// <param name="Remote">true if remote modem, false if local modem.</param>
-        //void SaveToFile(RFD.RFD900.TSettings S, GroupBox GB,
-        //    bool Remote)
-        //{
-        //    //Get the settings which have changed in the GUI, and their values.
-        //    var Updated = GetUpdatedSettingsFromGroupBox(
-        //        RFDLib.Collections.Translate(S.Settings, (x) => (RFD.RFD900.TBaseSetting)x),
-        //        GB, Remote);
-
-        //    //Include the settings which haven't changed.
-        //    foreach (var kvp in S.Settings)
-        //    {
-        //        if (!Updated.ContainsKey(kvp.Key))
-        //        {
-        //            Updated[kvp.Key] = kvp.Value;
-        //        }
-        //    }
-
-        //    //Save to file...
-        //    RFD.RFD900.TSettings ToSave = new RFD.RFD900.TSettings(Updated);
-
-        //    if (dlgSave.ShowDialog() == DialogResult.OK)
-        //    {
-        //        if (ToSave.SaveToFile(dlgSave.FileName))
-        //        {
-        //            System.Windows.Forms.MessageBox.Show("Saved settings to " + dlgSave.FileName + " OK");
-        //        }
-        //        else
-        //        {
-        //            System.Windows.Forms.MessageBox.Show("Failed to save settings to " + dlgSave.FileName);
-        //        }
-        //    }
-        //}
 
         void SaveWorkingConfig(TSettings config)
         {
@@ -1625,46 +806,7 @@ red LED solid - in firmware update mode");
         {
             await _configManager.Save();
         }
-
-        /// <summary>
-        /// Load settings from file into the GUI.
-        /// </summary>
-        /// <param name="S">The settings loaded from the modem.  These aren't modified by this function.  Must not be null.</param>
-        /// <param name="GB">The relevant GUI groupbox.  Must not be null.</param>
-        /// <param name="Remote">true if for the remote modem, false if for the local modem.</param>
-        //private void LoadFromFile(RFD.RFD900.TSettings S, GroupBox GB, bool Remote)
-        //{
-        //    throw new NotImplementedException();
-        //    if (dlgOpen.ShowDialog() == DialogResult.OK)
-        //    {
-        //        S = S.Clone();
-
-        //        var x = S.LoadFromFile(dlgOpen.FileName);
-
-        //        if (x == null)
-        //        {
-        //            System.Windows.Forms.MessageBox.Show("Failed to load settings from " + dlgOpen.FileName);
-        //        }
-        //        else
-        //        {
-                   
-
-        //            //UpdateControlsWithValues(GB, Remote, S.Settings);
-
-        //            string Temp = "Loaded\n";
-
-        //            foreach (var kvp in x)
-        //            {
-        //                Temp += kvp.Value.Name + " = " + kvp.Value.Value.ToString() + "\n";
-        //            }
-
-        //            Temp += "from " + dlgOpen.FileName + " OK";
-
-        //            System.Windows.Forms.MessageBox.Show(Temp);
-        //        }
-        //    }
-        //}
-
+        
         private void LoadConfigFromFile()
         {
             if (dlgOpen.ShowDialog() == DialogResult.OK)
@@ -1716,9 +858,20 @@ red LED solid - in firmware update mode");
 
         private async void btn_Reset_Click(object sender, EventArgs e)
         {
-            _configManager.AddLog($"Initiating Config Reset");
+            var msgBoxResult = MsgBox.CustomMessageBox.Show(
+                "Are you sure you want to reset to default configuration?  Link with remote may be lost...",
+                "Reset Confirmation", 
+                MessageBoxButtons.YesNo, 
+                MessageBoxIcon.Question);
+
+            if (msgBoxResult != DialogResult.Yes)
+                return;
+
+            _configManager.AddLog($"Reset Initiated...");
 
             await _configManager.ResetDefaults();
+
+            _configManager.AddLog($"Reset Complete");
         }
 
         private void btn_Firmware_Click(object sender, EventArgs e)
@@ -1784,7 +937,7 @@ red LED solid - in firmware update mode");
                 _configManager.AddLog($"Setting: {item.Key}: {item.Value.GetValueAsString()}");
 
                 // Not needed as changing Current now performs this?
-                //UpdateIndicator(item.Key);
+                UpdateIndicator(item.Key);
             }
 
             CheckControlStates();                       
