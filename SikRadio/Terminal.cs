@@ -34,8 +34,30 @@ namespace SikRadio
 
         public static void SetupStreamWriter()
         {
-            if (sw == null)
-                sw = new StreamWriter(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\Terminal-" + DateTime.Now.ToString("yyyy-MM-dd HH-mm-ss") + ".txt");
+            try
+            {
+                if (sw == null)
+                {
+                    string baseFilePath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+                    string fileName = $"Terminal-{DateTime.Now:yyyy-MM-dd HH-mm-ss-fff}.txt";
+                    string fullPath = Path.Combine(baseFilePath, fileName);
+
+                    // Using FileMode.OpenOrCreate to avoid exceptions when the file already exists.
+                    // This mode opens the file if it exists and creates a new file if it doesn't.
+                    FileStream fileStream = new FileStream(fullPath, FileMode.OpenOrCreate, FileAccess.Write, FileShare.None);
+
+                    // Ensuring the StreamWriter is set to append mode and autoFlush is enabled.
+                    sw = new StreamWriter(fileStream) { AutoFlush = true };
+                }
+            }
+            catch (IOException ioEx)
+            {                
+                Console.WriteLine($"An IO exception occurred: {ioEx.Message}");
+            }
+            catch (Exception ex)
+            {             
+                Console.WriteLine($"An exception occurred: {ex.Message}");
+            }
         }
 
         private void comPort_DataReceived(object sender, SerialDataReceivedEventArgs e)

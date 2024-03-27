@@ -22,6 +22,36 @@ namespace RFDCommon
 {
     public class ConfigManager : INotifyPropertyChanged
     {
+        
+
+        private IModemComms _modemComms;
+        public ConfigManager(IModemComms modemComms)
+        {
+            _modemComms = modemComms;
+        }
+        
+        // Clear all loaded settings and modems
+        public void ClearSettings()
+        {
+            // Clear modems
+            _modems.Clear();
+        }
+
+        #region Events
+        public event PropertyChangedEventHandler PropertyChanged;
+        public event EventHandler<MessageBoxEventArgs> ShowMessageBox;
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+        protected virtual void ShowBox(string title, string text)
+        {
+            ShowMessageBox?.Invoke(this, new MessageBoxEventArgs(title, text));
+        }
+        #endregion
+
+        #region Modem Settings
         private Dictionary<Int64,RFDModem> _modems = new Dictionary<Int64,RFDModem>();
         public List<RFDModem> Modems
         {
@@ -40,6 +70,48 @@ namespace RFDCommon
                 OnPropertyChanged(null);
             }
         }
+        public RFDModem Local
+        {
+            get { return Modems.FirstOrDefault(x => x.IsLocal); }
+        }
+        public RFDModem Remote
+        {
+            get { return Modems.FirstOrDefault(x => !x.IsLocal); }
+        }
+        public RFD900 Modem { get; set; }
+        public TSettings GetChangedSettings(RFDModem modem)
+        {
+            var updatedSettings = modem.Settings.WorkingSettings.Where(s => s.Value.GetValueAsString() != modem.Settings.Settings[s.Key].GetValueAsString()).ToDictionary(s => s.Key, s => s.Value);
+            TSettings settings = new TSettings(updatedSettings);
+            return settings;
+        }
+        public bool ValidateWorkingSettings(RFDModem modem)
+        {
+            var updatedSettings = GetChangedSettings(modem);
+            var errors = updatedSettings.CheckValid();
+            if (errors.Length == 0)
+            {
+                return true;
+            }
+            else
+            {
+                // Build a string from the array of errors
+
+
+                string errorMsg = $"Settings invalid on device ({modem.DisplayName}), operation aborted:";
+
+                foreach (var em in errors)
+                {
+                    errorMsg += "\n\t" + em;
+                }
+
+                ShowBox("Invalid Settings", errorMsg);
+
+                return false;
+            }
+        }
+
+        #endregion
 
         #region AutoSync
         private bool _autoSync = true;
@@ -73,35 +145,14 @@ namespace RFDCommon
         }
         #endregion
 
+        #region Log Console
         private StringBuilder _log = new StringBuilder();
         public string Log => _log.ToString();        
         public void AddLog(string log) {
             _log.AppendLine(log);
             OnPropertyChanged("Log");
         }
-
-
-        public event PropertyChangedEventHandler PropertyChanged;
-        public event EventHandler<MessageBoxEventArgs> ShowMessageBox;
-        //public event EventHandler<EventArgs> ConfigLoaded;
-
-        
-
-
-        // Method to invoke the PropertyChanged event
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-        protected virtual void ShowBox(string title, string text)
-        {
-            ShowMessageBox?.Invoke(this, new MessageBoxEventArgs(title, text));
-        }
-        //protected virtual void ConfigLoadCompleted()
-        //{
-        //    ConfigLoaded?.Invoke(this, null);
-        //}
+        #endregion
 
         #region Button Enabled Properties
         public bool LoadEnabled => _modemComms.IsConnected();
@@ -122,17 +173,6 @@ namespace RFDCommon
         public bool InfoEnabled => _modemComms.IsConnected() && _currentModem?.Settings != null;
         public bool DataEnabled => _modemComms.IsConnected() && _currentModem != null && (_currentModem.Mode == FirmwareMode.MULTIPOINT || _currentModem.Mode == FirmwareMode.ASYNC);
         #endregion
-
-
-        public RFDModem Local
-        {
-            get { return Modems.FirstOrDefault(x => x.IsLocal); }            
-        }
-        public RFDModem Remote
-        {
-            get { return Modems.FirstOrDefault(x => !x.IsLocal); }            
-        }
-
 
         #region // Getters for read only properties
         public string ATI => _currentModem?.ATI;
@@ -307,7 +347,7 @@ namespace RFDCommon
          */
         public int SERIAL_SPEED
         {
-            get => _currentModem.Get<TSetting>(nameof(SERIAL_SPEED)).Value; 
+            get => _currentModem?.Get<TSetting>(nameof(SERIAL_SPEED)).Value ?? default; 
             set
             {
                 _currentModem.Get<TSetting>(nameof(SERIAL_SPEED)).Value = value;
@@ -348,7 +388,7 @@ namespace RFDCommon
 
         public int RTSCTS
         {
-            get => _currentModem.Get<TSetting>("RTSCTS").Value;
+            get => _currentModem?.Get<TSetting>("RTSCTS").Value ?? default;
             set
             {
                 _currentModem.Get<TSetting>("RTSCTS").Value = value;
@@ -765,97 +805,7 @@ namespace RFDCommon
         public bool FORMAT_Equal => Remote == null ? false : Local.Get<TSetting>("FORMAT") == Remote.Get<TSetting>("FORMAT");
         #endregion
 
-        public RFD900 Modem { get; set; }        
-
-        public TSettings GetChangedSettings(RFDModem modem)
-        {
-            var updatedSettings = modem.Settings.WorkingSettings.Where(s => s.Value.GetValueAsString() != modem.Settings.Settings[s.Key].GetValueAsString()).ToDictionary(s => s.Key, s => s.Value);
-            TSettings settings = new TSettings(updatedSettings);
-            return settings;
-        }
-
-
-
-        //private int[] serial_speed_range;
-        //public int[] SERIAL_SPEED_RANGE
-        //{
-        //    get { return serial_speed_range; }
-        //    set { 
-        //        serial_speed_range = value;
-        //        OnPropertyChanged();            
-        //    }
-        //}
-
-        //private int[] air_speed_range;
-        //public int[] AIR_SPEED_RANGE
-        //{
-        //    get { return air_speed_range; }
-        //    set { air_speed_range = value; OnPropertyChanged(); }
-        //}
-
-        //private int[] net_id_range;
-        //public int[] NET_ID_RANGE
-        //{
-        //    get { return net_id_range; }
-        //    set { net_id_range = value; OnPropertyChanged(); }
-        //}
-
-        //private int[] min_freq_range;
-        //public int[] MIN_FREQ_RANGE
-        //{
-        //    get { return min_freq_range; }
-        //    set { min_freq_range = value; OnPropertyChanged(); }
-        //}
-
-        //private int[] max_freq_range;
-        //public int[] MAX_FREQ_RANGE
-
-        //{
-        //    get { return max_freq_range; }
-        //    set { max_freq_range = value; OnPropertyChanged(); }
-        //}
-
-        //// pop for NUM_CHANNELS_RANGE
-        //private int[] num_channels_range;
-        //public int[] NUM_CHANNELS_RANGE
-        //{
-        //    get { return num_channels_range; }
-        //    set { num_channels_range = value; OnPropertyChanged(); }
-        //}
-
-        //// prop for MAX_WINDOW_RANGE
-        //private int[] max_window_range; 
-        //public int[] MAX_WINDOW_RANGE
-        //{
-        //    get { return max_window_range; }
-        //    set { max_window_range = value; OnPropertyChanged(); }
-        //}
-
-        //// prop for TX_POWER
-        //private int[] tx_power_range;
-        //public int[] TX_POWER_RANGE
-        //{
-        //    get { return tx_power_range; }
-        //    set { tx_power_range = value; OnPropertyChanged(); }
-        //}
-
-        //// prop for LBT_RSSI_RANGE
-        //private int[] lbt_rssi_range;
-        //public int[] LBT_RSSI_RANGE
-        //{
-        //    get { return lbt_rssi_range; }
-        //    set { lbt_rssi_range = value; OnPropertyChanged(); }
-        //}
-
-
-        //public bool FirmwareMismatch { get; set; } = false;
-
-        private IModemComms _modemComms;
-        public ConfigManager(IModemComms modemComms)
-        {
-            _modemComms = modemComms;
-        }
-
+        // Do an early fetch of available modems?  Does this interfere with loading settings?
         public async Task<bool> QueryModems()
         {            
             try
@@ -893,10 +843,11 @@ namespace RFDCommon
         private async Task<bool> LoadSettings(bool isLocal)
         {
             var session = _modemComms.GetSession();
-            
+
             _modemComms.DiscardInBuffer();
+
             string commandPrefix = isLocal ? "A" : "R";
-            
+
             // Identify the device
             string hexId = _modemComms.DoQueryWithRetry($"{commandPrefix}TI8", false).Trim();
             if (string.IsNullOrWhiteSpace(hexId) || hexId.Contains("ERROR"))
@@ -912,84 +863,30 @@ namespace RFDCommon
                 modem = _modems[deviceId];
             else
                 modem = new RFDModem() { DeviceId = deviceId };
+            
             // Update islocal
             modem.IsLocal = isLocal;
 
-            //Set the text box to show the radio version
-            int multipoint_fix = -1;    //If this radio has multipoint firmware, the index within returned strings to use for returned values, otherwise -1.
-            modem.ATI = _modemComms.DoQueryWithRetry($"{commandPrefix}TI", true).Trim();
-            if (modem.ATI.StartsWith("["))
-            {
-                multipoint_fix = modem.ATI.IndexOf(']') + 1;
-            }
-
-            string LocalFWVer = RFD900.ATIResponseToFWVersion(modem.ATI);
-
-            NumberStyles style = NumberStyles.Any;
-
-            //Get the board frequency.
-            var freqstring = _modemComms.DoQueryWithRetry($"{commandPrefix}TI3", true).Trim();
-
-            //Some multipoint firmware versions don't reply to ATI command with [n] at start of reply, but they do for ATI3 command, so check for [n] again...
-            if (multipoint_fix < 0 && freqstring.StartsWith("["))
-            {
-                multipoint_fix = freqstring.IndexOf(']') + 1;
-            }
-
-            if (multipoint_fix > 0)
-            {
-                freqstring = freqstring.Substring(multipoint_fix).Trim();
-            }
-
-            if (freqstring.ToLower().Contains('x'))
-                style = NumberStyles.AllowHexSpecifier;
-
-            var freq = (Uploader.Frequency)Enum.Parse(
-                typeof(Uploader.Frequency),
-                int.Parse(freqstring.ToLower().Replace("x", ""),
-                style
-            ).ToString());
-
-            modem.FREQ = freq.ToString();
-
-            style = NumberStyles.Any;
-
-            var boardstring = _modemComms.DoQueryWithRetry($"{commandPrefix}TI2", true);
-
-            if (multipoint_fix > 0)
-            {
-                boardstring = boardstring.Substring(multipoint_fix).Trim();
-            }
-
-            if (boardstring.ToLower().Contains('x'))
-                style = NumberStyles.AllowHexSpecifier;
-
-            session.Board =
-                (Uploader.Board)
-                    Enum.Parse(typeof(Uploader.Board),
-                        int.Parse(boardstring.ToLower().Replace("x", ""), style).ToString());
+            AddLog($"{session.Initialize(modem)}");
 
             // We now know what type of board we are dealing with
             if (isLocal)
                 SetModem(session);
 
-            modem.COUNTRY = GetCountryCodeFromSession((m) => m.GetCountryCode());
-            modem.BOARD = session.Board.ToString();
-
             // --- This is where Board based range fixes were?
 
             modem.RSSI = _modemComms.DoQueryWithRetry($"{commandPrefix}TI7", true).Trim();
 
-            var answer = session.ATCClient.DoQueryWithMultiLineResponse($"{commandPrefix}TI5", $"{commandPrefix}TI");
+            var ati5Response = session.ATCClient.DoQueryWithMultiLineResponse($"{commandPrefix}TI5", $"{commandPrefix}TI");
 
             bool Junk;
 
             var Settings = session.GetSettings(false,
-                session.Board, answer, null, out Junk);
+                session.Board, ati5Response, null, out Junk);
 
             modem.Settings = new TSettings(Collections.Translate(Settings, (x) => (TBaseSetting)x));
 
-            if (multipoint_fix == -1)
+            if (session.multipoint_fix == -1)
             {
                 var aesKey = _modemComms.DoQueryWithRetry($"{commandPrefix}T&E?", true).Trim();
                 if (aesKey.Contains("ERROR"))
@@ -1001,6 +898,7 @@ namespace RFDCommon
                     modem.Get<TTextSetting>("AESKEY").SetValueFromString(aesKey);
                     modem.AES_ENABLED = true;
                 }
+                
                 // TODO is this needed?
                 //SetupComboForMavlink(MAVLINK, false);
             }
@@ -1012,29 +910,6 @@ namespace RFDCommon
                 //SetupComboForMavlink(MAVLINK, true);
             }
 
-            var items = answer.Split('\n');
-
-            if (modem.ATI.Contains("ASYNC"))
-            {
-                modem.Mode = FirmwareMode.ASYNC;
-            }
-            else
-            {
-                if (modem.ATI.Contains("MP on") && (session.Board == Uploader.Board.DEVICE_ID_RFD900X))
-                {
-                    //This is multipoint firmware.
-                    modem.Mode = FirmwareMode.MULTIPOINT_X;
-                }
-                else if ((items.Length > 0) && items[0].StartsWith("["))
-                {
-                    modem.Mode = FirmwareMode.MULTIPOINT;
-                }
-                else
-                {
-                    modem.Mode = FirmwareMode.P2P;
-                }
-            }
-
             if (_modems.ContainsKey(deviceId))
                 _modems[modem.DeviceId] = modem;
             else
@@ -1044,7 +919,8 @@ namespace RFDCommon
         }
 
         public void EndSession()
-        {
+        {            
+            OnPropertyChanged(null);
             _modemComms.EndSession();
         }
 
@@ -1052,6 +928,8 @@ namespace RFDCommon
         {
             try
             {
+                // Discard...
+                _modemComms.DiscardInBuffer();
 
                 if (_modemComms.PutIntoATCommandMode() == TSession.TMode.AT_COMMAND)
                 {                    
@@ -1155,33 +1033,7 @@ namespace RFDCommon
                 //OnPropertyChanged(null);                
             }
         }
-
-        public bool ValidateWorkingSettings(RFDModem modem)
-        {
-            var updatedSettings = GetChangedSettings(modem);
-            var errors = updatedSettings.CheckValid();
-            if (errors.Length == 0)
-            {
-                return true;
-            }
-            else
-            {
-                // Build a string from the array of errors
-
-
-                string errorMsg = $"Settings invalid on device ({modem.DisplayName}), operation aborted:";
-
-                foreach (var em in errors)
-                {
-                    errorMsg += "\n\t" + em;
-                }
-
-                ShowBox("Invalid Settings",errorMsg);                
-
-                return false;
-            }
-        }
-
+                
         public async Task<bool> Save() {
             if (_modemComms.GetSession() == null)
             {
@@ -1285,7 +1137,6 @@ namespace RFDCommon
             return true;
         }
 
-
         // Method to only push settings that have changed
         private void SaveChangedSettings(TSettings changedSettings, RFDModem modem)
         {            
@@ -1345,7 +1196,6 @@ namespace RFDCommon
                 }
             }
         }
-
 
         void DoCommandShowErrorIfNotOK(string cmd, string ErrorMsg)
         {
@@ -1560,27 +1410,7 @@ namespace RFDCommon
             }
         }
 
-        /// <summary>
-        /// Get the country code from the modem as a string, or "--" if unknown or not locked to country.
-        /// </summary>
-        /// <param name="Session">The session.  Must not be null.</param>
-        /// <param name="GetCC">The function to get the country code, given the modem object.  Must not be null.</param>
-        /// <returns>The country code string.</returns>
-        string GetCountryCodeFromSession(Func<RFD900xuxRevN, RFD900xux.TCountry> GetCC)
-        {
-            RFD900xux.TCountry CC;
-            var Mdm = _modemComms.GetSession().GetModemObject();
-
-            if (Mdm == null || !(Mdm is RFD900xuxRevN) ||
-                !RFD900xux.GetIsCountryLocked(CC = GetCC((RFD900xuxRevN)Mdm)))
-            {
-                return "--";
-            }
-            else
-            {
-                return CC.ToString();
-            }
-        }
+        
 
         public void RandomizeEncryptionKey()
         {

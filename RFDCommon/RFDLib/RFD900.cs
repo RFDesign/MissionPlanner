@@ -5,6 +5,11 @@ using System.IO;
 using System.Reflection;
 using System.Configuration;
 using RFDCommon.Radio;
+using System.Globalization;
+using RFDCommon.Interface;
+using System.Security.Permissions;
+using RFDCommon.RFDLib;
+using System.Linq;
 
 namespace RFD.RFD900
 {
@@ -28,7 +33,9 @@ namespace RFD.RFD900
         const int BOOTLOADERX_BAUD = 57600;
         const int BOOTLOADER_BAUD = 115200;
         const string NODEID = "NODEID";
-        const string NODEDESTINATION = "NODEDESTINATION";
+        const string NODEDESTINATION = "NODEDESTINATION";                
+        public int multipoint_fix = -1;
+        private FirmwareMode _firmwareMode;
 
         public TSession(MissionPlanner.Comms.ICommsSerial Port, int MainFirmwareBaud)
         {
@@ -47,13 +54,124 @@ namespace RFD.RFD900
             AddDefaultSetting("S20:ANT_MODE(N)[0..3]=0{Ant1&2,Ant1,Ant2,Ant1=TX;2=RX,}\r\n");
         }
 
+        public string Initialize(RFDModem modem)
+        {
+            //ATCClient._Port.DiscardInBuffer();
+            string prefix = modem.IsLocal ? "A" : "R";
+            modem.ATI = ATCClient.DoQuery($"{prefix}TI", true);
+            modem.ATI1 = ATCClient.DoQuery($"{prefix}TI1", true);
+            modem.ATI2 = ATCClient.DoQuery($"{prefix}TI2", true);
+            var _ati5 = ATCClient.DoQueryWithMultiLineResponse($"{prefix}TI5",$"{prefix}TI");
+            
+
+            NumberStyles style = NumberStyles.Any;
+
+            //Set the text box to show the radio version
+            int multipoint_fix = -1;    //If this radio has multipoint firmware, the index within returned strings to use for returned values, otherwise -1.
+            
+            if (modem.ATI.StartsWith("["))
+            {
+                multipoint_fix = modem.ATI.IndexOf(']') + 1;
+            }
+
+            var boardstring = modem.ATI2;
+            if (multipoint_fix > 0)
+            {
+                boardstring = boardstring.Substring(multipoint_fix).Trim();
+            }
+
+            if (boardstring.ToLower().Contains("x"))
+                style = NumberStyles.AllowHexSpecifier;
+
+            var board = (Uploader.Board)Enum.Parse(typeof(Uploader.Board),int.Parse(boardstring.ToLower().Replace("x", ""), style).ToString());
+            if (modem.IsLocal)
+            {
+                Board = board;
+            }
+            modem.BOARD = board.ToString();
+
+            // Set firmware Type (Mode?)
+            if (modem.ATI.Contains("ASYNC"))
+            {
+                modem.Mode = FirmwareMode.ASYNC;
+            }
+            else
+            {
+                var items = _ati5.Split('\n');
+                if (modem.ATI.Contains("MP on") && (Board == Uploader.Board.DEVICE_ID_RFD900X))
+                {
+                    //This is multipoint firmware.
+                    modem.Mode = FirmwareMode.MULTIPOINT_X;
+                }
+                else if ((items.Length > 0) && items[0].StartsWith("["))
+                {
+                    modem.Mode = FirmwareMode.MULTIPOINT;
+                }
+                else
+                {
+                    modem.Mode = FirmwareMode.P2P;
+                }
+            }
+            _firmwareMode = modem.Mode;
+
+            //Get the board frequency.
+            var freqstring = ATCClient.DoQuery($"{prefix}TI3", true).Trim();
+
+            //Some multipoint firmware versions don't reply to ATI command with [n] at start of reply, but they do for ATI3 command, so check for [n] again...
+            if (multipoint_fix < 0 && freqstring.StartsWith("["))
+            {
+                multipoint_fix = freqstring.IndexOf(']') + 1;
+            }
+
+            if (multipoint_fix > 0)
+            {
+                freqstring = freqstring.Substring(multipoint_fix).Trim();
+            }
+
+            if (freqstring.ToLower().Contains("x"))
+                style = NumberStyles.AllowHexSpecifier;
+
+            var freq = (Uploader.Frequency)Enum.Parse(
+                typeof(Uploader.Frequency),
+                int.Parse(freqstring.ToLower().Replace("x", ""),
+                style
+            ).ToString());
+
+            modem.FREQ = freq.ToString();
+            modem.COUNTRY = GetCountryCodeFromSession((m) => m.GetCountryCode());
+
+            return $"Firmware: {modem.Mode:G} - Version {modem.ATI1}";
+        }
+
+        /// <summary>
+        /// Get the country code from the modem as a string, or "--" if unknown or not locked to country.
+        /// </summary>
+        /// <param name="Session">The session.  Must not be null.</param>
+        /// <param name="GetCC">The function to get the country code, given the modem object.  Must not be null.</param>
+        /// <returns>The country code string.</returns>
+        string GetCountryCodeFromSession(Func<RFD900xuxRevN, RFD900xux.TCountry> GetCC)
+        {
+            RFD900xux.TCountry CC;
+            var Mdm = GetModemObject();
+
+            if (Mdm == null || !(Mdm is RFD900xuxRevN) ||
+                !RFD900xux.GetIsCountryLocked(CC = GetCC((RFD900xuxRevN)Mdm)))
+            {
+                return "--";
+            }
+            else
+            {
+                return CC.ToString();
+            }
+        }
+
         /// <summary>
         /// Add a setting to the _DefaultSettings which is generated by parsing the given ATI5? query response line.
         /// </summary>
         /// <param name="ATI5QueryResponseLine">The ATI5? query response line</param>
         void AddDefaultSetting(string ATI5QueryResponseLine)
         {
-            var S = TSession.ParseATI5QueryResponseLine(ATI5QueryResponseLine);
+            var S = ParseATI5QueryResponseLine(ATI5QueryResponseLine);
             if (S != null)
             {
                 _DefaultSettings[S.Name] = S;
@@ -755,7 +873,7 @@ namespace RFD.RFD900
             return Result.ToArray();
         }
 
-        static TSetting.TOption[] CreateOptions(TSetting.TRange Range, string[] Options,
+        private TSetting.TOption[] CreateOptions(TSetting.TRange Range, string[] Options,
             string Name, int Value)
         {
             if (Range == null || Options == null)
@@ -777,6 +895,18 @@ namespace RFD.RFD900
             }
 
             int[] RO = Range.GetOptionsIncludingValue(Value);
+
+            
+            // *****************************
+            // FIRMWARE BUG HACK INCOMING!!!
+            if (_firmwareMode == FirmwareMode.ASYNC && Name == "ENCRYPTION_LEVEL" && RO.Length == 2)
+            {
+                // Add the third range value to RO
+                RO = RO.Append(2).ToArray();                
+            }
+            // END
+            // *****************************
+
             if (Options.Length == 2)
             {
                 //Match up with min and max.
@@ -887,7 +1017,7 @@ namespace RFD.RFD900
         /// </summary>
         /// <param name="Line">The line.  Must not be null.</param>
         /// <returns>The setting parsed, or null if could not parse setting.</returns>
-        public static TSetting ParseATI5QueryResponseLine(string Line)
+        public TSetting ParseATI5QueryResponseLine(string Line)
         {
             try
             {

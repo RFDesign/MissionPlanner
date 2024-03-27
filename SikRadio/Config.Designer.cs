@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Config));
             this.modemsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.configManagerBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.panelNavigation = new System.Windows.Forms.Panel();
             this.flowLayoutButtonPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.btnConfigPage = new FontAwesome.Sharp.IconButton();
@@ -49,11 +50,11 @@
             this.btnConnect = new FontAwesome.Sharp.IconButton();
             this.panelMain = new System.Windows.Forms.Panel();
             this.textConsole = new System.Windows.Forms.TextBox();
-            this.configManagerBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.sikradio1 = new MissionPlanner.Radio.Sikradio();
             this.terminal1 = new SikRadio.Terminal();
             this.rssi1 = new SikRadio.Rssi();
             ((System.ComponentModel.ISupportInitialize)(this.modemsBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.configManagerBindingSource)).BeginInit();
             this.panelNavigation.SuspendLayout();
             this.flowLayoutButtonPanel.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -61,13 +62,16 @@
             this.groupBox1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.panelMain.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.configManagerBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // modemsBindingSource
             // 
             this.modemsBindingSource.DataMember = "Modems";
             this.modemsBindingSource.DataSource = this.configManagerBindingSource;
+            // 
+            // configManagerBindingSource
+            // 
+            this.configManagerBindingSource.DataSource = typeof(RFDCommon.ConfigManager);
             // 
             // panelNavigation
             // 
@@ -252,10 +256,6 @@
             this.textConsole.TabStop = false;
             this.textConsole.TextChanged += new System.EventHandler(this.textConsole_TextChanged);
             // 
-            // configManagerBindingSource
-            // 
-            this.configManagerBindingSource.DataSource = typeof(RFDCommon.ConfigManager);
-            // 
             // sikradio1
             // 
             resources.ApplyResources(this.sikradio1, "sikradio1");
@@ -284,6 +284,7 @@
             this.Name = "Config";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Config_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.modemsBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.configManagerBindingSource)).EndInit();
             this.panelNavigation.ResumeLayout(false);
             this.flowLayoutButtonPanel.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
@@ -292,7 +293,6 @@
             this.tableLayoutPanel1.ResumeLayout(false);
             this.panelMain.ResumeLayout(false);
             this.panelMain.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.configManagerBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }

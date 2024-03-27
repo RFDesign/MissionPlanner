@@ -75,25 +75,9 @@ namespace SikRadio
             } 
             else
             {
-
+                sikradio1.ClearBindings();
+                ConfigManager.ClearSettings();
             }
-        }
-
-        private async void TabControl1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            //var previousForm = tabControl1.TabPages[_selectedTabIndex].Controls[0] as IRFDConfigForm;
-            //if (previousForm != null)
-            //    previousForm.Stop();
-
-            //// Update index for next time...
-            //_selectedTabIndex = tabControl1.SelectedIndex;
-
-            //// Start new form
-            //var selectedForm = tabControl1.SelectedTab.Controls[0] as IRFDConfigForm;
-            //if (selectedForm == null)
-            //    return;
-
-            //selectedForm.Start(_modemComms);            
         }
 
         /// <summary>

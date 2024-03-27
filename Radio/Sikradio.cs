@@ -51,6 +51,23 @@ namespace MissionPlanner.Radio
         private ConfigManager _configManager;// = new ConfigManager();
         private IModemComms _comms;
 
+        public void AddBoundControl(Control c)
+        {
+            boundControls.Add(c.Name);
+        }
+        private HashSet<string> boundControls = new HashSet<string>();
+        public void ClearBindings()
+        {
+            // Remove all runtime bindings?
+            foreach (var item in boundControls)
+            {
+                var ctrl = this.Controls.Find(item, true).FirstOrDefault();
+                if (ctrl != null)
+                    ctrl.DataBindings.Clear();
+            }
+            boundControls.Clear();
+        }
+
         /*
 ATI5
 S0: FORMAT=25
@@ -114,7 +131,7 @@ S15: MAX_WINDOW=131
                 return;
 
             if (e.PropertyName == "Current")
-                _configManager.AddLog($"Changed device: {_configManager.Current.DisplayName}");
+                _configManager.AddLog($"Changed device: {_configManager.Current?.DisplayName ?? "Unknown"}");
             else
                 _configManager.AddLog($"Property Changed: {e.PropertyName}");            
 
@@ -498,6 +515,7 @@ S15: MAX_WINDOW=131
                 e.Value = ((bool)e.Value) ? 1 : 0;
             };
             checkBox.DataBindings.Add(binding);
+            AddBoundControl(checkBox);
         }
 
         // Setup binding for ComboBoxes options with TSettings
@@ -529,6 +547,7 @@ S15: MAX_WINDOW=131
 
                 // Setup Binding
                 comboBox.DataBindings.Add("SelectedValue", configManagerBindingSource, setting.Name.Replace("/","_"), false, DataSourceUpdateMode.OnPropertyChanged);
+                AddBoundControl(comboBox);
             } 
             else if (setting.Range != null)
             {
@@ -541,6 +560,7 @@ S15: MAX_WINDOW=131
                 comboBox.ValueMember = "Value";
                 comboBox.DataSource = rangeOptions;                
                 comboBox.DataBindings.Add("SelectedValue", configManagerBindingSource, setting.Name, false, DataSourceUpdateMode.OnPropertyChanged);
+                AddBoundControl(comboBox);
             }            
         }
 
@@ -548,6 +568,7 @@ S15: MAX_WINDOW=131
         {
             textBox.DataBindings.Clear();
             textBox.DataBindings.Add("Text", configManagerBindingSource, setting.Name, false,  DataSourceUpdateMode.OnPropertyChanged);
+            AddBoundControl(textBox);
         }
                
         /// <summary>
@@ -667,12 +688,17 @@ S15: MAX_WINDOW=131
                         if (RFD900.ProgramFirmware(firmwarefile, UpdateStatusCallback))
                         {
                             _configManager.AddLog("Programmed firmware into device");
+
+                            // Reset state to pull new settings?
+                            ClearBindings();
+                            _configManager.ClearSettings();
                         }
                         else
                         {
                             _configManager.AddLog("Programming failed.  (Try again?)");
-                        }
+                        }                        
                         _configManager.EndSession();
+                        
                     }
                     else
                     {
@@ -684,12 +710,16 @@ S15: MAX_WINDOW=131
             {
                 try
                 {
-                    _configManager.AddLog("Programming failed.  (Try again?)");
+                    _configManager.AddLog("Programming failed.  (Try again?)");                    
                     _configManager.EndSession();
                 }
                 catch
                 {
                 }
+            }
+            finally
+            {
+                CheckControlStates();
             }
             //EnableProgrammingControls(true);
             //EnableConfigControls(true, false);
@@ -897,7 +927,7 @@ S15: MAX_WINDOW=131
             var loaded = await _configManager.Load();
             if (!loaded)
             {
-                ShowMessageBox("An error occured while trying to load settings...", "Load Failed");
+                ShowMessageBox("An error occurred while trying to load settings...", "Load Failed");
                 return;
             }
 
@@ -921,6 +951,7 @@ S15: MAX_WINDOW=131
 
                     ctrl.DataBindings.Clear();
                     ctrl.DataBindings.Add("Text", configManagerBindingSource, ttext.Name, false, DataSourceUpdateMode.OnPropertyChanged);
+                    AddBoundControl(ctrl);
                 }
                 else if (ctrl is ComboBox)
                 {
@@ -1010,6 +1041,9 @@ S15: MAX_WINDOW=131
 
         private void comboModemSelection_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (comboModemSelection.SelectedItem == null)
+                return;
+
             _configManager.Current = comboModemSelection.SelectedItem as RFDModem;
             // All indicators need to be updated?
 

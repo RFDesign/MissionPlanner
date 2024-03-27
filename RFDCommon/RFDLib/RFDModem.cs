@@ -18,6 +18,11 @@ namespace RFDCommon.RFDLib
         public string RSSI { get; set; }
         
         public string ATI { get; set; }
+        public string ATI1 { get; set; }
+        public string ATI2 { get; set; }
+        public string ATI3 { get; set; }
+        public string ATI4 { get; set; }
+
         public string COUNTRY { get; set; }
 
         public string FREQ { get; set; }
