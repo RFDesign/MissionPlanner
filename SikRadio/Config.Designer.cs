@@ -237,12 +237,11 @@
             // 
             // panelMain
             // 
+            resources.ApplyResources(this.panelMain, "panelMain");
             this.panelMain.BackColor = System.Drawing.Color.Transparent;
-            this.panelMain.Controls.Add(this.textConsole);
             this.panelMain.Controls.Add(this.sikradio1);
             this.panelMain.Controls.Add(this.terminal1);
             this.panelMain.Controls.Add(this.rssi1);
-            resources.ApplyResources(this.panelMain, "panelMain");
             this.panelMain.Name = "panelMain";
             // 
             // textConsole
@@ -279,6 +278,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(29)))), ((int)(((byte)(46)))));
             resources.ApplyResources(this, "$this");
+            this.Controls.Add(this.textConsole);
             this.Controls.Add(this.panelMain);
             this.Controls.Add(this.panelNavigation);
             this.Name = "Config";
@@ -294,6 +294,7 @@
             this.panelMain.ResumeLayout(false);
             this.panelMain.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 

@@ -1,33 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading;
 using System.Windows.Forms;
 using log4net;
-using MissionPlanner.Comms;
-using MissionPlanner.Controls;
-using MissionPlanner.MsgBox;
-using MissionPlanner.Radio;
 using MissionPlanner.Utilities;
-using uploader;
-using Microsoft.VisualBasic;
 using RFDCommon.Interface;
 using static RFD.RFD900.TSettings;
 using RFD.RFD900;
-using RFDCommon.Config;
 using RFDCommon;
 using RFDCommon.Radio;
-using System.Runtime.CompilerServices;
-using RFDLib;
 using RFDCommon.RFDLib;
 using System.Threading.Tasks;
 using FontAwesome.Sharp;
-using System.Windows.Media;
 using System.Diagnostics;
 
 
@@ -134,7 +121,9 @@ S15: MAX_WINDOW=131
             if (e.PropertyName == "Current")
                 _configManager.AddLog($"Changed device: {_configManager.Current?.DisplayName ?? "Unknown"}");
             else
-                _configManager.AddLog($"Property Changed: {e.PropertyName}");            
+                _configManager.AddLog($"Property Changed: {e.PropertyName}");
+
+            
 
             // What should the indicator do?
             UpdateIndicator(e.PropertyName);            
@@ -143,7 +132,7 @@ S15: MAX_WINDOW=131
         private void UpdateIndicator(string propertyName)
         {
             // If no remote, bail
-            if (_configManager.Remote == null)
+            if (_configManager.Remote == null || propertyName.StartsWith("GPIO"))
                 return;
 
             if (propertyName == "Current")
@@ -177,7 +166,8 @@ S15: MAX_WINDOW=131
             {
                 localValue = _configManager.Local.FREQ;
                 remoteValue = _configManager.Remote.FREQ;
-            } else
+            }            
+            else
             {
                 localValue = _configManager.Local.Get<RFD.RFD900.TBaseSetting>(propertyName).GetValueAsString();
                 remoteValue = _configManager.Remote.Get<RFD.RFD900.TBaseSetting>(propertyName).GetValueAsString();
@@ -823,13 +813,8 @@ S15: MAX_WINDOW=131
         }
 
 
-        private void BUT_SetPPMFailSafe_Click(object sender, EventArgs e)
-        {
-            _configManager.SetPPMFailSafe("AT&R", "AT&W");
-        }        
-
-        bool _AlreadyInEncCheckChangedEvtHdlr = false;
-
+              
+                
         string RemoveMultiPointLocalNodeID(string ATCReply)
         {
             ATCReply = ATCReply.Trim();
@@ -1049,7 +1034,8 @@ S15: MAX_WINDOW=131
 
                 // Start the body group.
                 rtf.Append(@"\pard"); // Reset to default paragraph properties.
-                foreach (var item in groupBox.Controls[0].Controls)
+                var orderedControls = groupBox.Controls[0].Controls.Cast<Control>().OrderBy(c => c.TabIndex);                
+                foreach (var item in orderedControls)
                 {
                     if (item is Control)
                     {
@@ -1062,7 +1048,7 @@ S15: MAX_WINDOW=131
 
                         // Add the control and tooltip to help?
                         // Define the heading.
-                        rtf.Append($@"\b\f0\fs24\cf1 {ic.Name}\par"); // Bold, Font Size 24
+                        rtf.Append($@"\b\f0\fs24\cf1 {ic.Name.Replace("_", " ")}\par"); // Bold, Font Size 24
 
                         // Reset the font and size for normal text and define the paragraph.
                         rtf.Append($@"\b0\f0\fs16\cf1 {toolTip}.\par\par"); // Not bold, Font 0 (Microsoft Sans Serif), Font Size 16                    
@@ -1083,6 +1069,36 @@ S15: MAX_WINDOW=131
             _configManager.Current = comboModemSelection.SelectedItem as RFDModem;
             // All indicators need to be updated?
 
+        }
+
+        //private void BUT_SetPPMFailSafe_Click(object sender, EventArgs e)
+        //{
+        //    _configManager.SetPPMFailSafe("AT&R", "AT&W");
+        //}
+
+        //private void btn_Failsafe_Click(object sender, EventArgs e)
+        //{
+        //    _configManager.SetPPMFailSafe("AT&R", "AT&W");
+        //}
+
+        private void GPIO1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var value = (sender as ComboBox).SelectedValue?.ToString();
+            if (string.IsNullOrWhiteSpace(value)) return;
+
+            // Was GPIO1 changed?
+            if (_configManager.GPIO1 == "GPO1_1R/COUT" || _configManager.GPIO1 == "GPO1_1SBUSOUT")
+            {
+                // Show PPM failsafe controls?
+                lblFailsafe.Visible = true;
+                FSFRAMELOSS.Visible = true;                
+            }
+            else
+            {
+                lblFailsafe.Visible = false;
+                FSFRAMELOSS.Visible = false;                
+            }
+            
         }
     }
 }

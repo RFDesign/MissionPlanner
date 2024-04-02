@@ -40,6 +40,7 @@ namespace RFDCommon
         #region Events
         public event PropertyChangedEventHandler PropertyChanged;
         public event EventHandler<MessageBoxEventArgs> ShowMessageBox;
+        
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
 
@@ -221,7 +222,7 @@ namespace RFDCommon
         public PinFunction[] GPIO1_Items => _gpio1_Items;
 
         
-        public string PIN12
+        public string GPIO3
         {            
             get
             {
@@ -251,7 +252,7 @@ namespace RFDCommon
             }
         }
                 
-        public string PIN14
+        public string GPIO2
         {
             get
             {
@@ -266,7 +267,7 @@ namespace RFDCommon
             }
         }
 
-        public string PIN15
+        public string GPIO1
         {
             get
             {
@@ -277,7 +278,6 @@ namespace RFDCommon
                 if (value == GetPinSetting(_gpio1_Items)) return;
 
                 SetPin(GPIO1_Items, value);
-                //OnPropertyChanged();
             }
         }
 
