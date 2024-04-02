@@ -247,9 +247,9 @@
             // 
             // textConsole
             // 
-            resources.ApplyResources(this.textConsole, "textConsole");
             this.textConsole.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(49)))), ((int)(((byte)(66)))));
             this.textConsole.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.configManagerBindingSource, "Log", true));
+            resources.ApplyResources(this.textConsole, "textConsole");
             this.textConsole.ForeColor = System.Drawing.Color.WhiteSmoke;
             this.textConsole.Name = "textConsole";
             this.textConsole.ReadOnly = true;
@@ -258,9 +258,9 @@
             // 
             // sikradio1
             // 
-            resources.ApplyResources(this.sikradio1, "sikradio1");
             this.sikradio1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(29)))), ((int)(((byte)(46)))));
             this.sikradio1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            resources.ApplyResources(this.sikradio1, "sikradio1");
             this.sikradio1.ForeColor = System.Drawing.Color.White;
             this.sikradio1.Name = "sikradio1";
             // 

@@ -235,7 +235,7 @@ namespace RFDCommon
                 ConnectionChanged();
                 return true;
             }
-            catch
+            catch (Exception e)
             {
                 return false;
             }

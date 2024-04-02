@@ -78,7 +78,7 @@ namespace RFDCommon
         {
             get { return Modems.FirstOrDefault(x => !x.IsLocal); }
         }
-        public RFD900 Modem { get; set; }
+        public RFD900 Modem { get => _modemComms.GetSession().GetModemObject(); }
         public TSettings GetChangedSettings(RFDModem modem)
         {
             var updatedSettings = modem.Settings.WorkingSettings.Where(s => s.Value.GetValueAsString() != modem.Settings.Settings[s.Key].GetValueAsString()).ToDictionary(s => s.Key, s => s.Value);
@@ -154,29 +154,30 @@ namespace RFDCommon
         }
         #endregion
 
+        public bool FirmwareUpdateInProgress { get; set; } = false;
+
         #region Button Enabled Properties
-        public bool LoadEnabled => _modemComms.IsConnected();
-        public bool SaveEnabled => _modemComms.IsConnected() && _currentModem?.Settings != null;
-        public bool ImportEnabled => _modemComms.IsConnected() && _currentModem?.Settings != null;
-        public bool ExportEnabled => _modemComms.IsConnected() && _currentModem?.Settings != null;
-        public bool ResetEnabled => _modemComms.IsConnected();
-        public bool FirmwareEnabled => _modemComms.IsConnected() && _currentModem?.Settings != null;
-        public bool RebootEnabled => _modemComms.IsConnected();
+        public bool LoadEnabled => _modemComms.IsConnected() && !FirmwareUpdateInProgress;
+        public bool SaveEnabled => _modemComms.IsConnected() && _currentModem?.Settings != null && !FirmwareUpdateInProgress;
+        public bool ImportEnabled => _modemComms.IsConnected() && _currentModem?.Settings != null && !FirmwareUpdateInProgress;
+        public bool ExportEnabled => _modemComms.IsConnected() && _currentModem?.Settings != null && !FirmwareUpdateInProgress;
+        public bool ResetEnabled => _modemComms.IsConnected() && !FirmwareUpdateInProgress;
+        public bool FirmwareEnabled => _modemComms.IsConnected() && !FirmwareUpdateInProgress; // && _currentModem?.Settings != null;
+        public bool RebootEnabled => _modemComms.IsConnected() && !FirmwareUpdateInProgress;
         #endregion
 
         #region GroupBox Enabled Properties
         public bool DeviceGroupEnabled => _modemComms.IsConnected() && _currentModem?.Settings != null;
-        public bool SerialEnabled => _modemComms.IsConnected() && _currentModem?.Settings != null;
-        public bool RadioEnabled => _modemComms.IsConnected() && _currentModem?.Settings != null;
-        public bool SecurityEnabled => _modemComms.IsConnected() && _currentModem?.Settings != null;
-        public bool PinEnabled => _modemComms.IsConnected() && _currentModem?.Settings != null;
-        public bool InfoEnabled => _modemComms.IsConnected() && _currentModem?.Settings != null;
-        public bool DataEnabled => _modemComms.IsConnected() && _currentModem != null && (_currentModem.Mode == FirmwareMode.MULTIPOINT || _currentModem.Mode == FirmwareMode.ASYNC);
+        public bool SerialEnabled => _modemComms.IsConnected() && _currentModem?.Settings != null && !FirmwareUpdateInProgress;
+        public bool RadioEnabled => _modemComms.IsConnected() && _currentModem?.Settings != null && !FirmwareUpdateInProgress;
+        public bool SecurityEnabled => _modemComms.IsConnected() && _currentModem?.Settings != null && !FirmwareUpdateInProgress;
+        public bool PinEnabled => _modemComms.IsConnected() && _currentModem?.Settings != null && !FirmwareUpdateInProgress;
+        public bool InfoEnabled => _modemComms.IsConnected() && _currentModem?.Settings != null && !FirmwareUpdateInProgress;
+        public bool DataEnabled => _modemComms.IsConnected() && _currentModem != null && (_currentModem.Mode == FirmwareMode.MULTIPOINT || _currentModem.Mode == FirmwareMode.ASYNC) && !FirmwareUpdateInProgress;
         #endregion
 
         #region // Getters for read only properties
         public string ATI => _currentModem?.ATI;
-
         public string FREQ => _currentModem?.FREQ;
         public string BOARD => _currentModem?.BOARD;
         public string COUNTRY => _currentModem?.COUNTRY;
@@ -192,60 +193,60 @@ namespace RFDCommon
             public string Value { get; set; }
         }
 
-        private PinFunction[] _pin12Items = {
+        private PinFunction[] _gpio3_Items = {
             new PinFunction() { Name= "None", Value = ""},
             new PinFunction() { Name = "AUXOUT", Value = "GPO1_3AUXOUT" },
             new PinFunction() { Name = "STATLED", Value = "GPO1_3STATLED" } };
-        public PinFunction[] Pin12Items => _pin12Items;
+        public PinFunction[] GPIO3_Items => _gpio3_Items;
 
-        private PinFunction[] _pin13Items = {
+        private PinFunction[] _gpio0_Items = {
             new PinFunction() { Name= "None", Value = ""},
             new PinFunction() { Name = "TXEN485", Value = "GPO1_0TXEN485" }
         };
-        public PinFunction[] Pin13Items => _pin13Items;
+        public PinFunction[] GPIO0_Items => _gpio0_Items;
 
-        private PinFunction[] _pin14Items = {
+        private PinFunction[] _gpio2_Items = {
             new PinFunction() { Name= "None", Value = ""},
             new PinFunction() { Name = "AUXIN", Value = "GPI1_2AUXIN" }
         };
-        public PinFunction[] Pin14Items => _pin14Items;
+        public PinFunction[] GPIO2_Items => _gpio2_Items;
 
-        private PinFunction[] _pin15Items = {
+        private PinFunction[] _gpio1_Items = {
             new PinFunction() { Name= "None", Value = ""},
             new PinFunction() { Name = "R/CIN", Value = "GPI1_1R/CIN" },
             new PinFunction() { Name = "R/COUT", Value = "GPO1_1R/COUT" },
             new PinFunction() { Name = "SBUSIN", Value = "GPO1_1SBUSIN" },
             new PinFunction() { Name = "SBUSOUT", Value = "GPO1_1SBUSOUT" },
         };
-        public PinFunction[] Pin15Items => _pin15Items;
+        public PinFunction[] GPIO1_Items => _gpio1_Items;
 
         
         public string PIN12
         {            
             get
             {
-                return GetPinSetting(_pin12Items);
+                return GetPinSetting(_gpio3_Items);
             }
             set
             {
-                if (value == GetPinSetting(Pin12Items)) return;
+                if (value == GetPinSetting(GPIO3_Items)) return;
 
-                SetPin(Pin12Items, value);
+                SetPin(GPIO3_Items, value);
                 //OnPropertyChanged(nameof(PIN12));
             }
         }
 
-        public string PIN13
+        public string GPIO0
         {
             get
             {
-                return GetPinSetting(_pin13Items);
+                return GetPinSetting(_gpio0_Items);
             }
             set
             {
-                if (value == GetPinSetting(_pin13Items)) return;
+                if (value == GetPinSetting(_gpio0_Items)) return;
 
-                SetPin(Pin13Items, value);
+                SetPin(GPIO0_Items, value);
                 //OnPropertyChanged();
             }
         }
@@ -254,13 +255,13 @@ namespace RFDCommon
         {
             get
             {
-                return GetPinSetting(_pin14Items);
+                return GetPinSetting(_gpio2_Items);
             }
             set
             {
-                if (value == GetPinSetting(_pin14Items)) return;
+                if (value == GetPinSetting(_gpio2_Items)) return;
 
-                SetPin(Pin14Items, value);
+                SetPin(GPIO2_Items, value);
                 //OnPropertyChanged();
             }
         }
@@ -269,13 +270,13 @@ namespace RFDCommon
         {
             get
             {
-                return GetPinSetting(_pin15Items);
+                return GetPinSetting(_gpio1_Items);
             }
             set
             {
-                if (value == GetPinSetting(_pin15Items)) return;
+                if (value == GetPinSetting(_gpio1_Items)) return;
 
-                SetPin(Pin15Items, value);
+                SetPin(GPIO1_Items, value);
                 //OnPropertyChanged();
             }
         }
@@ -842,80 +843,85 @@ namespace RFDCommon
 
         private async Task<bool> LoadSettings(bool isLocal)
         {
+
             var session = _modemComms.GetSession();
 
-            _modemComms.DiscardInBuffer();
-
-            string commandPrefix = isLocal ? "A" : "R";
-
-            // Identify the device
-            string hexId = _modemComms.DoQueryWithRetry($"{commandPrefix}TI8", false).Trim();
-            if (string.IsNullOrWhiteSpace(hexId) || hexId.Contains("ERROR"))
+            try
             {
-                string deviceType = isLocal ? "local" : "remote";
-                AddLog($"No {deviceType} device found");
-                return false;
-            }
-            var deviceId = Convert.ToInt64(hexId, 16);
+                string commandPrefix = isLocal ? "A" : "R";
 
-            RFDModem modem;
-            if (_modems.ContainsKey(deviceId))
-                modem = _modems[deviceId];
-            else
-                modem = new RFDModem() { DeviceId = deviceId };
-            
-            // Update islocal
-            modem.IsLocal = isLocal;
-
-            AddLog($"{session.Initialize(modem)}");
-
-            // We now know what type of board we are dealing with
-            if (isLocal)
-                SetModem(session);
-
-            // --- This is where Board based range fixes were?
-
-            modem.RSSI = _modemComms.DoQueryWithRetry($"{commandPrefix}TI7", true).Trim();
-
-            var ati5Response = session.ATCClient.DoQueryWithMultiLineResponse($"{commandPrefix}TI5", $"{commandPrefix}TI");
-
-            bool Junk;
-
-            var Settings = session.GetSettings(false,
-                session.Board, ati5Response, null, out Junk);
-
-            modem.Settings = new TSettings(Collections.Translate(Settings, (x) => (TBaseSetting)x));
-
-            if (session.multipoint_fix == -1)
-            {
-                var aesKey = _modemComms.DoQueryWithRetry($"{commandPrefix}T&E?", true).Trim();
-                if (aesKey.Contains("ERROR"))
+                // Identify the device
+                string hexId = _modemComms.DoQueryWithRetry($"{commandPrefix}TI8", false).Trim();
+                if (string.IsNullOrWhiteSpace(hexId) || hexId.Contains("ERROR"))
                 {
-                    modem.AES_ENABLED = false;
+                    string deviceType = isLocal ? "local" : "remote";
+                    AddLog($"No {deviceType} device found");
+                    return false;
+                }
+                var deviceId = Convert.ToInt64(hexId, 16);
+
+                RFDModem modem;
+                if (_modems.ContainsKey(deviceId))
+                    modem = _modems[deviceId];
+                else
+                    modem = new RFDModem() { DeviceId = deviceId };
+
+                // Update islocal
+                modem.IsLocal = isLocal;
+
+                AddLog($"{session.Initialize(modem)}");
+
+                
+                // --- This is where Board based range fixes were?
+
+                modem.RSSI = _modemComms.DoQueryWithRetry($"{commandPrefix}TI7", true).Trim();
+
+                var ati5Response = session.ATCClient.DoQueryWithMultiLineResponse($"{commandPrefix}TI5", $"{commandPrefix}TI");
+
+                bool Junk;
+
+                var Settings = session.GetSettings(false,
+                    session.Board, ati5Response, null, out Junk);
+
+                modem.Settings = new TSettings(Collections.Translate(Settings, (x) => (TBaseSetting)x));
+
+                if (session.multipoint_fix == -1)
+                {
+                    var aesKey = _modemComms.DoQueryWithRetry($"{commandPrefix}T&E?", true).Trim();
+                    if (aesKey.Contains("ERROR"))
+                    {
+                        modem.AES_ENABLED = false;
+                    }
+                    else
+                    {
+                        modem.Get<TTextSetting>("AESKEY").SetValueFromString(aesKey);
+                        modem.AES_ENABLED = true;
+                    }
+
+                    // TODO is this needed?
+                    //SetupComboForMavlink(MAVLINK, false);
                 }
                 else
                 {
-                    modem.Get<TTextSetting>("AESKEY").SetValueFromString(aesKey);
-                    modem.AES_ENABLED = true;
+                    //local.AESKEY = "";
+                    modem.AES_ENABLED = false;
+                    // TODO is this needed?
+                    //SetupComboForMavlink(MAVLINK, true);
                 }
-                
-                // TODO is this needed?
-                //SetupComboForMavlink(MAVLINK, false);
+
+                if (_modems.ContainsKey(deviceId))
+                    _modems[modem.DeviceId] = modem;
+                else
+                    _modems.Add(deviceId, modem); //.Add(local);
+
+                return true;
+
             }
-            else
+            catch (Exception e)
             {
-                //local.AESKEY = "";
-                modem.AES_ENABLED = false;
-                // TODO is this needed?
-                //SetupComboForMavlink(MAVLINK, true);
+                AddLog($"Error Loading Config: {e.Message}");
             }
-
-            if (_modems.ContainsKey(deviceId))
-                _modems[modem.DeviceId] = modem;
-            else
-                _modems.Add(deviceId, modem); //.Add(local);
-
-            return true;
+            return false;
         }
 
         public void EndSession()
@@ -928,6 +934,7 @@ namespace RFDCommon
         {
             try
             {
+                
                 // Discard...
                 _modemComms.DiscardInBuffer();
 
@@ -938,8 +945,7 @@ namespace RFDCommon
 
                     var loaded = await LoadSettings(isLocal: true);
                     if (!loaded)
-                    {
-                        ShowBox("Load Failed", $"Failed to load local settings");
+                    {                        
                         return false;
                     }
 
@@ -1001,9 +1007,9 @@ namespace RFDCommon
                     _modemComms.DiscardInBuffer();
 
                     var remoteLoaded = await LoadSettings(isLocal: false);
-                    if (remoteLoaded)
+                    if (!remoteLoaded)
                     {
-                        AddLog("No remote loaded...");
+                        AddLog("No remote found");
                     }
                     #endregion
                                         
@@ -1176,7 +1182,7 @@ namespace RFDCommon
                         }
                         if (!cmdanswer.Contains("OK"))
                         {
-                            ShowBox("Command Failed","Set Command error");
+                            ShowBox("Command Failed",$"Set Command error setting {kvp.Value.Designator} to {kvp.Value.GetValueAsString()}");
                         }
 
                     }
@@ -1190,7 +1196,7 @@ namespace RFDCommon
                         }
                         else
                         {
-                            ShowBox("Command Failed","Set Command error");
+                            ShowBox("Command Failed", $"Set Command error setting {kvp.Value.Designator} to {kvp.Value.GetValueAsString()}");
                         }
                     }
                 }
@@ -1380,35 +1386,35 @@ namespace RFDCommon
             }
         }
 
-        public void SetModem(TSession session)
-        {
-            switch (session.Board)
-            {
-                case Uploader.Board.DEVICE_ID_RFD900X:
-                    Modem = new RFD900x(session);
-                    break;
-                case Uploader.Board.DEVICE_ID_RFD900X2:
-                    Modem = new RFD900X2(session);
-                    break;
-                case Uploader.Board.DEVICE_ID_RFD900P:
-                    Modem = new RFD900p(session);
-                    break;
-                case Uploader.Board.DEVICE_ID_RFD900A:
-                    Modem = new RFD900a(session);
-                    break;
-                case Uploader.Board.DEVICE_ID_RFD900UX:
-                    Modem = new RFD900ux(session);
-                    break;
-                case Uploader.Board.DEVICE_ID_RFD900UX2:
-                    Modem = new RFD900UX2(session);
-                    break;
-                case Uploader.Board.DEVICE_ID_RFD900U:
-                    Modem = new RFD900u(session);
-                    break;
-                default:
-                    break;
-            }
-        }
+        //public void SetModem(TSession session)
+        //{
+        //    switch (session.Board)
+        //    {
+        //        case Uploader.Board.DEVICE_ID_RFD900X:
+        //            Modem = new RFD900x(session);
+        //            break;
+        //        case Uploader.Board.DEVICE_ID_RFD900X2:
+        //            Modem = new RFD900X2(session);
+        //            break;
+        //        case Uploader.Board.DEVICE_ID_RFD900P:
+        //            Modem = new RFD900p(session);
+        //            break;
+        //        case Uploader.Board.DEVICE_ID_RFD900A:
+        //            Modem = new RFD900a(session);
+        //            break;
+        //        case Uploader.Board.DEVICE_ID_RFD900UX:
+        //            Modem = new RFD900ux(session);
+        //            break;
+        //        case Uploader.Board.DEVICE_ID_RFD900UX2:
+        //            Modem = new RFD900UX2(session);
+        //            break;
+        //        case Uploader.Board.DEVICE_ID_RFD900U:
+        //            Modem = new RFD900u(session);
+        //            break;
+        //        default:
+        //            break;
+        //    }
+        //}
 
         
 

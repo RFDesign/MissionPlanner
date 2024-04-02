@@ -57,90 +57,81 @@ namespace RFD.RFD900
         public string Initialize(RFDModem modem)
         {
             //ATCClient._Port.DiscardInBuffer();
-            string prefix = modem.IsLocal ? "A" : "R";
-            modem.ATI = ATCClient.DoQuery($"{prefix}TI", true);
-            modem.ATI1 = ATCClient.DoQuery($"{prefix}TI1", true);
-            modem.ATI2 = ATCClient.DoQuery($"{prefix}TI2", true);
-            var _ati5 = ATCClient.DoQueryWithMultiLineResponse($"{prefix}TI5",$"{prefix}TI");
-            
-
-            NumberStyles style = NumberStyles.Any;
-
-            //Set the text box to show the radio version
-            int multipoint_fix = -1;    //If this radio has multipoint firmware, the index within returned strings to use for returned values, otherwise -1.
-            
-            if (modem.ATI.StartsWith("["))
+            try
             {
-                multipoint_fix = modem.ATI.IndexOf(']') + 1;
-            }
+                string prefix = modem.IsLocal ? "A" : "R";
+                modem.ATI = ATCClient.DoQuery($"{prefix}TI", true, withRetry: true);
+                modem.ATI1 = ATCClient.DoQuery($"{prefix}TI1", true, withRetry: true);
+                modem.ATI2 = ATCClient.DoQuery($"{prefix}TI2", true, withRetry: true);                
+                var _ati5 = ATCClient.DoQueryWithMultiLineResponse($"{prefix}TI5", $"{prefix}TI");
 
-            var boardstring = modem.ATI2;
-            if (multipoint_fix > 0)
-            {
-                boardstring = boardstring.Substring(multipoint_fix).Trim();
-            }
+                NumberStyles style = NumberStyles.Any;
 
-            if (boardstring.ToLower().Contains("x"))
-                style = NumberStyles.AllowHexSpecifier;
+                //Set the text box to show the radio version
+                int multipoint_fix = -1;    //If this radio has multipoint firmware, the index within returned strings to use for returned values, otherwise -1.
 
-            var board = (Uploader.Board)Enum.Parse(typeof(Uploader.Board),int.Parse(boardstring.ToLower().Replace("x", ""), style).ToString());
-            if (modem.IsLocal)
-            {
-                Board = board;
-            }
-            modem.BOARD = board.ToString();
-
-            // Set firmware Type (Mode?)
-            if (modem.ATI.Contains("ASYNC"))
-            {
-                modem.Mode = FirmwareMode.ASYNC;
-            }
-            else
-            {
-                var items = _ati5.Split('\n');
-                if (modem.ATI.Contains("MP on") && (Board == Uploader.Board.DEVICE_ID_RFD900X))
+                if (modem.ATI.StartsWith("["))
                 {
-                    //This is multipoint firmware.
-                    modem.Mode = FirmwareMode.MULTIPOINT_X;
+                    multipoint_fix = modem.ATI.IndexOf(']') + 1;
                 }
-                else if ((items.Length > 0) && items[0].StartsWith("["))
+
+                var boardstring = modem.ATI2;
+                if (multipoint_fix > 0)
                 {
-                    modem.Mode = FirmwareMode.MULTIPOINT;
+                    boardstring = boardstring.Substring(multipoint_fix).Trim();
+                }
+
+                if (boardstring.ToLower().Contains("x"))
+                    style = NumberStyles.AllowHexSpecifier;
+
+                var board = (Uploader.Board)Enum.Parse(typeof(Uploader.Board), int.Parse(boardstring.ToLower().Replace("x", ""), style).ToString());
+                if (modem.IsLocal)
+                {
+                    Board = board;
+                }
+                modem.BOARD = board.ToString();
+
+                // Set firmware Type (Mode?)
+                if (modem.ATI.Contains("ASYNC"))
+                {
+                    modem.Mode = FirmwareMode.ASYNC;
                 }
                 else
                 {
-                    modem.Mode = FirmwareMode.P2P;
+                    var items = _ati5.Split('\n');
+                    if (modem.ATI.Contains("MP on") && (Board == Uploader.Board.DEVICE_ID_RFD900X))
+                    {
+                        //This is multipoint firmware.
+                        modem.Mode = FirmwareMode.MULTIPOINT_X;
+                    }
+                    else if ((items.Length > 0) && items[0].StartsWith("["))
+                    {
+                        modem.Mode = FirmwareMode.MULTIPOINT;
+                    }
+                    else
+                    {
+                        modem.Mode = FirmwareMode.P2P;
+                    }
                 }
+                _firmwareMode = modem.Mode;
+                
+                try
+                {
+                    modem.COUNTRY = GetCountryCodeFromSession((m) => m.GetCountryCode());
+                } 
+                catch
+                {
+                    // why is this a pain?
+                    modem.COUNTRY = "??";
+                }
+
+                modem.FREQ = ATCClient.DoQuery($"{prefix}TI3", true, withRetry: true);
+                return $"Firmware: {modem.Mode:G} - Version {modem.ATI1}";
             }
-            _firmwareMode = modem.Mode;
-
-            //Get the board frequency.
-            var freqstring = ATCClient.DoQuery($"{prefix}TI3", true).Trim();
-
-            //Some multipoint firmware versions don't reply to ATI command with [n] at start of reply, but they do for ATI3 command, so check for [n] again...
-            if (multipoint_fix < 0 && freqstring.StartsWith("["))
+            catch (Exception e)
             {
-                multipoint_fix = freqstring.IndexOf(']') + 1;
+                return $"Error: {e.Message}";
             }
-
-            if (multipoint_fix > 0)
-            {
-                freqstring = freqstring.Substring(multipoint_fix).Trim();
-            }
-
-            if (freqstring.ToLower().Contains("x"))
-                style = NumberStyles.AllowHexSpecifier;
-
-            var freq = (Uploader.Frequency)Enum.Parse(
-                typeof(Uploader.Frequency),
-                int.Parse(freqstring.ToLower().Replace("x", ""),
-                style
-            ).ToString());
-
-            modem.FREQ = freq.ToString();
-            modem.COUNTRY = GetCountryCodeFromSession((m) => m.GetCountryCode());
-
-            return $"Firmware: {modem.Mode:G} - Version {modem.ATI1}";
         }
 
         /// <summary>
@@ -195,7 +186,7 @@ namespace RFD.RFD900
 
         public void Dispose()
         {
-            //_Port.Close();
+            _Port.Close();
         }
 
         public bool WaitForToken(string Token, int MaxWait)
@@ -1353,11 +1344,11 @@ namespace RFD.RFD900
 
             for (ParamIndex = 0; ; ParamIndex++)
             {
-                string Line = ATCClient.DoQuery(Prefix + ParamIndex.ToString(), true);
+                string Line = ATCClient.DoQuery(Prefix + ParamIndex.ToString(), true, withRetry:true);
                 if (RFDLib.Text.Contains(Line, "error") || (Line.Length == 0))
                 {
                     // Retry once
-                    Line = ATCClient.DoQuery(Prefix + ParamIndex.ToString(), true);
+                    Line = ATCClient.DoQuery(Prefix + ParamIndex.ToString(), true, withRetry:true);
                     if (RFDLib.Text.Contains(Line, "ërror") || (Line.Length ==0))
                         return null;
                 }
@@ -2854,9 +2845,13 @@ namespace RFD.RFD900
         {
         }
 
-        public override string DoQuery(string Command, bool WaitForTerminator)
+        public override string DoQuery(string Command, bool WaitForTerminator, bool withRetry = false)
         {
             string Raw = base.DoQuery(Command, WaitForTerminator);
+            if (Raw == string.Empty && withRetry)
+            {
+                Raw = base.DoQuery(Command, WaitForTerminator,withRetry);
+            }
 
             if (Raw.StartsWith("[") && Raw.Contains("]") && ((Raw.IndexOf(']') + 1) < Raw.Length))
             {

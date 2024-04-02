@@ -32,7 +32,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Sikradio));
             this.Progressbar = new System.Windows.Forms.ProgressBar();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.RTSCTS = new System.Windows.Forms.CheckBox();
             this.SERIAL_SPEED = new System.Windows.Forms.ComboBox();
             this.ENCRYPTION_LEVEL = new System.Windows.Forms.ComboBox();
@@ -52,25 +51,21 @@
             this.MAVLINK = new System.Windows.Forms.ComboBox();
             this.LBT_RSSI = new System.Windows.Forms.ComboBox();
             this.NETID = new System.Windows.Forms.ComboBox();
-            this.comboPin14 = new System.Windows.Forms.ComboBox();
+            this.GPIO2 = new System.Windows.Forms.ComboBox();
             this.configManagerBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.pin14ItemsBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.comboPin13 = new System.Windows.Forms.ComboBox();
+            this.GPIO0 = new System.Windows.Forms.ComboBox();
             this.pin13ItemsBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.comboPin12 = new System.Windows.Forms.ComboBox();
+            this.GPIO3 = new System.Windows.Forms.ComboBox();
             this.pin12ItemsBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.comboPin15 = new System.Windows.Forms.ComboBox();
+            this.GPIO1 = new System.Windows.Forms.ComboBox();
             this.pin15ItemsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.checkBoxSync = new System.Windows.Forms.CheckBox();
             this.btn_Firmware = new FontAwesome.Sharp.IconButton();
-            this.BUT_SetPPMFailSafe = new MissionPlanner.Controls.MyButton();
-            this.lbl_status = new System.Windows.Forms.Label();
             this.FREQ = new System.Windows.Forms.TextBox();
             this.linkLabel_mavlink = new System.Windows.Forms.LinkLabel();
             this.linkLabel_lowlatency = new System.Windows.Forms.LinkLabel();
             this.label54 = new System.Windows.Forms.Label();
-            this.lblGPIO1_1FUNC = new System.Windows.Forms.Label();
-            this.GPIO1_1FUNC = new System.Windows.Forms.ComboBox();
             this.label49 = new System.Windows.Forms.Label();
             this.txtCountry = new System.Windows.Forms.TextBox();
             this.lblRX_ENCAP_METHOD = new System.Windows.Forms.Label();
@@ -164,6 +159,7 @@
             this.SER_BRK_DETMS_CHECK = new FontAwesome.Sharp.IconPictureBox();
             this.groupGPIO = new System.Windows.Forms.GroupBox();
             this.tableLayoutGPIO = new System.Windows.Forms.TableLayoutPanel();
+            this.btn_Failsafe = new FontAwesome.Sharp.IconButton();
             this.PIN_13_CHECK = new FontAwesome.Sharp.IconPictureBox();
             this.PIN_12_CHECK = new FontAwesome.Sharp.IconPictureBox();
             this.label19 = new System.Windows.Forms.Label();
@@ -172,26 +168,19 @@
             this.label18 = new System.Windows.Forms.Label();
             this.PIN_14_CHECK = new FontAwesome.Sharp.IconPictureBox();
             this.PIN_15_CHECK = new FontAwesome.Sharp.IconPictureBox();
-            this.lblSBUSOUT = new System.Windows.Forms.Label();
-            this.GPO1_3SBUSOUT = new System.Windows.Forms.ComboBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.GPO1_1SBUSOUT = new System.Windows.Forms.ComboBox();
             this.groupSecurity = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
+            this.btnGenerateKey = new FontAwesome.Sharp.IconButton();
             this.ENCRYPTION_LEVEL_CHECK = new FontAwesome.Sharp.IconPictureBox();
             this.AESKEY_CHECK = new FontAwesome.Sharp.IconPictureBox();
-            this.btnGenerateKey = new FontAwesome.Sharp.IconButton();
             this.flowLayoutActions = new System.Windows.Forms.FlowLayoutPanel();
             this.btn_SaveSetting = new FontAwesome.Sharp.IconButton();
             this.btn_LoadFile = new FontAwesome.Sharp.IconButton();
             this.btn_SaveFile = new FontAwesome.Sharp.IconButton();
             this.btn_Reset = new FontAwesome.Sharp.IconButton();
-            this.btn_Reboot = new FontAwesome.Sharp.IconButton();
-            this.flowLayoutConfig = new System.Windows.Forms.FlowLayoutPanel();
-            this.flowLayoutSerialPin = new System.Windows.Forms.FlowLayoutPanel();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.richTextHelp = new System.Windows.Forms.RichTextBox();
             this.groupInfo = new System.Windows.Forms.GroupBox();
+            this.tableLayoutMain = new System.Windows.Forms.TableLayoutPanel();
             ((System.ComponentModel.ISupportInitialize)(this.configManagerBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pin14ItemsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pin13ItemsBindingSource)).BeginInit();
@@ -245,10 +234,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.ENCRYPTION_LEVEL_CHECK)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.AESKEY_CHECK)).BeginInit();
             this.flowLayoutActions.SuspendLayout();
-            this.flowLayoutConfig.SuspendLayout();
-            this.flowLayoutSerialPin.SuspendLayout();
-            this.groupBox4.SuspendLayout();
             this.groupInfo.SuspendLayout();
+            this.tableLayoutMain.SuspendLayout();
             this.SuspendLayout();
             // 
             // Progressbar
@@ -256,14 +243,6 @@
             resources.ApplyResources(this.Progressbar, "Progressbar");
             this.Progressbar.Name = "Progressbar";
             this.Progressbar.Click += new System.EventHandler(this.Progressbar_Click);
-            // 
-            // linkLabel1
-            // 
-            resources.ApplyResources(this.linkLabel1, "linkLabel1");
-            this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.TabStop = true;
-            this.toolTip1.SetToolTip(this.linkLabel1, resources.GetString("linkLabel1.ToolTip"));
-            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
             // 
             // RTSCTS
             // 
@@ -334,8 +313,8 @@
             // 
             // FSFRAMELOSS
             // 
-            this.FSFRAMELOSS.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             resources.ApplyResources(this.FSFRAMELOSS, "FSFRAMELOSS");
+            this.FSFRAMELOSS.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.FSFRAMELOSS.FormattingEnabled = true;
             this.FSFRAMELOSS.Name = "FSFRAMELOSS";
             this.toolTip1.SetToolTip(this.FSFRAMELOSS, resources.GetString("FSFRAMELOSS.ToolTip"));
@@ -354,16 +333,6 @@
             resources.ApplyResources(this.AUXSER_SPEED, "AUXSER_SPEED");
             this.AUXSER_SPEED.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.AUXSER_SPEED.FormattingEnabled = true;
-            this.AUXSER_SPEED.Items.AddRange(new object[] {
-            resources.GetString("AUXSER_SPEED.Items"),
-            resources.GetString("AUXSER_SPEED.Items1"),
-            resources.GetString("AUXSER_SPEED.Items2"),
-            resources.GetString("AUXSER_SPEED.Items3"),
-            resources.GetString("AUXSER_SPEED.Items4"),
-            resources.GetString("AUXSER_SPEED.Items5"),
-            resources.GetString("AUXSER_SPEED.Items6"),
-            resources.GetString("AUXSER_SPEED.Items7"),
-            resources.GetString("AUXSER_SPEED.Items8")});
             this.AUXSER_SPEED.Name = "AUXSER_SPEED";
             this.toolTip1.SetToolTip(this.AUXSER_SPEED, resources.GetString("AUXSER_SPEED.ToolTip"));
             this.AUXSER_SPEED.Click += new System.EventHandler(this.Control_Clicked_ShowHelp);
@@ -527,6 +496,7 @@
             // MAVLINK
             // 
             resources.ApplyResources(this.MAVLINK, "MAVLINK");
+            this.MAVLINK.BackColor = System.Drawing.SystemColors.MenuHighlight;
             this.MAVLINK.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.MAVLINK.FormattingEnabled = true;
             this.MAVLINK.Name = "MAVLINK";
@@ -536,6 +506,7 @@
             // LBT_RSSI
             // 
             resources.ApplyResources(this.LBT_RSSI, "LBT_RSSI");
+            this.LBT_RSSI.BackColor = System.Drawing.SystemColors.Window;
             this.LBT_RSSI.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.LBT_RSSI.FormattingEnabled = true;
             this.LBT_RSSI.Items.AddRange(new object[] {
@@ -590,17 +561,17 @@
             this.toolTip1.SetToolTip(this.NETID, resources.GetString("NETID.ToolTip"));
             this.NETID.Click += new System.EventHandler(this.Control_Clicked_ShowHelp);
             // 
-            // comboPin14
+            // GPIO2
             // 
-            resources.ApplyResources(this.comboPin14, "comboPin14");
-            this.comboPin14.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.configManagerBindingSource, "PIN14", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.comboPin14.DataSource = this.pin14ItemsBindingSource;
-            this.comboPin14.DisplayMember = "Name";
-            this.comboPin14.FormattingEnabled = true;
-            this.comboPin14.Name = "comboPin14";
-            this.toolTip1.SetToolTip(this.comboPin14, resources.GetString("comboPin14.ToolTip"));
-            this.comboPin14.ValueMember = "Value";
-            this.comboPin14.Click += new System.EventHandler(this.Control_Clicked_ShowHelp);
+            resources.ApplyResources(this.GPIO2, "GPIO2");
+            this.GPIO2.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.configManagerBindingSource, "PIN14", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.GPIO2.DataSource = this.pin14ItemsBindingSource;
+            this.GPIO2.DisplayMember = "Name";
+            this.GPIO2.FormattingEnabled = true;
+            this.GPIO2.Name = "GPIO2";
+            this.toolTip1.SetToolTip(this.GPIO2, resources.GetString("GPIO2.ToolTip"));
+            this.GPIO2.ValueMember = "Value";
+            this.GPIO2.Click += new System.EventHandler(this.Control_Clicked_ShowHelp);
             // 
             // configManagerBindingSource
             // 
@@ -608,58 +579,58 @@
             // 
             // pin14ItemsBindingSource
             // 
-            this.pin14ItemsBindingSource.DataMember = "Pin14Items";
+            this.pin14ItemsBindingSource.DataMember = "GPIO2_Items";
             this.pin14ItemsBindingSource.DataSource = this.configManagerBindingSource;
             // 
-            // comboPin13
+            // GPIO0
             // 
-            resources.ApplyResources(this.comboPin13, "comboPin13");
-            this.comboPin13.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.configManagerBindingSource, "PIN13", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.comboPin13.DataSource = this.pin13ItemsBindingSource;
-            this.comboPin13.DisplayMember = "Name";
-            this.comboPin13.FormattingEnabled = true;
-            this.comboPin13.Name = "comboPin13";
-            this.toolTip1.SetToolTip(this.comboPin13, resources.GetString("comboPin13.ToolTip"));
-            this.comboPin13.ValueMember = "Value";
-            this.comboPin13.Click += new System.EventHandler(this.Control_Clicked_ShowHelp);
+            resources.ApplyResources(this.GPIO0, "GPIO0");
+            this.GPIO0.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.configManagerBindingSource, "PIN13", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.GPIO0.DataSource = this.pin13ItemsBindingSource;
+            this.GPIO0.DisplayMember = "Name";
+            this.GPIO0.FormattingEnabled = true;
+            this.GPIO0.Name = "GPIO0";
+            this.toolTip1.SetToolTip(this.GPIO0, resources.GetString("GPIO0.ToolTip"));
+            this.GPIO0.ValueMember = "Value";
+            this.GPIO0.Click += new System.EventHandler(this.Control_Clicked_ShowHelp);
             // 
             // pin13ItemsBindingSource
             // 
-            this.pin13ItemsBindingSource.DataMember = "Pin13Items";
+            this.pin13ItemsBindingSource.DataMember = "GPIO0_Items";
             this.pin13ItemsBindingSource.DataSource = this.configManagerBindingSource;
             // 
-            // comboPin12
+            // GPIO3
             // 
-            resources.ApplyResources(this.comboPin12, "comboPin12");
-            this.comboPin12.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.configManagerBindingSource, "PIN12", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.comboPin12.DataSource = this.pin12ItemsBindingSource;
-            this.comboPin12.DisplayMember = "Name";
-            this.comboPin12.FormattingEnabled = true;
-            this.comboPin12.Name = "comboPin12";
-            this.toolTip1.SetToolTip(this.comboPin12, resources.GetString("comboPin12.ToolTip"));
-            this.comboPin12.ValueMember = "Value";
-            this.comboPin12.Click += new System.EventHandler(this.Control_Clicked_ShowHelp);
+            resources.ApplyResources(this.GPIO3, "GPIO3");
+            this.GPIO3.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.configManagerBindingSource, "PIN12", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.GPIO3.DataSource = this.pin12ItemsBindingSource;
+            this.GPIO3.DisplayMember = "Name";
+            this.GPIO3.FormattingEnabled = true;
+            this.GPIO3.Name = "GPIO3";
+            this.toolTip1.SetToolTip(this.GPIO3, resources.GetString("GPIO3.ToolTip"));
+            this.GPIO3.ValueMember = "Value";
+            this.GPIO3.Click += new System.EventHandler(this.Control_Clicked_ShowHelp);
             // 
             // pin12ItemsBindingSource
             // 
-            this.pin12ItemsBindingSource.DataMember = "Pin12Items";
+            this.pin12ItemsBindingSource.DataMember = "GPIO3_Items";
             this.pin12ItemsBindingSource.DataSource = this.configManagerBindingSource;
             // 
-            // comboPin15
+            // GPIO1
             // 
-            resources.ApplyResources(this.comboPin15, "comboPin15");
-            this.comboPin15.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.configManagerBindingSource, "PIN15", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.comboPin15.DataSource = this.pin15ItemsBindingSource;
-            this.comboPin15.DisplayMember = "Name";
-            this.comboPin15.FormattingEnabled = true;
-            this.comboPin15.Name = "comboPin15";
-            this.toolTip1.SetToolTip(this.comboPin15, resources.GetString("comboPin15.ToolTip"));
-            this.comboPin15.ValueMember = "Value";
-            this.comboPin15.Click += new System.EventHandler(this.Control_Clicked_ShowHelp);
+            resources.ApplyResources(this.GPIO1, "GPIO1");
+            this.GPIO1.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.configManagerBindingSource, "PIN15", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.GPIO1.DataSource = this.pin15ItemsBindingSource;
+            this.GPIO1.DisplayMember = "Name";
+            this.GPIO1.FormattingEnabled = true;
+            this.GPIO1.Name = "GPIO1";
+            this.toolTip1.SetToolTip(this.GPIO1, resources.GetString("GPIO1.ToolTip"));
+            this.GPIO1.ValueMember = "Value";
+            this.GPIO1.Click += new System.EventHandler(this.Control_Clicked_ShowHelp);
             // 
             // pin15ItemsBindingSource
             // 
-            this.pin15ItemsBindingSource.DataMember = "Pin15Items";
+            this.pin15ItemsBindingSource.DataMember = "GPIO1_Items";
             this.pin15ItemsBindingSource.DataSource = this.configManagerBindingSource;
             // 
             // checkBoxSync
@@ -686,20 +657,6 @@
             this.btn_Firmware.UseVisualStyleBackColor = true;
             this.btn_Firmware.Click += new System.EventHandler(this.btn_Firmware_Click);
             // 
-            // BUT_SetPPMFailSafe
-            // 
-            resources.ApplyResources(this.BUT_SetPPMFailSafe, "BUT_SetPPMFailSafe");
-            this.BUT_SetPPMFailSafe.Name = "BUT_SetPPMFailSafe";
-            this.BUT_SetPPMFailSafe.UseVisualStyleBackColor = true;
-            this.BUT_SetPPMFailSafe.Click += new System.EventHandler(this.BUT_SetPPMFailSafe_Click);
-            // 
-            // lbl_status
-            // 
-            this.lbl_status.BackColor = System.Drawing.Color.Transparent;
-            resources.ApplyResources(this.lbl_status, "lbl_status");
-            this.lbl_status.Name = "lbl_status";
-            this.lbl_status.UseMnemonic = false;
-            // 
             // FREQ
             // 
             resources.ApplyResources(this.FREQ, "FREQ");
@@ -725,18 +682,6 @@
             // 
             resources.ApplyResources(this.label54, "label54");
             this.label54.Name = "label54";
-            // 
-            // lblGPIO1_1FUNC
-            // 
-            resources.ApplyResources(this.lblGPIO1_1FUNC, "lblGPIO1_1FUNC");
-            this.lblGPIO1_1FUNC.Name = "lblGPIO1_1FUNC";
-            // 
-            // GPIO1_1FUNC
-            // 
-            this.GPIO1_1FUNC.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            resources.ApplyResources(this.GPIO1_1FUNC, "GPIO1_1FUNC");
-            this.GPIO1_1FUNC.FormattingEnabled = true;
-            this.GPIO1_1FUNC.Name = "GPIO1_1FUNC";
             // 
             // label49
             // 
@@ -908,9 +853,10 @@
             // groupFirmware
             // 
             this.groupFirmware.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(29)))), ((int)(((byte)(46)))));
+            this.tableLayoutMain.SetColumnSpan(this.groupFirmware, 6);
             this.groupFirmware.Controls.Add(this.tableLayoutDevice);
-            this.groupFirmware.ForeColor = System.Drawing.Color.White;
             resources.ApplyResources(this.groupFirmware, "groupFirmware");
+            this.groupFirmware.ForeColor = System.Drawing.Color.White;
             this.groupFirmware.Name = "groupFirmware";
             this.groupFirmware.TabStop = false;
             // 
@@ -1020,10 +966,12 @@
             // groupRadio
             // 
             this.groupRadio.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(29)))), ((int)(((byte)(46)))));
+            this.tableLayoutMain.SetColumnSpan(this.groupRadio, 6);
             this.groupRadio.Controls.Add(this.tableRadio);
-            this.groupRadio.ForeColor = System.Drawing.Color.White;
             resources.ApplyResources(this.groupRadio, "groupRadio");
+            this.groupRadio.ForeColor = System.Drawing.Color.White;
             this.groupRadio.Name = "groupRadio";
+            this.tableLayoutMain.SetRowSpan(this.groupRadio, 2);
             this.groupRadio.TabStop = false;
             // 
             // tableRadio
@@ -1258,47 +1206,17 @@
             resources.ApplyResources(this.MAX_WINDOW, "MAX_WINDOW");
             this.MAX_WINDOW.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.MAX_WINDOW.FormattingEnabled = true;
-            this.MAX_WINDOW.Items.AddRange(new object[] {
-            resources.GetString("MAX_WINDOW.Items"),
-            resources.GetString("MAX_WINDOW.Items1"),
-            resources.GetString("MAX_WINDOW.Items2"),
-            resources.GetString("MAX_WINDOW.Items3"),
-            resources.GetString("MAX_WINDOW.Items4"),
-            resources.GetString("MAX_WINDOW.Items5"),
-            resources.GetString("MAX_WINDOW.Items6"),
-            resources.GetString("MAX_WINDOW.Items7"),
-            resources.GetString("MAX_WINDOW.Items8"),
-            resources.GetString("MAX_WINDOW.Items9"),
-            resources.GetString("MAX_WINDOW.Items10"),
-            resources.GetString("MAX_WINDOW.Items11"),
-            resources.GetString("MAX_WINDOW.Items12"),
-            resources.GetString("MAX_WINDOW.Items13"),
-            resources.GetString("MAX_WINDOW.Items14"),
-            resources.GetString("MAX_WINDOW.Items15"),
-            resources.GetString("MAX_WINDOW.Items16"),
-            resources.GetString("MAX_WINDOW.Items17"),
-            resources.GetString("MAX_WINDOW.Items18"),
-            resources.GetString("MAX_WINDOW.Items19"),
-            resources.GetString("MAX_WINDOW.Items20"),
-            resources.GetString("MAX_WINDOW.Items21"),
-            resources.GetString("MAX_WINDOW.Items22"),
-            resources.GetString("MAX_WINDOW.Items23"),
-            resources.GetString("MAX_WINDOW.Items24"),
-            resources.GetString("MAX_WINDOW.Items25"),
-            resources.GetString("MAX_WINDOW.Items26"),
-            resources.GetString("MAX_WINDOW.Items27"),
-            resources.GetString("MAX_WINDOW.Items28"),
-            resources.GetString("MAX_WINDOW.Items29"),
-            resources.GetString("MAX_WINDOW.Items30")});
             this.MAX_WINDOW.Name = "MAX_WINDOW";
             this.MAX_WINDOW.Click += new System.EventHandler(this.Control_Clicked_ShowHelp);
             // 
             // RSSI
             // 
-            resources.ApplyResources(this.RSSI, "RSSI");
+            this.RSSI.BackColor = System.Drawing.SystemColors.ControlDark;
             this.tableRadio.SetColumnSpan(this.RSSI, 4);
             this.RSSI.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.configManagerBindingSource, "RSSI", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            resources.ApplyResources(this.RSSI, "RSSI");
             this.RSSI.Name = "RSSI";
+            this.RSSI.ReadOnly = true;
             this.RSSI.Click += new System.EventHandler(this.Control_Clicked_ShowHelp);
             // 
             // label14
@@ -1391,9 +1309,10 @@
             // groupSerial
             // 
             this.groupSerial.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(29)))), ((int)(((byte)(46)))));
+            this.tableLayoutMain.SetColumnSpan(this.groupSerial, 3);
             this.groupSerial.Controls.Add(this.tableLayoutSerial);
-            this.groupSerial.ForeColor = System.Drawing.Color.White;
             resources.ApplyResources(this.groupSerial, "groupSerial");
+            this.groupSerial.ForeColor = System.Drawing.Color.White;
             this.groupSerial.Name = "groupSerial";
             this.groupSerial.TabStop = false;
             // 
@@ -1455,6 +1374,7 @@
             // groupData
             // 
             this.groupData.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(29)))), ((int)(((byte)(46)))));
+            this.tableLayoutMain.SetColumnSpan(this.groupData, 6);
             this.groupData.Controls.Add(this.tableLayoutData);
             this.groupData.ForeColor = System.Drawing.Color.White;
             resources.ApplyResources(this.groupData, "groupData");
@@ -1589,28 +1509,45 @@
             // groupGPIO
             // 
             this.groupGPIO.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(29)))), ((int)(((byte)(46)))));
+            this.tableLayoutMain.SetColumnSpan(this.groupGPIO, 6);
             this.groupGPIO.Controls.Add(this.tableLayoutGPIO);
-            this.groupGPIO.ForeColor = System.Drawing.Color.White;
             resources.ApplyResources(this.groupGPIO, "groupGPIO");
+            this.groupGPIO.ForeColor = System.Drawing.Color.White;
             this.groupGPIO.Name = "groupGPIO";
             this.groupGPIO.TabStop = false;
             // 
             // tableLayoutGPIO
             // 
             resources.ApplyResources(this.tableLayoutGPIO, "tableLayoutGPIO");
-            this.tableLayoutGPIO.Controls.Add(this.PIN_13_CHECK, 2, 1);
-            this.tableLayoutGPIO.Controls.Add(this.PIN_12_CHECK, 2, 0);
-            this.tableLayoutGPIO.Controls.Add(this.comboPin14, 1, 2);
-            this.tableLayoutGPIO.Controls.Add(this.comboPin13, 1, 1);
-            this.tableLayoutGPIO.Controls.Add(this.comboPin12, 1, 0);
-            this.tableLayoutGPIO.Controls.Add(this.label19, 0, 3);
-            this.tableLayoutGPIO.Controls.Add(this.label16, 0, 1);
-            this.tableLayoutGPIO.Controls.Add(this.label17, 0, 0);
+            this.tableLayoutGPIO.Controls.Add(this.btn_Failsafe, 3, 2);
+            this.tableLayoutGPIO.Controls.Add(this.PIN_13_CHECK, 2, 0);
+            this.tableLayoutGPIO.Controls.Add(this.PIN_12_CHECK, 2, 3);
+            this.tableLayoutGPIO.Controls.Add(this.GPIO2, 1, 2);
+            this.tableLayoutGPIO.Controls.Add(this.GPIO0, 1, 0);
+            this.tableLayoutGPIO.Controls.Add(this.GPIO3, 1, 3);
+            this.tableLayoutGPIO.Controls.Add(this.label19, 0, 1);
+            this.tableLayoutGPIO.Controls.Add(this.FSFRAMELOSS, 4, 1);
+            this.tableLayoutGPIO.Controls.Add(this.label16, 0, 0);
+            this.tableLayoutGPIO.Controls.Add(this.label17, 0, 3);
             this.tableLayoutGPIO.Controls.Add(this.label18, 0, 2);
-            this.tableLayoutGPIO.Controls.Add(this.comboPin15, 1, 3);
+            this.tableLayoutGPIO.Controls.Add(this.GPIO1, 1, 1);
             this.tableLayoutGPIO.Controls.Add(this.PIN_14_CHECK, 2, 2);
-            this.tableLayoutGPIO.Controls.Add(this.PIN_15_CHECK, 2, 3);
+            this.tableLayoutGPIO.Controls.Add(this.PIN_15_CHECK, 2, 1);
+            this.tableLayoutGPIO.Controls.Add(this.label54, 3, 1);
             this.tableLayoutGPIO.Name = "tableLayoutGPIO";
+            // 
+            // btn_Failsafe
+            // 
+            this.tableLayoutGPIO.SetColumnSpan(this.btn_Failsafe, 3);
+            resources.ApplyResources(this.btn_Failsafe, "btn_Failsafe");
+            this.btn_Failsafe.ForeColor = System.Drawing.Color.Black;
+            this.btn_Failsafe.IconChar = FontAwesome.Sharp.IconChar.Signal;
+            this.btn_Failsafe.IconColor = System.Drawing.Color.Black;
+            this.btn_Failsafe.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btn_Failsafe.IconSize = 24;
+            this.btn_Failsafe.Name = "btn_Failsafe";
+            this.tableLayoutGPIO.SetRowSpan(this.btn_Failsafe, 2);
+            this.btn_Failsafe.UseVisualStyleBackColor = true;
             // 
             // PIN_13_CHECK
             // 
@@ -1680,43 +1617,20 @@
             this.PIN_15_CHECK.Name = "PIN_15_CHECK";
             this.PIN_15_CHECK.TabStop = false;
             // 
-            // lblSBUSOUT
-            // 
-            resources.ApplyResources(this.lblSBUSOUT, "lblSBUSOUT");
-            this.lblSBUSOUT.Name = "lblSBUSOUT";
-            // 
-            // GPO1_3SBUSOUT
-            // 
-            this.GPO1_3SBUSOUT.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            resources.ApplyResources(this.GPO1_3SBUSOUT, "GPO1_3SBUSOUT");
-            this.GPO1_3SBUSOUT.FormattingEnabled = true;
-            this.GPO1_3SBUSOUT.Name = "GPO1_3SBUSOUT";
-            // 
-            // label8
-            // 
-            resources.ApplyResources(this.label8, "label8");
-            this.label8.Name = "label8";
-            // 
-            // GPO1_1SBUSOUT
-            // 
-            this.GPO1_1SBUSOUT.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            resources.ApplyResources(this.GPO1_1SBUSOUT, "GPO1_1SBUSOUT");
-            this.GPO1_1SBUSOUT.FormattingEnabled = true;
-            this.GPO1_1SBUSOUT.Name = "GPO1_1SBUSOUT";
-            // 
             // groupSecurity
             // 
             this.groupSecurity.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(29)))), ((int)(((byte)(46)))));
+            this.tableLayoutMain.SetColumnSpan(this.groupSecurity, 3);
             this.groupSecurity.Controls.Add(this.tableLayoutPanel3);
-            this.groupSecurity.Controls.Add(this.btnGenerateKey);
-            this.groupSecurity.ForeColor = System.Drawing.Color.White;
             resources.ApplyResources(this.groupSecurity, "groupSecurity");
+            this.groupSecurity.ForeColor = System.Drawing.Color.White;
             this.groupSecurity.Name = "groupSecurity";
             this.groupSecurity.TabStop = false;
             // 
             // tableLayoutPanel3
             // 
             resources.ApplyResources(this.tableLayoutPanel3, "tableLayoutPanel3");
+            this.tableLayoutPanel3.Controls.Add(this.btnGenerateKey, 0, 2);
             this.tableLayoutPanel3.Controls.Add(this.ENCRYPTION_LEVEL_CHECK, 2, 0);
             this.tableLayoutPanel3.Controls.Add(this.AESKEY, 1, 1);
             this.tableLayoutPanel3.Controls.Add(this.lblENCRYPTION_LEVEL, 0, 0);
@@ -1724,6 +1638,19 @@
             this.tableLayoutPanel3.Controls.Add(this.ENCRYPTION_LEVEL, 1, 0);
             this.tableLayoutPanel3.Controls.Add(this.AESKEY_CHECK, 2, 1);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
+            // 
+            // btnGenerateKey
+            // 
+            this.tableLayoutPanel3.SetColumnSpan(this.btnGenerateKey, 3);
+            resources.ApplyResources(this.btnGenerateKey, "btnGenerateKey");
+            this.btnGenerateKey.ForeColor = System.Drawing.Color.Black;
+            this.btnGenerateKey.IconChar = FontAwesome.Sharp.IconChar.Key;
+            this.btnGenerateKey.IconColor = System.Drawing.Color.Black;
+            this.btnGenerateKey.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnGenerateKey.IconSize = 24;
+            this.btnGenerateKey.Name = "btnGenerateKey";
+            this.tableLayoutPanel3.SetRowSpan(this.btnGenerateKey, 2);
+            this.btnGenerateKey.UseVisualStyleBackColor = true;
             // 
             // ENCRYPTION_LEVEL_CHECK
             // 
@@ -1749,18 +1676,6 @@
             this.AESKEY_CHECK.Name = "AESKEY_CHECK";
             this.AESKEY_CHECK.TabStop = false;
             // 
-            // btnGenerateKey
-            // 
-            resources.ApplyResources(this.btnGenerateKey, "btnGenerateKey");
-            this.btnGenerateKey.ForeColor = System.Drawing.Color.Black;
-            this.btnGenerateKey.IconChar = FontAwesome.Sharp.IconChar.Key;
-            this.btnGenerateKey.IconColor = System.Drawing.Color.Black;
-            this.btnGenerateKey.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnGenerateKey.IconSize = 24;
-            this.btnGenerateKey.Name = "btnGenerateKey";
-            this.btnGenerateKey.UseVisualStyleBackColor = true;
-            this.btnGenerateKey.Click += new System.EventHandler(this.btnGenerateKey_Click);
-            // 
             // flowLayoutActions
             // 
             this.flowLayoutActions.Controls.Add(this.btn_LoadSetting);
@@ -1769,8 +1684,8 @@
             this.flowLayoutActions.Controls.Add(this.btn_SaveFile);
             this.flowLayoutActions.Controls.Add(this.btn_Reset);
             this.flowLayoutActions.Controls.Add(this.btn_Firmware);
-            this.flowLayoutActions.Controls.Add(this.btn_Reboot);
             this.flowLayoutActions.Controls.Add(this.checkBoxSync);
+            this.flowLayoutActions.Controls.Add(this.Progressbar);
             resources.ApplyResources(this.flowLayoutActions, "flowLayoutActions");
             this.flowLayoutActions.Name = "flowLayoutActions";
             // 
@@ -1830,59 +1745,6 @@
             this.btn_Reset.UseVisualStyleBackColor = true;
             this.btn_Reset.Click += new System.EventHandler(this.btn_Reset_Click);
             // 
-            // btn_Reboot
-            // 
-            this.btn_Reboot.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(73)))), ((int)(((byte)(82)))), ((int)(((byte)(110)))));
-            this.btn_Reboot.FlatAppearance.BorderSize = 2;
-            resources.ApplyResources(this.btn_Reboot, "btn_Reboot");
-            this.btn_Reboot.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(73)))), ((int)(((byte)(82)))), ((int)(((byte)(110)))));
-            this.btn_Reboot.IconChar = FontAwesome.Sharp.IconChar.PowerOff;
-            this.btn_Reboot.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(73)))), ((int)(((byte)(82)))), ((int)(((byte)(110)))));
-            this.btn_Reboot.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btn_Reboot.IconSize = 24;
-            this.btn_Reboot.Name = "btn_Reboot";
-            this.btn_Reboot.UseVisualStyleBackColor = true;
-            this.btn_Reboot.Click += new System.EventHandler(this.btnReboot_Click);
-            // 
-            // flowLayoutConfig
-            // 
-            resources.ApplyResources(this.flowLayoutConfig, "flowLayoutConfig");
-            this.flowLayoutConfig.Controls.Add(this.groupFirmware);
-            this.flowLayoutConfig.Controls.Add(this.groupSerial);
-            this.flowLayoutConfig.Controls.Add(this.groupRadio);
-            this.flowLayoutConfig.Controls.Add(this.flowLayoutSerialPin);
-            this.flowLayoutConfig.Controls.Add(this.groupData);
-            this.flowLayoutConfig.Controls.Add(this.groupBox4);
-            this.flowLayoutConfig.Name = "flowLayoutConfig";
-            // 
-            // flowLayoutSerialPin
-            // 
-            this.flowLayoutSerialPin.Controls.Add(this.groupSecurity);
-            this.flowLayoutSerialPin.Controls.Add(this.groupGPIO);
-            resources.ApplyResources(this.flowLayoutSerialPin, "flowLayoutSerialPin");
-            this.flowLayoutSerialPin.Name = "flowLayoutSerialPin";
-            // 
-            // groupBox4
-            // 
-            this.groupBox4.Controls.Add(this.Progressbar);
-            this.groupBox4.Controls.Add(this.linkLabel1);
-            this.groupBox4.Controls.Add(this.linkLabel_lowlatency);
-            this.groupBox4.Controls.Add(this.lbl_status);
-            this.groupBox4.Controls.Add(this.linkLabel_mavlink);
-            this.groupBox4.Controls.Add(this.lblSBUSOUT);
-            this.groupBox4.Controls.Add(this.GPO1_3SBUSOUT);
-            this.groupBox4.Controls.Add(this.BUT_SetPPMFailSafe);
-            this.groupBox4.Controls.Add(this.FSFRAMELOSS);
-            this.groupBox4.Controls.Add(this.label54);
-            this.groupBox4.Controls.Add(this.GPIO1_1FUNC);
-            this.groupBox4.Controls.Add(this.label8);
-            this.groupBox4.Controls.Add(this.lblGPIO1_1FUNC);
-            this.groupBox4.Controls.Add(this.GPO1_1SBUSOUT);
-            resources.ApplyResources(this.groupBox4, "groupBox4");
-            this.groupBox4.ForeColor = System.Drawing.Color.White;
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.TabStop = false;
-            // 
             // richTextHelp
             // 
             this.richTextHelp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(29)))), ((int)(((byte)(46)))));
@@ -1896,18 +1758,33 @@
             // groupInfo
             // 
             resources.ApplyResources(this.groupInfo, "groupInfo");
+            this.tableLayoutMain.SetColumnSpan(this.groupInfo, 2);
             this.groupInfo.Controls.Add(this.richTextHelp);
             this.groupInfo.ForeColor = System.Drawing.Color.White;
             this.groupInfo.Name = "groupInfo";
+            this.tableLayoutMain.SetRowSpan(this.groupInfo, 5);
             this.groupInfo.TabStop = false;
+            // 
+            // tableLayoutMain
+            // 
+            resources.ApplyResources(this.tableLayoutMain, "tableLayoutMain");
+            this.tableLayoutMain.Controls.Add(this.linkLabel_lowlatency, 7, 5);
+            this.tableLayoutMain.Controls.Add(this.groupData, 0, 5);
+            this.tableLayoutMain.Controls.Add(this.linkLabel_mavlink, 6, 5);
+            this.tableLayoutMain.Controls.Add(this.groupSecurity, 3, 3);
+            this.tableLayoutMain.Controls.Add(this.groupSerial, 0, 3);
+            this.tableLayoutMain.Controls.Add(this.groupFirmware, 0, 0);
+            this.tableLayoutMain.Controls.Add(this.groupRadio, 0, 1);
+            this.tableLayoutMain.Controls.Add(this.groupInfo, 6, 0);
+            this.tableLayoutMain.Controls.Add(this.groupGPIO, 0, 4);
+            this.tableLayoutMain.Name = "tableLayoutMain";
             // 
             // Sikradio
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(29)))), ((int)(((byte)(46)))));
             this.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.Controls.Add(this.groupInfo);
-            this.Controls.Add(this.flowLayoutConfig);
+            this.Controls.Add(this.tableLayoutMain);
             this.Controls.Add(this.flowLayoutActions);
             resources.ApplyResources(this, "$this");
             this.Name = "Sikradio";
@@ -1959,6 +1836,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.SER_BRK_DETMS_CHECK)).EndInit();
             this.groupGPIO.ResumeLayout(false);
             this.tableLayoutGPIO.ResumeLayout(false);
+            this.tableLayoutGPIO.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PIN_13_CHECK)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PIN_12_CHECK)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PIN_14_CHECK)).EndInit();
@@ -1970,11 +1848,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.AESKEY_CHECK)).EndInit();
             this.flowLayoutActions.ResumeLayout(false);
             this.flowLayoutActions.PerformLayout();
-            this.flowLayoutConfig.ResumeLayout(false);
-            this.flowLayoutSerialPin.ResumeLayout(false);
-            this.groupBox4.ResumeLayout(false);
-            this.groupBox4.PerformLayout();
             this.groupInfo.ResumeLayout(false);
+            this.tableLayoutMain.ResumeLayout(false);
+            this.tableLayoutMain.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1982,12 +1858,9 @@
 
         #endregion
         private System.Windows.Forms.ProgressBar Progressbar;
-        private System.Windows.Forms.Label lbl_status;
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.TextBox FREQ;
-        private System.Windows.Forms.LinkLabel linkLabel1;
         private System.Windows.Forms.TextBox ATI2;
-        private Controls.MyButton BUT_SetPPMFailSafe;
         private System.Windows.Forms.Label lblRX_ENCAP_METHOD;
         private System.Windows.Forms.ComboBox RX_ENCAP_METHOD;
         private System.Windows.Forms.Label lblTX_ENCAP_METHOD;
@@ -2018,8 +1891,6 @@
         private System.Windows.Forms.TextBox txtCountry;
         private System.Windows.Forms.Label label49;
         private System.Windows.Forms.ComboBox ENCRYPTION_LEVEL;
-        private System.Windows.Forms.Label lblGPIO1_1FUNC;
-        private System.Windows.Forms.ComboBox GPIO1_1FUNC;
         private System.Windows.Forms.Label label54;
         private System.Windows.Forms.ComboBox FSFRAMELOSS;
         private System.Windows.Forms.SaveFileDialog dlgSave;
@@ -2033,11 +1904,7 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.GroupBox groupGPIO;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.ComboBox GPO1_1SBUSOUT;
         private System.Windows.Forms.GroupBox groupSecurity;
-        private System.Windows.Forms.Label lblSBUSOUT;
-        private System.Windows.Forms.ComboBox GPO1_3SBUSOUT;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutActions;
         private System.Windows.Forms.BindingSource configManagerBindingSource;
         private FontAwesome.Sharp.IconButton btn_LoadSetting;
@@ -2056,18 +1923,15 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
         private FontAwesome.Sharp.IconButton iconButton1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutGPIO;
-        private FontAwesome.Sharp.IconButton btnGenerateKey;
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Label label18;
-        private System.Windows.Forms.ComboBox comboPin15;
-        private System.Windows.Forms.ComboBox comboPin14;
-        private System.Windows.Forms.ComboBox comboPin13;
-        private System.Windows.Forms.ComboBox comboPin12;
-        private FontAwesome.Sharp.IconButton btn_Reboot;
+        private System.Windows.Forms.ComboBox GPIO1;
+        private System.Windows.Forms.ComboBox GPIO2;
+        private System.Windows.Forms.ComboBox GPIO0;
+        private System.Windows.Forms.ComboBox GPIO3;
         private System.Windows.Forms.TableLayoutPanel tableLayoutData;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutConfig;
         private System.Windows.Forms.RichTextBox richTextHelp;
         private System.Windows.Forms.GroupBox groupInfo;
         private FontAwesome.Sharp.IconPictureBox ATI_CHECK;
@@ -2137,12 +2001,13 @@
         private FontAwesome.Sharp.IconPictureBox TX_ENCAP_METHOD_CHECK;
         private FontAwesome.Sharp.IconPictureBox DESTID_CHECK;
         private FontAwesome.Sharp.IconPictureBox NODEID_CHECK;
-        private System.Windows.Forms.GroupBox groupBox4;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutSerialPin;
         private System.Windows.Forms.BindingSource pin14ItemsBindingSource;
         private System.Windows.Forms.BindingSource pin13ItemsBindingSource;
         private System.Windows.Forms.BindingSource pin12ItemsBindingSource;
         private System.Windows.Forms.BindingSource pin15ItemsBindingSource;
         private System.Windows.Forms.CheckBox checkBoxSync;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutMain;
+        private FontAwesome.Sharp.IconButton btn_Failsafe;
+        private FontAwesome.Sharp.IconButton btnGenerateKey;
     }
 }

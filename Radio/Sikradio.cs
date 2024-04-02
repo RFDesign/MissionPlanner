@@ -28,6 +28,7 @@ using RFDCommon.RFDLib;
 using System.Threading.Tasks;
 using FontAwesome.Sharp;
 using System.Windows.Media;
+using System.Diagnostics;
 
 
 namespace MissionPlanner.Radio
@@ -207,7 +208,8 @@ S15: MAX_WINDOW=131
             } 
             else
             {
-                
+                ClearBindings();
+                _configManager.ClearSettings();
             }
             // Init or De-Init the form?
             CheckControlStates();
@@ -231,6 +233,10 @@ S15: MAX_WINDOW=131
         {            
             foreach (Control c in controls)
             {
+                // Dont mess with Devices section enabled...
+                if (c.Name == groupFirmware.Name)
+                    return;
+
                 // Dont mess with this control...
                 if (c.Name == comboModemSelection.Name)
                     continue;
@@ -239,11 +245,33 @@ S15: MAX_WINDOW=131
                 if (c is Label)
                     continue;
 
+                // Checks for unused checkboxes to prevent enable
+                if (c is ComboBox  && setState == true)
+                {
+                    // Dont enable controls with no options, or only a single option.
+                    var cb = c as ComboBox;
+                    if (cb.Items.Count == 0)
+                        cb.Items.Add("N/A");
+                    if (cb.Items.Count == 1)
+                    {
+                        cb.SelectedIndex = 0;
+                        continue;
+                    }
+                    if (_configManager.Current?.Settings?.Settings != null && !_configManager.Current.Settings.Settings.ContainsKey(c.Name) && !c.Name.StartsWith("GPIO"))
+                        continue;
+                }
+
+                // Prevent enable on unused checkboxes
+                if (c is CheckBox && setState == true)
+                {
+                    if (_configManager.Current?.Settings?.Settings != null && !_configManager.Current.Settings.Settings.ContainsKey(c.Name))
+                        continue;
+                }
+                
                 c.Enabled = setState;
-                if (c.Controls.Count > 0)
+                if (c.Controls.Count > 0 && recursive)
                 {                    
-                    if (recursive)
-                        SetEnabled(c.Controls, setState, recursive);
+                    SetEnabled(c.Controls, setState, recursive);
                 }
             }            
         }        
@@ -367,7 +395,7 @@ S15: MAX_WINDOW=131
                 if (level == 0)
                 {
                     Console.Write(message);
-                    lbl_status.Text = message;
+                    //lbl_status.Text = message;
                     log.Info(message);
                     Application.DoEvents();
                 }
@@ -387,7 +415,7 @@ S15: MAX_WINDOW=131
             {
                 if (level == 0)
                 {
-                    lbl_status.Text = message;
+                    //lbl_status.Text = message;
                     Console.WriteLine(message);
                     log.Info(message);
                     Application.DoEvents();
@@ -620,6 +648,9 @@ S15: MAX_WINDOW=131
 
         void CheckControlStates()
         {
+#if DEBUG
+            var sw = Stopwatch.StartNew();
+#endif
             //groupData.Enabled = _configManager.DataEnabled;
             //groupFirmware.Enabled = _configManager.DeviceGroupEnabled;
             //groupRadio.Enabled = _configManager.RadioEnabled;
@@ -628,21 +659,21 @@ S15: MAX_WINDOW=131
             //groupGPIO.Enabled = _configManager.PinEnabled;
 
             // Apparently the order is important inside a flow layout /sigh
-            groupFirmware.Visible = _configManager.DeviceGroupEnabled;
-            groupSerial.Visible = _configManager.SerialEnabled;
-            groupRadio.Visible = _configManager.RadioEnabled;
-            groupSecurity.Visible = _configManager.SecurityEnabled;
-            groupGPIO.Visible = _configManager.PinEnabled;
+            //groupFirmware.Visible = _configManager.DeviceGroupEnabled;
+            //groupSerial.Visible = _configManager.SerialEnabled;
+            //groupRadio.Visible = _configManager.RadioEnabled;
+            //groupSecurity.Visible = _configManager.SecurityEnabled;
+            //groupGPIO.Visible = _configManager.PinEnabled;
             groupData.Visible = _configManager.DataEnabled;
-            groupInfo.Visible = _configManager.InfoEnabled;
+            //groupInfo.Visible = _configManager.InfoEnabled;
 
-            SetEnabled(groupFirmware.Controls, _configManager.DeviceGroupEnabled, true);
+            //SetEnabled(groupFirmware.Controls, _configManager.DeviceGroupEnabled, true);
             SetEnabled(groupSerial.Controls, _configManager.SerialEnabled, true);
             SetEnabled(groupRadio.Controls, _configManager.RadioEnabled, true);
             SetEnabled(groupSecurity.Controls, _configManager.SecurityEnabled, true);
             SetEnabled(groupGPIO.Controls, _configManager.PinEnabled, true);
             SetEnabled(groupData.Controls, _configManager.DataEnabled, true);
-            SetEnabled(groupInfo.Controls, _configManager.InfoEnabled, true);
+            //SetEnabled(groupInfo.Controls, _configManager.InfoEnabled, true);
 
             btn_LoadSetting.Enabled = _configManager.LoadEnabled;
             btn_SaveSetting.Enabled = _configManager.SaveEnabled;
@@ -650,21 +681,27 @@ S15: MAX_WINDOW=131
             btn_SaveFile.Enabled = _configManager.ExportEnabled;
             btn_Reset.Enabled = _configManager.ResetEnabled;
             btn_Firmware.Enabled = _configManager.FirmwareEnabled;
-            btn_Reboot.Enabled = _configManager.ResetEnabled;
+            
+
+#if DEBUG
+            _configManager.AddLog($"Control states updated in {sw.ElapsedMilliseconds}ms");
+#endif
         }        
 
         void ProgramFirmware(bool Custom)
         {
+           
+
+
             //EnableProgrammingControls(false);
             //EnableConfigControls(false, false);
 
             try
             {
-                _configManager.AddLog("Determining mode...");
-                _configManager.AddLog("Mode is " + _configManager.Local.Mode.ToString());
+                _configManager.AddLog("Determining modem...");
 
-                RFD.RFD900.RFD900 RFD900 = _configManager.Modem;// _Session.GetModemObject();
-
+                RFD.RFD900.RFD900 RFD900 = _configManager.Modem;
+                
                 if (RFD900 == null)
                 {
                     _configManager.AddLog("Unknown modem");
@@ -685,6 +722,11 @@ S15: MAX_WINDOW=131
                     if (getFirmware(RFD900.Board, RFD900, Custom))
                     {
                         _configManager.AddLog("Programming firmware into device");
+
+                        // Set appropriate control states
+                        _configManager.FirmwareUpdateInProgress = true;
+                        CheckControlStates();
+
                         if (RFD900.ProgramFirmware(firmwarefile, UpdateStatusCallback))
                         {
                             _configManager.AddLog("Programmed firmware into device");
@@ -696,9 +738,10 @@ S15: MAX_WINDOW=131
                         else
                         {
                             _configManager.AddLog("Programming failed.  (Try again?)");
-                        }                        
-                        _configManager.EndSession();
-                        
+                        }
+
+                                          
+                        _configManager.EndSession();                        
                     }
                     else
                     {
@@ -719,6 +762,8 @@ S15: MAX_WINDOW=131
             }
             finally
             {
+                // Restore expected control states      
+                _configManager.FirmwareUpdateInProgress = false;
                 CheckControlStates();
             }
             //EnableProgrammingControls(true);
@@ -868,14 +913,6 @@ S15: MAX_WINDOW=131
             System.Windows.Forms.MessageBox.Show(Temp);
         }
 
-
-        private void btnLoadFromFile_Click(object sender, EventArgs e)
-        {
-            LoadConfigFromFile();
-            //LoadFromFile(_LocalSettings, groupBoxLocal, false);
-        }      
-        
-
         private void btn_LoadFile_Click(object sender, EventArgs e)
         {
             LoadConfigFromFile();
@@ -913,13 +950,7 @@ S15: MAX_WINDOW=131
         {
             _configManager.RandomizeEncryptionKey();
         }
-
-        private async void btnReboot_Click(object sender, EventArgs e)
-        {
-            // TODO: Do restart?
-            await _configManager.RestartModem();
-        }
-
+                
         private async void btn_LoadSetting_Click(object sender, EventArgs e)
         {
             _configManager.AddLog("Loading settings...");
@@ -931,6 +962,9 @@ S15: MAX_WINDOW=131
                 return;
             }
 
+            _configManager.AddLog($"Binding Controls...");
+            
+            var sw = Stopwatch.StartNew();
             // Setup Control Bindings
             foreach (var item in _configManager.Local.Settings.Settings)
             {
@@ -965,13 +999,15 @@ S15: MAX_WINDOW=131
                 {
                     BindSettingToCheckBox(item.Value as TSetting, ctrl as CheckBox);
                 }
-                _configManager.AddLog($"Setting: {item.Key}: {item.Value.GetValueAsString()}");
+                _configManager.AddLog($"Loaded {item.Key}: {item.Value.GetValueAsString()}");
 
                 // Not needed as changing Current now performs this?
                 UpdateIndicator(item.Key);
             }
-
-            CheckControlStates();                       
+            _configManager.AddLog($"Binding completed in {sw.ElapsedMilliseconds}ms");
+            sw.Stop();
+           
+            CheckControlStates();
         }
 
         private async void Control_Clicked_ShowHelp(object sender, EventArgs e)
