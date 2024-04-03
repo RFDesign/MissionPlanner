@@ -167,6 +167,7 @@
             this.label18 = new System.Windows.Forms.Label();
             this.GPIO2_CHECK = new FontAwesome.Sharp.IconPictureBox();
             this.GPIO1_CHECK = new FontAwesome.Sharp.IconPictureBox();
+            this.btn_PPMFailSafe = new FontAwesome.Sharp.IconButton();
             this.groupSecurity = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.btnGenerateKey = new FontAwesome.Sharp.IconButton();
@@ -180,7 +181,6 @@
             this.richTextHelp = new System.Windows.Forms.RichTextBox();
             this.groupInfo = new System.Windows.Forms.GroupBox();
             this.tableLayoutMain = new System.Windows.Forms.TableLayoutPanel();
-            this.btn_PPMFailSafe = new FontAwesome.Sharp.IconButton();
             ((System.ComponentModel.ISupportInitialize)(this.configManagerBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pin14ItemsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pin13ItemsBindingSource)).BeginInit();
@@ -309,6 +309,7 @@
             resources.GetString("ENCRYPTION_LEVEL.Items30")});
             this.ENCRYPTION_LEVEL.Name = "ENCRYPTION_LEVEL";
             this.toolTip1.SetToolTip(this.ENCRYPTION_LEVEL, resources.GetString("ENCRYPTION_LEVEL.ToolTip"));
+            this.ENCRYPTION_LEVEL.SelectedIndexChanged += new System.EventHandler(this.ENCRYPTION_LEVEL_SelectedIndexChanged);
             this.ENCRYPTION_LEVEL.Click += new System.EventHandler(this.Control_Clicked_ShowHelp);
             // 
             // FSFRAMELOSS
@@ -1603,6 +1604,19 @@
             this.GPIO1_CHECK.Name = "GPIO1_CHECK";
             this.GPIO1_CHECK.TabStop = false;
             // 
+            // btn_PPMFailSafe
+            // 
+            resources.ApplyResources(this.btn_PPMFailSafe, "btn_PPMFailSafe");
+            this.btn_PPMFailSafe.ForeColor = System.Drawing.Color.Black;
+            this.btn_PPMFailSafe.IconChar = FontAwesome.Sharp.IconChar.Signal;
+            this.btn_PPMFailSafe.IconColor = System.Drawing.Color.Black;
+            this.btn_PPMFailSafe.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btn_PPMFailSafe.IconSize = 24;
+            this.btn_PPMFailSafe.Name = "btn_PPMFailSafe";
+            this.tableLayoutGPIO.SetRowSpan(this.btn_PPMFailSafe, 2);
+            this.btn_PPMFailSafe.UseVisualStyleBackColor = true;
+            this.btn_PPMFailSafe.Click += new System.EventHandler(this.btn_PPMFailSafe_Click);
+            // 
             // groupSecurity
             // 
             this.groupSecurity.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(29)))), ((int)(((byte)(46)))));
@@ -1636,6 +1650,7 @@
             this.btnGenerateKey.Name = "btnGenerateKey";
             this.tableLayoutPanel3.SetRowSpan(this.btnGenerateKey, 2);
             this.btnGenerateKey.UseVisualStyleBackColor = true;
+            this.btnGenerateKey.Click += new System.EventHandler(this.btnGenerateKey_Click);
             // 
             // ENCRYPTION_LEVEL_CHECK
             // 
@@ -1763,19 +1778,6 @@
             this.tableLayoutMain.Controls.Add(this.groupInfo, 6, 0);
             this.tableLayoutMain.Controls.Add(this.groupGPIO, 0, 4);
             this.tableLayoutMain.Name = "tableLayoutMain";
-            // 
-            // btn_PPMFailSafe
-            // 
-            resources.ApplyResources(this.btn_PPMFailSafe, "btn_PPMFailSafe");
-            this.btn_PPMFailSafe.ForeColor = System.Drawing.Color.Black;
-            this.btn_PPMFailSafe.IconChar = FontAwesome.Sharp.IconChar.Signal;
-            this.btn_PPMFailSafe.IconColor = System.Drawing.Color.Black;
-            this.btn_PPMFailSafe.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btn_PPMFailSafe.IconSize = 24;
-            this.btn_PPMFailSafe.Name = "btn_PPMFailSafe";
-            this.tableLayoutGPIO.SetRowSpan(this.btn_PPMFailSafe, 2);
-            this.btn_PPMFailSafe.UseVisualStyleBackColor = true;
-            this.btn_PPMFailSafe.Click += new System.EventHandler(this.btn_PPMFailSafe_Click);
             // 
             // Sikradio
             // 

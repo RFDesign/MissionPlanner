@@ -229,7 +229,7 @@ S15: MAX_WINDOW=131
                 indicator.IconColor = System.Drawing.Color.OrangeRed;
                 indicator.IconChar = IconChar.TimesCircle;
                 var otherValue = _configManager.Current.IsLocal ? remoteValue : localValue;
-                toolTip1.SetToolTip(indicator, $"Other: {otherValue}");
+                toolTip1.SetToolTip(indicator, otherValue);
             }            
         }
 
@@ -1153,6 +1153,11 @@ S15: MAX_WINDOW=131
         private void btn_PPMFailSafe_Click(object sender, EventArgs e)
         {
             _configManager.SetPPMFailSafe();
+        }
+
+        private void ENCRYPTION_LEVEL_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            btnGenerateKey.Enabled = ENCRYPTION_LEVEL.SelectedIndex > 0;
         }
     }
 }
