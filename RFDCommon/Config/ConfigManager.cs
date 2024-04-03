@@ -69,7 +69,8 @@ namespace RFDCommon
                     return;
                 _currentModem = value;
                 OnPropertyChanged(nameof(Current));
-                OnPropertyChanged(null);
+                Task.Delay(500);
+                OnPropertyChanged(null);                
             }
         }
         public RFDModem Local
@@ -234,7 +235,7 @@ namespace RFDCommon
                 if (value == GetPinSetting(GPIO3_Items)) return;
 
                 SetPin(GPIO3_Items, value);
-                OnPropertyChanged();
+                //OnPropertyChanged();
             }
         }
 
@@ -249,7 +250,7 @@ namespace RFDCommon
                 if (value == GetPinSetting(_gpio0_Items)) return;
 
                 SetPin(GPIO0_Items, value);
-                OnPropertyChanged();
+                //OnPropertyChanged();
             }
         }
                 
@@ -264,7 +265,7 @@ namespace RFDCommon
                 if (value == GetPinSetting(_gpio2_Items)) return;
 
                 SetPin(GPIO2_Items, value);
-                OnPropertyChanged();
+                //OnPropertyChanged();
             }
         }
 
@@ -280,7 +281,7 @@ namespace RFDCommon
 
                 SetPin(GPIO1_Items, value);
                 //Task.Delay(1500);
-                OnPropertyChanged(nameof(GPIO1));
+                //OnPropertyChanged(nameof(GPIO1));
             }
         }
 

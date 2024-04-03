@@ -1147,15 +1147,15 @@
   <data name="&gt;&gt;NETID.ZOrder" xml:space="preserve">
     <value>15</value>
   </data>
+  <data name="GPIO2.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Left, Right</value>
+  </data>
   <metadata name="configManagerBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>487, 17</value>
   </metadata>
   <metadata name="pin14ItemsBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>888, 17</value>
   </metadata>
-  <data name="GPIO2.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Bottom, Left, Right</value>
-  </data>
   <data name="GPIO2.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
@@ -1184,18 +1184,12 @@
   <data name="&gt;&gt;GPIO2.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
-  <metadata name="configManagerBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>487, 17</value>
-  </metadata>
-  <metadata name="pin14ItemsBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>888, 17</value>
-  </metadata>
-  <metadata name="pin13ItemsBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>1077, 17</value>
-  </metadata>
   <data name="GPIO0.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>
   </data>
+  <metadata name="pin13ItemsBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>1077, 17</value>
+  </metadata>
   <data name="GPIO0.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
@@ -1223,15 +1217,12 @@
   <data name="&gt;&gt;GPIO0.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
-  <metadata name="pin13ItemsBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>1077, 17</value>
-  </metadata>
-  <metadata name="pin12ItemsBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>1266, 17</value>
-  </metadata>
   <data name="GPIO3.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>
   </data>
+  <metadata name="pin12ItemsBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>1266, 17</value>
+  </metadata>
   <data name="GPIO3.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
@@ -1260,15 +1251,12 @@
   <data name="&gt;&gt;GPIO3.ZOrder" xml:space="preserve">
     <value>4</value>
   </data>
-  <metadata name="pin12ItemsBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>1266, 17</value>
-  </metadata>
-  <metadata name="pin15ItemsBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>699, 17</value>
-  </metadata>
   <data name="GPIO1.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>
   </data>
+  <metadata name="pin15ItemsBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>699, 17</value>
+  </metadata>
   <data name="GPIO1.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
@@ -1297,9 +1285,6 @@
   <data name="&gt;&gt;GPIO1.ZOrder" xml:space="preserve">
     <value>10</value>
   </data>
-  <metadata name="pin15ItemsBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>699, 17</value>
-  </metadata>
   <data name="checkBoxSync.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -2323,123 +2308,6 @@
   <data name="&gt;&gt;groupData.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="tableLayoutPanel3.ColumnCount" type="System.Int32, mscorlib">
-    <value>3</value>
-  </data>
-  <data name="btnGenerateKey.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Top</value>
-  </data>
-  <data name="btnGenerateKey.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="btnGenerateKey.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="btnGenerateKey.Location" type="System.Drawing.Point, System.Drawing">
-    <value>177, 59</value>
-  </data>
-  <data name="btnGenerateKey.Size" type="System.Drawing.Size, System.Drawing">
-    <value>255, 32</value>
-  </data>
-  <data name="btnGenerateKey.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="btnGenerateKey.Text" xml:space="preserve">
-    <value>Generate Key</value>
-  </data>
-  <data name="btnGenerateKey.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleRight</value>
-  </data>
-  <data name="btnGenerateKey.TextImageRelation" type="System.Windows.Forms.TextImageRelation, System.Windows.Forms">
-    <value>ImageBeforeText</value>
-  </data>
-  <data name="&gt;&gt;btnGenerateKey.Name" xml:space="preserve">
-    <value>btnGenerateKey</value>
-  </data>
-  <data name="&gt;&gt;btnGenerateKey.Type" xml:space="preserve">
-    <value>FontAwesome.Sharp.IconButton, FontAwesome.Sharp, Version=6.3.0.0, Culture=neutral, PublicKeyToken=d16d1e4e568ec10f</value>
-  </data>
-  <data name="&gt;&gt;btnGenerateKey.Parent" xml:space="preserve">
-    <value>tableLayoutPanel3</value>
-  </data>
-  <data name="&gt;&gt;btnGenerateKey.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="ENCRYPTION_LEVEL_CHECK.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>None</value>
-  </data>
-  <data name="ENCRYPTION_LEVEL_CHECK.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="ENCRYPTION_LEVEL_CHECK.Location" type="System.Drawing.Point, System.Drawing">
-    <value>441, 5</value>
-  </data>
-  <data name="ENCRYPTION_LEVEL_CHECK.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>0, 2, 0, 2</value>
-  </data>
-  <data name="ENCRYPTION_LEVEL_CHECK.Size" type="System.Drawing.Size, System.Drawing">
-    <value>18, 18</value>
-  </data>
-  <data name="ENCRYPTION_LEVEL_CHECK.TabIndex" type="System.Int32, mscorlib">
-    <value>154</value>
-  </data>
-  <data name="&gt;&gt;ENCRYPTION_LEVEL_CHECK.Name" xml:space="preserve">
-    <value>ENCRYPTION_LEVEL_CHECK</value>
-  </data>
-  <data name="&gt;&gt;ENCRYPTION_LEVEL_CHECK.Type" xml:space="preserve">
-    <value>FontAwesome.Sharp.IconPictureBox, FontAwesome.Sharp, Version=6.3.0.0, Culture=neutral, PublicKeyToken=d16d1e4e568ec10f</value>
-  </data>
-  <data name="&gt;&gt;ENCRYPTION_LEVEL_CHECK.Parent" xml:space="preserve">
-    <value>tableLayoutPanel3</value>
-  </data>
-  <data name="&gt;&gt;ENCRYPTION_LEVEL_CHECK.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="AESKEY_CHECK.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>None</value>
-  </data>
-  <data name="AESKEY_CHECK.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="AESKEY_CHECK.Location" type="System.Drawing.Point, System.Drawing">
-    <value>441, 33</value>
-  </data>
-  <data name="AESKEY_CHECK.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>0, 2, 0, 2</value>
-  </data>
-  <data name="AESKEY_CHECK.Size" type="System.Drawing.Size, System.Drawing">
-    <value>18, 18</value>
-  </data>
-  <data name="AESKEY_CHECK.TabIndex" type="System.Int32, mscorlib">
-    <value>156</value>
-  </data>
-  <data name="&gt;&gt;AESKEY_CHECK.Name" xml:space="preserve">
-    <value>AESKEY_CHECK</value>
-  </data>
-  <data name="&gt;&gt;AESKEY_CHECK.Type" xml:space="preserve">
-    <value>FontAwesome.Sharp.IconPictureBox, FontAwesome.Sharp, Version=6.3.0.0, Culture=neutral, PublicKeyToken=d16d1e4e568ec10f</value>
-  </data>
-  <data name="&gt;&gt;AESKEY_CHECK.Parent" xml:space="preserve">
-    <value>tableLayoutPanel3</value>
-  </data>
-  <data name="&gt;&gt;AESKEY_CHECK.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <data name="tableLayoutPanel3.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Top</value>
-  </data>
-  <data name="tableLayoutPanel3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 17</value>
-  </data>
-  <data name="tableLayoutPanel3.RowCount" type="System.Int32, mscorlib">
-    <value>3</value>
-  </data>
-  <data name="tableLayoutPanel3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>465, 124</value>
-  </data>
-  <data name="tableLayoutPanel3.TabIndex" type="System.Int32, mscorlib">
-    <value>171</value>
-  </data>
   <data name="&gt;&gt;tableLayoutPanel3.Name" xml:space="preserve">
     <value>tableLayoutPanel3</value>
   </data>
@@ -2610,6 +2478,312 @@
   </data>
   <data name="&gt;&gt;groupInfo.ZOrder" xml:space="preserve">
     <value>7</value>
+  </data>
+  <data name="tableLayoutGPIO.ColumnCount" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="GPIO0_CHECK.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>None</value>
+  </data>
+  <data name="GPIO0_CHECK.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="GPIO0_CHECK.Location" type="System.Drawing.Point, System.Drawing">
+    <value>448, 5</value>
+  </data>
+  <data name="GPIO0_CHECK.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 2, 0, 2</value>
+  </data>
+  <data name="GPIO0_CHECK.Size" type="System.Drawing.Size, System.Drawing">
+    <value>18, 18</value>
+  </data>
+  <data name="GPIO0_CHECK.TabIndex" type="System.Int32, mscorlib">
+    <value>182</value>
+  </data>
+  <data name="&gt;&gt;GPIO0_CHECK.Name" xml:space="preserve">
+    <value>GPIO0_CHECK</value>
+  </data>
+  <data name="&gt;&gt;GPIO0_CHECK.Type" xml:space="preserve">
+    <value>FontAwesome.Sharp.IconPictureBox, FontAwesome.Sharp, Version=6.3.0.0, Culture=neutral, PublicKeyToken=d16d1e4e568ec10f</value>
+  </data>
+  <data name="&gt;&gt;GPIO0_CHECK.Parent" xml:space="preserve">
+    <value>tableLayoutGPIO</value>
+  </data>
+  <data name="&gt;&gt;GPIO0_CHECK.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="GPIO3_CHECK.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>None</value>
+  </data>
+  <data name="GPIO3_CHECK.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="GPIO3_CHECK.Location" type="System.Drawing.Point, System.Drawing">
+    <value>448, 92</value>
+  </data>
+  <data name="GPIO3_CHECK.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 2, 0, 2</value>
+  </data>
+  <data name="GPIO3_CHECK.Size" type="System.Drawing.Size, System.Drawing">
+    <value>18, 18</value>
+  </data>
+  <data name="GPIO3_CHECK.TabIndex" type="System.Int32, mscorlib">
+    <value>154</value>
+  </data>
+  <data name="&gt;&gt;GPIO3_CHECK.Name" xml:space="preserve">
+    <value>GPIO3_CHECK</value>
+  </data>
+  <data name="&gt;&gt;GPIO3_CHECK.Type" xml:space="preserve">
+    <value>FontAwesome.Sharp.IconPictureBox, FontAwesome.Sharp, Version=6.3.0.0, Culture=neutral, PublicKeyToken=d16d1e4e568ec10f</value>
+  </data>
+  <data name="&gt;&gt;GPIO3_CHECK.Parent" xml:space="preserve">
+    <value>tableLayoutGPIO</value>
+  </data>
+  <data name="&gt;&gt;GPIO3_CHECK.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="label19.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="label19.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label19.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 28</value>
+  </data>
+  <data name="label19.Size" type="System.Drawing.Size, System.Drawing">
+    <value>172, 28</value>
+  </data>
+  <data name="label19.TabIndex" type="System.Int32, mscorlib">
+    <value>174</value>
+  </data>
+  <data name="label19.Text" xml:space="preserve">
+    <value>GPIO1 Function</value>
+  </data>
+  <data name="label19.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="&gt;&gt;label19.Name" xml:space="preserve">
+    <value>label19</value>
+  </data>
+  <data name="&gt;&gt;label19.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label19.Parent" xml:space="preserve">
+    <value>tableLayoutGPIO</value>
+  </data>
+  <data name="&gt;&gt;label19.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="label16.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="label16.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label16.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 0</value>
+  </data>
+  <data name="label16.Size" type="System.Drawing.Size, System.Drawing">
+    <value>172, 28</value>
+  </data>
+  <data name="label16.TabIndex" type="System.Int32, mscorlib">
+    <value>172</value>
+  </data>
+  <data name="label16.Text" xml:space="preserve">
+    <value>GPIO0 Function</value>
+  </data>
+  <data name="label16.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="&gt;&gt;label16.Name" xml:space="preserve">
+    <value>label16</value>
+  </data>
+  <data name="&gt;&gt;label16.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label16.Parent" xml:space="preserve">
+    <value>tableLayoutGPIO</value>
+  </data>
+  <data name="&gt;&gt;label16.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="label17.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="label17.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label17.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 84</value>
+  </data>
+  <data name="label17.Size" type="System.Drawing.Size, System.Drawing">
+    <value>172, 34</value>
+  </data>
+  <data name="label17.TabIndex" type="System.Int32, mscorlib">
+    <value>171</value>
+  </data>
+  <data name="label17.Text" xml:space="preserve">
+    <value>GPIO3 Function</value>
+  </data>
+  <data name="label17.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="&gt;&gt;label17.Name" xml:space="preserve">
+    <value>label17</value>
+  </data>
+  <data name="&gt;&gt;label17.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label17.Parent" xml:space="preserve">
+    <value>tableLayoutGPIO</value>
+  </data>
+  <data name="&gt;&gt;label17.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="label18.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="label18.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label18.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 56</value>
+  </data>
+  <data name="label18.Size" type="System.Drawing.Size, System.Drawing">
+    <value>172, 28</value>
+  </data>
+  <data name="label18.TabIndex" type="System.Int32, mscorlib">
+    <value>173</value>
+  </data>
+  <data name="label18.Text" xml:space="preserve">
+    <value>GPIO2 Function</value>
+  </data>
+  <data name="label18.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="&gt;&gt;label18.Name" xml:space="preserve">
+    <value>label18</value>
+  </data>
+  <data name="&gt;&gt;label18.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label18.Parent" xml:space="preserve">
+    <value>tableLayoutGPIO</value>
+  </data>
+  <data name="&gt;&gt;label18.ZOrder" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <data name="GPIO2_CHECK.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>None</value>
+  </data>
+  <data name="GPIO2_CHECK.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="GPIO2_CHECK.Location" type="System.Drawing.Point, System.Drawing">
+    <value>448, 61</value>
+  </data>
+  <data name="GPIO2_CHECK.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 2, 0, 2</value>
+  </data>
+  <data name="GPIO2_CHECK.Size" type="System.Drawing.Size, System.Drawing">
+    <value>18, 18</value>
+  </data>
+  <data name="GPIO2_CHECK.TabIndex" type="System.Int32, mscorlib">
+    <value>179</value>
+  </data>
+  <data name="&gt;&gt;GPIO2_CHECK.Name" xml:space="preserve">
+    <value>GPIO2_CHECK</value>
+  </data>
+  <data name="&gt;&gt;GPIO2_CHECK.Type" xml:space="preserve">
+    <value>FontAwesome.Sharp.IconPictureBox, FontAwesome.Sharp, Version=6.3.0.0, Culture=neutral, PublicKeyToken=d16d1e4e568ec10f</value>
+  </data>
+  <data name="&gt;&gt;GPIO2_CHECK.Parent" xml:space="preserve">
+    <value>tableLayoutGPIO</value>
+  </data>
+  <data name="&gt;&gt;GPIO2_CHECK.ZOrder" xml:space="preserve">
+    <value>11</value>
+  </data>
+  <data name="GPIO1_CHECK.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>None</value>
+  </data>
+  <data name="GPIO1_CHECK.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="GPIO1_CHECK.Location" type="System.Drawing.Point, System.Drawing">
+    <value>448, 33</value>
+  </data>
+  <data name="GPIO1_CHECK.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 2, 0, 2</value>
+  </data>
+  <data name="GPIO1_CHECK.Size" type="System.Drawing.Size, System.Drawing">
+    <value>18, 18</value>
+  </data>
+  <data name="GPIO1_CHECK.TabIndex" type="System.Int32, mscorlib">
+    <value>180</value>
+  </data>
+  <data name="&gt;&gt;GPIO1_CHECK.Name" xml:space="preserve">
+    <value>GPIO1_CHECK</value>
+  </data>
+  <data name="&gt;&gt;GPIO1_CHECK.Type" xml:space="preserve">
+    <value>FontAwesome.Sharp.IconPictureBox, FontAwesome.Sharp, Version=6.3.0.0, Culture=neutral, PublicKeyToken=d16d1e4e568ec10f</value>
+  </data>
+  <data name="&gt;&gt;GPIO1_CHECK.Parent" xml:space="preserve">
+    <value>tableLayoutGPIO</value>
+  </data>
+  <data name="&gt;&gt;GPIO1_CHECK.ZOrder" xml:space="preserve">
+    <value>12</value>
+  </data>
+  <data name="btn_PPMFailSafe.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Top</value>
+  </data>
+  <data name="btn_PPMFailSafe.Location" type="System.Drawing.Point, System.Drawing">
+    <value>650, 59</value>
+  </data>
+  <data name="btn_PPMFailSafe.Size" type="System.Drawing.Size, System.Drawing">
+    <value>261, 32</value>
+  </data>
+  <data name="btn_PPMFailSafe.TabIndex" type="System.Int32, mscorlib">
+    <value>183</value>
+  </data>
+  <data name="btn_PPMFailSafe.Text" xml:space="preserve">
+    <value>Set PPM Fail Safe</value>
+  </data>
+  <data name="btn_PPMFailSafe.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleRight</value>
+  </data>
+  <data name="btn_PPMFailSafe.TextImageRelation" type="System.Windows.Forms.TextImageRelation, System.Windows.Forms">
+    <value>ImageBeforeText</value>
+  </data>
+  <data name="btn_PPMFailSafe.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;btn_PPMFailSafe.Name" xml:space="preserve">
+    <value>btn_PPMFailSafe</value>
+  </data>
+  <data name="&gt;&gt;btn_PPMFailSafe.Type" xml:space="preserve">
+    <value>FontAwesome.Sharp.IconButton, FontAwesome.Sharp, Version=6.3.0.0, Culture=neutral, PublicKeyToken=d16d1e4e568ec10f</value>
+  </data>
+  <data name="&gt;&gt;btn_PPMFailSafe.Parent" xml:space="preserve">
+    <value>tableLayoutGPIO</value>
+  </data>
+  <data name="&gt;&gt;btn_PPMFailSafe.ZOrder" xml:space="preserve">
+    <value>14</value>
+  </data>
+  <data name="tableLayoutGPIO.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Top</value>
+  </data>
+  <data name="tableLayoutGPIO.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 17</value>
+  </data>
+  <data name="tableLayoutGPIO.RowCount" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="tableLayoutGPIO.Size" type="System.Drawing.Size, System.Drawing">
+    <value>942, 118</value>
+  </data>
+  <data name="tableLayoutGPIO.TabIndex" type="System.Int32, mscorlib">
+    <value>169</value>
   </data>
   <data name="&gt;&gt;tableLayoutGPIO.Name" xml:space="preserve">
     <value>tableLayoutGPIO</value>
@@ -5212,434 +5386,173 @@
   <data name="&gt;&gt;SER_BRK_DETMS_CHECK.ZOrder" xml:space="preserve">
     <value>23</value>
   </data>
-  <data name="tableLayoutGPIO.ColumnCount" type="System.Int32, mscorlib">
+  <data name="tableLayoutPanel3.ColumnCount" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;btnGenerateKey.Name" xml:space="preserve">
+    <value>btnGenerateKey</value>
+  </data>
+  <data name="&gt;&gt;btnGenerateKey.Type" xml:space="preserve">
+    <value>FontAwesome.Sharp.IconButton, FontAwesome.Sharp, Version=6.3.0.0, Culture=neutral, PublicKeyToken=d16d1e4e568ec10f</value>
+  </data>
+  <data name="&gt;&gt;btnGenerateKey.Parent" xml:space="preserve">
+    <value>tableLayoutPanel3</value>
+  </data>
+  <data name="&gt;&gt;btnGenerateKey.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;ENCRYPTION_LEVEL_CHECK.Name" xml:space="preserve">
+    <value>ENCRYPTION_LEVEL_CHECK</value>
+  </data>
+  <data name="&gt;&gt;ENCRYPTION_LEVEL_CHECK.Type" xml:space="preserve">
+    <value>FontAwesome.Sharp.IconPictureBox, FontAwesome.Sharp, Version=6.3.0.0, Culture=neutral, PublicKeyToken=d16d1e4e568ec10f</value>
+  </data>
+  <data name="&gt;&gt;ENCRYPTION_LEVEL_CHECK.Parent" xml:space="preserve">
+    <value>tableLayoutPanel3</value>
+  </data>
+  <data name="&gt;&gt;ENCRYPTION_LEVEL_CHECK.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;AESKEY_CHECK.Name" xml:space="preserve">
+    <value>AESKEY_CHECK</value>
+  </data>
+  <data name="&gt;&gt;AESKEY_CHECK.Type" xml:space="preserve">
+    <value>FontAwesome.Sharp.IconPictureBox, FontAwesome.Sharp, Version=6.3.0.0, Culture=neutral, PublicKeyToken=d16d1e4e568ec10f</value>
+  </data>
+  <data name="&gt;&gt;AESKEY_CHECK.Parent" xml:space="preserve">
+    <value>tableLayoutPanel3</value>
+  </data>
+  <data name="&gt;&gt;AESKEY_CHECK.ZOrder" xml:space="preserve">
     <value>6</value>
   </data>
-  <data name="&gt;&gt;GPIO0_CHECK.Name" xml:space="preserve">
-    <value>GPIO0_CHECK</value>
-  </data>
-  <data name="&gt;&gt;GPIO0_CHECK.Type" xml:space="preserve">
-    <value>FontAwesome.Sharp.IconPictureBox, FontAwesome.Sharp, Version=6.3.0.0, Culture=neutral, PublicKeyToken=d16d1e4e568ec10f</value>
-  </data>
-  <data name="&gt;&gt;GPIO0_CHECK.Parent" xml:space="preserve">
-    <value>tableLayoutGPIO</value>
-  </data>
-  <data name="&gt;&gt;GPIO0_CHECK.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;GPIO3_CHECK.Name" xml:space="preserve">
-    <value>GPIO3_CHECK</value>
-  </data>
-  <data name="&gt;&gt;GPIO3_CHECK.Type" xml:space="preserve">
-    <value>FontAwesome.Sharp.IconPictureBox, FontAwesome.Sharp, Version=6.3.0.0, Culture=neutral, PublicKeyToken=d16d1e4e568ec10f</value>
-  </data>
-  <data name="&gt;&gt;GPIO3_CHECK.Parent" xml:space="preserve">
-    <value>tableLayoutGPIO</value>
-  </data>
-  <data name="&gt;&gt;GPIO3_CHECK.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;label19.Name" xml:space="preserve">
-    <value>label19</value>
-  </data>
-  <data name="&gt;&gt;label19.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label19.Parent" xml:space="preserve">
-    <value>tableLayoutGPIO</value>
-  </data>
-  <data name="&gt;&gt;label19.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="&gt;&gt;label16.Name" xml:space="preserve">
-    <value>label16</value>
-  </data>
-  <data name="&gt;&gt;label16.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label16.Parent" xml:space="preserve">
-    <value>tableLayoutGPIO</value>
-  </data>
-  <data name="&gt;&gt;label16.ZOrder" xml:space="preserve">
-    <value>7</value>
-  </data>
-  <data name="&gt;&gt;label17.Name" xml:space="preserve">
-    <value>label17</value>
-  </data>
-  <data name="&gt;&gt;label17.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label17.Parent" xml:space="preserve">
-    <value>tableLayoutGPIO</value>
-  </data>
-  <data name="&gt;&gt;label17.ZOrder" xml:space="preserve">
-    <value>8</value>
-  </data>
-  <data name="&gt;&gt;label18.Name" xml:space="preserve">
-    <value>label18</value>
-  </data>
-  <data name="&gt;&gt;label18.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label18.Parent" xml:space="preserve">
-    <value>tableLayoutGPIO</value>
-  </data>
-  <data name="&gt;&gt;label18.ZOrder" xml:space="preserve">
-    <value>9</value>
-  </data>
-  <data name="&gt;&gt;GPIO2_CHECK.Name" xml:space="preserve">
-    <value>GPIO2_CHECK</value>
-  </data>
-  <data name="&gt;&gt;GPIO2_CHECK.Type" xml:space="preserve">
-    <value>FontAwesome.Sharp.IconPictureBox, FontAwesome.Sharp, Version=6.3.0.0, Culture=neutral, PublicKeyToken=d16d1e4e568ec10f</value>
-  </data>
-  <data name="&gt;&gt;GPIO2_CHECK.Parent" xml:space="preserve">
-    <value>tableLayoutGPIO</value>
-  </data>
-  <data name="&gt;&gt;GPIO2_CHECK.ZOrder" xml:space="preserve">
-    <value>11</value>
-  </data>
-  <data name="&gt;&gt;GPIO1_CHECK.Name" xml:space="preserve">
-    <value>GPIO1_CHECK</value>
-  </data>
-  <data name="&gt;&gt;GPIO1_CHECK.Type" xml:space="preserve">
-    <value>FontAwesome.Sharp.IconPictureBox, FontAwesome.Sharp, Version=6.3.0.0, Culture=neutral, PublicKeyToken=d16d1e4e568ec10f</value>
-  </data>
-  <data name="&gt;&gt;GPIO1_CHECK.Parent" xml:space="preserve">
-    <value>tableLayoutGPIO</value>
-  </data>
-  <data name="&gt;&gt;GPIO1_CHECK.ZOrder" xml:space="preserve">
-    <value>12</value>
-  </data>
-  <data name="&gt;&gt;btn_PPMFailSafe.Name" xml:space="preserve">
-    <value>btn_PPMFailSafe</value>
-  </data>
-  <data name="&gt;&gt;btn_PPMFailSafe.Type" xml:space="preserve">
-    <value>FontAwesome.Sharp.IconButton, FontAwesome.Sharp, Version=6.3.0.0, Culture=neutral, PublicKeyToken=d16d1e4e568ec10f</value>
-  </data>
-  <data name="&gt;&gt;btn_PPMFailSafe.Parent" xml:space="preserve">
-    <value>tableLayoutGPIO</value>
-  </data>
-  <data name="&gt;&gt;btn_PPMFailSafe.ZOrder" xml:space="preserve">
-    <value>14</value>
-  </data>
-  <data name="tableLayoutGPIO.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+  <data name="tableLayoutPanel3.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Top</value>
   </data>
-  <data name="tableLayoutGPIO.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="tableLayoutPanel3.Location" type="System.Drawing.Point, System.Drawing">
     <value>3, 17</value>
   </data>
-  <data name="tableLayoutGPIO.RowCount" type="System.Int32, mscorlib">
-    <value>4</value>
+  <data name="tableLayoutPanel3.RowCount" type="System.Int32, mscorlib">
+    <value>3</value>
   </data>
-  <data name="tableLayoutGPIO.Size" type="System.Drawing.Size, System.Drawing">
-    <value>942, 118</value>
+  <data name="tableLayoutPanel3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>465, 124</value>
   </data>
-  <data name="tableLayoutGPIO.TabIndex" type="System.Int32, mscorlib">
-    <value>169</value>
-  </data>
-  <data name="&gt;&gt;tableLayoutGPIO.Name" xml:space="preserve">
-    <value>tableLayoutGPIO</value>
-  </data>
-  <data name="&gt;&gt;tableLayoutGPIO.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TableLayoutPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tableLayoutGPIO.Parent" xml:space="preserve">
-    <value>groupGPIO</value>
-  </data>
-  <data name="&gt;&gt;tableLayoutGPIO.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="tableLayoutGPIO.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
-    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="GPIO0_CHECK" Row="0" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="GPIO3_CHECK" Row="3" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="GPIO2" Row="2" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="GPIO0" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="GPIO3" Row="3" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="label19" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="FSFRAMELOSS" Row="1" RowSpan="1" Column="4" ColumnSpan="1" /&gt;&lt;Control Name="label16" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="label17" Row="3" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="label18" Row="2" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="GPIO1" Row="1" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="GPIO2_CHECK" Row="2" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="GPIO1_CHECK" Row="1" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="lblFailsafe" Row="1" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="btn_PPMFailSafe" Row="2" RowSpan="2" Column="4" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,20,Percent,30,Absolute,24,Percent,20,Percent,30,Absolute,28" /&gt;&lt;Rows Styles="Absolute,28,Absolute,28,Absolute,28,Absolute,28,Absolute,20" /&gt;&lt;/TableLayoutSettings&gt;</value>
-  </data>
-  <data name="GPIO0_CHECK.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>None</value>
-  </data>
-  <data name="GPIO0_CHECK.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="GPIO0_CHECK.Location" type="System.Drawing.Point, System.Drawing">
-    <value>448, 5</value>
-  </data>
-  <data name="GPIO0_CHECK.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>0, 2, 0, 2</value>
-  </data>
-  <data name="GPIO0_CHECK.Size" type="System.Drawing.Size, System.Drawing">
-    <value>18, 18</value>
-  </data>
-  <data name="GPIO0_CHECK.TabIndex" type="System.Int32, mscorlib">
-    <value>182</value>
-  </data>
-  <data name="&gt;&gt;GPIO0_CHECK.Name" xml:space="preserve">
-    <value>GPIO0_CHECK</value>
-  </data>
-  <data name="&gt;&gt;GPIO0_CHECK.Type" xml:space="preserve">
-    <value>FontAwesome.Sharp.IconPictureBox, FontAwesome.Sharp, Version=6.3.0.0, Culture=neutral, PublicKeyToken=d16d1e4e568ec10f</value>
-  </data>
-  <data name="&gt;&gt;GPIO0_CHECK.Parent" xml:space="preserve">
-    <value>tableLayoutGPIO</value>
-  </data>
-  <data name="&gt;&gt;GPIO0_CHECK.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="GPIO3_CHECK.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>None</value>
-  </data>
-  <data name="GPIO3_CHECK.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="GPIO3_CHECK.Location" type="System.Drawing.Point, System.Drawing">
-    <value>448, 92</value>
-  </data>
-  <data name="GPIO3_CHECK.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>0, 2, 0, 2</value>
-  </data>
-  <data name="GPIO3_CHECK.Size" type="System.Drawing.Size, System.Drawing">
-    <value>18, 18</value>
-  </data>
-  <data name="GPIO3_CHECK.TabIndex" type="System.Int32, mscorlib">
-    <value>154</value>
-  </data>
-  <data name="&gt;&gt;GPIO3_CHECK.Name" xml:space="preserve">
-    <value>GPIO3_CHECK</value>
-  </data>
-  <data name="&gt;&gt;GPIO3_CHECK.Type" xml:space="preserve">
-    <value>FontAwesome.Sharp.IconPictureBox, FontAwesome.Sharp, Version=6.3.0.0, Culture=neutral, PublicKeyToken=d16d1e4e568ec10f</value>
-  </data>
-  <data name="&gt;&gt;GPIO3_CHECK.Parent" xml:space="preserve">
-    <value>tableLayoutGPIO</value>
-  </data>
-  <data name="&gt;&gt;GPIO3_CHECK.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="label19.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="label19.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="label19.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 28</value>
-  </data>
-  <data name="label19.Size" type="System.Drawing.Size, System.Drawing">
-    <value>172, 28</value>
-  </data>
-  <data name="label19.TabIndex" type="System.Int32, mscorlib">
-    <value>174</value>
-  </data>
-  <data name="label19.Text" xml:space="preserve">
-    <value>GPIO1 Function</value>
-  </data>
-  <data name="label19.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleLeft</value>
-  </data>
-  <data name="&gt;&gt;label19.Name" xml:space="preserve">
-    <value>label19</value>
-  </data>
-  <data name="&gt;&gt;label19.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label19.Parent" xml:space="preserve">
-    <value>tableLayoutGPIO</value>
-  </data>
-  <data name="&gt;&gt;label19.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="label16.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="label16.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="label16.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 0</value>
-  </data>
-  <data name="label16.Size" type="System.Drawing.Size, System.Drawing">
-    <value>172, 28</value>
-  </data>
-  <data name="label16.TabIndex" type="System.Int32, mscorlib">
-    <value>172</value>
-  </data>
-  <data name="label16.Text" xml:space="preserve">
-    <value>GPIO0 Function</value>
-  </data>
-  <data name="label16.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleLeft</value>
-  </data>
-  <data name="&gt;&gt;label16.Name" xml:space="preserve">
-    <value>label16</value>
-  </data>
-  <data name="&gt;&gt;label16.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label16.Parent" xml:space="preserve">
-    <value>tableLayoutGPIO</value>
-  </data>
-  <data name="&gt;&gt;label16.ZOrder" xml:space="preserve">
-    <value>7</value>
-  </data>
-  <data name="label17.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="label17.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="label17.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 84</value>
-  </data>
-  <data name="label17.Size" type="System.Drawing.Size, System.Drawing">
-    <value>172, 34</value>
-  </data>
-  <data name="label17.TabIndex" type="System.Int32, mscorlib">
+  <data name="tableLayoutPanel3.TabIndex" type="System.Int32, mscorlib">
     <value>171</value>
   </data>
-  <data name="label17.Text" xml:space="preserve">
-    <value>GPIO3 Function</value>
+  <data name="&gt;&gt;tableLayoutPanel3.Name" xml:space="preserve">
+    <value>tableLayoutPanel3</value>
   </data>
-  <data name="label17.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleLeft</value>
+  <data name="&gt;&gt;tableLayoutPanel3.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TableLayoutPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;label17.Name" xml:space="preserve">
-    <value>label17</value>
+  <data name="&gt;&gt;tableLayoutPanel3.Parent" xml:space="preserve">
+    <value>groupSecurity</value>
   </data>
-  <data name="&gt;&gt;label17.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;tableLayoutPanel3.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
-  <data name="&gt;&gt;label17.Parent" xml:space="preserve">
-    <value>tableLayoutGPIO</value>
+  <data name="tableLayoutPanel3.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="btnGenerateKey" Row="2" RowSpan="2" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="ENCRYPTION_LEVEL_CHECK" Row="0" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="AESKEY" Row="1" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lblENCRYPTION_LEVEL" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="label35" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="ENCRYPTION_LEVEL" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="AESKEY_CHECK" Row="1" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,40,Percent,60,Absolute,30" /&gt;&lt;Rows Styles="Absolute,28,Absolute,28,Absolute,20,Absolute,20" /&gt;&lt;/TableLayoutSettings&gt;</value>
   </data>
-  <data name="&gt;&gt;label17.ZOrder" xml:space="preserve">
-    <value>8</value>
-  </data>
-  <data name="label18.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="label18.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="label18.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 56</value>
-  </data>
-  <data name="label18.Size" type="System.Drawing.Size, System.Drawing">
-    <value>172, 28</value>
-  </data>
-  <data name="label18.TabIndex" type="System.Int32, mscorlib">
-    <value>173</value>
-  </data>
-  <data name="label18.Text" xml:space="preserve">
-    <value>GPIO2 Function</value>
-  </data>
-  <data name="label18.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleLeft</value>
-  </data>
-  <data name="&gt;&gt;label18.Name" xml:space="preserve">
-    <value>label18</value>
-  </data>
-  <data name="&gt;&gt;label18.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label18.Parent" xml:space="preserve">
-    <value>tableLayoutGPIO</value>
-  </data>
-  <data name="&gt;&gt;label18.ZOrder" xml:space="preserve">
-    <value>9</value>
-  </data>
-  <data name="GPIO2_CHECK.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>None</value>
-  </data>
-  <data name="GPIO2_CHECK.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="GPIO2_CHECK.Location" type="System.Drawing.Point, System.Drawing">
-    <value>448, 61</value>
-  </data>
-  <data name="GPIO2_CHECK.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>0, 2, 0, 2</value>
-  </data>
-  <data name="GPIO2_CHECK.Size" type="System.Drawing.Size, System.Drawing">
-    <value>18, 18</value>
-  </data>
-  <data name="GPIO2_CHECK.TabIndex" type="System.Int32, mscorlib">
-    <value>179</value>
-  </data>
-  <data name="&gt;&gt;GPIO2_CHECK.Name" xml:space="preserve">
-    <value>GPIO2_CHECK</value>
-  </data>
-  <data name="&gt;&gt;GPIO2_CHECK.Type" xml:space="preserve">
-    <value>FontAwesome.Sharp.IconPictureBox, FontAwesome.Sharp, Version=6.3.0.0, Culture=neutral, PublicKeyToken=d16d1e4e568ec10f</value>
-  </data>
-  <data name="&gt;&gt;GPIO2_CHECK.Parent" xml:space="preserve">
-    <value>tableLayoutGPIO</value>
-  </data>
-  <data name="&gt;&gt;GPIO2_CHECK.ZOrder" xml:space="preserve">
-    <value>11</value>
-  </data>
-  <data name="GPIO1_CHECK.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>None</value>
-  </data>
-  <data name="GPIO1_CHECK.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="GPIO1_CHECK.Location" type="System.Drawing.Point, System.Drawing">
-    <value>448, 33</value>
-  </data>
-  <data name="GPIO1_CHECK.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>0, 2, 0, 2</value>
-  </data>
-  <data name="GPIO1_CHECK.Size" type="System.Drawing.Size, System.Drawing">
-    <value>18, 18</value>
-  </data>
-  <data name="GPIO1_CHECK.TabIndex" type="System.Int32, mscorlib">
-    <value>180</value>
-  </data>
-  <data name="&gt;&gt;GPIO1_CHECK.Name" xml:space="preserve">
-    <value>GPIO1_CHECK</value>
-  </data>
-  <data name="&gt;&gt;GPIO1_CHECK.Type" xml:space="preserve">
-    <value>FontAwesome.Sharp.IconPictureBox, FontAwesome.Sharp, Version=6.3.0.0, Culture=neutral, PublicKeyToken=d16d1e4e568ec10f</value>
-  </data>
-  <data name="&gt;&gt;GPIO1_CHECK.Parent" xml:space="preserve">
-    <value>tableLayoutGPIO</value>
-  </data>
-  <data name="&gt;&gt;GPIO1_CHECK.ZOrder" xml:space="preserve">
-    <value>12</value>
-  </data>
-  <data name="btn_PPMFailSafe.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+  <data name="btnGenerateKey.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Top</value>
   </data>
-  <data name="btn_PPMFailSafe.Location" type="System.Drawing.Point, System.Drawing">
-    <value>650, 59</value>
-  </data>
-  <data name="btn_PPMFailSafe.Size" type="System.Drawing.Size, System.Drawing">
-    <value>261, 32</value>
-  </data>
-  <data name="btn_PPMFailSafe.TabIndex" type="System.Int32, mscorlib">
-    <value>183</value>
-  </data>
-  <data name="btn_PPMFailSafe.Text" xml:space="preserve">
-    <value>Set PPM Fail Safe</value>
-  </data>
-  <data name="btn_PPMFailSafe.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleRight</value>
-  </data>
-  <data name="btn_PPMFailSafe.TextImageRelation" type="System.Windows.Forms.TextImageRelation, System.Windows.Forms">
-    <value>ImageBeforeText</value>
-  </data>
-  <data name="btn_PPMFailSafe.Visible" type="System.Boolean, mscorlib">
+  <data name="btnGenerateKey.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
-  <data name="&gt;&gt;btn_PPMFailSafe.Name" xml:space="preserve">
-    <value>btn_PPMFailSafe</value>
+  <data name="btnGenerateKey.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
-  <data name="&gt;&gt;btn_PPMFailSafe.Type" xml:space="preserve">
+  <data name="btnGenerateKey.Location" type="System.Drawing.Point, System.Drawing">
+    <value>177, 59</value>
+  </data>
+  <data name="btnGenerateKey.Size" type="System.Drawing.Size, System.Drawing">
+    <value>255, 32</value>
+  </data>
+  <data name="btnGenerateKey.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="btnGenerateKey.Text" xml:space="preserve">
+    <value>Generate Key</value>
+  </data>
+  <data name="btnGenerateKey.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleRight</value>
+  </data>
+  <data name="btnGenerateKey.TextImageRelation" type="System.Windows.Forms.TextImageRelation, System.Windows.Forms">
+    <value>ImageBeforeText</value>
+  </data>
+  <data name="&gt;&gt;btnGenerateKey.Name" xml:space="preserve">
+    <value>btnGenerateKey</value>
+  </data>
+  <data name="&gt;&gt;btnGenerateKey.Type" xml:space="preserve">
     <value>FontAwesome.Sharp.IconButton, FontAwesome.Sharp, Version=6.3.0.0, Culture=neutral, PublicKeyToken=d16d1e4e568ec10f</value>
   </data>
-  <data name="&gt;&gt;btn_PPMFailSafe.Parent" xml:space="preserve">
-    <value>tableLayoutGPIO</value>
+  <data name="&gt;&gt;btnGenerateKey.Parent" xml:space="preserve">
+    <value>tableLayoutPanel3</value>
   </data>
-  <data name="&gt;&gt;btn_PPMFailSafe.ZOrder" xml:space="preserve">
-    <value>14</value>
+  <data name="&gt;&gt;btnGenerateKey.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="ENCRYPTION_LEVEL_CHECK.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>None</value>
+  </data>
+  <data name="ENCRYPTION_LEVEL_CHECK.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="ENCRYPTION_LEVEL_CHECK.Location" type="System.Drawing.Point, System.Drawing">
+    <value>441, 5</value>
+  </data>
+  <data name="ENCRYPTION_LEVEL_CHECK.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 2, 0, 2</value>
+  </data>
+  <data name="ENCRYPTION_LEVEL_CHECK.Size" type="System.Drawing.Size, System.Drawing">
+    <value>18, 18</value>
+  </data>
+  <data name="ENCRYPTION_LEVEL_CHECK.TabIndex" type="System.Int32, mscorlib">
+    <value>154</value>
+  </data>
+  <data name="&gt;&gt;ENCRYPTION_LEVEL_CHECK.Name" xml:space="preserve">
+    <value>ENCRYPTION_LEVEL_CHECK</value>
+  </data>
+  <data name="&gt;&gt;ENCRYPTION_LEVEL_CHECK.Type" xml:space="preserve">
+    <value>FontAwesome.Sharp.IconPictureBox, FontAwesome.Sharp, Version=6.3.0.0, Culture=neutral, PublicKeyToken=d16d1e4e568ec10f</value>
+  </data>
+  <data name="&gt;&gt;ENCRYPTION_LEVEL_CHECK.Parent" xml:space="preserve">
+    <value>tableLayoutPanel3</value>
+  </data>
+  <data name="&gt;&gt;ENCRYPTION_LEVEL_CHECK.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="AESKEY_CHECK.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>None</value>
+  </data>
+  <data name="AESKEY_CHECK.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="AESKEY_CHECK.Location" type="System.Drawing.Point, System.Drawing">
+    <value>441, 33</value>
+  </data>
+  <data name="AESKEY_CHECK.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 2, 0, 2</value>
+  </data>
+  <data name="AESKEY_CHECK.Size" type="System.Drawing.Size, System.Drawing">
+    <value>18, 18</value>
+  </data>
+  <data name="AESKEY_CHECK.TabIndex" type="System.Int32, mscorlib">
+    <value>156</value>
+  </data>
+  <data name="&gt;&gt;AESKEY_CHECK.Name" xml:space="preserve">
+    <value>AESKEY_CHECK</value>
+  </data>
+  <data name="&gt;&gt;AESKEY_CHECK.Type" xml:space="preserve">
+    <value>FontAwesome.Sharp.IconPictureBox, FontAwesome.Sharp, Version=6.3.0.0, Culture=neutral, PublicKeyToken=d16d1e4e568ec10f</value>
+  </data>
+  <data name="&gt;&gt;AESKEY_CHECK.Parent" xml:space="preserve">
+    <value>tableLayoutPanel3</value>
+  </data>
+  <data name="&gt;&gt;AESKEY_CHECK.ZOrder" xml:space="preserve">
+    <value>6</value>
   </data>
   <data name="&gt;&gt;btn_SaveSetting.Name" xml:space="preserve">
     <value>btn_SaveSetting</value>

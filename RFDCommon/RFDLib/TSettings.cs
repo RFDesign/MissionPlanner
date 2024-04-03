@@ -156,12 +156,16 @@ namespace RFD.RFD900
             }
             if (WorkingSettings.ContainsKey("AESKEY"))
             {
-                // Only validate AESKEY if encryption is enabled               
-                var aesKey = WorkingSettings["AESKEY"];
-                if (!Regex.IsMatch(aesKey.GetValueAsString(), @"\A\b[0-9a-fA-F]+\b\Z"))
+                // Only validate AESKEY if encryption is enabled
+                if ((WorkingSettings.ContainsKey("ENCRYPTION_LEVEL") && WorkingSettings["ENCRYPTION_LEVEL"].GetValueAsString() != "0") 
+                    || (Settings.ContainsKey("ENCRYPTION_LEVEL") && Settings["ENCRYPTION_LEVEL"].GetValueAsString() != "0")) 
                 {
-                    Result.Add("Encryption key not valid hex number");
-                }                                          
+                    var aesKey = WorkingSettings["AESKEY"];
+                    if (!Regex.IsMatch(aesKey.GetValueAsString(), @"\A\b[0-9a-fA-F]+\b\Z"))
+                    {
+                        Result.Add("Encryption key not valid hex number");
+                    }
+                }                                                 
             }
             return Result.ToArray();
         }

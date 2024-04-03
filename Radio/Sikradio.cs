@@ -1011,6 +1011,7 @@ S15: MAX_WINDOW=131
 #if DEBUG
                     _configManager.AddLog($"Control not found: {item.Key}");
 #endif
+                    _configManager.AddLog($"Loaded {item.Key}: {item.Value.GetValueAsString()}");
                     continue;
                 }
 
