@@ -180,6 +180,7 @@
             this.richTextHelp = new System.Windows.Forms.RichTextBox();
             this.groupInfo = new System.Windows.Forms.GroupBox();
             this.tableLayoutMain = new System.Windows.Forms.TableLayoutPanel();
+            this.btn_PPMFailSafe = new FontAwesome.Sharp.IconButton();
             ((System.ComponentModel.ISupportInitialize)(this.configManagerBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pin14ItemsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pin13ItemsBindingSource)).BeginInit();
@@ -885,7 +886,7 @@
             resources.ApplyResources(this.FREQ_CHECK, "FREQ_CHECK");
             this.FREQ_CHECK.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(29)))), ((int)(((byte)(46)))));
             this.FREQ_CHECK.ForeColor = System.Drawing.Color.Gray;
-            this.FREQ_CHECK.IconChar = FontAwesome.Sharp.IconChar.Check;
+            this.FREQ_CHECK.IconChar = FontAwesome.Sharp.IconChar.CheckCircle;
             this.FREQ_CHECK.IconColor = System.Drawing.Color.Gray;
             this.FREQ_CHECK.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.FREQ_CHECK.IconSize = 18;
@@ -942,7 +943,7 @@
             resources.ApplyResources(this.ATI_CHECK, "ATI_CHECK");
             this.ATI_CHECK.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(29)))), ((int)(((byte)(46)))));
             this.ATI_CHECK.ForeColor = System.Drawing.Color.Gray;
-            this.ATI_CHECK.IconChar = FontAwesome.Sharp.IconChar.Check;
+            this.ATI_CHECK.IconChar = FontAwesome.Sharp.IconChar.CheckCircle;
             this.ATI_CHECK.IconColor = System.Drawing.Color.Gray;
             this.ATI_CHECK.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.ATI_CHECK.IconSize = 18;
@@ -954,7 +955,7 @@
             resources.ApplyResources(this.FORMAT_CHECK, "FORMAT_CHECK");
             this.FORMAT_CHECK.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(29)))), ((int)(((byte)(46)))));
             this.FORMAT_CHECK.ForeColor = System.Drawing.Color.Gray;
-            this.FORMAT_CHECK.IconChar = FontAwesome.Sharp.IconChar.Check;
+            this.FORMAT_CHECK.IconChar = FontAwesome.Sharp.IconChar.CheckCircle;
             this.FORMAT_CHECK.IconColor = System.Drawing.Color.Gray;
             this.FORMAT_CHECK.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.FORMAT_CHECK.IconSize = 18;
@@ -1028,7 +1029,7 @@
             resources.ApplyResources(this.OPPRESEND_CHECK, "OPPRESEND_CHECK");
             this.OPPRESEND_CHECK.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(29)))), ((int)(((byte)(46)))));
             this.OPPRESEND_CHECK.ForeColor = System.Drawing.Color.Gray;
-            this.OPPRESEND_CHECK.IconChar = FontAwesome.Sharp.IconChar.Check;
+            this.OPPRESEND_CHECK.IconChar = FontAwesome.Sharp.IconChar.CheckCircle;
             this.OPPRESEND_CHECK.IconColor = System.Drawing.Color.Gray;
             this.OPPRESEND_CHECK.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.OPPRESEND_CHECK.IconSize = 18;
@@ -1040,7 +1041,7 @@
             resources.ApplyResources(this.RSSI_IN_DBM_CHECK, "RSSI_IN_DBM_CHECK");
             this.RSSI_IN_DBM_CHECK.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(29)))), ((int)(((byte)(46)))));
             this.RSSI_IN_DBM_CHECK.ForeColor = System.Drawing.Color.Gray;
-            this.RSSI_IN_DBM_CHECK.IconChar = FontAwesome.Sharp.IconChar.Check;
+            this.RSSI_IN_DBM_CHECK.IconChar = FontAwesome.Sharp.IconChar.CheckCircle;
             this.RSSI_IN_DBM_CHECK.IconColor = System.Drawing.Color.Gray;
             this.RSSI_IN_DBM_CHECK.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.RSSI_IN_DBM_CHECK.IconSize = 18;
@@ -1052,7 +1053,7 @@
             resources.ApplyResources(this.AIR_FRAMELEN_CHECK, "AIR_FRAMELEN_CHECK");
             this.AIR_FRAMELEN_CHECK.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(29)))), ((int)(((byte)(46)))));
             this.AIR_FRAMELEN_CHECK.ForeColor = System.Drawing.Color.Gray;
-            this.AIR_FRAMELEN_CHECK.IconChar = FontAwesome.Sharp.IconChar.Check;
+            this.AIR_FRAMELEN_CHECK.IconChar = FontAwesome.Sharp.IconChar.CheckCircle;
             this.AIR_FRAMELEN_CHECK.IconColor = System.Drawing.Color.Gray;
             this.AIR_FRAMELEN_CHECK.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.AIR_FRAMELEN_CHECK.IconSize = 18;
@@ -1064,7 +1065,7 @@
             resources.ApplyResources(this.AIR_SPEED_CHECK, "AIR_SPEED_CHECK");
             this.AIR_SPEED_CHECK.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(29)))), ((int)(((byte)(46)))));
             this.AIR_SPEED_CHECK.ForeColor = System.Drawing.Color.Gray;
-            this.AIR_SPEED_CHECK.IconChar = FontAwesome.Sharp.IconChar.Check;
+            this.AIR_SPEED_CHECK.IconChar = FontAwesome.Sharp.IconChar.CheckCircle;
             this.AIR_SPEED_CHECK.IconColor = System.Drawing.Color.Gray;
             this.AIR_SPEED_CHECK.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.AIR_SPEED_CHECK.IconSize = 18;
@@ -1076,7 +1077,7 @@
             resources.ApplyResources(this.MAVLINK_CHECK, "MAVLINK_CHECK");
             this.MAVLINK_CHECK.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(29)))), ((int)(((byte)(46)))));
             this.MAVLINK_CHECK.ForeColor = System.Drawing.Color.Gray;
-            this.MAVLINK_CHECK.IconChar = FontAwesome.Sharp.IconChar.Check;
+            this.MAVLINK_CHECK.IconChar = FontAwesome.Sharp.IconChar.CheckCircle;
             this.MAVLINK_CHECK.IconColor = System.Drawing.Color.Gray;
             this.MAVLINK_CHECK.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.MAVLINK_CHECK.IconSize = 18;
@@ -1088,7 +1089,7 @@
             resources.ApplyResources(this.TXPOWER_CHECK, "TXPOWER_CHECK");
             this.TXPOWER_CHECK.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(29)))), ((int)(((byte)(46)))));
             this.TXPOWER_CHECK.ForeColor = System.Drawing.Color.Gray;
-            this.TXPOWER_CHECK.IconChar = FontAwesome.Sharp.IconChar.Check;
+            this.TXPOWER_CHECK.IconChar = FontAwesome.Sharp.IconChar.CheckCircle;
             this.TXPOWER_CHECK.IconColor = System.Drawing.Color.Gray;
             this.TXPOWER_CHECK.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.TXPOWER_CHECK.IconSize = 18;
@@ -1100,7 +1101,7 @@
             resources.ApplyResources(this.MAX_WINDOW_CHECK, "MAX_WINDOW_CHECK");
             this.MAX_WINDOW_CHECK.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(29)))), ((int)(((byte)(46)))));
             this.MAX_WINDOW_CHECK.ForeColor = System.Drawing.Color.Gray;
-            this.MAX_WINDOW_CHECK.IconChar = FontAwesome.Sharp.IconChar.Check;
+            this.MAX_WINDOW_CHECK.IconChar = FontAwesome.Sharp.IconChar.CheckCircle;
             this.MAX_WINDOW_CHECK.IconColor = System.Drawing.Color.Gray;
             this.MAX_WINDOW_CHECK.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.MAX_WINDOW_CHECK.IconSize = 18;
@@ -1112,7 +1113,7 @@
             resources.ApplyResources(this.DUTY_CYCLE_CHECK, "DUTY_CYCLE_CHECK");
             this.DUTY_CYCLE_CHECK.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(29)))), ((int)(((byte)(46)))));
             this.DUTY_CYCLE_CHECK.ForeColor = System.Drawing.Color.Gray;
-            this.DUTY_CYCLE_CHECK.IconChar = FontAwesome.Sharp.IconChar.Check;
+            this.DUTY_CYCLE_CHECK.IconChar = FontAwesome.Sharp.IconChar.CheckCircle;
             this.DUTY_CYCLE_CHECK.IconColor = System.Drawing.Color.Gray;
             this.DUTY_CYCLE_CHECK.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.DUTY_CYCLE_CHECK.IconSize = 18;
@@ -1124,7 +1125,7 @@
             resources.ApplyResources(this.LBT_RSSI_CHECK, "LBT_RSSI_CHECK");
             this.LBT_RSSI_CHECK.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(29)))), ((int)(((byte)(46)))));
             this.LBT_RSSI_CHECK.ForeColor = System.Drawing.Color.Gray;
-            this.LBT_RSSI_CHECK.IconChar = FontAwesome.Sharp.IconChar.Check;
+            this.LBT_RSSI_CHECK.IconChar = FontAwesome.Sharp.IconChar.CheckCircle;
             this.LBT_RSSI_CHECK.IconColor = System.Drawing.Color.Gray;
             this.LBT_RSSI_CHECK.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.LBT_RSSI_CHECK.IconSize = 18;
@@ -1136,7 +1137,7 @@
             resources.ApplyResources(this.NUM_CHANNELS_CHECK, "NUM_CHANNELS_CHECK");
             this.NUM_CHANNELS_CHECK.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(29)))), ((int)(((byte)(46)))));
             this.NUM_CHANNELS_CHECK.ForeColor = System.Drawing.Color.Gray;
-            this.NUM_CHANNELS_CHECK.IconChar = FontAwesome.Sharp.IconChar.Check;
+            this.NUM_CHANNELS_CHECK.IconChar = FontAwesome.Sharp.IconChar.CheckCircle;
             this.NUM_CHANNELS_CHECK.IconColor = System.Drawing.Color.Gray;
             this.NUM_CHANNELS_CHECK.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.NUM_CHANNELS_CHECK.IconSize = 18;
@@ -1148,7 +1149,7 @@
             resources.ApplyResources(this.NETID_CHECK, "NETID_CHECK");
             this.NETID_CHECK.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(29)))), ((int)(((byte)(46)))));
             this.NETID_CHECK.ForeColor = System.Drawing.Color.Gray;
-            this.NETID_CHECK.IconChar = FontAwesome.Sharp.IconChar.Check;
+            this.NETID_CHECK.IconChar = FontAwesome.Sharp.IconChar.CheckCircle;
             this.NETID_CHECK.IconColor = System.Drawing.Color.Gray;
             this.NETID_CHECK.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.NETID_CHECK.IconSize = 18;
@@ -1160,7 +1161,7 @@
             resources.ApplyResources(this.MAX_FREQ_CHECK, "MAX_FREQ_CHECK");
             this.MAX_FREQ_CHECK.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(29)))), ((int)(((byte)(46)))));
             this.MAX_FREQ_CHECK.ForeColor = System.Drawing.Color.Gray;
-            this.MAX_FREQ_CHECK.IconChar = FontAwesome.Sharp.IconChar.Check;
+            this.MAX_FREQ_CHECK.IconChar = FontAwesome.Sharp.IconChar.CheckCircle;
             this.MAX_FREQ_CHECK.IconColor = System.Drawing.Color.Gray;
             this.MAX_FREQ_CHECK.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.MAX_FREQ_CHECK.IconSize = 18;
@@ -1172,7 +1173,7 @@
             resources.ApplyResources(this.ANT_MODE_CHECK, "ANT_MODE_CHECK");
             this.ANT_MODE_CHECK.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(29)))), ((int)(((byte)(46)))));
             this.ANT_MODE_CHECK.ForeColor = System.Drawing.Color.Gray;
-            this.ANT_MODE_CHECK.IconChar = FontAwesome.Sharp.IconChar.Check;
+            this.ANT_MODE_CHECK.IconChar = FontAwesome.Sharp.IconChar.CheckCircle;
             this.ANT_MODE_CHECK.IconColor = System.Drawing.Color.Gray;
             this.ANT_MODE_CHECK.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.ANT_MODE_CHECK.IconSize = 18;
@@ -1184,7 +1185,7 @@
             resources.ApplyResources(this.MIN_FREQ_CHECK, "MIN_FREQ_CHECK");
             this.MIN_FREQ_CHECK.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(29)))), ((int)(((byte)(46)))));
             this.MIN_FREQ_CHECK.ForeColor = System.Drawing.Color.Gray;
-            this.MIN_FREQ_CHECK.IconChar = FontAwesome.Sharp.IconChar.Check;
+            this.MIN_FREQ_CHECK.IconChar = FontAwesome.Sharp.IconChar.CheckCircle;
             this.MIN_FREQ_CHECK.IconColor = System.Drawing.Color.Gray;
             this.MIN_FREQ_CHECK.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.MIN_FREQ_CHECK.IconSize = 18;
@@ -1333,7 +1334,7 @@
             resources.ApplyResources(this.AUXSER_SPEED_CHECK, "AUXSER_SPEED_CHECK");
             this.AUXSER_SPEED_CHECK.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(29)))), ((int)(((byte)(46)))));
             this.AUXSER_SPEED_CHECK.ForeColor = System.Drawing.Color.Gray;
-            this.AUXSER_SPEED_CHECK.IconChar = FontAwesome.Sharp.IconChar.Check;
+            this.AUXSER_SPEED_CHECK.IconChar = FontAwesome.Sharp.IconChar.CheckCircle;
             this.AUXSER_SPEED_CHECK.IconColor = System.Drawing.Color.Gray;
             this.AUXSER_SPEED_CHECK.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.AUXSER_SPEED_CHECK.IconSize = 18;
@@ -1345,7 +1346,7 @@
             resources.ApplyResources(this.SERIAL_SPEED_CHECK, "SERIAL_SPEED_CHECK");
             this.SERIAL_SPEED_CHECK.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(29)))), ((int)(((byte)(46)))));
             this.SERIAL_SPEED_CHECK.ForeColor = System.Drawing.Color.Gray;
-            this.SERIAL_SPEED_CHECK.IconChar = FontAwesome.Sharp.IconChar.Check;
+            this.SERIAL_SPEED_CHECK.IconChar = FontAwesome.Sharp.IconChar.CheckCircle;
             this.SERIAL_SPEED_CHECK.IconColor = System.Drawing.Color.Gray;
             this.SERIAL_SPEED_CHECK.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.SERIAL_SPEED_CHECK.IconSize = 18;
@@ -1357,7 +1358,7 @@
             resources.ApplyResources(this.RTSCTS_CHECK, "RTSCTS_CHECK");
             this.RTSCTS_CHECK.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(29)))), ((int)(((byte)(46)))));
             this.RTSCTS_CHECK.ForeColor = System.Drawing.Color.Gray;
-            this.RTSCTS_CHECK.IconChar = FontAwesome.Sharp.IconChar.Check;
+            this.RTSCTS_CHECK.IconChar = FontAwesome.Sharp.IconChar.CheckCircle;
             this.RTSCTS_CHECK.IconColor = System.Drawing.Color.Gray;
             this.RTSCTS_CHECK.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.RTSCTS_CHECK.IconSize = 18;
@@ -1413,7 +1414,7 @@
             resources.ApplyResources(this.DESTID_CHECK, "DESTID_CHECK");
             this.DESTID_CHECK.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(29)))), ((int)(((byte)(46)))));
             this.DESTID_CHECK.ForeColor = System.Drawing.Color.Gray;
-            this.DESTID_CHECK.IconChar = FontAwesome.Sharp.IconChar.Check;
+            this.DESTID_CHECK.IconChar = FontAwesome.Sharp.IconChar.CheckCircle;
             this.DESTID_CHECK.IconColor = System.Drawing.Color.Gray;
             this.DESTID_CHECK.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.DESTID_CHECK.IconSize = 18;
@@ -1425,7 +1426,7 @@
             resources.ApplyResources(this.NODEID_CHECK, "NODEID_CHECK");
             this.NODEID_CHECK.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(29)))), ((int)(((byte)(46)))));
             this.NODEID_CHECK.ForeColor = System.Drawing.Color.Gray;
-            this.NODEID_CHECK.IconChar = FontAwesome.Sharp.IconChar.Check;
+            this.NODEID_CHECK.IconChar = FontAwesome.Sharp.IconChar.CheckCircle;
             this.NODEID_CHECK.IconColor = System.Drawing.Color.Gray;
             this.NODEID_CHECK.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.NODEID_CHECK.IconSize = 18;
@@ -1437,7 +1438,7 @@
             resources.ApplyResources(this.TX_ENCAP_METHOD_CHECK, "TX_ENCAP_METHOD_CHECK");
             this.TX_ENCAP_METHOD_CHECK.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(29)))), ((int)(((byte)(46)))));
             this.TX_ENCAP_METHOD_CHECK.ForeColor = System.Drawing.Color.Gray;
-            this.TX_ENCAP_METHOD_CHECK.IconChar = FontAwesome.Sharp.IconChar.Check;
+            this.TX_ENCAP_METHOD_CHECK.IconChar = FontAwesome.Sharp.IconChar.CheckCircle;
             this.TX_ENCAP_METHOD_CHECK.IconColor = System.Drawing.Color.Gray;
             this.TX_ENCAP_METHOD_CHECK.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.TX_ENCAP_METHOD_CHECK.IconSize = 18;
@@ -1449,7 +1450,7 @@
             resources.ApplyResources(this.RX_ENCAP_METHOD_CHECK, "RX_ENCAP_METHOD_CHECK");
             this.RX_ENCAP_METHOD_CHECK.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(29)))), ((int)(((byte)(46)))));
             this.RX_ENCAP_METHOD_CHECK.ForeColor = System.Drawing.Color.Gray;
-            this.RX_ENCAP_METHOD_CHECK.IconChar = FontAwesome.Sharp.IconChar.Check;
+            this.RX_ENCAP_METHOD_CHECK.IconChar = FontAwesome.Sharp.IconChar.CheckCircle;
             this.RX_ENCAP_METHOD_CHECK.IconColor = System.Drawing.Color.Gray;
             this.RX_ENCAP_METHOD_CHECK.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.RX_ENCAP_METHOD_CHECK.IconSize = 18;
@@ -1461,7 +1462,7 @@
             resources.ApplyResources(this.MAX_DATA_CHECK, "MAX_DATA_CHECK");
             this.MAX_DATA_CHECK.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(29)))), ((int)(((byte)(46)))));
             this.MAX_DATA_CHECK.ForeColor = System.Drawing.Color.Gray;
-            this.MAX_DATA_CHECK.IconChar = FontAwesome.Sharp.IconChar.Check;
+            this.MAX_DATA_CHECK.IconChar = FontAwesome.Sharp.IconChar.CheckCircle;
             this.MAX_DATA_CHECK.IconColor = System.Drawing.Color.Gray;
             this.MAX_DATA_CHECK.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.MAX_DATA_CHECK.IconSize = 18;
@@ -1473,7 +1474,7 @@
             resources.ApplyResources(this.MAX_RETRIES_CHECK, "MAX_RETRIES_CHECK");
             this.MAX_RETRIES_CHECK.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(29)))), ((int)(((byte)(46)))));
             this.MAX_RETRIES_CHECK.ForeColor = System.Drawing.Color.Gray;
-            this.MAX_RETRIES_CHECK.IconChar = FontAwesome.Sharp.IconChar.Check;
+            this.MAX_RETRIES_CHECK.IconChar = FontAwesome.Sharp.IconChar.CheckCircle;
             this.MAX_RETRIES_CHECK.IconColor = System.Drawing.Color.Gray;
             this.MAX_RETRIES_CHECK.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.MAX_RETRIES_CHECK.IconSize = 18;
@@ -1485,7 +1486,7 @@
             resources.ApplyResources(this.GLOBAL_RETRIES_CHECK, "GLOBAL_RETRIES_CHECK");
             this.GLOBAL_RETRIES_CHECK.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(29)))), ((int)(((byte)(46)))));
             this.GLOBAL_RETRIES_CHECK.ForeColor = System.Drawing.Color.Gray;
-            this.GLOBAL_RETRIES_CHECK.IconChar = FontAwesome.Sharp.IconChar.Check;
+            this.GLOBAL_RETRIES_CHECK.IconChar = FontAwesome.Sharp.IconChar.CheckCircle;
             this.GLOBAL_RETRIES_CHECK.IconColor = System.Drawing.Color.Gray;
             this.GLOBAL_RETRIES_CHECK.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.GLOBAL_RETRIES_CHECK.IconSize = 18;
@@ -1497,7 +1498,7 @@
             resources.ApplyResources(this.SER_BRK_DETMS_CHECK, "SER_BRK_DETMS_CHECK");
             this.SER_BRK_DETMS_CHECK.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(29)))), ((int)(((byte)(46)))));
             this.SER_BRK_DETMS_CHECK.ForeColor = System.Drawing.Color.Gray;
-            this.SER_BRK_DETMS_CHECK.IconChar = FontAwesome.Sharp.IconChar.Check;
+            this.SER_BRK_DETMS_CHECK.IconChar = FontAwesome.Sharp.IconChar.CheckCircle;
             this.SER_BRK_DETMS_CHECK.IconColor = System.Drawing.Color.Gray;
             this.SER_BRK_DETMS_CHECK.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.SER_BRK_DETMS_CHECK.IconSize = 18;
@@ -1531,6 +1532,7 @@
             this.tableLayoutGPIO.Controls.Add(this.GPIO2_CHECK, 2, 2);
             this.tableLayoutGPIO.Controls.Add(this.GPIO1_CHECK, 2, 1);
             this.tableLayoutGPIO.Controls.Add(this.lblFailsafe, 3, 1);
+            this.tableLayoutGPIO.Controls.Add(this.btn_PPMFailSafe, 4, 2);
             this.tableLayoutGPIO.Name = "tableLayoutGPIO";
             // 
             // GPIO0_CHECK
@@ -1538,7 +1540,7 @@
             resources.ApplyResources(this.GPIO0_CHECK, "GPIO0_CHECK");
             this.GPIO0_CHECK.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(29)))), ((int)(((byte)(46)))));
             this.GPIO0_CHECK.ForeColor = System.Drawing.Color.Gray;
-            this.GPIO0_CHECK.IconChar = FontAwesome.Sharp.IconChar.Check;
+            this.GPIO0_CHECK.IconChar = FontAwesome.Sharp.IconChar.CheckCircle;
             this.GPIO0_CHECK.IconColor = System.Drawing.Color.Gray;
             this.GPIO0_CHECK.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.GPIO0_CHECK.IconSize = 18;
@@ -1550,7 +1552,7 @@
             resources.ApplyResources(this.GPIO3_CHECK, "GPIO3_CHECK");
             this.GPIO3_CHECK.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(29)))), ((int)(((byte)(46)))));
             this.GPIO3_CHECK.ForeColor = System.Drawing.Color.Gray;
-            this.GPIO3_CHECK.IconChar = FontAwesome.Sharp.IconChar.Check;
+            this.GPIO3_CHECK.IconChar = FontAwesome.Sharp.IconChar.CheckCircle;
             this.GPIO3_CHECK.IconColor = System.Drawing.Color.Gray;
             this.GPIO3_CHECK.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.GPIO3_CHECK.IconSize = 18;
@@ -1582,7 +1584,7 @@
             resources.ApplyResources(this.GPIO2_CHECK, "GPIO2_CHECK");
             this.GPIO2_CHECK.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(29)))), ((int)(((byte)(46)))));
             this.GPIO2_CHECK.ForeColor = System.Drawing.Color.Gray;
-            this.GPIO2_CHECK.IconChar = FontAwesome.Sharp.IconChar.Check;
+            this.GPIO2_CHECK.IconChar = FontAwesome.Sharp.IconChar.CheckCircle;
             this.GPIO2_CHECK.IconColor = System.Drawing.Color.Gray;
             this.GPIO2_CHECK.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.GPIO2_CHECK.IconSize = 18;
@@ -1594,7 +1596,7 @@
             resources.ApplyResources(this.GPIO1_CHECK, "GPIO1_CHECK");
             this.GPIO1_CHECK.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(29)))), ((int)(((byte)(46)))));
             this.GPIO1_CHECK.ForeColor = System.Drawing.Color.Gray;
-            this.GPIO1_CHECK.IconChar = FontAwesome.Sharp.IconChar.Check;
+            this.GPIO1_CHECK.IconChar = FontAwesome.Sharp.IconChar.CheckCircle;
             this.GPIO1_CHECK.IconColor = System.Drawing.Color.Gray;
             this.GPIO1_CHECK.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.GPIO1_CHECK.IconSize = 18;
@@ -1614,7 +1616,7 @@
             // tableLayoutPanel3
             // 
             resources.ApplyResources(this.tableLayoutPanel3, "tableLayoutPanel3");
-            this.tableLayoutPanel3.Controls.Add(this.btnGenerateKey, 0, 2);
+            this.tableLayoutPanel3.Controls.Add(this.btnGenerateKey, 1, 2);
             this.tableLayoutPanel3.Controls.Add(this.ENCRYPTION_LEVEL_CHECK, 2, 0);
             this.tableLayoutPanel3.Controls.Add(this.AESKEY, 1, 1);
             this.tableLayoutPanel3.Controls.Add(this.lblENCRYPTION_LEVEL, 0, 0);
@@ -1625,7 +1627,6 @@
             // 
             // btnGenerateKey
             // 
-            this.tableLayoutPanel3.SetColumnSpan(this.btnGenerateKey, 3);
             resources.ApplyResources(this.btnGenerateKey, "btnGenerateKey");
             this.btnGenerateKey.ForeColor = System.Drawing.Color.Black;
             this.btnGenerateKey.IconChar = FontAwesome.Sharp.IconChar.Key;
@@ -1633,6 +1634,7 @@
             this.btnGenerateKey.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnGenerateKey.IconSize = 24;
             this.btnGenerateKey.Name = "btnGenerateKey";
+            this.tableLayoutPanel3.SetRowSpan(this.btnGenerateKey, 2);
             this.btnGenerateKey.UseVisualStyleBackColor = true;
             // 
             // ENCRYPTION_LEVEL_CHECK
@@ -1640,7 +1642,7 @@
             resources.ApplyResources(this.ENCRYPTION_LEVEL_CHECK, "ENCRYPTION_LEVEL_CHECK");
             this.ENCRYPTION_LEVEL_CHECK.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(29)))), ((int)(((byte)(46)))));
             this.ENCRYPTION_LEVEL_CHECK.ForeColor = System.Drawing.Color.Gray;
-            this.ENCRYPTION_LEVEL_CHECK.IconChar = FontAwesome.Sharp.IconChar.Check;
+            this.ENCRYPTION_LEVEL_CHECK.IconChar = FontAwesome.Sharp.IconChar.CheckCircle;
             this.ENCRYPTION_LEVEL_CHECK.IconColor = System.Drawing.Color.Gray;
             this.ENCRYPTION_LEVEL_CHECK.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.ENCRYPTION_LEVEL_CHECK.IconSize = 18;
@@ -1652,7 +1654,7 @@
             resources.ApplyResources(this.AESKEY_CHECK, "AESKEY_CHECK");
             this.AESKEY_CHECK.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(29)))), ((int)(((byte)(46)))));
             this.AESKEY_CHECK.ForeColor = System.Drawing.Color.Gray;
-            this.AESKEY_CHECK.IconChar = FontAwesome.Sharp.IconChar.Check;
+            this.AESKEY_CHECK.IconChar = FontAwesome.Sharp.IconChar.CheckCircle;
             this.AESKEY_CHECK.IconColor = System.Drawing.Color.Gray;
             this.AESKEY_CHECK.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.AESKEY_CHECK.IconSize = 18;
@@ -1740,9 +1742,9 @@
             // 
             // groupInfo
             // 
-            resources.ApplyResources(this.groupInfo, "groupInfo");
             this.tableLayoutMain.SetColumnSpan(this.groupInfo, 2);
             this.groupInfo.Controls.Add(this.richTextHelp);
+            resources.ApplyResources(this.groupInfo, "groupInfo");
             this.groupInfo.ForeColor = System.Drawing.Color.White;
             this.groupInfo.Name = "groupInfo";
             this.tableLayoutMain.SetRowSpan(this.groupInfo, 5);
@@ -1761,6 +1763,19 @@
             this.tableLayoutMain.Controls.Add(this.groupInfo, 6, 0);
             this.tableLayoutMain.Controls.Add(this.groupGPIO, 0, 4);
             this.tableLayoutMain.Name = "tableLayoutMain";
+            // 
+            // btn_PPMFailSafe
+            // 
+            resources.ApplyResources(this.btn_PPMFailSafe, "btn_PPMFailSafe");
+            this.btn_PPMFailSafe.ForeColor = System.Drawing.Color.Black;
+            this.btn_PPMFailSafe.IconChar = FontAwesome.Sharp.IconChar.Signal;
+            this.btn_PPMFailSafe.IconColor = System.Drawing.Color.Black;
+            this.btn_PPMFailSafe.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btn_PPMFailSafe.IconSize = 24;
+            this.btn_PPMFailSafe.Name = "btn_PPMFailSafe";
+            this.tableLayoutGPIO.SetRowSpan(this.btn_PPMFailSafe, 2);
+            this.btn_PPMFailSafe.UseVisualStyleBackColor = true;
+            this.btn_PPMFailSafe.Click += new System.EventHandler(this.btn_PPMFailSafe_Click);
             // 
             // Sikradio
             // 
@@ -1991,5 +2006,6 @@
         private System.Windows.Forms.CheckBox checkBoxSync;
         private System.Windows.Forms.TableLayoutPanel tableLayoutMain;
         private FontAwesome.Sharp.IconButton btnGenerateKey;
+        private FontAwesome.Sharp.IconButton btn_PPMFailSafe;
     }
 }

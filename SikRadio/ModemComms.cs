@@ -145,7 +145,7 @@ namespace RFDCommon
 
         public TSession GetSession()
         {
-            if (session == null)
+            if (session == null || !session.Port.IsOpen)
             {
                 try
                 {
@@ -166,7 +166,7 @@ namespace RFDCommon
                 session.Dispose();
                 session = null;
                 GetSession();
-            }
+            }            
             return session;
         }
         
@@ -211,7 +211,8 @@ namespace RFDCommon
                     _comPort = new TcpSerial();
                     _comPort.BaudRate = MainV2.comPort.BaseStream.BaudRate;
                     _comPort.ReadTimeout = 4000;
-                    _comPort.Open();                   
+                    _comPort.Open();
+                    
                 }
                 else
                 {
@@ -244,10 +245,12 @@ namespace RFDCommon
         public bool Disconnect()
         {
             if (_comPort != null)
-            {
+            {                   
                 _comPort.Close();
                 _comPort = null;
                 _connected = false;
+                session.Dispose();
+                session = null;
                 ConnectionChanged();
             }            
             return true;

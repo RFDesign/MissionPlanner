@@ -75,6 +75,15 @@ namespace RFDCommon.RFDLib
         public string BOARD { get; set; }
         public TSettings Settings { get; set; }
 
+        public Type SettingType(string key)
+        {
+            if (Settings.WorkingSettings.TryGetValue(key, out var value))
+            {
+                return value.GetType();
+            }
+            return null;
+        }
+
         public T Get<T>(string key) where T : TBaseSetting
         {      
             if (Settings?.WorkingSettings == null)
@@ -83,10 +92,11 @@ namespace RFDCommon.RFDLib
             }
             if (Settings.WorkingSettings.TryGetValue(key, out var value))
             {
-                return (T)value;
+                return (T)value;                
             }
             return default;
         }
+        
         public void Set<T>(string key, T value) where T : TBaseSetting
         {
             Settings.WorkingSettings[key] = value;

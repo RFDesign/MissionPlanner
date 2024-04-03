@@ -48,11 +48,11 @@
             this.CMB_SerialPort = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.btnConnect = new FontAwesome.Sharp.IconButton();
-            this.panelMain = new System.Windows.Forms.Panel();
             this.textConsole = new System.Windows.Forms.TextBox();
+            this.splitContainerMain = new System.Windows.Forms.SplitContainer();
             this.sikradio1 = new MissionPlanner.Radio.Sikradio();
-            this.terminal1 = new SikRadio.Terminal();
             this.rssi1 = new SikRadio.Rssi();
+            this.terminal1 = new SikRadio.Terminal();
             ((System.ComponentModel.ISupportInitialize)(this.modemsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.configManagerBindingSource)).BeginInit();
             this.panelNavigation.SuspendLayout();
@@ -61,7 +61,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
-            this.panelMain.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainerMain)).BeginInit();
+            this.splitContainerMain.Panel1.SuspendLayout();
+            this.splitContainerMain.Panel2.SuspendLayout();
+            this.splitContainerMain.SuspendLayout();
             this.SuspendLayout();
             // 
             // modemsBindingSource
@@ -235,15 +238,6 @@
             this.btnConnect.UseVisualStyleBackColor = false;
             this.btnConnect.Click += new System.EventHandler(this.btnConnect_Click_1);
             // 
-            // panelMain
-            // 
-            resources.ApplyResources(this.panelMain, "panelMain");
-            this.panelMain.BackColor = System.Drawing.Color.Transparent;
-            this.panelMain.Controls.Add(this.sikradio1);
-            this.panelMain.Controls.Add(this.terminal1);
-            this.panelMain.Controls.Add(this.rssi1);
-            this.panelMain.Name = "panelMain";
-            // 
             // textConsole
             // 
             this.textConsole.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(49)))), ((int)(((byte)(66)))));
@@ -255,32 +249,46 @@
             this.textConsole.TabStop = false;
             this.textConsole.TextChanged += new System.EventHandler(this.textConsole_TextChanged);
             // 
+            // splitContainerMain
+            // 
+            resources.ApplyResources(this.splitContainerMain, "splitContainerMain");
+            this.splitContainerMain.Name = "splitContainerMain";
+            // 
+            // splitContainerMain.Panel1
+            // 
+            this.splitContainerMain.Panel1.Controls.Add(this.sikradio1);
+            this.splitContainerMain.Panel1.Controls.Add(this.rssi1);
+            this.splitContainerMain.Panel1.Controls.Add(this.terminal1);
+            this.splitContainerMain.Panel1.Controls.Add(this.panelNavigation);
+            // 
+            // splitContainerMain.Panel2
+            // 
+            this.splitContainerMain.Panel2.Controls.Add(this.textConsole);
+            // 
             // sikradio1
             // 
+            resources.ApplyResources(this.sikradio1, "sikradio1");
             this.sikradio1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(29)))), ((int)(((byte)(46)))));
             this.sikradio1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            resources.ApplyResources(this.sikradio1, "sikradio1");
             this.sikradio1.ForeColor = System.Drawing.Color.White;
             this.sikradio1.Name = "sikradio1";
-            // 
-            // terminal1
-            // 
-            resources.ApplyResources(this.terminal1, "terminal1");
-            this.terminal1.Name = "terminal1";
             // 
             // rssi1
             // 
             resources.ApplyResources(this.rssi1, "rssi1");
             this.rssi1.Name = "rssi1";
             // 
+            // terminal1
+            // 
+            resources.ApplyResources(this.terminal1, "terminal1");
+            this.terminal1.Name = "terminal1";
+            // 
             // Config
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(29)))), ((int)(((byte)(46)))));
             resources.ApplyResources(this, "$this");
-            this.Controls.Add(this.textConsole);
-            this.Controls.Add(this.panelMain);
-            this.Controls.Add(this.panelNavigation);
+            this.Controls.Add(this.splitContainerMain);
             this.Name = "Config";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Config_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.modemsBindingSource)).EndInit();
@@ -291,10 +299,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
-            this.panelMain.ResumeLayout(false);
-            this.panelMain.PerformLayout();
+            this.splitContainerMain.Panel1.ResumeLayout(false);
+            this.splitContainerMain.Panel1.PerformLayout();
+            this.splitContainerMain.Panel2.ResumeLayout(false);
+            this.splitContainerMain.Panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainerMain)).EndInit();
+            this.splitContainerMain.ResumeLayout(false);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -316,12 +327,12 @@
         private FontAwesome.Sharp.IconButton btnTerminal;
         private FontAwesome.Sharp.IconButton btnRSSI;
         private FontAwesome.Sharp.IconButton btnManufacturer;
-        private System.Windows.Forms.Panel panelMain;
         private MissionPlanner.Radio.Sikradio sikradio1;
         private System.Windows.Forms.TextBox textConsole;
         private Terminal terminal1;
         private Rssi rssi1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.SplitContainer splitContainerMain;
     }
 }
 

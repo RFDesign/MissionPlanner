@@ -51,7 +51,22 @@ namespace MissionPlanner.Radio
             {
                 var ctrl = this.Controls.Find(item, true).FirstOrDefault();
                 if (ctrl != null)
+                {
                     ctrl.DataBindings.Clear();
+                    
+                    if (ctrl is ComboBox)
+                    {
+                        var combo = ctrl as ComboBox;
+                        if (combo.DataSource != null)
+                            combo.DataSource = null;
+                        
+                    }
+                    if (ctrl is TextBox)
+                    {
+                        (ctrl as TextBox).Text = "";
+                    }
+                }
+
             }
             boundControls.Clear();
         }
@@ -106,6 +121,7 @@ S15: MAX_WINDOW=131
 
             // Property changed to do sync indicators?
             _configManager.PropertyChanged += _configManager_PropertyChanged;
+            
             // Have just connected, enable the form?
             //SetEnabled(this.Controls, true, true);
 
@@ -156,33 +172,62 @@ S15: MAX_WINDOW=131
             if (indicator == null)
                 return;
 
-            string localValue;
-            string remoteValue;
+            string localValue, remoteValue;
+            
             if (propertyName == "ATI")
             {
                 localValue = _configManager.Local.ATI;
                 remoteValue = _configManager.Remote.ATI;
-            } else if (propertyName == "FREQ")
+            } 
+            else if (propertyName == "FREQ")
             {
                 localValue = _configManager.Local.FREQ;
                 remoteValue = _configManager.Remote.FREQ;
             }            
             else
             {
-                localValue = _configManager.Local.Get<RFD.RFD900.TBaseSetting>(propertyName).GetValueAsString();
-                remoteValue = _configManager.Remote.Get<RFD.RFD900.TBaseSetting>(propertyName).GetValueAsString();
-            }
+                var settingType = _configManager.Local.SettingType(propertyName);
+                if (settingType == typeof(RFD.RFD900.TSetting))
+                {
+                    var localSetting = _configManager.Local.Get<RFD.RFD900.TSetting>(propertyName);
+                    localValue = localSetting.GetOptionNameForValue(localSetting.GetValueAsString());
+                    if (string.IsNullOrWhiteSpace(localValue))
+                        localValue = localSetting.Value.ToString();
+                    
+                    var remoteSetting = _configManager.Remote.Get<RFD.RFD900.TSetting>(propertyName);                    
+                    remoteValue = remoteSetting.GetOptionNameForValue(remoteSetting.GetValueAsString());
+                    if (string.IsNullOrWhiteSpace(remoteValue))
+                        remoteValue = remoteSetting.Value.ToString();
+                } 
+                else if (settingType == typeof(TTextSetting))
+                {
+                    localValue = _configManager.Local.Get<RFD.RFD900.TTextSetting>(propertyName).GetValueAsString();
+                    remoteValue = _configManager.Remote.Get<RFD.RFD900.TTextSetting>(propertyName).GetValueAsString();
+                } 
+                else if (settingType == typeof(TShortSetting)) 
+                { 
+                    localValue = _configManager.Local.Get<RFD.RFD900.TShortSetting>(propertyName).GetValueAsString();
+                    remoteValue = _configManager.Remote.Get<RFD.RFD900.TShortSetting>(propertyName).GetValueAsString();
 
+                }
+                else
+                {
+                    localValue = "Error-L";
+                    remoteValue = "Error-R";
+                }
+            }
             if (localValue == remoteValue)
             {
                 // They are equal, so go green
                 indicator.IconColor = System.Drawing.Color.Green;
+                indicator.IconChar = IconChar.CheckCircle;
                 toolTip1.SetToolTip(indicator, "In Sync");
             } 
             else
             {
                 // They are not equal
                 indicator.IconColor = System.Drawing.Color.OrangeRed;
+                indicator.IconChar = IconChar.TimesCircle;
                 var otherValue = _configManager.Current.IsLocal ? remoteValue : localValue;
                 toolTip1.SetToolTip(indicator, $"Other: {otherValue}");
             }            
@@ -864,7 +909,12 @@ S15: MAX_WINDOW=131
 
         private async void btn_SaveSetting_Click(object sender, EventArgs e)
         {
-            await _configManager.Save();
+            var result = await _configManager.Save();
+            if (result)
+            {
+                _configManager.AddLog("Reloading saved settings...");
+                await _configManager.Load();
+            }
         }
         
         private void LoadConfigFromFile()
@@ -958,7 +1008,9 @@ S15: MAX_WINDOW=131
                 var ctrl = this.Controls.Find(item.Key.Replace("/", "_"), true).FirstOrDefault();
                 if (ctrl == null)
                 {
+#if DEBUG
                     _configManager.AddLog($"Control not found: {item.Key}");
+#endif
                     continue;
                 }
 
@@ -1082,23 +1134,25 @@ S15: MAX_WINDOW=131
         //}
 
         private void GPIO1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            var value = (sender as ComboBox).SelectedValue?.ToString();
-            if (string.IsNullOrWhiteSpace(value)) return;
-
+        {            
             // Was GPIO1 changed?
             if (_configManager.GPIO1 == "GPO1_1R/COUT" || _configManager.GPIO1 == "GPO1_1SBUSOUT")
             {
                 // Show PPM failsafe controls?
                 lblFailsafe.Visible = true;
-                FSFRAMELOSS.Visible = true;                
+                FSFRAMELOSS.Visible = true;
+                btn_PPMFailSafe.Visible = true;
+                return;
             }
-            else
-            {
-                lblFailsafe.Visible = false;
-                FSFRAMELOSS.Visible = false;                
-            }
-            
+
+            lblFailsafe.Visible = false;
+            FSFRAMELOSS.Visible = false;
+            btn_PPMFailSafe.Visible = false;
+        }
+
+        private void btn_PPMFailSafe_Click(object sender, EventArgs e)
+        {
+            _configManager.SetPPMFailSafe();
         }
     }
 }

@@ -21,6 +21,7 @@ namespace SikRadio
         //ISikRadioForm _CurrentForm;
         static ICommsSerial _comPort;        
         public static IModemComms _modemComms = new ModemComms();
+        private IRFDConfigForm _currentForm;
         public ConfigManager ConfigManager = new ConfigManager(_modemComms);
         private int _selectedTabIndex = 0;   
         Color btnBackDefault = Color.FromArgb(255, 21, 29, 46);
@@ -71,12 +72,14 @@ namespace SikRadio
             if (_modemComms.IsConnected())
             {
                 // Just Connected - Find out who is home?
-                ConfigManager.QueryModems();
+                ConfigManager.RefreshComms(_modemComms);
+                //_currentForm.Start(_modemComms);
             } 
             else
-            {
+            {                
                 sikradio1.ClearBindings();
                 ConfigManager.ClearSettings();
+                //_currentForm.Stop();
             }
         }
 
@@ -276,14 +279,16 @@ namespace SikRadio
                 }
             }
             else
-            {
+            {                
                 if (_modemComms.Connect())
-                {        
+                {
+                    _modemComms.GetSession();
                     // Update local control state
                     btnConnect.Text = "Disconnect";
                     CMB_Baudrate.Enabled = (_comPort is SerialPort);
                     CMB_SerialPort.Enabled = false;
                     ConfigManager.AddLog($"Connected");
+                    
                 }
             }
         }
@@ -302,8 +307,8 @@ namespace SikRadio
         }
 
         private async void SwitchForms(IRFDConfigForm showForm, IconButton button)
-        {
-            foreach (var item in panelMain.Controls)
+        {            
+            foreach (var item in splitContainerMain.Panel1.Controls)
             {
                 var form = item as IRFDConfigForm;
                 if (form == null)
@@ -337,6 +342,7 @@ namespace SikRadio
                     //btn.ForeColor = btnDefault;
                 }
             }
+            _currentForm = showForm;
         }
 
         private void btnConfigPage_Click(object sender, EventArgs e)

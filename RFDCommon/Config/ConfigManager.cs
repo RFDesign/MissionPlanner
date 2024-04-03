@@ -35,6 +35,7 @@ namespace RFDCommon
         {
             // Clear modems
             _modems.Clear();
+            OnPropertyChanged();
         }
 
         #region Events
@@ -233,7 +234,7 @@ namespace RFDCommon
                 if (value == GetPinSetting(GPIO3_Items)) return;
 
                 SetPin(GPIO3_Items, value);
-                //OnPropertyChanged(nameof(PIN12));
+                OnPropertyChanged();
             }
         }
 
@@ -248,7 +249,7 @@ namespace RFDCommon
                 if (value == GetPinSetting(_gpio0_Items)) return;
 
                 SetPin(GPIO0_Items, value);
-                //OnPropertyChanged();
+                OnPropertyChanged();
             }
         }
                 
@@ -263,7 +264,7 @@ namespace RFDCommon
                 if (value == GetPinSetting(_gpio2_Items)) return;
 
                 SetPin(GPIO2_Items, value);
-                //OnPropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -278,6 +279,8 @@ namespace RFDCommon
                 if (value == GetPinSetting(_gpio1_Items)) return;
 
                 SetPin(GPIO1_Items, value);
+                //Task.Delay(1500);
+                OnPropertyChanged(nameof(GPIO1));
             }
         }
 
@@ -291,7 +294,8 @@ namespace RFDCommon
                 // Ignore 'None'
                 if (item.Value == "")
                     continue;
-                if (_currentModem.Get<TSetting>(item.Value)?.Value == 1)
+                var val = _currentModem.Get<TSetting>(item.Value)?.Value;
+                if (val == 1)
                     return item.Value;
             }
             return string.Empty;
@@ -307,7 +311,8 @@ namespace RFDCommon
                 if (item.Value == "")
                     continue;
                 // Get Current
-                _currentModem.Get<TSetting>(item.Value).Value = item.Value == value ? 1 : 0;                
+                var newVal = item.Value == value ? 1 : 0;
+                _currentModem.Get<TSetting>(item.Value).Value = newVal;           
             }            
         }
         #endregion
@@ -807,10 +812,11 @@ namespace RFDCommon
         #endregion
 
         // Do an early fetch of available modems?  Does this interfere with loading settings?
-        public async Task<bool> QueryModems()
+        public async Task<bool> RefreshComms(IModemComms comms)
         {            
             try
             {
+                _modemComms = comms;
                 if (!_modemComms.IsConnected())
                     return false;
                 //return await Load();                
@@ -934,12 +940,11 @@ namespace RFDCommon
         {
             try
             {
-                
-                // Discard...
-                _modemComms.DiscardInBuffer();
-
                 if (_modemComms.PutIntoATCommandMode() == TSession.TMode.AT_COMMAND)
-                {                    
+                {
+                    //// Discard...
+                    //_modemComms.DiscardInBuffer();
+
                     // cleanup
                     _modemComms.DoCommand("AT&T", false);
 
@@ -1025,7 +1030,7 @@ namespace RFDCommon
                 }
             }
             catch (Exception e)
-            {
+            {                
                 AddLog($"Error loading settings: {e.Message}");
                 return false;                    
             }
@@ -1034,7 +1039,7 @@ namespace RFDCommon
                 // off hook
                 _modemComms.PutIntoTransparentMode();
 
-                AddLog($"Load Complete - {_modems.Count} devices found");
+                AddLog($"{_modems.Count} device(s) found");
                 // Update all
                 //OnPropertyChanged(null);                
             }
@@ -1075,7 +1080,10 @@ namespace RFDCommon
                         continue; // No changes in this modem's config...
 
                     AddLog($"{changes.Settings.Count} modified settings found for {modem.DisplayName}.");
-                    
+                    foreach (var s in changes.Settings)
+                    {
+                        AddLog($"{s.Key}: {s.Value.GetValueAsString()}");
+                    }
                     // Make sure Modem is ready for commands?
                     string response = _modemComms.DoCommand(modem.IsLocal ? "ATI" : "RTI");
 
@@ -1120,8 +1128,7 @@ namespace RFDCommon
                     AddLog($"Restarting Local...");
                     // return to normal mode
                     _modemComms.DoCommand("ATZ");
-                }
-                                
+                }                                
                 
 
                 AddLog("Save Complete");
@@ -1140,6 +1147,8 @@ namespace RFDCommon
 
             //Need to do this because modem rebooted.
             _modemComms.GetSession().PutIntoATCommandModeAssumingInTransparentMode();
+
+            //            
             return true;
         }
 
@@ -1262,9 +1271,12 @@ namespace RFDCommon
             }
         }
 
-        public void SetPPMFailSafe(string SetCmd, string SaveCmd)
+        public void SetPPMFailSafe()
         {
-            
+            string cmdPrefix = Current.IsLocal ? "A" : "R";
+            string SetCmd = $"{cmdPrefix}T&R";
+            string SaveCmd = $"{cmdPrefix}T&W";
+
             TSession Session = _modemComms.GetSession();
 
             if (Session == null)
