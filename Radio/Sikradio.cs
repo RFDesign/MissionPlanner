@@ -16,6 +16,7 @@ using RFDCommon.RFDLib;
 using System.Threading.Tasks;
 using FontAwesome.Sharp;
 using System.Diagnostics;
+using System.ComponentModel;
 
 
 namespace MissionPlanner.Radio
@@ -148,7 +149,7 @@ S15: MAX_WINDOW=131
         private void UpdateIndicator(string propertyName)
         {
             // If no remote, bail
-            if (_configManager.Remote == null || propertyName.StartsWith("GPIO"))
+            if (_configManager.Remote?.Settings == null)
                 return;
 
             if (propertyName == "Current")
@@ -161,6 +162,10 @@ S15: MAX_WINDOW=131
 
                 UpdateIndicator("ATI");
                 UpdateIndicator("FREQ");
+                UpdateIndicator("GPIO0");
+                UpdateIndicator("GPIO1");
+                UpdateIndicator("GPIO2");
+                UpdateIndicator("GPIO3");
 
                 return;
             }
@@ -173,7 +178,8 @@ S15: MAX_WINDOW=131
                 return;
 
             string localValue, remoteValue;
-            
+            bool isAsymmetric = false, isValidAsymmetric = false;
+
             if (propertyName == "ATI")
             {
                 localValue = _configManager.Local.ATI;
@@ -183,7 +189,27 @@ S15: MAX_WINDOW=131
             {
                 localValue = _configManager.Local.FREQ;
                 remoteValue = _configManager.Remote.FREQ;
-            }            
+            }
+            else if (propertyName.StartsWith("GPIO"))
+            {
+                switch (propertyName)
+                {
+                    case "GPIO0":
+                        localValue = _configManager.GetGPIOSetting(_configManager.GPIO0_Items, _configManager.Local);
+                        remoteValue = _configManager.GetGPIOSetting(_configManager.GPIO0_Items, _configManager.Remote);
+                        break;
+                    case "GPIO1":
+                        localValue = _configManager.GetGPIOSetting(_configManager.GPIO1_Items, _configManager.Local);
+                        remoteValue = _configManager.GetGPIOSetting(_configManager.GPIO1_Items, _configManager.Remote);
+                        if (string.IsNullOrWhiteSpace(localValue) && string.IsNullOrWhiteSpace(remoteValue))
+                            break;
+                        isAsymmetric = true;
+                        isValidAsymmetric = (localValue.EndsWith("IN") && remoteValue.EndsWith("OUT")) || (localValue.EndsWith("OUT") && remoteValue.EndsWith("IN"));
+                        break;
+                    default:
+                        return;
+                }
+            }
             else
             {
                 var settingType = _configManager.Local.SettingType(propertyName);
@@ -195,9 +221,9 @@ S15: MAX_WINDOW=131
                         localValue = localSetting.Value.ToString();
                     
                     var remoteSetting = _configManager.Remote.Get<RFD.RFD900.TSetting>(propertyName);                    
-                    remoteValue = remoteSetting.GetOptionNameForValue(remoteSetting.GetValueAsString());
+                    remoteValue = remoteSetting?.GetOptionNameForValue(remoteSetting?.GetValueAsString());
                     if (string.IsNullOrWhiteSpace(remoteValue))
-                        remoteValue = remoteSetting.Value.ToString();
+                        remoteValue = remoteSetting?.Value.ToString();
                 } 
                 else if (settingType == typeof(TTextSetting))
                 {
@@ -216,12 +242,18 @@ S15: MAX_WINDOW=131
                     remoteValue = "Error-R";
                 }
             }
-            if (localValue == remoteValue)
+            if ((isAsymmetric && isValidAsymmetric) || (!isAsymmetric && localValue == remoteValue))
             {
                 // They are equal, so go green
                 indicator.IconColor = System.Drawing.Color.Green;
                 indicator.IconChar = IconChar.CheckCircle;
-                toolTip1.SetToolTip(indicator, "In Sync");
+                if (isAsymmetric)
+                {
+                    var otherValue = _configManager.Current.IsLocal ? remoteValue : localValue;
+                    toolTip1.SetToolTip(indicator, otherValue);
+                }
+                else
+                    toolTip1.SetToolTip(indicator, "In Sync");
             } 
             else
             {
@@ -229,7 +261,7 @@ S15: MAX_WINDOW=131
                 indicator.IconColor = System.Drawing.Color.OrangeRed;
                 indicator.IconChar = IconChar.TimesCircle;
                 var otherValue = _configManager.Current.IsLocal ? remoteValue : localValue;
-                toolTip1.SetToolTip(indicator, otherValue);
+                toolTip1.SetToolTip(indicator, string.IsNullOrWhiteSpace(otherValue) ? "Not Set" : otherValue);
             }            
         }
 
@@ -292,7 +324,10 @@ S15: MAX_WINDOW=131
                         cb.SelectedIndex = 0;
                         continue;
                     }
-                    if (_configManager.Current?.Settings?.Settings != null && !_configManager.Current.Settings.Settings.ContainsKey(c.Name) && !c.Name.StartsWith("GPIO"))
+                    if (_configManager.Current?.Settings?.Settings != null 
+                        && !_configManager.Current.Settings.Settings.ContainsKey(c.Name) 
+                        && !_configManager.Current.Settings.Settings.ContainsKey(c.Name.Replace("_","/")) // Fix so RATE/FREQBAND matches if in settings
+                        && !c.Name.StartsWith("GPIO"))
                         continue;
                 }
 
@@ -769,6 +804,7 @@ S15: MAX_WINDOW=131
                             // Reset state to pull new settings?
                             ClearBindings();
                             _configManager.ClearSettings();
+                            MsgBox.CustomMessageBox.Show("Firmware update successful", "Success");
                         }
                         else
                         {
@@ -913,7 +949,15 @@ S15: MAX_WINDOW=131
             if (result)
             {
                 _configManager.AddLog("Reloading saved settings...");
-                await _configManager.Load();
+                var loaded = await _configManager.Load();
+                if (loaded)
+                {
+                    BindControls();
+                } else
+                {
+                    _configManager.AddLog("Settings reload failed...");
+                }
+                MsgBox.CustomMessageBox.Show("Settings have been saved to the device successfully", "Success");
             }
         }
         
@@ -974,6 +1018,7 @@ S15: MAX_WINDOW=131
             await _configManager.ResetDefaults();
 
             _configManager.AddLog($"Reset Complete");
+            MsgBox.CustomMessageBox.Show("Reset to default settings completed", "Success");
         }
 
         private void btn_Firmware_Click(object sender, EventArgs e)
@@ -985,20 +1030,11 @@ S15: MAX_WINDOW=131
         {
             _configManager.RandomizeEncryptionKey();
         }
-                
-        private async void btn_LoadSetting_Click(object sender, EventArgs e)
-        {
-            _configManager.AddLog("Loading settings...");
-            
-            var loaded = await _configManager.Load();
-            if (!loaded)
-            {
-                ShowMessageBox("An error occurred while trying to load settings...", "Load Failed");
-                return;
-            }
 
+        private async void BindControls()
+        {
             _configManager.AddLog($"Binding Controls...");
-            
+
             var sw = Stopwatch.StartNew();
             // Setup Control Bindings
             foreach (var item in _configManager.Local.Settings.Settings)
@@ -1011,7 +1047,6 @@ S15: MAX_WINDOW=131
 #if DEBUG
                     _configManager.AddLog($"Control not found: {item.Key}");
 #endif
-                    _configManager.AddLog($"Loaded {item.Key}: {item.Value.GetValueAsString()}");
                     continue;
                 }
 
@@ -1037,15 +1072,53 @@ S15: MAX_WINDOW=131
                 {
                     BindSettingToCheckBox(item.Value as TSetting, ctrl as CheckBox);
                 }
-                _configManager.AddLog($"Loaded {item.Key}: {item.Value.GetValueAsString()}");
+                //_configManager.AddLog($"Loaded {item.Key}: {item.Value.GetValueAsString()}");
 
                 // Not needed as changing Current now performs this?
                 UpdateIndicator(item.Key);
             }
-            _configManager.AddLog($"Binding completed in {sw.ElapsedMilliseconds}ms");
+
+            // Static bindings?
+            BindGPIO(GPIO0, "GPIO0", _configManager.GPIO0_Items);
+            BindGPIO(GPIO1, "GPIO1", _configManager.GPIO1_Items);
+            BindGPIO(GPIO2, "GPIO2", _configManager.GPIO2_Items);
+            BindGPIO(GPIO3, "GPIO3", _configManager.GPIO3_Items);
+
+
             sw.Stop();
-           
+            _configManager.AddLog($"Binding completed in {sw.ElapsedMilliseconds}ms");            
+
             CheckControlStates();
+        }
+
+        private void BindGPIO(ComboBox comboBox, string bindingPropertyName, BindingList<RFDCommon.ConfigManager.PinFunction> items)
+        {
+            if (comboBox.DataBindings.Count > 0)
+                return;
+
+            comboBox.DisplayMember = "Name";
+            comboBox.ValueMember = "Value";
+            comboBox.DataSource = items;
+            
+            comboBox.SelectedValue = _configManager.GetPinSetting(items);            
+
+            // Setup Binding
+            comboBox.DataBindings.Add("SelectedValue", configManagerBindingSource, bindingPropertyName, false, DataSourceUpdateMode.OnPropertyChanged);
+            AddBoundControl(comboBox);
+        }
+                
+        private async void btn_LoadSetting_Click(object sender, EventArgs e)
+        {
+            _configManager.AddLog("Loading settings...");
+            
+            var loaded = await _configManager.Load();
+            if (!loaded)
+            {
+                ShowMessageBox("An error occurred while trying to load settings...", "Load Failed");
+                return;
+            }
+
+            BindControls();            
         }
 
         private async void Control_Clicked_ShowHelp(object sender, EventArgs e)

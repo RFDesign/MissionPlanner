@@ -1,5 +1,6 @@
 ﻿using MissionPlanner.Comms;
 using RFD.RFD900;
+
 using RFDCommon.Interface;
 using RFDCommon.Radio;
 using RFDCommon.RFDLib;
@@ -10,6 +11,7 @@ using System.ComponentModel;
 using System.Configuration.Internal;
 using System.Globalization;
 using System.Linq;
+using System.Net.Http.Headers;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -190,52 +192,53 @@ namespace RFDCommon
         #endregion
 
         #region Pin Function Abstractions   
-        public class PinFunction
+
+        public BindingList<PinFunction> GPIO1_Items { get; } = new BindingList<PinFunction>
         {
-            public string Name { get; set; }
-            public string Value { get; set; }
-        }
-
-        private PinFunction[] _gpio3_Items = {
-            new PinFunction() { Name= "None", Value = ""},
-            new PinFunction() { Name = "AUXOUT", Value = "GPO1_3AUXOUT" },
-            new PinFunction() { Name = "STATLED", Value = "GPO1_3STATLED" } };
-        public PinFunction[] GPIO3_Items => _gpio3_Items;
-
-        private PinFunction[] _gpio0_Items = {
-            new PinFunction() { Name= "None", Value = ""},
-            new PinFunction() { Name = "TXEN485", Value = "GPO1_0TXEN485" }
-        };
-        public PinFunction[] GPIO0_Items => _gpio0_Items;
-
-        private PinFunction[] _gpio2_Items = {
-            new PinFunction() { Name= "None", Value = ""},
-            new PinFunction() { Name = "AUXIN", Value = "GPI1_2AUXIN" }
-        };
-        public PinFunction[] GPIO2_Items => _gpio2_Items;
-
-        private PinFunction[] _gpio1_Items = {
             new PinFunction() { Name= "None", Value = ""},
             new PinFunction() { Name = "R/CIN", Value = "GPI1_1R/CIN" },
             new PinFunction() { Name = "R/COUT", Value = "GPO1_1R/COUT" },
             new PinFunction() { Name = "SBUSIN", Value = "GPO1_1SBUSIN" },
             new PinFunction() { Name = "SBUSOUT", Value = "GPO1_1SBUSOUT" },
         };
-        public PinFunction[] GPIO1_Items => _gpio1_Items;
 
-        
+        public class PinFunction
+        {
+            public string Name { get; set; }
+            public string Value { get; set; }
+        }
+
+        public BindingList<PinFunction> GPIO3_Items { get; } = new BindingList<PinFunction>
+        {
+            new PinFunction() { Name= "None", Value = ""},
+            new PinFunction() { Name = "AUXOUT", Value = "GPO1_3AUXOUT" },
+            new PinFunction() { Name = "STATLED", Value = "GPO1_3STATLED" }
+        };
+
+        public BindingList<PinFunction> GPIO0_Items { get; } = new BindingList<PinFunction>
+        {
+            new PinFunction() { Name= "None", Value = ""},
+            new PinFunction() { Name = "TXEN485", Value = "GPO1_0TXEN485" }
+        };
+
+        public BindingList<PinFunction> GPIO2_Items { get; } = new BindingList<PinFunction>
+        {
+            new PinFunction() { Name= "None", Value = ""},
+            new PinFunction() { Name = "AUXIN", Value = "GPI1_2AUXIN" }
+        };
+                
         public string GPIO3
         {            
             get
             {
-                return GetPinSetting(_gpio3_Items);
+                return GetPinSetting(GPIO3_Items);
             }
             set
             {
                 if (value == GetPinSetting(GPIO3_Items)) return;
 
                 SetPin(GPIO3_Items, value);
-                //OnPropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -243,14 +246,14 @@ namespace RFDCommon
         {
             get
             {
-                return GetPinSetting(_gpio0_Items);
+                return GetPinSetting(GPIO0_Items);
             }
             set
             {
-                if (value == GetPinSetting(_gpio0_Items)) return;
+                if (value == GetPinSetting(GPIO0_Items)) return;
 
                 SetPin(GPIO0_Items, value);
-                //OnPropertyChanged();
+                OnPropertyChanged();
             }
         }
                 
@@ -258,14 +261,14 @@ namespace RFDCommon
         {
             get
             {
-                return GetPinSetting(_gpio2_Items);
+                return GetPinSetting(GPIO2_Items);
             }
             set
             {
-                if (value == GetPinSetting(_gpio2_Items)) return;
+                if (value == GetPinSetting(GPIO2_Items)) return;
 
                 SetPin(GPIO2_Items, value);
-                //OnPropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -273,35 +276,46 @@ namespace RFDCommon
         {
             get
             {
-                return GetPinSetting(_gpio1_Items);
+                return GetPinSetting(GPIO1_Items);
             }
             set
             {
-                if (value == GetPinSetting(_gpio1_Items)) return;
+                if (value == GetPinSetting(GPIO1_Items)) return;
 
                 SetPin(GPIO1_Items, value);
                 //Task.Delay(1500);
-                //OnPropertyChanged(nameof(GPIO1));
+                OnPropertyChanged(nameof(GPIO1));
             }
         }
 
-        private string GetPinSetting(PinFunction[] settings)
+        public string GetGPIOSetting(BindingList<PinFunction> settings, RFDModem modem)
         {
-            if (_currentModem?.Settings == null)
+            if (modem?.Settings == null)
                 return string.Empty;
-
             foreach (var item in settings)
             {
                 // Ignore 'None'
                 if (item.Value == "")
                     continue;
-                var val = _currentModem.Get<TSetting>(item.Value)?.Value;
+                var val = modem.Get<TSetting>(item.Value)?.Value;
                 if (val == 1)
+                {
+#if DEBUG
+                    //AddLog($"GPIO Func is on {(_currentModem.IsLocal ? "Local" : "Remote")}: {item.Value}");
+#endif
                     return item.Value;
+                }
             }
+#if DEBUG
+            //AddLog($"GPIO Func is not set");
+#endif
             return string.Empty;
         }
-        private void SetPin(PinFunction[] settings, string value)
+        public string GetPinSetting(BindingList<PinFunction> settings)
+        {
+            return GetGPIOSetting(settings, _currentModem);            
+        }
+        private void SetPin(BindingList<PinFunction> settings, string value)
         {
             if (_currentModem?.Settings == null)
                 return;
@@ -511,8 +525,11 @@ namespace RFDCommon
                 OnPropertyChanged(nameof(EncryptionEnabled));
                 OnPropertyChanged(nameof(Encryption_Max_Key_Length));
 
+
+                // Update Value immediately
                 if (value == 0)
                 {
+                    
                     AESKEY = "";
                     return;
                 }
@@ -520,21 +537,26 @@ namespace RFDCommon
                 // When shifting from off to an on state, we must immediately set on the modem, in order to request the key
                 if (getKeyRequired)
                 {
-                    _modemComms.PutIntoATCommandMode();
-
-                    // Enable Encryption on modem to retrieve key
-                    string command = $"{(_currentModem.IsLocal ? "AT" : "RT")}{currentLevel.Designator}={value}";
-                    var answer = _modemComms.DoCommand(command, true);
-                    AddLog($"Command Response: {answer}");
-                    if (answer.Contains("OK"))
-                    {
-                        // Read Existing Key
-                        AESKEY = _modemComms.DoQueryWithRetry(_currentModem.IsLocal ? "AT&E?" : "RT&E", true).Trim();
-                    }
-                    _modemComms.PutIntoTransparentMode();   
-                }
-                
+                    EnableEncryption(Local, currentLevel.Designator, value);
+                    if (Remote?.Settings != null)
+                        EnableEncryption(Remote, currentLevel.Designator, value);
+                    AESKEY = GetEncryptionKey(_currentModem.IsLocal).GetValueAsString();                                       
+                }                
             }
+        }
+
+        private bool EnableEncryption(RFDModem modem, string designator, int value)
+        {
+            _modemComms.PutIntoATCommandMode();
+
+            // Enable Encryption on all modems to retrieve key(s)?
+
+            string command = $"{(modem.IsLocal ? "AT" : "RT")}{designator}={value}";
+            var answer = _modemComms.DoCommand(command, true);
+            AddLog($"{command} --> {answer}");
+
+            _modemComms.PutIntoTransparentMode();
+            return answer.Contains("OK");
         }
         public bool EncryptionEnabled
         {
@@ -885,12 +907,23 @@ namespace RFDCommon
 
                 var ati5Response = session.ATCClient.DoQueryWithMultiLineResponse($"{commandPrefix}TI5", $"{commandPrefix}TI");
 
-                bool Junk;
+                bool Junk;                
+                
+                var settingsString = await QuerySettings(modem);
+                var settings = session.ParseSettings(settingsString, session.Board, ati5Response, null, out Junk);  // Junk?!?
 
-                var Settings = session.GetSettings(false,
-                    session.Board, ati5Response, null, out Junk);
+                // Add AESKEY to settings?
+                var eKeySetting = GetEncryptionKey(modem.IsLocal);
+                if (eKeySetting != null)
+                {
+                    settings.Add("AESKEY", eKeySetting);
+                    AddLog($"AESKEY: {eKeySetting.GetValueAsString()}");
+                }
 
-                modem.Settings = new TSettings(Collections.Translate(Settings, (x) => (TBaseSetting)x));
+                //var Settings = session.GetSettings(!isLocal, session.Board, ati5Response, null, out Junk);
+
+                modem.Settings = new TSettings(Collections.Translate(settings, (x) => (TBaseSetting)x));
+                AddLog($"Loaded {modem.Settings.Settings.Count} settings from {modem.DisplayName}");
 
                 if (session.multipoint_fix == -1)
                 {
@@ -931,6 +964,65 @@ namespace RFDCommon
             return false;
         }
 
+        private const int RETRY_DELAY = 100;
+        private const int MAX_QUERY_RETRIES = 10;
+        private async Task<string> QuerySettings(RFDModem modem)
+        {
+            int i;
+            string Result = "";
+            string prefix = modem.IsLocal ? "ATI10:" : "RTI10:";
+
+            for (i = 0; ; i++)
+            {
+                string cmd = prefix + i.ToString();
+                int retryCount = 0;
+                while (retryCount < MAX_QUERY_RETRIES) {
+                    retryCount++;
+                    string result = _modemComms.DoQueryWithRetry(cmd, true);
+                    AddLog($"{cmd} --> {result}");
+                    if (string.IsNullOrWhiteSpace(result) || Text.Contains(result, "error"))
+                    {
+                        // Failure?
+                        AddLog($"Failure... retry in {RETRY_DELAY}");
+                        await Task.Delay(RETRY_DELAY);
+                    } else
+                    {
+                        Result += result + "\r\n";
+                        if (Text.Contains(result, "eof") || !result.Contains("="))
+                        {
+                            return Result;
+                        }
+                        break;
+                    }
+                }
+            }
+        }
+
+        TTextSetting GetEncryptionKey(bool isLocal)
+        {
+            _modemComms.PutIntoATCommandMode();
+            string eKey = _modemComms.DoQueryWithRetry((isLocal ? "A" : "R") + "T&E?", true);
+
+            if (!eKey.Contains("OK") && !eKey.Contains("ERROR"))
+            {
+                foreach (char c in eKey)
+                {
+                    if (!Text.CheckIsHexNumeral(c))
+                    {
+                        return null;
+                    }
+                }
+
+                var Result = new TTextSetting();
+                Result.Designator = "&E";
+                Result.Name = "AESKEY";
+                Result.Text = eKey;
+
+                return Result;
+            }
+            _modemComms.PutIntoTransparentMode();
+            return null;
+        }
         public void EndSession()
         {            
             OnPropertyChanged(null);
@@ -1010,13 +1102,22 @@ namespace RFDCommon
                     // ,,, REMOTE
 
                     #region REMOTE
-                    _modemComms.DiscardInBuffer();
-
+                    
                     var remoteLoaded = await LoadSettings(isLocal: false);
                     if (!remoteLoaded)
                     {
                         AddLog("No remote found");
+                    } else
+                    {
+                        if (Local.Settings.Settings.Count > Remote.Settings.Settings.Count)
+                        {
+                            if (Remote.Settings.Settings.Count == 0)
+                                _modems.Remove(Remote.DeviceId);// get rid of it?
+                            ShowBox("Settings Mismatch","Settings Count Mismatch - reload may be required");
+                        }
                     }
+
+
                     #endregion
                                         
                     // Select Local
@@ -1026,8 +1127,7 @@ namespace RFDCommon
                 else
                 {
                     
-                    return false;
-                    //EnableConfigControls(true, false);
+                    return false;                    
                 }
             }
             catch (Exception e)
@@ -1040,9 +1140,7 @@ namespace RFDCommon
                 // off hook
                 _modemComms.PutIntoTransparentMode();
 
-                AddLog($"{_modems.Count} device(s) found");
-                // Update all
-                //OnPropertyChanged(null);                
+                AddLog($"{_modems.Count} device(s) found");                            
             }
         }
                 
@@ -1133,7 +1231,7 @@ namespace RFDCommon
                 
 
                 AddLog("Save Complete");
-                ShowBox("Success", "Settings have been saved to the device successfully");
+                
             }
             else
             {
@@ -1239,7 +1337,7 @@ namespace RFDCommon
 
                     _modemComms.DoCommand("RT&W");
 
-                    AddLog("Reset");
+                    AddLog("Reset Remote");
 
                     _modemComms.DoCommand("RTZ");
 
@@ -1256,7 +1354,7 @@ namespace RFDCommon
 
                 DoCommandShowErrorIfNotOK("AT&W", "Failed to write parameters to EEPROM");
 
-                AddLog("Reset");
+                AddLog("Reset Local");
                 _modemComms.DoCommand("ATZ");
 
                 //Session must be ended because modem rebooted.

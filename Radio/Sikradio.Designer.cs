@@ -52,19 +52,13 @@
             this.LBT_RSSI = new System.Windows.Forms.ComboBox();
             this.NETID = new System.Windows.Forms.ComboBox();
             this.GPIO2 = new System.Windows.Forms.ComboBox();
-            this.configManagerBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.pin14ItemsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.GPIO0 = new System.Windows.Forms.ComboBox();
-            this.pin13ItemsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.GPIO3 = new System.Windows.Forms.ComboBox();
-            this.pin12ItemsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.GPIO1 = new System.Windows.Forms.ComboBox();
-            this.pin15ItemsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.checkBoxSync = new System.Windows.Forms.CheckBox();
+            this.configManagerBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.btn_Firmware = new FontAwesome.Sharp.IconButton();
             this.FREQ = new System.Windows.Forms.TextBox();
-            this.linkLabel_mavlink = new System.Windows.Forms.LinkLabel();
-            this.linkLabel_lowlatency = new System.Windows.Forms.LinkLabel();
             this.lblFailsafe = new System.Windows.Forms.Label();
             this.label49 = new System.Windows.Forms.Label();
             this.txtCountry = new System.Windows.Forms.TextBox();
@@ -182,10 +176,6 @@
             this.groupInfo = new System.Windows.Forms.GroupBox();
             this.tableLayoutMain = new System.Windows.Forms.TableLayoutPanel();
             ((System.ComponentModel.ISupportInitialize)(this.configManagerBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pin14ItemsBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pin13ItemsBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pin12ItemsBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pin15ItemsBindingSource)).BeginInit();
             this.groupFirmware.SuspendLayout();
             this.tableLayoutDevice.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.FREQ_CHECK)).BeginInit();
@@ -322,8 +312,8 @@
             // 
             // FORMAT
             // 
-            resources.ApplyResources(this.FORMAT, "FORMAT");
             this.FORMAT.BackColor = System.Drawing.SystemColors.ControlDark;
+            resources.ApplyResources(this.FORMAT, "FORMAT");
             this.FORMAT.Name = "FORMAT";
             this.FORMAT.ReadOnly = true;
             this.toolTip1.SetToolTip(this.FORMAT, resources.GetString("FORMAT.ToolTip"));
@@ -565,75 +555,43 @@
             // GPIO2
             // 
             resources.ApplyResources(this.GPIO2, "GPIO2");
-            this.GPIO2.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.configManagerBindingSource, "GPIO2", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.GPIO2.DataSource = this.pin14ItemsBindingSource;
-            this.GPIO2.DisplayMember = "Name";
+            this.GPIO2.DisplayMember = "Value";
             this.GPIO2.FormattingEnabled = true;
             this.GPIO2.Name = "GPIO2";
             this.toolTip1.SetToolTip(this.GPIO2, resources.GetString("GPIO2.ToolTip"));
             this.GPIO2.ValueMember = "Value";
             this.GPIO2.Click += new System.EventHandler(this.Control_Clicked_ShowHelp);
             // 
-            // configManagerBindingSource
-            // 
-            this.configManagerBindingSource.DataSource = typeof(RFDCommon.ConfigManager);
-            // 
-            // pin14ItemsBindingSource
-            // 
-            this.pin14ItemsBindingSource.DataMember = "GPIO2_Items";
-            this.pin14ItemsBindingSource.DataSource = this.configManagerBindingSource;
-            // 
             // GPIO0
             // 
             resources.ApplyResources(this.GPIO0, "GPIO0");
-            this.GPIO0.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.configManagerBindingSource, "GPIO0", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.GPIO0.DataSource = this.pin13ItemsBindingSource;
-            this.GPIO0.DisplayMember = "Name";
+            this.GPIO0.DisplayMember = "Value";
             this.GPIO0.FormattingEnabled = true;
             this.GPIO0.Name = "GPIO0";
             this.toolTip1.SetToolTip(this.GPIO0, resources.GetString("GPIO0.ToolTip"));
             this.GPIO0.ValueMember = "Value";
             this.GPIO0.Click += new System.EventHandler(this.Control_Clicked_ShowHelp);
             // 
-            // pin13ItemsBindingSource
-            // 
-            this.pin13ItemsBindingSource.DataMember = "GPIO0_Items";
-            this.pin13ItemsBindingSource.DataSource = this.configManagerBindingSource;
-            // 
             // GPIO3
             // 
             resources.ApplyResources(this.GPIO3, "GPIO3");
-            this.GPIO3.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.configManagerBindingSource, "GPIO3", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.GPIO3.DataSource = this.pin12ItemsBindingSource;
-            this.GPIO3.DisplayMember = "Name";
+            this.GPIO3.DisplayMember = "Value";
             this.GPIO3.FormattingEnabled = true;
             this.GPIO3.Name = "GPIO3";
             this.toolTip1.SetToolTip(this.GPIO3, resources.GetString("GPIO3.ToolTip"));
             this.GPIO3.ValueMember = "Value";
             this.GPIO3.Click += new System.EventHandler(this.Control_Clicked_ShowHelp);
             // 
-            // pin12ItemsBindingSource
-            // 
-            this.pin12ItemsBindingSource.DataMember = "GPIO3_Items";
-            this.pin12ItemsBindingSource.DataSource = this.configManagerBindingSource;
-            // 
             // GPIO1
             // 
             resources.ApplyResources(this.GPIO1, "GPIO1");
-            this.GPIO1.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.configManagerBindingSource, "GPIO1", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.GPIO1.DataSource = this.pin15ItemsBindingSource;
-            this.GPIO1.DisplayMember = "Name";
+            this.GPIO1.DisplayMember = "Value";
             this.GPIO1.FormattingEnabled = true;
             this.GPIO1.Name = "GPIO1";
             this.toolTip1.SetToolTip(this.GPIO1, resources.GetString("GPIO1.ToolTip"));
             this.GPIO1.ValueMember = "Value";
             this.GPIO1.SelectedIndexChanged += new System.EventHandler(this.GPIO1_SelectedIndexChanged);
             this.GPIO1.Click += new System.EventHandler(this.Control_Clicked_ShowHelp);
-            // 
-            // pin15ItemsBindingSource
-            // 
-            this.pin15ItemsBindingSource.DataMember = "GPIO1_Items";
-            this.pin15ItemsBindingSource.DataSource = this.configManagerBindingSource;
             // 
             // checkBoxSync
             // 
@@ -643,6 +601,10 @@
             this.checkBoxSync.Name = "checkBoxSync";
             this.toolTip1.SetToolTip(this.checkBoxSync, resources.GetString("checkBoxSync.ToolTip"));
             this.checkBoxSync.UseVisualStyleBackColor = true;
+            // 
+            // configManagerBindingSource
+            // 
+            this.configManagerBindingSource.DataSource = typeof(RFDCommon.ConfigManager);
             // 
             // btn_Firmware
             // 
@@ -667,18 +629,6 @@
             this.FREQ.Name = "FREQ";
             this.FREQ.ReadOnly = true;
             this.FREQ.Click += new System.EventHandler(this.Control_Clicked_ShowHelp);
-            // 
-            // linkLabel_mavlink
-            // 
-            resources.ApplyResources(this.linkLabel_mavlink, "linkLabel_mavlink");
-            this.linkLabel_mavlink.Name = "linkLabel_mavlink";
-            this.linkLabel_mavlink.TabStop = true;
-            // 
-            // linkLabel_lowlatency
-            // 
-            resources.ApplyResources(this.linkLabel_lowlatency, "linkLabel_lowlatency");
-            this.linkLabel_lowlatency.Name = "linkLabel_lowlatency";
-            this.linkLabel_lowlatency.TabStop = true;
             // 
             // lblFailsafe
             // 
@@ -835,9 +785,9 @@
             // 
             // ATI2
             // 
-            resources.ApplyResources(this.ATI2, "ATI2");
             this.ATI2.BackColor = System.Drawing.SystemColors.ControlDark;
             this.ATI2.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.configManagerBindingSource, "BOARD", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            resources.ApplyResources(this.ATI2, "ATI2");
             this.ATI2.Name = "ATI2";
             this.ATI2.ReadOnly = true;
             this.ATI2.Click += new System.EventHandler(this.Control_Clicked_ShowHelp);
@@ -865,21 +815,21 @@
             // tableLayoutDevice
             // 
             resources.ApplyResources(this.tableLayoutDevice, "tableLayoutDevice");
-            this.tableLayoutDevice.Controls.Add(this.FREQ_CHECK, 2, 1);
+            this.tableLayoutDevice.Controls.Add(this.FREQ_CHECK, 5, 1);
             this.tableLayoutDevice.Controls.Add(this.label9, 0, 0);
-            this.tableLayoutDevice.Controls.Add(this.txtCountry, 4, 2);
-            this.tableLayoutDevice.Controls.Add(this.ATI2, 4, 1);
-            this.tableLayoutDevice.Controls.Add(this.label49, 3, 2);
-            this.tableLayoutDevice.Controls.Add(this.label6, 3, 1);
-            this.tableLayoutDevice.Controls.Add(this.label7, 0, 1);
+            this.tableLayoutDevice.Controls.Add(this.label49, 0, 2);
+            this.tableLayoutDevice.Controls.Add(this.label6, 0, 1);
+            this.tableLayoutDevice.Controls.Add(this.label7, 3, 1);
             this.tableLayoutDevice.Controls.Add(this.label11, 3, 0);
-            this.tableLayoutDevice.Controls.Add(this.FREQ, 1, 1);
+            this.tableLayoutDevice.Controls.Add(this.FREQ, 4, 1);
             this.tableLayoutDevice.Controls.Add(this.ATI, 4, 0);
-            this.tableLayoutDevice.Controls.Add(this.FORMAT, 1, 2);
-            this.tableLayoutDevice.Controls.Add(this.label2, 0, 2);
+            this.tableLayoutDevice.Controls.Add(this.label2, 3, 2);
             this.tableLayoutDevice.Controls.Add(this.comboModemSelection, 1, 0);
             this.tableLayoutDevice.Controls.Add(this.ATI_CHECK, 5, 0);
-            this.tableLayoutDevice.Controls.Add(this.FORMAT_CHECK, 2, 2);
+            this.tableLayoutDevice.Controls.Add(this.ATI2, 1, 1);
+            this.tableLayoutDevice.Controls.Add(this.FORMAT_CHECK, 5, 2);
+            this.tableLayoutDevice.Controls.Add(this.txtCountry, 1, 2);
+            this.tableLayoutDevice.Controls.Add(this.FORMAT, 4, 2);
             this.tableLayoutDevice.Name = "tableLayoutDevice";
             // 
             // FREQ_CHECK
@@ -916,9 +866,9 @@
             // 
             // ATI
             // 
-            resources.ApplyResources(this.ATI, "ATI");
             this.ATI.BackColor = System.Drawing.SystemColors.ControlDark;
             this.ATI.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.configManagerBindingSource, "ATI", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            resources.ApplyResources(this.ATI, "ATI");
             this.ATI.Name = "ATI";
             this.ATI.ReadOnly = true;
             this.ATI.Click += new System.EventHandler(this.Control_Clicked_ShowHelp);
@@ -1768,9 +1718,7 @@
             // tableLayoutMain
             // 
             resources.ApplyResources(this.tableLayoutMain, "tableLayoutMain");
-            this.tableLayoutMain.Controls.Add(this.linkLabel_lowlatency, 7, 5);
             this.tableLayoutMain.Controls.Add(this.groupData, 0, 5);
-            this.tableLayoutMain.Controls.Add(this.linkLabel_mavlink, 6, 5);
             this.tableLayoutMain.Controls.Add(this.groupSecurity, 3, 3);
             this.tableLayoutMain.Controls.Add(this.groupSerial, 0, 3);
             this.tableLayoutMain.Controls.Add(this.groupFirmware, 0, 0);
@@ -1788,10 +1736,6 @@
             this.Controls.Add(this.flowLayoutActions);
             this.Name = "Sikradio";
             ((System.ComponentModel.ISupportInitialize)(this.configManagerBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pin14ItemsBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pin13ItemsBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pin12ItemsBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pin15ItemsBindingSource)).EndInit();
             this.groupFirmware.ResumeLayout(false);
             this.tableLayoutDevice.ResumeLayout(false);
             this.tableLayoutDevice.PerformLayout();
@@ -1886,8 +1830,6 @@
         private System.Windows.Forms.TextBox AESKEY;
         private System.Windows.Forms.CheckBox RTSCTS;
         private System.Windows.Forms.Label lblRTSCTS;
-        private System.Windows.Forms.LinkLabel linkLabel_mavlink;
-        private System.Windows.Forms.LinkLabel linkLabel_lowlatency;
         private System.Windows.Forms.TextBox txtCountry;
         private System.Windows.Forms.Label label49;
         private System.Windows.Forms.ComboBox ENCRYPTION_LEVEL;
@@ -2001,10 +1943,6 @@
         private FontAwesome.Sharp.IconPictureBox TX_ENCAP_METHOD_CHECK;
         private FontAwesome.Sharp.IconPictureBox DESTID_CHECK;
         private FontAwesome.Sharp.IconPictureBox NODEID_CHECK;
-        private System.Windows.Forms.BindingSource pin14ItemsBindingSource;
-        private System.Windows.Forms.BindingSource pin13ItemsBindingSource;
-        private System.Windows.Forms.BindingSource pin12ItemsBindingSource;
-        private System.Windows.Forms.BindingSource pin15ItemsBindingSource;
         private System.Windows.Forms.CheckBox checkBoxSync;
         private System.Windows.Forms.TableLayoutPanel tableLayoutMain;
         private FontAwesome.Sharp.IconButton btnGenerateKey;

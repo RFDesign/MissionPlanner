@@ -10,6 +10,7 @@ using RFDCommon.Interface;
 using System.Security.Permissions;
 using RFDCommon.RFDLib;
 using System.Linq;
+using static RFD.RFD900.TSetting;
 
 namespace RFD.RFD900
 {
@@ -1216,7 +1217,7 @@ namespace RFD.RFD900
         /// <param name="Ranges">A previous set of settings received to use the ranges from, in the
         /// case that they can't be ascertained from ATI5QResponse.  Can be null if not specified.</param>
         /// <returns>Never null</returns>
-        public Dictionary<string, TBaseSetting> GetSettings(string ATI5QResponse,
+        public Dictionary<string, TBaseSetting> ParseSettings(string ATI5QResponse,
             Uploader.Board Board, string ATI5Response,
             Dictionary<string, TBaseSetting> Ranges, out bool UseRanges)
         {
@@ -1349,7 +1350,7 @@ namespace RFD.RFD900
                 {
                     // Retry once
                     Line = ATCClient.DoQuery(Prefix + ParamIndex.ToString(), true, withRetry:true);
-                    if (RFDLib.Text.Contains(Line, "ërror") || (Line.Length ==0))
+                    if (RFDLib.Text.Contains(Line, "error") || (Line.Length ==0))
                         return null;
                 }
 
@@ -1378,8 +1379,8 @@ namespace RFD.RFD900
                 ATI5QR = ATCClient.DoQueryWithMultiLineResponse(Remote ? "RTI5?" : "ATI5?", "ATI");
             }
 
-            var Result = GetSettings(ATI5QR, Board, ATI5Response, Ranges, out UseRanges);
-
+            var Result = ParseSettings(ATI5QR, Board, ATI5Response, Ranges, out UseRanges);
+            
             var EncKey = GetEncryptionKey(Remote);
 
             if (EncKey != null)
@@ -1388,7 +1389,7 @@ namespace RFD.RFD900
             }
 
             return Result;
-        }
+        }        
 
         const string ENC_KEY_SETTING_NAME = "AESKEY";
     }

@@ -160,10 +160,10 @@
     <value>NoControl</value>
   </data>
   <data name="RTSCTS.Location" type="System.Drawing.Point, System.Drawing">
-    <value>177, 59</value>
+    <value>173, 59</value>
   </data>
   <data name="RTSCTS.Size" type="System.Drawing.Size, System.Drawing">
-    <value>255, 22</value>
+    <value>250, 22</value>
   </data>
   <data name="RTSCTS.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -217,10 +217,10 @@
     <value>1</value>
   </data>
   <data name="SERIAL_SPEED.Location" type="System.Drawing.Point, System.Drawing">
-    <value>177, 3</value>
+    <value>173, 3</value>
   </data>
   <data name="SERIAL_SPEED.Size" type="System.Drawing.Size, System.Drawing">
-    <value>255, 23</value>
+    <value>250, 23</value>
   </data>
   <data name="SERIAL_SPEED.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -341,10 +341,10 @@
     <value>30</value>
   </data>
   <data name="ENCRYPTION_LEVEL.Location" type="System.Drawing.Point, System.Drawing">
-    <value>177, 3</value>
+    <value>173, 3</value>
   </data>
   <data name="ENCRYPTION_LEVEL.Size" type="System.Drawing.Size, System.Drawing">
-    <value>255, 23</value>
+    <value>250, 23</value>
   </data>
   <data name="ENCRYPTION_LEVEL.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -371,10 +371,10 @@
     <value>False</value>
   </data>
   <data name="FSFRAMELOSS.Location" type="System.Drawing.Point, System.Drawing">
-    <value>650, 31</value>
+    <value>644, 31</value>
   </data>
   <data name="FSFRAMELOSS.Size" type="System.Drawing.Size, System.Drawing">
-    <value>261, 23</value>
+    <value>259, 23</value>
   </data>
   <data name="FSFRAMELOSS.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
@@ -397,14 +397,14 @@
   <data name="&gt;&gt;FSFRAMELOSS.ZOrder" xml:space="preserve">
     <value>6</value>
   </data>
-  <data name="FORMAT.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Bottom, Left, Right</value>
+  <data name="FORMAT.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
   </data>
   <data name="FORMAT.Location" type="System.Drawing.Point, System.Drawing">
-    <value>181, 59</value>
+    <value>637, 59</value>
   </data>
   <data name="FORMAT.Size" type="System.Drawing.Size, System.Drawing">
-    <value>261, 21</value>
+    <value>256, 21</value>
   </data>
   <data name="FORMAT.TabIndex" type="System.Int32, mscorlib">
     <value>113</value>
@@ -422,7 +422,7 @@
     <value>tableLayoutDevice</value>
   </data>
   <data name="&gt;&gt;FORMAT.ZOrder" xml:space="preserve">
-    <value>10</value>
+    <value>14</value>
   </data>
   <data name="AUXSER_SPEED.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -431,10 +431,10 @@
     <value>False</value>
   </data>
   <data name="AUXSER_SPEED.Location" type="System.Drawing.Point, System.Drawing">
-    <value>177, 31</value>
+    <value>173, 31</value>
   </data>
   <data name="AUXSER_SPEED.Size" type="System.Drawing.Size, System.Drawing">
-    <value>255, 23</value>
+    <value>250, 23</value>
   </data>
   <data name="AUXSER_SPEED.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -555,10 +555,10 @@
     <value>50</value>
   </data>
   <data name="NUM_CHANNELS.Location" type="System.Drawing.Point, System.Drawing">
-    <value>181, 87</value>
+    <value>177, 87</value>
   </data>
   <data name="NUM_CHANNELS.Size" type="System.Drawing.Size, System.Drawing">
-    <value>261, 23</value>
+    <value>256, 23</value>
   </data>
   <data name="NUM_CHANNELS.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
@@ -624,10 +624,10 @@
     <value>2</value>
   </data>
   <data name="AIR_SPEED.Location" type="System.Drawing.Point, System.Drawing">
-    <value>181, 171</value>
+    <value>177, 171</value>
   </data>
   <data name="AIR_SPEED.Size" type="System.Drawing.Size, System.Drawing">
-    <value>261, 23</value>
+    <value>256, 23</value>
   </data>
   <data name="AIR_SPEED.TabIndex" type="System.Int32, mscorlib">
     <value>6</value>
@@ -684,10 +684,10 @@
     <value>100</value>
   </data>
   <data name="DUTY_CYCLE.Location" type="System.Drawing.Point, System.Drawing">
-    <value>181, 115</value>
+    <value>177, 115</value>
   </data>
   <data name="DUTY_CYCLE.Size" type="System.Drawing.Size, System.Drawing">
-    <value>261, 23</value>
+    <value>256, 23</value>
   </data>
   <data name="DUTY_CYCLE.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
@@ -738,10 +738,10 @@
     <value>20</value>
   </data>
   <data name="TXPOWER.Location" type="System.Drawing.Point, System.Drawing">
-    <value>181, 143</value>
+    <value>177, 143</value>
   </data>
   <data name="TXPOWER.Size" type="System.Drawing.Size, System.Drawing">
-    <value>261, 23</value>
+    <value>256, 23</value>
   </data>
   <data name="TXPOWER.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
@@ -796,10 +796,10 @@
     <value>435000</value>
   </data>
   <data name="MAX_FREQ.Location" type="System.Drawing.Point, System.Drawing">
-    <value>181, 59</value>
+    <value>177, 59</value>
   </data>
   <data name="MAX_FREQ.Size" type="System.Drawing.Size, System.Drawing">
-    <value>261, 23</value>
+    <value>256, 23</value>
   </data>
   <data name="MAX_FREQ.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -826,10 +826,10 @@
     <value>False</value>
   </data>
   <data name="MIN_FREQ.Location" type="System.Drawing.Point, System.Drawing">
-    <value>181, 31</value>
+    <value>177, 31</value>
   </data>
   <data name="MIN_FREQ.Size" type="System.Drawing.Size, System.Drawing">
-    <value>261, 23</value>
+    <value>256, 23</value>
   </data>
   <data name="MIN_FREQ.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -859,10 +859,10 @@
     <value>NoControl</value>
   </data>
   <data name="OPPRESEND.Location" type="System.Drawing.Point, System.Drawing">
-    <value>650, 199</value>
+    <value>637, 199</value>
   </data>
   <data name="OPPRESEND.Size" type="System.Drawing.Size, System.Drawing">
-    <value>261, 22</value>
+    <value>256, 22</value>
   </data>
   <data name="OPPRESEND.TabIndex" type="System.Int32, mscorlib">
     <value>14</value>
@@ -893,10 +893,10 @@
     <value>NoControl</value>
   </data>
   <data name="RSSI_IN_DBM.Location" type="System.Drawing.Point, System.Drawing">
-    <value>181, 199</value>
+    <value>177, 199</value>
   </data>
   <data name="RSSI_IN_DBM.Size" type="System.Drawing.Size, System.Drawing">
-    <value>261, 22</value>
+    <value>256, 22</value>
   </data>
   <data name="RSSI_IN_DBM.TabIndex" type="System.Int32, mscorlib">
     <value>7</value>
@@ -923,10 +923,10 @@
     <value>False</value>
   </data>
   <data name="AIR_FRAMELEN.Location" type="System.Drawing.Point, System.Drawing">
-    <value>650, 171</value>
+    <value>637, 171</value>
   </data>
   <data name="AIR_FRAMELEN.Size" type="System.Drawing.Size, System.Drawing">
-    <value>261, 23</value>
+    <value>256, 23</value>
   </data>
   <data name="AIR_FRAMELEN.TabIndex" type="System.Int32, mscorlib">
     <value>13</value>
@@ -953,10 +953,10 @@
     <value>False</value>
   </data>
   <data name="MAVLINK.Location" type="System.Drawing.Point, System.Drawing">
-    <value>650, 143</value>
+    <value>637, 143</value>
   </data>
   <data name="MAVLINK.Size" type="System.Drawing.Size, System.Drawing">
-    <value>261, 23</value>
+    <value>256, 23</value>
   </data>
   <data name="MAVLINK.TabIndex" type="System.Int32, mscorlib">
     <value>12</value>
@@ -1004,10 +1004,10 @@
     <value>250</value>
   </data>
   <data name="LBT_RSSI.Location" type="System.Drawing.Point, System.Drawing">
-    <value>650, 87</value>
+    <value>637, 87</value>
   </data>
   <data name="LBT_RSSI.Size" type="System.Drawing.Size, System.Drawing">
-    <value>261, 23</value>
+    <value>256, 23</value>
   </data>
   <data name="LBT_RSSI.TabIndex" type="System.Int32, mscorlib">
     <value>10</value>
@@ -1124,10 +1124,10 @@
     <value>30</value>
   </data>
   <data name="NETID.Location" type="System.Drawing.Point, System.Drawing">
-    <value>650, 59</value>
+    <value>637, 59</value>
   </data>
   <data name="NETID.Size" type="System.Drawing.Size, System.Drawing">
-    <value>261, 23</value>
+    <value>256, 23</value>
   </data>
   <data name="NETID.TabIndex" type="System.Int32, mscorlib">
     <value>9</value>
@@ -1150,20 +1150,14 @@
   <data name="GPIO2.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>
   </data>
-  <metadata name="configManagerBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>487, 17</value>
-  </metadata>
-  <metadata name="pin14ItemsBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>888, 17</value>
-  </metadata>
   <data name="GPIO2.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
   <data name="GPIO2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>181, 59</value>
+    <value>179, 59</value>
   </data>
   <data name="GPIO2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>261, 23</value>
+    <value>259, 23</value>
   </data>
   <data name="GPIO2.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -1187,17 +1181,14 @@
   <data name="GPIO0.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>
   </data>
-  <metadata name="pin13ItemsBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>1077, 17</value>
-  </metadata>
   <data name="GPIO0.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
   <data name="GPIO0.Location" type="System.Drawing.Point, System.Drawing">
-    <value>181, 3</value>
+    <value>179, 3</value>
   </data>
   <data name="GPIO0.Size" type="System.Drawing.Size, System.Drawing">
-    <value>261, 23</value>
+    <value>259, 23</value>
   </data>
   <data name="GPIO0.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -1220,17 +1211,14 @@
   <data name="GPIO3.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>
   </data>
-  <metadata name="pin12ItemsBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>1266, 17</value>
-  </metadata>
   <data name="GPIO3.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
   <data name="GPIO3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>181, 87</value>
+    <value>179, 87</value>
   </data>
   <data name="GPIO3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>261, 23</value>
+    <value>259, 23</value>
   </data>
   <data name="GPIO3.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
@@ -1254,17 +1242,14 @@
   <data name="GPIO1.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>
   </data>
-  <metadata name="pin15ItemsBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>699, 17</value>
-  </metadata>
   <data name="GPIO1.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
   <data name="GPIO1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>181, 31</value>
+    <value>179, 31</value>
   </data>
   <data name="GPIO1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>261, 23</value>
+    <value>259, 23</value>
   </data>
   <data name="GPIO1.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -1285,6 +1270,9 @@
   <data name="&gt;&gt;GPIO1.ZOrder" xml:space="preserve">
     <value>10</value>
   </data>
+  <metadata name="configManagerBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>487, 17</value>
+  </metadata>
   <data name="checkBoxSync.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -1318,6 +1306,9 @@
   <data name="&gt;&gt;checkBoxSync.ZOrder" xml:space="preserve">
     <value>6</value>
   </data>
+  <metadata name="configManagerBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>487, 17</value>
+  </metadata>
   <data name="btn_Firmware.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 8.25pt</value>
   </data>
@@ -1361,10 +1352,10 @@
     <value>Top, Bottom, Left, Right</value>
   </data>
   <data name="FREQ.Location" type="System.Drawing.Point, System.Drawing">
-    <value>181, 31</value>
+    <value>637, 31</value>
   </data>
   <data name="FREQ.Size" type="System.Drawing.Size, System.Drawing">
-    <value>261, 21</value>
+    <value>256, 21</value>
   </data>
   <data name="FREQ.TabIndex" type="System.Int32, mscorlib">
     <value>79</value>
@@ -1379,67 +1370,7 @@
     <value>tableLayoutDevice</value>
   </data>
   <data name="&gt;&gt;FREQ.ZOrder" xml:space="preserve">
-    <value>8</value>
-  </data>
-  <data name="linkLabel_mavlink.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="linkLabel_mavlink.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="linkLabel_mavlink.Location" type="System.Drawing.Point, System.Drawing">
-    <value>957, 721</value>
-  </data>
-  <data name="linkLabel_mavlink.Size" type="System.Drawing.Size, System.Drawing">
-    <value>124, 30</value>
-  </data>
-  <data name="linkLabel_mavlink.TabIndex" type="System.Int32, mscorlib">
-    <value>95</value>
-  </data>
-  <data name="linkLabel_mavlink.Text" xml:space="preserve">
-    <value>Settings for Standard Mavlink</value>
-  </data>
-  <data name="&gt;&gt;linkLabel_mavlink.Name" xml:space="preserve">
-    <value>linkLabel_mavlink</value>
-  </data>
-  <data name="&gt;&gt;linkLabel_mavlink.Type" xml:space="preserve">
-    <value>System.Windows.Forms.LinkLabel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;linkLabel_mavlink.Parent" xml:space="preserve">
-    <value>tableLayoutMain</value>
-  </data>
-  <data name="&gt;&gt;linkLabel_mavlink.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="linkLabel_lowlatency.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="linkLabel_lowlatency.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="linkLabel_lowlatency.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1116, 721</value>
-  </data>
-  <data name="linkLabel_lowlatency.Size" type="System.Drawing.Size, System.Drawing">
-    <value>139, 15</value>
-  </data>
-  <data name="linkLabel_lowlatency.TabIndex" type="System.Int32, mscorlib">
-    <value>94</value>
-  </data>
-  <data name="linkLabel_lowlatency.Text" xml:space="preserve">
-    <value>Settings for Low Latency</value>
-  </data>
-  <data name="&gt;&gt;linkLabel_lowlatency.Name" xml:space="preserve">
-    <value>linkLabel_lowlatency</value>
-  </data>
-  <data name="&gt;&gt;linkLabel_lowlatency.Type" xml:space="preserve">
-    <value>System.Windows.Forms.LinkLabel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;linkLabel_lowlatency.Parent" xml:space="preserve">
-    <value>tableLayoutMain</value>
-  </data>
-  <data name="&gt;&gt;linkLabel_lowlatency.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>6</value>
   </data>
   <data name="lblFailsafe.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1451,10 +1382,10 @@
     <value>NoControl</value>
   </data>
   <data name="lblFailsafe.Location" type="System.Drawing.Point, System.Drawing">
-    <value>472, 28</value>
+    <value>468, 28</value>
   </data>
   <data name="lblFailsafe.Size" type="System.Drawing.Size, System.Drawing">
-    <value>172, 28</value>
+    <value>170, 28</value>
   </data>
   <data name="lblFailsafe.TabIndex" type="System.Int32, mscorlib">
     <value>162</value>
@@ -1490,10 +1421,10 @@
     <value>NoControl</value>
   </data>
   <data name="label49.Location" type="System.Drawing.Point, System.Drawing">
-    <value>472, 56</value>
+    <value>3, 56</value>
   </data>
   <data name="label49.Size" type="System.Drawing.Size, System.Drawing">
-    <value>172, 29</value>
+    <value>168, 29</value>
   </data>
   <data name="label49.TabIndex" type="System.Int32, mscorlib">
     <value>148</value>
@@ -1514,19 +1445,19 @@
     <value>tableLayoutDevice</value>
   </data>
   <data name="&gt;&gt;label49.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>2</value>
   </data>
   <data name="txtCountry.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>
   </data>
   <data name="txtCountry.Location" type="System.Drawing.Point, System.Drawing">
-    <value>650, 59</value>
+    <value>177, 59</value>
   </data>
   <data name="txtCountry.Multiline" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="txtCountry.Size" type="System.Drawing.Size, System.Drawing">
-    <value>261, 23</value>
+    <value>256, 23</value>
   </data>
   <data name="txtCountry.TabIndex" type="System.Int32, mscorlib">
     <value>147</value>
@@ -1541,7 +1472,7 @@
     <value>tableLayoutDevice</value>
   </data>
   <data name="&gt;&gt;txtCountry.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>13</value>
   </data>
   <data name="lblRX_ENCAP_METHOD.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>
@@ -1550,10 +1481,10 @@
     <value>NoControl</value>
   </data>
   <data name="lblRX_ENCAP_METHOD.Location" type="System.Drawing.Point, System.Drawing">
-    <value>472, 28</value>
+    <value>468, 28</value>
   </data>
   <data name="lblRX_ENCAP_METHOD.Size" type="System.Drawing.Size, System.Drawing">
-    <value>172, 28</value>
+    <value>170, 28</value>
   </data>
   <data name="lblRX_ENCAP_METHOD.TabIndex" type="System.Int32, mscorlib">
     <value>138</value>
@@ -1583,10 +1514,10 @@
     <value>False</value>
   </data>
   <data name="RX_ENCAP_METHOD.Location" type="System.Drawing.Point, System.Drawing">
-    <value>650, 31</value>
+    <value>644, 31</value>
   </data>
   <data name="RX_ENCAP_METHOD.Size" type="System.Drawing.Size, System.Drawing">
-    <value>261, 23</value>
+    <value>259, 23</value>
   </data>
   <data name="RX_ENCAP_METHOD.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
@@ -1610,10 +1541,10 @@
     <value>NoControl</value>
   </data>
   <data name="lblTX_ENCAP_METHOD.Location" type="System.Drawing.Point, System.Drawing">
-    <value>472, 0</value>
+    <value>468, 0</value>
   </data>
   <data name="lblTX_ENCAP_METHOD.Size" type="System.Drawing.Size, System.Drawing">
-    <value>172, 28</value>
+    <value>170, 28</value>
   </data>
   <data name="lblTX_ENCAP_METHOD.TabIndex" type="System.Int32, mscorlib">
     <value>137</value>
@@ -1643,10 +1574,10 @@
     <value>False</value>
   </data>
   <data name="TX_ENCAP_METHOD.Location" type="System.Drawing.Point, System.Drawing">
-    <value>650, 3</value>
+    <value>644, 3</value>
   </data>
   <data name="TX_ENCAP_METHOD.Size" type="System.Drawing.Size, System.Drawing">
-    <value>261, 23</value>
+    <value>259, 23</value>
   </data>
   <data name="TX_ENCAP_METHOD.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
@@ -1673,7 +1604,7 @@
     <value>3, 28</value>
   </data>
   <data name="lblDESTID.Size" type="System.Drawing.Size, System.Drawing">
-    <value>172, 28</value>
+    <value>170, 28</value>
   </data>
   <data name="lblDESTID.TabIndex" type="System.Int32, mscorlib">
     <value>136</value>
@@ -1706,7 +1637,7 @@
     <value>3, 0</value>
   </data>
   <data name="lblNODEID.Size" type="System.Drawing.Size, System.Drawing">
-    <value>172, 28</value>
+    <value>170, 28</value>
   </data>
   <data name="lblNODEID.TabIndex" type="System.Int32, mscorlib">
     <value>135</value>
@@ -1736,10 +1667,10 @@
     <value>False</value>
   </data>
   <data name="DESTID.Location" type="System.Drawing.Point, System.Drawing">
-    <value>181, 31</value>
+    <value>179, 31</value>
   </data>
   <data name="DESTID.Size" type="System.Drawing.Size, System.Drawing">
-    <value>261, 23</value>
+    <value>259, 23</value>
   </data>
   <data name="DESTID.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -1763,10 +1694,10 @@
     <value>False</value>
   </data>
   <data name="NODEID.Location" type="System.Drawing.Point, System.Drawing">
-    <value>181, 3</value>
+    <value>179, 3</value>
   </data>
   <data name="NODEID.Size" type="System.Drawing.Size, System.Drawing">
-    <value>261, 23</value>
+    <value>259, 23</value>
   </data>
   <data name="NODEID.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -1793,10 +1724,10 @@
     <value>NoControl</value>
   </data>
   <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 56</value>
+    <value>463, 56</value>
   </data>
   <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>172, 29</value>
+    <value>168, 29</value>
   </data>
   <data name="label2.TabIndex" type="System.Int32, mscorlib">
     <value>114</value>
@@ -1817,7 +1748,7 @@
     <value>tableLayoutDevice</value>
   </data>
   <data name="&gt;&gt;label2.ZOrder" xml:space="preserve">
-    <value>11</value>
+    <value>8</value>
   </data>
   <data name="label1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -1829,7 +1760,7 @@
     <value>3, 0</value>
   </data>
   <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>168, 28</value>
+    <value>164, 28</value>
   </data>
   <data name="label1.TabIndex" type="System.Int32, mscorlib">
     <value>112</value>
@@ -1862,7 +1793,7 @@
     <value>3, 84</value>
   </data>
   <data name="lblSER_BRK_DETMS.Size" type="System.Drawing.Size, System.Drawing">
-    <value>172, 28</value>
+    <value>170, 28</value>
   </data>
   <data name="lblSER_BRK_DETMS.TabIndex" type="System.Int32, mscorlib">
     <value>108</value>
@@ -1892,10 +1823,10 @@
     <value>NoControl</value>
   </data>
   <data name="lblGLOBAL_RETRIES.Location" type="System.Drawing.Point, System.Drawing">
-    <value>472, 84</value>
+    <value>468, 84</value>
   </data>
   <data name="lblGLOBAL_RETRIES.Size" type="System.Drawing.Size, System.Drawing">
-    <value>172, 28</value>
+    <value>170, 28</value>
   </data>
   <data name="lblGLOBAL_RETRIES.TabIndex" type="System.Int32, mscorlib">
     <value>107</value>
@@ -1925,10 +1856,10 @@
     <value>NoControl</value>
   </data>
   <data name="lblMAX_RETRIES.Location" type="System.Drawing.Point, System.Drawing">
-    <value>472, 56</value>
+    <value>468, 56</value>
   </data>
   <data name="lblMAX_RETRIES.Size" type="System.Drawing.Size, System.Drawing">
-    <value>172, 28</value>
+    <value>170, 28</value>
   </data>
   <data name="lblMAX_RETRIES.TabIndex" type="System.Int32, mscorlib">
     <value>106</value>
@@ -1958,10 +1889,10 @@
     <value>False</value>
   </data>
   <data name="SER_BRK_DETMS.Location" type="System.Drawing.Point, System.Drawing">
-    <value>181, 87</value>
+    <value>179, 87</value>
   </data>
   <data name="SER_BRK_DETMS.Size" type="System.Drawing.Size, System.Drawing">
-    <value>261, 23</value>
+    <value>259, 23</value>
   </data>
   <data name="SER_BRK_DETMS.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
@@ -1985,10 +1916,10 @@
     <value>False</value>
   </data>
   <data name="GLOBAL_RETRIES.Location" type="System.Drawing.Point, System.Drawing">
-    <value>650, 87</value>
+    <value>644, 87</value>
   </data>
   <data name="GLOBAL_RETRIES.Size" type="System.Drawing.Size, System.Drawing">
-    <value>261, 23</value>
+    <value>259, 23</value>
   </data>
   <data name="GLOBAL_RETRIES.TabIndex" type="System.Int32, mscorlib">
     <value>7</value>
@@ -2012,10 +1943,10 @@
     <value>False</value>
   </data>
   <data name="MAX_RETRIES.Location" type="System.Drawing.Point, System.Drawing">
-    <value>650, 59</value>
+    <value>644, 59</value>
   </data>
   <data name="MAX_RETRIES.Size" type="System.Drawing.Size, System.Drawing">
-    <value>261, 23</value>
+    <value>259, 23</value>
   </data>
   <data name="MAX_RETRIES.TabIndex" type="System.Int32, mscorlib">
     <value>6</value>
@@ -2039,10 +1970,10 @@
     <value>False</value>
   </data>
   <data name="MAX_DATA.Location" type="System.Drawing.Point, System.Drawing">
-    <value>181, 59</value>
+    <value>179, 59</value>
   </data>
   <data name="MAX_DATA.Size" type="System.Drawing.Size, System.Drawing">
-    <value>261, 23</value>
+    <value>259, 23</value>
   </data>
   <data name="MAX_DATA.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -2069,7 +2000,7 @@
     <value>3, 56</value>
   </data>
   <data name="lblMAX_DATA.Size" type="System.Drawing.Size, System.Drawing">
-    <value>172, 28</value>
+    <value>170, 28</value>
   </data>
   <data name="lblMAX_DATA.TabIndex" type="System.Int32, mscorlib">
     <value>101</value>
@@ -2102,7 +2033,7 @@
     <value>3, 0</value>
   </data>
   <data name="lblENCRYPTION_LEVEL.Size" type="System.Drawing.Size, System.Drawing">
-    <value>168, 28</value>
+    <value>164, 28</value>
   </data>
   <data name="lblENCRYPTION_LEVEL.TabIndex" type="System.Int32, mscorlib">
     <value>100</value>
@@ -2135,7 +2066,7 @@
     <value>3, 28</value>
   </data>
   <data name="label35.Size" type="System.Drawing.Size, System.Drawing">
-    <value>168, 28</value>
+    <value>164, 28</value>
   </data>
   <data name="label35.TabIndex" type="System.Int32, mscorlib">
     <value>98</value>
@@ -2165,10 +2096,10 @@
     <value>False</value>
   </data>
   <data name="AESKEY.Location" type="System.Drawing.Point, System.Drawing">
-    <value>177, 31</value>
+    <value>173, 31</value>
   </data>
   <data name="AESKEY.Size" type="System.Drawing.Size, System.Drawing">
-    <value>255, 21</value>
+    <value>250, 21</value>
   </data>
   <data name="AESKEY.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -2195,7 +2126,7 @@
     <value>3, 56</value>
   </data>
   <data name="lblRTSCTS.Size" type="System.Drawing.Size, System.Drawing">
-    <value>168, 28</value>
+    <value>164, 28</value>
   </data>
   <data name="lblRTSCTS.TabIndex" type="System.Int32, mscorlib">
     <value>97</value>
@@ -2218,17 +2149,17 @@
   <data name="&gt;&gt;lblRTSCTS.ZOrder" xml:space="preserve">
     <value>5</value>
   </data>
-  <data name="ATI2.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Bottom, Left, Right</value>
+  <data name="ATI2.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
   </data>
   <data name="ATI2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>650, 31</value>
+    <value>177, 31</value>
   </data>
   <data name="ATI2.Multiline" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="ATI2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>261, 22</value>
+    <value>256, 22</value>
   </data>
   <data name="ATI2.TabIndex" type="System.Int32, mscorlib">
     <value>80</value>
@@ -2243,7 +2174,7 @@
     <value>tableLayoutDevice</value>
   </data>
   <data name="&gt;&gt;ATI2.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>11</value>
   </data>
   <metadata name="dlgSave.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>292, 17</value>
@@ -2279,13 +2210,13 @@
     <value>0</value>
   </data>
   <data name="tableLayoutData.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
-    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="DESTID_CHECK" Row="1" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="NODEID_CHECK" Row="0" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="lblNODEID" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lblDESTID" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="NODEID" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="DESTID" Row="1" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lblTX_ENCAP_METHOD" Row="0" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="TX_ENCAP_METHOD" Row="0" RowSpan="1" Column="4" ColumnSpan="1" /&gt;&lt;Control Name="TX_ENCAP_METHOD_CHECK" Row="0" RowSpan="1" Column="5" ColumnSpan="1" /&gt;&lt;Control Name="RX_ENCAP_METHOD" Row="1" RowSpan="1" Column="4" ColumnSpan="1" /&gt;&lt;Control Name="lblRX_ENCAP_METHOD" Row="1" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="RX_ENCAP_METHOD_CHECK" Row="1" RowSpan="1" Column="5" ColumnSpan="1" /&gt;&lt;Control Name="lblMAX_DATA" Row="2" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="MAX_DATA" Row="2" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="MAX_DATA_CHECK" Row="2" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="lblMAX_RETRIES" Row="2" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="MAX_RETRIES" Row="2" RowSpan="1" Column="4" ColumnSpan="1" /&gt;&lt;Control Name="MAX_RETRIES_CHECK" Row="2" RowSpan="1" Column="5" ColumnSpan="1" /&gt;&lt;Control Name="lblGLOBAL_RETRIES" Row="3" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="GLOBAL_RETRIES" Row="3" RowSpan="1" Column="4" ColumnSpan="1" /&gt;&lt;Control Name="GLOBAL_RETRIES_CHECK" Row="3" RowSpan="1" Column="5" ColumnSpan="1" /&gt;&lt;Control Name="lblSER_BRK_DETMS" Row="3" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="SER_BRK_DETMS" Row="3" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="SER_BRK_DETMS_CHECK" Row="3" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,20,Percent,30,Absolute,24,Percent,20,Percent,30,Absolute,28" /&gt;&lt;Rows Styles="Absolute,28,Absolute,28,Absolute,28,Absolute,28,Absolute,20" /&gt;&lt;/TableLayoutSettings&gt;</value>
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="DESTID_CHECK" Row="1" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="NODEID_CHECK" Row="0" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="lblNODEID" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lblDESTID" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="NODEID" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="DESTID" Row="1" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lblTX_ENCAP_METHOD" Row="0" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="TX_ENCAP_METHOD" Row="0" RowSpan="1" Column="4" ColumnSpan="1" /&gt;&lt;Control Name="TX_ENCAP_METHOD_CHECK" Row="0" RowSpan="1" Column="5" ColumnSpan="1" /&gt;&lt;Control Name="RX_ENCAP_METHOD" Row="1" RowSpan="1" Column="4" ColumnSpan="1" /&gt;&lt;Control Name="lblRX_ENCAP_METHOD" Row="1" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="RX_ENCAP_METHOD_CHECK" Row="1" RowSpan="1" Column="5" ColumnSpan="1" /&gt;&lt;Control Name="lblMAX_DATA" Row="2" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="MAX_DATA" Row="2" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="MAX_DATA_CHECK" Row="2" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="lblMAX_RETRIES" Row="2" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="MAX_RETRIES" Row="2" RowSpan="1" Column="4" ColumnSpan="1" /&gt;&lt;Control Name="MAX_RETRIES_CHECK" Row="2" RowSpan="1" Column="5" ColumnSpan="1" /&gt;&lt;Control Name="lblGLOBAL_RETRIES" Row="3" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="GLOBAL_RETRIES" Row="3" RowSpan="1" Column="4" ColumnSpan="1" /&gt;&lt;Control Name="GLOBAL_RETRIES_CHECK" Row="3" RowSpan="1" Column="5" ColumnSpan="1" /&gt;&lt;Control Name="lblSER_BRK_DETMS" Row="3" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="SER_BRK_DETMS" Row="3" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="SER_BRK_DETMS_CHECK" Row="3" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,20,Percent,30,Absolute,24,Percent,20,Percent,30,Absolute,34" /&gt;&lt;Rows Styles="Absolute,28,Absolute,28,Absolute,28,Absolute,28,Absolute,20" /&gt;&lt;/TableLayoutSettings&gt;</value>
   </data>
   <data name="groupData.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Top</value>
   </data>
   <data name="groupData.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 724</value>
+    <value>3, 726</value>
   </data>
   <data name="groupData.Size" type="System.Drawing.Size, System.Drawing">
     <value>948, 144</value>
@@ -2306,7 +2237,7 @@
     <value>tableLayoutMain</value>
   </data>
   <data name="&gt;&gt;groupData.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>0</value>
   </data>
   <data name="&gt;&gt;tableLayoutPanel3.Name" xml:space="preserve">
     <value>tableLayoutPanel3</value>
@@ -2321,7 +2252,7 @@
     <value>0</value>
   </data>
   <data name="tableLayoutPanel3.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
-    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="btnGenerateKey" Row="2" RowSpan="2" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="ENCRYPTION_LEVEL_CHECK" Row="0" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="AESKEY" Row="1" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lblENCRYPTION_LEVEL" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="label35" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="ENCRYPTION_LEVEL" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="AESKEY_CHECK" Row="1" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,40,Percent,60,Absolute,30" /&gt;&lt;Rows Styles="Absolute,28,Absolute,28,Absolute,20,Absolute,20" /&gt;&lt;/TableLayoutSettings&gt;</value>
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="btnGenerateKey" Row="2" RowSpan="2" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="ENCRYPTION_LEVEL_CHECK" Row="0" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="AESKEY" Row="1" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lblENCRYPTION_LEVEL" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="label35" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="ENCRYPTION_LEVEL" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="AESKEY_CHECK" Row="1" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,40,Percent,60,Absolute,38" /&gt;&lt;Rows Styles="Absolute,28,Absolute,28,Absolute,20,Absolute,20" /&gt;&lt;/TableLayoutSettings&gt;</value>
   </data>
   <data name="groupSecurity.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Top</value>
@@ -2348,7 +2279,7 @@
     <value>tableLayoutMain</value>
   </data>
   <data name="&gt;&gt;groupSecurity.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>1</value>
   </data>
   <data name="&gt;&gt;tableLayoutSerial.Name" xml:space="preserve">
     <value>tableLayoutSerial</value>
@@ -2363,7 +2294,7 @@
     <value>0</value>
   </data>
   <data name="tableLayoutSerial.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
-    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="AUXSER_SPEED_CHECK" Row="1" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="SERIAL_SPEED_CHECK" Row="0" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="RTSCTS_CHECK" Row="2" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="label1" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="RTSCTS" Row="2" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lblRTSCTS" Row="2" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="AUXSER_SPEED" Row="1" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="label5" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="SERIAL_SPEED" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,40,Percent,60,Absolute,30" /&gt;&lt;Rows Styles="Absolute,28,Absolute,28,Absolute,28" /&gt;&lt;/TableLayoutSettings&gt;</value>
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="AUXSER_SPEED_CHECK" Row="1" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="SERIAL_SPEED_CHECK" Row="0" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="RTSCTS_CHECK" Row="2" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="label1" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="RTSCTS" Row="2" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lblRTSCTS" Row="2" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="AUXSER_SPEED" Row="1" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="label5" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="SERIAL_SPEED" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,40,Percent,60,Absolute,38" /&gt;&lt;Rows Styles="Absolute,28,Absolute,28,Absolute,28" /&gt;&lt;/TableLayoutSettings&gt;</value>
   </data>
   <data name="groupSerial.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Top</value>
@@ -2390,7 +2321,7 @@
     <value>tableLayoutMain</value>
   </data>
   <data name="&gt;&gt;groupSerial.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>2</value>
   </data>
   <data name="groupRadio.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -2408,7 +2339,7 @@
     <value>0</value>
   </data>
   <data name="tableRadio.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
-    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="OPPRESEND_CHECK" Row="7" RowSpan="1" Column="5" ColumnSpan="1" /&gt;&lt;Control Name="RSSI_IN_DBM_CHECK" Row="7" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="AIR_FRAMELEN_CHECK" Row="6" RowSpan="1" Column="5" ColumnSpan="1" /&gt;&lt;Control Name="AIR_SPEED_CHECK" Row="6" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="MAVLINK_CHECK" Row="5" RowSpan="1" Column="5" ColumnSpan="1" /&gt;&lt;Control Name="TXPOWER_CHECK" Row="5" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="MAX_WINDOW_CHECK" Row="4" RowSpan="1" Column="5" ColumnSpan="1" /&gt;&lt;Control Name="DUTY_CYCLE_CHECK" Row="4" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="LBT_RSSI_CHECK" Row="3" RowSpan="1" Column="5" ColumnSpan="1" /&gt;&lt;Control Name="NUM_CHANNELS_CHECK" Row="3" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="NETID_CHECK" Row="2" RowSpan="1" Column="5" ColumnSpan="1" /&gt;&lt;Control Name="MAX_FREQ_CHECK" Row="2" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="ANT_MODE_CHECK" Row="1" RowSpan="1" Column="5" ColumnSpan="1" /&gt;&lt;Control Name="MIN_FREQ_CHECK" Row="1" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="ANT_MODE" Row="1" RowSpan="1" Column="4" ColumnSpan="1" /&gt;&lt;Control Name="NETID" Row="2" RowSpan="1" Column="4" ColumnSpan="1" /&gt;&lt;Control Name="LBT_RSSI" Row="3" RowSpan="1" Column="4" ColumnSpan="1" /&gt;&lt;Control Name="MAX_WINDOW" Row="4" RowSpan="1" Column="4" ColumnSpan="1" /&gt;&lt;Control Name="MAVLINK" Row="5" RowSpan="1" Column="4" ColumnSpan="1" /&gt;&lt;Control Name="AIR_FRAMELEN" Row="6" RowSpan="1" Column="4" ColumnSpan="1" /&gt;&lt;Control Name="RSSI" Row="8" RowSpan="1" Column="1" ColumnSpan="4" /&gt;&lt;Control Name="label14" Row="6" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="RSSI_IN_DBM" Row="7" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="label45" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="OPPRESEND" Row="7" RowSpan="1" Column="4" ColumnSpan="1" /&gt;&lt;Control Name="lblMAVLINK" Row="5" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="lblOPPRESEND" Row="7" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="label12" Row="8" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lblMIN_FREQ" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lblMAX_FREQ" Row="2" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="label15" Row="7" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lblMAX_WINDOW" Row="4" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="lblNUM_CHANNELS" Row="3" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lblDUTY_CYCLE" Row="4" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lblLBT_RSSI" Row="3" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="lblTXPOWER" Row="5" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lblNETID" Row="2" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="label3" Row="6" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="RATE_FREQBAND" Row="0" RowSpan="1" Column="1" ColumnSpan="4" /&gt;&lt;Control Name="MIN_FREQ" Row="1" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lblANT_MODE" Row="1" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="MAX_FREQ" Row="2" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="TXPOWER" Row="5" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="DUTY_CYCLE" Row="4" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="AIR_SPEED" Row="6" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="NUM_CHANNELS" Row="3" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,20,Percent,30,Absolute,24,Percent,20,Percent,30,Absolute,28" /&gt;&lt;Rows Styles="Absolute,28,Absolute,28,Absolute,28,Absolute,28,Absolute,28,Absolute,28,Absolute,28,Absolute,28,Absolute,28" /&gt;&lt;/TableLayoutSettings&gt;</value>
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="OPPRESEND_CHECK" Row="7" RowSpan="1" Column="5" ColumnSpan="1" /&gt;&lt;Control Name="RSSI_IN_DBM_CHECK" Row="7" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="AIR_FRAMELEN_CHECK" Row="6" RowSpan="1" Column="5" ColumnSpan="1" /&gt;&lt;Control Name="AIR_SPEED_CHECK" Row="6" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="MAVLINK_CHECK" Row="5" RowSpan="1" Column="5" ColumnSpan="1" /&gt;&lt;Control Name="TXPOWER_CHECK" Row="5" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="MAX_WINDOW_CHECK" Row="4" RowSpan="1" Column="5" ColumnSpan="1" /&gt;&lt;Control Name="DUTY_CYCLE_CHECK" Row="4" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="LBT_RSSI_CHECK" Row="3" RowSpan="1" Column="5" ColumnSpan="1" /&gt;&lt;Control Name="NUM_CHANNELS_CHECK" Row="3" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="NETID_CHECK" Row="2" RowSpan="1" Column="5" ColumnSpan="1" /&gt;&lt;Control Name="MAX_FREQ_CHECK" Row="2" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="ANT_MODE_CHECK" Row="1" RowSpan="1" Column="5" ColumnSpan="1" /&gt;&lt;Control Name="MIN_FREQ_CHECK" Row="1" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="ANT_MODE" Row="1" RowSpan="1" Column="4" ColumnSpan="1" /&gt;&lt;Control Name="NETID" Row="2" RowSpan="1" Column="4" ColumnSpan="1" /&gt;&lt;Control Name="LBT_RSSI" Row="3" RowSpan="1" Column="4" ColumnSpan="1" /&gt;&lt;Control Name="MAX_WINDOW" Row="4" RowSpan="1" Column="4" ColumnSpan="1" /&gt;&lt;Control Name="MAVLINK" Row="5" RowSpan="1" Column="4" ColumnSpan="1" /&gt;&lt;Control Name="AIR_FRAMELEN" Row="6" RowSpan="1" Column="4" ColumnSpan="1" /&gt;&lt;Control Name="RSSI" Row="8" RowSpan="1" Column="1" ColumnSpan="4" /&gt;&lt;Control Name="label14" Row="6" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="RSSI_IN_DBM" Row="7" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="label45" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="OPPRESEND" Row="7" RowSpan="1" Column="4" ColumnSpan="1" /&gt;&lt;Control Name="lblMAVLINK" Row="5" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="lblOPPRESEND" Row="7" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="label12" Row="8" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lblMIN_FREQ" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lblMAX_FREQ" Row="2" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="label15" Row="7" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lblMAX_WINDOW" Row="4" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="lblNUM_CHANNELS" Row="3" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lblDUTY_CYCLE" Row="4" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lblLBT_RSSI" Row="3" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="lblTXPOWER" Row="5" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lblNETID" Row="2" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="label3" Row="6" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="RATE_FREQBAND" Row="0" RowSpan="1" Column="1" ColumnSpan="4" /&gt;&lt;Control Name="MIN_FREQ" Row="1" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lblANT_MODE" Row="1" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="MAX_FREQ" Row="2" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="TXPOWER" Row="5" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="DUTY_CYCLE" Row="4" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="AIR_SPEED" Row="6" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="NUM_CHANNELS" Row="3" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,20,Percent,30,Absolute,24,Percent,20,Percent,30,Absolute,44" /&gt;&lt;Rows Styles="Absolute,28,Absolute,28,Absolute,28,Absolute,28,Absolute,28,Absolute,28,Absolute,28,Absolute,28,Absolute,28" /&gt;&lt;/TableLayoutSettings&gt;</value>
   </data>
   <data name="groupRadio.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Top</value>
@@ -2435,7 +2366,7 @@
     <value>tableLayoutMain</value>
   </data>
   <data name="&gt;&gt;groupRadio.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>4</value>
   </data>
   <data name="&gt;&gt;richTextHelp.Name" xml:space="preserve">
     <value>richTextHelp</value>
@@ -2459,7 +2390,7 @@
     <value>6, 3, 3, 3</value>
   </data>
   <data name="groupInfo.Size" type="System.Drawing.Size, System.Drawing">
-    <value>313, 715</value>
+    <value>313, 717</value>
   </data>
   <data name="groupInfo.TabIndex" type="System.Int32, mscorlib">
     <value>169</value>
@@ -2477,313 +2408,7 @@
     <value>tableLayoutMain</value>
   </data>
   <data name="&gt;&gt;groupInfo.ZOrder" xml:space="preserve">
-    <value>7</value>
-  </data>
-  <data name="tableLayoutGPIO.ColumnCount" type="System.Int32, mscorlib">
-    <value>6</value>
-  </data>
-  <data name="GPIO0_CHECK.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>None</value>
-  </data>
-  <data name="GPIO0_CHECK.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="GPIO0_CHECK.Location" type="System.Drawing.Point, System.Drawing">
-    <value>448, 5</value>
-  </data>
-  <data name="GPIO0_CHECK.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>0, 2, 0, 2</value>
-  </data>
-  <data name="GPIO0_CHECK.Size" type="System.Drawing.Size, System.Drawing">
-    <value>18, 18</value>
-  </data>
-  <data name="GPIO0_CHECK.TabIndex" type="System.Int32, mscorlib">
-    <value>182</value>
-  </data>
-  <data name="&gt;&gt;GPIO0_CHECK.Name" xml:space="preserve">
-    <value>GPIO0_CHECK</value>
-  </data>
-  <data name="&gt;&gt;GPIO0_CHECK.Type" xml:space="preserve">
-    <value>FontAwesome.Sharp.IconPictureBox, FontAwesome.Sharp, Version=6.3.0.0, Culture=neutral, PublicKeyToken=d16d1e4e568ec10f</value>
-  </data>
-  <data name="&gt;&gt;GPIO0_CHECK.Parent" xml:space="preserve">
-    <value>tableLayoutGPIO</value>
-  </data>
-  <data name="&gt;&gt;GPIO0_CHECK.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="GPIO3_CHECK.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>None</value>
-  </data>
-  <data name="GPIO3_CHECK.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="GPIO3_CHECK.Location" type="System.Drawing.Point, System.Drawing">
-    <value>448, 92</value>
-  </data>
-  <data name="GPIO3_CHECK.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>0, 2, 0, 2</value>
-  </data>
-  <data name="GPIO3_CHECK.Size" type="System.Drawing.Size, System.Drawing">
-    <value>18, 18</value>
-  </data>
-  <data name="GPIO3_CHECK.TabIndex" type="System.Int32, mscorlib">
-    <value>154</value>
-  </data>
-  <data name="&gt;&gt;GPIO3_CHECK.Name" xml:space="preserve">
-    <value>GPIO3_CHECK</value>
-  </data>
-  <data name="&gt;&gt;GPIO3_CHECK.Type" xml:space="preserve">
-    <value>FontAwesome.Sharp.IconPictureBox, FontAwesome.Sharp, Version=6.3.0.0, Culture=neutral, PublicKeyToken=d16d1e4e568ec10f</value>
-  </data>
-  <data name="&gt;&gt;GPIO3_CHECK.Parent" xml:space="preserve">
-    <value>tableLayoutGPIO</value>
-  </data>
-  <data name="&gt;&gt;GPIO3_CHECK.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="label19.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="label19.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="label19.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 28</value>
-  </data>
-  <data name="label19.Size" type="System.Drawing.Size, System.Drawing">
-    <value>172, 28</value>
-  </data>
-  <data name="label19.TabIndex" type="System.Int32, mscorlib">
-    <value>174</value>
-  </data>
-  <data name="label19.Text" xml:space="preserve">
-    <value>GPIO1 Function</value>
-  </data>
-  <data name="label19.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleLeft</value>
-  </data>
-  <data name="&gt;&gt;label19.Name" xml:space="preserve">
-    <value>label19</value>
-  </data>
-  <data name="&gt;&gt;label19.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label19.Parent" xml:space="preserve">
-    <value>tableLayoutGPIO</value>
-  </data>
-  <data name="&gt;&gt;label19.ZOrder" xml:space="preserve">
     <value>5</value>
-  </data>
-  <data name="label16.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="label16.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="label16.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 0</value>
-  </data>
-  <data name="label16.Size" type="System.Drawing.Size, System.Drawing">
-    <value>172, 28</value>
-  </data>
-  <data name="label16.TabIndex" type="System.Int32, mscorlib">
-    <value>172</value>
-  </data>
-  <data name="label16.Text" xml:space="preserve">
-    <value>GPIO0 Function</value>
-  </data>
-  <data name="label16.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleLeft</value>
-  </data>
-  <data name="&gt;&gt;label16.Name" xml:space="preserve">
-    <value>label16</value>
-  </data>
-  <data name="&gt;&gt;label16.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label16.Parent" xml:space="preserve">
-    <value>tableLayoutGPIO</value>
-  </data>
-  <data name="&gt;&gt;label16.ZOrder" xml:space="preserve">
-    <value>7</value>
-  </data>
-  <data name="label17.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="label17.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="label17.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 84</value>
-  </data>
-  <data name="label17.Size" type="System.Drawing.Size, System.Drawing">
-    <value>172, 34</value>
-  </data>
-  <data name="label17.TabIndex" type="System.Int32, mscorlib">
-    <value>171</value>
-  </data>
-  <data name="label17.Text" xml:space="preserve">
-    <value>GPIO3 Function</value>
-  </data>
-  <data name="label17.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleLeft</value>
-  </data>
-  <data name="&gt;&gt;label17.Name" xml:space="preserve">
-    <value>label17</value>
-  </data>
-  <data name="&gt;&gt;label17.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label17.Parent" xml:space="preserve">
-    <value>tableLayoutGPIO</value>
-  </data>
-  <data name="&gt;&gt;label17.ZOrder" xml:space="preserve">
-    <value>8</value>
-  </data>
-  <data name="label18.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="label18.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="label18.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 56</value>
-  </data>
-  <data name="label18.Size" type="System.Drawing.Size, System.Drawing">
-    <value>172, 28</value>
-  </data>
-  <data name="label18.TabIndex" type="System.Int32, mscorlib">
-    <value>173</value>
-  </data>
-  <data name="label18.Text" xml:space="preserve">
-    <value>GPIO2 Function</value>
-  </data>
-  <data name="label18.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleLeft</value>
-  </data>
-  <data name="&gt;&gt;label18.Name" xml:space="preserve">
-    <value>label18</value>
-  </data>
-  <data name="&gt;&gt;label18.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label18.Parent" xml:space="preserve">
-    <value>tableLayoutGPIO</value>
-  </data>
-  <data name="&gt;&gt;label18.ZOrder" xml:space="preserve">
-    <value>9</value>
-  </data>
-  <data name="GPIO2_CHECK.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>None</value>
-  </data>
-  <data name="GPIO2_CHECK.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="GPIO2_CHECK.Location" type="System.Drawing.Point, System.Drawing">
-    <value>448, 61</value>
-  </data>
-  <data name="GPIO2_CHECK.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>0, 2, 0, 2</value>
-  </data>
-  <data name="GPIO2_CHECK.Size" type="System.Drawing.Size, System.Drawing">
-    <value>18, 18</value>
-  </data>
-  <data name="GPIO2_CHECK.TabIndex" type="System.Int32, mscorlib">
-    <value>179</value>
-  </data>
-  <data name="&gt;&gt;GPIO2_CHECK.Name" xml:space="preserve">
-    <value>GPIO2_CHECK</value>
-  </data>
-  <data name="&gt;&gt;GPIO2_CHECK.Type" xml:space="preserve">
-    <value>FontAwesome.Sharp.IconPictureBox, FontAwesome.Sharp, Version=6.3.0.0, Culture=neutral, PublicKeyToken=d16d1e4e568ec10f</value>
-  </data>
-  <data name="&gt;&gt;GPIO2_CHECK.Parent" xml:space="preserve">
-    <value>tableLayoutGPIO</value>
-  </data>
-  <data name="&gt;&gt;GPIO2_CHECK.ZOrder" xml:space="preserve">
-    <value>11</value>
-  </data>
-  <data name="GPIO1_CHECK.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>None</value>
-  </data>
-  <data name="GPIO1_CHECK.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="GPIO1_CHECK.Location" type="System.Drawing.Point, System.Drawing">
-    <value>448, 33</value>
-  </data>
-  <data name="GPIO1_CHECK.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>0, 2, 0, 2</value>
-  </data>
-  <data name="GPIO1_CHECK.Size" type="System.Drawing.Size, System.Drawing">
-    <value>18, 18</value>
-  </data>
-  <data name="GPIO1_CHECK.TabIndex" type="System.Int32, mscorlib">
-    <value>180</value>
-  </data>
-  <data name="&gt;&gt;GPIO1_CHECK.Name" xml:space="preserve">
-    <value>GPIO1_CHECK</value>
-  </data>
-  <data name="&gt;&gt;GPIO1_CHECK.Type" xml:space="preserve">
-    <value>FontAwesome.Sharp.IconPictureBox, FontAwesome.Sharp, Version=6.3.0.0, Culture=neutral, PublicKeyToken=d16d1e4e568ec10f</value>
-  </data>
-  <data name="&gt;&gt;GPIO1_CHECK.Parent" xml:space="preserve">
-    <value>tableLayoutGPIO</value>
-  </data>
-  <data name="&gt;&gt;GPIO1_CHECK.ZOrder" xml:space="preserve">
-    <value>12</value>
-  </data>
-  <data name="btn_PPMFailSafe.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Top</value>
-  </data>
-  <data name="btn_PPMFailSafe.Location" type="System.Drawing.Point, System.Drawing">
-    <value>650, 59</value>
-  </data>
-  <data name="btn_PPMFailSafe.Size" type="System.Drawing.Size, System.Drawing">
-    <value>261, 32</value>
-  </data>
-  <data name="btn_PPMFailSafe.TabIndex" type="System.Int32, mscorlib">
-    <value>183</value>
-  </data>
-  <data name="btn_PPMFailSafe.Text" xml:space="preserve">
-    <value>Set PPM Fail Safe</value>
-  </data>
-  <data name="btn_PPMFailSafe.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleRight</value>
-  </data>
-  <data name="btn_PPMFailSafe.TextImageRelation" type="System.Windows.Forms.TextImageRelation, System.Windows.Forms">
-    <value>ImageBeforeText</value>
-  </data>
-  <data name="btn_PPMFailSafe.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="&gt;&gt;btn_PPMFailSafe.Name" xml:space="preserve">
-    <value>btn_PPMFailSafe</value>
-  </data>
-  <data name="&gt;&gt;btn_PPMFailSafe.Type" xml:space="preserve">
-    <value>FontAwesome.Sharp.IconButton, FontAwesome.Sharp, Version=6.3.0.0, Culture=neutral, PublicKeyToken=d16d1e4e568ec10f</value>
-  </data>
-  <data name="&gt;&gt;btn_PPMFailSafe.Parent" xml:space="preserve">
-    <value>tableLayoutGPIO</value>
-  </data>
-  <data name="&gt;&gt;btn_PPMFailSafe.ZOrder" xml:space="preserve">
-    <value>14</value>
-  </data>
-  <data name="tableLayoutGPIO.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Top</value>
-  </data>
-  <data name="tableLayoutGPIO.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 17</value>
-  </data>
-  <data name="tableLayoutGPIO.RowCount" type="System.Int32, mscorlib">
-    <value>4</value>
-  </data>
-  <data name="tableLayoutGPIO.Size" type="System.Drawing.Size, System.Drawing">
-    <value>942, 118</value>
-  </data>
-  <data name="tableLayoutGPIO.TabIndex" type="System.Int32, mscorlib">
-    <value>169</value>
   </data>
   <data name="&gt;&gt;tableLayoutGPIO.Name" xml:space="preserve">
     <value>tableLayoutGPIO</value>
@@ -2798,7 +2423,7 @@
     <value>0</value>
   </data>
   <data name="tableLayoutGPIO.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
-    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="GPIO0_CHECK" Row="0" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="GPIO3_CHECK" Row="3" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="GPIO2" Row="2" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="GPIO0" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="GPIO3" Row="3" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="label19" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="FSFRAMELOSS" Row="1" RowSpan="1" Column="4" ColumnSpan="1" /&gt;&lt;Control Name="label16" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="label17" Row="3" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="label18" Row="2" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="GPIO1" Row="1" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="GPIO2_CHECK" Row="2" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="GPIO1_CHECK" Row="1" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="lblFailsafe" Row="1" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="btn_PPMFailSafe" Row="2" RowSpan="2" Column="4" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,20,Percent,30,Absolute,24,Percent,20,Percent,30,Absolute,28" /&gt;&lt;Rows Styles="Absolute,28,Absolute,28,Absolute,28,Absolute,28,Absolute,20" /&gt;&lt;/TableLayoutSettings&gt;</value>
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="GPIO0_CHECK" Row="0" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="GPIO3_CHECK" Row="3" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="GPIO2" Row="2" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="GPIO0" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="GPIO3" Row="3" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="label19" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="FSFRAMELOSS" Row="1" RowSpan="1" Column="4" ColumnSpan="1" /&gt;&lt;Control Name="label16" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="label17" Row="3" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="label18" Row="2" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="GPIO1" Row="1" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="GPIO2_CHECK" Row="2" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="GPIO1_CHECK" Row="1" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="lblFailsafe" Row="1" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="btn_PPMFailSafe" Row="2" RowSpan="2" Column="4" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,20,Percent,30,Absolute,24,Percent,20,Percent,30,Absolute,34" /&gt;&lt;Rows Styles="Absolute,28,Absolute,28,Absolute,28,Absolute,28,Absolute,20" /&gt;&lt;/TableLayoutSettings&gt;</value>
   </data>
   <data name="groupGPIO.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Top</value>
@@ -2825,7 +2450,7 @@
     <value>tableLayoutMain</value>
   </data>
   <data name="&gt;&gt;groupGPIO.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>6</value>
   </data>
   <data name="tableLayoutMain.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Top</value>
@@ -2837,7 +2462,7 @@
     <value>6</value>
   </data>
   <data name="tableLayoutMain.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1276, 871</value>
+    <value>1276, 873</value>
   </data>
   <data name="tableLayoutMain.TabIndex" type="System.Int32, mscorlib">
     <value>170</value>
@@ -2855,7 +2480,7 @@
     <value>0</value>
   </data>
   <data name="tableLayoutMain.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
-    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="linkLabel_lowlatency" Row="5" RowSpan="1" Column="7" ColumnSpan="1" /&gt;&lt;Control Name="groupData" Row="5" RowSpan="1" Column="0" ColumnSpan="6" /&gt;&lt;Control Name="linkLabel_mavlink" Row="5" RowSpan="1" Column="6" ColumnSpan="1" /&gt;&lt;Control Name="groupSecurity" Row="3" RowSpan="1" Column="3" ColumnSpan="3" /&gt;&lt;Control Name="groupSerial" Row="3" RowSpan="1" Column="0" ColumnSpan="3" /&gt;&lt;Control Name="groupFirmware" Row="0" RowSpan="1" Column="0" ColumnSpan="6" /&gt;&lt;Control Name="groupRadio" Row="1" RowSpan="2" Column="0" ColumnSpan="6" /&gt;&lt;Control Name="groupInfo" Row="0" RowSpan="5" Column="6" ColumnSpan="2" /&gt;&lt;Control Name="groupGPIO" Row="4" RowSpan="1" Column="0" ColumnSpan="6" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,12.5,Percent,12.5,Percent,12.5,Percent,12.5,Percent,12.5,Percent,12.5,Percent,12.5,Percent,12.5" /&gt;&lt;Rows Styles="AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0" /&gt;&lt;/TableLayoutSettings&gt;</value>
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="groupData" Row="5" RowSpan="1" Column="0" ColumnSpan="6" /&gt;&lt;Control Name="groupSecurity" Row="3" RowSpan="1" Column="3" ColumnSpan="3" /&gt;&lt;Control Name="groupSerial" Row="3" RowSpan="1" Column="0" ColumnSpan="3" /&gt;&lt;Control Name="groupFirmware" Row="0" RowSpan="1" Column="0" ColumnSpan="6" /&gt;&lt;Control Name="groupRadio" Row="1" RowSpan="2" Column="0" ColumnSpan="6" /&gt;&lt;Control Name="groupInfo" Row="0" RowSpan="5" Column="6" ColumnSpan="2" /&gt;&lt;Control Name="groupGPIO" Row="4" RowSpan="1" Column="0" ColumnSpan="6" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,12.5,Percent,12.5,Percent,12.5,Percent,12.5,Percent,12.5,Percent,12.5,Percent,12.5,Percent,12.5" /&gt;&lt;Rows Styles="AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0" /&gt;&lt;/TableLayoutSettings&gt;</value>
   </data>
   <data name="tableLayoutDevice.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
@@ -2897,7 +2522,7 @@
     <value>tableLayoutDevice</value>
   </data>
   <data name="&gt;&gt;label6.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>3</value>
   </data>
   <data name="&gt;&gt;label7.Name" xml:space="preserve">
     <value>label7</value>
@@ -2909,7 +2534,7 @@
     <value>tableLayoutDevice</value>
   </data>
   <data name="&gt;&gt;label7.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>4</value>
   </data>
   <data name="&gt;&gt;label11.Name" xml:space="preserve">
     <value>label11</value>
@@ -2921,7 +2546,7 @@
     <value>tableLayoutDevice</value>
   </data>
   <data name="&gt;&gt;label11.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>5</value>
   </data>
   <data name="&gt;&gt;ATI.Name" xml:space="preserve">
     <value>ATI</value>
@@ -2933,7 +2558,7 @@
     <value>tableLayoutDevice</value>
   </data>
   <data name="&gt;&gt;ATI.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>7</value>
   </data>
   <data name="&gt;&gt;comboModemSelection.Name" xml:space="preserve">
     <value>comboModemSelection</value>
@@ -2945,7 +2570,7 @@
     <value>tableLayoutDevice</value>
   </data>
   <data name="&gt;&gt;comboModemSelection.ZOrder" xml:space="preserve">
-    <value>12</value>
+    <value>9</value>
   </data>
   <data name="&gt;&gt;ATI_CHECK.Name" xml:space="preserve">
     <value>ATI_CHECK</value>
@@ -2957,7 +2582,7 @@
     <value>tableLayoutDevice</value>
   </data>
   <data name="&gt;&gt;ATI_CHECK.ZOrder" xml:space="preserve">
-    <value>13</value>
+    <value>10</value>
   </data>
   <data name="&gt;&gt;FORMAT_CHECK.Name" xml:space="preserve">
     <value>FORMAT_CHECK</value>
@@ -2969,7 +2594,7 @@
     <value>tableLayoutDevice</value>
   </data>
   <data name="&gt;&gt;FORMAT_CHECK.ZOrder" xml:space="preserve">
-    <value>14</value>
+    <value>12</value>
   </data>
   <data name="tableLayoutDevice.Location" type="System.Drawing.Point, System.Drawing">
     <value>3, 17</value>
@@ -2996,7 +2621,7 @@
     <value>0</value>
   </data>
   <data name="tableLayoutDevice.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
-    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="FREQ_CHECK" Row="1" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="label9" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="txtCountry" Row="2" RowSpan="1" Column="4" ColumnSpan="1" /&gt;&lt;Control Name="ATI2" Row="1" RowSpan="1" Column="4" ColumnSpan="1" /&gt;&lt;Control Name="label49" Row="2" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="label6" Row="1" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="label7" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="label11" Row="0" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="FREQ" Row="1" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="ATI" Row="0" RowSpan="1" Column="4" ColumnSpan="1" /&gt;&lt;Control Name="FORMAT" Row="2" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="label2" Row="2" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="comboModemSelection" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="ATI_CHECK" Row="0" RowSpan="1" Column="5" ColumnSpan="1" /&gt;&lt;Control Name="FORMAT_CHECK" Row="2" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,20,Percent,30,Absolute,24,Percent,20,Percent,30,Absolute,28" /&gt;&lt;Rows Styles="Absolute,28,Absolute,28,Absolute,28" /&gt;&lt;/TableLayoutSettings&gt;</value>
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="FREQ_CHECK" Row="1" RowSpan="1" Column="5" ColumnSpan="1" /&gt;&lt;Control Name="label9" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="label49" Row="2" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="label6" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="label7" Row="1" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="label11" Row="0" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="FREQ" Row="1" RowSpan="1" Column="4" ColumnSpan="1" /&gt;&lt;Control Name="ATI" Row="0" RowSpan="1" Column="4" ColumnSpan="1" /&gt;&lt;Control Name="label2" Row="2" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="comboModemSelection" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="ATI_CHECK" Row="0" RowSpan="1" Column="5" ColumnSpan="1" /&gt;&lt;Control Name="ATI2" Row="1" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="FORMAT_CHECK" Row="2" RowSpan="1" Column="5" ColumnSpan="1" /&gt;&lt;Control Name="txtCountry" Row="2" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="FORMAT" Row="2" RowSpan="1" Column="4" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,20,Percent,30,Absolute,24,Percent,20,Percent,30,Absolute,44" /&gt;&lt;Rows Styles="Absolute,28,Absolute,28,Absolute,28,Absolute,13" /&gt;&lt;/TableLayoutSettings&gt;</value>
   </data>
   <data name="groupFirmware.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Top</value>
@@ -3023,7 +2648,7 @@
     <value>tableLayoutMain</value>
   </data>
   <data name="&gt;&gt;groupFirmware.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>3</value>
   </data>
   <data name="FREQ_CHECK.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>None</value>
@@ -3032,7 +2657,7 @@
     <value>NoControl</value>
   </data>
   <data name="FREQ_CHECK.Location" type="System.Drawing.Point, System.Drawing">
-    <value>448, 33</value>
+    <value>910, 33</value>
   </data>
   <data name="FREQ_CHECK.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>0, 2, 0, 2</value>
@@ -3065,7 +2690,7 @@
     <value>3, 0</value>
   </data>
   <data name="label9.Size" type="System.Drawing.Size, System.Drawing">
-    <value>172, 28</value>
+    <value>168, 28</value>
   </data>
   <data name="label9.TabIndex" type="System.Int32, mscorlib">
     <value>151</value>
@@ -3098,10 +2723,10 @@
     <value>NoControl</value>
   </data>
   <data name="label6.Location" type="System.Drawing.Point, System.Drawing">
-    <value>472, 28</value>
+    <value>3, 28</value>
   </data>
   <data name="label6.Size" type="System.Drawing.Size, System.Drawing">
-    <value>172, 28</value>
+    <value>168, 28</value>
   </data>
   <data name="label6.TabIndex" type="System.Int32, mscorlib">
     <value>149</value>
@@ -3122,7 +2747,7 @@
     <value>tableLayoutDevice</value>
   </data>
   <data name="&gt;&gt;label6.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>3</value>
   </data>
   <data name="label7.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -3134,10 +2759,10 @@
     <value>NoControl</value>
   </data>
   <data name="label7.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 28</value>
+    <value>463, 28</value>
   </data>
   <data name="label7.Size" type="System.Drawing.Size, System.Drawing">
-    <value>172, 28</value>
+    <value>168, 28</value>
   </data>
   <data name="label7.TabIndex" type="System.Int32, mscorlib">
     <value>150</value>
@@ -3158,7 +2783,7 @@
     <value>tableLayoutDevice</value>
   </data>
   <data name="&gt;&gt;label7.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>4</value>
   </data>
   <data name="label11.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -3167,10 +2792,10 @@
     <value>NoControl</value>
   </data>
   <data name="label11.Location" type="System.Drawing.Point, System.Drawing">
-    <value>472, 0</value>
+    <value>463, 0</value>
   </data>
   <data name="label11.Size" type="System.Drawing.Size, System.Drawing">
-    <value>172, 28</value>
+    <value>168, 28</value>
   </data>
   <data name="label11.TabIndex" type="System.Int32, mscorlib">
     <value>37</value>
@@ -3191,16 +2816,16 @@
     <value>tableLayoutDevice</value>
   </data>
   <data name="&gt;&gt;label11.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>5</value>
   </data>
-  <data name="ATI.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Bottom, Left, Right</value>
+  <data name="ATI.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
   </data>
   <data name="ATI.Location" type="System.Drawing.Point, System.Drawing">
-    <value>650, 3</value>
+    <value>637, 3</value>
   </data>
   <data name="ATI.Size" type="System.Drawing.Size, System.Drawing">
-    <value>261, 21</value>
+    <value>256, 21</value>
   </data>
   <data name="ATI.TabIndex" type="System.Int32, mscorlib">
     <value>38</value>
@@ -3215,7 +2840,7 @@
     <value>tableLayoutDevice</value>
   </data>
   <data name="&gt;&gt;ATI.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>7</value>
   </data>
   <metadata name="modemsBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
@@ -3224,10 +2849,10 @@
     <value>Top, Bottom, Left, Right</value>
   </data>
   <data name="comboModemSelection.Location" type="System.Drawing.Point, System.Drawing">
-    <value>181, 3</value>
+    <value>177, 3</value>
   </data>
   <data name="comboModemSelection.Size" type="System.Drawing.Size, System.Drawing">
-    <value>261, 23</value>
+    <value>256, 23</value>
   </data>
   <data name="comboModemSelection.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -3242,7 +2867,7 @@
     <value>tableLayoutDevice</value>
   </data>
   <data name="&gt;&gt;comboModemSelection.ZOrder" xml:space="preserve">
-    <value>12</value>
+    <value>9</value>
   </data>
   <metadata name="modemsBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
@@ -3251,7 +2876,7 @@
     <value>None</value>
   </data>
   <data name="ATI_CHECK.Location" type="System.Drawing.Point, System.Drawing">
-    <value>919, 5</value>
+    <value>910, 5</value>
   </data>
   <data name="ATI_CHECK.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>0, 2, 0, 2</value>
@@ -3272,7 +2897,7 @@
     <value>tableLayoutDevice</value>
   </data>
   <data name="&gt;&gt;ATI_CHECK.ZOrder" xml:space="preserve">
-    <value>13</value>
+    <value>10</value>
   </data>
   <data name="FORMAT_CHECK.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>None</value>
@@ -3281,7 +2906,7 @@
     <value>NoControl</value>
   </data>
   <data name="FORMAT_CHECK.Location" type="System.Drawing.Point, System.Drawing">
-    <value>448, 61</value>
+    <value>910, 61</value>
   </data>
   <data name="FORMAT_CHECK.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>0, 2, 0, 2</value>
@@ -3302,7 +2927,7 @@
     <value>tableLayoutDevice</value>
   </data>
   <data name="&gt;&gt;FORMAT_CHECK.ZOrder" xml:space="preserve">
-    <value>14</value>
+    <value>12</value>
   </data>
   <data name="tableRadio.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
@@ -3746,7 +3371,7 @@
     <value>0</value>
   </data>
   <data name="tableRadio.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
-    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="OPPRESEND_CHECK" Row="7" RowSpan="1" Column="5" ColumnSpan="1" /&gt;&lt;Control Name="RSSI_IN_DBM_CHECK" Row="7" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="AIR_FRAMELEN_CHECK" Row="6" RowSpan="1" Column="5" ColumnSpan="1" /&gt;&lt;Control Name="AIR_SPEED_CHECK" Row="6" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="MAVLINK_CHECK" Row="5" RowSpan="1" Column="5" ColumnSpan="1" /&gt;&lt;Control Name="TXPOWER_CHECK" Row="5" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="MAX_WINDOW_CHECK" Row="4" RowSpan="1" Column="5" ColumnSpan="1" /&gt;&lt;Control Name="DUTY_CYCLE_CHECK" Row="4" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="LBT_RSSI_CHECK" Row="3" RowSpan="1" Column="5" ColumnSpan="1" /&gt;&lt;Control Name="NUM_CHANNELS_CHECK" Row="3" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="NETID_CHECK" Row="2" RowSpan="1" Column="5" ColumnSpan="1" /&gt;&lt;Control Name="MAX_FREQ_CHECK" Row="2" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="ANT_MODE_CHECK" Row="1" RowSpan="1" Column="5" ColumnSpan="1" /&gt;&lt;Control Name="MIN_FREQ_CHECK" Row="1" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="ANT_MODE" Row="1" RowSpan="1" Column="4" ColumnSpan="1" /&gt;&lt;Control Name="NETID" Row="2" RowSpan="1" Column="4" ColumnSpan="1" /&gt;&lt;Control Name="LBT_RSSI" Row="3" RowSpan="1" Column="4" ColumnSpan="1" /&gt;&lt;Control Name="MAX_WINDOW" Row="4" RowSpan="1" Column="4" ColumnSpan="1" /&gt;&lt;Control Name="MAVLINK" Row="5" RowSpan="1" Column="4" ColumnSpan="1" /&gt;&lt;Control Name="AIR_FRAMELEN" Row="6" RowSpan="1" Column="4" ColumnSpan="1" /&gt;&lt;Control Name="RSSI" Row="8" RowSpan="1" Column="1" ColumnSpan="4" /&gt;&lt;Control Name="label14" Row="6" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="RSSI_IN_DBM" Row="7" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="label45" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="OPPRESEND" Row="7" RowSpan="1" Column="4" ColumnSpan="1" /&gt;&lt;Control Name="lblMAVLINK" Row="5" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="lblOPPRESEND" Row="7" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="label12" Row="8" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lblMIN_FREQ" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lblMAX_FREQ" Row="2" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="label15" Row="7" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lblMAX_WINDOW" Row="4" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="lblNUM_CHANNELS" Row="3" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lblDUTY_CYCLE" Row="4" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lblLBT_RSSI" Row="3" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="lblTXPOWER" Row="5" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lblNETID" Row="2" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="label3" Row="6" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="RATE_FREQBAND" Row="0" RowSpan="1" Column="1" ColumnSpan="4" /&gt;&lt;Control Name="MIN_FREQ" Row="1" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lblANT_MODE" Row="1" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="MAX_FREQ" Row="2" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="TXPOWER" Row="5" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="DUTY_CYCLE" Row="4" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="AIR_SPEED" Row="6" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="NUM_CHANNELS" Row="3" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,20,Percent,30,Absolute,24,Percent,20,Percent,30,Absolute,28" /&gt;&lt;Rows Styles="Absolute,28,Absolute,28,Absolute,28,Absolute,28,Absolute,28,Absolute,28,Absolute,28,Absolute,28,Absolute,28" /&gt;&lt;/TableLayoutSettings&gt;</value>
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="OPPRESEND_CHECK" Row="7" RowSpan="1" Column="5" ColumnSpan="1" /&gt;&lt;Control Name="RSSI_IN_DBM_CHECK" Row="7" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="AIR_FRAMELEN_CHECK" Row="6" RowSpan="1" Column="5" ColumnSpan="1" /&gt;&lt;Control Name="AIR_SPEED_CHECK" Row="6" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="MAVLINK_CHECK" Row="5" RowSpan="1" Column="5" ColumnSpan="1" /&gt;&lt;Control Name="TXPOWER_CHECK" Row="5" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="MAX_WINDOW_CHECK" Row="4" RowSpan="1" Column="5" ColumnSpan="1" /&gt;&lt;Control Name="DUTY_CYCLE_CHECK" Row="4" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="LBT_RSSI_CHECK" Row="3" RowSpan="1" Column="5" ColumnSpan="1" /&gt;&lt;Control Name="NUM_CHANNELS_CHECK" Row="3" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="NETID_CHECK" Row="2" RowSpan="1" Column="5" ColumnSpan="1" /&gt;&lt;Control Name="MAX_FREQ_CHECK" Row="2" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="ANT_MODE_CHECK" Row="1" RowSpan="1" Column="5" ColumnSpan="1" /&gt;&lt;Control Name="MIN_FREQ_CHECK" Row="1" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="ANT_MODE" Row="1" RowSpan="1" Column="4" ColumnSpan="1" /&gt;&lt;Control Name="NETID" Row="2" RowSpan="1" Column="4" ColumnSpan="1" /&gt;&lt;Control Name="LBT_RSSI" Row="3" RowSpan="1" Column="4" ColumnSpan="1" /&gt;&lt;Control Name="MAX_WINDOW" Row="4" RowSpan="1" Column="4" ColumnSpan="1" /&gt;&lt;Control Name="MAVLINK" Row="5" RowSpan="1" Column="4" ColumnSpan="1" /&gt;&lt;Control Name="AIR_FRAMELEN" Row="6" RowSpan="1" Column="4" ColumnSpan="1" /&gt;&lt;Control Name="RSSI" Row="8" RowSpan="1" Column="1" ColumnSpan="4" /&gt;&lt;Control Name="label14" Row="6" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="RSSI_IN_DBM" Row="7" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="label45" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="OPPRESEND" Row="7" RowSpan="1" Column="4" ColumnSpan="1" /&gt;&lt;Control Name="lblMAVLINK" Row="5" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="lblOPPRESEND" Row="7" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="label12" Row="8" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lblMIN_FREQ" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lblMAX_FREQ" Row="2" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="label15" Row="7" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lblMAX_WINDOW" Row="4" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="lblNUM_CHANNELS" Row="3" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lblDUTY_CYCLE" Row="4" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lblLBT_RSSI" Row="3" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="lblTXPOWER" Row="5" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lblNETID" Row="2" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="label3" Row="6" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="RATE_FREQBAND" Row="0" RowSpan="1" Column="1" ColumnSpan="4" /&gt;&lt;Control Name="MIN_FREQ" Row="1" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lblANT_MODE" Row="1" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="MAX_FREQ" Row="2" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="TXPOWER" Row="5" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="DUTY_CYCLE" Row="4" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="AIR_SPEED" Row="6" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="NUM_CHANNELS" Row="3" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,20,Percent,30,Absolute,24,Percent,20,Percent,30,Absolute,44" /&gt;&lt;Rows Styles="Absolute,28,Absolute,28,Absolute,28,Absolute,28,Absolute,28,Absolute,28,Absolute,28,Absolute,28,Absolute,28" /&gt;&lt;/TableLayoutSettings&gt;</value>
   </data>
   <data name="OPPRESEND_CHECK.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>None</value>
@@ -3755,7 +3380,7 @@
     <value>NoControl</value>
   </data>
   <data name="OPPRESEND_CHECK.Location" type="System.Drawing.Point, System.Drawing">
-    <value>919, 201</value>
+    <value>910, 201</value>
   </data>
   <data name="OPPRESEND_CHECK.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>0, 2, 0, 2</value>
@@ -3785,7 +3410,7 @@
     <value>NoControl</value>
   </data>
   <data name="RSSI_IN_DBM_CHECK.Location" type="System.Drawing.Point, System.Drawing">
-    <value>448, 201</value>
+    <value>439, 201</value>
   </data>
   <data name="RSSI_IN_DBM_CHECK.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>0, 2, 0, 2</value>
@@ -3815,7 +3440,7 @@
     <value>NoControl</value>
   </data>
   <data name="AIR_FRAMELEN_CHECK.Location" type="System.Drawing.Point, System.Drawing">
-    <value>919, 173</value>
+    <value>910, 173</value>
   </data>
   <data name="AIR_FRAMELEN_CHECK.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>0, 2, 0, 2</value>
@@ -3845,7 +3470,7 @@
     <value>NoControl</value>
   </data>
   <data name="AIR_SPEED_CHECK.Location" type="System.Drawing.Point, System.Drawing">
-    <value>448, 173</value>
+    <value>439, 173</value>
   </data>
   <data name="AIR_SPEED_CHECK.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>0, 2, 0, 2</value>
@@ -3875,7 +3500,7 @@
     <value>NoControl</value>
   </data>
   <data name="MAVLINK_CHECK.Location" type="System.Drawing.Point, System.Drawing">
-    <value>919, 145</value>
+    <value>910, 145</value>
   </data>
   <data name="MAVLINK_CHECK.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>0, 2, 0, 2</value>
@@ -3905,7 +3530,7 @@
     <value>NoControl</value>
   </data>
   <data name="TXPOWER_CHECK.Location" type="System.Drawing.Point, System.Drawing">
-    <value>448, 145</value>
+    <value>439, 145</value>
   </data>
   <data name="TXPOWER_CHECK.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>0, 2, 0, 2</value>
@@ -3935,7 +3560,7 @@
     <value>NoControl</value>
   </data>
   <data name="MAX_WINDOW_CHECK.Location" type="System.Drawing.Point, System.Drawing">
-    <value>919, 117</value>
+    <value>910, 117</value>
   </data>
   <data name="MAX_WINDOW_CHECK.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>0, 2, 0, 2</value>
@@ -3965,7 +3590,7 @@
     <value>NoControl</value>
   </data>
   <data name="DUTY_CYCLE_CHECK.Location" type="System.Drawing.Point, System.Drawing">
-    <value>448, 117</value>
+    <value>439, 117</value>
   </data>
   <data name="DUTY_CYCLE_CHECK.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>0, 2, 0, 2</value>
@@ -3995,7 +3620,7 @@
     <value>NoControl</value>
   </data>
   <data name="LBT_RSSI_CHECK.Location" type="System.Drawing.Point, System.Drawing">
-    <value>919, 89</value>
+    <value>910, 89</value>
   </data>
   <data name="LBT_RSSI_CHECK.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>0, 2, 0, 2</value>
@@ -4025,7 +3650,7 @@
     <value>NoControl</value>
   </data>
   <data name="NUM_CHANNELS_CHECK.Location" type="System.Drawing.Point, System.Drawing">
-    <value>448, 89</value>
+    <value>439, 89</value>
   </data>
   <data name="NUM_CHANNELS_CHECK.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>0, 2, 0, 2</value>
@@ -4055,7 +3680,7 @@
     <value>NoControl</value>
   </data>
   <data name="NETID_CHECK.Location" type="System.Drawing.Point, System.Drawing">
-    <value>919, 61</value>
+    <value>910, 61</value>
   </data>
   <data name="NETID_CHECK.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>0, 2, 0, 2</value>
@@ -4085,7 +3710,7 @@
     <value>NoControl</value>
   </data>
   <data name="MAX_FREQ_CHECK.Location" type="System.Drawing.Point, System.Drawing">
-    <value>448, 61</value>
+    <value>439, 61</value>
   </data>
   <data name="MAX_FREQ_CHECK.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>0, 2, 0, 2</value>
@@ -4115,7 +3740,7 @@
     <value>NoControl</value>
   </data>
   <data name="ANT_MODE_CHECK.Location" type="System.Drawing.Point, System.Drawing">
-    <value>919, 33</value>
+    <value>910, 33</value>
   </data>
   <data name="ANT_MODE_CHECK.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>0, 2, 0, 2</value>
@@ -4145,7 +3770,7 @@
     <value>NoControl</value>
   </data>
   <data name="MIN_FREQ_CHECK.Location" type="System.Drawing.Point, System.Drawing">
-    <value>448, 33</value>
+    <value>439, 33</value>
   </data>
   <data name="MIN_FREQ_CHECK.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>0, 2, 0, 2</value>
@@ -4175,10 +3800,10 @@
     <value>False</value>
   </data>
   <data name="ANT_MODE.Location" type="System.Drawing.Point, System.Drawing">
-    <value>650, 31</value>
+    <value>637, 31</value>
   </data>
   <data name="ANT_MODE.Size" type="System.Drawing.Size, System.Drawing">
-    <value>261, 23</value>
+    <value>256, 23</value>
   </data>
   <data name="ANT_MODE.TabIndex" type="System.Int32, mscorlib">
     <value>8</value>
@@ -4202,10 +3827,10 @@
     <value>False</value>
   </data>
   <data name="MAX_WINDOW.Location" type="System.Drawing.Point, System.Drawing">
-    <value>650, 115</value>
+    <value>637, 115</value>
   </data>
   <data name="MAX_WINDOW.Size" type="System.Drawing.Size, System.Drawing">
-    <value>261, 23</value>
+    <value>256, 23</value>
   </data>
   <data name="MAX_WINDOW.TabIndex" type="System.Int32, mscorlib">
     <value>11</value>
@@ -4229,10 +3854,10 @@
     <value>False</value>
   </data>
   <data name="RSSI.Location" type="System.Drawing.Point, System.Drawing">
-    <value>181, 227</value>
+    <value>177, 227</value>
   </data>
   <data name="RSSI.Size" type="System.Drawing.Size, System.Drawing">
-    <value>730, 21</value>
+    <value>716, 21</value>
   </data>
   <data name="RSSI.TabIndex" type="System.Int32, mscorlib">
     <value>149</value>
@@ -4256,10 +3881,10 @@
     <value>NoControl</value>
   </data>
   <data name="label14.Location" type="System.Drawing.Point, System.Drawing">
-    <value>472, 168</value>
+    <value>463, 168</value>
   </data>
   <data name="label14.Size" type="System.Drawing.Size, System.Drawing">
-    <value>172, 28</value>
+    <value>168, 28</value>
   </data>
   <data name="label14.TabIndex" type="System.Int32, mscorlib">
     <value>147</value>
@@ -4292,7 +3917,7 @@
     <value>3, 0</value>
   </data>
   <data name="label45.Size" type="System.Drawing.Size, System.Drawing">
-    <value>172, 28</value>
+    <value>168, 28</value>
   </data>
   <data name="label45.TabIndex" type="System.Int32, mscorlib">
     <value>146</value>
@@ -4322,10 +3947,10 @@
     <value>NoControl</value>
   </data>
   <data name="lblMAVLINK.Location" type="System.Drawing.Point, System.Drawing">
-    <value>472, 140</value>
+    <value>463, 140</value>
   </data>
   <data name="lblMAVLINK.Size" type="System.Drawing.Size, System.Drawing">
-    <value>172, 28</value>
+    <value>168, 28</value>
   </data>
   <data name="lblMAVLINK.TabIndex" type="System.Int32, mscorlib">
     <value>123</value>
@@ -4355,10 +3980,10 @@
     <value>NoControl</value>
   </data>
   <data name="lblOPPRESEND.Location" type="System.Drawing.Point, System.Drawing">
-    <value>472, 196</value>
+    <value>463, 196</value>
   </data>
   <data name="lblOPPRESEND.Size" type="System.Drawing.Size, System.Drawing">
-    <value>172, 28</value>
+    <value>168, 28</value>
   </data>
   <data name="lblOPPRESEND.TabIndex" type="System.Int32, mscorlib">
     <value>125</value>
@@ -4391,7 +4016,7 @@
     <value>3, 224</value>
   </data>
   <data name="label12.Size" type="System.Drawing.Size, System.Drawing">
-    <value>172, 29</value>
+    <value>168, 29</value>
   </data>
   <data name="label12.TabIndex" type="System.Int32, mscorlib">
     <value>37</value>
@@ -4424,7 +4049,7 @@
     <value>3, 28</value>
   </data>
   <data name="lblMIN_FREQ.Size" type="System.Drawing.Size, System.Drawing">
-    <value>172, 28</value>
+    <value>168, 28</value>
   </data>
   <data name="lblMIN_FREQ.TabIndex" type="System.Int32, mscorlib">
     <value>87</value>
@@ -4457,7 +4082,7 @@
     <value>3, 56</value>
   </data>
   <data name="lblMAX_FREQ.Size" type="System.Drawing.Size, System.Drawing">
-    <value>172, 28</value>
+    <value>168, 28</value>
   </data>
   <data name="lblMAX_FREQ.TabIndex" type="System.Int32, mscorlib">
     <value>88</value>
@@ -4490,7 +4115,7 @@
     <value>3, 196</value>
   </data>
   <data name="label15.Size" type="System.Drawing.Size, System.Drawing">
-    <value>172, 28</value>
+    <value>168, 28</value>
   </data>
   <data name="label15.TabIndex" type="System.Int32, mscorlib">
     <value>149</value>
@@ -4523,10 +4148,10 @@
     <value>NoControl</value>
   </data>
   <data name="lblMAX_WINDOW.Location" type="System.Drawing.Point, System.Drawing">
-    <value>472, 112</value>
+    <value>463, 112</value>
   </data>
   <data name="lblMAX_WINDOW.Size" type="System.Drawing.Size, System.Drawing">
-    <value>172, 28</value>
+    <value>168, 28</value>
   </data>
   <data name="lblMAX_WINDOW.TabIndex" type="System.Int32, mscorlib">
     <value>93</value>
@@ -4559,7 +4184,7 @@
     <value>3, 84</value>
   </data>
   <data name="lblNUM_CHANNELS.Size" type="System.Drawing.Size, System.Drawing">
-    <value>172, 28</value>
+    <value>168, 28</value>
   </data>
   <data name="lblNUM_CHANNELS.TabIndex" type="System.Int32, mscorlib">
     <value>89</value>
@@ -4592,7 +4217,7 @@
     <value>3, 112</value>
   </data>
   <data name="lblDUTY_CYCLE.Size" type="System.Drawing.Size, System.Drawing">
-    <value>172, 28</value>
+    <value>168, 28</value>
   </data>
   <data name="lblDUTY_CYCLE.TabIndex" type="System.Int32, mscorlib">
     <value>90</value>
@@ -4622,10 +4247,10 @@
     <value>NoControl</value>
   </data>
   <data name="lblLBT_RSSI.Location" type="System.Drawing.Point, System.Drawing">
-    <value>472, 84</value>
+    <value>463, 84</value>
   </data>
   <data name="lblLBT_RSSI.Size" type="System.Drawing.Size, System.Drawing">
-    <value>172, 28</value>
+    <value>168, 28</value>
   </data>
   <data name="lblLBT_RSSI.TabIndex" type="System.Int32, mscorlib">
     <value>91</value>
@@ -4658,7 +4283,7 @@
     <value>3, 140</value>
   </data>
   <data name="lblTXPOWER.Size" type="System.Drawing.Size, System.Drawing">
-    <value>172, 28</value>
+    <value>168, 28</value>
   </data>
   <data name="lblTXPOWER.TabIndex" type="System.Int32, mscorlib">
     <value>120</value>
@@ -4688,10 +4313,10 @@
     <value>NoControl</value>
   </data>
   <data name="lblNETID.Location" type="System.Drawing.Point, System.Drawing">
-    <value>472, 56</value>
+    <value>463, 56</value>
   </data>
   <data name="lblNETID.Size" type="System.Drawing.Size, System.Drawing">
-    <value>172, 28</value>
+    <value>168, 28</value>
   </data>
   <data name="lblNETID.TabIndex" type="System.Int32, mscorlib">
     <value>118</value>
@@ -4724,7 +4349,7 @@
     <value>3, 168</value>
   </data>
   <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>172, 28</value>
+    <value>168, 28</value>
   </data>
   <data name="label3.TabIndex" type="System.Int32, mscorlib">
     <value>116</value>
@@ -4754,10 +4379,10 @@
     <value>False</value>
   </data>
   <data name="RATE_FREQBAND.Location" type="System.Drawing.Point, System.Drawing">
-    <value>181, 3</value>
+    <value>177, 3</value>
   </data>
   <data name="RATE_FREQBAND.Size" type="System.Drawing.Size, System.Drawing">
-    <value>730, 23</value>
+    <value>716, 23</value>
   </data>
   <data name="RATE_FREQBAND.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -4781,10 +4406,10 @@
     <value>NoControl</value>
   </data>
   <data name="lblANT_MODE.Location" type="System.Drawing.Point, System.Drawing">
-    <value>472, 28</value>
+    <value>463, 28</value>
   </data>
   <data name="lblANT_MODE.Size" type="System.Drawing.Size, System.Drawing">
-    <value>172, 28</value>
+    <value>168, 28</value>
   </data>
   <data name="lblANT_MODE.TabIndex" type="System.Int32, mscorlib">
     <value>110</value>
@@ -4889,7 +4514,7 @@
     <value>0</value>
   </data>
   <data name="tableLayoutSerial.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
-    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="AUXSER_SPEED_CHECK" Row="1" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="SERIAL_SPEED_CHECK" Row="0" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="RTSCTS_CHECK" Row="2" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="label1" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="RTSCTS" Row="2" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lblRTSCTS" Row="2" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="AUXSER_SPEED" Row="1" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="label5" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="SERIAL_SPEED" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,40,Percent,60,Absolute,30" /&gt;&lt;Rows Styles="Absolute,28,Absolute,28,Absolute,28" /&gt;&lt;/TableLayoutSettings&gt;</value>
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="AUXSER_SPEED_CHECK" Row="1" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="SERIAL_SPEED_CHECK" Row="0" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="RTSCTS_CHECK" Row="2" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="label1" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="RTSCTS" Row="2" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lblRTSCTS" Row="2" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="AUXSER_SPEED" Row="1" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="label5" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="SERIAL_SPEED" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,40,Percent,60,Absolute,38" /&gt;&lt;Rows Styles="Absolute,28,Absolute,28,Absolute,28" /&gt;&lt;/TableLayoutSettings&gt;</value>
   </data>
   <data name="AUXSER_SPEED_CHECK.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>None</value>
@@ -4898,7 +4523,7 @@
     <value>NoControl</value>
   </data>
   <data name="AUXSER_SPEED_CHECK.Location" type="System.Drawing.Point, System.Drawing">
-    <value>441, 33</value>
+    <value>436, 33</value>
   </data>
   <data name="AUXSER_SPEED_CHECK.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>0, 2, 0, 2</value>
@@ -4928,7 +4553,7 @@
     <value>NoControl</value>
   </data>
   <data name="SERIAL_SPEED_CHECK.Location" type="System.Drawing.Point, System.Drawing">
-    <value>441, 5</value>
+    <value>436, 5</value>
   </data>
   <data name="SERIAL_SPEED_CHECK.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>0, 2, 0, 2</value>
@@ -4958,7 +4583,7 @@
     <value>NoControl</value>
   </data>
   <data name="RTSCTS_CHECK.Location" type="System.Drawing.Point, System.Drawing">
-    <value>441, 61</value>
+    <value>436, 61</value>
   </data>
   <data name="RTSCTS_CHECK.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>0, 2, 0, 2</value>
@@ -4991,7 +4616,7 @@
     <value>3, 28</value>
   </data>
   <data name="label5.Size" type="System.Drawing.Size, System.Drawing">
-    <value>168, 28</value>
+    <value>164, 28</value>
   </data>
   <data name="label5.TabIndex" type="System.Int32, mscorlib">
     <value>114</value>
@@ -5144,7 +4769,7 @@
     <value>0</value>
   </data>
   <data name="tableLayoutData.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
-    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="DESTID_CHECK" Row="1" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="NODEID_CHECK" Row="0" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="lblNODEID" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lblDESTID" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="NODEID" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="DESTID" Row="1" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lblTX_ENCAP_METHOD" Row="0" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="TX_ENCAP_METHOD" Row="0" RowSpan="1" Column="4" ColumnSpan="1" /&gt;&lt;Control Name="TX_ENCAP_METHOD_CHECK" Row="0" RowSpan="1" Column="5" ColumnSpan="1" /&gt;&lt;Control Name="RX_ENCAP_METHOD" Row="1" RowSpan="1" Column="4" ColumnSpan="1" /&gt;&lt;Control Name="lblRX_ENCAP_METHOD" Row="1" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="RX_ENCAP_METHOD_CHECK" Row="1" RowSpan="1" Column="5" ColumnSpan="1" /&gt;&lt;Control Name="lblMAX_DATA" Row="2" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="MAX_DATA" Row="2" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="MAX_DATA_CHECK" Row="2" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="lblMAX_RETRIES" Row="2" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="MAX_RETRIES" Row="2" RowSpan="1" Column="4" ColumnSpan="1" /&gt;&lt;Control Name="MAX_RETRIES_CHECK" Row="2" RowSpan="1" Column="5" ColumnSpan="1" /&gt;&lt;Control Name="lblGLOBAL_RETRIES" Row="3" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="GLOBAL_RETRIES" Row="3" RowSpan="1" Column="4" ColumnSpan="1" /&gt;&lt;Control Name="GLOBAL_RETRIES_CHECK" Row="3" RowSpan="1" Column="5" ColumnSpan="1" /&gt;&lt;Control Name="lblSER_BRK_DETMS" Row="3" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="SER_BRK_DETMS" Row="3" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="SER_BRK_DETMS_CHECK" Row="3" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,20,Percent,30,Absolute,24,Percent,20,Percent,30,Absolute,28" /&gt;&lt;Rows Styles="Absolute,28,Absolute,28,Absolute,28,Absolute,28,Absolute,20" /&gt;&lt;/TableLayoutSettings&gt;</value>
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="DESTID_CHECK" Row="1" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="NODEID_CHECK" Row="0" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="lblNODEID" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lblDESTID" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="NODEID" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="DESTID" Row="1" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lblTX_ENCAP_METHOD" Row="0" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="TX_ENCAP_METHOD" Row="0" RowSpan="1" Column="4" ColumnSpan="1" /&gt;&lt;Control Name="TX_ENCAP_METHOD_CHECK" Row="0" RowSpan="1" Column="5" ColumnSpan="1" /&gt;&lt;Control Name="RX_ENCAP_METHOD" Row="1" RowSpan="1" Column="4" ColumnSpan="1" /&gt;&lt;Control Name="lblRX_ENCAP_METHOD" Row="1" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="RX_ENCAP_METHOD_CHECK" Row="1" RowSpan="1" Column="5" ColumnSpan="1" /&gt;&lt;Control Name="lblMAX_DATA" Row="2" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="MAX_DATA" Row="2" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="MAX_DATA_CHECK" Row="2" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="lblMAX_RETRIES" Row="2" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="MAX_RETRIES" Row="2" RowSpan="1" Column="4" ColumnSpan="1" /&gt;&lt;Control Name="MAX_RETRIES_CHECK" Row="2" RowSpan="1" Column="5" ColumnSpan="1" /&gt;&lt;Control Name="lblGLOBAL_RETRIES" Row="3" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="GLOBAL_RETRIES" Row="3" RowSpan="1" Column="4" ColumnSpan="1" /&gt;&lt;Control Name="GLOBAL_RETRIES_CHECK" Row="3" RowSpan="1" Column="5" ColumnSpan="1" /&gt;&lt;Control Name="lblSER_BRK_DETMS" Row="3" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="SER_BRK_DETMS" Row="3" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="SER_BRK_DETMS_CHECK" Row="3" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,20,Percent,30,Absolute,24,Percent,20,Percent,30,Absolute,34" /&gt;&lt;Rows Styles="Absolute,28,Absolute,28,Absolute,28,Absolute,28,Absolute,20" /&gt;&lt;/TableLayoutSettings&gt;</value>
   </data>
   <data name="DESTID_CHECK.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>None</value>
@@ -5153,7 +4778,7 @@
     <value>NoControl</value>
   </data>
   <data name="DESTID_CHECK.Location" type="System.Drawing.Point, System.Drawing">
-    <value>448, 33</value>
+    <value>444, 33</value>
   </data>
   <data name="DESTID_CHECK.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>0, 2, 0, 2</value>
@@ -5183,7 +4808,7 @@
     <value>NoControl</value>
   </data>
   <data name="NODEID_CHECK.Location" type="System.Drawing.Point, System.Drawing">
-    <value>448, 5</value>
+    <value>444, 5</value>
   </data>
   <data name="NODEID_CHECK.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>0, 2, 0, 2</value>
@@ -5213,7 +4838,7 @@
     <value>NoControl</value>
   </data>
   <data name="TX_ENCAP_METHOD_CHECK.Location" type="System.Drawing.Point, System.Drawing">
-    <value>919, 5</value>
+    <value>915, 5</value>
   </data>
   <data name="TX_ENCAP_METHOD_CHECK.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>0, 2, 0, 2</value>
@@ -5243,7 +4868,7 @@
     <value>NoControl</value>
   </data>
   <data name="RX_ENCAP_METHOD_CHECK.Location" type="System.Drawing.Point, System.Drawing">
-    <value>919, 33</value>
+    <value>915, 33</value>
   </data>
   <data name="RX_ENCAP_METHOD_CHECK.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>0, 2, 0, 2</value>
@@ -5273,7 +4898,7 @@
     <value>NoControl</value>
   </data>
   <data name="MAX_DATA_CHECK.Location" type="System.Drawing.Point, System.Drawing">
-    <value>448, 61</value>
+    <value>444, 61</value>
   </data>
   <data name="MAX_DATA_CHECK.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>0, 2, 0, 2</value>
@@ -5303,7 +4928,7 @@
     <value>NoControl</value>
   </data>
   <data name="MAX_RETRIES_CHECK.Location" type="System.Drawing.Point, System.Drawing">
-    <value>919, 61</value>
+    <value>915, 61</value>
   </data>
   <data name="MAX_RETRIES_CHECK.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>0, 2, 0, 2</value>
@@ -5333,7 +4958,7 @@
     <value>NoControl</value>
   </data>
   <data name="GLOBAL_RETRIES_CHECK.Location" type="System.Drawing.Point, System.Drawing">
-    <value>919, 89</value>
+    <value>915, 89</value>
   </data>
   <data name="GLOBAL_RETRIES_CHECK.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>0, 2, 0, 2</value>
@@ -5363,7 +4988,7 @@
     <value>NoControl</value>
   </data>
   <data name="SER_BRK_DETMS_CHECK.Location" type="System.Drawing.Point, System.Drawing">
-    <value>448, 89</value>
+    <value>444, 89</value>
   </data>
   <data name="SER_BRK_DETMS_CHECK.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>0, 2, 0, 2</value>
@@ -5385,6 +5010,441 @@
   </data>
   <data name="&gt;&gt;SER_BRK_DETMS_CHECK.ZOrder" xml:space="preserve">
     <value>23</value>
+  </data>
+  <data name="tableLayoutGPIO.ColumnCount" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="&gt;&gt;GPIO0_CHECK.Name" xml:space="preserve">
+    <value>GPIO0_CHECK</value>
+  </data>
+  <data name="&gt;&gt;GPIO0_CHECK.Type" xml:space="preserve">
+    <value>FontAwesome.Sharp.IconPictureBox, FontAwesome.Sharp, Version=6.3.0.0, Culture=neutral, PublicKeyToken=d16d1e4e568ec10f</value>
+  </data>
+  <data name="&gt;&gt;GPIO0_CHECK.Parent" xml:space="preserve">
+    <value>tableLayoutGPIO</value>
+  </data>
+  <data name="&gt;&gt;GPIO0_CHECK.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;GPIO3_CHECK.Name" xml:space="preserve">
+    <value>GPIO3_CHECK</value>
+  </data>
+  <data name="&gt;&gt;GPIO3_CHECK.Type" xml:space="preserve">
+    <value>FontAwesome.Sharp.IconPictureBox, FontAwesome.Sharp, Version=6.3.0.0, Culture=neutral, PublicKeyToken=d16d1e4e568ec10f</value>
+  </data>
+  <data name="&gt;&gt;GPIO3_CHECK.Parent" xml:space="preserve">
+    <value>tableLayoutGPIO</value>
+  </data>
+  <data name="&gt;&gt;GPIO3_CHECK.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;label19.Name" xml:space="preserve">
+    <value>label19</value>
+  </data>
+  <data name="&gt;&gt;label19.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label19.Parent" xml:space="preserve">
+    <value>tableLayoutGPIO</value>
+  </data>
+  <data name="&gt;&gt;label19.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="&gt;&gt;label16.Name" xml:space="preserve">
+    <value>label16</value>
+  </data>
+  <data name="&gt;&gt;label16.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label16.Parent" xml:space="preserve">
+    <value>tableLayoutGPIO</value>
+  </data>
+  <data name="&gt;&gt;label16.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="&gt;&gt;label17.Name" xml:space="preserve">
+    <value>label17</value>
+  </data>
+  <data name="&gt;&gt;label17.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label17.Parent" xml:space="preserve">
+    <value>tableLayoutGPIO</value>
+  </data>
+  <data name="&gt;&gt;label17.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="&gt;&gt;label18.Name" xml:space="preserve">
+    <value>label18</value>
+  </data>
+  <data name="&gt;&gt;label18.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label18.Parent" xml:space="preserve">
+    <value>tableLayoutGPIO</value>
+  </data>
+  <data name="&gt;&gt;label18.ZOrder" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <data name="&gt;&gt;GPIO2_CHECK.Name" xml:space="preserve">
+    <value>GPIO2_CHECK</value>
+  </data>
+  <data name="&gt;&gt;GPIO2_CHECK.Type" xml:space="preserve">
+    <value>FontAwesome.Sharp.IconPictureBox, FontAwesome.Sharp, Version=6.3.0.0, Culture=neutral, PublicKeyToken=d16d1e4e568ec10f</value>
+  </data>
+  <data name="&gt;&gt;GPIO2_CHECK.Parent" xml:space="preserve">
+    <value>tableLayoutGPIO</value>
+  </data>
+  <data name="&gt;&gt;GPIO2_CHECK.ZOrder" xml:space="preserve">
+    <value>11</value>
+  </data>
+  <data name="&gt;&gt;GPIO1_CHECK.Name" xml:space="preserve">
+    <value>GPIO1_CHECK</value>
+  </data>
+  <data name="&gt;&gt;GPIO1_CHECK.Type" xml:space="preserve">
+    <value>FontAwesome.Sharp.IconPictureBox, FontAwesome.Sharp, Version=6.3.0.0, Culture=neutral, PublicKeyToken=d16d1e4e568ec10f</value>
+  </data>
+  <data name="&gt;&gt;GPIO1_CHECK.Parent" xml:space="preserve">
+    <value>tableLayoutGPIO</value>
+  </data>
+  <data name="&gt;&gt;GPIO1_CHECK.ZOrder" xml:space="preserve">
+    <value>12</value>
+  </data>
+  <data name="&gt;&gt;btn_PPMFailSafe.Name" xml:space="preserve">
+    <value>btn_PPMFailSafe</value>
+  </data>
+  <data name="&gt;&gt;btn_PPMFailSafe.Type" xml:space="preserve">
+    <value>FontAwesome.Sharp.IconButton, FontAwesome.Sharp, Version=6.3.0.0, Culture=neutral, PublicKeyToken=d16d1e4e568ec10f</value>
+  </data>
+  <data name="&gt;&gt;btn_PPMFailSafe.Parent" xml:space="preserve">
+    <value>tableLayoutGPIO</value>
+  </data>
+  <data name="&gt;&gt;btn_PPMFailSafe.ZOrder" xml:space="preserve">
+    <value>14</value>
+  </data>
+  <data name="tableLayoutGPIO.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Top</value>
+  </data>
+  <data name="tableLayoutGPIO.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 17</value>
+  </data>
+  <data name="tableLayoutGPIO.RowCount" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="tableLayoutGPIO.Size" type="System.Drawing.Size, System.Drawing">
+    <value>942, 118</value>
+  </data>
+  <data name="tableLayoutGPIO.TabIndex" type="System.Int32, mscorlib">
+    <value>169</value>
+  </data>
+  <data name="&gt;&gt;tableLayoutGPIO.Name" xml:space="preserve">
+    <value>tableLayoutGPIO</value>
+  </data>
+  <data name="&gt;&gt;tableLayoutGPIO.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TableLayoutPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tableLayoutGPIO.Parent" xml:space="preserve">
+    <value>groupGPIO</value>
+  </data>
+  <data name="&gt;&gt;tableLayoutGPIO.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="tableLayoutGPIO.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="GPIO0_CHECK" Row="0" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="GPIO3_CHECK" Row="3" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="GPIO2" Row="2" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="GPIO0" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="GPIO3" Row="3" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="label19" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="FSFRAMELOSS" Row="1" RowSpan="1" Column="4" ColumnSpan="1" /&gt;&lt;Control Name="label16" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="label17" Row="3" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="label18" Row="2" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="GPIO1" Row="1" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="GPIO2_CHECK" Row="2" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="GPIO1_CHECK" Row="1" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="lblFailsafe" Row="1" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="btn_PPMFailSafe" Row="2" RowSpan="2" Column="4" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,20,Percent,30,Absolute,24,Percent,20,Percent,30,Absolute,34" /&gt;&lt;Rows Styles="Absolute,28,Absolute,28,Absolute,28,Absolute,28,Absolute,20" /&gt;&lt;/TableLayoutSettings&gt;</value>
+  </data>
+  <data name="GPIO0_CHECK.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>None</value>
+  </data>
+  <data name="GPIO0_CHECK.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="GPIO0_CHECK.Location" type="System.Drawing.Point, System.Drawing">
+    <value>444, 5</value>
+  </data>
+  <data name="GPIO0_CHECK.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 2, 0, 2</value>
+  </data>
+  <data name="GPIO0_CHECK.Size" type="System.Drawing.Size, System.Drawing">
+    <value>18, 18</value>
+  </data>
+  <data name="GPIO0_CHECK.TabIndex" type="System.Int32, mscorlib">
+    <value>182</value>
+  </data>
+  <data name="&gt;&gt;GPIO0_CHECK.Name" xml:space="preserve">
+    <value>GPIO0_CHECK</value>
+  </data>
+  <data name="&gt;&gt;GPIO0_CHECK.Type" xml:space="preserve">
+    <value>FontAwesome.Sharp.IconPictureBox, FontAwesome.Sharp, Version=6.3.0.0, Culture=neutral, PublicKeyToken=d16d1e4e568ec10f</value>
+  </data>
+  <data name="&gt;&gt;GPIO0_CHECK.Parent" xml:space="preserve">
+    <value>tableLayoutGPIO</value>
+  </data>
+  <data name="&gt;&gt;GPIO0_CHECK.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="GPIO3_CHECK.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>None</value>
+  </data>
+  <data name="GPIO3_CHECK.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="GPIO3_CHECK.Location" type="System.Drawing.Point, System.Drawing">
+    <value>444, 92</value>
+  </data>
+  <data name="GPIO3_CHECK.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 2, 0, 2</value>
+  </data>
+  <data name="GPIO3_CHECK.Size" type="System.Drawing.Size, System.Drawing">
+    <value>18, 18</value>
+  </data>
+  <data name="GPIO3_CHECK.TabIndex" type="System.Int32, mscorlib">
+    <value>154</value>
+  </data>
+  <data name="GPIO3_CHECK.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;GPIO3_CHECK.Name" xml:space="preserve">
+    <value>GPIO3_CHECK</value>
+  </data>
+  <data name="&gt;&gt;GPIO3_CHECK.Type" xml:space="preserve">
+    <value>FontAwesome.Sharp.IconPictureBox, FontAwesome.Sharp, Version=6.3.0.0, Culture=neutral, PublicKeyToken=d16d1e4e568ec10f</value>
+  </data>
+  <data name="&gt;&gt;GPIO3_CHECK.Parent" xml:space="preserve">
+    <value>tableLayoutGPIO</value>
+  </data>
+  <data name="&gt;&gt;GPIO3_CHECK.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="label19.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="label19.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label19.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 28</value>
+  </data>
+  <data name="label19.Size" type="System.Drawing.Size, System.Drawing">
+    <value>170, 28</value>
+  </data>
+  <data name="label19.TabIndex" type="System.Int32, mscorlib">
+    <value>174</value>
+  </data>
+  <data name="label19.Text" xml:space="preserve">
+    <value>GPIO1 Function</value>
+  </data>
+  <data name="label19.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="&gt;&gt;label19.Name" xml:space="preserve">
+    <value>label19</value>
+  </data>
+  <data name="&gt;&gt;label19.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label19.Parent" xml:space="preserve">
+    <value>tableLayoutGPIO</value>
+  </data>
+  <data name="&gt;&gt;label19.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="label16.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="label16.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label16.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 0</value>
+  </data>
+  <data name="label16.Size" type="System.Drawing.Size, System.Drawing">
+    <value>170, 28</value>
+  </data>
+  <data name="label16.TabIndex" type="System.Int32, mscorlib">
+    <value>172</value>
+  </data>
+  <data name="label16.Text" xml:space="preserve">
+    <value>GPIO0 Function</value>
+  </data>
+  <data name="label16.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="&gt;&gt;label16.Name" xml:space="preserve">
+    <value>label16</value>
+  </data>
+  <data name="&gt;&gt;label16.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label16.Parent" xml:space="preserve">
+    <value>tableLayoutGPIO</value>
+  </data>
+  <data name="&gt;&gt;label16.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="label17.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="label17.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label17.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 84</value>
+  </data>
+  <data name="label17.Size" type="System.Drawing.Size, System.Drawing">
+    <value>170, 34</value>
+  </data>
+  <data name="label17.TabIndex" type="System.Int32, mscorlib">
+    <value>171</value>
+  </data>
+  <data name="label17.Text" xml:space="preserve">
+    <value>GPIO3 Function</value>
+  </data>
+  <data name="label17.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="&gt;&gt;label17.Name" xml:space="preserve">
+    <value>label17</value>
+  </data>
+  <data name="&gt;&gt;label17.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label17.Parent" xml:space="preserve">
+    <value>tableLayoutGPIO</value>
+  </data>
+  <data name="&gt;&gt;label17.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="label18.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="label18.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label18.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 56</value>
+  </data>
+  <data name="label18.Size" type="System.Drawing.Size, System.Drawing">
+    <value>170, 28</value>
+  </data>
+  <data name="label18.TabIndex" type="System.Int32, mscorlib">
+    <value>173</value>
+  </data>
+  <data name="label18.Text" xml:space="preserve">
+    <value>GPIO2 Function</value>
+  </data>
+  <data name="label18.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="&gt;&gt;label18.Name" xml:space="preserve">
+    <value>label18</value>
+  </data>
+  <data name="&gt;&gt;label18.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label18.Parent" xml:space="preserve">
+    <value>tableLayoutGPIO</value>
+  </data>
+  <data name="&gt;&gt;label18.ZOrder" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <data name="GPIO2_CHECK.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>None</value>
+  </data>
+  <data name="GPIO2_CHECK.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="GPIO2_CHECK.Location" type="System.Drawing.Point, System.Drawing">
+    <value>444, 61</value>
+  </data>
+  <data name="GPIO2_CHECK.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 2, 0, 2</value>
+  </data>
+  <data name="GPIO2_CHECK.Size" type="System.Drawing.Size, System.Drawing">
+    <value>18, 18</value>
+  </data>
+  <data name="GPIO2_CHECK.TabIndex" type="System.Int32, mscorlib">
+    <value>179</value>
+  </data>
+  <data name="GPIO2_CHECK.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;GPIO2_CHECK.Name" xml:space="preserve">
+    <value>GPIO2_CHECK</value>
+  </data>
+  <data name="&gt;&gt;GPIO2_CHECK.Type" xml:space="preserve">
+    <value>FontAwesome.Sharp.IconPictureBox, FontAwesome.Sharp, Version=6.3.0.0, Culture=neutral, PublicKeyToken=d16d1e4e568ec10f</value>
+  </data>
+  <data name="&gt;&gt;GPIO2_CHECK.Parent" xml:space="preserve">
+    <value>tableLayoutGPIO</value>
+  </data>
+  <data name="&gt;&gt;GPIO2_CHECK.ZOrder" xml:space="preserve">
+    <value>11</value>
+  </data>
+  <data name="GPIO1_CHECK.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>None</value>
+  </data>
+  <data name="GPIO1_CHECK.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="GPIO1_CHECK.Location" type="System.Drawing.Point, System.Drawing">
+    <value>444, 33</value>
+  </data>
+  <data name="GPIO1_CHECK.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 2, 0, 2</value>
+  </data>
+  <data name="GPIO1_CHECK.Size" type="System.Drawing.Size, System.Drawing">
+    <value>18, 18</value>
+  </data>
+  <data name="GPIO1_CHECK.TabIndex" type="System.Int32, mscorlib">
+    <value>180</value>
+  </data>
+  <data name="&gt;&gt;GPIO1_CHECK.Name" xml:space="preserve">
+    <value>GPIO1_CHECK</value>
+  </data>
+  <data name="&gt;&gt;GPIO1_CHECK.Type" xml:space="preserve">
+    <value>FontAwesome.Sharp.IconPictureBox, FontAwesome.Sharp, Version=6.3.0.0, Culture=neutral, PublicKeyToken=d16d1e4e568ec10f</value>
+  </data>
+  <data name="&gt;&gt;GPIO1_CHECK.Parent" xml:space="preserve">
+    <value>tableLayoutGPIO</value>
+  </data>
+  <data name="&gt;&gt;GPIO1_CHECK.ZOrder" xml:space="preserve">
+    <value>12</value>
+  </data>
+  <data name="btn_PPMFailSafe.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Top</value>
+  </data>
+  <data name="btn_PPMFailSafe.Location" type="System.Drawing.Point, System.Drawing">
+    <value>644, 59</value>
+  </data>
+  <data name="btn_PPMFailSafe.Size" type="System.Drawing.Size, System.Drawing">
+    <value>259, 32</value>
+  </data>
+  <data name="btn_PPMFailSafe.TabIndex" type="System.Int32, mscorlib">
+    <value>183</value>
+  </data>
+  <data name="btn_PPMFailSafe.Text" xml:space="preserve">
+    <value>Set PPM Fail Safe</value>
+  </data>
+  <data name="btn_PPMFailSafe.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleRight</value>
+  </data>
+  <data name="btn_PPMFailSafe.TextImageRelation" type="System.Windows.Forms.TextImageRelation, System.Windows.Forms">
+    <value>ImageBeforeText</value>
+  </data>
+  <data name="btn_PPMFailSafe.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;btn_PPMFailSafe.Name" xml:space="preserve">
+    <value>btn_PPMFailSafe</value>
+  </data>
+  <data name="&gt;&gt;btn_PPMFailSafe.Type" xml:space="preserve">
+    <value>FontAwesome.Sharp.IconButton, FontAwesome.Sharp, Version=6.3.0.0, Culture=neutral, PublicKeyToken=d16d1e4e568ec10f</value>
+  </data>
+  <data name="&gt;&gt;btn_PPMFailSafe.Parent" xml:space="preserve">
+    <value>tableLayoutGPIO</value>
+  </data>
+  <data name="&gt;&gt;btn_PPMFailSafe.ZOrder" xml:space="preserve">
+    <value>14</value>
   </data>
   <data name="tableLayoutPanel3.ColumnCount" type="System.Int32, mscorlib">
     <value>3</value>
@@ -5453,7 +5513,7 @@
     <value>0</value>
   </data>
   <data name="tableLayoutPanel3.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
-    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="btnGenerateKey" Row="2" RowSpan="2" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="ENCRYPTION_LEVEL_CHECK" Row="0" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="AESKEY" Row="1" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lblENCRYPTION_LEVEL" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="label35" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="ENCRYPTION_LEVEL" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="AESKEY_CHECK" Row="1" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,40,Percent,60,Absolute,30" /&gt;&lt;Rows Styles="Absolute,28,Absolute,28,Absolute,20,Absolute,20" /&gt;&lt;/TableLayoutSettings&gt;</value>
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="btnGenerateKey" Row="2" RowSpan="2" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="ENCRYPTION_LEVEL_CHECK" Row="0" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="AESKEY" Row="1" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lblENCRYPTION_LEVEL" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="label35" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="ENCRYPTION_LEVEL" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="AESKEY_CHECK" Row="1" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,40,Percent,60,Absolute,38" /&gt;&lt;Rows Styles="Absolute,28,Absolute,28,Absolute,20,Absolute,20" /&gt;&lt;/TableLayoutSettings&gt;</value>
   </data>
   <data name="btnGenerateKey.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Top</value>
@@ -5465,10 +5525,10 @@
     <value>NoControl</value>
   </data>
   <data name="btnGenerateKey.Location" type="System.Drawing.Point, System.Drawing">
-    <value>177, 59</value>
+    <value>173, 59</value>
   </data>
   <data name="btnGenerateKey.Size" type="System.Drawing.Size, System.Drawing">
-    <value>255, 32</value>
+    <value>250, 32</value>
   </data>
   <data name="btnGenerateKey.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -5501,7 +5561,7 @@
     <value>NoControl</value>
   </data>
   <data name="ENCRYPTION_LEVEL_CHECK.Location" type="System.Drawing.Point, System.Drawing">
-    <value>441, 5</value>
+    <value>436, 5</value>
   </data>
   <data name="ENCRYPTION_LEVEL_CHECK.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>0, 2, 0, 2</value>
@@ -5531,7 +5591,7 @@
     <value>NoControl</value>
   </data>
   <data name="AESKEY_CHECK.Location" type="System.Drawing.Point, System.Drawing">
-    <value>441, 33</value>
+    <value>436, 33</value>
   </data>
   <data name="AESKEY_CHECK.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>0, 2, 0, 2</value>
@@ -5780,7 +5840,7 @@
     <value>Vertical</value>
   </data>
   <data name="richTextHelp.Size" type="System.Drawing.Size, System.Drawing">
-    <value>307, 695</value>
+    <value>307, 697</value>
   </data>
   <data name="richTextHelp.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -5834,30 +5894,6 @@ red LED solid - in firmware update mode
     <value>configManagerBindingSource</value>
   </data>
   <data name="&gt;&gt;configManagerBindingSource.Type" xml:space="preserve">
-    <value>System.Windows.Forms.BindingSource, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;pin14ItemsBindingSource.Name" xml:space="preserve">
-    <value>pin14ItemsBindingSource</value>
-  </data>
-  <data name="&gt;&gt;pin14ItemsBindingSource.Type" xml:space="preserve">
-    <value>System.Windows.Forms.BindingSource, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;pin13ItemsBindingSource.Name" xml:space="preserve">
-    <value>pin13ItemsBindingSource</value>
-  </data>
-  <data name="&gt;&gt;pin13ItemsBindingSource.Type" xml:space="preserve">
-    <value>System.Windows.Forms.BindingSource, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;pin12ItemsBindingSource.Name" xml:space="preserve">
-    <value>pin12ItemsBindingSource</value>
-  </data>
-  <data name="&gt;&gt;pin12ItemsBindingSource.Type" xml:space="preserve">
-    <value>System.Windows.Forms.BindingSource, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;pin15ItemsBindingSource.Name" xml:space="preserve">
-    <value>pin15ItemsBindingSource</value>
-  </data>
-  <data name="&gt;&gt;pin15ItemsBindingSource.Type" xml:space="preserve">
     <value>System.Windows.Forms.BindingSource, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;dlgSave.Name" xml:space="preserve">
