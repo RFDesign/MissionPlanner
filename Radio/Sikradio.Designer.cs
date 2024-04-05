@@ -171,7 +171,6 @@
             this.btn_LoadFile = new FontAwesome.Sharp.IconButton();
             this.btn_SaveFile = new FontAwesome.Sharp.IconButton();
             this.btn_Reset = new FontAwesome.Sharp.IconButton();
-            this.iconButton3 = new FontAwesome.Sharp.IconButton();
             this.richTextHelp = new System.Windows.Forms.RichTextBox();
             this.groupInfo = new System.Windows.Forms.GroupBox();
             this.tableLayoutMain = new System.Windows.Forms.TableLayoutPanel();
@@ -1642,7 +1641,6 @@
             this.flowLayoutActions.Controls.Add(this.btn_Reset);
             this.flowLayoutActions.Controls.Add(this.btn_Firmware);
             this.flowLayoutActions.Controls.Add(this.checkBoxSync);
-            this.flowLayoutActions.Controls.Add(this.iconButton3);
             resources.ApplyResources(this.flowLayoutActions, "flowLayoutActions");
             this.flowLayoutActions.Name = "flowLayoutActions";
             // 
@@ -1701,17 +1699,6 @@
             this.btn_Reset.Name = "btn_Reset";
             this.btn_Reset.UseVisualStyleBackColor = true;
             this.btn_Reset.Click += new System.EventHandler(this.btn_Reset_Click);
-            // 
-            // iconButton3
-            // 
-            resources.ApplyResources(this.iconButton3, "iconButton3");
-            this.iconButton3.ForeColor = System.Drawing.Color.White;
-            this.iconButton3.IconChar = FontAwesome.Sharp.IconChar.CircleMinus;
-            this.iconButton3.IconColor = System.Drawing.Color.Yellow;
-            this.iconButton3.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconButton3.IconSize = 24;
-            this.iconButton3.Name = "iconButton3";
-            this.iconButton3.UseVisualStyleBackColor = true;
             // 
             // richTextHelp
             // 
@@ -1886,6 +1873,7 @@
             this.tableLayoutMain.ResumeLayout(false);
             this.tableLayoutMain.PerformLayout();
             this.groupKey.ResumeLayout(false);
+            this.groupKey.PerformLayout();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox1)).EndInit();
@@ -2042,7 +2030,6 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutMain;
         private FontAwesome.Sharp.IconButton btnGenerateKey;
         private FontAwesome.Sharp.IconButton btn_PPMFailSafe;
-        private FontAwesome.Sharp.IconButton iconButton3;
         private System.Windows.Forms.GroupBox groupKey;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private FontAwesome.Sharp.IconPictureBox iconPictureBox1;
