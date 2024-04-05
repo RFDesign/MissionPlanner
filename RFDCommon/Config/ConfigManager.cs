@@ -86,10 +86,16 @@ namespace RFDCommon
         public RFD900 Modem { get => _modemComms.GetSession().GetModemObject(); }
         public TSettings GetChangedSettings(RFDModem modem)
         {
-            var updatedSettings = modem.Settings.WorkingSettings.Where(s => s.Value.GetValueAsString() != modem.Settings.Settings[s.Key].GetValueAsString()).ToDictionary(s => s.Key, s => s.Value);
+            if (modem.Settings?.WorkingSettings == null)
+            {
+                return new TSettings(new Dictionary<string, TBaseSetting>());
+            }
+            var updatedSettings = modem.Settings?.WorkingSettings.Where(s => s.Value.GetValueAsString() != modem.Settings.Settings[s.Key].GetValueAsString()).ToDictionary(s => s.Key, s => s.Value);
+
             TSettings settings = new TSettings(updatedSettings);
             return settings;
         }
+        public bool IsDirty => GetChangedSettings(Current).Settings.Count() > 0;
         public bool ValidateWorkingSettings(RFDModem modem)
         {
             var updatedSettings = GetChangedSettings(modem);
@@ -137,7 +143,7 @@ namespace RFDCommon
 
             if (AutoSyncProperties.Contains(setting.Name) && Remote?.ATI != null)
             {
-                AddLog($"Auto-Sync trigger on {setting.Name}: {setting.GetValueAsString()}");
+                AddLog($"Auto-Sync trigger on {setting.Name}: {setting.GetValueAsString()}",true);
                 // Sync other?
                 if (_currentModem.IsLocal)
                 {
@@ -153,9 +159,50 @@ namespace RFDCommon
         #region Log Console
         private StringBuilder _log = new StringBuilder();
         public string Log => _log.ToString();        
-        public void AddLog(string log) {
+        public void AddLog(string log, bool updateStatus = false) {
             _log.AppendLine(log);
-            OnPropertyChanged("Log");
+            if (updateStatus ) {
+                _lastLog = log;
+            }            
+            OnPropertyChanged("Log");            
+        }
+        private string _lastLog = string.Empty;
+        public string LastLog => _lastLog;
+        #endregion
+
+        #region Progress?
+        public void UpdateProgress(string status, double progress)
+        {
+            if (status != null)
+            {
+                AddLog(status);
+            }
+            if (!double.IsNaN(progress))
+            {
+                Progress = progress;
+            }
+        }
+        private double _progress;
+        public double Progress
+        {
+            get { return _progress; }
+            set { 
+                _progress = value;
+                OnPropertyChanged();
+            }
+        }
+        public const double PROGRESS_INCREMENT = 0.015;
+        public void IncrementProgress()
+        {
+            Progress += PROGRESS_INCREMENT;
+        }
+        public void ClearProgress()
+        {
+            Progress = 0;
+        }
+        public void CompleteProgress()
+        {
+            Progress = 1;
         }
         #endregion
 
@@ -846,7 +893,7 @@ namespace RFDCommon
             }
             catch (Exception e)
             {
-                AddLog(e.Message);
+                AddLog(e.Message, true);
             }
             return false;
         }
@@ -865,7 +912,7 @@ namespace RFDCommon
             }
             catch (Exception e)
             {
-                AddLog(e.Message);
+                AddLog(e.Message,true);
                 return false;
             }
         }
@@ -877,16 +924,20 @@ namespace RFDCommon
 
             try
             {
+                _modemComms.PutIntoATCommandMode();
+
                 string commandPrefix = isLocal ? "A" : "R";
 
                 // Identify the device
-                string hexId = _modemComms.DoQueryWithRetry($"{commandPrefix}TI8", false).Trim();
+                string hexId = _modemComms.DoQueryWithRetry($"{commandPrefix}TI8", true).Trim();
                 if (string.IsNullOrWhiteSpace(hexId) || hexId.Contains("ERROR"))
                 {
                     string deviceType = isLocal ? "local" : "remote";
-                    AddLog($"No {deviceType} device found");
+                    AddLog($"No {deviceType} device found", true);
                     return false;
                 }
+                IncrementProgress();
+
                 var deviceId = Convert.ToInt64(hexId, 16);
 
                 RFDModem modem;
@@ -898,8 +949,9 @@ namespace RFDCommon
                 // Update islocal
                 modem.IsLocal = isLocal;
 
+                // Initialize main ATI commands
                 AddLog($"{session.Initialize(modem)}");
-
+                IncrementProgress();
                 
                 // --- This is where Board based range fixes were?
 
@@ -911,6 +963,7 @@ namespace RFDCommon
                 
                 var settingsString = await QuerySettings(modem);
                 var settings = session.ParseSettings(settingsString, session.Board, ati5Response, null, out Junk);  // Junk?!?
+                IncrementProgress();
 
                 // Add AESKEY to settings?
                 var eKeySetting = GetEncryptionKey(modem.IsLocal);
@@ -919,7 +972,7 @@ namespace RFDCommon
                     settings.Add("AESKEY", eKeySetting);
                     AddLog($"AESKEY: {eKeySetting.GetValueAsString()}");
                 }
-
+                IncrementProgress();
                 //var Settings = session.GetSettings(!isLocal, session.Board, ati5Response, null, out Junk);
 
                 modem.Settings = new TSettings(Collections.Translate(settings, (x) => (TBaseSetting)x));
@@ -961,6 +1014,10 @@ namespace RFDCommon
             {
                 AddLog($"Error Loading Config: {e.Message}");
             }
+            finally
+            {
+                _modemComms.PutIntoTransparentMode();
+            }
             return false;
         }
 
@@ -978,7 +1035,7 @@ namespace RFDCommon
                 int retryCount = 0;
                 while (retryCount < MAX_QUERY_RETRIES) {
                     retryCount++;
-                    string result = _modemComms.DoQueryWithRetry(cmd, true);
+                    string result = _modemComms.DoQueryWithRetry(cmd, waitForTerminator: true);
                     AddLog($"{cmd} --> {result}");
                     if (string.IsNullOrWhiteSpace(result) || Text.Contains(result, "error"))
                     {
@@ -995,6 +1052,7 @@ namespace RFDCommon
                         break;
                     }
                 }
+                IncrementProgress();
             }
         }
 
@@ -1002,26 +1060,28 @@ namespace RFDCommon
         {
             _modemComms.PutIntoATCommandMode();
             string eKey = _modemComms.DoQueryWithRetry((isLocal ? "A" : "R") + "T&E?", true);
-
+            AddLog($"{(isLocal ? "A" : "R")}T&E? -> {eKey}");
+            var result = new TTextSetting();
+            result.Designator = "&E";
+            result.Name = "AESKEY";
             if (!eKey.Contains("OK") && !eKey.Contains("ERROR"))
             {
                 foreach (char c in eKey)
                 {
                     if (!Text.CheckIsHexNumeral(c))
                     {
-                        return null;
+                        result.Text = "";
+                        return result;
                     }
-                }
-
-                var Result = new TTextSetting();
-                Result.Designator = "&E";
-                Result.Name = "AESKEY";
-                Result.Text = eKey;
-
-                return Result;
+                }                
+                result.Text = eKey;                
+            } 
+            else
+            {
+                result.Text = "";
             }
             _modemComms.PutIntoTransparentMode();
-            return null;
+            return result;
         }
         public void EndSession()
         {            
@@ -1040,7 +1100,7 @@ namespace RFDCommon
 
                     // cleanup
                     _modemComms.DoCommand("AT&T", false);
-
+                    
                     var loaded = await LoadSettings(isLocal: true);
                     if (!loaded)
                     {                        
@@ -1157,11 +1217,11 @@ namespace RFDCommon
                 if (!valid)
                 {
                     // Early bail on invalid config?
-                    AddLog($"Failed to validate config - save aborted");
+                    AddLog($"Failed to validate config - save aborted", true);
                     return false;
                 }
             }
-
+            IncrementProgress();
             List<RFDModem> dirtyConfigs = new List<RFDModem>();
             // Apply Changes
             AddLog($"Connecting to Device: {Local.DisplayName}");
@@ -1171,13 +1231,16 @@ namespace RFDCommon
                 _modemComms.DoCommand("AT&T", false, 1);
 
                 _modemComms.DiscardInBuffer();
-                                
+
+                // If no changes, do not restart and reload
+                bool hasChanges = false;
                 foreach (var modem in Modems)
                 {
                     var changes = GetChangedSettings(modem);
                     if (changes.Settings.Count == 0)
                         continue; // No changes in this modem's config...
 
+                    hasChanges = true;
                     AddLog($"{changes.Settings.Count} modified settings found for {modem.DisplayName}.");
                     foreach (var s in changes.Settings)
                     {
@@ -1198,6 +1261,12 @@ namespace RFDCommon
                     _modemComms.DiscardInBuffer();
                 }
 
+                if (!hasChanges)
+                {
+                    AddLog("No changes detected");
+                    return false;
+                }
+
                 // Handle Encryption Changes
                 
 
@@ -1211,6 +1280,7 @@ namespace RFDCommon
                     // return to normal mode
                     _modemComms.DoCommand("RTZ");
                 }
+                IncrementProgress();
 
                 // Write and restart dirty local
                 if (dirtyConfigs.Any(x => x.IsLocal))
@@ -1227,10 +1297,10 @@ namespace RFDCommon
                     AddLog($"Restarting Local...");
                     // return to normal mode
                     _modemComms.DoCommand("ATZ");
-                }                                
-                
+                }
+                IncrementProgress();
 
-                AddLog("Save Complete");
+                AddLog("Save Complete", true);
                 
             }
             else
@@ -1238,7 +1308,7 @@ namespace RFDCommon
                 // return to normal mode
                 _modemComms.DoCommand("ATZ");
 
-                AddLog("Failed to write config to device"); 
+                AddLog("Failed to write config to device", true); 
                 ShowBox("Failure","Settings could not be saved to the device at this time");
                 //EnableConfigControls(true, false);
                 return false;
@@ -1308,6 +1378,7 @@ namespace RFDCommon
                         }
                     }
                 }
+                IncrementProgress();
             }
         }
 

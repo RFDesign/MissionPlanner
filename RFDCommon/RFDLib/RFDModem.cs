@@ -113,10 +113,10 @@ namespace RFDCommon.RFDLib
                 string name = IsLocal 
                     ? $"Local  - {ATI}" 
                     : $"Remote - {ATI}";
-                var nodeId = Get<TSetting>("NODE_ID");
+                var nodeId = Get<TSetting>("NODEID");
                 if (nodeId != null)
                 {
-                    name += $" [{nodeId.Value}]";
+                    name = $"[{nodeId.Value}] {name}";
                 }
                 return name;
             }

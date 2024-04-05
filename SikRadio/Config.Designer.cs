@@ -53,6 +53,10 @@
             this.sikradio1 = new MissionPlanner.Radio.Sikradio();
             this.rssi1 = new SikRadio.Rssi();
             this.terminal1 = new SikRadio.Terminal();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.statusProgress = new System.Windows.Forms.ToolStripProgressBar();
+            this.statusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.statusChanges = new System.Windows.Forms.ToolStripStatusLabel();
             ((System.ComponentModel.ISupportInitialize)(this.modemsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.configManagerBindingSource)).BeginInit();
             this.panelNavigation.SuspendLayout();
@@ -65,6 +69,7 @@
             this.splitContainerMain.Panel1.SuspendLayout();
             this.splitContainerMain.Panel2.SuspendLayout();
             this.splitContainerMain.SuspendLayout();
+            this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // modemsBindingSource
@@ -264,6 +269,7 @@
             // splitContainerMain.Panel2
             // 
             this.splitContainerMain.Panel2.Controls.Add(this.textConsole);
+            this.splitContainerMain.Panel2.Controls.Add(this.statusStrip1);
             // 
             // sikradio1
             // 
@@ -282,6 +288,36 @@
             // 
             resources.ApplyResources(this.terminal1, "terminal1");
             this.terminal1.Name = "terminal1";
+            // 
+            // statusStrip1
+            // 
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.statusProgress,
+            this.statusLabel,
+            this.statusChanges});
+            resources.ApplyResources(this.statusStrip1, "statusStrip1");
+            this.statusStrip1.Name = "statusStrip1";
+            // 
+            // statusProgress
+            // 
+            this.statusProgress.ForeColor = System.Drawing.Color.Crimson;
+            this.statusProgress.Name = "statusProgress";
+            resources.ApplyResources(this.statusProgress, "statusProgress");
+            // 
+            // statusLabel
+            // 
+            this.statusLabel.BackColor = System.Drawing.Color.Transparent;
+            this.statusLabel.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            resources.ApplyResources(this.statusLabel, "statusLabel");
+            this.statusLabel.Name = "statusLabel";
+            this.statusLabel.Spring = true;
+            // 
+            // statusChanges
+            // 
+            this.statusChanges.BackColor = System.Drawing.Color.Transparent;
+            this.statusChanges.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            resources.ApplyResources(this.statusChanges, "statusChanges");
+            this.statusChanges.Name = "statusChanges";
             // 
             // Config
             // 
@@ -305,6 +341,8 @@
             this.splitContainerMain.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerMain)).EndInit();
             this.splitContainerMain.ResumeLayout(false);
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -333,6 +371,10 @@
         private Rssi rssi1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.SplitContainer splitContainerMain;
+        private System.Windows.Forms.StatusStrip statusStrip1;
+        private System.Windows.Forms.ToolStripProgressBar statusProgress;
+        private System.Windows.Forms.ToolStripStatusLabel statusLabel;
+        private System.Windows.Forms.ToolStripStatusLabel statusChanges;
     }
 }
 

@@ -61,7 +61,7 @@ namespace RFD.RFD900
             try
             {
                 string prefix = modem.IsLocal ? "A" : "R";
-                modem.ATI = ATCClient.DoQuery($"{prefix}TI", true, withRetry: true);
+                modem.ATI = ATCClient.DoQuery($"{prefix}TI", true, withRetry: true).Trim(' ','\n');
                 modem.ATI1 = ATCClient.DoQuery($"{prefix}TI1", true, withRetry: true);
                 modem.ATI2 = ATCClient.DoQuery($"{prefix}TI2", true, withRetry: true);                
                 var _ati5 = ATCClient.DoQueryWithMultiLineResponse($"{prefix}TI5", $"{prefix}TI");

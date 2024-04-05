@@ -249,7 +249,8 @@ namespace RFDCommon
                 _comPort.Close();
                 _comPort = null;
                 _connected = false;
-                session.Dispose();
+                if (session != null)
+                    session.Dispose();
                 session = null;
                 ConnectionChanged();
             }            

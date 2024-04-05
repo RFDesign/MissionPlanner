@@ -32,9 +32,12 @@ namespace SikRadio
             InitializeComponent();
 
             sikradio1.Init(ConfigManager);
+
+            ConfigManager.PropertyChanged += ConfigManager_PropertyChanged;
             
             // Handle connection state changes
             _modemComms.ConnectionStateChanged += _modemComms_ConnectionStateChanged;
+            
 
             var Version = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
 
@@ -65,6 +68,36 @@ namespace SikRadio
             this.configManagerBindingSource.DataSource = ConfigManager;
 
             SwitchForms(sikradio1, btnConfigPage);
+        }
+
+        private void ConfigManager_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            switch (e.PropertyName)
+            {
+                case "Progress":
+                    ProgressEvtHdlr(ConfigManager.Progress);
+                    break;
+                case "Log":
+                    statusLabel.Text = ConfigManager.LastLog;
+                    break;               
+                default:
+                    statusChanges.Text = ConfigManager.IsDirty ? "Unsaved Changes" : "No Changes";
+                    break;
+            }
+        }
+
+        
+        void ProgressEvtHdlr(double Completed)
+        {
+            try
+            {
+                statusProgress.Value = Math.Min((int)(Completed * 100F), 100);
+                Application.DoEvents();
+            }
+            catch
+            {
+                //Console.WriteLine("Failed");
+            }
         }
 
         private async void _modemComms_ConnectionStateChanged(object sender, EventArgs e)
@@ -275,7 +308,7 @@ namespace SikRadio
                     CMB_Baudrate.Enabled = true;
                     CMB_SerialPort.Enabled = true;
 
-                    ConfigManager.AddLog($"Disconnected");
+                    ConfigManager.AddLog($"Disconnected",true);
                 }
             }
             else
@@ -287,7 +320,7 @@ namespace SikRadio
                     btnConnect.Text = "Disconnect";
                     CMB_Baudrate.Enabled = (_comPort is SerialPort);
                     CMB_SerialPort.Enabled = false;
-                    ConfigManager.AddLog($"Connected");
+                    ConfigManager.AddLog($"Connected",true);
                     
                 }
             }

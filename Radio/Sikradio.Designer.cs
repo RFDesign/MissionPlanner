@@ -30,7 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Sikradio));
-            this.Progressbar = new System.Windows.Forms.ProgressBar();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.RTSCTS = new System.Windows.Forms.CheckBox();
             this.SERIAL_SPEED = new System.Windows.Forms.ComboBox();
@@ -172,9 +171,18 @@
             this.btn_LoadFile = new FontAwesome.Sharp.IconButton();
             this.btn_SaveFile = new FontAwesome.Sharp.IconButton();
             this.btn_Reset = new FontAwesome.Sharp.IconButton();
+            this.iconButton3 = new FontAwesome.Sharp.IconButton();
             this.richTextHelp = new System.Windows.Forms.RichTextBox();
             this.groupInfo = new System.Windows.Forms.GroupBox();
             this.tableLayoutMain = new System.Windows.Forms.TableLayoutPanel();
+            this.groupKey = new System.Windows.Forms.GroupBox();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.iconPictureBox1 = new FontAwesome.Sharp.IconPictureBox();
+            this.iconPictureBox2 = new FontAwesome.Sharp.IconPictureBox();
+            this.iconPictureBox3 = new FontAwesome.Sharp.IconPictureBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.configManagerBindingSource)).BeginInit();
             this.groupFirmware.SuspendLayout();
             this.tableLayoutDevice.SuspendLayout();
@@ -226,13 +234,12 @@
             this.flowLayoutActions.SuspendLayout();
             this.groupInfo.SuspendLayout();
             this.tableLayoutMain.SuspendLayout();
+            this.groupKey.SuspendLayout();
+            this.tableLayoutPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox3)).BeginInit();
             this.SuspendLayout();
-            // 
-            // Progressbar
-            // 
-            resources.ApplyResources(this.Progressbar, "Progressbar");
-            this.Progressbar.Name = "Progressbar";
-            this.Progressbar.Click += new System.EventHandler(this.Progressbar_Click);
             // 
             // RTSCTS
             // 
@@ -1635,7 +1642,7 @@
             this.flowLayoutActions.Controls.Add(this.btn_Reset);
             this.flowLayoutActions.Controls.Add(this.btn_Firmware);
             this.flowLayoutActions.Controls.Add(this.checkBoxSync);
-            this.flowLayoutActions.Controls.Add(this.Progressbar);
+            this.flowLayoutActions.Controls.Add(this.iconButton3);
             resources.ApplyResources(this.flowLayoutActions, "flowLayoutActions");
             this.flowLayoutActions.Name = "flowLayoutActions";
             // 
@@ -1695,6 +1702,17 @@
             this.btn_Reset.UseVisualStyleBackColor = true;
             this.btn_Reset.Click += new System.EventHandler(this.btn_Reset_Click);
             // 
+            // iconButton3
+            // 
+            resources.ApplyResources(this.iconButton3, "iconButton3");
+            this.iconButton3.ForeColor = System.Drawing.Color.White;
+            this.iconButton3.IconChar = FontAwesome.Sharp.IconChar.CircleMinus;
+            this.iconButton3.IconColor = System.Drawing.Color.Yellow;
+            this.iconButton3.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.iconButton3.IconSize = 24;
+            this.iconButton3.Name = "iconButton3";
+            this.iconButton3.UseVisualStyleBackColor = true;
+            // 
             // richTextHelp
             // 
             this.richTextHelp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(29)))), ((int)(((byte)(46)))));
@@ -1723,9 +1741,81 @@
             this.tableLayoutMain.Controls.Add(this.groupSerial, 0, 3);
             this.tableLayoutMain.Controls.Add(this.groupFirmware, 0, 0);
             this.tableLayoutMain.Controls.Add(this.groupRadio, 0, 1);
-            this.tableLayoutMain.Controls.Add(this.groupInfo, 6, 0);
+            this.tableLayoutMain.Controls.Add(this.groupInfo, 6, 1);
             this.tableLayoutMain.Controls.Add(this.groupGPIO, 0, 4);
+            this.tableLayoutMain.Controls.Add(this.groupKey, 6, 0);
             this.tableLayoutMain.Name = "tableLayoutMain";
+            // 
+            // groupKey
+            // 
+            this.tableLayoutMain.SetColumnSpan(this.groupKey, 2);
+            this.groupKey.Controls.Add(this.tableLayoutPanel1);
+            resources.ApplyResources(this.groupKey, "groupKey");
+            this.groupKey.ForeColor = System.Drawing.Color.White;
+            this.groupKey.Name = "groupKey";
+            this.groupKey.TabStop = false;
+            // 
+            // tableLayoutPanel1
+            // 
+            resources.ApplyResources(this.tableLayoutPanel1, "tableLayoutPanel1");
+            this.tableLayoutPanel1.Controls.Add(this.iconPictureBox1, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.iconPictureBox2, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.iconPictureBox3, 0, 2);
+            this.tableLayoutPanel1.Controls.Add(this.label4, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.label8, 1, 1);
+            this.tableLayoutPanel1.Controls.Add(this.label10, 1, 2);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            // 
+            // iconPictureBox1
+            // 
+            this.iconPictureBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(29)))), ((int)(((byte)(46)))));
+            resources.ApplyResources(this.iconPictureBox1, "iconPictureBox1");
+            this.iconPictureBox1.ForeColor = System.Drawing.Color.Green;
+            this.iconPictureBox1.IconChar = FontAwesome.Sharp.IconChar.CheckCircle;
+            this.iconPictureBox1.IconColor = System.Drawing.Color.Green;
+            this.iconPictureBox1.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.iconPictureBox1.IconSize = 24;
+            this.iconPictureBox1.Name = "iconPictureBox1";
+            this.iconPictureBox1.TabStop = false;
+            // 
+            // iconPictureBox2
+            // 
+            this.iconPictureBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(29)))), ((int)(((byte)(46)))));
+            resources.ApplyResources(this.iconPictureBox2, "iconPictureBox2");
+            this.iconPictureBox2.ForeColor = System.Drawing.Color.Yellow;
+            this.iconPictureBox2.IconChar = FontAwesome.Sharp.IconChar.CircleMinus;
+            this.iconPictureBox2.IconColor = System.Drawing.Color.Yellow;
+            this.iconPictureBox2.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.iconPictureBox2.IconSize = 24;
+            this.iconPictureBox2.Name = "iconPictureBox2";
+            this.iconPictureBox2.TabStop = false;
+            // 
+            // iconPictureBox3
+            // 
+            this.iconPictureBox3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(29)))), ((int)(((byte)(46)))));
+            resources.ApplyResources(this.iconPictureBox3, "iconPictureBox3");
+            this.iconPictureBox3.ForeColor = System.Drawing.Color.OrangeRed;
+            this.iconPictureBox3.IconChar = FontAwesome.Sharp.IconChar.TimesCircle;
+            this.iconPictureBox3.IconColor = System.Drawing.Color.OrangeRed;
+            this.iconPictureBox3.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.iconPictureBox3.IconSize = 28;
+            this.iconPictureBox3.Name = "iconPictureBox3";
+            this.iconPictureBox3.TabStop = false;
+            // 
+            // label4
+            // 
+            resources.ApplyResources(this.label4, "label4");
+            this.label4.Name = "label4";
+            // 
+            // label8
+            // 
+            resources.ApplyResources(this.label8, "label8");
+            this.label8.Name = "label8";
+            // 
+            // label10
+            // 
+            resources.ApplyResources(this.label10, "label10");
+            this.label10.Name = "label10";
             // 
             // Sikradio
             // 
@@ -1795,13 +1885,18 @@
             this.groupInfo.ResumeLayout(false);
             this.tableLayoutMain.ResumeLayout(false);
             this.tableLayoutMain.PerformLayout();
+            this.groupKey.ResumeLayout(false);
+            this.tableLayoutPanel1.ResumeLayout(false);
+            this.tableLayoutPanel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox3)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-        private System.Windows.Forms.ProgressBar Progressbar;
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.TextBox FREQ;
         private System.Windows.Forms.TextBox ATI2;
@@ -1947,5 +2042,14 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutMain;
         private FontAwesome.Sharp.IconButton btnGenerateKey;
         private FontAwesome.Sharp.IconButton btn_PPMFailSafe;
+        private FontAwesome.Sharp.IconButton iconButton3;
+        private System.Windows.Forms.GroupBox groupKey;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private FontAwesome.Sharp.IconPictureBox iconPictureBox1;
+        private FontAwesome.Sharp.IconPictureBox iconPictureBox2;
+        private FontAwesome.Sharp.IconPictureBox iconPictureBox3;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label10;
     }
 }

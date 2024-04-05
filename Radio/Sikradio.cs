@@ -17,6 +17,7 @@ using System.Threading.Tasks;
 using FontAwesome.Sharp;
 using System.Diagnostics;
 using System.ComponentModel;
+using System.Drawing;
 
 
 namespace MissionPlanner.Radio
@@ -27,7 +28,7 @@ namespace MissionPlanner.Radio
 
         
 
-        public delegate void ProgressEventHandler(double completed);
+        //public delegate void ProgressEventHandler(double completed);
 
         private static readonly ILog log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 
@@ -132,15 +133,18 @@ S15: MAX_WINDOW=131
 
         private void _configManager_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            if (e.PropertyName == null || e.PropertyName == "Log")
+            if (e.PropertyName == null || e.PropertyName == "Log" || e.PropertyName == "Progress")
                 return;
 
             if (e.PropertyName == "Current")
                 _configManager.AddLog($"Changed device: {_configManager.Current?.DisplayName ?? "Unknown"}");
             else
+            {
                 _configManager.AddLog($"Property Changed: {e.PropertyName}");
-
-            
+                bool isDirty = _configManager.IsDirty;
+                btn_SaveSetting.ForeColor = isDirty ? Color.OrangeRed : Color.FromArgb(73, 82, 110);
+                btn_SaveSetting.IconColor = isDirty ? Color.OrangeRed : Color.FromArgb(73, 82, 110);
+            }
 
             // What should the indicator do?
             UpdateIndicator(e.PropertyName);            
@@ -210,6 +214,19 @@ S15: MAX_WINDOW=131
                         return;
                 }
             }
+            else if (propertyName == "NODEID" || propertyName == "DESTID") {
+                isAsymmetric = true;
+
+                // Get NODE IDS
+                var localNodeSetting = _configManager.Local.Get<RFD.RFD900.TSetting>("NODEID");
+                var remoteNodeSetting = _configManager.Remote.Get<RFD.RFD900.TSetting>("NODEID");
+                var localDestSetting = _configManager.Local.Get<RFD.RFD900.TSetting>("DESTID");
+                var remoteDestSetting = _configManager.Remote.Get<RFD.RFD900.TSetting>("DESTID");
+                
+                isValidAsymmetric = localNodeSetting?.Value == remoteDestSetting?.Value && remoteNodeSetting?.Value == localDestSetting?.Value;
+                localValue = propertyName == "NODEID" ? localNodeSetting.Value.ToString() : localDestSetting.Value.ToString();
+                remoteValue = propertyName == "NODEID" ? remoteNodeSetting.Value.ToString() : remoteDestSetting.Value.ToString();
+            }
             else
             {
                 var settingType = _configManager.Local.SettingType(propertyName);
@@ -258,8 +275,16 @@ S15: MAX_WINDOW=131
             else
             {
                 // They are not equal
-                indicator.IconColor = System.Drawing.Color.OrangeRed;
-                indicator.IconChar = IconChar.TimesCircle;
+                if (_configManager.AutoSyncProperties.Contains(propertyName))
+                {
+                    indicator.IconColor = System.Drawing.Color.Red;
+                    indicator.IconChar = IconChar.TimesCircle;
+                } else
+                {
+                    indicator.IconColor = System.Drawing.Color.Yellow;
+                    indicator.IconChar = IconChar.CircleMinus;                    
+                }
+                
                 var otherValue = _configManager.Current.IsLocal ? remoteValue : localValue;
                 toolTip1.SetToolTip(indicator, string.IsNullOrWhiteSpace(otherValue) ? "Not Set" : otherValue);
             }            
@@ -445,18 +470,7 @@ S15: MAX_WINDOW=131
                 return false;
             }
         }        
-
-        private void iHex_ProgressEvent(double completed)
-        {
-            try
-            {
-                Progressbar.Value = (int) (completed*100);
-                Application.DoEvents();
-            }
-            catch
-            {
-            }
-        }
+              
 
         private void uploader_LogEvent(string message, int level = 0)
         {
@@ -494,19 +508,7 @@ S15: MAX_WINDOW=131
             catch
             {
             }
-        }
-
-        private void uploader_ProgressEvent(double completed)
-        {
-            try
-            {
-                Progressbar.Value = (int)Math.Min (completed*100,100);
-                Application.DoEvents();
-            }
-            catch
-            {
-            }
-        }
+        }        
 
         string GetParamNumber(string Part1)
         {
@@ -704,16 +706,9 @@ S15: MAX_WINDOW=131
                                         red LED solid - in firmware update mode");
         }
 
-        void UpdateStatusCallback(string Status, double Progress)
+        void UpdateStatusCallback(string status, double progress)
         {
-            if (Status != null)
-            {
-                _configManager.AddLog(Status);
-            }
-            if (!double.IsNaN(Progress))
-            {
-                ProgressEvtHdlr(Progress);
-            }
+            _configManager.UpdateProgress(status, progress);            
         }
 
         void CheckControlStates()
@@ -727,22 +722,43 @@ S15: MAX_WINDOW=131
             //groupSerial.Enabled = _configManager.SerialEnabled;
             //groupSecurity.Enabled = _configManager.SecurityEnabled;
             //groupGPIO.Enabled = _configManager.PinEnabled;
-
-            // Apparently the order is important inside a flow layout /sigh
-            //groupFirmware.Visible = _configManager.DeviceGroupEnabled;
-            //groupSerial.Visible = _configManager.SerialEnabled;
-            //groupRadio.Visible = _configManager.RadioEnabled;
-            //groupSecurity.Visible = _configManager.SecurityEnabled;
-            //groupGPIO.Visible = _configManager.PinEnabled;
-            groupData.Visible = _configManager.DataEnabled;
+                        
+#if DEBUG
+            long snapshot = sw.ElapsedMilliseconds;
+#endif
+            //groupData.Visible = _configManager.DataEnabled;
+#if DEBUG
+            _configManager.AddLog($"Data Visibility in {sw.ElapsedMilliseconds - snapshot}ms");
+            snapshot = sw.ElapsedMilliseconds;
+#endif
             //groupInfo.Visible = _configManager.InfoEnabled;
 
             //SetEnabled(groupFirmware.Controls, _configManager.DeviceGroupEnabled, true);
             SetEnabled(groupSerial.Controls, _configManager.SerialEnabled, true);
+#if DEBUG            
+            _configManager.AddLog($"Serial in {sw.ElapsedMilliseconds - snapshot}ms");
+            snapshot = sw.ElapsedMilliseconds;
+#endif
             SetEnabled(groupRadio.Controls, _configManager.RadioEnabled, true);
+#if DEBUG
+            _configManager.AddLog($"Radio in {sw.ElapsedMilliseconds - snapshot}ms");
+            snapshot = sw.ElapsedMilliseconds;            
+#endif
             SetEnabled(groupSecurity.Controls, _configManager.SecurityEnabled, true);
+#if DEBUG
+            _configManager.AddLog($"Security in {sw.ElapsedMilliseconds - snapshot}ms");
+            snapshot = sw.ElapsedMilliseconds;
+#endif
             SetEnabled(groupGPIO.Controls, _configManager.PinEnabled, true);
+#if DEBUG
+            _configManager.AddLog($"GPIO in {sw.ElapsedMilliseconds - snapshot}ms");
+            snapshot = sw.ElapsedMilliseconds;
+#endif
             SetEnabled(groupData.Controls, _configManager.DataEnabled, true);
+#if DEBUG
+            _configManager.AddLog($"Data in {sw.ElapsedMilliseconds - snapshot}ms");
+            snapshot = sw.ElapsedMilliseconds;
+#endif
             //SetEnabled(groupInfo.Controls, _configManager.InfoEnabled, true);
 
             btn_LoadSetting.Enabled = _configManager.LoadEnabled;
@@ -751,12 +767,14 @@ S15: MAX_WINDOW=131
             btn_SaveFile.Enabled = _configManager.ExportEnabled;
             btn_Reset.Enabled = _configManager.ResetEnabled;
             btn_Firmware.Enabled = _configManager.FirmwareEnabled;
-            
+
 
 #if DEBUG
-            _configManager.AddLog($"Control states updated in {sw.ElapsedMilliseconds}ms");
+            _configManager.AddLog($"All Control states updated in {sw.ElapsedMilliseconds}ms");
+            sw.Stop();
 #endif
-        }        
+
+        }
 
         void ProgramFirmware(bool Custom)
         {
@@ -799,12 +817,13 @@ S15: MAX_WINDOW=131
 
                         if (RFD900.ProgramFirmware(firmwarefile, UpdateStatusCallback))
                         {
-                            _configManager.AddLog("Programmed firmware into device");
+                            _configManager.AddLog("Firmware update complete",true);
 
                             // Reset state to pull new settings?
                             ClearBindings();
                             _configManager.ClearSettings();
                             MsgBox.CustomMessageBox.Show("Firmware update successful", "Success");
+                            _configManager.ClearProgress();
                         }
                         else
                         {
@@ -840,22 +859,6 @@ S15: MAX_WINDOW=131
             //EnableProgrammingControls(true);
             //EnableConfigControls(true, false);
             //UploadFW(true);
-        }
-
-        void ProgressEvtHdlr(double Completed)
-        {
-            try
-            {
-                Progressbar.Minimum = 0;
-                Progressbar.Maximum = 100;
-                Progressbar.Value = Math.Min((int)(Completed * 100F), 100);
-                Application.DoEvents();
-                
-            }
-            catch
-            {
-                //Console.WriteLine("Failed");
-            }
         }
 
         private void Progressbar_Click(object sender, EventArgs e)
@@ -945,11 +948,13 @@ S15: MAX_WINDOW=131
 
         private async void btn_SaveSetting_Click(object sender, EventArgs e)
         {
+            _configManager.ClearProgress();
             var result = await _configManager.Save();
             if (result)
             {
                 _configManager.AddLog("Reloading saved settings...");
                 var loaded = await _configManager.Load();
+                _configManager.CompleteProgress();
                 if (loaded)
                 {
                     BindControls();
@@ -959,6 +964,7 @@ S15: MAX_WINDOW=131
                 }
                 MsgBox.CustomMessageBox.Show("Settings have been saved to the device successfully", "Success");
             }
+            _configManager.ClearProgress();
         }
         
         private void LoadConfigFromFile()
@@ -1089,6 +1095,8 @@ S15: MAX_WINDOW=131
             _configManager.AddLog($"Binding completed in {sw.ElapsedMilliseconds}ms");            
 
             CheckControlStates();
+
+           
         }
 
         private void BindGPIO(ComboBox comboBox, string bindingPropertyName, BindingList<RFDCommon.ConfigManager.PinFunction> items)
@@ -1110,15 +1118,16 @@ S15: MAX_WINDOW=131
         private async void btn_LoadSetting_Click(object sender, EventArgs e)
         {
             _configManager.AddLog("Loading settings...");
-            
+            _configManager.ClearProgress();
             var loaded = await _configManager.Load();
             if (!loaded)
             {
                 ShowMessageBox("An error occurred while trying to load settings...", "Load Failed");
                 return;
             }
-
-            BindControls();            
+            _configManager.CompleteProgress();
+            BindControls();
+            _configManager.AddLog($"Load Settings Complete", true);
         }
 
         private async void Control_Clicked_ShowHelp(object sender, EventArgs e)

@@ -1,4 +1,5 @@
 using System;
+using System.Threading.Tasks;
 
 namespace RFDLib.IO
 {
@@ -77,8 +78,7 @@ namespace RFDLib.IO
                     Port.ReadTimeout = Timeout;
                     Result = Temp;
                     return true;
-                }
-
+                }                
                 System.Threading.Thread.Sleep(2);
             }
             Port.ReadTimeout = Timeout;
