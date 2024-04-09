@@ -1127,7 +1127,7 @@ S15: MAX_WINDOW=131
             }
             _configManager.CompleteProgress();
             BindControls();
-            _configManager.AddLog($"Load Settings Complete", true);
+            _configManager.AddLog($"Load settings complete", true);
         }
 
         private async void Control_Clicked_ShowHelp(object sender, EventArgs e)
@@ -1183,7 +1183,7 @@ S15: MAX_WINDOW=131
 
                         // Add the control and tooltip to help?
                         // Define the heading.
-                        rtf.Append($@"\b\f0\fs24\cf1 {ic.Name.Replace("_", " ")}\par"); // Bold, Font Size 24
+                        rtf.Append($@"\b\f0\fs20\cf1 {ic.Name.Replace("_", " ")}\par"); // Bold, Font Size 20
 
                         // Reset the font and size for normal text and define the paragraph.
                         rtf.Append($@"\b0\f0\fs16\cf1 {toolTip}.\par\par"); // Not bold, Font 0 (Microsoft Sans Serif), Font Size 16                    
