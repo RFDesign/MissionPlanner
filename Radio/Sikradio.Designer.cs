@@ -57,10 +57,22 @@
             this.checkBoxSync = new System.Windows.Forms.CheckBox();
             this.configManagerBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.btn_Firmware = new FontAwesome.Sharp.IconButton();
+            this.txtCountry = new System.Windows.Forms.TextBox();
+            this.AESKEY = new System.Windows.Forms.TextBox();
+            this.ATI2 = new System.Windows.Forms.TextBox();
+            this.ATI = new System.Windows.Forms.TextBox();
+            this.CURRENT_DEVICE = new System.Windows.Forms.ComboBox();
+            this.modemsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.ANT_MODE = new System.Windows.Forms.ComboBox();
+            this.MAX_WINDOW = new System.Windows.Forms.ComboBox();
+            this.RSSI = new System.Windows.Forms.TextBox();
+            this.RATE_FREQBAND = new System.Windows.Forms.ComboBox();
+            this.btn_SaveSetting = new FontAwesome.Sharp.IconButton();
+            this.btn_LoadFile = new FontAwesome.Sharp.IconButton();
+            this.btn_SaveFile = new FontAwesome.Sharp.IconButton();
             this.FREQ = new System.Windows.Forms.TextBox();
             this.lblFailsafe = new System.Windows.Forms.Label();
             this.label49 = new System.Windows.Forms.Label();
-            this.txtCountry = new System.Windows.Forms.TextBox();
             this.lblRX_ENCAP_METHOD = new System.Windows.Forms.Label();
             this.RX_ENCAP_METHOD = new System.Windows.Forms.ComboBox();
             this.lblTX_ENCAP_METHOD = new System.Windows.Forms.Label();
@@ -81,9 +93,7 @@
             this.lblMAX_DATA = new System.Windows.Forms.Label();
             this.lblENCRYPTION_LEVEL = new System.Windows.Forms.Label();
             this.label35 = new System.Windows.Forms.Label();
-            this.AESKEY = new System.Windows.Forms.TextBox();
             this.lblRTSCTS = new System.Windows.Forms.Label();
-            this.ATI2 = new System.Windows.Forms.TextBox();
             this.dlgSave = new System.Windows.Forms.SaveFileDialog();
             this.dlgOpen = new System.Windows.Forms.OpenFileDialog();
             this.groupFirmware = new System.Windows.Forms.GroupBox();
@@ -93,9 +103,6 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
-            this.ATI = new System.Windows.Forms.TextBox();
-            this.CURRENT_DEVICE = new System.Windows.Forms.ComboBox();
-            this.modemsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.ATI_CHECK = new FontAwesome.Sharp.IconPictureBox();
             this.FORMAT_CHECK = new FontAwesome.Sharp.IconPictureBox();
             this.groupRadio = new System.Windows.Forms.GroupBox();
@@ -114,9 +121,6 @@
             this.MAX_FREQ_CHECK = new FontAwesome.Sharp.IconPictureBox();
             this.ANT_MODE_CHECK = new FontAwesome.Sharp.IconPictureBox();
             this.MIN_FREQ_CHECK = new FontAwesome.Sharp.IconPictureBox();
-            this.ANT_MODE = new System.Windows.Forms.ComboBox();
-            this.MAX_WINDOW = new System.Windows.Forms.ComboBox();
-            this.RSSI = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
             this.label45 = new System.Windows.Forms.Label();
             this.lblMAVLINK = new System.Windows.Forms.Label();
@@ -132,7 +136,6 @@
             this.lblTXPOWER = new System.Windows.Forms.Label();
             this.lblNETID = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.RATE_FREQBAND = new System.Windows.Forms.ComboBox();
             this.lblANT_MODE = new System.Windows.Forms.Label();
             this.groupSerial = new System.Windows.Forms.GroupBox();
             this.tableLayoutSerial = new System.Windows.Forms.TableLayoutPanel();
@@ -167,9 +170,6 @@
             this.ENCRYPTION_LEVEL_CHECK = new FontAwesome.Sharp.IconPictureBox();
             this.AESKEY_CHECK = new FontAwesome.Sharp.IconPictureBox();
             this.flowLayoutActions = new System.Windows.Forms.FlowLayoutPanel();
-            this.btn_SaveSetting = new FontAwesome.Sharp.IconButton();
-            this.btn_LoadFile = new FontAwesome.Sharp.IconButton();
-            this.btn_SaveFile = new FontAwesome.Sharp.IconButton();
             this.btn_Reset = new FontAwesome.Sharp.IconButton();
             this.richTextHelp = new System.Windows.Forms.RichTextBox();
             this.groupInfo = new System.Windows.Forms.GroupBox();
@@ -183,10 +183,10 @@
             this.label8 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.configManagerBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.modemsBindingSource)).BeginInit();
             this.groupFirmware.SuspendLayout();
             this.tableLayoutDevice.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.FREQ_CHECK)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.modemsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ATI_CHECK)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.FORMAT_CHECK)).BeginInit();
             this.groupRadio.SuspendLayout();
@@ -627,6 +627,141 @@
             this.btn_Firmware.UseVisualStyleBackColor = true;
             this.btn_Firmware.Click += new System.EventHandler(this.btn_Firmware_Click);
             // 
+            // txtCountry
+            // 
+            resources.ApplyResources(this.txtCountry, "txtCountry");
+            this.txtCountry.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.txtCountry.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.configManagerBindingSource, "COUNTRY", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.txtCountry.Name = "txtCountry";
+            this.txtCountry.ReadOnly = true;
+            this.toolTip1.SetToolTip(this.txtCountry, resources.GetString("txtCountry.ToolTip"));
+            this.txtCountry.Click += new System.EventHandler(this.Control_Clicked_ShowHelp);
+            // 
+            // AESKEY
+            // 
+            resources.ApplyResources(this.AESKEY, "AESKEY");
+            this.AESKEY.Name = "AESKEY";
+            this.toolTip1.SetToolTip(this.AESKEY, resources.GetString("AESKEY.ToolTip"));
+            // 
+            // ATI2
+            // 
+            this.ATI2.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.ATI2.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.configManagerBindingSource, "BOARD", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            resources.ApplyResources(this.ATI2, "ATI2");
+            this.ATI2.Name = "ATI2";
+            this.ATI2.ReadOnly = true;
+            this.toolTip1.SetToolTip(this.ATI2, resources.GetString("ATI2.ToolTip"));
+            this.ATI2.Click += new System.EventHandler(this.Control_Clicked_ShowHelp);
+            // 
+            // ATI
+            // 
+            this.ATI.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.ATI.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.configManagerBindingSource, "ATI", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            resources.ApplyResources(this.ATI, "ATI");
+            this.ATI.Name = "ATI";
+            this.ATI.ReadOnly = true;
+            this.toolTip1.SetToolTip(this.ATI, resources.GetString("ATI.ToolTip"));
+            this.ATI.Click += new System.EventHandler(this.Control_Clicked_ShowHelp);
+            // 
+            // CURRENT_DEVICE
+            // 
+            resources.ApplyResources(this.CURRENT_DEVICE, "CURRENT_DEVICE");
+            this.CURRENT_DEVICE.DataBindings.Add(new System.Windows.Forms.Binding("SelectedItem", this.configManagerBindingSource, "Current", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.CURRENT_DEVICE.DataSource = this.modemsBindingSource;
+            this.CURRENT_DEVICE.DisplayMember = "DisplayName";
+            this.CURRENT_DEVICE.FormattingEnabled = true;
+            this.CURRENT_DEVICE.Name = "CURRENT_DEVICE";
+            this.toolTip1.SetToolTip(this.CURRENT_DEVICE, resources.GetString("CURRENT_DEVICE.ToolTip"));
+            this.CURRENT_DEVICE.SelectedIndexChanged += new System.EventHandler(this.comboModemSelection_SelectedIndexChanged);
+            this.CURRENT_DEVICE.Click += new System.EventHandler(this.Control_Clicked_ShowHelp);
+            // 
+            // modemsBindingSource
+            // 
+            this.modemsBindingSource.DataMember = "Modems";
+            this.modemsBindingSource.DataSource = this.configManagerBindingSource;
+            // 
+            // ANT_MODE
+            // 
+            resources.ApplyResources(this.ANT_MODE, "ANT_MODE");
+            this.ANT_MODE.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ANT_MODE.FormattingEnabled = true;
+            this.ANT_MODE.Name = "ANT_MODE";
+            this.toolTip1.SetToolTip(this.ANT_MODE, resources.GetString("ANT_MODE.ToolTip"));
+            this.ANT_MODE.Click += new System.EventHandler(this.Control_Clicked_ShowHelp);
+            // 
+            // MAX_WINDOW
+            // 
+            resources.ApplyResources(this.MAX_WINDOW, "MAX_WINDOW");
+            this.MAX_WINDOW.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.MAX_WINDOW.FormattingEnabled = true;
+            this.MAX_WINDOW.Name = "MAX_WINDOW";
+            this.toolTip1.SetToolTip(this.MAX_WINDOW, resources.GetString("MAX_WINDOW.ToolTip"));
+            this.MAX_WINDOW.Click += new System.EventHandler(this.Control_Clicked_ShowHelp);
+            // 
+            // RSSI
+            // 
+            this.RSSI.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.tableRadio.SetColumnSpan(this.RSSI, 4);
+            this.RSSI.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.configManagerBindingSource, "RSSI", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            resources.ApplyResources(this.RSSI, "RSSI");
+            this.RSSI.Name = "RSSI";
+            this.RSSI.ReadOnly = true;
+            this.toolTip1.SetToolTip(this.RSSI, resources.GetString("RSSI.ToolTip"));
+            this.RSSI.Click += new System.EventHandler(this.Control_Clicked_ShowHelp);
+            // 
+            // RATE_FREQBAND
+            // 
+            resources.ApplyResources(this.RATE_FREQBAND, "RATE_FREQBAND");
+            this.tableRadio.SetColumnSpan(this.RATE_FREQBAND, 4);
+            this.RATE_FREQBAND.Name = "RATE_FREQBAND";
+            this.toolTip1.SetToolTip(this.RATE_FREQBAND, resources.GetString("RATE_FREQBAND.ToolTip"));
+            this.RATE_FREQBAND.Click += new System.EventHandler(this.Control_Clicked_ShowHelp);
+            // 
+            // btn_SaveSetting
+            // 
+            this.btn_SaveSetting.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(73)))), ((int)(((byte)(82)))), ((int)(((byte)(110)))));
+            this.btn_SaveSetting.FlatAppearance.BorderSize = 2;
+            resources.ApplyResources(this.btn_SaveSetting, "btn_SaveSetting");
+            this.btn_SaveSetting.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(73)))), ((int)(((byte)(82)))), ((int)(((byte)(110)))));
+            this.btn_SaveSetting.IconChar = FontAwesome.Sharp.IconChar.Download;
+            this.btn_SaveSetting.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(73)))), ((int)(((byte)(82)))), ((int)(((byte)(110)))));
+            this.btn_SaveSetting.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btn_SaveSetting.IconSize = 24;
+            this.btn_SaveSetting.Name = "btn_SaveSetting";
+            this.toolTip1.SetToolTip(this.btn_SaveSetting, resources.GetString("btn_SaveSetting.ToolTip"));
+            this.btn_SaveSetting.UseVisualStyleBackColor = true;
+            this.btn_SaveSetting.Click += new System.EventHandler(this.btn_SaveSetting_Click);
+            // 
+            // btn_LoadFile
+            // 
+            this.btn_LoadFile.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(73)))), ((int)(((byte)(82)))), ((int)(((byte)(110)))));
+            this.btn_LoadFile.FlatAppearance.BorderSize = 2;
+            resources.ApplyResources(this.btn_LoadFile, "btn_LoadFile");
+            this.btn_LoadFile.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(73)))), ((int)(((byte)(82)))), ((int)(((byte)(110)))));
+            this.btn_LoadFile.IconChar = FontAwesome.Sharp.IconChar.ArrowRightFromFile;
+            this.btn_LoadFile.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(73)))), ((int)(((byte)(82)))), ((int)(((byte)(110)))));
+            this.btn_LoadFile.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btn_LoadFile.IconSize = 24;
+            this.btn_LoadFile.Name = "btn_LoadFile";
+            this.toolTip1.SetToolTip(this.btn_LoadFile, resources.GetString("btn_LoadFile.ToolTip"));
+            this.btn_LoadFile.UseVisualStyleBackColor = true;
+            this.btn_LoadFile.Click += new System.EventHandler(this.btn_LoadFile_Click);
+            // 
+            // btn_SaveFile
+            // 
+            this.btn_SaveFile.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(73)))), ((int)(((byte)(82)))), ((int)(((byte)(110)))));
+            this.btn_SaveFile.FlatAppearance.BorderSize = 2;
+            resources.ApplyResources(this.btn_SaveFile, "btn_SaveFile");
+            this.btn_SaveFile.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(73)))), ((int)(((byte)(82)))), ((int)(((byte)(110)))));
+            this.btn_SaveFile.IconChar = FontAwesome.Sharp.IconChar.FileImport;
+            this.btn_SaveFile.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(73)))), ((int)(((byte)(82)))), ((int)(((byte)(110)))));
+            this.btn_SaveFile.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btn_SaveFile.IconSize = 24;
+            this.btn_SaveFile.Name = "btn_SaveFile";
+            this.toolTip1.SetToolTip(this.btn_SaveFile, resources.GetString("btn_SaveFile.ToolTip"));
+            this.btn_SaveFile.UseVisualStyleBackColor = true;
+            this.btn_SaveFile.Click += new System.EventHandler(this.btn_SaveFile_Click);
+            // 
             // FREQ
             // 
             resources.ApplyResources(this.FREQ, "FREQ");
@@ -645,16 +780,6 @@
             // 
             resources.ApplyResources(this.label49, "label49");
             this.label49.Name = "label49";
-            // 
-            // txtCountry
-            // 
-            resources.ApplyResources(this.txtCountry, "txtCountry");
-            this.txtCountry.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.txtCountry.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.configManagerBindingSource, "COUNTRY", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.txtCountry.Name = "txtCountry";
-            this.txtCountry.ReadOnly = true;
-            this.toolTip1.SetToolTip(this.txtCountry, resources.GetString("txtCountry.ToolTip"));
-            this.txtCountry.Click += new System.EventHandler(this.Control_Clicked_ShowHelp);
             // 
             // lblRX_ENCAP_METHOD
             // 
@@ -780,26 +905,10 @@
             resources.ApplyResources(this.label35, "label35");
             this.label35.Name = "label35";
             // 
-            // AESKEY
-            // 
-            resources.ApplyResources(this.AESKEY, "AESKEY");
-            this.AESKEY.Name = "AESKEY";
-            this.toolTip1.SetToolTip(this.AESKEY, resources.GetString("AESKEY.ToolTip"));
-            // 
             // lblRTSCTS
             // 
             resources.ApplyResources(this.lblRTSCTS, "lblRTSCTS");
             this.lblRTSCTS.Name = "lblRTSCTS";
-            // 
-            // ATI2
-            // 
-            this.ATI2.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.ATI2.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.configManagerBindingSource, "BOARD", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            resources.ApplyResources(this.ATI2, "ATI2");
-            this.ATI2.Name = "ATI2";
-            this.ATI2.ReadOnly = true;
-            this.toolTip1.SetToolTip(this.ATI2, resources.GetString("ATI2.ToolTip"));
-            this.ATI2.Click += new System.EventHandler(this.Control_Clicked_ShowHelp);
             // 
             // dlgSave
             // 
@@ -872,33 +981,6 @@
             // 
             resources.ApplyResources(this.label11, "label11");
             this.label11.Name = "label11";
-            // 
-            // ATI
-            // 
-            this.ATI.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.ATI.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.configManagerBindingSource, "ATI", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            resources.ApplyResources(this.ATI, "ATI");
-            this.ATI.Name = "ATI";
-            this.ATI.ReadOnly = true;
-            this.toolTip1.SetToolTip(this.ATI, resources.GetString("ATI.ToolTip"));
-            this.ATI.Click += new System.EventHandler(this.Control_Clicked_ShowHelp);
-            // 
-            // CURRENT_DEVICE
-            // 
-            resources.ApplyResources(this.CURRENT_DEVICE, "CURRENT_DEVICE");
-            this.CURRENT_DEVICE.DataBindings.Add(new System.Windows.Forms.Binding("SelectedItem", this.configManagerBindingSource, "Current", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.CURRENT_DEVICE.DataSource = this.modemsBindingSource;
-            this.CURRENT_DEVICE.DisplayMember = "DisplayName";
-            this.CURRENT_DEVICE.FormattingEnabled = true;
-            this.CURRENT_DEVICE.Name = "CURRENT_DEVICE";
-            this.toolTip1.SetToolTip(this.CURRENT_DEVICE, resources.GetString("CURRENT_DEVICE.ToolTip"));
-            this.CURRENT_DEVICE.SelectedIndexChanged += new System.EventHandler(this.comboModemSelection_SelectedIndexChanged);
-            this.CURRENT_DEVICE.Click += new System.EventHandler(this.Control_Clicked_ShowHelp);
-            // 
-            // modemsBindingSource
-            // 
-            this.modemsBindingSource.DataMember = "Modems";
-            this.modemsBindingSource.DataSource = this.configManagerBindingSource;
             // 
             // ATI_CHECK
             // 
@@ -1154,35 +1236,6 @@
             this.MIN_FREQ_CHECK.Name = "MIN_FREQ_CHECK";
             this.MIN_FREQ_CHECK.TabStop = false;
             // 
-            // ANT_MODE
-            // 
-            resources.ApplyResources(this.ANT_MODE, "ANT_MODE");
-            this.ANT_MODE.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.ANT_MODE.FormattingEnabled = true;
-            this.ANT_MODE.Name = "ANT_MODE";
-            this.toolTip1.SetToolTip(this.ANT_MODE, resources.GetString("ANT_MODE.ToolTip"));
-            this.ANT_MODE.Click += new System.EventHandler(this.Control_Clicked_ShowHelp);
-            // 
-            // MAX_WINDOW
-            // 
-            resources.ApplyResources(this.MAX_WINDOW, "MAX_WINDOW");
-            this.MAX_WINDOW.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.MAX_WINDOW.FormattingEnabled = true;
-            this.MAX_WINDOW.Name = "MAX_WINDOW";
-            this.toolTip1.SetToolTip(this.MAX_WINDOW, resources.GetString("MAX_WINDOW.ToolTip"));
-            this.MAX_WINDOW.Click += new System.EventHandler(this.Control_Clicked_ShowHelp);
-            // 
-            // RSSI
-            // 
-            this.RSSI.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.tableRadio.SetColumnSpan(this.RSSI, 4);
-            this.RSSI.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.configManagerBindingSource, "RSSI", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            resources.ApplyResources(this.RSSI, "RSSI");
-            this.RSSI.Name = "RSSI";
-            this.RSSI.ReadOnly = true;
-            this.toolTip1.SetToolTip(this.RSSI, resources.GetString("RSSI.ToolTip"));
-            this.RSSI.Click += new System.EventHandler(this.Control_Clicked_ShowHelp);
-            // 
             // label14
             // 
             resources.ApplyResources(this.label14, "label14");
@@ -1257,14 +1310,6 @@
             // 
             resources.ApplyResources(this.label3, "label3");
             this.label3.Name = "label3";
-            // 
-            // RATE_FREQBAND
-            // 
-            resources.ApplyResources(this.RATE_FREQBAND, "RATE_FREQBAND");
-            this.tableRadio.SetColumnSpan(this.RATE_FREQBAND, 4);
-            this.RATE_FREQBAND.Name = "RATE_FREQBAND";
-            this.toolTip1.SetToolTip(this.RATE_FREQBAND, resources.GetString("RATE_FREQBAND.ToolTip"));
-            this.RATE_FREQBAND.Click += new System.EventHandler(this.Control_Clicked_ShowHelp);
             // 
             // lblANT_MODE
             // 
@@ -1653,49 +1698,6 @@
             resources.ApplyResources(this.flowLayoutActions, "flowLayoutActions");
             this.flowLayoutActions.Name = "flowLayoutActions";
             // 
-            // btn_SaveSetting
-            // 
-            this.btn_SaveSetting.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(73)))), ((int)(((byte)(82)))), ((int)(((byte)(110)))));
-            this.btn_SaveSetting.FlatAppearance.BorderSize = 2;
-            resources.ApplyResources(this.btn_SaveSetting, "btn_SaveSetting");
-            this.btn_SaveSetting.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(73)))), ((int)(((byte)(82)))), ((int)(((byte)(110)))));
-            this.btn_SaveSetting.IconChar = FontAwesome.Sharp.IconChar.Download;
-            this.btn_SaveSetting.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(73)))), ((int)(((byte)(82)))), ((int)(((byte)(110)))));
-            this.btn_SaveSetting.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btn_SaveSetting.IconSize = 24;
-            this.btn_SaveSetting.Name = "btn_SaveSetting";
-            this.toolTip1.SetToolTip(this.btn_SaveSetting, resources.GetString("btn_SaveSetting.ToolTip"));
-            this.btn_SaveSetting.UseVisualStyleBackColor = true;
-            this.btn_SaveSetting.Click += new System.EventHandler(this.btn_SaveSetting_Click);
-            // 
-            // btn_LoadFile
-            // 
-            this.btn_LoadFile.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(73)))), ((int)(((byte)(82)))), ((int)(((byte)(110)))));
-            this.btn_LoadFile.FlatAppearance.BorderSize = 2;
-            resources.ApplyResources(this.btn_LoadFile, "btn_LoadFile");
-            this.btn_LoadFile.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(73)))), ((int)(((byte)(82)))), ((int)(((byte)(110)))));
-            this.btn_LoadFile.IconChar = FontAwesome.Sharp.IconChar.ArrowRightFromFile;
-            this.btn_LoadFile.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(73)))), ((int)(((byte)(82)))), ((int)(((byte)(110)))));
-            this.btn_LoadFile.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btn_LoadFile.IconSize = 24;
-            this.btn_LoadFile.Name = "btn_LoadFile";
-            this.btn_LoadFile.UseVisualStyleBackColor = true;
-            this.btn_LoadFile.Click += new System.EventHandler(this.btn_LoadFile_Click);
-            // 
-            // btn_SaveFile
-            // 
-            this.btn_SaveFile.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(73)))), ((int)(((byte)(82)))), ((int)(((byte)(110)))));
-            this.btn_SaveFile.FlatAppearance.BorderSize = 2;
-            resources.ApplyResources(this.btn_SaveFile, "btn_SaveFile");
-            this.btn_SaveFile.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(73)))), ((int)(((byte)(82)))), ((int)(((byte)(110)))));
-            this.btn_SaveFile.IconChar = FontAwesome.Sharp.IconChar.FileImport;
-            this.btn_SaveFile.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(73)))), ((int)(((byte)(82)))), ((int)(((byte)(110)))));
-            this.btn_SaveFile.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btn_SaveFile.IconSize = 24;
-            this.btn_SaveFile.Name = "btn_SaveFile";
-            this.btn_SaveFile.UseVisualStyleBackColor = true;
-            this.btn_SaveFile.Click += new System.EventHandler(this.btn_SaveFile_Click);
-            // 
             // btn_Reset
             // 
             this.btn_Reset.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(73)))), ((int)(((byte)(82)))), ((int)(((byte)(110)))));
@@ -1707,6 +1709,7 @@
             this.btn_Reset.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btn_Reset.IconSize = 24;
             this.btn_Reset.Name = "btn_Reset";
+            this.toolTip1.SetToolTip(this.btn_Reset, resources.GetString("btn_Reset.ToolTip"));
             this.btn_Reset.UseVisualStyleBackColor = true;
             this.btn_Reset.Click += new System.EventHandler(this.btn_Reset_Click);
             // 
@@ -1823,11 +1826,11 @@
             this.Controls.Add(this.flowLayoutActions);
             this.Name = "Sikradio";
             ((System.ComponentModel.ISupportInitialize)(this.configManagerBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.modemsBindingSource)).EndInit();
             this.groupFirmware.ResumeLayout(false);
             this.tableLayoutDevice.ResumeLayout(false);
             this.tableLayoutDevice.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.FREQ_CHECK)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.modemsBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ATI_CHECK)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.FORMAT_CHECK)).EndInit();
             this.groupRadio.ResumeLayout(false);
