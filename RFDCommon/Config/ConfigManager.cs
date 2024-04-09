@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Configuration.Internal;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Net.Http.Headers;
 using System.Runtime.CompilerServices;
@@ -86,7 +87,7 @@ namespace RFDCommon
         public RFD900 Modem { get => _modemComms.GetSession().GetModemObject(); }
         public TSettings GetChangedSettings(RFDModem modem)
         {
-            if (modem.Settings?.WorkingSettings == null)
+            if (modem?.Settings?.WorkingSettings == null)
             {
                 return new TSettings(new Dictionary<string, TBaseSetting>());
             }
@@ -164,10 +165,39 @@ namespace RFDCommon
             if (updateStatus ) {
                 _lastLog = log;
             }            
-            OnPropertyChanged("Log");            
+            OnPropertyChanged("Log");
+
+            
+            WriteConsoleToTempFile(log);            
         }
         private string _lastLog = string.Empty;
         public string LastLog => _lastLog;
+        private string _tempFilePath;
+        public void WriteConsoleToTempFile(string line)
+        {
+            try
+            {
+                // Generate a unique temporary file name. 
+                // Path.GetTempFileName creates a 0-byte file and returns the path; we can overwrite it.
+                if (string.IsNullOrWhiteSpace(_tempFilePath))
+                {
+                    _tempFilePath = Path.GetTempFileName();
+                    AddLog($"Initializing temporary file for console log: {_tempFilePath}");
+                }
+                
+                // Using StreamWriter to write to the temp file.
+                using (StreamWriter writer = new StreamWriter(_tempFilePath,true))
+                {
+                    writer.WriteLine(line);                    
+                }
+            }
+            catch (Exception ex)
+            {
+                // Log or handle exceptions here
+                Console.WriteLine("An error occurred: " + ex.Message);
+            }
+        }
+
         #endregion
 
         #region Progress?
