@@ -57,10 +57,9 @@
             this.checkBoxSync = new System.Windows.Forms.CheckBox();
             this.configManagerBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.btn_Firmware = new FontAwesome.Sharp.IconButton();
-            this.txtCountry = new System.Windows.Forms.TextBox();
+            this.COUNTRY = new System.Windows.Forms.TextBox();
             this.AESKEY = new System.Windows.Forms.TextBox();
             this.ATI2 = new System.Windows.Forms.TextBox();
-            this.ATI = new System.Windows.Forms.TextBox();
             this.CURRENT_DEVICE = new System.Windows.Forms.ComboBox();
             this.modemsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.ANT_MODE = new System.Windows.Forms.ComboBox();
@@ -70,6 +69,8 @@
             this.btn_SaveSetting = new FontAwesome.Sharp.IconButton();
             this.btn_LoadFile = new FontAwesome.Sharp.IconButton();
             this.btn_SaveFile = new FontAwesome.Sharp.IconButton();
+            this.btn_Reset = new FontAwesome.Sharp.IconButton();
+            this.ATI = new System.Windows.Forms.TextBox();
             this.FREQ = new System.Windows.Forms.TextBox();
             this.lblFailsafe = new System.Windows.Forms.Label();
             this.label49 = new System.Windows.Forms.Label();
@@ -170,7 +171,6 @@
             this.ENCRYPTION_LEVEL_CHECK = new FontAwesome.Sharp.IconPictureBox();
             this.AESKEY_CHECK = new FontAwesome.Sharp.IconPictureBox();
             this.flowLayoutActions = new System.Windows.Forms.FlowLayoutPanel();
-            this.btn_Reset = new FontAwesome.Sharp.IconButton();
             this.richTextHelp = new System.Windows.Forms.RichTextBox();
             this.groupInfo = new System.Windows.Forms.GroupBox();
             this.tableLayoutMain = new System.Windows.Forms.TableLayoutPanel();
@@ -627,15 +627,15 @@
             this.btn_Firmware.UseVisualStyleBackColor = true;
             this.btn_Firmware.Click += new System.EventHandler(this.btn_Firmware_Click);
             // 
-            // txtCountry
+            // COUNTRY
             // 
-            resources.ApplyResources(this.txtCountry, "txtCountry");
-            this.txtCountry.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.txtCountry.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.configManagerBindingSource, "COUNTRY", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.txtCountry.Name = "txtCountry";
-            this.txtCountry.ReadOnly = true;
-            this.toolTip1.SetToolTip(this.txtCountry, resources.GetString("txtCountry.ToolTip"));
-            this.txtCountry.Click += new System.EventHandler(this.Control_Clicked_ShowHelp);
+            resources.ApplyResources(this.COUNTRY, "COUNTRY");
+            this.COUNTRY.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.COUNTRY.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.configManagerBindingSource, "COUNTRY", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.COUNTRY.Name = "COUNTRY";
+            this.COUNTRY.ReadOnly = true;
+            this.toolTip1.SetToolTip(this.COUNTRY, resources.GetString("COUNTRY.ToolTip"));
+            this.COUNTRY.Click += new System.EventHandler(this.Control_Clicked_ShowHelp);
             // 
             // AESKEY
             // 
@@ -652,16 +652,6 @@
             this.ATI2.ReadOnly = true;
             this.toolTip1.SetToolTip(this.ATI2, resources.GetString("ATI2.ToolTip"));
             this.ATI2.Click += new System.EventHandler(this.Control_Clicked_ShowHelp);
-            // 
-            // ATI
-            // 
-            this.ATI.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.ATI.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.configManagerBindingSource, "ATI", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            resources.ApplyResources(this.ATI, "ATI");
-            this.ATI.Name = "ATI";
-            this.ATI.ReadOnly = true;
-            this.toolTip1.SetToolTip(this.ATI, resources.GetString("ATI.ToolTip"));
-            this.ATI.Click += new System.EventHandler(this.Control_Clicked_ShowHelp);
             // 
             // CURRENT_DEVICE
             // 
@@ -761,6 +751,30 @@
             this.toolTip1.SetToolTip(this.btn_SaveFile, resources.GetString("btn_SaveFile.ToolTip"));
             this.btn_SaveFile.UseVisualStyleBackColor = true;
             this.btn_SaveFile.Click += new System.EventHandler(this.btn_SaveFile_Click);
+            // 
+            // btn_Reset
+            // 
+            this.btn_Reset.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(73)))), ((int)(((byte)(82)))), ((int)(((byte)(110)))));
+            this.btn_Reset.FlatAppearance.BorderSize = 2;
+            resources.ApplyResources(this.btn_Reset, "btn_Reset");
+            this.btn_Reset.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(73)))), ((int)(((byte)(82)))), ((int)(((byte)(110)))));
+            this.btn_Reset.IconChar = FontAwesome.Sharp.IconChar.ArrowRotateBackward;
+            this.btn_Reset.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(73)))), ((int)(((byte)(82)))), ((int)(((byte)(110)))));
+            this.btn_Reset.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btn_Reset.IconSize = 24;
+            this.btn_Reset.Name = "btn_Reset";
+            this.toolTip1.SetToolTip(this.btn_Reset, resources.GetString("btn_Reset.ToolTip"));
+            this.btn_Reset.UseVisualStyleBackColor = true;
+            this.btn_Reset.Click += new System.EventHandler(this.btn_Reset_Click);
+            // 
+            // ATI
+            // 
+            this.ATI.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.ATI.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.configManagerBindingSource, "ATI", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            resources.ApplyResources(this.ATI, "ATI");
+            this.ATI.Name = "ATI";
+            this.ATI.ReadOnly = true;
+            this.ATI.Click += new System.EventHandler(this.Control_Clicked_ShowHelp);
             // 
             // FREQ
             // 
@@ -946,7 +960,7 @@
             this.tableLayoutDevice.Controls.Add(this.ATI_CHECK, 5, 0);
             this.tableLayoutDevice.Controls.Add(this.ATI2, 1, 1);
             this.tableLayoutDevice.Controls.Add(this.FORMAT_CHECK, 5, 2);
-            this.tableLayoutDevice.Controls.Add(this.txtCountry, 1, 2);
+            this.tableLayoutDevice.Controls.Add(this.COUNTRY, 1, 2);
             this.tableLayoutDevice.Controls.Add(this.FORMAT, 4, 2);
             this.tableLayoutDevice.Name = "tableLayoutDevice";
             // 
@@ -1698,21 +1712,6 @@
             resources.ApplyResources(this.flowLayoutActions, "flowLayoutActions");
             this.flowLayoutActions.Name = "flowLayoutActions";
             // 
-            // btn_Reset
-            // 
-            this.btn_Reset.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(73)))), ((int)(((byte)(82)))), ((int)(((byte)(110)))));
-            this.btn_Reset.FlatAppearance.BorderSize = 2;
-            resources.ApplyResources(this.btn_Reset, "btn_Reset");
-            this.btn_Reset.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(73)))), ((int)(((byte)(82)))), ((int)(((byte)(110)))));
-            this.btn_Reset.IconChar = FontAwesome.Sharp.IconChar.ArrowRotateBackward;
-            this.btn_Reset.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(73)))), ((int)(((byte)(82)))), ((int)(((byte)(110)))));
-            this.btn_Reset.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btn_Reset.IconSize = 24;
-            this.btn_Reset.Name = "btn_Reset";
-            this.toolTip1.SetToolTip(this.btn_Reset, resources.GetString("btn_Reset.ToolTip"));
-            this.btn_Reset.UseVisualStyleBackColor = true;
-            this.btn_Reset.Click += new System.EventHandler(this.btn_Reset_Click);
-            // 
             // richTextHelp
             // 
             this.richTextHelp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(29)))), ((int)(((byte)(46)))));
@@ -1925,7 +1924,7 @@
         private System.Windows.Forms.TextBox AESKEY;
         private System.Windows.Forms.CheckBox RTSCTS;
         private System.Windows.Forms.Label lblRTSCTS;
-        private System.Windows.Forms.TextBox txtCountry;
+        private System.Windows.Forms.TextBox COUNTRY;
         private System.Windows.Forms.Label label49;
         private System.Windows.Forms.ComboBox ENCRYPTION_LEVEL;
         private System.Windows.Forms.Label lblFailsafe;

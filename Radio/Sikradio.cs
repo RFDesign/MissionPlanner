@@ -18,6 +18,7 @@ using FontAwesome.Sharp;
 using System.Diagnostics;
 using System.ComponentModel;
 using System.Drawing;
+using System.Globalization;
 
 
 namespace MissionPlanner.Radio
@@ -1183,10 +1184,10 @@ S15: MAX_WINDOW=131
 
                         // Add the control and tooltip to help?
                         // Define the heading.
-                        rtf.Append($@"\b\f0\fs24\cf1 {ic.Name.Replace("_", " ")}\par"); // Bold, Font Size 24
+                        rtf.Append($@"\b\f0\fs20\cf1 {ic.Name.Replace("_", " ")}\par"); // Bold, Font Size 24
 
                         // Reset the font and size for normal text and define the paragraph.
-                        rtf.Append($@"\b0\f0\fs16\cf1 {toolTip}.\par\par"); // Not bold, Font 0 (Microsoft Sans Serif), Font Size 16                    
+                        rtf.Append($@"\b0\f0\fs16\cf1 {toolTip.Trim()}\par\par"); // Not bold, Font 0 (Microsoft Sans Serif), Font Size 16                    
                     }
                 }
                 // Close the RTF control group.
@@ -1194,6 +1195,17 @@ S15: MAX_WINDOW=131
             });
             // Get all tooltips, and add then to display help?            
             richTextHelp.Rtf = rtf.ToString();
+        }
+
+        private string CapitalizeFirstLetter(string text)
+        {
+            if (string.IsNullOrEmpty(text))
+                return text;
+
+            TextInfo textInfo = CultureInfo.CurrentCulture.TextInfo;
+            // Converts to title case, which capitalizes the first character of each word.
+            return textInfo.ToTitleCase(text);
+            
         }
 
         private void comboModemSelection_SelectedIndexChanged(object sender, EventArgs e)
