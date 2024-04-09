@@ -230,9 +230,9 @@
             // 
             // btnConnect
             // 
+            resources.ApplyResources(this.btnConnect, "btnConnect");
             this.btnConnect.BackColor = System.Drawing.Color.White;
             this.btnConnect.Cursor = System.Windows.Forms.Cursors.Hand;
-            resources.ApplyResources(this.btnConnect, "btnConnect");
             this.btnConnect.FlatAppearance.BorderSize = 0;
             this.btnConnect.ForeColor = System.Drawing.Color.Black;
             this.btnConnect.IconChar = FontAwesome.Sharp.IconChar.SatelliteDish;
@@ -291,7 +291,6 @@
             // 
             // statusStrip1
             // 
-            this.statusStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.statusProgress,
             this.statusLabel,
