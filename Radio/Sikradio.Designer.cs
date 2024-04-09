@@ -94,7 +94,7 @@
             this.label7 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.ATI = new System.Windows.Forms.TextBox();
-            this.comboModemSelection = new System.Windows.Forms.ComboBox();
+            this.CURRENT_DEVICE = new System.Windows.Forms.ComboBox();
             this.modemsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.ATI_CHECK = new FontAwesome.Sharp.IconPictureBox();
             this.FORMAT_CHECK = new FontAwesome.Sharp.IconPictureBox();
@@ -653,6 +653,7 @@
             this.txtCountry.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.configManagerBindingSource, "COUNTRY", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.txtCountry.Name = "txtCountry";
             this.txtCountry.ReadOnly = true;
+            this.toolTip1.SetToolTip(this.txtCountry, resources.GetString("txtCountry.ToolTip"));
             this.txtCountry.Click += new System.EventHandler(this.Control_Clicked_ShowHelp);
             // 
             // lblRX_ENCAP_METHOD
@@ -783,6 +784,7 @@
             // 
             resources.ApplyResources(this.AESKEY, "AESKEY");
             this.AESKEY.Name = "AESKEY";
+            this.toolTip1.SetToolTip(this.AESKEY, resources.GetString("AESKEY.ToolTip"));
             // 
             // lblRTSCTS
             // 
@@ -796,6 +798,7 @@
             resources.ApplyResources(this.ATI2, "ATI2");
             this.ATI2.Name = "ATI2";
             this.ATI2.ReadOnly = true;
+            this.toolTip1.SetToolTip(this.ATI2, resources.GetString("ATI2.ToolTip"));
             this.ATI2.Click += new System.EventHandler(this.Control_Clicked_ShowHelp);
             // 
             // dlgSave
@@ -830,7 +833,7 @@
             this.tableLayoutDevice.Controls.Add(this.FREQ, 4, 1);
             this.tableLayoutDevice.Controls.Add(this.ATI, 4, 0);
             this.tableLayoutDevice.Controls.Add(this.label2, 3, 2);
-            this.tableLayoutDevice.Controls.Add(this.comboModemSelection, 1, 0);
+            this.tableLayoutDevice.Controls.Add(this.CURRENT_DEVICE, 1, 0);
             this.tableLayoutDevice.Controls.Add(this.ATI_CHECK, 5, 0);
             this.tableLayoutDevice.Controls.Add(this.ATI2, 1, 1);
             this.tableLayoutDevice.Controls.Add(this.FORMAT_CHECK, 5, 2);
@@ -877,18 +880,20 @@
             resources.ApplyResources(this.ATI, "ATI");
             this.ATI.Name = "ATI";
             this.ATI.ReadOnly = true;
+            this.toolTip1.SetToolTip(this.ATI, resources.GetString("ATI.ToolTip"));
             this.ATI.Click += new System.EventHandler(this.Control_Clicked_ShowHelp);
             // 
-            // comboModemSelection
+            // CURRENT_DEVICE
             // 
-            resources.ApplyResources(this.comboModemSelection, "comboModemSelection");
-            this.comboModemSelection.DataBindings.Add(new System.Windows.Forms.Binding("SelectedItem", this.configManagerBindingSource, "Current", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.comboModemSelection.DataSource = this.modemsBindingSource;
-            this.comboModemSelection.DisplayMember = "DisplayName";
-            this.comboModemSelection.FormattingEnabled = true;
-            this.comboModemSelection.Name = "comboModemSelection";
-            this.comboModemSelection.SelectedIndexChanged += new System.EventHandler(this.comboModemSelection_SelectedIndexChanged);
-            this.comboModemSelection.Click += new System.EventHandler(this.Control_Clicked_ShowHelp);
+            resources.ApplyResources(this.CURRENT_DEVICE, "CURRENT_DEVICE");
+            this.CURRENT_DEVICE.DataBindings.Add(new System.Windows.Forms.Binding("SelectedItem", this.configManagerBindingSource, "Current", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.CURRENT_DEVICE.DataSource = this.modemsBindingSource;
+            this.CURRENT_DEVICE.DisplayMember = "DisplayName";
+            this.CURRENT_DEVICE.FormattingEnabled = true;
+            this.CURRENT_DEVICE.Name = "CURRENT_DEVICE";
+            this.toolTip1.SetToolTip(this.CURRENT_DEVICE, resources.GetString("CURRENT_DEVICE.ToolTip"));
+            this.CURRENT_DEVICE.SelectedIndexChanged += new System.EventHandler(this.comboModemSelection_SelectedIndexChanged);
+            this.CURRENT_DEVICE.Click += new System.EventHandler(this.Control_Clicked_ShowHelp);
             // 
             // modemsBindingSource
             // 
@@ -1155,6 +1160,7 @@
             this.ANT_MODE.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ANT_MODE.FormattingEnabled = true;
             this.ANT_MODE.Name = "ANT_MODE";
+            this.toolTip1.SetToolTip(this.ANT_MODE, resources.GetString("ANT_MODE.ToolTip"));
             this.ANT_MODE.Click += new System.EventHandler(this.Control_Clicked_ShowHelp);
             // 
             // MAX_WINDOW
@@ -1163,6 +1169,7 @@
             this.MAX_WINDOW.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.MAX_WINDOW.FormattingEnabled = true;
             this.MAX_WINDOW.Name = "MAX_WINDOW";
+            this.toolTip1.SetToolTip(this.MAX_WINDOW, resources.GetString("MAX_WINDOW.ToolTip"));
             this.MAX_WINDOW.Click += new System.EventHandler(this.Control_Clicked_ShowHelp);
             // 
             // RSSI
@@ -1173,6 +1180,7 @@
             resources.ApplyResources(this.RSSI, "RSSI");
             this.RSSI.Name = "RSSI";
             this.RSSI.ReadOnly = true;
+            this.toolTip1.SetToolTip(this.RSSI, resources.GetString("RSSI.ToolTip"));
             this.RSSI.Click += new System.EventHandler(this.Control_Clicked_ShowHelp);
             // 
             // label14
@@ -1255,6 +1263,7 @@
             resources.ApplyResources(this.RATE_FREQBAND, "RATE_FREQBAND");
             this.tableRadio.SetColumnSpan(this.RATE_FREQBAND, 4);
             this.RATE_FREQBAND.Name = "RATE_FREQBAND";
+            this.toolTip1.SetToolTip(this.RATE_FREQBAND, resources.GetString("RATE_FREQBAND.ToolTip"));
             this.RATE_FREQBAND.Click += new System.EventHandler(this.Control_Clicked_ShowHelp);
             // 
             // lblANT_MODE
@@ -1655,6 +1664,7 @@
             this.btn_SaveSetting.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btn_SaveSetting.IconSize = 24;
             this.btn_SaveSetting.Name = "btn_SaveSetting";
+            this.toolTip1.SetToolTip(this.btn_SaveSetting, resources.GetString("btn_SaveSetting.ToolTip"));
             this.btn_SaveSetting.UseVisualStyleBackColor = true;
             this.btn_SaveSetting.Click += new System.EventHandler(this.btn_SaveSetting_Click);
             // 
@@ -1941,7 +1951,7 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.TextBox ATI;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.ComboBox comboModemSelection;
+        private System.Windows.Forms.ComboBox CURRENT_DEVICE;
         private System.Windows.Forms.BindingSource modemsBindingSource;
         private System.Windows.Forms.TableLayoutPanel tableLayoutSerial;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;

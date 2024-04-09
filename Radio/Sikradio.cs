@@ -330,7 +330,7 @@ S15: MAX_WINDOW=131
                     return;
 
                 // Dont mess with this control...
-                if (c.Name == comboModemSelection.Name)
+                if (c.Name == CURRENT_DEVICE.Name)
                     continue;
 
                 // Dont mess with labels
@@ -1198,10 +1198,10 @@ S15: MAX_WINDOW=131
 
         private void comboModemSelection_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (comboModemSelection.SelectedItem == null)
+            if (CURRENT_DEVICE.SelectedItem == null)
                 return;
 
-            _configManager.Current = comboModemSelection.SelectedItem as RFDModem;
+            _configManager.Current = CURRENT_DEVICE.SelectedItem as RFDModem;
             // All indicators need to be updated?
 
         }
