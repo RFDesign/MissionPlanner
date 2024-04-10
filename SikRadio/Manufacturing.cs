@@ -15,6 +15,7 @@ namespace RFD900Tools
     public partial class Manufacturing : UserControl, IRFDConfigForm
     {
         object _Locker = new object();
+        private IModemComms _comms;
 
         public Manufacturing()
         {
@@ -67,7 +68,7 @@ namespace RFD900Tools
                 LogStringNonMainThread("Locking down for " + Country.ToString() + "...");
                 //Switch to AT command mode.
                 LogStringNonMainThread("Putting into AT command mode...");
-                var Session = new RFD.RFD900.TSession(SikRadio.Config._modemComms.GetSession().Port, MissionPlanner.MainV2.comPort.BaseStream.BaudRate);
+                var Session = new RFD.RFD900.TSession(_comms.GetSession().Port, MissionPlanner.MainV2.comPort.BaseStream.BaudRate);
                 var Mode = Session.PutIntoATCommandMode();
                 if (Mode == RFD.RFD900.TSession.TMode.AT_COMMAND)
                 {
@@ -178,7 +179,7 @@ namespace RFD900Tools
                 LogStringNonMainThread("Querying lockdown status...");
                 //Switch to AT command mode.
                 LogStringNonMainThread("Putting into AT command mode...");
-                var Session = new RFD.RFD900.TSession(SikRadio.Config._modemComms.GetSession().Port, MissionPlanner.MainV2.comPort.BaseStream.BaudRate);
+                var Session = new RFD.RFD900.TSession(_comms.GetSession().Port, MissionPlanner.MainV2.comPort.BaseStream.BaudRate);
                 var Mode = Session.PutIntoATCommandMode();
                 if (Mode == RFD.RFD900.TSession.TMode.AT_COMMAND)
                 {
@@ -272,11 +273,35 @@ namespace RFD900Tools
         public void Start(IModemComms modemComms)
         {
             Visible = true;
+            _comms = modemComms;
+            // Listen to connection state changes
+            _comms.ConnectionStateChanged += ModemComms_ConnectionStateChanged;
+
+
+            UpdateButtonStates();
+        }
+
+
+        private void ModemComms_ConnectionStateChanged(object sender, EventArgs e)
+        {
+            UpdateButtonStates();
         }
 
         public void Stop()
         {
             Visible = false;
+            if (_comms != null)
+                _comms.ConnectionStateChanged -= ModemComms_ConnectionStateChanged;
+        }
+
+        public void UpdateButtonStates()
+        {
+            btnLockdownAU.Enabled = _comms.IsConnected();
+            btnLockdownEurope.Enabled = _comms.IsConnected();
+            btnLockdownIndia.Enabled = _comms.IsConnected();
+            btnLockdownNZ.Enabled = _comms.IsConnected();
+            btnLockdownUS.Enabled = _comms.IsConnected();
+            btnQueryLockStatus.Enabled = _comms.IsConnected();            
         }
     }
 }

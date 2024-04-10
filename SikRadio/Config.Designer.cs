@@ -50,13 +50,14 @@
             this.btnConnect = new FontAwesome.Sharp.IconButton();
             this.textConsole = new System.Windows.Forms.TextBox();
             this.splitContainerMain = new System.Windows.Forms.SplitContainer();
-            this.sikradio1 = new MissionPlanner.Radio.Sikradio();
-            this.rssi1 = new SikRadio.Rssi();
-            this.terminal1 = new SikRadio.Terminal();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.statusProgress = new System.Windows.Forms.ToolStripProgressBar();
             this.statusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.statusChanges = new System.Windows.Forms.ToolStripStatusLabel();
+            this.sikradio1 = new MissionPlanner.Radio.Sikradio();
+            this.rssi1 = new SikRadio.Rssi();
+            this.terminal1 = new SikRadio.Terminal();
+            this.mf1 = new RFD900Tools.Manufacturing();
             ((System.ComponentModel.ISupportInitialize)(this.modemsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.configManagerBindingSource)).BeginInit();
             this.panelNavigation.SuspendLayout();
@@ -261,6 +262,7 @@
             // 
             // splitContainerMain.Panel1
             // 
+            this.splitContainerMain.Panel1.Controls.Add(this.mf1);
             this.splitContainerMain.Panel1.Controls.Add(this.sikradio1);
             this.splitContainerMain.Panel1.Controls.Add(this.rssi1);
             this.splitContainerMain.Panel1.Controls.Add(this.terminal1);
@@ -270,24 +272,6 @@
             // 
             this.splitContainerMain.Panel2.Controls.Add(this.textConsole);
             this.splitContainerMain.Panel2.Controls.Add(this.statusStrip1);
-            // 
-            // sikradio1
-            // 
-            resources.ApplyResources(this.sikradio1, "sikradio1");
-            this.sikradio1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(29)))), ((int)(((byte)(46)))));
-            this.sikradio1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.sikradio1.ForeColor = System.Drawing.Color.White;
-            this.sikradio1.Name = "sikradio1";
-            // 
-            // rssi1
-            // 
-            resources.ApplyResources(this.rssi1, "rssi1");
-            this.rssi1.Name = "rssi1";
-            // 
-            // terminal1
-            // 
-            resources.ApplyResources(this.terminal1, "terminal1");
-            this.terminal1.Name = "terminal1";
             // 
             // statusStrip1
             // 
@@ -318,6 +302,29 @@
             this.statusChanges.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             resources.ApplyResources(this.statusChanges, "statusChanges");
             this.statusChanges.Name = "statusChanges";
+            // 
+            // sikradio1
+            // 
+            resources.ApplyResources(this.sikradio1, "sikradio1");
+            this.sikradio1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(29)))), ((int)(((byte)(46)))));
+            this.sikradio1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.sikradio1.ForeColor = System.Drawing.Color.White;
+            this.sikradio1.Name = "sikradio1";
+            // 
+            // rssi1
+            // 
+            resources.ApplyResources(this.rssi1, "rssi1");
+            this.rssi1.Name = "rssi1";
+            // 
+            // terminal1
+            // 
+            resources.ApplyResources(this.terminal1, "terminal1");
+            this.terminal1.Name = "terminal1";
+            // 
+            // mf1
+            // 
+            resources.ApplyResources(this.mf1, "mf1");
+            this.mf1.Name = "mf1";
             // 
             // Config
             // 
@@ -375,6 +382,7 @@
         private System.Windows.Forms.ToolStripProgressBar statusProgress;
         private System.Windows.Forms.ToolStripStatusLabel statusLabel;
         private System.Windows.Forms.ToolStripStatusLabel statusChanges;
+        private RFD900Tools.Manufacturing mf1;
     }
 }
 

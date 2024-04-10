@@ -56,14 +56,10 @@ namespace SikRadio
 
             //settingsToolStripMenuItem_Click(null, null);
             
-            if (SikRadio.Program.Manufacturer)
-            {
-                //loadManufacturing();
-                //ToolStripMenuItem ManItem = new ToolStripMenuItem("Manufacturing");
-                //ManItem.Click += ManufacturerToolStripMenuItem_Click;
-
-                //menuStrip1.Items.Add(ManItem);
-            }
+            
+            btnManufacturer.Visible = SikRadio.Program.Manufacturer;
+            btnManufacturer.Enabled = SikRadio.Program.Manufacturer;
+           
 
             this.configManagerBindingSource.DataSource = ConfigManager;
 
@@ -395,7 +391,7 @@ namespace SikRadio
 
         private void btnManufacturer_Click(object sender, EventArgs e)
         {
-            //SwitchForms()
+            SwitchForms(mf1, sender as IconButton);
         }
 
         private void textConsole_TextChanged(object sender, EventArgs e)
