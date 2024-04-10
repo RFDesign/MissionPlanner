@@ -101,7 +101,7 @@ namespace SikRadio
             if (_modemComms.IsConnected())
             {
                 // Just Connected - Find out who is home?
-                ConfigManager.RefreshComms(_modemComms);
+                var testDevice = await ConfigManager.RefreshComms(_modemComms);
                 //_currentForm.Start(_modemComms);
             } 
             else
