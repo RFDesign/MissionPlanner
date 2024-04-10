@@ -102,7 +102,14 @@ namespace SikRadio
             {
                 // Just Connected - Find out who is home?
                 var testDevice = await ConfigManager.RefreshComms(_modemComms);
-                //_currentForm.Start(_modemComms);
+                if (!testDevice)
+                {
+                    ConfigManager.AddLog("Please confirm Port and Baud settings and try again.");
+                    ConfigManager.AddLog("Default Baud Rates:");
+                    ConfigManager.AddLog("Sik:   57600");
+                    ConfigManager.AddLog("Async: 115200");
+                    ConfigManager.AddLog("MP:    57600");                    
+                }                
             } 
             else
             {                
@@ -304,7 +311,7 @@ namespace SikRadio
                     CMB_Baudrate.Enabled = true;
                     CMB_SerialPort.Enabled = true;
 
-                    ConfigManager.AddLog($"Disconnected",true);
+                    //ConfigManager.AddLog($"Disconnected",true);
                 }
             }
             else
@@ -316,7 +323,7 @@ namespace SikRadio
                     btnConnect.Text = "Disconnect";
                     CMB_Baudrate.Enabled = (_comPort is SerialPort);
                     CMB_SerialPort.Enabled = false;
-                    ConfigManager.AddLog($"Connected",true);
+                    //ConfigManager.AddLog($"Connected",true);
                     
                 }
             }

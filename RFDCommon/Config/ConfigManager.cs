@@ -919,19 +919,27 @@ namespace RFDCommon
             {
                 _modemComms = comms;
                 _modemComms.PutIntoATCommandMode();
-                var atiResponse = _modemComms.DoCommand("ATI");      
+                var atiResponse = _modemComms.DoCommand("ATI");
+                
+
                 if (string.IsNullOrWhiteSpace(atiResponse))
                 {
-                    AddLog($"Could not identify device...");
+                    AddLog($"Could not identify device.");
+                    return false;
                 } else
                 {
                     AddLog($"Connected To: {atiResponse}");
-                }
-                _modemComms.PutIntoTransparentMode();
+                    return true;
+                }                
             }
             catch (Exception e)
             {
                 AddLog(e.Message, true);
+            }
+            finally
+            {
+                if (_modemComms != null)
+                    _modemComms.PutIntoTransparentMode();
             }
             return false;
         }
