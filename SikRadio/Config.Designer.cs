@@ -54,10 +54,10 @@
             this.statusProgress = new System.Windows.Forms.ToolStripProgressBar();
             this.statusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.statusChanges = new System.Windows.Forms.ToolStripStatusLabel();
+            this.mf1 = new RFD900Tools.Manufacturing();
             this.sikradio1 = new MissionPlanner.Radio.Sikradio();
             this.rssi1 = new SikRadio.Rssi();
             this.terminal1 = new SikRadio.Terminal();
-            this.mf1 = new RFD900Tools.Manufacturing();
             ((System.ComponentModel.ISupportInitialize)(this.modemsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.configManagerBindingSource)).BeginInit();
             this.panelNavigation.SuspendLayout();
@@ -212,7 +212,9 @@
             resources.GetString("CMB_Baudrate.Items7"),
             resources.GetString("CMB_Baudrate.Items8"),
             resources.GetString("CMB_Baudrate.Items9"),
-            resources.GetString("CMB_Baudrate.Items10")});
+            resources.GetString("CMB_Baudrate.Items10"),
+            resources.GetString("CMB_Baudrate.Items11"),
+            resources.GetString("CMB_Baudrate.Items12")});
             this.CMB_Baudrate.Name = "CMB_Baudrate";
             this.CMB_Baudrate.SelectedIndexChanged += new System.EventHandler(this.CMB_Baudrate_SelectedIndexChanged);
             // 
@@ -275,6 +277,7 @@
             // 
             // statusStrip1
             // 
+            this.statusStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.statusProgress,
             this.statusLabel,
@@ -303,6 +306,11 @@
             resources.ApplyResources(this.statusChanges, "statusChanges");
             this.statusChanges.Name = "statusChanges";
             // 
+            // mf1
+            // 
+            resources.ApplyResources(this.mf1, "mf1");
+            this.mf1.Name = "mf1";
+            // 
             // sikradio1
             // 
             resources.ApplyResources(this.sikradio1, "sikradio1");
@@ -320,11 +328,6 @@
             // 
             resources.ApplyResources(this.terminal1, "terminal1");
             this.terminal1.Name = "terminal1";
-            // 
-            // mf1
-            // 
-            resources.ApplyResources(this.mf1, "mf1");
-            this.mf1.Name = "mf1";
             // 
             // Config
             // 

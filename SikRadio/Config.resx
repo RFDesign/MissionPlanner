@@ -683,6 +683,12 @@
   <data name="CMB_Baudrate.Items10" xml:space="preserve">
     <value>460800</value>
   </data>
+  <data name="CMB_Baudrate.Items11" xml:space="preserve">
+    <value>1200000</value>
+  </data>
+  <data name="CMB_Baudrate.Items12" xml:space="preserve">
+    <value>3000000</value>
+  </data>
   <data name="CMB_Baudrate.Location" type="System.Drawing.Point, System.Drawing">
     <value>65, 27</value>
   </data>
@@ -930,7 +936,7 @@
     <value>Vertical</value>
   </data>
   <data name="textConsole.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1478, 78</value>
+    <value>1478, 76</value>
   </data>
   <data name="textConsole.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -1095,7 +1101,7 @@
     <value>MiddleLeft</value>
   </data>
   <data name="statusLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1161, 17</value>
+    <value>1161, 18</value>
   </data>
   <data name="statusLabel.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleLeft</value>
@@ -1104,13 +1110,13 @@
     <value>MiddleLeft</value>
   </data>
   <data name="statusChanges.Size" type="System.Drawing.Size, System.Drawing">
-    <value>0, 17</value>
+    <value>0, 18</value>
   </data>
   <data name="statusStrip1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 78</value>
+    <value>0, 76</value>
   </data>
   <data name="statusStrip1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1478, 22</value>
+    <value>1478, 24</value>
   </data>
   <data name="statusStrip1.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
@@ -4363,6 +4369,9 @@
         ////////////////////////////////////////////////////////////////////////////////
         //////////////////8=
 </value>
+  </data>
+  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>RFD Tools 3.0 - RFDesign</value>

@@ -248,6 +248,8 @@ namespace RFD.RFD900
         /// <returns></returns>
         bool IsInBootloaderXMode()
         {
+            if (!_Port.IsOpen)
+                return false;
             int PrevBaud = _Port.BaudRate;
             _Port.BaudRate = BOOTLOADERX_BAUD;
 
@@ -272,6 +274,8 @@ namespace RFD.RFD900
 
         bool TryEscapeFromTransparent(int Delay = 1100)
         {
+            if (!_Port.IsOpen)
+                return false;
             _Port.ReadTimeout = 2000;
             //Console.WriteLine("Waiting 1100ms");
             Thread.Sleep(Delay);
@@ -284,6 +288,8 @@ namespace RFD.RFD900
 
         TMode DetermineMode()
         {
+            if (!_Port.IsOpen)
+                return TMode.UNKNOWN;
             if (TryEscapeFromTransparent(0))
             {
                 return TMode.AT_COMMAND;

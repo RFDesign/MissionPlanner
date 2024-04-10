@@ -189,7 +189,7 @@ namespace SikRadio
                     try
                     {
                         Thread.Sleep(10);                        
-                        if (_comms.GetSession().Port.BytesToRead > 0)
+                        if (_comms.GetSession()?.Port.BytesToRead > 0)
                         {
                             comPort_DataReceived(null, null);
                         }
@@ -332,8 +332,8 @@ namespace SikRadio
         {
             if (e.KeyChar == '\r')
             {
-                var comPort = _comms.GetSession().Port; //comPort;
-
+                var comPort = _comms.GetSession()?.Port; //comPort;
+                
                 if ((comPort != null) && comPort.IsOpen)
                 {
                     try

@@ -38,7 +38,7 @@ namespace RFDCommon
         {
             // Clear modems
             _modems.Clear();
-            OnPropertyChanged();
+            OnPropertyChanged(null);
         }
 
         #region Events
