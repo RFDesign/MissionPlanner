@@ -412,7 +412,7 @@
     <value>1</value>
   </data>
   <data name="AUXSER_SPEED.ToolTip" xml:space="preserve">
-    <value>The maximum theoretical symbol rate of the auxilary serial port.</value>
+    <value>The maximum theoretical symbol rate of the auxiliary serial port.</value>
   </data>
   <data name="&gt;&gt;AUXSER_SPEED.Name" xml:space="preserve">
     <value>AUXSER_SPEED</value>

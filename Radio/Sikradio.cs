@@ -138,13 +138,12 @@ S15: MAX_WINDOW=131
                 return;
 
             if (e.PropertyName == "Current")
-                _configManager.AddLog($"Changed device: {_configManager.Current?.DisplayName ?? "Unknown"}");
+            {
+                _configManager.AddLog($"Changed device: {_configManager.Current?.DisplayName ?? "Unknown"}");               
+            }
             else
             {
-                _configManager.AddLog($"Property Changed: {e.PropertyName}");
-                bool isDirty = _configManager.IsDirty;
-                btn_SaveSetting.ForeColor = isDirty ? Color.OrangeRed : Color.FromArgb(73, 82, 110);
-                btn_SaveSetting.IconColor = isDirty ? Color.OrangeRed : Color.FromArgb(73, 82, 110);
+                _configManager.AddLog($"Property Changed: {e.PropertyName}");                
             }
 
             // What should the indicator do?
@@ -153,6 +152,10 @@ S15: MAX_WINDOW=131
 
         private void UpdateIndicator(string propertyName)
         {
+            bool isDirty = _configManager.IsDirty;
+            btn_SaveSetting.ForeColor = isDirty ? Color.OrangeRed : Color.FromArgb(73, 82, 110);
+            btn_SaveSetting.IconColor = isDirty ? Color.OrangeRed : Color.FromArgb(73, 82, 110);
+
             // If no remote, bail
             if (_configManager.Remote?.Settings == null)
                 return;
@@ -950,10 +953,13 @@ S15: MAX_WINDOW=131
         private async void btn_SaveSetting_Click(object sender, EventArgs e)
         {
             _configManager.ClearProgress();
+            _configManager.AddLog("Saving changes...", true);
             var result = await _configManager.Save();
             if (result)
             {
-                _configManager.AddLog("Reloading saved settings...");
+                // Clear button
+                
+                _configManager.AddLog("Reloading saved settings...", true);
                 var loaded = await _configManager.Load();
                 _configManager.CompleteProgress();
                 if (loaded)
@@ -1118,7 +1124,7 @@ S15: MAX_WINDOW=131
                 
         private async void btn_LoadSetting_Click(object sender, EventArgs e)
         {
-            _configManager.AddLog("Loading settings...");
+            _configManager.AddLog("Loading settings...",true);
             _configManager.ClearProgress();
             var loaded = await _configManager.Load();
             if (!loaded)
@@ -1128,7 +1134,7 @@ S15: MAX_WINDOW=131
             }
             _configManager.CompleteProgress();
             BindControls();
-            _configManager.AddLog($"Load Settings Complete", true);
+            _configManager.AddLog($"Load settings complete", true);
         }
 
         private async void Control_Clicked_ShowHelp(object sender, EventArgs e)

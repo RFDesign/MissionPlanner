@@ -91,7 +91,15 @@ namespace RFDCommon
             {
                 return new TSettings(new Dictionary<string, TBaseSetting>());
             }
-            var updatedSettings = modem.Settings?.WorkingSettings.Where(s => s.Value.GetValueAsString() != modem.Settings.Settings[s.Key].GetValueAsString()).ToDictionary(s => s.Key, s => s.Value);
+            var updatedSettings = new Dictionary<string, TBaseSetting>();
+            foreach (var workingSetting in modem.Settings?.WorkingSettings)
+            {
+                var baseValue = modem.Settings.Settings[workingSetting.Key].GetValueAsString();
+                var newValue = workingSetting.Value.GetValueAsString();
+                if (newValue != baseValue)
+                    updatedSettings.Add(workingSetting.Key, workingSetting.Value);
+            }
+            //var updatedSettings = modem.Settings?.WorkingSettings.Where(s => s.Value.GetValueAsString() != modem.Settings.Settings[s.Key].GetValueAsString()).ToDictionary(s => s.Key, s => s.Value);
 
             TSettings settings = new TSettings(updatedSettings);
             return settings;
@@ -144,7 +152,7 @@ namespace RFDCommon
 
             if (AutoSyncProperties.Contains(setting.Name) && Remote?.ATI != null)
             {
-                AddLog($"Auto-Sync trigger on {setting.Name}: {setting.GetValueAsString()}",true);
+                AddLog($"Auto-Sync trigger on {setting.Name}: {setting.GetValueAsString()}");
                 // Sync other?
                 if (_currentModem.IsLocal)
                 {

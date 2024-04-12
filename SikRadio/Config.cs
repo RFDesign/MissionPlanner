@@ -41,7 +41,7 @@ namespace SikRadio
 
             var Version = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
 
-            Text = "RFD900 Tools " + Version.Minor.ToString() + "." + Version.Build.ToString() + " - RFDesign";
+            Text = "RFD Tools " + Version.Minor.ToString() + "." + Version.Build.ToString() + " - RFDesign";
 
             CMB_SerialPort.Items.AddRange(SerialPort.GetPortNames());
             CMB_SerialPort.Items.Add("TCP");
