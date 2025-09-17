@@ -2880,7 +2880,7 @@ namespace MissionPlanner
                     }
 
                     // send a hb every seconds from gcs to ap
-                    if (heatbeatSend.ElapsedMilliseconds >= 900)
+                    if (heatbeatSend.ElapsedMilliseconds >= 950)
                     {
                         MAVLink.mavlink_heartbeat_t htb = new MAVLink.mavlink_heartbeat_t()
                         {
