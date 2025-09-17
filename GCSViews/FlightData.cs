@@ -232,6 +232,8 @@ namespace MissionPlanner.GCSViews
 
         private bool transponderNeverConnected = true;
 
+        Button btnFTS;
+
         public FlightData()
         {
             log.Info("Ctor Start");
@@ -420,6 +422,41 @@ namespace MissionPlanner.GCSViews
 
             tabControlactions.Multiline = Settings.Instance.GetBoolean("tabControlactions_Multiline", false);
 
+            btnFTS = new Button();
+            btnFTS.Text = "TERMINATE";
+            btnFTS.Width = 200;
+            btnFTS.Height = 80;
+            btnFTS.Font = new Font("Arial", 20, FontStyle.Bold);
+            btnFTS.UseVisualStyleBackColor = false;
+
+            this.splitContainer1.Panel2.Controls.Add(btnFTS);
+            btnFTS.Location = new Point(this.splitContainer1.Panel2.Width - btnFTS.Width - 10, this.splitContainer1.Panel2.Height - btnFTS.Height - 10);
+
+            btnFTS.BringToFront();
+            btnFTS.BackColor = Color.Red;
+            btnFTS.Anchor = AnchorStyles.Right | AnchorStyles.Bottom;
+            btnFTS.Click += BUT_quickrtl_Click;
+
+            this.Load += (s, e) => PlaceTerminateButton();
+            this.Resize += (s, e) => PlaceTerminateButton();
+        }
+
+        void PlaceTerminateButton()
+        {
+            var p = this.splitContainer1.Panel2;
+
+            btnFTS.Location = new Point(
+                Math.Max(10, TRK_zoom.Left - btnFTS.Width - 10),
+                Math.Max(10, p.ClientSize.Height - btnFTS.Height - 10)
+            );
+            btnFTS.BringToFront();
+            btnFTS.BackColor = Color.Red;
+            btnFTS.UseVisualStyleBackColor = false;
+            btnFTS.FlatStyle = FlatStyle.Flat;
+            btnFTS.FlatAppearance.BorderSize = 2;
+            btnFTS.FlatAppearance.BorderColor = Color.Maroon;
+            btnFTS.FlatAppearance.MouseOverBackColor = Color.Firebrick;
+            btnFTS.FlatAppearance.MouseDownBackColor = Color.DarkRed;
         }
 
         public void Activate()
