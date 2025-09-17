@@ -538,7 +538,7 @@ namespace MissionPlanner
         /// <summary>
         /// track the last heartbeat sent
         /// </summary>
-        private DateTime heatbeatSend = DateTime.UtcNow;
+        private Stopwatch heatbeatSend = new Stopwatch();
 
         /// <summary>
         /// track the last ads-b send time
@@ -633,6 +633,8 @@ namespace MissionPlanner
         public MainV2()
         {
             log.Info("Mainv2 ctor");
+
+            heatbeatSend.Start();
 
             SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
 
@@ -2878,7 +2880,7 @@ namespace MissionPlanner
                     }
 
                     // send a hb every seconds from gcs to ap
-                    if (heatbeatSend.Second != DateTime.UtcNow.Second)
+                    if (heatbeatSend.ElapsedMilliseconds >= 900)
                     {
                         MAVLink.mavlink_heartbeat_t htb = new MAVLink.mavlink_heartbeat_t()
                         {
@@ -2985,7 +2987,7 @@ namespace MissionPlanner
                             }
                         }
 
-                        heatbeatSend = DateTime.UtcNow;
+                        heatbeatSend.Restart();
                     }
 
                     // if not connected or busy, sleep and loop
