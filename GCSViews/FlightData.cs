@@ -422,18 +422,12 @@ namespace MissionPlanner.GCSViews
 
             tabControlactions.Multiline = Settings.Instance.GetBoolean("tabControlactions_Multiline", false);
 
-            btnFTS = new Button();
-            btnFTS.Text = "TERMINATE";
-            btnFTS.Width = 200;
-            btnFTS.Height = 80;
-            btnFTS.Font = new Font("Arial", 20, FontStyle.Bold);
-            btnFTS.UseVisualStyleBackColor = false;
+            btnFTS = new TTerminateButton(this);
 
             this.splitContainer1.Panel2.Controls.Add(btnFTS);
             btnFTS.Location = new Point(this.splitContainer1.Panel2.Width - btnFTS.Width - 10, this.splitContainer1.Panel2.Height - btnFTS.Height - 10);
 
             btnFTS.BringToFront();
-            btnFTS.BackColor = Color.Red;
             btnFTS.Anchor = AnchorStyles.Right | AnchorStyles.Bottom;
             btnFTS.Click += BUT_quickrtl_Click;
 
@@ -450,14 +444,8 @@ namespace MissionPlanner.GCSViews
                 Math.Max(10, p.ClientSize.Height - btnFTS.Height - 10)
             );
             btnFTS.BringToFront();
-            btnFTS.BackColor = Color.Red;
-            btnFTS.UseVisualStyleBackColor = false;
-            btnFTS.FlatStyle = FlatStyle.Flat;
-            btnFTS.FlatAppearance.BorderSize = 2;
-            btnFTS.FlatAppearance.BorderColor = Color.Maroon;
-            btnFTS.FlatAppearance.MouseOverBackColor = Color.Firebrick;
-            btnFTS.FlatAppearance.MouseDownBackColor = Color.DarkRed;
         }
+
 
         public void Activate()
         {
@@ -6682,6 +6670,30 @@ namespace MissionPlanner.GCSViews
 
             // Pass `this` to keep the pop-out always on top
             form.Show(this);
+        }
+    }
+
+    /// <summary>
+    /// Applying the PreventTheming attribute to this class stops it being themed by the Utilities.Theme class, so it
+    /// keeps its original colours / appearance.
+    /// </summary>
+    [Utilities.PreventTheming]
+    class TTerminateButton : Button
+    {
+        public TTerminateButton(UserControl Parent)
+        {
+            Text = "TERMINATE";
+            Width = 200;
+            Height = 80;
+            Font = new Font("Arial", 20, FontStyle.Bold);
+            UseVisualStyleBackColor = false;
+            BackColor = Color.Red;
+            ForeColor = Color.Black;
+            FlatStyle = FlatStyle.Flat;
+            FlatAppearance.BorderSize = 2;
+            FlatAppearance.BorderColor = Color.Maroon;
+            FlatAppearance.MouseOverBackColor = Color.Firebrick;
+            FlatAppearance.MouseDownBackColor = Color.DarkRed;
         }
     }
 }
