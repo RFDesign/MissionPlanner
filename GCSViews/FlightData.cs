@@ -1463,8 +1463,13 @@ namespace MissionPlanner.GCSViews
         {
             try
             {
-                ((Control) sender).Enabled = false;
-                MainV2.comPort.setMode("RTL");
+                ((Control)sender).Enabled = false;
+                if (System.Windows.Forms.MessageBox.Show(
+                    "TERMINATE Vehicle " + MissionPlanner.MainV2.comPort.sysidcurrent.ToString() + "?", "TERMINATE?",
+                    MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
+                {
+                    MainV2.comPort.setMode("RTL");
+                }
             }
             catch
             {
