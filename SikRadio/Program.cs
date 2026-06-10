@@ -87,6 +87,7 @@
  * 2.66 - Fixed bug for multipoint firmware in which it showed an error message of 'Encryption key not valid hex number 
  *          <=32[/64] hex numerals' when saving change to encryption level setting to the modem.  
  * 2.67 - Change FileStream open of download firmware file to read only so files can be stored in read only directories.
+ * 2.68 - Manufacturer mode can now lock down modems for Brazil.  
  *          
  */
 

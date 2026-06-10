@@ -37,6 +37,7 @@
             this.btnLockdownUS = new System.Windows.Forms.Button();
             this.btnQueryLockStatus = new System.Windows.Forms.Button();
             this.lstLog = new System.Windows.Forms.ListBox();
+            this.btnLockdownBrazil = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.SuspendLayout();
@@ -62,6 +63,7 @@
             // 
             this.tableLayoutPanel2.ColumnCount = 1;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel2.Controls.Add(this.btnLockdownBrazil, 0, 6);
             this.tableLayoutPanel2.Controls.Add(this.btnLockdownIndia, 0, 5);
             this.tableLayoutPanel2.Controls.Add(this.btnLockdownEurope, 0, 4);
             this.tableLayoutPanel2.Controls.Add(this.btnLockdownAU, 0, 1);
@@ -72,7 +74,8 @@
             this.tableLayoutPanel2.Location = new System.Drawing.Point(2, 34);
             this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(2);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-            this.tableLayoutPanel2.RowCount = 7;
+            this.tableLayoutPanel2.RowCount = 8;
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32F));
@@ -165,6 +168,18 @@
             this.lstLog.Size = new System.Drawing.Size(452, 346);
             this.lstLog.TabIndex = 1;
             // 
+            // btnLockdownBrazil
+            // 
+            this.btnLockdownBrazil.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnLockdownBrazil.Location = new System.Drawing.Point(2, 194);
+            this.btnLockdownBrazil.Margin = new System.Windows.Forms.Padding(2);
+            this.btnLockdownBrazil.Name = "btnLockdownBrazil";
+            this.btnLockdownBrazil.Size = new System.Drawing.Size(104, 28);
+            this.btnLockdownBrazil.TabIndex = 6;
+            this.btnLockdownBrazil.Text = "Lockdown BR";
+            this.btnLockdownBrazil.UseVisualStyleBackColor = true;
+            this.btnLockdownBrazil.Click += new System.EventHandler(this.btnLockdownBrazil_Click);
+            // 
             // Manufacturing
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -190,5 +205,6 @@
         private System.Windows.Forms.Button btnQueryLockStatus;
         private System.Windows.Forms.Button btnLockdownIndia;
         private System.Windows.Forms.Button btnLockdownEurope;
+        private System.Windows.Forms.Button btnLockdownBrazil;
     }
 }

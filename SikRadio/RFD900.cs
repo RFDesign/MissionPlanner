@@ -2183,7 +2183,7 @@ namespace RFD.RFD900
                 case Uploader.Frequency.FREQ_868:
                     return new TCountry[] { TCountry.EU, TCountry.India };
                 case Uploader.Frequency.FREQ_915:
-                    return new TCountry[] { TCountry.AU, TCountry.US, TCountry.NZ };
+                    return new TCountry[] { TCountry.AU, TCountry.US, TCountry.NZ, TCountry.BR };
                 default:
                     return new TCountry[0];
             }
@@ -2337,7 +2337,9 @@ namespace RFD.RFD900
             EU = 4,
             PRC = 5,
             Ins = 6,
+            JP = 7,
             India = 8,
+            BR = 10,        // Brazil
             Undefined = 255,
         }
     }

@@ -266,5 +266,10 @@ namespace RFD900Tools
         {
             DoLockdown(RFD.RFD900.RFD900xux.TCountry.India);
         }
+
+        private void btnLockdownBrazil_Click(object sender, EventArgs e)
+        {
+            DoLockdown(RFD.RFD900.RFD900xux.TCountry.BR);
+        }
     }
 }
